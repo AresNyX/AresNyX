@@ -77,30 +77,11 @@ header h1 {
     cursor:pointer;
     transition: box-shadow 0.3s;
 }
-.product:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.product img {
-    width:100%;
-    height:auto;
-    margin-bottom:10px;
-    background:#f7f7f7;
-}
-.product h3 {
-    margin:5px 0 2px;
-    font-size:1.1em;
-    font-weight:600;
-}
-.product p {
-    margin:0 0 5px 0;
-    font-size:0.9em;
-    font-weight:300;
-}
-.product p:last-of-type {
-    margin-bottom:10px;
-    font-weight:600;
-    color: var(--color-button);
-}
+.product:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.product img { width:100%; height:auto; margin-bottom:10px; background:#f7f7f7; }
+.product h3 { margin:5px 0 2px; font-size:1.1em; font-weight:600; }
+.product p { margin:0 0 5px 0; font-size:0.9em; font-weight:300; }
+.product p:last-of-type { margin-bottom:10px; font-weight:600; color: var(--color-button); }
 
 /* FULLSCREEN MODAL */
 .modal {
@@ -127,13 +108,9 @@ header h1 {
 }
 .modal-content h3 { margin:10px 0 5px; }
 .modal-content p { margin:5px 0; font-weight:300; }
-.size-select { margin:10px 0; }
-.qty-controls {
-    display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0;
-}
-.qty-controls button {
-    padding:5px 10px; font-size:1em; cursor:pointer;
-}
+.size-select { margin:10px 0; padding:5px; }
+.qty-controls { display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0; }
+.qty-controls button { padding:5px 10px; font-size:1em; cursor:pointer; }
 .add-to-cart-modal {
     background: var(--color-button);
     color: var(--color-button-text);
@@ -152,6 +129,7 @@ header h1 {
     cursor:pointer;
     font-weight:600;
     text-transform:uppercase;
+    margin-top:10px;
 }
 
 /* TABLE MERA */
@@ -202,54 +180,14 @@ header h1 {
 
 <section class="products">
   <!-- 8 proizvoda -->
-  <div class="product" data-name="Pamuk" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder1.jpg" alt="Pamuk">
-    <h3>Pamuk</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Lan" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder2.jpg" alt="Lan">
-    <h3>Lan</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Svila" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder3.jpg" alt="Svila">
-    <h3>Svila</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Crna" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder4.jpg" alt="Crna">
-    <h3>Crna</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Bela" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder5.jpg" alt="Bela">
-    <h3>Bela</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto Plavo" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder6.jpg" alt="Prugasto Plavo">
-    <h3>Prugasto Plavo</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto Sivo" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder7.jpg" alt="Prugasto Sivo">
-    <h3>Prugasto Sivo</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder8.jpg" alt="Prugasto">
-    <h3>Prugasto</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
+  <div class="product" data-name="Pamuk" data-price="1300" data-material="100% pamuk"><img src="images/placeholder1.jpg" alt="Pamuk"><h3>Pamuk</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Lan" data-price="1300" data-material="100% pamuk"><img src="images/placeholder2.jpg" alt="Lan"><h3>Lan</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Svila" data-price="1300" data-material="100% pamuk"><img src="images/placeholder3.jpg" alt="Svila"><h3>Svila</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Crna" data-price="1300" data-material="100% pamuk"><img src="images/placeholder4.jpg" alt="Crna"><h3>Crna</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Bela" data-price="1300" data-material="100% pamuk"><img src="images/placeholder5.jpg" alt="Bela"><h3>Bela</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Prugasto Plavo" data-price="1300" data-material="100% pamuk"><img src="images/placeholder6.jpg" alt="Prugasto Plavo"><h3>Prugasto Plavo</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Prugasto Sivo" data-price="1300" data-material="100% pamuk"><img src="images/placeholder7.jpg" alt="Prugasto Sivo"><h3>Prugasto Sivo</h3><p>100% pamuk</p><p>1300 RSD</p></div>
+  <div class="product" data-name="Prugasto" data-price="1300" data-material="100% pamuk"><img src="images/placeholder8.jpg" alt="Prugasto"><h3>Prugasto</h3><p>100% pamuk</p><p>1300 RSD</p></div>
 </section>
 
 <!-- FULLSCREEN MODAL -->
@@ -261,90 +199,141 @@ header h1 {
     <p id="modalMaterial"></p>
     <p id="modalPrice"></p>
     <select class="size-select" id="modalSize">
-      <option value="M">
-          <!DOCTYPE html>
-<html lang="sr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts Shop</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-<style>
-:root {
-    --font-primary: 'Montserrat', sans-serif;
-    --color-dark-bg: #121212;
-    --color-accent-gold: #E6D8B0;
-    --color-button: #000000;
-    --color-button-text: #ffffff;
-    --color-light-bg: #f5f5f5;
-    --color-text-main: #333333;
-    --color-outline-btn: #000000;
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
+      <!-- unutar modal-content, ispod size-select -->
+<div style="margin:10px 0; text-align:center;">
+  <svg id="sizeIndicator" width="100" height="20">
+    <line x1="0" y1="10" x2="100" y2="10" stroke="#333" stroke-width="2"/>
+    <polygon id="triangle" points="0,0 10,10 0,20" fill="#C7574B"/>
+  </svg>
+  <p style="font-size:0.8em;margin-top:5px;">Veličina odgovara tabeli ispod</p>
+</div>
+
+<!-- TABELA MERA (uvek vidljiva ispod) -->
+<table class="size-table" style="margin-top:10px;">
+  <thead>
+    <tr><th>Veličina</th><th>Struk (cm)</th><th>Dužina (cm)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>M</td><td>70-75</td><td>30</td></tr>
+    <tr><td>L</td><td>76-80</td><td>32</td></tr>
+    <tr><td>XL</td><td>81-85</td><td>34</td></tr>
+    <tr><td>XXL</td><td>86-90</td><td>36</td></tr>
+  </tbody>
+</table>
+    <div class="qty-controls">
+        <button onclick="changeQty(-1)">-</button>
+      <span id="modalQty">1</span>
+      <button onclick="changeQty(1)">+</button>
+    </div>
+    <button class="add-to-cart-modal" onclick="addToCart()">Dodaj u korpu</button>
+    <button class="continue-shopping" onclick="closeModal()">Nastavi kupovinu</button>
+  </div>
+</div>
+
+<!-- CART POPUP -->
+<div class="cart-popup" id="cartPopup">
+  <h3>KORPA <button class="close-cart" onclick="toggleCart()">X</button></h3>
+  <table id="cartTable">
+    <thead>
+      <tr><th>Proizvod</th><th>Veličina</th><th>Količina</th><th>Cena</th></tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr><td colspan="3">Ukupno</td><td id="cartTotal">0 RSD</td></tr>
+    </tfoot>
+  </table>
+  <button onclick="goBack()" style="background:#000;color:#fff;padding:10px 20px;border:none;cursor:pointer;margin-top:10px;">Povratak</button>
+</div>
+
+<script>
+let cart = [];
+let currentProduct = null;
+let qty = 1;
+
+document.querySelectorAll('.product').forEach(prod=>{
+    prod.addEventListener('click', ()=>{
+        currentProduct = prod.dataset;
+        document.getElementById('modalImg').src = prod.querySelector('img').src;
+        document.getElementById('modalName').innerText = currentProduct.name;
+        document.getElementById('modalMaterial').innerText = currentProduct.material;
+        document.getElementById('modalPrice').innerText = currentProduct.price + " RSD";
+        document.getElementById('modalQty').innerText = 1;
+        qty=1;
+        document.getElementById('productModal').style.display = 'flex';
+    });
+});
+
+function closeModal(){ document.getElementById('productModal').style.display='none'; }
+
+function changeQty(amount){
+    qty+=amount;
+    if(qty<1) qty=1;
+    document.getElementById('modalQty').innerText = qty;
 }
 
-body { font-family: var(--font-primary); margin:0; padding:0; background:#fff; color: var(--color-text-main);}
-header { background:var(--color-dark-bg); color:#fff; padding:20px 30px; display:flex; justify-content:space-between; align-items:center;}
-header h1 { margin:0; font-size:1.8em; font-weight:300; color: var(--color-accent-gold); letter-spacing:2px; text-transform:uppercase;}
-.cart-icon { cursor:pointer; position:relative; font-weight:300; color:#DDDDDD; transition: color 0.3s;}
-.cart-icon:hover { color: var(--color-accent-gold); }
-.cart-count { position:absolute; top:-8px; right:-8px; background:#C7574B; color:white; border-radius:50%; padding:2px 6px; font-size:0.8em; font-weight:600;}
+function addToCart(){
+    const size = document.getElementById('modalSize').value;
+    const name = currentProduct.name;
+    const price = parseInt(currentProduct.price);
+    const existing = cart.find(item => item.name===name && item.size===size);
+    if(existing){ existing.qty += qty; }
+    else{ cart.push({name, size, qty, price}); }
+    updateCart();
+    closeModal();
+}
 
-/* Products grid */
-.products { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; padding:40px 30px; max-width:900px; margin:0 auto;}
-.product { background:var(--color-light-bg); padding:15px; border-radius:5px; text-align:center; cursor:pointer; transition: box-shadow 0.3s;}
-.product:hover { box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.product img { width:100%; height:auto; margin-bottom:10px; background:#f7f7f7;}
-.product h3 { margin:5px 0 2px; font-size:1.1em; font-weight:600;}
-.product p { margin:0 0 5px 0; font-size:0.9em; font-weight:300;}
-.product p:last-of-type { margin-bottom:10px; font-weight:600; color: var(--color-button); }
+function updateCart(){
+    const tbody = document.querySelector('#cartTable tbody');
+    tbody.innerHTML='';
+    let total =0;
+    cart.forEach(item=>{
+        let row = document.createElement('tr');
+        row.innerHTML = `<td>${item.name}</td><td>${item.size}</td>
+        <td><input type="number" value="${item.qty}" min="1" style="width:50px" onchange="updateQty('${item.name}','${item.size}',this.value)"></td>
+        <td>${item.qty*item.price} RSD</td>`;
+        tbody.appendChild(row);
+        total+=item.qty*item.price;
+    });
+    document.getElementById('cartTotal').innerText = total + " RSD";
+    document.getElementById('cartCount').innerText = cart.reduce((a,b)=>a+b.qty,0);
+}
 
-/* Modal */
-.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;}
-.modal-content { background:#fff; padding:20px; width:90%; max-width:500px; text-align:center; position:relative;}
-.modal-content img { width:50%; margin-bottom:15px;}
-.modal-content h3 { margin:10px 0 5px; }
-.modal-content p { margin:5px 0; font-weight:300; }
-.size-select { margin:10px 0; padding:5px; font-size:1em; }
-.qty-controls { display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0;}
-.qty-controls button { padding:5px 10px; font-size:1em; cursor:pointer;}
-.add-to-cart-modal { background: var(--color-button); color: var(--color-button-text); border:none; padding:12px 20px; cursor:pointer; font-weight:600; text-transform:uppercase; margin:5px 0;}
-.continue-shopping { background:#fff; color:#000; border:1px solid var(--color-outline-btn); padding:10px 20px; cursor:pointer; font-weight:600; text-transform:uppercase; margin:5px 0;}
+function updateQty(name,size,newQty){
+    const item = cart.find(i=>i.name===name && i.size===size);
+    if(item){
+        item.qty = parseInt(newQty);
+        if(item.qty<1) item.qty=1;
+        updateCart();
+    }
+}
 
-/* Table for sizes */
-.size-table { display:none; margin-top:15px; border-collapse:collapse; width:100%;}
-.size-table th, .size-table td { border:1px solid #ccc; padding:5px; font-size:0.9em;}
-.size-table th { background:#f0f0f0; }
+function toggleCart(){
+    const popup = document.getElementById('cartPopup');
+    popup.style.display = (popup.style.display==='block') ? 'none' : 'block';
+}
 
-/* Cart popup */
-.cart-popup { display:none; position:fixed; top:80px; right:30px; background:white; border:1px solid #ccc; width:350px; max-height:450px; overflow:auto; z-index:1000; box-shadow:0 5px 20px rgba(0,0,0,0.1); padding:20px;}
-.cart-popup h3 { margin-top:0; font-size:1.5em; border-bottom:1px solid #eee; padding-bottom:10px;}
-.cart-popup table { width:100%; border-collapse:collapse;}
-.cart-popup th, .cart-popup td { border-bottom:1px solid #eee; padding:8px 5px; text-align:left; font-weight:300;}
-.cart-popup th { font-weight:600;}
-.cart-popup tfoot td { border-top:1px solid #ccc; font-weight:600; padding-top:10px;}
-.close-cart { background:#000; color:#fff; border:none; padding:5px 8px; cursor:pointer; float:right; border-radius:2px; }
+function goBack(){ window.history.back(); }
+    <!-- Ostali HTML kod ... -->
 
-@media (max-width:600px){.products{grid-template-columns:repeat(2,1fr); gap:15px; padding:20px 10px;}}
-</style>
-</head>
-<body>
-
-<header>
-<h1>ARESNYX</h1>
-<div class="cart-icon" onclick="toggleCart()">🛒 KORPA <span class="cart-count" id="cartCount">0</span></div>
-</header>
-
-<section class="products">
-  <div class="product" data-name="Pamuk" data-price="1300" data-material="100% pamuk"><img src="images/placeholder1.jpg" alt="Pamuk"><h3>Pamuk</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Lan" data-price="1300" data-material="100% pamuk"><img src="images/placeholder2.jpg" alt="Lan"><h3>Lan</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Svila" data-price="1300" data-material="100% pamuk"><img src="images/placeholder3.jpg" alt="Svila"><h3>Svila</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Crna" data-price="1300" data-material="100% pamuk"><img src="images/placeholder4.jpg" alt="Crna"><h3>Crna</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Bela" data-price="1300" data-material="100% pamuk"><img src="images/placeholder5.jpg" alt="Bela"><h3>Bela</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Prugasto Plavo" data-price="1300" data-material="100% pamuk"><img src="images/placeholder6.jpg" alt="Prugasto Plavo"><h3>Prugasto Plavo</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Prugasto Sivo" data-price="1300" data-material="100% pamuk"><img src="images/placeholder7.jpg" alt="Prugasto Sivo"><h3>Prugasto Sivo</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-  <div class="product" data-name="Prugasto" data-price="1300" data-material="100% pamuk"><img src="images/placeholder8.jpg" alt="Prugasto"><h3>Prugasto</h3><p>100% pamuk</p><p>1300 RSD</p></div>
-</section>
-
-<!-- Modal template -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <span class="close" onclick
+<script>
+  // Ovde ide tvoj JS za modal, pomeranje trougla, korpu itd.
+  document.getElementById('modalSize').addEventListener('change', function(){
+      const val = this.value; // M, L, XL, XXL
+      const triangle = document.getElementById('triangle');
+      let xPos = 0;
+      switch(val){
+          case 'M': xPos = 10; break;
+          case 'L': xPos = 35; break;
+          case 'XL': xPos = 60; break;
+          case 'XXL': xPos = 85; break;
+      }
+      triangle.setAttribute('transform', `translate(${xPos},0)`);
+  });
+</script>
+</body>
+</html>
