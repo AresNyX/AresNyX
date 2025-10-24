@@ -335,5 +335,159 @@ function goBack(){ window.history.back(); }
       triangle.setAttribute('transform', `translate(${xPos},0)`);
   });
 </script>
+    <script>
+// ========================
+// SHOP & MODAL LOGIKA
+// ========================
+
+let cart = [];
+
+// Prikaz modal-a sa proizvodom
+const products = document.querySelectorAll('.product');
+const modal = document.getElementById('productModal');
+const modalImg = document.getElementById('modalImg');
+const modalName = document.getElementById('modalName');
+const modalMaterial = document.getElementById('modalMaterial');
+const modalPrice = document.getElementById('modalPrice');
+const modalSize = document.getElementById('modalSize');
+const modalQty = document.getElementById('modalQty');
+const sizeTable = document.getElementById('sizeTable');
+
+products.forEach(prod => {
+    prod.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = prod.querySelector('img').src;
+        modalName.innerText = prod.dataset.name;
+        modalMaterial.innerText = prod.dataset.material;
+        modalPrice.innerText = prod.dataset.price + ' RSD';
+        modalQty.value = 1;
+        modalSize.value = 'M';
+        sizeTable.style.display = 'none';
+    });
+});
+
+// Zatvori modal
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+// Tabela sa merama preko trougla
+document.getElementById('sizeGuide').addEventListener('click', () => {
+    sizeTable.style.display = sizeTable.style.display === 'table' ? 'none' : 'table';
+});
+
+// Kontrola količine u modal
+document.getElementById('qtyInc').addEventListener('click', () => {
+    modalQty.value = parseInt(modalQty.value) + 1;
+});
+document.getElementById('qtyDec').addEventListener('click', () => {
+    modalQty.value = Math.max(1, parseInt(modalQty.value) - 1);
+});
+
+// Dodaj u korpu
+document.getElementById('addToCart').addEventListener('click', () => {
+    const name = modalName.innerText;
+    const price = parseInt(modalPrice.innerText);
+    const size = modalSize.value;
+    const qty = parseInt(modalQty.value);
+
+    let item = cart.find(i => i.name === name && i.size === size);
+    if(item){
+        item.qty += qty;
+    } else {
+        cart.push({name, size, price, qty});
+    }
+
+    updateCart();
+    closeModal();
+});
+
+// ========================
+// KORPA LOGIKA
+// ========================
+
+const cartPopup = document.getElementById('cartPopup');
+function toggleCart() {
+    cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+    updateCart();
+}
+
+function updateCart(){
+    const tbody = document.querySelector('#cartTable tbody');
+    tbody.innerHTML = '';
+
+    let total = 0;
+    let totalItems = 0;
+
+    cart.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.name} (${item.size})</td>
+            <td>
+                <span class="qty-btn" data-idx="${idx}" data-action="dec">-</span>
+                ${item.qty}
+                <span class="qty-btn" data-idx="${idx}" data-action="inc">+</span>
+            </td>
+            <td>${item.qty * item.price} RSD</td>
+        `;
+        tbody.appendChild(tr);
+        total += item.qty * item.price;
+        totalItems += item.qty;
+    });
+
+    // Poštarina
+    let shipping = totalItems >= 5 ? 0 : 400;
+    // Popust 10% za 7+
+    let discount = totalItems >= 7 ? Math.round(total*0.1) : 0;
+
+    document.getElementById('shipping').innerText = shipping + ' RSD';
+    document.getElementById('discount').innerText = discount + ' RSD';
+    document.getElementById('total').innerText = (total + shipping - discount) + ' RSD';
+    document.getElementById('cartCount').innerText = totalItems;
+
+    // Kontrola količine u korpi
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const idx = parseInt(e.target.dataset.idx);
+            if(e.target.dataset.action === 'inc') cart[idx].qty++;
+            if(e.target.dataset.action === 'dec') cart[idx].qty = Math.max(1, cart[idx].qty -1);
+            updateCart();
+        });
+    });
+}
+
+// Checkout dugme
+function checkout(){
+    alert("Porudžbina potvrđena! Hvala na kupovini.");
+}
+
+// Nastavi kupovinu
+document.getElementById('continueShopping').addEventListener('click', () => {
+    cartPopup.style.display = 'none';
+});
+</script>
+
+<style>
+/* Dugmad plus minus u korpi samo znaci */
+.qty-btn {
+    cursor:pointer;
+    padding:0 5px;
+    font-weight:bold;
+    user-select:none;
+}
+.qty-btn:hover { color: #C7574B; }
+
+/* Size guide trougao */
+#sizeGuide {
+    cursor:pointer;
+    display:inline-block;
+    width:0;
+    height:0;
+    border-left: 10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:15px solid #333;
+    margin:10px 0;
+}
+</style>
 </body>
 </html>
