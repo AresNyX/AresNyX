@@ -258,6 +258,31 @@ header h1 {
   <div class="modal-content">
     <span class="close" style="position:absolute; top:10px; right:10px; cursor:pointer; font-size:1.2em;" onclick="closeModal()">&times;</span>
     <img src="" alt="" id="modalImg">
+    <!-- FULLSCREEN SLIDER MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()" style="position:absolute; top:10px; right:15px; font-size:1.5em; cursor:pointer;">&times;</span>
+    <img id="modalImage" src="" alt="" style="width:80%; max-width:400px;">
+    <div style="margin-top:10px;">
+      <button onclick="prevImage()" style="margin-right:20px;">&#10094;</button>
+      <button onclick="nextImage()">&#10095;</button>
+    </div>
+    <h3 id="modalName"></h3>
+    <p id="modalMaterial"></p>
+    <p id="modalPrice"></p>
+    <table class="size-table" id="modalSizes">
+      <thead>
+        <tr><th>Veličina</th><th>Struk</th><th>Dužina</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>M</td><td>80cm</td><td>25cm</td></tr>
+        <tr><td>L</td><td>85cm</td><td>26cm</td></tr>
+        <tr><td>XL</td><td>90cm</td><td>27cm</td></tr>
+        <tr><td>XXL</td><td>95cm</td><td>28cm</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
     
     <!-- TROUGAO / DIAGRAM -->
     <div id="sizeDiagram" style="margin:15px 0; text-align:center; cursor:pointer;" onclick="document.getElementById('sizeTable').scrollIntoView({behavior:'smooth'});">
@@ -547,7 +572,49 @@ function checkout(){
     cart=[];
     updateCart();
 }
-                </script>
+      
+         let modal = document.getElementById("productModal");
+let modalImage = document.getElementById("modalImage");
+let modalName = document.getElementById("modalName");
+let modalMaterial = document.getElementById("modalMaterial");
+let modalPrice = document.getElementById("modalPrice");
+
+let currentImages = [];
+let currentIndex = 0;
+
+// Dodavanje event listenera za svaki proizvod
+document.querySelectorAll('.product').forEach((prod, idx) => {
+  prod.addEventListener('click', () => {
+    // Povezujemo slike prema indeksu: slika1a.jpg, slika1b.jpg ...
+    currentImages = [`images/slika${idx+1}a.jpg`, `images/slika${idx+1}b.jpg`];
+    currentIndex = 0;
+    modalImage.src = currentImages[currentIndex];
+
+    modalName.textContent = prod.dataset.name;
+    modalMaterial.textContent = prod.dataset.material;
+    modalPrice.textContent = prod.dataset.price + " RSD";
+
+    modal.style.display = "flex";
+  });
+});
+
+// Funkcije za slajder
+function nextImage() {
+  if(currentImages.length === 0) return;
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  modalImage.src = currentImages[currentIndex];
+}
+function prevImage() {
+  if(currentImages.length === 0) return;
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  modalImage.src = currentImages[currentIndex];
+}
+
+// Zatvaranje moda
+function closeModal() {
+  modal.style.display = "none";
+  }       
+    </script>
 
 </body>
 </html>
