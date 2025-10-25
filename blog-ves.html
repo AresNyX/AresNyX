@@ -45,17 +45,19 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    h2, h3 {
-      color: #E2725B; /* terakota */
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
+    /* Naslov u okviru */
+    .blog-title {
+      border: 2px solid #E2725B; /* terakota */
+      padding: 15px 20px;
       text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      border-radius: 5px; /* blago zaobljenje ivica */
     }
 
     h3 {
+      color: #E2725B; /* terakota podnaslovi */
       font-size: 1.5rem;
       margin-top: 25px;
       margin-bottom: 10px;
@@ -94,6 +96,7 @@
       font-size: 0.9rem;
       margin-top: 40px;
     }
+
   </style>
 </head>
 <body>
@@ -104,7 +107,8 @@
   </header>
 
   <main>
-    <h2>Zdravlje počinje od donjeg veša</h2>
+
+    <div class="blog-title">Zdravlje počinje od donjeg veša</div>
 
     <h3>Uvod: Udobnost je Zdravlje</h3>
     <p>Vaš donji veš je jedina odeća koju nosite 24 sata dnevno. Izbor materijala i kroja direktno utiče na higijenu, udobnost i dugoročno zdravlje.</p>
@@ -132,7 +136,7 @@
   </main>
 
   <footer>
-    © 2025 AresNyX — Zdravlje počinje iznutra
+    © 2025 AresNyX — Uvek sa vama
   </footer>
 
 </body>
