@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
@@ -73,6 +73,10 @@
     .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
     .modal-content { padding: 1.5rem; }
     .modal-main-image { width: 100%; max-width: 350px; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem; }
+    
+    /* Dodatak za navigaciju slajdera - da se vidi kraj */
+    .slider-nav button:disabled { opacity: 0.5; cursor: not-allowed; }
+    
     .size-option { display: inline-block; padding: 0.6rem 1rem; border: 2px solid var(--gray-medium); border-radius: 8px; cursor: pointer; margin-right: 0.5rem; transition: var(--transition); }
     .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
     .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
@@ -314,8 +318,8 @@
                 <div class="modal-gallery">
                     <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy">
                     <div class="slider-nav">
-                        <button onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                        <button onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
                 
@@ -413,6 +417,8 @@
                         <div class="form-group"><label for="prezime">Prezime*</label><input type="text" id="prezime" required></div>
                         <div class="form-group"><label for="email">Email*</label><input type="email" id="email" required></div>
                         
+                        <div class="form-group"><label for="telefon">Telefon (mobilni)*</label><input type="tel" id="telefon" required></div>
+                        
                         <div class="form-group"><label for="ulica">Ulica i broj*</label><input type="text" id="ulica" required></div>
                         
                         <div class="form-group"><label for="postanskiBroj">Poštanski broj*</label><input type="text" id="postanskiBroj" required></div>
@@ -444,7 +450,7 @@
                             <h3>Podaci za isporuku</h3>
                             <p id="previewIme"></p>
                             <p id="previewEmail"></p>
-                            <p id="previewAdresa"></p>
+                            <p id="previewTelefon"></p><p id="previewAdresa"></p>
                             <p id="previewPostaGrad"></p>
                             <p id="previewPlacanje"></p>
                             <p id="previewNapomena"></p>
@@ -572,6 +578,13 @@
         updateModalImage() {
             if (!this.currentProduct) return;
             document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
+            
+            // Logika za onemogućavanje dugmadi na početku/kraju ciklusa (iako ciklira)
+            const isFirst = this.currentImageIndex === 0;
+            const isLast = this.currentImageIndex === this.currentProduct.images.length - 1;
+            
+            document.getElementById('prevImageBtn').disabled = isFirst;
+            document.getElementById('nextImageBtn').disabled = isLast;
         }
 
         selectSize(event, size) {
@@ -651,28 +664,37 @@
             cartCount.classList.remove('quick-pulse'); 
             void cartCount.offsetWidth;
             cartCount.classList.add('quick-pulse');
+            
+            this.updateCartTotals(); 
+            this.toggleCartVisibility();
+        }
+        
+        toggleCartVisibility() {
+            const cartFooter = document.getElementById('cartFooter');
+            const emptyCart = document.getElementById('emptyCart');
+            
+            if (this.cart.length === 0) {
+                if (emptyCart) emptyCart.style.display = 'block';
+                if (cartFooter) cartFooter.style.display = 'none';
+            } else {
+                if (emptyCart) emptyCart.style.display = 'none';
+                if (cartFooter) cartFooter.style.display = 'block';
+            }
         }
 
         renderCart() {
             const cartItemsContainer = document.getElementById('cartItems');
-            const cartFooter = document.getElementById('cartFooter');
-            const emptyCart = document.getElementById('emptyCart');
 
             if (this.cart.length === 0) {
-                emptyCart.style.display = 'block';
-                cartFooter.style.display = 'none';
                 cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
+                this.toggleCartVisibility(); 
+                this.updateCartTotals(); 
                 return;
             }
 
-            emptyCart.style.display = 'none';
-            cartFooter.style.display = 'block';
-            cartItemsContainer.innerHTML = ''; // Čišćenje pre renderovanja
+            cartItemsContainer.innerHTML = ''; 
 
             this.cart.forEach((item) => {
-                // Koristimo productId i size za jedinstvenu identifikaciju stavke
-                const key = `${item.productId},'${item.size}'`;
-                
                 const itemHtml = `
                     <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
                         <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
@@ -694,10 +716,10 @@
                 cartItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
             });
 
+            this.toggleCartVisibility(); 
             this.updateCartTotals();
         }
 
-        // PROMENA: Funkcija sada prima productId, size i change
         updateCartItem(productId, size, change) {
             const item = this.cart.find(i => i.productId === productId && i.size === size);
             if (!item) return;
@@ -712,7 +734,6 @@
             this.saveCart();
             this.updateCartCount();
             
-            // Ažuriranje prikaza elementa (precizno korišćenje data atributa)
             const cartItem = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
             if(cartItem) {
                 cartItem.querySelector('.cart-item-qty').textContent = item.quantity;
@@ -723,19 +744,25 @@
             this.showToast(change > 0 ? "Količina povećana" : "Količina smanjena");
         }
 
-        // PROMENA: Funkcija sada prima productId i size
         removeCartItem(productId, size) {
             const index = this.cart.findIndex(i => i.productId === productId && i.size === size);
+            const cartItemElement = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
 
             if (index > -1) {
                 const itemName = this.cart[index].name;
                 this.cart.splice(index, 1);
-                
                 this.saveCart();
-                this.updateCartCount();
-                this.renderCart(); 
                 
+                if (cartItemElement) {
+                    cartItemElement.remove();
+                }
+
+                this.updateCartCount(); 
                 this.showToast(`"${itemName}" je uklonjen iz korpe`);
+                
+                if (this.cart.length === 0) {
+                    this.renderCart(); 
+                }
             }
         }
 
@@ -781,7 +808,7 @@
         }
         
         // =========================================================
-        // === CHECKOUT METODE (ostaju iste) ===
+        // === CHECKOUT METODE ===
         // =========================================================
 
         startCheckout() {
@@ -811,6 +838,7 @@
                 document.getElementById('ime').value = this.checkoutData.ime || '';
                 document.getElementById('prezime').value = this.checkoutData.prezime || '';
                 document.getElementById('email').value = this.checkoutData.email || '';
+                document.getElementById('telefon').value = this.checkoutData.telefon || ''; // DODATO
                 document.getElementById('ulica').value = this.checkoutData.ulica || '';
                 document.getElementById('postanskiBroj').value = this.checkoutData.postanskiBroj || '';
                 document.getElementById('grad').value = this.checkoutData.grad || '';
@@ -827,6 +855,7 @@
                 ime: document.getElementById('ime').value,
                 prezime: document.getElementById('prezime').value,
                 email: document.getElementById('email').value,
+                telefon: document.getElementById('telefon').value, // DODATO
                 ulica: document.getElementById('ulica').value,
                 postanskiBroj: document.getElementById('postanskiBroj').value,
                 grad: document.getElementById('grad').value,
@@ -853,6 +882,7 @@
             
             document.getElementById('previewIme').innerHTML = `<strong>Kupac:</strong> ${data.ime} ${data.prezime}`;
             document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${data.email}`;
+            document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${data.telefon}`; // DODATO
             document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${data.ulica} ${data.opstina ? `, ${data.opstina}` : ''}`;
             document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${data.postanskiBroj}, ${data.grad}`;
             document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(data.placanje)}`;
@@ -958,5 +988,4 @@
     </script>
 </body>
 </html>
-        
-                 
+                       
