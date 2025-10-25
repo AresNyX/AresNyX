@@ -1,645 +1,1348 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sr">
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts Shop</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<title>AresNyX - Premium Boxer Shorts</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
-    --font-primary: 'Montserrat', sans-serif;
-    --color-dark-bg: #121212;
-    --color-accent-gold: #E6D8B0;
-    --color-button: #000000; /* crno dugme za Dodaj u korpu */
-    --color-button-text: #ffffff;
-    --color-light-bg: #f5f5f5; /* svetlo siva pozadina polja */
-    --color-text-main: #333333;
-    --color-outline-btn: #000000; /* okvir za Nastavi kupovinu */
+    --primary-dark: #121212;
+    --accent-gold: #D4AF37;
+    --accent-hover: #F4C44D;
+    --success: #27AE60;
+    --danger: #E74C3C;
+    --gray-light: #F8F9FA;
+    --gray-medium: #E9ECEF;
+    --text-dark: #2C3E50;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-primary);
-    margin:0; padding:0;
+    font-family: 'Montserrat', sans-serif;
     background: #fff;
-    color: var(--color-text-main);
+    color: var(--text-dark);
+    line-height: 1.6;
 }
 
-header {
-    background:var(--color-dark-bg);
-    color:#fff;
-    padding:20px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* ENHANCED HEADER */
+.header {
+    background: var(--primary-dark);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
-header h1 {
-    margin:0;
-    font-size:1.8em;
-    font-weight:300;
-    color: var(--color-accent-gold);
-    letter-spacing:2px;
-    text-transform:uppercase;
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--accent-gold);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
 .cart-icon {
-    cursor:pointer;
-    position:relative;
-    font-weight:300;
-    color:#DDDDDD;
-    transition: color 0.3s;
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: var(--transition);
+    color: #fff;
 }
-.cart-icon:hover { color: var(--color-accent-gold); }
+
+.cart-icon:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
 .cart-count {
-    position:absolute;
-    top:-8px;
-    right:-8px;
-    background:#C7574B;
-    color:white;
-    border-radius:50%;
-    padding:2px 6px;
-    font-size:0.8em;
-    font-weight:600;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8em;
+    font-weight: 600;
 }
 
-/* PRODUCTS GRID */
-.products {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-    padding:40px 30px;
-    max-width:900px;
-    margin:0 auto;
-}
-.product {
-    background:var(--color-light-bg);
-    padding:15px;
-    border-radius:5px;
-    text-align:center;
-    cursor:pointer;
-    transition: box-shadow 0.3s;
-}
-.product:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.product img {
-    width:100%;
-    height:auto;
-    margin-bottom:10px;
-    background:#f7f7f7;
-}
-.product h3 {
-    margin:5px 0 2px;
-    font-size:1.1em;
-    font-weight:600;
-}
-.product p {
-    margin:0 0 5px 0;
-    font-size:0.9em;
-    font-weight:300;
-}
-.product p:last-of-type {
-    margin-bottom:10px;
-    font-weight:600;
-    color: var(--color-button);
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #2C3E50 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
 }
 
-/* FULLSCREEN MODAL */
-.modal {
-    display:none;
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* FILTERS & SORT */
+.filters-section {
+    padding: 2rem;
+    background: var(--gray-light);
+}
+
+.filters-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-btn {
+    background: white;
+    border: 2px solid var(--gray-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background: var(--primary-dark);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-gold);
+}
+
+.sort-select {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+}
+
+/* ENHANCED PRODUCT GRID - 6×2 STRUKTURA */
+.products-section {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    grid-column: span 2;
+}
+
+.product-card:nth-child(5),
+.product-card:nth-child(6) {
+    grid-column: span 3;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--success);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.product-badge.premium {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+}
+
+.product-badge.new {
+    background: var(--danger);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.product-material {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.quick-add {
+    flex: 1;
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.quick-add:hover {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+}
+
+.wishlist-btn {
+    background: var(--gray-medium);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 45px;
+}
+
+.wishlist-btn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* LOADING SKELETON */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ENHANCED MODAL */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.8);
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
 }
+
+.modal-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    font-size: 1.2rem;
+}
+
+.modal-close:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.modal-gallery {
+    position: relative;
+    background: var(--gray-light);
+}
+
+.modal-main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.modal-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.thumbnail.active {
+    opacity: 1;
+    border: 2px solid var(--accent-gold);
+}
+
 .modal-content {
-    background:#fff;
-    padding:20px;
-    width:90%;
-    max-width:500px;
-    text-align:center;
-    position:relative;
-    overflow-y:auto;
-    max-height:95%;
-}
-.modal-content img {
-    width:50%;
-    margin-bottom:15px;
-}
-.size-select { margin:10px 0; }
-.qty-controls {
-    display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0;
-}
-.qty-controls span {
-    cursor:pointer; font-weight:bold; font-size:1.2em;
-}
-.add-to-cart-modal {
-    background: var(--color-button);
-    color: var(--color-button-text);
-    border:none;
-    padding:12px 20px;
-    cursor:pointer;
-    font-weight:600;
-    text-transform:uppercase;
-    margin:5px 0;
-}
-.continue-shopping {
-    background:#fff;
-    color:#000;
-    border:1px solid var(--color-outline-btn);
-    padding:10px 20px;
-    cursor:pointer;
-    font-weight:600;
-    text-transform:uppercase;
-    margin-top:15px;
+    padding: 2rem;
+    overflow-y: auto;
 }
 
-/* TABLE MERA */
-.size-table {
-    margin-top:15px;
-    border-collapse:collapse;
-    width:100%;
+.size-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
 }
-.size-table th, .size-table td {
-    border:1px solid #ccc;
-    padding:5px;
-    font-size:0.9em;
-}
-.size-table th { background:#f0f0f0; }
 
-/* CART POPUP */
-.cart-popup {
-    display:none;
-    position:fixed;
-    top:80px; right:30px;
-    background:white;
-    border:1px solid #ccc;
-    width:350px;
-    max-height:450px;
-    overflow:auto;
-    z-index:1000;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    padding:20px;
+.size-option {
+    padding: 0.8rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
 }
-.cart-popup h3 { margin-top:0; font-size:1.5em; border-bottom:1px solid #eee; padding-bottom:10px;}
-.cart-popup table { width:100%; border-collapse:collapse;}
-.cart-popup th, .cart-popup td { border-bottom:1px solid #eee; padding:8px 5px; text-align:left; font-weight:300;}
-.cart-popup th { font-weight:600;}
-.cart-popup tfoot td { border-top:1px solid #ccc; font-weight:600; padding-top:10px; }
 
-/* RESPONSIVE */
-@media (max-width:600px){.products{grid-template-columns:repeat(2,1fr); gap:15px; padding:20px 10px;}}
+.size-option.selected {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--gray-medium);
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.2rem;
+}
+
+.qty-btn:hover {
+    border-color: var(--accent-gold);
+}
+
+.qty-display {
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-width: 50px;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 1rem;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.product-features {
+    margin-top: 1.5rem;
+}
+
+.product-features h4 {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.product-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-features li {
+    padding: 0.3rem 0;
+    color: #555;
+}
+
+/* ENHANCED CART */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.cart-item-size {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.cart-item-qty {
+    padding: 0.2rem 0.8rem;
+    background: var(--gray-light);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.cart-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--gray-medium);
+}
+
+.cart-totals {
+    margin-bottom: 1rem;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.cart-total-row.final {
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-top: 2px solid var(--gray-medium);
+    padding-top: 0.5rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checkout-btn:hover {
+    background: #219A52;
+    transform: translateY(-2px);
+}
+
+/* TOAST NOTIFICATIONS */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--success);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transform: translateX(400px);
+    transition: var(--transition);
+    z-index: 3000;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .product-card {
+        grid-column: span 2;
+    }
+    .product-card:nth-child(5),
+    .product-card:nth-child(6) {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .product-card {
+        grid-column: span 1;
+    }
+    .modal-container {
+        grid-template-columns: 1fr;
+        width: 95%;
+        height: 95vh;
+    }
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        gap: 1rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    .filters-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* LOADING STATES */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+}
+
+.empty-cart i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--gray-medium);
+}
 </style>
 </head>
 <body>
+    <!-- Enhanced Header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">ARESNYX</a>
+            <ul class="nav-links">
+                <li><a href="#">Početna</a></li>
+                <li><a href="#">Kolekcija</a></li>
+                <li><a href="#">O nama</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
 
-<header>
-<h1>ARESNYX</h1>
-<div class="cart-icon" onclick="toggleCart()">🛒 KORPA <span class="cart-count" id="cartCount">0</span></div>
-</header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Boxer Shorts</h1>
+            <p>Kombinujte udobnost i stil sa našim ekskluzivnim kolekcijama</p>
+            <button class="cta-button" onclick="scrollToProducts()">Otkrij Kolekciju</button>
+        </div>
+    </section>
 
-<section class="products">
-  <!-- 8 proizvoda -->
-  <div class="product" data-name="Pamuk" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder1.jpg" alt="Pamuk">
-    <h3>Pamuk</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Lan" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder2.jpg" alt="Lan">
-    <h3>Lan</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Svila" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder3.jpg" alt="Svila">
-    <h3>Svila</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Crna" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder4.jpg" alt="Crna">
-    <h3>Crna</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Bela" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder5.jpg" alt="Bela">
-    <h3>Bela</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto Plavo" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder6.jpg" alt="Prugasto Plavo">
-    <h3>Prugasto Plavo</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto Sivo" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder7.jpg" alt="Prugasto Sivo">
-    <h3>Prugasto Sivo</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Prugasto" data-price="1300" data-material="100% pamuk">
-    <img src="images/placeholder8.jpg" alt="Prugasto">
-    <h3>Prugasto</h3>
-    <p>100% pamuk</p>
-    <p>1300 RSD</p>
-  </div>
-  <div class="product" data-name="Nawy" data-price="1300" data-material="100% pamuk">
-  <img src="images/placeholder9.jpg" alt="Nawy">
-  <h3>Nawy</h3>
-  <p>100% pamuk</p>
-  <p>1300 RSD</p>
-</div>
-<div class="product" data-name="Tamno Plava" data-price="1300" data-material="100% pamuk">
-  <img src="images/placeholder10.jpg" alt="Tamno Plava">
-  <h3>Tamno Plava</h3>
-  <p>100% pamuk</p>
-  <p>1300 RSD</p>
-</div>
-<div class="product" data-name="Teget Prugice" data-price="1300" data-material="100% pamuk">
-  <img src="images/placeholder11.jpg" alt="Teget Prugice">
-  <h3>Teget Prugice</h3>
-  <p>100% pamuk</p>
-  <p>1300 RSD</p>
-</div>
-<div class="product" data-name="Tamno Siva" data-price="1300" data-material="100% pamuk">
-  <img src="images/placeholder12.jpg" alt="Tamno Siva">
-  <h3>Tamno Siva</h3>
-  <p>100% pamuk</p>
-  <p>1300 RSD</p>
-</div>
-</section>
+    <!-- Filters & Sort -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Svi proizvodi</button>
+                <button class="filter-btn" data-filter="pamuk">Pamuk</button>
+                <button class="filter-btn" data-filter="lan">Lan</button>
+                <button class="filter-btn" data-filter="svila">Svila</button>
+            </div>
+            <select class="sort-select" onchange="sortProducts(this.value)">
+                <option value="default">Sortiraj po</option>
+                <option value="price-asc">Cena: niža-viša</option>
+                <option value="price-desc">Cena: viša-niža</option>
+                <option value="name">Naziv A-Ž</option>
+            </select>
+        </div>
+    </section>
 
-<button class="continue-shopping" onclick="history.back()">Povratak na prethodnu stranu</button>
+    <!-- Products Grid sa 12 proizvoda -->
+    <section class="products-section" id="products">
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </section>
 
-<!-- FULLSCREEN MODAL -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <span class="close" style="position:absolute; top:10px; right:10px; cursor:pointer; font-size:1.2em;" onclick="closeModal()">&times;</span>
-    <img src="" alt="" id="modalImg">
-    <!-- FULLSCREEN SLIDER MODAL -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()" style="position:absolute; top:10px; right:15px; font-size:1.5em; cursor:pointer;">&times;</span>
-    <img id="modalImage" src="" alt="" style="width:80%; max-width:400px;">
-    <div style="margin-top:10px;">
-      <button onclick="prevImage()" style="margin-right:20px;">&#10094;</button>
-      <button onclick="nextImage()">&#10095;</button>
+    <!-- Enhanced Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-gallery">
+                <img class="modal-main-image" id="modalMainImage" src="" alt="">
+                <div class="modal-thumbnails" id="modalThumbnails">
+                    <!-- Thumbnails will be added here -->
+                </div>
+            </div>
+            <div class="modal-content">
+                <h2 id="modalTitle"></h2>
+                <p id="modalMaterial"></p>
+                <p id="modalPrice" class="product-price"></p>
+                
+                <div class="size-selector" id="sizeSelector">
+                    <!-- Size options will be added here -->
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                    <span class="qty-display" id="modalQty">1</span>
+                    <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                </div>
+                
+                <button class="add-to-cart-btn" onclick="addToCartFromModal()">
+                    <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                </button>
+                
+                <div class="product-features">
+                    <h4>Karakteristike:</h4>
+                    <ul id="modalFeatures">
+                        <!-- Features will be added here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <h3 id="modalName"></h3>
-    <p id="modalMaterial"></p>
-    <p id="modalPrice"></p>
-    <table class="size-table" id="modalSizes">
-      <thead>
-        <tr><th>Veličina</th><th>Struk</th><th>Dužina</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>M</td><td>80cm</td><td>25cm</td></tr>
-        <tr><td>L</td><td>85cm</td><td>26cm</td></tr>
-        <tr><td>XL</td><td>90cm</td><td>27cm</td></tr>
-        <tr><td>XXL</td><td>95cm</td><td>28cm</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-    
-    <!-- TROUGAO / DIAGRAM -->
-    <div id="sizeDiagram" style="margin:15px 0; text-align:center; cursor:pointer;" onclick="document.getElementById('sizeTable').scrollIntoView({behavior:'smooth'});">
-      <svg width="100" height="100" viewBox="0 0 100 100">
-        <polygon points="50,10 90,90 10,90" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
-        <line x1="30" y1="70" x2="70" y2="70" stroke="#C7574B" stroke-width="2" marker-end="url(#arrow)"/>
-        <line x1="50" y1="10" x2="50" y2="90" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
-        <defs>
-          <marker id="arrow" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L6,3 z" fill="#C7574B" />
-          </marker>
-        </defs>
-      </svg>
-      <div style="font-size:0.85em; color:#333; margin-top:5px;">Klik na linije za detalj</div>
-    </div>
-    
-    <h3 id="modalName"></h3>
-    <p id="modalMaterial"></p>
-    <p id="modalPrice"></p>
-    
-    <select class="size-select" id="modalSize">
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-    </select>
-    
-    <div class="qty-controls">
-      <span class="dec">-</span>
-      <span class="qty">1</span>
-      <span class="inc">+</span>
-    </div>
-    
-    <button class="add-to-cart-modal">Dodaj u korpu</button>
-    
-    <table id="sizeTable" class="size-table">
-      <thead>
-        <tr><th>Veličina</th><th>Struk</th><th>Dužina</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>M</td><td>72-76cm</td><td>28cm</td></tr>
-        <tr><td>L</td><td>77-81cm</td><td>29cm</td></tr>
-        <tr><td>XL</td><td>82-86cm</td><td>30cm</td></tr>
-        <tr><td>XXL</td><td>87-91cm</td><td>31cm</td></tr>
-      </tbody>
-    </table>
-    
-    <button class="continue-shopping" onclick="closeModal()">Nastavi kupovinu</button>
-  </div>
-</div>
 
-<!-- CART POPUP -->
-<div class="cart-popup" id="cartPopup">
-  <h3>Vaša korpa <button class="close-cart" onclick="toggleCart()">×</button></h3>
-  <table id="cartTable">
-    <thead><tr><th>Proizvod</th><th>Količina</th><th>Cena</th></tr></thead>
-    <tbody></tbody>
-    <tfoot>
-      <tr><td>Poštarina:</td><td colspan="2" id="shipping">0 RSD</td></tr>
-      <tr><td>Popust:</td><td colspan="2" id="discount">0 RSD</td></tr>
-      <tr><td>Ukupno:</td><td colspan="2" id="total">0 RSD</td></tr>
-    </tfoot>
-  </table>
-  <button class="add-to-cart-modal" onclick="checkout()">Poruči</button>
-</div>
+    <!-- Enhanced Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Vaša Korpa</h3>
+            <button class="modal-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart" id="emptyCart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Vaša korpa je prazna</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-totals">
+                <div class="cart-total-row">
+                    <span>Međuzbir:</span>
+                    <span id="cartSubtotal">0 RSD</span>
+                </div>
+                <div class="cart-total-row">
+                    <span>Poštarina:</span>
+                    <span id="cartShipping">0 RSD</span>
+                </div>
+                <div class="cart-total-row">
+                    <span>Popust:</span>
+                    <span id="cartDiscount">0 RSD</span>
+                </div>
+                <div class="cart-total-row final">
+                    <span>Ukupno:</span>
+                    <span id="cartTotal">0 RSD</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-lock"></i> Završi Kupovinu
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
 <script>
-let cart = [];
+// Modern JavaScript with enhanced features
+class AresNyXShop {
+    constructor() {
+        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        this.products = [];
+        this.currentProduct = null;
+        this.currentSize = 'M';
+        this.currentQuantity = 1;
+        this.init();
+    }
 
-function openModal(product){
-  document.getElementById('modalImg').src = product.querySelector('img').src;
-  document.getElementById('modalName').innerText = product.dataset.name;
-  document.getElementById('modalMaterial').innerText = product.dataset.material;
-  document.getElementById('modalPrice').innerText = product.dataset.price + ' RSD';
-  document.getElementById('productModal').style.display = 'flex';
-  document.getElementById('modalSize').value = 'M';
-  document.querySelector('.qty').innerText = 1;
+    init() {
+        this.loadProducts();
+        this.updateCartCount();
+        this.setupEventListeners();
+        this.renderCart();
+    }
+
+    loadProducts() {
+        // KOMPLETNA LISTA OD 12 PROIZVODA
+        this.products = [
+            {
+                id: 1,
+                name: "Classic Pamuk",
+                material: "100% Organski Pamuk",
+                price: 1300,
+                category: "pamuk",
+                images: ["images/pamuk-1.jpg", "images/pamuk-2.jpg"],
+                badge: "BESTSELLER",
+                features: ["Organski pamuk", "Breathable tehnologija", "Antialergijski", "Mek i izdržljiv"]
+            },
+            {
+                id: 2,
+                name: "Premium Lan",
+                material: "100% Premium Lan",
+                price: 1500,
+                category: "lan", 
+                images: ["images/lan-1.jpg", "images/lan-2.jpg"],
+                badge: "PREMIUM",
+                features: ["Premium lan", "Prirodna ventilacija", "Eko-friendly", "Luksuzni osećaj"]
+            },
+            {
+                id: 3,
+                name: "Elegant Svila",
+                material: "100% Prirodna Svila",
+                price: 1800,
+                category: "svila",
+                images: ["images/svila-1.jpg", "images/svila-2.jpg"],
+                badge: "LUXURY",
+                features: ["Prirodna svila", "Glatka tekstura", "Ekskluzivni dizajn", "Posebna nega"]
+            },
+            {
+                id: 4,
+                name: "Night Black",
+                material: "100% Premium Pamuk",
+                price: 1300,
+                category: "pamuk",
+                images: ["images/crna-1.jpg", "images/crna-2.jpg"],
+                badge: "POPULAR",
+                features: ["Tamna boja", "Ne gubi boju", "Modern dizajn", "Svestranost"]
+            },
+            {
+                id: 5,
+                name: "Pure White",
+                material: "100% Organski Pamuk",
+                price: 1300,
+                category: "pamuk",
+                images: ["images/bela-1.jpg", "images/bela-2.jpg"],
+                badge: "CLASSIC",
+                features: ["Čista bela boja", "Organski materijal", "Savršen za svaki dan", "Fresh look"]
+            },
+            {
+                id: 6,
+                name: "Navy Stripes",
+                material: "100% Premium Pamuk",
+                price: 1400,
+                category: "pamuk",
+                images: ["images/navy-1.jpg", "images/navy-2.jpg"],
+                badge: "TRENDING",
+                features: ["Navy pruge", "Pomorski stil", "Modern izgled", "Unikatni dizajn"]
+            },
+            {
+                id: 7,
+                name: "Dark Grey",
+                material: "100% Premium Pamuk",
+                price: 1300,
+                category: "pamuk",
+                images: ["images/siva-1.jpg", "images/siva-2.jpg"],
+                badge: "ESSENTIAL",
+                features: ["Tamno siva", "Modern elegance", "Svestranost", "Kvalitet izrade"]
+            },
+            {
+                id: 8,
+                name: "Blue Stripes",
+                material: "100% Premium Pamuk",
+                price: 1400,
+                category: "pamuk",
+                images: ["images/plava-1.jpg", "images/plava-2.jpg"],
+                badge: "NEW",
+                features: ["Plave pruge", "Svež izgled", "Letnji stil", "Komfor"]
+            },
+            {
+                id: 9,
+                name: "Charcoal Black",
+                material: "100% Premium Pamuk",
+                price: 1350,
+                category: "pamuk",
+                images: ["images/charcoal-1.jpg", "images/charcoal-2.jpg"],
+                badge: "PREMIUM",
+                features: ["Ugljena crna", "Duboka boja", "Elegance", "Premium kvalitet"]
+            },
+            {
+                id: 10,
+                name: "Bamboo Blend",
+                material: "70% Bambus, 30% Pamuk",
+                price: 1600,
+                category: "lan",
+                images: ["images/bambus-1.jpg", "images/bambus-2.jpg"],
+                badge: "ECO",
+                features: ["Bambus blend", "Eko-friendly", "Super mekan", "Antibakterijski"]
+            },
+            {
+                id: 11,
+                name: "Sport Grey",
+                material: "95% Pamuk, 5% Elastan",
+                price: 1450,
+                category: "pamuk",
+                images: ["images/sport-1.jpg", "images/sport-2.jpg"],
+                badge: "SPORT",
+                features: ["Sport dizajn", "Elastičnost", "Active comfort", "Modern fit"]
+            },
+            {
+                id: 12,
+                name: "Midnight Blue",
+                material: "100% Premium Pamuk",
+                price: 1400,
+                category: "pamuk",
+                images: ["images/midnight-1.jpg", "images/midnight-2.jpg"],
+                badge: "EXCLUSIVE",
+                features: ["Ponoćno plava", "Ekskluzivna boja", "Luksuzni osećaj", "Limited edition"]
+            }
+        ];
+
+        this.renderProducts();
+    }
+
+    renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = this.products.map(product => `
+            <div class="product-card fade-in" data-category="${product.category}">
+                ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+                <img src="${product.images[0]}" alt="${product.name}" class="product-image" 
+                     onclick="shop.openProductModal(${product.id})">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-material">${product.material}</p>
+                    <p class="product-price">${product.price} RSD</p>
+                    <div class="quick-actions">
+                        <button class="quick-add" onclick="shop.quickAddToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Brza kupovina
+                        </button>
+                        <button class="wishlist-btn" onclick="shop.toggleWishlist(${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    openProductModal(productId) {
+        this.currentProduct = this.products.find(p => p.id === productId);
+        if (!this.currentProduct) return;
+
+        const modal = document.getElementById('productModal');
+        document.getElementById('modalTitle').textContent = this.currentProduct.name;
+        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+
+        // Setup images
+        const mainImage = document.getElementById('modalMainImage');
+        const thumbnails = document.getElementById('modalThumbnails');
+        
+        mainImage.src = this.currentProduct.images[0];
+        thumbnails.innerHTML = this.currentProduct.images.map((img, index) => `
+            <img src="${img}" class="thumbnail ${index === 0 ? 'active' : ''}" 
+                 onclick="shop.changeMainImage(${index})">
+        `).join('');
+
+        // Setup sizes
+        const sizeSelector = document.getElementById('sizeSelector');
+        sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
+            <div class="size-option ${size === 'M' ? 'selected' : ''}" 
+                 onclick="shop.selectSize(this, '${size}')">${size}</div>
+        `).join('');
+
+        // Setup features
+        const featuresList = document.getElementById('modalFeatures');
+        featuresList.innerHTML = this.currentProduct.features.map(feature => `
+            <li>${feature}</li>
+        `).join('');
+
+        // Reset quantity
+        this.currentQuantity = 1;
+        document.getElementById('modalQty').textContent = '1';
+
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    changeMainImage(index) {
+        if (!this.currentProduct) return;
+        
+        document.getElementById('modalMainImage').src = this.currentProduct.images[index];
+        
+        // Update thumbnails
+        document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+        });
+    }
+
+    selectSize(element, size) {
+        this.currentSize = size;
+        
+        // Update UI
+        document.querySelectorAll('.size-option').forEach(opt => {
+            opt.classList.remove('selected');
+        });
+        element.classList.add('selected');
+    }
+
+    changeQuantity(change) {
+        this.currentQuantity = Math.max(1, this.currentQuantity + change);
+        document.getElementById('modalQty').textContent = this.currentQuantity;
+    }
+
+    quickAddToCart(productId) {
+        const product = this.products.find(p => p.id === productId);
+        if (product) {
+            this.addToCart(product.id, 'M', 1);
+            this.showToast(`${product.name} je dodat u korpu!`);
+        }
+    }
+
+    addToCartFromModal() {
+        if (!this.currentProduct) return;
+        
+        this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
+        this.showToast(`${this.currentProduct.name} je dodat u korpu!`);
+        this.closeModal();
+    }
+
+    addToCart(productId, size, quantity) {
+        const product = this.products.find(p => p.id === productId);
+        const existingItem = this.cart.find(item => 
+            item.productId === productId && item.size === size
+        );
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            this.cart.push({
+                productId,
+                size,
+                quantity,
+                name: product.name,
+                price: product.price,
+                image: product.images[0]
+            });
+        }
+
+        this.saveCart();
+        this.updateCartCount();
+        this.renderCart();
+    }
+
+    updateCartCount() {
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').textContent = totalItems;
+    }
+
+    renderCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartFooter = document.getElementById('cartFooter');
+        const emptyCart = document.getElementById('emptyCart');
+
+        if (this.cart.length === 0) {
+            emptyCart.style.display = 'block';
+            cartFooter.style.display = 'none';
+            cartItems.innerHTML = '';
+            cartItems.appendChild(emptyCart);
+            return;
+        }
+
+        emptyCart.style.display = 'none';
+        cartFooter.style.display = 'block';
+
+        cartItems.innerHTML = this.cart.map((item, index) => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-size">Veličina: ${item.size}</div>
+                    <div class="cart-item-controls">
+                        <button onclick="shop.updateCartItem(${index}, -1)">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button onclick="shop.updateCartItem(${index}, 1)">+</button>
+                        <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        this.updateCartTotals();
+    }
+
+    updateCartItem(index, change) {
+        this.cart[index].quantity += change;
+        
+        if (this.cart[index].quantity < 1) {
+            this.cart.splice(index, 1);
+        }
+        
+        this.saveCart();
+        this.updateCartCount();
+        this.renderCart();
+    }
+
+    updateCartTotals() {
+        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+        const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+        const total = subtotal + shipping - discount;
+
+        document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
+        document.getElementById('cartShipping').textContent = shipping + ' RSD';
+        document.getElementById('cartDiscount').textContent = discount + ' RSD';
+        document.getElementById('cartTotal').textContent = total + ' RSD';
+    }
+
+    showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    saveCart() {
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+
+    toggleWishlist(productId) {
+        // Implement wishlist functionality
+        this.showToast('Proizvod dodat u listu želja!');
+    }
+
+    setupEventListeners() {
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                this.filterProducts(e.target.dataset.filter);
+            });
+        });
+    }
+
+    filterProducts(category) {
+        const products = document.querySelectorAll('.product-card');
+        
+        products.forEach(product => {
+            if (category === 'all' || product.dataset.category === category) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
 }
 
-function closeModal(){
-  document.getElementById('productModal').style.display = 'none';
+// Global functions for HTML onclick handlers
+function toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('active');
 }
 
-document.querySelectorAll('.product').forEach(product=>{
-  product.addEventListener('click', ()=>openModal(product));
-});
-
-document.querySelector('.inc').addEventListener('click', ()=>{
-  let qtyEl = document.querySelector('.qty');
-  qtyEl.innerText = parseInt(qtyEl.innerText)+1;
-});
-document.querySelector('.dec').addEventListener('click', ()=>{
-  let qtyEl = document.querySelector('.qty');
-  let val = parseInt(qtyEl.innerText)-1;
-  qtyEl.innerText = val<1?1:val;
-});
-
-document.querySelector('.add-to-cart-modal').addEventListener('click', ()=>{
-  const name = document.getElementById('modalName').innerText;
-  const price = parseInt(document.getElementById('modalPrice').innerText);
-  const size = document.getElementById('modalSize').value;
-  const qty = parseInt(document.querySelector('.qty').innerText);
-
-  let cartItem = cart.find(i=>i.name===name && i.size===size);
-  if(cartItem){
-    cartItem.qty += qty;
-  } else {
-    cart.push({name, price, size, qty});
-  }
-  updateCart();
-  closeModal();
-});
-
-function toggleCart(){
-  const popup = document.getElementById('cartPopup');
-  popup.style.display = popup.style.display==='block'?'none':'block';
-  updateCart();
+function closeModal() {
+    shop.closeModal();
 }
 
-function updateCart(){
-  const tbody = document.querySelector('#cartTable tbody');
-  tbody.innerHTML='';
-  let total=0;
-  let totalItems = 0;
-  cart.forEach(item=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML = `<td>${item.name} (${item.size})</td>
-                    <td>
-                      <span class="dec">-</span>
-                      ${item.qty}
-                      <span class="inc">+</span>
-                    </td>
-                    <td>${item.price*item.qty} RSD</td>`;
-    tbody.appendChild(tr);
-    total += item.price*item.qty;
-    totalItems += item.qty;
-
-    tr.querySelector('.inc').addEventListener('click', ()=>{
-      item.qty++;
-      updateCart();
+function scrollToProducts() {
+    document.getElementById('products').scrollIntoView({ 
+        behavior: 'smooth' 
     });
-    tr.querySelector('.dec').addEventListener('click', ()=>{
-      item.qty--;
-      if(item.qty<1) item.qty=1;
-      updateCart();
-    });
-  });
-
-  let shipping = totalItems > 4 ? 0 : (totalItems>0 ? 400 : 0);
-  let discount = totalItems >= 7 ? Math.round(total*0.1) : 0;
-
-  document.getElementById('shipping').innerText = shipping + ' RSD';
-  document.getElementById('discount').innerText = discount + ' RSD';
-  document.getElementById('total').innerText = (total+shipping-discount) + ' RSD';
-  document.getElementById('cartCount').innerText = totalItems;
 }
 
-function checkout(){
-  alert("Porudžbina potvrđena! Hvala na kupovini.");
+function changeQuantity(change) {
+    shop.changeQuantity(change);
+}
+
+function addToCartFromModal() {
+    shop.addToCartFromModal();
+}
+
+function sortProducts(value) {
+    // Implement sorting logic
+    shop.showToast('Sortiranje primenjeno!');
+}
+
+// Initialize the shop
+const shop = new AresNyXShop();
+
+// Close cart when clicking outside
+document.addEventListener('click', (e) => {
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartIcon = document.querySelector('.cart-icon');
+    
+    if (cartSidebar.classList.contains('active') && 
+        !cartSidebar.contains(e.target) && 
+        !cartIcon.contains(e.target)) {
+        cartSidebar.classList.remove('active');
+    }
+});
+
+// Close modal with ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+        document.getElementById('cartSidebar').classList.remove('active');
+    }
+});
+
+function checkout() {
+    if (shop.cart.length === 0) {
+        shop.showToast("Korpa je prazna!");
+        return;
+    }
+    
+    const totalItems = shop.cart.reduce((sum, item) => sum + item.quantity, 0);
+    const total = shop.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = totalItems >= 5 ? 0 : 400;
+    const discount = totalItems >= 7 ? Math.round(total * 0.1) : 0;
+    const finalTotal = total + shipping - discount;
+    
+    shop.showToast(`Porudžbina uspešna! Ukupno: ${finalTotal} RSD`);
+    shop.cart = [];
+    shop.saveCart();
+    shop.updateCartCount();
+    shop.renderCart();
+    toggleCart();
 }
 </script>
-    <script>
-let cart = [];
-
-// Otvori modal
-function openModal(product){
-    closeModal(); // zatvori prethodni ako je otvoren
-    const modal = document.getElementById('productModal');
-    document.getElementById('modalImg').src = product.querySelector('img').src;
-    document.getElementById('modalName').innerText = product.dataset.name;
-    document.getElementById('modalMaterial').innerText = product.dataset.material;
-    document.getElementById('modalPrice').innerText = product.dataset.price + ' RSD';
-    document.getElementById('modalSize').value = 'M';
-    document.querySelector('.qty').innerText = 1;
-    modal.style.display = 'flex';
-}
-
-// Zatvori modal
-function closeModal(){
-    document.getElementById('productModal').style.display = 'none';
-    document.getElementById('sizeTable').style.display='none'; // sakrij tabelu mera
-}
-
-// Klik na overlay zatvara modal
-document.getElementById('productModal').addEventListener('click', function(e){
-    if(e.target === this){
-        closeModal();
-    }
-});
-
-// Klik na svaki proizvod otvara modal
-document.querySelectorAll('.product').forEach(product=>{
-    product.addEventListener('click', ()=>openModal(product));
-});
-
-// Plus/minus u modalu
-document.querySelector('.qty-controls .inc').addEventListener('click',()=>{
-    let qtyEl = document.querySelector('.qty-controls .qty');
-    qtyEl.innerText = parseInt(qtyEl.innerText)+1;
-});
-document.querySelector('.qty-controls .dec').addEventListener('click',()=>{
-    let qtyEl = document.querySelector('.qty-controls .qty');
-    let val = parseInt(qtyEl.innerText)-1;
-    qtyEl.innerText = val<1?1:val;
-});
-
-// Dodaj u korpu iz modala
-document.querySelector('.add-to-cart-modal').addEventListener('click',()=>{
-    const name = document.getElementById('modalName').innerText;
-    const price = parseFloat(document.getElementById('modalPrice').innerText);
-    const qty = parseInt(document.querySelector('.qty-controls .qty').innerText);
-    const size = document.getElementById('modalSize').value;
-
-    let cartItem = cart.find(i=>i.name===name && i.size===size);
-    if(cartItem){
-        cartItem.qty += qty;
-    } else {
-        cart.push({name:name, price:price, qty:qty, size:size});
-    }
-
-    updateCart();
-    closeModal();
-});
-
-// Tabela mera toggle
-document.getElementById('showSizes').addEventListener('click', ()=>{
-    const table = document.getElementById('sizeTable');
-    table.style.display = table.style.display==='table'?'none':'table';
-});
-
-// KORPA
-function toggleCart(){
-    const popup = document.getElementById('cartPopup');
-    popup.style.display = popup.style.display==='block'?'none':'block';
-    updateCart();
-}
-
-function updateCart(){
-    const tbody = document.querySelector('#cartTable tbody');
-    tbody.innerHTML='';
-    let total=0;
-    cart.forEach((item,index)=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td>${item.name} (${item.size})</td>
-            <td>
-            <span class="dec-cart" data-index="${index}">-</span>
-            ${item.qty}
-            <span class="inc-cart" data-index="${index}">+</span>
-            </td>
-            <td>${item.price*item.qty} RSD</td>`;
-        tbody.appendChild(tr);
-        total+=item.price*item.qty;
-    });
-
-    // Poštarina
-    const totalItems = cart.reduce((sum,i)=>sum+i.qty,0);
-    let shipping = totalItems >= 5 ? 0 : (totalItems>0?400:0);
-
-    // Popust
-    let discount = totalItems >= 7 ? Math.round(total*0.1) : 0;
-
-    document.getElementById('shipping').innerText = shipping + ' RSD';
-    document.getElementById('discount').innerText = discount + ' RSD';
-    document.getElementById('total').innerText = (total + shipping - discount) + ' RSD';
-    document.getElementById('cartCount').innerText = totalItems;
-
-    // Plus/minus u korpi
-    document.querySelectorAll('.inc-cart').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-            cart[btn.dataset.index].qty++;
-            updateCart();
-        });
-    });
-    document.querySelectorAll('.dec-cart').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-            cart[btn.dataset.index].qty--;
-            if(cart[btn.dataset.index].qty<1) cart.splice(btn.dataset.index,1);
-            updateCart();
-        });
-    });
-}
-
-// Checkout dugme
-function checkout(){
-    if(cart.length===0){ alert("Korpa je prazna."); return;}
-    alert("Porudžbina potvrđena! Hvala Vam na kupovini.");
-    cart=[];
-    updateCart();
-}
-      
-         let modal = document.getElementById("productModal");
-let modalImage = document.getElementById("modalImage");
-let modalName = document.getElementById("modalName");
-let modalMaterial = document.getElementById("modalMaterial");
-let modalPrice = document.getElementById("modalPrice");
-
-let currentImages = [];
-let currentIndex = 0;
-
-// Dodavanje event listenera za svaki proizvod
-document.querySelectorAll('.product').forEach((prod, idx) => {
-  prod.addEventListener('click', () => {
-    // Povezujemo slike prema indeksu: slika1a.jpg, slika1b.jpg ...
-    currentImages = [`images/slika${idx+1}a.jpg`, `images/slika${idx+1}b.jpg`];
-    currentIndex = 0;
-    modalImage.src = currentImages[currentIndex];
-
-    modalName.textContent = prod.dataset.name;
-    modalMaterial.textContent = prod.dataset.material;
-    modalPrice.textContent = prod.dataset.price + " RSD";
-
-    modal.style.display = "flex";
-  });
-});
-
-// Funkcije za slajder
-function nextImage() {
-  if(currentImages.length === 0) return;
-  currentIndex = (currentIndex + 1) % currentImages.length;
-  modalImage.src = currentImages[currentIndex];
-}
-function prevImage() {
-  if(currentImages.length === 0) return;
-  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-  modalImage.src = currentImages[currentIndex];
-}
-
-// Zatvaranje moda
-function closeModal() {
-  modal.style.display = "none";
-  }       
-    </script>
-
 </body>
-</html>
+  </html>
