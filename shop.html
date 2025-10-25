@@ -33,7 +33,6 @@
         display: flex; flex-direction: column; min-height: 100vh;
     }
     
-    /* Dodat stil za onemogućavanje skrolovanja */
     body.no-scroll { overflow: hidden; }
 
     /* HEADER */
@@ -68,28 +67,10 @@
     /* FOOTER */
     .footer { background: var(--primary-dark); color: white; padding: 3rem 2rem 2rem; margin-top: auto; }
 
-    /* ===== MODAL ===== */
-    .modal-overlay { 
-        display: none; position: fixed; top: 0; left: 0; 
-        width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
-        z-index: 2000; backdrop-filter: blur(5px); 
-    }
-    .modal-container { 
-        position: absolute; top: 50%; left: 50%; 
-        transform: translate(-50%, -50%); 
-        background: white; border-radius: 16px; 
-        width: 90%; max-width: 700px;
-        max-height: 95vh;
-        overflow-y: auto; 
-    }
-    .modal-close { 
-        position: absolute; top: 1rem; right: 1rem; 
-        background: rgba(0,0,0,0.5); color: white; 
-        border: none; width: 40px; height: 40px; 
-        border-radius: 50%; cursor: pointer; z-index: 10; 
-        transition: var(--transition); font-size: 1.2rem; 
-        display: flex; align-items: center; justify-content: center; 
-    }
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px); }
+    .modal-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 16px; width: 90%; max-width: 700px; max-height: 95vh; overflow-y: auto; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
     .modal-content { padding: 1.5rem; }
     
     .modal-main-image { width: 100%; max-width: 350px; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem; }
@@ -97,68 +78,145 @@
     
     /* QUANTITY SELECTION */
     .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
-    .qty-btn { width: 40px; height: 40px; border: 2px solid var(--gray-medium); background: white; border-radius: 8px; cursor: pointer; transition: var(--transition); font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+    .qty-btn { width: 40px; height: 40px; border: 2px solid var(--gray-medium); background: white; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
     .qty-display { font-size: 1.2rem; font-weight: 600; min-width: 50px; text-align: center; padding: 0.5rem; background: var(--gray-light); border-radius: 8px; }
     
     .modal-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
-    .add-to-cart-btn { flex: 2; background: var(--primary-dark); color: white; border: none; padding: 1rem 1.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 50px; }
-    .continue-shopping { flex: 1; background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); padding: 1rem 1.5rem; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); min-height: 50px; }
+    .add-to-cart-btn { flex: 2; background: var(--primary-dark); color: white; border: none; padding: 1rem 1.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 50px; }
+    .continue-shopping { flex: 1; background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); padding: 1rem 1.5rem; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; min-height: 50px; }
     
-    /* ===== KORPA - FIKSIRANA VISINA I DUGME ISPRAZNI KORPU ===== */
+    /* ===== KORPA - OPTIMIZACIJA PRIKAZA STAVKE ===== */
     .cart-sidebar { 
         position: fixed; top: 0; right: -400px; width: 400px; 
-        height: 100vh; /* FULLSCREEN VISINA */
-        background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
-        transition: var(--transition); z-index: 1500; display: flex; flex-direction: column; 
+        height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
+        transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
     }
     @media (max-width: 450px) { .cart-sidebar { width: 100%; right: -100%; } }
     .cart-sidebar.active { right: 0; }
-    .cart-header { 
-        padding: 1.5rem; border-bottom: 1px solid var(--gray-medium); 
-        display: flex; justify-content: space-between; align-items: center; 
-        background: var(--primary-dark); color: white; 
-        position: sticky; top: 0; z-index: 10;
-    }
+    .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gray-medium); display: flex; justify-content: space-between; align-items: center; background: var(--primary-dark); color: white; position: sticky; top: 0; z-index: 10; }
     
     .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
-    .cart-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--gray-medium); align-items: center; position: relative; }
+    
+    /* Glavni kontejner stavke korpe - fleksibilan */
+    .cart-item { 
+        display: flex; 
+        padding: 1rem 0; 
+        border-bottom: 1px solid var(--gray-medium); 
+        align-items: flex-start; /* Poravnaj na vrh zbog višerednih detalja */
+        position: relative;
+    }
+    
+    .cart-item-image { 
+        width: 70px; height: 70px; object-fit: cover; 
+        border-radius: 8px; margin-right: 1rem; /* Razmak desno */
+        flex-shrink: 0; /* Osigurava da se slika ne smanjuje */
+    }
+    
+    /* Detalji o proizvodu */
+    .cart-item-details { 
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        padding-right: 35px; /* Rezerviši prostor za dugme X */
+    }
+    .cart-item-title { 
+        font-weight: 600; 
+        margin-bottom: 0.2rem; 
+        font-size: 0.95rem;
+        line-height: 1.2;
+    }
+    .cart-item-size { 
+        color: #666; 
+        font-size: 0.85rem; 
+        margin-bottom: 0.8rem; /* Povećan razmak */
+    }
+
+    /* Kontejner kontrole (Količina i Cena) */
+    .cart-item-controls { 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; /* KLJUČNO: Gura cenu desno */
+        width: 100%;
+    }
+    
+    .cart-item-qty-wrapper { /* Novo za grupiranje +/- */
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .cart-item-qty-btn { 
+        width: 30px; height: 30px; border: 1px solid var(--gray-medium); 
+        background: white; border-radius: 4px; cursor: pointer; 
+        display: flex; align-items: center; justify-content: center; 
+        font-weight: bold; transition: all 0.3s; flex-shrink: 0;
+    }
+    .cart-item-qty { 
+        padding: 0.3rem 0.6rem; 
+        background: var(--gray-light); 
+        border-radius: 4px; 
+        font-weight: 600; 
+        min-width: 30px; /* Smanjeno, ali dovoljno */
+        text-align: center; 
+        flex-shrink: 0;
+    }
+    .cart-item-price { 
+        font-weight: 700; 
+        color: var(--primary-dark); 
+        font-size: 1rem; /* Blago povećana cena */
+        flex-shrink: 0;
+    }
     
     /* X DUGME ZA BRISANJE STAVKE */
     .cart-item-remove {
-        position: absolute; top: 0.5rem; right: 0; background: var(--danger);
+        position: absolute; top: 1rem; right: 0; background: var(--danger);
         color: white; border: none; width: 25px; height: 25px;
         border-radius: 50%; cursor: pointer; display: flex;
         align-items: center; justify-content: center; font-size: 0.8rem;
-        transition: var(--transition);
+        transition: all 0.3s;
     }
     
-    .cart-item-price { font-weight: 600; color: var(--primary-dark); font-size: 0.95rem; margin-left: auto; }
-    .cart-item-qty { padding: 0.3rem 0.8rem; background: var(--gray-light); border-radius: 4px; font-weight: 600; min-width: 40px; text-align: center; }
-    
-    /* DUGME ISPRAZNI KORPU JE SADA U FOOTERU */
+    /* Footer */
     .cart-footer { 
         padding: 1.5rem; border-top: 1px solid var(--gray-medium); 
         background: var(--gray-light); 
         position: sticky; bottom: 0; z-index: 10;
     }
-    .cart-actions-footer { 
-        margin-bottom: 1rem; 
-    }
-    .clear-cart-btn { 
-        width: 100%; background: var(--danger); color: white; 
-        border: none; padding: 0.8rem; border-radius: 6px; 
-        cursor: pointer; transition: var(--transition); 
-        font-weight: 500; display: flex; align-items: center; 
-        justify-content: center; gap: 0.5rem; 
-        margin-bottom: 0.5rem;
-    }
-    .clear-cart-btn:hover { background: #c0392b; transform: translateY(-2px); }
+    .clear-cart-btn { width: 100%; background: var(--danger); color: white; border: none; padding: 0.8rem; border-radius: 6px; cursor: pointer; transition: all 0.3s; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem;}
+    
+    /* MEDIA QUERIES ZA MOBILNI PRIKAZ (Pravimo korpu užom od 450px) */
+    @media (max-width: 576px) { 
+        
+        .cart-item {
+            padding: 0.8rem 0;
+            gap: 0; /* Uklanjamo razmak između slike i teksta */
+        }
+        
+        /* Uklanjamo sliku na malim ekranima za maksimalni prostor */
+        .cart-item-image {
+            display: none; 
+        }
+        
+        .cart-item-details {
+            padding-right: 30px; /* Manji padding */
+        }
 
-    .cart-total-row.final { font-weight: 700; font-size: 1.2rem; border-top: 2px solid var(--gray-medium); padding-top: 0.8rem; margin-top: 0.5rem; }
-    .checkout-btn { width: 100%; background: var(--success); color: white; border: none; padding: 1.2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        /* Prikaz veličine stavljamo odmah pored naslova */
+        .cart-item-size {
+            margin-bottom: 0; /* Uklanjamo donji razmak */
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .cart-item-controls {
+            margin-top: 0.5rem;
+            align-items: center;
+        }
+    }
     
     /* TOAST I ANIMACIJE */
-    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--success); color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: var(--shadow); transform: translateX(400px); transition: var(--transition); z-index: 3000; }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--success); color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: var(--shadow); transform: translateX(400px); transition: all 0.3s; z-index: 3000; }
     .toast.show { transform: translateX(0); }
     @keyframes quickPulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
     .quick-pulse { animation: quickPulse 0.2s ease-in-out; }
@@ -307,7 +365,7 @@
     <div class="toast" id="toast"></div>
 
     <script>
-    // ===== FIKSIRANA TRENUTNA REAKCIJA KORPE =====
+    // ===== FIKSIRANA TRENUTNA REAKCIJA KORPE I MOBILNI PRIKAZ =====
     class AresNyXShop {
         constructor() {
             this.cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -362,7 +420,6 @@
             this.currentProduct = this.products.find(p => p.id === productId);
             if (!this.currentProduct) return;
 
-            // Reset stanja modala
             this.currentSize = 'M';
             this.currentQuantity = 1;
             this.currentImageIndex = 0;
@@ -381,7 +438,7 @@
 
             document.getElementById('sizeTable').style.display = 'none';
             document.getElementById('productModal').style.display = 'block';
-            document.body.classList.add('no-scroll'); // Koristi classList
+            document.body.classList.add('no-scroll');
             
             const btn = document.querySelector('.add-to-cart-btn');
             btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
@@ -431,7 +488,7 @@
             this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
             
             this.updateCartCount();
-            this.renderCart(); // *** KLJUČNO: Garantovano renderovanje PRE zatvaranja modala ***
+            this.renderCart(); 
             
             this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
             
@@ -481,7 +538,6 @@
             if (this.cart.length === 0) {
                 emptyCart.style.display = 'block';
                 cartFooter.style.display = 'none';
-                // Čišćenje stavki bez uklanjanja 'emptyCart' elementa iz DOM-a
                 cartItemsContainer.querySelectorAll('.cart-item').forEach(e => e.remove());
                 return;
             }
@@ -489,7 +545,6 @@
             emptyCart.style.display = 'none';
             cartFooter.style.display = 'block';
 
-            // Filteruje i uklanja samo .cart-item, ostavljajući emptyCart na mestu
             cartItemsContainer.querySelectorAll('.cart-item').forEach(e => e.remove());
 
 
@@ -498,14 +553,16 @@
                 const itemHtml = `
                     <div class="cart-item" data-index="${index}">
                         <button class="cart-item-remove" onclick="shop.removeCartItem(${index})" title="Ukloni proizvod">×</button>
-                        <img src="${item.image}" alt="Miniatura ${item.name} bokserica veličine ${item.size}" class="cart-item-image" loading="lazy">
+                        <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.name}</div>
                             <div class="cart-item-size">Veličina: ${item.size}</div>
                             <div class="cart-item-controls">
-                                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, -1)">-</button>
-                                <span class="cart-item-qty">${item.quantity}</span>
-                                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, 1)">+</button>
+                                <div class="cart-item-qty-wrapper">
+                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, -1)">-</button>
+                                    <span class="cart-item-qty">${item.quantity}</span>
+                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, 1)">+</button>
+                                </div>
                                 <span class="cart-item-price">${item.price * item.quantity} RSD</span>
                             </div>
                         </div>
@@ -518,7 +575,6 @@
         }
 
         updateCartItem(index, change) {
-            // INSTANT PROMENA U PODACIMA
             if (!this.cart[index]) return;
             this.cart[index].quantity += change;
             
@@ -530,7 +586,6 @@
             this.saveCart();
             this.updateCartCount();
             
-            // TRENUTNI PRIKAZ
             this.updateCartItemDisplay(index);
             this.updateCartTotals();
             
@@ -541,7 +596,6 @@
             if (!this.cart[index]) return;
             
             const item = this.cart[index];
-            // Pronađi DOM element na osnovu data-index
             const cartItem = document.querySelector(`.cart-item[data-index="${index}"]`);
             
             if (cartItem) {
@@ -561,7 +615,6 @@
                     priceElement.classList.add('quick-pulse');
                 }
             } else {
-                // Ako element ne postoji, osveži celu korpu
                 this.renderCart(); 
             }
         }
@@ -572,7 +625,7 @@
             
             this.saveCart();
             this.updateCartCount();
-            this.renderCart(); // Trenutno re-renderovanje nakon brisanja
+            this.renderCart(); 
             
             this.showToast(`"${itemName}" je uklonjen iz korpe`);
         }
@@ -606,7 +659,7 @@
                 this.cart = [];
                 this.saveCart();
                 this.updateCartCount();
-                this.renderCart(); // Trenutno re-renderovanje nakon pražnjenja
+                this.renderCart(); 
                 this.showToast("Korpa je ispražnjena!");
             }
         }
@@ -659,7 +712,6 @@
             localStorage.setItem('cart', JSON.stringify(this.cart));
         }
         
-        // Pomoćne funkcije za modal
         toggleSizeTable() { 
             const table = document.getElementById('sizeTable');
             table.style.display = table.style.display === 'none' ? 'block' : 'none';
@@ -675,12 +727,10 @@
         const cartIcon = document.querySelector('.cart-icon');
         const modal = document.getElementById('productModal');
 
-        // Zatvori Sidebar ako je otvoren i klik se desio van njega i van ikone korpe
         if (cartSidebar.classList.contains('active') && !cartSidebar.contains(e.target) && !cartIcon.contains(e.target)) {
             shop.toggleCart();
         }
         
-        // Zatvori Modal ako je klik na overlay-u (i modal je aktivan)
         if (modal.style.display === 'block' && e.target === modal) {
             shop.closeModal();
         }
@@ -704,4 +754,4 @@
     </script>
 </body>
 </html>
-                                            document.getElementById('cartShipping').textContent = shipping + '
+                                    
