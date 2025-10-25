@@ -387,12 +387,26 @@ footer button:hover {
   <p>Spremni da probate AresNyX bokserice?</p>
   <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
 </footer>
-    <div style="text-align:center; margin:40px 0;">
-  <a href="blog-zdravlje-donjeg-vesa.html" class="blog-link">Zdravlje počinje od donjeg veša →</a>
-    </div>
-    <div class="center">
-  <a href="blog-zdravlje-donjeg-vesa.html" class="blog-link">Zdravlje počinje od donjeg veša →</a>
-    </div>
+  <div style="text-align:center; margin:40px 0;">
+  <a href="blog-zdravlje-donjeg-vesa.html" 
+     style="
+       display: inline-block;
+       padding: 14px 60px;
+       border: 2px solid #E2725B; /* terakota okvir */
+       color: #4a4a4a; /* tamno siv tekst */
+       font-family: 'Montserrat', Arial, sans-serif;
+       font-weight: 600;
+       font-size: 1rem;
+       text-decoration: none;
+       border-radius: 0; /* oštre ivice */
+       transition: background-color 0.3s, color 0.3s;
+     "
+     onmouseover="this.style.backgroundColor='#E2725B'; this.style.color='#fff';"
+     onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a4a4a';"
+  >
+    Zdravlje počinje od donjeg veša →
+  </a>
+  </div>
 
 </body>
 </html>
