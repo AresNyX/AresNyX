@@ -5,33 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Premium Boxer Shorts Shop</title>
     
-    <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- Critical CSS Inline -->
     <style>
-    /* ===== CRITICAL CSS - OPTIMIZOVANO ===== */
+    /* ===== CRITICAL CSS ===== */
     :root {
         --primary-dark: #121212;
         --accent-gold: #D4AF37;
-        --accent-hover: #F4C44D;
         --success: #27AE60;
         --danger: #E74C3C;
         --gray-light: #F8F9FA;
-        --gray-medium: #E9ECEF;
-        --text-dark: #2C3E50;
-        --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
-        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-        background: #fff; color: var(--text-dark); line-height: 1.6;
+        font-family: 'Montserrat', sans-serif;
+        background: #fff; color: #2C3E50; line-height: 1.6;
         display: flex; flex-direction: column; min-height: 100vh;
     }
     
@@ -39,55 +27,35 @@
     .header { 
         background: var(--primary-dark); padding: 1rem 2rem; 
         position: sticky; top: 0; z-index: 1000; 
-        box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
     .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
     .logo { font-size: 2rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; letter-spacing: 3px; }
-    .cart-icon { position: relative; cursor: pointer; padding: 0.5rem 1rem; color: #fff; font-size: 1.1rem; transition: var(--transition); }
-    .cart-icon:hover { border: 2px solid var(--accent-gold); color: var(--accent-gold); border-radius: 8px; }
+    .cart-icon { position: relative; cursor: pointer; padding: 0.5rem 1rem; color: #fff; font-size: 1.1rem; }
     .cart-count { position: absolute; top: -8px; right: -8px; background: var(--danger); color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; font-weight: 600; }
     
-    /* PRODUCTS GRID - 1×12 STRUKTURA */
+    /* PRODUCTS GRID */
     .products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; flex: 1; }
     .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-    .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); }
+    .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; }
     .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-    .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
-    .product-badge.premium { background: var(--accent-gold); color: var(--primary-dark); }
-    .product-badge.new { background: var(--danger); }
     .product-image { width: 100%; height: 200px; object-fit: cover; background: #f7f7f7; }
     .product-info { padding: 1.2rem; }
     .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .product-material { color: #666; font-size: 0.9rem; margin-bottom: 0.8rem; }
     .product-price { font-size: 1.2rem; font-weight: 700; }
     
-    /* RESPONSIVE GRID */
-    @media (max-width: 768px) { 
-        .header { padding: 1rem; } 
-        .products-section { padding: 2rem 1rem; } 
-    }
-    
-    /* FOOTER */
-    .footer { background: var(--primary-dark); color: white; padding: 3rem 2rem 2rem; margin-top: auto; }
-    .footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }
-    .footer-logo { font-size: 2.5rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1rem; letter-spacing: 3px; }
-    .footer-tagline { font-size: 1.1rem; color: #DDD; margin-bottom: 2rem; font-weight: 300; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .footer-link { color: #DDD; text-decoration: none; transition: var(--transition); font-weight: 400; }
-    .footer-link:hover { color: var(--accent-gold); }
-    
-    /* ===== POPRAVLJEN MODAL - BEZ SCROLLA ===== */
+    /* MODAL */
     .modal-overlay { 
         display: none; position: fixed; top: 0; left: 0; 
         width: 100%; height: 100%; background: rgba(0,0,0,0.9); 
-        z-index: 2000; backdrop-filter: blur(5px); 
+        z-index: 2000; 
     }
     .modal-container { 
         position: absolute; top: 50%; left: 50%; 
         transform: translate(-50%, -50%); 
         background: white; border-radius: 16px; 
-        width: 90%; max-width: 700px;
-        max-height: 80vh; /* SMANJENO ZA BEZ SCROLLA */
+        width: 90%; max-width: 500px;
+        max-height: 80vh;
         overflow-y: auto; 
     }
     .modal-close { 
@@ -95,143 +63,71 @@
         background: rgba(0,0,0,0.5); color: white; 
         border: none; width: 40px; height: 40px; 
         border-radius: 50%; cursor: pointer; z-index: 10; 
-        transition: var(--transition); font-size: 1.2rem; 
-        display: flex; align-items: center; justify-content: center; 
+        font-size: 1.2rem; 
     }
-    .modal-close:hover { background: rgba(0,0,0,0.8); }
-    .modal-content { padding: 1rem; } /* SMANJEN PADDING */
+    .modal-content { padding: 2rem; }
     
-    .modal-gallery { text-align: center; margin-bottom: 1rem; } /* SMANJENA MARGINA */
+    .modal-gallery { text-align: center; margin-bottom: 1rem; }
     .modal-main-image { 
-        width: 100%; max-width: 300px; /* SMANJENA SLIKA */
-        height: 200px; /* SMANJENA VISINA */
-        object-fit: cover; border-radius: 10px; margin-bottom: 0.8rem; 
+        width: 100%; max-width: 300px;
+        height: 200px;
+        object-fit: cover; border-radius: 10px; margin-bottom: 1rem; 
     }
-    .slider-nav { display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.8rem; }
-    .slider-nav button { 
-        background: var(--primary-dark); color: white; 
-        border: none; padding: 0.4rem 0.8rem; border-radius: 5px; 
-        cursor: pointer; font-weight: 500; transition: var(--transition); 
-        font-size: 0.8rem; /* SMANJEN FONT */
-    }
-    .slider-nav button:hover { background: var(--accent-gold); color: var(--primary-dark); }
     
-    .modal-details h2 { font-size: 1.4rem; margin-bottom: 0.4rem; } /* SMANJEN FONT */
-    .modal-material { color: #666; margin-bottom: 0.8rem; font-size: 0.9rem; }
-    .modal-price { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; } /* SMANJEN FONT */
+    .modal-details h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .modal-material { color: #666; margin-bottom: 1rem; }
+    .modal-price { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
     
     /* SIZE SELECTION */
-    .size-section { margin-bottom: 1rem; } /* SMANJENA MARGINA */
-    .size-section h3 { margin-bottom: 0.6rem; font-weight: 600; font-size: 1rem; } /* SMANJEN FONT */
-    .size-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 0.6rem; }
+    .size-section { margin-bottom: 1.5rem; }
+    .size-section h3 { margin-bottom: 1rem; }
+    .size-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
     .size-option { 
-        padding: 0.6rem 0.4rem; border: 2px solid var(--gray-medium); 
-        border-radius: 6px; text-align: center; cursor: pointer; 
-        transition: var(--transition); font-weight: 500; background: white; 
-        font-size: 0.8rem; /* SMANJEN FONT */
+        padding: 1rem 0.5rem; border: 2px solid #E9ECEF; 
+        border-radius: 8px; text-align: center; cursor: pointer; 
+        font-weight: 500; background: white; 
     }
-    .size-option:hover { border-color: var(--accent-gold); }
     .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
-    .size-info { display: flex; align-items: center; gap: 0.4rem; color: #666; font-size: 0.8rem; cursor: pointer; margin-top: 0.4rem; }
-    .size-info:hover { color: var(--accent-gold); }
     
-    /* QUANTITY SELECTION */
-    .quantity-section { margin-bottom: 1rem; } /* SMANJENA MARGINA */
-    .quantity-section h3 { margin-bottom: 0.6rem; font-weight: 600; font-size: 1rem; } /* SMANJEN FONT */
-    .quantity-selector { display: flex; align-items: center; gap: 0.8rem; max-width: 180px; }
+    /* QUANTITY */
+    .quantity-section { margin-bottom: 1.5rem; }
+    .quantity-section h3 { margin-bottom: 1rem; }
+    .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
     .qty-btn { 
-        width: 35px; height: 35px; border: 2px solid var(--gray-medium); 
-        background: white; border-radius: 6px; cursor: pointer; 
-        transition: var(--transition); font-size: 1rem; font-weight: bold; 
-        display: flex; align-items: center; justify-content: center; 
+        width: 40px; height: 40px; border: 2px solid #E9ECEF; 
+        background: white; border-radius: 8px; cursor: pointer; 
+        font-size: 1.2rem; font-weight: bold; 
     }
-    .qty-btn:hover { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
-    .qty-display { font-size: 1.1rem; font-weight: 600; min-width: 45px; text-align: center; padding: 0.4rem; background: var(--gray-light); border-radius: 6px; }
+    .qty-display { font-size: 1.2rem; font-weight: 600; min-width: 50px; text-align: center; padding: 0.5rem; background: #F8F9FA; border-radius: 8px; }
     
-    /* SIZE TABLE */
-    .size-table-container { background: var(--gray-light); padding: 1rem; border-radius: 8px; margin: 0.8rem 0 1rem 0; border-left: 4px solid var(--accent-gold); }
-    .size-table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; font-size: 0.8rem; }
-    .size-table th, .size-table td { padding: 0.5rem; text-align: center; border: 1px solid #ddd; }
-    .size-table th { background: var(--primary-dark); color: white; font-weight: 600; }
-    .size-table tr:nth-child(even) { background: #f8f9fa; }
-    
-    /* ===== POPRAVLJENA DUGMAD ===== */
-    .modal-actions { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    /* ACTIONS */
+    .modal-actions { display: flex; gap: 1rem; margin-top: 2rem; }
     .add-to-cart-btn { 
-        flex: 2;
-        background: var(--primary-dark); color: white; 
-        border: none; padding: 0.8rem 1.2rem;
-        border-radius: 6px; font-size: 1rem; font-weight: 600; 
-        cursor: pointer; transition: var(--transition); 
-        display: flex; align-items: center; justify-content: center; 
-        gap: 0.4rem; min-height: 45px;
-    }
-    .add-to-cart-btn:hover { 
-        background: var(--accent-gold); color: var(--primary-dark); 
-        transform: translateY(-2px); 
-    }
-    .add-to-cart-btn:active { 
-        transform: translateY(0);
-    }
-    .continue-shopping { 
         flex: 1;
-        background: white; color: var(--primary-dark); 
-        border: 2px solid var(--primary-dark); padding: 0.8rem 1.2rem; 
-        border-radius: 6px; font-size: 0.9rem; font-weight: 600; 
-        cursor: pointer; transition: var(--transition); 
-        min-height: 45px;
-    }
-    .continue-shopping:hover { 
         background: var(--primary-dark); color: white; 
+        border: none; padding: 1rem 1.5rem;
+        border-radius: 8px; font-size: 1.1rem; font-weight: 600; 
+        cursor: pointer; 
     }
     
-    /* ===== POPRAVLJENA KORPA ===== */
+    /* CART */
     .cart-sidebar { 
         position: fixed; top: 0; right: -400px; width: 400px; 
         height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
-        transition: var(--transition); z-index: 1500; display: flex; flex-direction: column; 
+        transition: right 0.3s ease; z-index: 1500; display: flex; flex-direction: column; 
     }
     .cart-sidebar.active { right: 0; }
     .cart-header { 
-        padding: 1.5rem; border-bottom: 1px solid var(--gray-medium); 
+        padding: 1.5rem; border-bottom: 1px solid #E9ECEF; 
         display: flex; justify-content: space-between; align-items: center; 
         background: var(--primary-dark); color: white; 
     }
-    .cart-items { 
-        flex: 1; 
-        overflow-y: auto; 
-        padding: 1rem; 
-    }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
     .cart-item { 
         display: flex; gap: 1rem; padding: 1rem 0; 
-        border-bottom: 1px solid var(--gray-medium); align-items: center; 
+        border-bottom: 1px solid #E9ECEF; align-items: center; 
         position: relative;
     }
-    .cart-item-image { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; }
-    .cart-item-details { flex: 1; }
-    .cart-item-title { font-weight: 600; margin-bottom: 0.3rem; font-size: 0.95rem; }
-    .cart-item-size { color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
-    .cart-item-controls { 
-        display: flex; align-items: center; gap: 0.8rem; 
-        margin-bottom: 0.5rem; 
-    }
-    .cart-item-qty-btn { 
-        width: 30px; height: 30px; border: 1px solid var(--gray-medium); 
-        background: white; border-radius: 4px; cursor: pointer; 
-        display: flex; align-items: center; justify-content: center; 
-        font-weight: bold; transition: var(--transition); 
-    }
-    .cart-item-qty-btn:hover { background: var(--accent-gold); border-color: var(--accent-gold); }
-    .cart-item-qty { 
-        padding: 0.3rem 0.8rem; background: var(--gray-light); 
-        border-radius: 4px; font-weight: 600; min-width: 40px; 
-        text-align: center; 
-    }
-    .cart-item-price { 
-        font-weight: 600; color: var(--primary-dark); font-size: 0.95rem; 
-    }
-    
-    /* X DUGME ZA BRISANJE STAVKE */
     .cart-item-remove {
         position: absolute;
         top: 0.5rem;
@@ -243,118 +139,65 @@
         height: 25px;
         border-radius: 50%;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        transition: var(--transition);
     }
-    .cart-item-remove:hover {
-        background: #c0392b;
-        transform: scale(1.1);
+    .cart-item-image { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; }
+    .cart-item-details { flex: 1; }
+    .cart-item-title { font-weight: 600; margin-bottom: 0.3rem; }
+    .cart-item-size { color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .cart-item-controls { 
+        display: flex; align-items: center; gap: 0.8rem; 
     }
+    .cart-item-qty-btn { 
+        width: 30px; height: 30px; border: 1px solid #E9ECEF; 
+        background: white; border-radius: 4px; cursor: pointer; 
+        font-weight: bold; 
+    }
+    .cart-item-qty { 
+        padding: 0.3rem 0.8rem; background: #F8F9FA; 
+        border-radius: 4px; font-weight: 600; min-width: 40px; 
+        text-align: center; 
+    }
+    .cart-item-price { font-weight: 600; }
     
-    /* DUGME ZA ISPRAZNI KORPU - ISPOD PROIZVODA */
-    .cart-actions { 
-        order: 2;
-        margin-top: auto;
-        display: flex; 
-        gap: 0.5rem; 
-        padding: 1rem;
-        border-top: 1px solid var(--gray-medium);
-        margin-bottom: 1rem;
-    }
+    .cart-actions { padding: 1rem; border-top: 1px solid #E9ECEF; }
     .clear-cart-btn { 
-        flex: 1; 
-        background: var(--danger); 
-        color: white; 
-        border: none; 
-        padding: 0.8rem; 
-        border-radius: 6px; 
-        cursor: pointer; 
-        transition: var(--transition); 
-        font-weight: 500; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        gap: 0.5rem; 
-    }
-    .clear-cart-btn:hover { 
-        background: #c0392b; 
-        transform: translateY(-2px); 
+        width: 100%; background: var(--danger); color: white; 
+        border: none; padding: 0.8rem; border-radius: 6px; 
+        cursor: pointer; font-weight: 500; 
     }
     
-    .cart-footer { 
-        padding: 1.5rem; 
-        border-top: 1px solid var(--gray-medium); 
-        background: var(--gray-light); 
-    }
+    .cart-footer { padding: 1.5rem; border-top: 1px solid #E9ECEF; background: #F8F9FA; }
     .cart-totals { margin-bottom: 1rem; }
     .cart-total-row { 
         display: flex; justify-content: space-between; 
-        margin-bottom: 0.5rem; padding: 0.3rem 0; 
+        margin-bottom: 0.5rem; 
     }
     .cart-total-row.final { 
         font-weight: 700; font-size: 1.2rem; 
-        border-top: 2px solid var(--gray-medium); padding-top: 0.8rem; 
+        border-top: 2px solid #E9ECEF; padding-top: 0.8rem; 
         margin-top: 0.5rem; 
     }
     .checkout-btn { 
         width: 100%; background: var(--success); color: white; 
         border: none; padding: 1.2rem; border-radius: 8px; 
         font-size: 1.1rem; font-weight: 600; cursor: pointer; 
-        transition: var(--transition); display: flex; 
-        align-items: center; justify-content: center; gap: 0.5rem; 
     }
-    .checkout-btn:hover { background: #219A52; transform: translateY(-2px); }
     .empty-cart { text-align: center; padding: 3rem 1rem; color: #666; }
-    .empty-cart i { font-size: 3rem; margin-bottom: 1rem; color: var(--gray-medium); }
     
-    /* TOAST NOTIFICATIONS */
     .toast { 
         position: fixed; bottom: 2rem; right: 2rem; 
         background: var(--success); color: white; padding: 1rem 1.5rem; 
-        border-radius: 8px; box-shadow: var(--shadow); 
-        transform: translateX(400px); transition: var(--transition); 
+        border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        transform: translateX(400px); transition: transform 0.3s ease; 
         z-index: 3000; 
     }
     .toast.show { transform: translateX(0); }
-    
-    /* ANIMACIJE */
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-in { animation: fadeIn 0.5s ease-out; }
-    
-    @keyframes quickPulse { 
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    .quick-pulse { animation: quickPulse 0.2s ease-in-out; }
-
-    /* RESPONSIVE */
-    @media (max-width: 480px) {
-        .modal-container { 
-            width: 95%; 
-            max-height: 85vh;
-        }
-        .cart-sidebar {
-            width: 100%;
-            right: -100%;
-        }
-        .modal-actions {
-            flex-direction: column;
-        }
-    }
     </style>
     
-    <!-- Fallback za fontove -->
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="logo">ARESNYX</a>
@@ -365,51 +208,26 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="main-content">
         <section class="products-section">
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded by JavaScript -->
-            </div>
+            <div class="products-grid" id="productsGrid"></div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">ARESNYX</div>
             <p class="footer-tagline">Premium kvalitet. Izuzetan komfor. Vaš stil.</p>
-            
-            <div class="footer-links">
-                <a href="index.html" class="footer-link">Početna</a>
-                <a href="shop.html" class="footer-link">Shop</a>
-                <a href="#" class="footer-link">O nama</a>
-                <a href="#" class="footer-link">Kontakt</a>
-            </div>
-            
-            <div class="footer-social">
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 AresNyX. Sva prava zadržana.</p>
-            </div>
         </div>
     </footer>
 
-    <!-- Enhanced Modal -->
+    <!-- Modal -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-container">
             <button class="modal-close" onclick="closeModal()">×</button>
             <div class="modal-content">
                 <div class="modal-gallery">
-                    <img class="modal-main-image" id="modalMainImage" src="" alt="" loading="lazy">
-                    <div class="slider-nav">
-                        <button onclick="prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                        <button onclick="nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
-                    </div>
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="">
                 </div>
                 
                 <div class="modal-details">
@@ -417,33 +235,11 @@
                     <p class="modal-material" id="modalMaterial"></p>
                     <p class="modal-price" id="modalPrice"></p>
                     
-                    <!-- Size Selection -->
                     <div class="size-section">
                         <h3>Odaberite veličinu:</h3>
                         <div class="size-selector" id="sizeSelector"></div>
-                        <div class="size-info" onclick="toggleSizeTable()">
-                            <i class="fas fa-ruler"></i>
-                            <span>Tabela veličina</span>
-                        </div>
                     </div>
 
-                    <!-- Size Table -->
-                    <div class="size-table-container" id="sizeTable" style="display: none;">
-                        <h4><i class="fas fa-table"></i> Tabela veličina (cm)</h4>
-                        <table class="size-table">
-                            <thead>
-                                <tr><th>Veličina</th><th>Struk</th><th>Dužina</th><th>Širina nogavice</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td><strong>M</strong></td><td>72-76</td><td>28</td><td>24</td></tr>
-                                <tr><td><strong>L</strong></td><td>77-81</td><td>29</td><td>25</td></tr>
-                                <tr><td><strong>XL</strong></td><td>82-86</td><td>30</td><td>26</td></tr>
-                                <tr><td><strong>XXL</strong></td><td>87-91</td><td>31</td><td>27</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Quantity Selection -->
                     <div class="quantity-section">
                         <h3>Količina:</h3>
                         <div class="quantity-selector">
@@ -453,13 +249,9 @@
                         </div>
                     </div>
 
-                    <!-- Actions -->
                     <div class="modal-actions">
                         <button class="add-to-cart-btn" onclick="addToCartFromModal()">
                             <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-                        </button>
-                        <button class="continue-shopping" onclick="closeModal()">
-                            Nastavi kupovinu
                         </button>
                     </div>
                 </div>
@@ -467,7 +259,7 @@
         </div>
     </div>
 
-    <!-- Cart Sidebar -->
+    <!-- Cart -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3>Vaša Korpa</h3>
@@ -480,7 +272,6 @@
             </div>
         </div>
         
-        <!-- DUGME ZA ISPRAZNI KORPU - ISPOD PROIZVODA -->
         <div class="cart-actions" id="cartActions" style="display: none;">
             <button class="clear-cart-btn" onclick="clearCart()">
                 <i class="fas fa-trash"></i> Isprazni Korpu
@@ -498,400 +289,238 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- JavaScript -->
     <script>
-    // ===== POPRAVLJENI JAVASCRIPT - INSTANT SVE =====
-    class AresNyXShop {
-        constructor() {
-            this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-            this.products = [];
-            this.currentProduct = null;
-            this.currentSize = 'M';
-            this.currentQuantity = 1;
-            this.currentImageIndex = 0;
-            this.init();
-        }
+    // ===== JEDNOSTAVAN I RADNI KOD =====
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentProduct = null;
+    let currentSize = 'M';
+    let currentQuantity = 1;
 
-        init() {
-            this.loadProducts();
-            this.updateCartCount();
-            this.renderCart();
-        }
+    const products = [
+        { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, images: ["images/pamuk-1.jpg"] },
+        { id: 2, name: "Premium Lan", material: "100% Premium Lan", price: 1500, images: ["images/lan-1.jpg"] },
+        { id: 3, name: "Elegant Svila", material: "100% Prirodna Svila", price: 1800, images: ["images/svila-1.jpg"] },
+        { id: 4, name: "Night Black", material: "100% Premium Pamuk", price: 1300, images: ["images/crna-1.jpg"] },
+        { id: 5, name: "Pure White", material: "100% Organski Pamuk", price: 1300, images: ["images/bela-1.jpg"] },
+        { id: 6, name: "Navy Stripes", material: "100% Premium Pamuk", price: 1400, images: ["images/navy-1.jpg"] }
+    ];
 
-        loadProducts() {
-            this.products = [
-                { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["images/pamuk-1.jpg", "images/pamuk-2.jpg"], badge: "BESTSELLER" },
-                { id: 2, name: "Premium Lan", material: "100% Premium Lan", price: 1500, category: "lan", images: ["images/lan-1.jpg", "images/lan-2.jpg"], badge: "PREMIUM" },
-                { id: 3, name: "Elegant Svila", material: "100% Prirodna Svila", price: 1800, category: "svila", images: ["images/svila-1.jpg", "images/svila-2.jpg"], badge: "LUXURY" },
-                { id: 4, name: "Night Black", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["images/crna-1.jpg", "images/crna-2.jpg"], badge: "POPULAR" },
-                { id: 5, name: "Pure White", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["images/bela-1.jpg", "images/bela-2.jpg"], badge: "CLASSIC" },
-                { id: 6, name: "Navy Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/navy-1.jpg", "images/navy-2.jpg"], badge: "TRENDING" },
-                { id: 7, name: "Dark Grey", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["images/siva-1.jpg", "images/siva-2.jpg"], badge: "ESSENTIAL" },
-                { id: 8, name: "Blue Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/plava-1.jpg", "images/plava-2.jpg"], badge: "NEW" },
-                { id: 9, name: "Charcoal Black", material: "100% Premium Pamuk", price: 1350, category: "pamuk", images: ["images/charcoal-1.jpg", "images/charcoal-2.jpg"], badge: "PREMIUM" },
-                { id: 10, name: "Bamboo Blend", material: "70% Bambus, 30% Pamuk", price: 1600, category: "lan", images: ["images/bambus-1.jpg", "images/bambus-2.jpg"], badge: "ECO" },
-                { id: 11, name: "Sport Grey", material: "95% Pamuk, 5% Elastan", price: 1450, category: "pamuk", images: ["images/sport-1.jpg", "images/sport-2.jpg"], badge: "SPORT" },
-                { id: 12, name: "Midnight Blue", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/midnight-1.jpg", "images/midnight-2.jpg"], badge: "EXCLUSIVE" }
-            ];
-            this.renderProducts();
-        }
+    // INICIJALIZACIJA
+    function init() {
+        renderProducts();
+        updateCartCount();
+        renderCart();
+    }
 
-        renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = this.products.map(product => `
-                <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
-                    ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-                    <img src="${product.images[0]}" alt="${product.name}" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-material">${product.material}</p>
-                        <p class="product-price">${product.price} RSD</p>
-                    </div>
+    // RENDER PROIZVODA
+    function renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = products.map(product => `
+            <div class="product-card" onclick="openProductModal(${product.id})">
+                <img src="${product.images[0]}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-material">${product.material}</p>
+                    <p class="product-price">${product.price} RSD</p>
                 </div>
-            `).join('');
-        }
-
-        openProductModal(productId) {
-            this.currentProduct = this.products.find(p => p.id === productId);
-            if (!this.currentProduct) return;
-
-            this.currentSize = 'M';
-            this.currentQuantity = 1;
-            this.currentImageIndex = 0;
-
-            document.getElementById('modalTitle').textContent = this.currentProduct.name;
-            document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-            document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
-            document.getElementById('modalQty').textContent = '1';
-
-            this.updateModalImage();
-
-            const sizeSelector = document.getElementById('sizeSelector');
-            sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
-                <div class="size-option ${size === 'M' ? 'selected' : ''}" onclick="shop.selectSize('${size}')">${size}</div>
-            `).join('');
-
-            document.getElementById('sizeTable').style.display = 'none';
-            document.getElementById('productModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        updateModalImage() {
-            if (!this.currentProduct) return;
-            document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
-        }
-
-        selectSize(size) {
-            this.currentSize = size;
-            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-            event.target.classList.add('selected');
-        }
-
-        changeQuantity(change) {
-            this.currentQuantity = Math.max(1, this.currentQuantity + change);
-            document.getElementById('modalQty').textContent = this.currentQuantity;
-        }
-
-        prevImage() {
-            if (!this.currentProduct) return;
-            this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
-            this.updateModalImage();
-        }
-
-        nextImage() {
-            if (!this.currentProduct) return;
-            this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
-            this.updateModalImage();
-        }
-
-        addToCartFromModal() {
-            if (!this.currentProduct) return;
-            
-            // INSTANT FEEDBACK
-            const btn = event.target;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
-            btn.style.background = 'var(--success)';
-            btn.disabled = true;
-            
-            // INSTANT DODAVANJE U KORPU
-            this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
-            
-            // INSTANT OSVEŽAVANJE KORPE
-            this.updateCartCount();
-            this.renderCart();
-            
-            // OTVORI KORPU DA KORISNIK VIDI
-            document.getElementById('cartSidebar').classList.add('active');
-            
-            // INSTANT TOAST
-            this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
-            
-            // BRZO ZATVARANJE MODALA
-            setTimeout(() => {
-                this.closeModal();
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = 'var(--primary-dark)';
-                    btn.disabled = false;
-                }, 300);
-            }, 1000);
-        }
-
-        addToCart(productId, size, quantity) {
-            const product = this.products.find(p => p.id === productId);
-            const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
-
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                this.cart.push({
-                    productId,
-                    size, 
-                    quantity,
-                    name: product.name,
-                    price: product.price,
-                    image: product.images[0]
-                });
-            }
-
-            this.saveCart();
-        }
-
-        updateCartCount() {
-            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').textContent = totalItems;
-            
-            // INSTANT ANIMACIJA NA KORPI
-            const cartCount = document.getElementById('cartCount');
-            cartCount.classList.add('quick-pulse');
-            setTimeout(() => cartCount.classList.remove('quick-pulse'), 200);
-        }
-
-        renderCart() {
-            const cartItems = document.getElementById('cartItems');
-            const cartFooter = document.getElementById('cartFooter');
-            const cartActions = document.getElementById('cartActions');
-            const emptyCart = document.getElementById('emptyCart');
-
-            if (this.cart.length === 0) {
-                emptyCart.style.display = 'block';
-                cartFooter.style.display = 'none';
-                cartActions.style.display = 'none';
-                cartItems.innerHTML = '';
-                cartItems.appendChild(emptyCart);
-                return;
-            }
-
-            emptyCart.style.display = 'none';
-            cartFooter.style.display = 'block';
-            cartActions.style.display = 'flex';
-
-            cartItems.innerHTML = this.cart.map((item, index) => `
-                <div class="cart-item" data-index="${index}">
-                    <button class="cart-item-remove" onclick="shop.removeCartItem(${index})" title="Ukloni proizvod">×</button>
-                    <img src="${item.image}" alt="${item.name}" class="cart-item-image" loading="lazy">
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-size">Veličina: ${item.size}</div>
-                        <div class="cart-item-controls">
-                            <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, -1)">-</button>
-                            <span class="cart-item-qty">${item.quantity}</span>
-                            <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${index}, 1)">+</button>
-                            <span class="cart-item-price">${item.price * item.quantity} RSD</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            this.updateCartTotals();
-        }
-
-        updateCartItem(index, change) {
-            // INSTANT PROMENA KOLIČINE
-            this.cart[index].quantity += change;
-            
-            if (this.cart[index].quantity < 1) {
-                this.cart.splice(index, 1);
-                // Ako je korpa prazna, osveži celu korpu
-                if (this.cart.length === 0) {
-                    this.renderCart();
-                    this.updateCartCount();
-                    this.showToast("Proizvod je uklonjen iz korpe");
-                    return;
-                }
-            }
-            
-            this.saveCart();
-            this.updateCartCount();
-            
-            // INSTANT PROMENA VREDNOSTI U KORPI
-            this.updateCartItemDisplay(index);
-            this.updateCartTotals();
-            
-            this.showToast(change > 0 ? "Količina povećana" : "Količina smanjena");
-        }
-
-        // METODA ZA INSTANT OSVEŽAVANJE PRIKAZA STAVKE
-        updateCartItemDisplay(index) {
-            if (!this.cart[index]) return;
-            
-            const item = this.cart[index];
-            const cartItem = document.querySelector(`.cart-item[data-index="${index}"]`);
-            
-            if (cartItem) {
-                const qtyElement = cartItem.querySelector('.cart-item-qty');
-                const priceElement = cartItem.querySelector('.cart-item-price');
-                
-                if (qtyElement && priceElement) {
-                    // INSTANT PROMENA BROJA
-                    qtyElement.textContent = item.quantity;
-                    
-                    // INSTANT PROMENA CENE
-                    const newPrice = item.price * item.quantity;
-                    priceElement.textContent = newPrice + ' RSD';
-                    
-                    // ANIMACIJA PROMENE
-                    qtyElement.classList.add('quick-pulse');
-                    priceElement.classList.add('quick-pulse');
-                    setTimeout(() => {
-                        qtyElement.classList.remove('quick-pulse');
-                        priceElement.classList.remove('quick-pulse');
-                    }, 200);
-                }
-            }
-        }
-
-        removeCartItem(index) {
-            const itemName = this.cart[index].name;
-            this.cart.splice(index, 1);
-            
-            this.saveCart();
-            this.updateCartCount();
-            this.renderCart();
-            this.updateCartTotals();
-            
-            this.showToast(`${itemName} je uklonjen iz korpe`);
-        }
-
-        updateCartTotals() {
-            const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
-            const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
-            const total = subtotal + shipping - discount;
-
-            document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
-            document.getElementById('cartShipping').textContent = shipping + ' RSD';
-            document.getElementById('cartDiscount').textContent = discount + ' RSD';
-            document.getElementById('cartTotal').textContent = total + ' RSD';
-
-            // ANIMACIJA PROMENE UKUPNOG IZNOSA
-            const totalElement = document.getElementById('cartTotal');
-            totalElement.classList.add('quick-pulse');
-            setTimeout(() => totalElement.classList.remove('quick-pulse'), 200);
-        }
-
-        clearCart() {
-            if (this.cart.length === 0) {
-                this.showToast("Korpa je već prazna!");
-                return;
-            }
-            
-            if (confirm("Da li ste sigurni da želite da ispraznite korpu?")) {
-                this.cart = [];
-                this.saveCart();
-                this.updateCartCount();
-                this.renderCart();
-                this.showToast("Korpa je ispražnjena!");
-            }
-        }
-
-        showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        }
-
-        closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        saveCart() {
-            localStorage.setItem('cart', JSON.stringify(this.cart));
-        }
+            </div>
+        `).join('');
     }
 
-    // Global functions
-    function toggleCart() { 
-        document.getElementById('cartSidebar').classList.toggle('active');
-        // INSTANT OSVEŽAVANJE KORPE PRI OTVARANJU
-        if (document.getElementById('cartSidebar').classList.contains('active')) {
-            shop.renderCart();
-        }
-    }
-    function closeModal() { shop.closeModal(); }
-    function changeQuantity(change) { shop.changeQuantity(change); }
-    function addToCartFromModal() { shop.addToCartFromModal(); }
-    function prevImage() { shop.prevImage(); }
-    function nextImage() { shop.nextImage(); }
-    function toggleSizeTable() { 
-        const table = document.getElementById('sizeTable');
-        table.style.display = table.style.display === 'none' ? 'block' : 'none';
-    }
-    function clearCart() { shop.clearCart(); }
+    // MODAL
+    function openProductModal(productId) {
+        currentProduct = products.find(p => p.id === productId);
+        if (!currentProduct) return;
 
-    function checkout() {
-        if (shop.cart.length === 0) {
-            shop.showToast("Korpa je prazna!");
+        currentSize = 'M';
+        currentQuantity = 1;
+
+        document.getElementById('modalTitle').textContent = currentProduct.name;
+        document.getElementById('modalMaterial').textContent = currentProduct.material;
+        document.getElementById('modalPrice').textContent = `${currentProduct.price} RSD`;
+        document.getElementById('modalQty').textContent = '1';
+        document.getElementById('modalMainImage').src = currentProduct.images[0];
+
+        const sizeSelector = document.getElementById('sizeSelector');
+        sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
+            <div class="size-option ${size === 'M' ? 'selected' : ''}" onclick="selectSize('${size}')">${size}</div>
+        `).join('');
+
+        document.getElementById('productModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    function selectSize(size) {
+        currentSize = size;
+        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+        event.target.classList.add('selected');
+    }
+
+    function changeQuantity(change) {
+        currentQuantity = Math.max(1, currentQuantity + change);
+        document.getElementById('modalQty').textContent = currentQuantity;
+    }
+
+    // DODAVANJE U KORPU - INSTANT
+    function addToCartFromModal() {
+        if (!currentProduct) return;
+        
+        // DODAJ U KORPU
+        addToCart(currentProduct.id, currentSize, currentQuantity);
+        
+        // OSVEŽI PRIKAZ
+        updateCartCount();
+        renderCart();
+        
+        // PRIKAŽI PORUKU
+        showToast(`${currentProduct.name} je dodat u korpu!`);
+        
+        // ZATVORI MODAL
+        closeModal();
+    }
+
+    function addToCart(productId, size, quantity) {
+        const product = products.find(p => p.id === productId);
+        const existingItem = cart.find(item => item.productId === productId && item.size === size);
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({
+                productId,
+                size, 
+                quantity,
+                name: product.name,
+                price: product.price,
+                image: product.images[0]
+            });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // KORPA
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').textContent = totalItems;
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartFooter = document.getElementById('cartFooter');
+        const cartActions = document.getElementById('cartActions');
+        const emptyCart = document.getElementById('emptyCart');
+
+        if (cart.length === 0) {
+            emptyCart.style.display = 'block';
+            cartFooter.style.display = 'none';
+            cartActions.style.display = 'none';
+            cartItems.innerHTML = '';
+            cartItems.appendChild(emptyCart);
             return;
         }
-        const totalItems = shop.cart.reduce((sum, item) => sum + item.quantity, 0);
-        const total = shop.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = totalItems >= 5 ? 0 : 400;
-        const discount = totalItems >= 7 ? Math.round(total * 0.1) : 0;
-        const finalTotal = total + shipping - discount;
+
+        emptyCart.style.display = 'none';
+        cartFooter.style.display = 'block';
+        cartActions.style.display = 'block';
+
+        cartItems.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <button class="cart-item-remove" onclick="removeCartItem(${index})">×</button>
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-size">Veličina: ${item.size}</div>
+                    <div class="cart-item-controls">
+                        <button class="cart-item-qty-btn" onclick="updateCartItem(${index}, -1)">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button class="cart-item-qty-btn" onclick="updateCartItem(${index}, 1)">+</button>
+                        <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        updateCartTotals();
+    }
+
+    function updateCartItem(index, change) {
+        cart[index].quantity += change;
         
-        shop.showToast(`Porudžbina uspešna! Ukupno: ${finalTotal} RSD`);
-        shop.cart = [];
-        shop.saveCart();
-        shop.updateCartCount();
-        shop.renderCart();
+        if (cart[index].quantity < 1) {
+            cart.splice(index, 1);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+
+    function removeCartItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+
+    function updateCartTotals() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+        const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+        const total = subtotal + shipping - discount;
+
+        document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
+        document.getElementById('cartShipping').textContent = shipping + ' RSD';
+        document.getElementById('cartDiscount').textContent = discount + ' RSD';
+        document.getElementById('cartTotal').textContent = total + ' RSD';
+    }
+
+    function clearCart() {
+        if (cart.length === 0) return;
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+        showToast("Korpa je ispražnjena!");
+    }
+
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('active');
+    }
+
+    function checkout() {
+        if (cart.length === 0) return;
+        showToast(`Porudžbina uspešna!`);
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
         toggleCart();
     }
 
-    // Initialize shop
-    const shop = new AresNyXShop();
-
-    // Event listeners
-    document.addEventListener('click', (e) => {
-        const cartSidebar = document.getElementById('cartSidebar');
-        const cartIcon = document.querySelector('.cart-icon');
-        if (cartSidebar.classList.contains('active') && !cartSidebar.contains(e.target) && !cartIcon.contains(e.target)) {
-            cartSidebar.classList.remove('active');
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-            document.getElementById('cartSidebar').classList.remove('active');
-        }
-    });
-
-    // Fallback za font awesome
-    if (!window.FontAwesome) {
-        const fa = document.createElement('link');
-        fa.rel = 'stylesheet';
-        fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-        document.head.appendChild(fa);
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
     }
+
+    // POKRENI
+    init();
+
+    // EVENT LISTENERI
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal();
+        }
+    });
     </script>
 </body>
-    </html>                            
-                
+</html>                                            
