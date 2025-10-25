@@ -1,0 +1,86 @@
+/* Globalno za ceo sajt */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Header */
+header {
+    background-color: #000000;
+    text-align: center;
+    padding: 25px 10px;
+    position: relative;
+}
+
+header .logo-r {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #C9A33C;
+    border-radius: 50%;
+    color: #C9A33C;
+    font-weight: bold;
+    line-height: 46px;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Header tekst */
+header .title {
+    display: block;
+    color: #C9A33C;
+    font-weight: bold;
+}
+
+header .title .main {
+    font-size: 36px; /* veći tekst */
+}
+
+header .title .sub {
+    font-size: 20px; /* manji tekst */
+}
+
+/* Footer */
+footer {
+    background-color: #000000;
+    text-align: center;
+    padding: 20px 10px;
+    color: #C9A33C;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+/* Podnaslovi i paragrafi */
+h1, h2, h3 {
+    color: #A0522D; /* terakota ton */
+    margin: 15px 0 10px 0;
+}
+
+p {
+    color: #4D4D4D; /* tamno siva */
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* Responsivnost za mobilne uređaje */
+@media screen and (max-width: 600px) {
+    header .logo-r {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 36px;
+    }
+    header .title .main {
+        font-size: 28px;
+    }
+    header .title .sub {
+        font-size: 16px;
+    }
+    footer {
+        font-size: 18px;
+        padding: 15px 5px;
+    }
+}
