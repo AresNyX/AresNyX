@@ -487,7 +487,7 @@
     </div>
 
     <div class="toast" id="toast"></div>
-
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
     class AresNyXShop {
         constructor() {
@@ -505,7 +505,214 @@
             this.loadProducts();
             this.updateCartCount();
             this.renderCart();
+            
+            // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
+            try {
+                emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
+            } catch (e) {
+                console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana. Proverite da li je skripta uvezena.");
+            }
         }
+
+        // =========================================================
+        // === POMOĆNA METODA ZA EMAILJS - NOVA I KLJUČNA ===
+        // =========================================================
+
+        /**
+         * Konvertuje niz proizvoda u formatiranu HTML listu za EmailJS template.
+         * @returns {string} HTML lista stavki porudžbine.
+         */
+        formatOrderItemsForEmail() {
+            if (this.cart.length === 0) return '<p>Nema stavki u porudžbini.</p>';
+
+            let html = '<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9;">';
+            this.cart.forEach(item => {
+                const total = item.quantity * item.price;
+                html += `
+                    <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
+                        <p style="font-size: 16px; font-weight: bold; color: #121212; margin: 0 0 5px 0;">${item.name}</p>
+                        <p style="font-size: 14px; margin: 0;">Veličina: <strong>${item.size}</strong></p>
+                        <p style="font-size: 14px; margin: 0;">Količina: ${item.quantity} kom.</p>
+                        <p style="font-size: 14px; margin: 0;">Jedinična cena: ${item.price} RSD</p>
+                        <p style="font-size: 14px; font-weight: bold; margin: 5px 0 0 0; color: #D4AF37;">Ukupno za stavku: ${total} RSD</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+
+        // =========================================================
+        // === CHECKOUT METODE - AŽURIRANA completeOrder() ===
+        // =========================================================
+
+        startCheckout() {
+            if (this.cart.length === 0) {
+                this.showToast("Korpa je prazna! Dodajte proizvode pre završetka kupovine.");
+                return;
+            }
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('checkoutModal').style.display = 'block';
+            document.body.classList.add('no-scroll');
+            this.goToStep(1);
+        }
+
+        closeCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }
+
+        goToStep(step) {
+            document.getElementById('checkoutStep1').style.display = 'none';
+            document.getElementById('checkoutStep2').style.display = 'none';
+            document.getElementById('checkoutStep3').style.display = 'none';
+            
+            document.getElementById(`checkoutStep${step}`).style.display = 'block';
+            
+            if (step === 1 && Object.keys(this.checkoutData).length > 0) {
+                document.getElementById('ime').value = this.checkoutData.ime || '';
+                document.getElementById('prezime').value = this.checkoutData.prezime || '';
+                document.getElementById('email').value = this.checkoutData.email || '';
+                document.getElementById('telefon').value = this.checkoutData.telefon || ''; 
+                document.getElementById('ulica').value = this.checkoutData.ulica || '';
+                document.getElementById('postanskiBroj').value = this.checkoutData.postanskiBroj || '';
+                document.getElementById('grad').value = this.checkoutData.grad || '';
+                document.getElementById('opstina').value = this.checkoutData.opstina || '';
+                document.getElementById('placanje').value = this.checkoutData.placanje || 'pouzecem';
+                document.getElementById('napomena').value = this.checkoutData.napomena || '';
+            }
+        }
+
+        submitShippingForm(event) {
+            event.preventDefault();
+            
+            this.checkoutData = {
+                ime: document.getElementById('ime').value,
+                prezime: document.getElementById('prezime').value,
+                email: document.getElementById('email').value,
+                telefon: document.getElementById('telefon').value, 
+                ulica: document.getElementById('ulica').value,
+                postanskiBroj: document.getElementById('postanskiBroj').value,
+                grad: document.getElementById('grad').value,
+                opstina: document.getElementById('opstina').value,
+                placanje: document.getElementById('placanje').value,
+                napomena: document.getElementById('napomena').value,
+            };
+            
+            this.renderCheckoutPreview();
+            this.goToStep(2);
+        }
+        
+        getPaymentMethodText(value) {
+            switch(value) {
+                case 'pouzecem': return 'Pouzećem (Plaćanje prilikom preuzimanja)';
+                case 'racun': return 'Uplata na račun (E-banking)';
+                case 'licno': return 'Lično preuzimanje (dogovor)';
+                default: return value;
+            }
+        }
+
+        renderCheckoutPreview() {
+            const data = this.checkoutData;
+            
+            document.getElementById('previewIme').innerHTML = `<strong>Kupac:</strong> ${data.ime} ${data.prezime}`;
+            document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${data.email}`;
+            document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${data.telefon}`; 
+            document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${data.ulica} ${data.opstina ? `, ${data.opstina}` : ''}`;
+            document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${data.postanskiBroj}, ${data.grad}`;
+            document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(data.placanje)}`;
+            document.getElementById('previewNapomena').innerHTML = data.napomena ? `<strong>Napomena:</strong> ${data.napomena}` : '<strong>Napomena:</strong> Nema';
+
+            const orderItems = document.getElementById('previewOrderItems');
+            orderItems.innerHTML = this.cart.map(item => `
+                <div class="preview-item">
+                    <strong>${item.name} (${item.size}):</strong> ${item.quantity} kom. x ${item.price} RSD = ${item.quantity * item.price} RSD
+                </div>
+            `).join('');
+
+            this.updateCartTotals(true);
+        }
+
+        completeOrder() {
+            if (!this.checkoutData.email) {
+                this.showToast("Greška: Podaci kupca nisu popunjeni.");
+                return;
+            }
+            
+            document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
+            
+            // Prikupite i izračunajte ukupne vrednosti
+            const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+            const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+            const total = subtotal + shipping - discount;
+
+            // Formiranje objekta podataka za EmailJS
+            const templateParams = {
+                // Podaci o kupcu
+                ime_kupca: this.checkoutData.ime,
+                prezime_kupca: this.checkoutData.prezime,
+                email_kupca: this.checkoutData.email,
+                telefon_kupca: this.checkoutData.telefon,
+                
+                // Adresa
+                adresa_dostave: `${this.checkoutData.ulica}, ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`,
+                
+                // Porudžbina
+                broj_porudzbine: 'ARX-' + Date.now(), 
+                nacin_placanja: this.getPaymentMethodText(this.checkoutData.placanje),
+                napomena: this.checkoutData.napomena || 'Nema napomene.',
+                
+                // Finansije
+                medjuzbir: `${subtotal} RSD`,
+                postarina: `${shipping} RSD`,
+                popust: `${discount} RSD`,
+                ukupno: `${total} RSD`,
+                
+                // Lista proizvoda (koristi novu HTML formatiranu listu)
+                lista_proizvoda: this.formatOrderItemsForEmail(),
+                
+                // Specijalno polje za Kupca
+                poslati_kupcu: this.checkoutData.email 
+            };
+            
+            // EMAIL KONFIGURACIJA
+            const SERVICE_ID = 'service_rxj533m';
+            const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
+            const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
+
+
+            // 1. SLANJE ADMINISTRATORU
+            emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams) 
+                .then((response) => {
+                    console.log('ADMINISTRATORU USPEŠNO POSLATO!', response.status, response.text);
+                }, (error) => {
+                    console.error('SLANJE ADMINISTRATORU NIJE USPELO...', error);
+                    // Opciono: Pokazati grešku
+                });
+
+            // 2. SLANJE KUPCU
+            emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams) 
+                .then((response) => {
+                    console.log('KUPCU USPEŠNO POSLATO!', response.status, response.text);
+                    this.showToast("Porudžbina uspešno poslata! Proverite Vaš email.");
+                }, (error) => {
+                    console.error('SLANJE KUPCU NIJE USPELO...', error);
+                    // Opciono: Pokazati grešku
+                });
+            
+            // Resetovanje korpe i prelazak na korak 3
+            this.cart = [];
+            this.saveCart();
+            this.updateCartCount();
+            this.renderCart(); 
+            this.goToStep(3);
+        }
+        
+        // =========================================================
+        // === OSTALE METODE ===
+        // =========================================================
 
         loadProducts() {
             this.products = [
@@ -807,113 +1014,6 @@
             }
         }
         
-        // =========================================================
-        // === CHECKOUT METODE ===
-        // =========================================================
-
-        startCheckout() {
-            if (this.cart.length === 0) {
-                this.showToast("Korpa je prazna! Dodajte proizvode pre završetka kupovine.");
-                return;
-            }
-            document.getElementById('cartSidebar').classList.remove('active');
-            document.getElementById('checkoutModal').style.display = 'block';
-            document.body.classList.add('no-scroll');
-            this.goToStep(1);
-        }
-
-        closeCheckoutModal() {
-            document.getElementById('checkoutModal').style.display = 'none';
-            document.body.classList.remove('no-scroll');
-        }
-
-        goToStep(step) {
-            document.getElementById('checkoutStep1').style.display = 'none';
-            document.getElementById('checkoutStep2').style.display = 'none';
-            document.getElementById('checkoutStep3').style.display = 'none';
-            
-            document.getElementById(`checkoutStep${step}`).style.display = 'block';
-            
-            if (step === 1 && Object.keys(this.checkoutData).length > 0) {
-                document.getElementById('ime').value = this.checkoutData.ime || '';
-                document.getElementById('prezime').value = this.checkoutData.prezime || '';
-                document.getElementById('email').value = this.checkoutData.email || '';
-                document.getElementById('telefon').value = this.checkoutData.telefon || ''; // DODATO
-                document.getElementById('ulica').value = this.checkoutData.ulica || '';
-                document.getElementById('postanskiBroj').value = this.checkoutData.postanskiBroj || '';
-                document.getElementById('grad').value = this.checkoutData.grad || '';
-                document.getElementById('opstina').value = this.checkoutData.opstina || '';
-                document.getElementById('placanje').value = this.checkoutData.placanje || 'pouzecem';
-                document.getElementById('napomena').value = this.checkoutData.napomena || '';
-            }
-        }
-
-        submitShippingForm(event) {
-            event.preventDefault();
-            
-            this.checkoutData = {
-                ime: document.getElementById('ime').value,
-                prezime: document.getElementById('prezime').value,
-                email: document.getElementById('email').value,
-                telefon: document.getElementById('telefon').value, // DODATO
-                ulica: document.getElementById('ulica').value,
-                postanskiBroj: document.getElementById('postanskiBroj').value,
-                grad: document.getElementById('grad').value,
-                opstina: document.getElementById('opstina').value,
-                placanje: document.getElementById('placanje').value,
-                napomena: document.getElementById('napomena').value,
-            };
-            
-            this.renderCheckoutPreview();
-            this.goToStep(2);
-        }
-        
-        getPaymentMethodText(value) {
-            switch(value) {
-                case 'pouzecem': return 'Pouzećem (Plaćanje prilikom preuzimanja)';
-                case 'racun': return 'Uplata na račun (E-banking)';
-                case 'licno': return 'Lično preuzimanje (dogovor)';
-                default: return value;
-            }
-        }
-
-        renderCheckoutPreview() {
-            const data = this.checkoutData;
-            
-            document.getElementById('previewIme').innerHTML = `<strong>Kupac:</strong> ${data.ime} ${data.prezime}`;
-            document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${data.email}`;
-            document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${data.telefon}`; // DODATO
-            document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${data.ulica} ${data.opstina ? `, ${data.opstina}` : ''}`;
-            document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${data.postanskiBroj}, ${data.grad}`;
-            document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(data.placanje)}`;
-            document.getElementById('previewNapomena').innerHTML = data.napomena ? `<strong>Napomena:</strong> ${data.napomena}` : '<strong>Napomena:</strong> Nema';
-
-            const orderItems = document.getElementById('previewOrderItems');
-            orderItems.innerHTML = this.cart.map(item => `
-                <div class="preview-item">
-                    <strong>${item.name} (${item.size}):</strong> ${item.quantity} kom. x ${item.price} RSD = ${item.quantity * item.price} RSD
-                </div>
-            `).join('');
-
-            this.updateCartTotals(true);
-        }
-
-        completeOrder() {
-            // Simulacija: slanje emaila
-            
-            document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
-            
-            this.cart = [];
-            this.saveCart();
-            this.updateCartCount();
-            this.renderCart(); 
-            
-            this.goToStep(3);
-        }
-        
-        // =========================================================
-        // === POMOĆNE METODE ===
-        // =========================================================
         saveCart() {
             localStorage.setItem('cart', JSON.stringify(this.cart));
         }
@@ -986,6 +1086,8 @@
         document.head.appendChild(fa);
     }
     </script>
+
+
 </body>
 </html>
                        
