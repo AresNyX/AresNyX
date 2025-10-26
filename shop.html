@@ -490,7 +490,8 @@
  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
  {
-  class AresNyXShop {
+ 
+class AresNyXShop {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         this.products = [];
@@ -516,7 +517,7 @@
     }
 
     // =========================================================
-    // === METODE ZA PROIZVODE I RENDERIN - VRAĆENO NA MESTO ===
+    // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
     // =========================================================
 
     loadProducts() {
@@ -890,9 +891,9 @@
         const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
         const total = subtotal + shipping - discount;
 
-        // *** DODATO: DEFINICIJA BRENDA ***
+        // *** KLJUČNA IZMENA: DEFINICIJA BRENDA ***
         const BRAND_NAME = 'AresNyX'; 
-        // **********************************
+        // *****************************************
 
         // Formiranje objekta podataka za EmailJS
         const templateParams = {
@@ -922,9 +923,9 @@
             // Specijalno polje za Kupca
             poslati_kupcu: this.checkoutData.email,
             
-            // *** DODATO: PROSLEĐIVANJE BRENDA ŠABLONU ***
+            // *** KLJUČNA IZMENA: PROSLEĐIVANJE BRENDA ŠABLONU ***
             brend_naziv: BRAND_NAME 
-            // *******************************************
+            // ***************************************************
         };
         
         // EMAIL KONFIGURACIJA
@@ -962,6 +963,7 @@
                 this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
             });
     }
+
 
     // =========================================================
     // === OSTALE METODE ===
