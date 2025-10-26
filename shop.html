@@ -487,10 +487,302 @@
     </div>
 
     <div class="toast" id="toast"></div>
- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
- {
- 
+         document.body.classList.add('no-scroll');
+        
+        const btn = document.querySelector('.add-to-cart-btn');
+        btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+        btn.style.background = 'var(--primary-dark)';
+        btn.disabled = false;
+    }
+
+    updateModalImage() {
+        if (!this.currentProduct) return;
+        document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
+        
+        // Logika za onemogućavanje dugmadi na početku/kraju ciklusa (iako ciklira)
+        const isFirst = this.currentImageIndex === 0;
+        const isLast = this.currentImageIndex === this.currentProduct.images.length - 1;
+        
+        document.getElementById('prevImageBtn').disabled = isFirst;
+        document.getElementById('nextImageBtn').disabled = isLast;
+    }
+
+    selectSize(event, size) {
+        this.currentSize = size;
+        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+        event.target.classList.add('selected');
+    }
+
+    changeQuantity(change) {
+        this.currentQuantity = Math.max(1, this.currentQuantity + change);
+        document.getElementById('modalQty').textContent = this.currentQuantity;
+    }
+
+    prevImage() {
+        if (!this.currentProduct) return;
+        this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
+        this.updateModalImage();
+    }
+
+    nextImage() {
+        if (!this.currentProduct) return;
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
+        this.updateModalImage();
+    }
+
+    addToCartFromModal(event) {
+        if (!this.currentProduct || !this.currentSize) return;
+        
+        const btn = event.currentTarget;
+        if (btn.disabled) return;
+        btn.disabled = true;
+
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
+        btn.style.background = 'var(--success)';
+        
+        this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
+        
+        this.updateCartCount();
+        this.renderCart(); 
+        
+        this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
+        
+        setTimeout(() => {
+            this.closeModal();
+            btn.innerHTML = originalText;
+            btn.style.background = 'var(--primary-dark)';
+            btn.disabled = false;
+        }, 500); 
+    }
+
+    addToCart(productId, size, quantity) {
+        const product = this.products.find(p => p.id === productId);
+        const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            this.cart.push({ 
+                productId, 
+                size, 
+                quantity, 
+                name: product.name, 
+                price: product.price, 
+                image: product.images[0] 
+            });
+        }
+
+        this.saveCart();
+    }
+
+    updateCartCount() {
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCount = document.getElementById('cartCount');
+        cartCount.textContent = totalItems;
+        
+        cartCount.classList.remove('quick-pulse'); 
+        void cartCount.offsetWidth;
+        cartCount.classList.add('quick-pulse');
+        
+        this.updateCartTotals(); 
+        this.toggleCartVisibility();
+    }
+    
+    toggleCartVisibility() {
+        const cartFooter = document.getElementById('cartFooter');
+        const emptyCart = document.getElementById('emptyCart');
+        
+        if (this.cart.length === 0) {
+            if (emptyCart) emptyCart.style.display = 'block';
+            if (cartFooter) cartFooter.style.display = 'none';
+        } else {
+            if (emptyCart) emptyCart.style.display = 'none';
+            if (cartFooter) cartFooter.style.display = 'block';
+        }
+    }
+
+    renderCart() {
+        const cartItemsContainer = document.getElementById('cartItems');
+
+        if (this.cart.length === 0) {
+            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
+            this.toggleCartVisibility(); 
+            this.updateCartTotals(); 
+            return;
+        }
+
+        cartItemsContainer.innerHTML = ''; 
+
+        this.cart.forEach((item) => {
+            const itemHtml = `
+                <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
+                    <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
+                    <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-size">Veličina: ${item.size}</div>
+                        <div class="cart-item-controls">
+                            <div class="cart-item-qty-wrapper">
+                                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
+                                <span class="cart-item-qty">${item.quantity}</span>
+                                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
+                            </div>
+                            <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            cartItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+        });
+
+        this.toggleCartVisibility(); 
+        this.updateCartTotals();
+    }
+
+    updateCartItem(productId, size, change) {
+        const item = this.cart.find(i => i.productId === productId && i.size === size);
+        if (!item) return;
+
+        item.quantity += change;
+        
+        if (item.quantity < 1) {
+            this.removeCartItem(productId, size); 
+            return;
+        }
+        
+        this.saveCart();
+        this.updateCartCount();
+        
+        const cartItem = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
+        if(cartItem) {
+            cartItem.querySelector('.cart-item-qty').textContent = item.quantity;
+            cartItem.querySelector('.cart-item-price').textContent = (item.price * item.quantity) + ' RSD';
+        }
+        
+        this.updateCartTotals();
+        this.showToast(change > 0 ? "Količina povećana" : "Količina smanjena");
+    }
+
+    removeCartItem(productId, size) {
+        const index = this.cart.findIndex(i => i.productId === productId && i.size === size);
+        const cartItemElement = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
+
+        if (index > -1) {
+            const itemName = this.cart[index].name;
+            this.cart.splice(index, 1);
+            this.saveCart();
+            
+            if (cartItemElement) {
+                cartItemElement.remove();
+            }
+
+            this.updateCartCount(); 
+            this.showToast(`"${itemName}" je uklonjen iz korpe`);
+            
+            if (this.cart.length === 0) {
+                this.renderCart(); 
+            }
+        }
+    }
+
+    updateCartTotals(preview = false) {
+        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+        const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+        const total = subtotal + shipping - discount;
+        
+        if (preview) {
+            document.getElementById('previewSubtotal').textContent = subtotal + ' RSD';
+            document.getElementById('previewShipping').textContent = shipping + ' RSD';
+            document.getElementById('previewDiscount').textContent = discount + ' RSD';
+            document.getElementById('previewTotal').textContent = total + ' RSD';
+        } else {
+            document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
+            document.getElementById('cartShipping').textContent = shipping + ' RSD';
+            document.getElementById('cartDiscount').textContent = discount + ' RSD';
+            
+            const totalElement = document.getElementById('cartTotal');
+            totalElement.textContent = total + ' RSD';
+
+            totalElement.classList.remove('quick-pulse'); 
+            void totalElement.offsetWidth; 
+            totalElement.classList.add('quick-pulse');
+        }
+    }
+
+    clearCart() {
+        if (this.cart.length === 0) {
+            this.showToast("Korpa je već prazna!");
+            return;
+        }
+        
+        if (confirm("Da li ste sigurni da želite da ispraznite korpu? Ova akcija se ne može poništiti.")) {
+            this.cart = [];
+            this.saveCart();
+            this.updateCartCount();
+            this.renderCart(); 
+            this.showToast("Korpa je ispražnjena!");
+        }
+    }
+    
+    saveCart() {
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+
+    showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.remove('show');
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    }
+
+    toggleCart() {
+         document.getElementById('cartSidebar').classList.toggle('active');
+         document.body.classList.toggle('no-scroll');
+    }
+
+    toggleSizeTable() { 
+        const table = document.getElementById('sizeTable');
+        table.style.display = table.style.display === 'none' ? 'block' : 'none';
+    }
+
+    /**
+     * Konvertuje niz proizvoda u formatiranu HTML listu za EmailJS template.
+     * @returns {string} HTML lista stavki porudžbine.
+     */
+    formatOrderItemsForEmail() {
+        if (this.cart.length === 0) return '<p>Nema stavki u porudžbini.</p>';
+
+        let html = '<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9;">';
+        this.cart.forEach(item => {
+            const total = item.quantity * item.price;
+            html += `
+                <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
+                    <p style="font-size: 16px; font-weight: bold; color: #121212; margin: 0 0 5px 0;">${item.name}</p>
+                    <p style="font-size: 14px; margin: 0;">Veličina: <strong>${item.size}</strong></p>
+                    <p style="font-size: 14px; margin: 0;">Količina: ${item.quantity} kom.</p>
+                    <p style="font-size: 14px; margin: 0;">Jedinična cena: ${item.price} RSD</p>
+                    <p style="font-size: 14px; font-weight: bold; margin: 5px 0 0 0; color: #D4AF37;">Ukupno za stavku: ${total} RSD</p>
+                </div>
+            `;
+        });
+        html += '</div>';
+        return html;
+    }
+    
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+    
 class AresNyXShop {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -848,6 +1140,86 @@ class AresNyXShop {
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
+    
+    // =========================================================
+    // === METODE ZA CHECKOUT I FORME ===
+    // =========================================================
+
+    getPaymentMethodText(method) {
+        switch (method) {
+            case 'pouzecem': return 'Pouzećem (Plaćanje prilikom preuzimanja)';
+            case 'racun': return 'Uplata na račun (E-banking)';
+            case 'licno': return 'Lično preuzimanje (dogovor)';
+            default: return 'Nepoznato';
+        }
+    }
+
+    startCheckout() {
+        if (this.cart.length === 0) {
+            this.showToast("Vaša korpa je prazna!");
+            return;
+        }
+        this.toggleCart(); 
+        this.goToStep(1);
+        document.getElementById('checkoutModal').style.display = 'block';
+        document.body.classList.add('no-scroll');
+    }
+
+    closeCheckoutModal() {
+        document.getElementById('checkoutModal').style.display = 'none';
+        document.body.classList.remove('no-scroll');
+        this.goToStep(1); 
+    }
+
+    goToStep(step) {
+        document.getElementById('checkoutStep1').style.display = step === 1 ? 'block' : 'none';
+        document.getElementById('checkoutStep2').style.display = step === 2 ? 'block' : 'none';
+        document.getElementById('checkoutStep3').style.display = step === 3 ? 'block' : 'none';
+    }
+
+    submitShippingForm(event) {
+        event.preventDefault();
+
+        // Prikupite podatke iz forme
+        this.checkoutData = {
+            ime: document.getElementById('ime').value,
+            prezime: document.getElementById('prezime').value,
+            email: document.getElementById('email').value,
+            telefon: document.getElementById('telefon').value,
+            ulica: document.getElementById('ulica').value,
+            postanskiBroj: document.getElementById('postanskiBroj').value,
+            grad: document.getElementById('grad').value,
+            opstina: document.getElementById('opstina').value,
+            placanje: document.getElementById('placanje').value,
+            napomena: document.getElementById('napomena').value
+        };
+
+        // Renderujte podatke za pregled
+        document.getElementById('previewIme').innerHTML = `<strong>Ime i Prezime:</strong> ${this.checkoutData.ime} ${this.checkoutData.prezime}`;
+        document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${this.checkoutData.email}`;
+        document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${this.checkoutData.telefon}`;
+        document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${this.checkoutData.ulica}`;
+        document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`;
+        document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(this.checkoutData.placanje)}`;
+        document.getElementById('previewNapomena').innerHTML = `<strong>Napomena:</strong> ${this.checkoutData.napomena || 'Nema napomene.'}`;
+
+
+        // Renderujte stavke porudžbine i rekapitulaciju
+        this.renderPreviewOrderItems();
+        this.updateCartTotals(true);
+
+        this.goToStep(2); 
+    }
+
+    renderPreviewOrderItems() {
+        const container = document.getElementById('previewOrderItems');
+        container.innerHTML = this.cart.map(item => `
+            <div class="preview-item">
+                <span style="font-weight: 700;">${item.quantity}x ${item.name} (${item.size})</span>
+                <span style="float: right;">${item.price * item.quantity} RSD</span>
+            </div>
+        `).join('');
+    }
 
     /**
      * Konvertuje niz proizvoda u formatiranu HTML listu za EmailJS template.
@@ -964,11 +1336,14 @@ class AresNyXShop {
              
             });
     }
-    // =========================================================
-    // === OSTALE METODE ===
-    // =========================================================
-} // const shop = new AresNyXShop(); 
+} // <--- OVDE SE ZAVRŠAVA CELA KLASA
 
+// =========================================================
+// === OBAVEZNO POKRETANJE ===
+// =========================================================
+const shop = new AresNyXShop(); 
+
+</script>
     loadProducts() {
         this.products = [
             { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["images/pamuk-1.jpg", "images/pamuk-2.jpg"], badge: "BESTSELLER" },
