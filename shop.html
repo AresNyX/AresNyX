@@ -633,7 +633,7 @@
             this.updateCartTotals(true);
         }
 
-        completeOrder() {
+                completeOrder() {
             if (!this.checkoutData.email) {
                 this.showToast("Greška: Podaci kupca nisu popunjeni.");
                 return;
@@ -641,39 +641,29 @@
             
             document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
             
-            // Prikupite i izračunajte ukupne vrednosti
+            // Prikupite i izračunajte ukupne vrednosti (isto kao pre)
             const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
             const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
             const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
             const total = subtotal + shipping - discount;
 
-            // Formiranje objekta podataka za EmailJS
+            // Formiranje objekta podataka za EmailJS (isto kao pre)
             const templateParams = {
-                // Podaci o kupcu
+                // ... svi template_params su ovde
                 ime_kupca: this.checkoutData.ime,
                 prezime_kupca: this.checkoutData.prezime,
                 email_kupca: this.checkoutData.email,
                 telefon_kupca: this.checkoutData.telefon,
-                
-                // Adresa
                 adresa_dostave: `${this.checkoutData.ulica}, ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`,
-                
-                // Porudžbina
                 broj_porudzbine: 'ARX-' + Date.now(), 
                 nacin_placanja: this.getPaymentMethodText(this.checkoutData.placanje),
                 napomena: this.checkoutData.napomena || 'Nema napomene.',
-                
-                // Finansije
                 medjuzbir: `${subtotal} RSD`,
                 postarina: `${shipping} RSD`,
                 popust: `${discount} RSD`,
                 ukupno: `${total} RSD`,
-                
-                // Lista proizvoda (koristi novu HTML formatiranu listu)
                 lista_proizvoda: this.formatOrderItemsForEmail(),
-                
-                // Specijalno polje za Kupca
                 poslati_kupcu: this.checkoutData.email 
             };
             
@@ -682,33 +672,37 @@
             const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
             const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
 
+            // Kreiramo oba obećanja (Promise) za slanje
+            const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
+            const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
 
-            // 1. SLANJE ADMINISTRATORU
-            emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams) 
-                .then((response) => {
-                    console.log('ADMINISTRATORU USPEŠNO POSLATO!', response.status, response.text);
-                }, (error) => {
-                    console.error('SLANJE ADMINISTRATORU NIJE USPELO...', error);
-                    // Opciono: Pokazati grešku
-                });
 
-            // 2. SLANJE KUPCU
-            emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams) 
-                .then((response) => {
-                    console.log('KUPCU USPEŠNO POSLATO!', response.status, response.text);
+            // Koristimo Promise.all() da sačekamo OBA obećanja
+            Promise.all([sendAdminPromise, sendCustomerPromise])
+                .then((responses) => {
+                    console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.', responses);
+                    
+                    // 1. Resetovanje korpe
+                    this.cart = [];
+                    this.saveCart();
+                    this.updateCartCount();
+                    this.renderCart(); 
+                    
+                    // 2. Prelazak na Korak 3 (Potvrda)
+                    this.goToStep(3);
+                    
+                    // 3. Prikazivanje poruke o uspehu
                     this.showToast("Porudžbina uspešno poslata! Proverite Vaš email.");
-                }, (error) => {
-                    console.error('SLANJE KUPCU NIJE USPELO...', error);
-                    // Opciono: Pokazati grešku
+                })
+                .catch((error) => {
+                    // Ako BILO KOJE slanje ne uspe
+                    console.error('Greška pri slanju jedne ili obe porudžbine:', error);
+                    
+                    // Ne resetujemo korpu
+                    this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
                 });
-            
-            // Resetovanje korpe i prelazak na korak 3
-            this.cart = [];
-            this.saveCart();
-            this.updateCartCount();
-            this.renderCart(); 
-            this.goToStep(3);
         }
+
         
         // =========================================================
         // === OSTALE METODE ===
