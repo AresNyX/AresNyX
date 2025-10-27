@@ -23,11 +23,40 @@
         <div class="cart-icon" onclick="shop.toggleCart()">
             <i class="fas fa-shopping-bag"></i>
             <span class="cart-count" id="cartCount">0</span>
+            <header class="header">
+    <nav class="navbar">
+        <a href="index.html" class="logo">ARESNYX</a>
+        
+        <div class="main-nav-links"> 
+             <a href="index.html" class="nav-link">Početna</a>
+             <a href="shop.html" class="nav-link nav-link-active">Shop</a>
+             <a href="o-nama.html" class="nav-link">O nama</a>
+             <a href="#" class="nav-link">Kontakt</a>
+        </div>
+        
+        <div class="cart-icon" onclick="shop.toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
         </div>
     </nav>
 </header>
-
-    
+<header class="header">
+    <nav class="navbar">
+        <a href="index.html" class="logo">ARESNYX</a>
+        
+        <div class="main-nav-links"> 
+             <a href="index.html" class="nav-link">Početna</a>
+             <a href="shop.html" class="nav-link nav-link-active">Shop</a>
+             <a href="o-nama.html" class="nav-link">O nama</a>
+             <a href="#" class="nav-link">Kontakt</a>
+        </div>
+        
+        <div class="cart-icon" onclick="shop.toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
+</header>
     <style>
     /* ===== CRITICAL CSS - OPTIMIZOVANO ===== */
     :root {
@@ -59,6 +88,55 @@
         position: sticky; top: 0; z-index: 1000; 
         box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
+            /* HEADER (POSTOJEĆI CSS) */
+    .header { 
+        background: var(--primary-dark); padding: 1rem 2rem; 
+        position: sticky; top: 0; z-index: 1000; 
+        box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .navbar { 
+        display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; 
+    }
+    /* ... (ostali stilovi za .logo i .cart-icon) */
+
+    /* NOVI STILOVI ZA NAVIGACIJU */
+    .main-nav-links {
+        display: none; /* Podrazumevano sakriveno na mobilnim uređajima */
+    }
+    .nav-link {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 1rem;
+        padding: 0.5rem 0.2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: var(--transition);
+        border-bottom: 2px solid transparent;
+    }
+    .nav-link:hover {
+        color: var(--accent-gold);
+        border-bottom: 2px solid var(--accent-gold);
+    }
+    /* Da označimo aktivnu stranicu */
+    .nav-link-active {
+        color: var(--accent-gold);
+        border-bottom: 2px solid var(--accent-gold);
+    }
+
+    /* MEDIA QUERY ZA DESKTOP (prikaz menija) */
+    @media (min-width: 768px) { 
+        .navbar {
+            /* Redistribucija elemenata za desktop */
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .main-nav-links {
+            display: flex; /* Prikaz menija na desktopu */
+            flex-grow: 1; /* Pomaže centriranju */
+            justify-content: center;
+        }
+    }
+
     .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
     .logo { font-size: 2rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; letter-spacing: 3px; }
     .cart-icon { position: relative; cursor: pointer; padding: 0.5rem 1rem; color: #fff; font-size: 1.1rem; transition: var(--transition); }
