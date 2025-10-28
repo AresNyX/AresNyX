@@ -1,404 +1,1054 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts – Zdravlje i Udobnost</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-<style>
-/* ========================================================= */
-/* DEFINE LUKSUZNE BOJE I FONTOVE */
-/* ========================================================= */
-:root {
-    --font-primary: 'Montserrat', sans-serif;
-    --color-dark-bg: #121212; /* Tamnija crna za luksuz */
-    --color-accent-gold: #D4AF37; /* NOVO: Bogatija zlatna za bolji kontrast */
-    --color-button: #C7574B; /* Prigušena terakota/bordo */
-    --color-text-main: #333333; /* Tamno siva umesto čiste crne */
-    --color-light-bg: #f7f7f7; /* Svetla siva pozadina */
-}
-
-/* ========================================================= */
-/* OPŠTI STIL */
-/* ========================================================= */
-body { 
-    font-family: var(--font-primary); 
-    margin: 0; 
-    padding: 0; 
-    background: var(--color-light-bg); 
-    color: var(--color-text-main);
-    line-height: 1.6;
-}
-
-/* NASLOVI */
-h1, h2, h3 {
-    font-weight: 600; 
-    color: var(--color-text-main);
-}
-
-/* ========================================================= */
-/* HEADER SEKCIJA (Crna pozadina) - Luksuzni Akcenat */
-/* ========================================================= */
-header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 60px 20px 80px 20px; /* Više vertikalnog prostora (Whitespace) */
-    text-align: center; 
-}
-
-/* AresNyX Boxer Shorts */
-header h1 { 
-    font-size: 44px; /* Veliki naslov */
-    font-weight: 300; /* Tanka slova za eleganciju */
-    margin-bottom: 5px; 
-    margin-top: 0;
-    color: var(--color-accent-gold); /* KORIŠTENJE NOVE ZLATNE */
-    letter-spacing: 3px; 
-    text-transform: uppercase;
-}
-/* Klasa za podebljanje samo imena brenda (AresNyX) */
-.brand-emphasis {
-    font-weight: 600; 
-}
-
-
-/* Opis ispod naslova */
-header p { 
-    font-size: 16px; 
-    margin-bottom: 40px; /* Više prostora pre dugmeta */
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #DDDDDD;
-}
-
-/* Dugme */
-header button { 
-    padding: 18px 40px; 
-    font-size: 1.1em; 
-    cursor: pointer; 
-    background: var(--color-button); /* Prigušena boja */
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; /* Suptilno zaobljenje */
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-header button:hover {
-    background-color: #A84236;
-}
-
-/* ========================================================= */
-/* SEKCIJE SA SADRŽAJEM */
-/* ========================================================= */
-section { 
-    padding: 60px 20px; /* Više prostora */
-    max-width: 900px; 
-    margin: auto; 
-    text-align: center;
-}
-
-h2 { 
-    text-align: center; 
-    font-size: 2em;
-    margin-bottom: 40px; /* Više prostora */
-}
-
-/* Lista prednosti (Zašto odabrati AresNyX?) */
-.features-list-section {
-    padding-bottom: 20px;
-}
-.features-list-section ul {
-    list-style: none; /* Uklanjamo standardne tačke */
-    padding: 0;
-    max-width: 550px;
-    margin: 0 auto;
-    text-align: left;
-}
-.features-list-section li {
-    margin-bottom: 25px; /* Povećavamo vertikalni razmak */
-    position: relative;
-    padding-left: 30px;
-    font-size: 1.1em;
-    font-weight: 300; /* Tanji font za listu */
-}
-/* Kreiranje custom tačke za listu */
-.features-list-section li::before {
-    content: "•"; 
-    color: var(--color-button); /* Koristimo boju dugmeta kao akcent */
-    font-size: 1.8em;
-    position: absolute;
-    left: 0;
-    top: -5px;
-    line-height: 1;
-}
-
-/* ========================================================= */
-/* TABELA KOMPARACIJA - Minimalizam */
-/* ========================================================= */
-.comparison-table-section {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-.comparison-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin: 20px 0 0 0;
-    table-layout: fixed; 
-}
-.comparison-table th, .comparison-table td { 
-    /* UKLANJANJE SVIH VERTIKALNIH LINIJA */
-    border: none; 
-    border-bottom: 1px solid #eeeeee; /* Samo tanke horizontalne linije */
-    padding: 15px 10px; 
-    text-align: center; 
-}
-.comparison-table th {
-    background-color: #fcfcfc;
-    font-weight: 600;
-    color: var(--color-text-main);
-    border-bottom: 2px solid #dddddd;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.5px;
-}
-.comparison-table tr:last-child td {
-    border-bottom: none; 
-}
-.comparison-table tr td:first-child {
-    text-align: left !important; /* Karakteristike ostaju levo poravnate za čitljivost */
-    font-weight: 600;
-}
-.comparison-table td {
-    font-weight: 300;
-}
-
-
-/* ========================================================= */
-/* BLOG SEKCIJA (Nove teme) */
-/* ========================================================= */
-#blog {
-    background-color: #fcfcfc; /* Skoro bela */
-    padding: 80px 20px;
-}
-
-#blog h2 {
-    color: var(--color-accent-gold); /* Luksuzna boja na blog naslovu */
-    font-size: 2.5em; 
-    margin-bottom: 60px;
-}
-
-.blog-topic-item {
-    display: flex; 
-    flex-wrap: wrap; 
-    align-items: center; 
-    margin-bottom: 80px;
-    text-align: left;
-}
-.blog-image-container {
-    flex: 1 1 55%; 
-    padding: 15px; 
-    background-color: #f0f0f0; 
-    border-radius: 8px; 
-    height: 250px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    order: 1; 
-}
-.blog-content {
-    flex: 1 1 45%; 
-    padding: 10px 10px 10px 40px; 
-    order: 2; 
-}
-/* Naizmenično premeštanje kolona za estetski izgled */
-.blog-topic-item:nth-child(even) .blog-image-container {
-    order: 2;
-    padding-left: 40px; 
-}
-.blog-topic-item:nth-child(even) .blog-content {
-    order: 1;
-    padding: 10px 40px 10px 10px;
-}
-/* Naslovi tema */
-.blog-content h3 {
-    color: var(--color-button); /* Boja dugmeta kao akcenat u tekstu */
-    font-size: 1.6em; 
-    margin-bottom: 15px;
-}
-.blog-content p {
-    margin-bottom: 15px;
-    font-weight: 300;
-}
-
-/* PODEŠAVANJE ZA MANJE EKRANE (Mobile Responsiveness) */
-@media (max-width: 768px) {
-    .blog-topic-item,
-    .blog-topic-item:nth-child(even) {
-        flex-direction: column;
-        text-align: center;
-        margin-bottom: 40px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AresNyX - Premium Boxer Shorts Shop</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <style>
+    /* ===== CRITICAL CSS - OPTIMIZOVANO ===== */
+    :root {
+        --primary-dark: #121212;
+        --accent-gold: #D4AF37;
+        --accent-hover: #F4C44D;
+        --success: #27AE60;
+        --danger: #E74C3C;
+        --gray-light: #F8F9FA;
+        --gray-medium: #E9ECEF;
+        --text-dark: #2C3E50;
+        --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .blog-content,
-    .blog-topic-item:nth-child(even) .blog-content {
-        padding: 20px 0 0 0;
-        order: 2;
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+        background: #fff; color: var(--text-dark); line-height: 1.6;
+        display: flex; flex-direction: column; min-height: 100vh;
     }
-    .blog-image-container,
-    .blog-topic-item:nth-child(even) .blog-image-container {
-        order: 1;
-        height: 200px;
-        padding: 10px 0;
+    
+    body.no-scroll { overflow: hidden; }
+
+    /* HEADER */
+    .header { 
+        background: var(--primary-dark); padding: 1rem 2rem; 
+        position: sticky; top: 0; z-index: 1000; 
+        box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
-}
+    .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; letter-spacing: 3px; }
+    .cart-icon { position: relative; cursor: pointer; padding: 0.5rem 1rem; color: #fff; font-size: 1.1rem; transition: var(--transition); }
+    .cart-icon:hover { border: 2px solid var(--accent-gold); color: var(--accent-gold); border-radius: 8px; }
+    .cart-count { position: absolute; top: -8px; right: -8px; background: var(--danger); color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; font-weight: 600; }
+    
+    /* PRODUCTS GRID */
+    .products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; flex: 1; }
+    .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); position: relative; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+    .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
+    .product-badge.premium { background: var(--accent-gold); color: var(--primary-dark); }
+    .product-badge.new { background: var(--danger); }
+    .product-image { width: 100%; height: 200px; object-fit: cover; background: #f7f7f7; }
+    .product-info { padding: 1.2rem; }
+    .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .product-material { color: #666; font-size: 0.9rem; margin-bottom: 0.8rem; }
+    .product-price { font-size: 1.2rem; font-weight: 700; }
+    
+    @media (min-width: 576px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 992px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+    
+    /* FOOTER */
+    .footer { background: var(--primary-dark); color: white; padding: 3rem 2rem 2rem; margin-top: auto; }
 
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px); }
+    .modal-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 16px; width: 90%; max-width: 700px; max-height: 95vh; overflow-y: auto; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+    .modal-content { padding: 1.5rem; }
+    .modal-main-image { width: 100%; max-width: 350px; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem; }
+    
+    /* Dodatak za navigaciju slajdera - da se vidi kraj */
+    .slider-nav button:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .size-option { display: inline-block; padding: 0.6rem 1rem; border: 2px solid var(--gray-medium); border-radius: 8px; cursor: pointer; margin-right: 0.5rem; transition: var(--transition); }
+    .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
+    .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
+    .qty-btn { width: 40px; height: 40px; border: 2px solid var(--gray-medium); background: white; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+    .qty-display { font-size: 1.2rem; font-weight: 600; min-width: 50px; text-align: center; padding: 0.5rem; background: var(--gray-light); border-radius: 8px; }
+    .modal-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .add-to-cart-btn { flex: 2; background: var(--primary-dark); color: white; border: none; padding: 1rem 1.5rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 50px; }
+    .continue-shopping { flex: 1; background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); padding: 1rem 1.5rem; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; min-height: 50px; }
+    
+    /* KORPA */
+    .cart-sidebar { 
+        position: fixed; top: 0; right: -400px; width: 400px; 
+        height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
+        transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
+    }
+    @media (max-width: 450px) { .cart-sidebar { width: 100%; right: -100%; } }
+    .cart-sidebar.active { right: 0; }
+    .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--gray-medium); display: flex; justify-content: space-between; align-items: center; background: var(--primary-dark); color: white; position: sticky; top: 0; z-index: 10; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { display: flex; padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); align-items: flex-start; position: relative; }
+    .cart-item-image { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 1rem; flex-shrink: 0; }
+    .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; padding-right: 35px; }
+    .cart-item-title { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; line-height: 1.2; }
+    .cart-item-size { margin-bottom: 0; font-size: 0.9rem; color: var(--primary-dark); font-weight: 500; }
+    .cart-item-controls { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 0.5rem; }
+    .cart-item-qty-wrapper { display: flex; align-items: center; gap: 0.8rem; }
+    .cart-item-qty-btn { width: 30px; height: 30px; border: 1px solid var(--gray-medium); background: white; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .cart-item-qty { padding: 0.3rem 0.6rem; background: var(--gray-light); border-radius: 4px; font-weight: 600; min-width: 30px; text-align: center; flex-shrink: 0; }
+    .cart-item-price { font-weight: 700; color: var(--primary-dark); font-size: 1rem; flex-shrink: 0; }
+    .cart-item-remove { position: absolute; top: 0.8rem; right: 0; background: var(--danger); color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    
+    /* Footer Korpe i Dugmad */
+    .cart-footer { padding: 1.5rem; border-top: 1px solid var(--gray-medium); background: var(--gray-light); position: sticky; bottom: 0; z-index: 10; }
+    .cart-actions-footer { margin-bottom: 1rem; }
+    .clear-cart-btn { 
+        width: 100%; background: var(--danger); color: white; 
+        border: none; padding: 1rem; border-radius: 8px;
+        cursor: pointer; transition: var(--transition); 
+        font-weight: 600; font-size: 1.1rem;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem; 
+        margin-bottom: 1rem;
+    }
+    
+    .checkout-btn { 
+        width: 100%; 
+        background: var(--primary-dark);
+        color: white; 
+        border: none; 
+        padding: 1rem;
+        border-radius: 8px; 
+        font-size: 1.1rem;
+        font-weight: 600; 
+        cursor: pointer; 
+        transition: var(--transition); 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 0.5rem; 
+        margin-top: 1rem;
+    }
+    .checkout-btn:hover { background: #333; }
+    
+    .cart-total-row.final { font-weight: 700; font-size: 1.2rem; border-top: 2px solid var(--primary-dark); padding-top: 0.8rem; margin-top: 0.5rem; }
 
-/* ========================================================= */
-/* FOOTER */
-/* ========================================================= */
-footer { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 40px 20px; /* Više prostora */
-    text-align: center; 
-}
-footer p {
-    margin-bottom: 25px;
-    font-weight: 300;
-}
-footer button { 
-    /* Koristimo iste stilove kao dugme u headeru */
-    padding: 18px 40px; 
-    font-size: 1.1em; 
-    cursor: pointer; 
-    background: var(--color-button); 
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; 
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-footer button:hover {
-    background-color: #A84236;
-}
-</style>
+    /* Media Query za uklanjanje slike na mobilnom */
+    @media (max-width: 576px) { 
+        .cart-item-image { display: none; }
+    }
+    
+    /* ===== CHECKOUT MODAL STYLES ===== */
+    #checkoutModal .modal-container {
+        max-width: 500px;
+        padding: 2rem;
+    }
+    .checkout-form h2 {
+        color: var(--primary-dark);
+        margin-bottom: 1.5rem;
+    }
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid var(--gray-medium);
+        border-radius: 6px;
+        font-size: 1rem;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        transition: border-color 0.3s;
+    }
+    .submit-btn {
+        width: 100%; 
+        background: var(--success); 
+        color: white; 
+        border: none; 
+        padding: 1rem; 
+        border-radius: 8px; 
+        font-size: 1.1rem; 
+        font-weight: 700; 
+        cursor: pointer; 
+        transition: var(--transition);
+        margin-top: 1.5rem;
+    }
+
+    /* Korak 2: Pregled Porudžbine (Preview) */
+    .preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    .preview-shipping, .preview-order {
+        padding: 1.5rem;
+        border-radius: 8px;
+        background: var(--gray-light);
+    }
+    .preview-shipping {
+        flex: 1 1 45%;
+    }
+    .preview-order {
+        flex: 1 1 45%;
+    }
+    .preview-order h3 { margin-top: 0; color: var(--primary-dark); border-bottom: 1px solid var(--gray-medium); padding-bottom: 0.5rem; }
+    .preview-item { font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.4; }
+    .preview-item strong { display: inline-block; min-width: 80px; }
+    .preview-actions { display: flex; gap: 1rem; margin-top: 2rem; }
+    .preview-actions button { flex: 1; padding: 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .submit-order-btn { background: var(--success); color: white; border: none; }
+    .edit-data-btn { background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); }
+    
+    @media (max-width: 600px) {
+        .preview-shipping, .preview-order {
+            flex-basis: 100%;
+        }
+    }
+    
+    /* TOAST NOTIFIKACIJA */
+    .toast {
+        visibility: hidden; 
+        min-width: 250px; 
+        margin-left: -125px; 
+        background-color: var(--primary-dark); 
+        color: #fff; 
+        text-align: center; 
+        border-radius: 8px; 
+        padding: 16px; 
+        position: fixed; 
+        z-index: 5000; 
+        left: 50%; 
+        bottom: 30px; 
+        font-size: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .toast.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+        animation: fadein 0.5s, fadeout 0.5s 1.5s;
+    }
+
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+    
+    </style>
+    
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 </head>
 <body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">ARESNYX</a>
+            <div class="cart-icon" onclick="shop.toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
 
-<header>
-  <h1><span class="brand-emphasis">AresNyX</span> Boxer Shorts</h1>
-  <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
-  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
-</header>
+    <main class="main-content">
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                </div>
+        </section>
+    </main>
 
-<section class="features-list-section">
-  <h2>Zašto odabrati AresNyX?</h2>
-  <ul>
-    <li>Bolja ventilacija i prirodna regulacija temperature genitalija</li>
-    <li>Smanjuju znojenje i iritacije, preveniraju infekcije i neprirodno grejanje genitalija koje su prirodno predodređene da ne budu u tesnom, vlažnom okruženju</li>
-    <li>Prirodni materijali: 100% pamuk, lan, svila, bambus</li>
-    <li>Održavanje higijene i udobnosti tokom celog dana</li>
-    <li>Fit loss kroj koji prati pokret, ali nije tesan</li>
-  </ul>
-</section>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">ARESNYX</div>
+            <p class="footer-tagline">Premium kvalitet. Izuzetan komfor. Vaš stil.</p>
+            
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Početna</a>
+                <a href="shop.html" class="footer-link">Shop</a>
+                <a href="#" class="footer-link">O nama</a>
+                <a href="#" class="footer-link">Kontakt</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 AresNyX. Sva prava zadržana.</p>
+            </div>
+        </div>
+    </footer>
 
-<section class="comparison-table-section">
-  <h2>Komparacija sa streč uskim boksericama</h2>
-  <table class="comparison-table">
-    <tr>
-      <th>Karakteristika</th>
-      <th>AresNyX Široki Fit Loss</th>
-      <th>Streč Uske Bokserice</th>
-    </tr>
-    <tr>
-      <td>Ventilacija</td>
-      <td>Odlična</td>
-      <td>Loša</td>
-    </tr>
-    <tr>
-      <td>Temperatura genitalija</td>
-      <td>Prirodna regulacija</td>
-      <td>Pregrejavanje</td>
-    </tr>
-    <tr>
-      <td>Higijena</td>
-      <td>Bolja</td>
-      <td>Osetno lošija</td>
-    </tr>
-    <tr>
-      <td>Udobnost pokreta</td>
-      <td>Maksimalna</td>
-      <td>Ograničena- stegnutost streč neprirodnim materijalom</td>
-    </tr>
-    <tr>
-      <td>Materijal</td>
-      <td>Prirodni</td>
-      <td>Veštački, streč vlakna,sintetika / miks</td>
-    </tr>
-  </table>
-</section>
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="shop.closeModal()">×</button>
+            <div class="modal-content">
+                <div class="modal-gallery">
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy">
+                    <div class="slider-nav">
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-material" id="modalMaterial"></p>
+                    <p class="modalPrice" id="modalPrice"></p>
+                    
+                    <div class="size-section">
+                        <h3>Odaberite veličinu:</h3>
+                        <div class="size-selector" id="sizeSelector"></div>
+                        <div class="size-info" onclick="shop.toggleSizeTable()">
+                            <i class="fas fa-ruler"></i>
+                            <span>Tabela veličina</span>
+                        </div>
+                    </div>
 
-<section id="blog">
-  <h2>Blog - Nove teme</h2>
-  
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika pamuka]</span>
-    </div>
-    <div class="blog-content">
-      <h3>Prirodni materijali za maksimalnu udobnost</h3>
-      <p>Pamuk, lan, svila i bambus omogućavaju koži da diše, zadržavaju udobnost tokom celog dana i smanjuju znojenje i iritacije, pa samim tim regija ostaje suva, čista bez rizika obolevanja.</p>
-      <p>Šire bokserice u kombinaciji sa prirodnim materijalima čuvaju zdravlje i omogućavaju optimalnu higijenu.</p>
-    </div>
-  </div>
+                    <div class="size-table-container" id="sizeTable" style="display: none;">
+                        <h4><i class="fas fa-table"></i> Tabela veličina (cm)</h4>
+                        <table class="size-table">
+                            <thead>
+                                <tr><th>Veličina</th><th>Struk</th><th>Dužina</th><th>Širina nogavice</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>M</strong></td><td>72-76</td><td>28</td><td>24</td></tr>
+                                <tr><td><strong>L</strong></td><td>77-81</td><td>29</td><td>25</td></tr>
+                                <tr><td><strong>XL</strong></td><td>82-86</td><td>30</td><td>26</td></tr>
+                                <tr><td><strong>XXL</strong></td><td>87-91</td><td>31</td><td>27</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika lana]</span>
-    </div>
-    <div class="blog-content">
-      <h3>Kako šire bokserice čuvaju zdravlje</h3>
-      <p>Pregrejavanje genitalija može smanjiti plodnost i izazvati iritacije, infekcije, neugodan miris. Šire bokserice pomažu u prevenciji takvih rizika.</p>
-      <p>Fit loss kroj prati pokret tela bez pritiska, dok streč uske bokserice mogu izazvati nelagodnost i povećanu temperaturu čime se povećava znojenje i zdravstveni rizik od neplodnosti, gljivičnih i bakterijskih infekcija.</p>
-    </div>
-  </div>
+                    <div class="quantity-section">
+                        <h3>Količina:</h3>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                            <span class="qty-display" id="modalQty">1</span>
+                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                        </div>
+                    </div>
 
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika svile]</span>
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+                            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                        </button>
+                        <button class="continue-shopping" onclick="shop.closeModal()">
+                            Nastavi kupovinu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="blog-content">
-      <h3>Fit loss kroj & streč kroj</h3>
-      <p>Fit loss kroj omogućava maksimalnu udobnost, bolji higijenski uticaj i slobodu pokreta, dok uske streč bokserice mogu izazvati veću zagrejanost genitalija i cele regije što je osnovni okidač mnogih zdravstvenih rizika.</p>
-      <p>Prirodni materijali u širokim boksericama smanjuju znojenje kroz povećanu ventilaciju čime se održava prirodna temperatura i higijena tokom celog dana.</p>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Vaša Korpa</h3>
+            <button class="modal-close" onclick="shop.toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart" id="emptyCart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Vaša korpa je prazna</p>
+            </div>
+        </div>
+        
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            
+            <div class="cart-actions-footer">
+                <button class="clear-cart-btn" onclick="shop.clearCart()">
+                    <i class="fas fa-trash"></i> Isprazni Korpu
+                </button>
+            </div>
+
+            <div class="cart-totals">
+                <div class="cart-total-row"><span>Međuzbir:</span><span id="cartSubtotal">0 RSD</span></div>
+                <div class="cart-total-row"><span>Poštarina:</span><span id="cartShipping">0 RSD</span></div>
+                <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
+                <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
+            </div>
+            <button class="checkout-btn" onclick="shop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
+        </div>
     </div>
-  </div>
-</section>
-<div style="text-align:center; margin:60px 0;">
-  <a href="blog-zdravlje-donjeg-vesa.html"
-     style="
-       display:inline-block;
-       padding:14px 60px;
-       border:2px solid #E2725B;
-       color:#4a4a4a;
-       font-family:'Montserrat', Arial, sans-serif;
-       font-weight:600;
-       font-size:1rem;
-       text-decoration:none;
-       transition:background-color 0.3s, color 0.3s;
-     "
-     onmouseover="this.style.backgroundColor='#E2725B'; this.style.color='#fff';"
-     onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a4a4a';">
-     📰 Zdravlje počinje od donjeg veša →
-  </a>
-</div>
-<footer>
-  <p>Spremni da probate AresNyX bokserice?</p>
-  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
-</footer>
+    
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="shop.closeCheckoutModal()">×</button>
+            <div class="modal-content" id="checkoutModalContent">
+                
+                <div id="checkoutStep1">
+                    <form class="checkout-form" onsubmit="shop.submitShippingForm(event)">
+                        <h2>Podaci za isporuku</h2>
+                        
+                        <div class="form-group"><label for="ime">Ime*</label><input type="text" id="ime" required></div>
+                        <div class="form-group"><label for="prezime">Prezime*</label><input type="text" id="prezime" required></div>
+                        <div class="form-group"><label for="email">Email*</label><input type="email" id="email" required></div>
+                        
+                        <div class="form-group"><label for="telefon">Telefon (mobilni)*</label><input type="tel" id="telefon" required></div>
+                        
+                        <div class="form-group"><label for="ulica">Ulica i broj*</label><input type="text" id="ulica" required></div>
+                        
+                        <div class="form-group"><label for="postanskiBroj">Poštanski broj*</label><input type="text" id="postanskiBroj" required></div>
+                        <div class="form-group"><label for="grad">Grad*</label><input type="text" id="grad" required></div>
+                        <div class="form-group"><label for="opstina">Opština</label><input type="text" id="opstina"></div>
+
+                        <div class="form-group">
+                            <label for="placanje">Način plaćanja*</label>
+                            <select id="placanje" required>
+                                <option value="pouzecem" selected>Pouzećem (Plaćanje prilikom preuzimanja)</option>
+                                <option value="racun">Uplata na račun (E-banking)</option>
+                                <option value="licno">Lično preuzimanje (dogovor)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="napomena">Napomena za porudžbinu</label>
+                            <textarea id="napomena" placeholder="Npr. Vremenska ograničenja za isporuku, dodatne informacije..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn"><i class="fas fa-arrow-right"></i> Pregled i Potvrda Porudžbine</button>
+                    </form>
+                </div>
+                
+                <div id="checkoutStep2" style="display: none;">
+                    <h2>Pregled Porudžbine</h2>
+                    <div class="preview-container">
+                        <div class="preview-shipping">
+                            <h3>Podaci za isporuku</h3>
+                            <p id="previewIme"></p>
+                            <p id="previewEmail"></p>
+                            <p id="previewTelefon"></p><p id="previewAdresa"></p>
+                            <p id="previewPostaGrad"></p>
+                            <p id="previewPlacanje"></p>
+                            <p id="previewNapomena"></p>
+                        </div>
+                        <div class="preview-order">
+                            <h3>Struktura poručene robe</h3>
+                            <div id="previewOrderItems"></div>
+                            <div class="cart-totals">
+                                <div class="cart-total-row"><span>Međuzbir:</span><span id="previewSubtotal"></span></div>
+                                <div class="cart-total-row"><span>Poštarina:</span><span id="previewShipping"></span></div>
+                                <div class="cart-total-row"><span>Popust:</span><span id="previewDiscount"></span></div>
+                                <div class="cart-total-row final"><span>Ukupno:</span><span id="previewTotal"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-actions">
+                        <button class="edit-data-btn" onclick="shop.goToStep(1)"><i class="fas fa-edit"></i> Izmeni Podatke</button>
+                        <button class="submit-order-btn" onclick="shop.completeOrder()"><i class="fas fa-paper-plane"></i> Pošalji Porudžbinu</button>
+                    </div>
+                </div>
+
+                <div id="checkoutStep3" style="display: none;">
+                    <div class="success-message">
+                        <h2><i class="fas fa-check-circle"></i> Hvala na poverenju!</h2>
+                        <p>Vaša porudžbina je uspešno primljena i biće obrađena u najkraćem mogućem roku.</p>
+                        <p>Detalji su poslati na Vašu email adresu: <strong id="confirmationEmail"></strong></p>
+                        <p>Uskoro ćete biti kontaktirani radi potvrde porudžbine.</p>
+                        <button class="submit-btn" onclick="shop.closeCheckoutModal()">Nastavite sa kupovinom</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+    
+    class AresNyXShop {
+        constructor() {
+            this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+            this.products = [];
+            this.currentProduct = null;
+            this.currentSize = 'M';
+            this.currentQuantity = 1;
+            this.currentImageIndex = 0;
+            this.checkoutData = {};
+            this.init();
+        }
+
+        init() {
+            this.loadProducts();
+            this.updateCartCount();
+            this.renderCart();
+            
+            // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
+            try {
+                emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
+            } catch (e) {
+                console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana. Proverite da li je skripta uvezena.");
+            }
+        }
+
+        // =========================================================
+        // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
+        // =========================================================
+
+        loadProducts() {
+            this.products = [
+                { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["images/pamuk-1.jpg", "images/pamuk-2.jpg"], badge: "BESTSELLER" },
+                { id: 2, name: "Premium Lan", material: "100% Premium Lan", price: 1500, category: "lan", images: ["images/lan-1.jpg", "images/lan-2.jpg"], badge: "PREMIUM" },
+                { id: 3, name: "Elegant Svila", material: "100% Prirodna Svila", price: 1800, category: "svila", images: ["images/svila-1.jpg", "images/svila-2.jpg"], badge: "LUXURY" },
+                { id: 4, name: "Night Black", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["images/crna-1.jpg", "images/crna-2.jpg"], badge: "POPULAR" },
+                { id: 5, name: "Pure White", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["images/bela-1.jpg", "images/bela-2.jpg"], badge: "CLASSIC" },
+                { id: 6, name: "Navy Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/navy-1.jpg", "images/navy-2.jpg"], badge: "TRENDING" },
+                { id: 7, name: "Dark Grey", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["images/siva-1.jpg", "images/siva-2.jpg"], badge: "ESSENTIAL" },
+                { id: 8, name: "Blue Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/plava-1.jpg", "images/plava-2.jpg"], badge: "NEW" },
+                { id: 9, name: "Charcoal Black", material: "100% Premium Pamuk", price: 1350, category: "pamuk", images: ["images/charcoal-1.jpg", "images/charcoal-2.jpg"], badge: "PREMIUM" },
+                { id: 10, name: "Bamboo Blend", material: "70% Bambus, 30% Pamuk", price: 1600, category: "lan", images: ["images/bambus-1.jpg", "images/bambus-2.jpg"], badge: "ECO" },
+                { id: 11, name: "Sport Grey", material: "95% Pamuk, 5% Elastan", price: 1450, category: "pamuk", images: ["images/sport-1.jpg", "images/sport-2.jpg"], badge: "SPORT" },
+                { id: 12, name: "Midnight Blue", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["images/midnight-1.jpg", "images/midnight-2.jpg"], badge: "EXCLUSIVE" }
+            ];
+            this.renderProducts();
+        }
+
+        renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            if (!this.products || this.products.length === 0) {
+                 grid.innerHTML = '<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #666;">Nema dostupnih proizvoda.</p>';
+                 return;
+            }
+            
+            grid.innerHTML = this.products.map(product => `
+                <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
+                    ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+                    <img src="${product.images[0]}" alt="AresNyX Bokserice: ${product.name}" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-material">${product.material}</p>
+                        <p class="product-price">${product.price} RSD</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        openProductModal(productId) {
+            this.currentProduct = this.products.find(p => p.id === productId);
+            if (!this.currentProduct) return;
+
+            this.currentSize = 'M';
+            this.currentQuantity = 1;
+            this.currentImageIndex = 0;
+
+            document.getElementById('modalTitle').textContent = this.currentProduct.name;
+            document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+            document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+            document.getElementById('modalQty').textContent = '1';
+
+            this.updateModalImage();
+
+            const sizeSelector = document.getElementById('sizeSelector');
+            sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
+                <div class="size-option ${size === 'M' ? 'selected' : ''}" onclick="shop.selectSize(event, '${size}')">${size}</div>
+            `).join('');
+
+            document.getElementById('sizeTable').style.display = 'none';
+            document.getElementById('productModal').style.display = 'block';
+            document.body.classList.add('no-scroll');
+            
+            const btn = document.querySelector('.add-to-cart-btn');
+            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+            btn.style.background = 'var(--primary-dark)';
+            btn.disabled = false;
+        }
+
+        updateModalImage() {
+            if (!this.currentProduct) return;
+            document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
+            
+            // Logika za onemogućavanje dugmadi na početku/kraju ciklusa
+            const isFirst = this.currentImageIndex === 0;
+            const isLast = this.currentImageIndex === this.currentProduct.images.length - 1;
+            
+            document.getElementById('prevImageBtn').disabled = isFirst;
+            document.getElementById('nextImageBtn').disabled = isLast;
+        }
+
+        selectSize(event, size) {
+            this.currentSize = size;
+            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        changeQuantity(change) {
+            this.currentQuantity = Math.max(1, this.currentQuantity + change);
+            document.getElementById('modalQty').textContent = this.currentQuantity;
+        }
+
+        prevImage() {
+            if (!this.currentProduct) return;
+            this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
+            this.updateModalImage();
+        }
+
+        nextImage() {
+            if (!this.currentProduct) return;
+            this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
+            this.updateModalImage();
+        }
+
+        addToCartFromModal(event) {
+            if (!this.currentProduct || !this.currentSize) return;
+            
+            const btn = event.currentTarget;
+            if (btn.disabled) return;
+            btn.disabled = true;
+
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
+            btn.style.background = 'var(--success)';
+            
+            this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
+            
+            this.updateCartCount();
+            this.renderCart(); 
+            
+            this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
+            
+            setTimeout(() => {
+                this.closeModal();
+                btn.innerHTML = originalText;
+                btn.style.background = 'var(--primary-dark)';
+                btn.disabled = false;
+            }, 500); 
+        }
+
+        addToCart(productId, size, quantity) {
+            const product = this.products.find(p => p.id === productId);
+            const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                this.cart.push({ 
+                    productId, 
+                    size, 
+                    quantity, 
+                    name: product.name, 
+                    price: product.price, 
+                    image: product.images[0] 
+                });
+            }
+
+            this.saveCart();
+        }
+
+        updateCartCount() {
+            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCount = document.getElementById('cartCount');
+            cartCount.textContent = totalItems;
+            
+            cartCount.classList.remove('quick-pulse'); 
+            void cartCount.offsetWidth;
+            cartCount.classList.add('quick-pulse');
+            
+            this.updateCartTotals(); 
+            this.toggleCartVisibility();
+        }
+        
+        toggleCartVisibility() {
+            const cartFooter = document.getElementById('cartFooter');
+            const emptyCart = document.getElementById('emptyCart');
+            
+            if (this.cart.length === 0) {
+                if (emptyCart) emptyCart.style.display = 'block';
+                if (cartFooter) cartFooter.style.display = 'none';
+            } else {
+                if (emptyCart) emptyCart.style.display = 'none';
+                if (cartFooter) cartFooter.style.display = 'block';
+            }
+        }
+
+        renderCart() {
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            if (this.cart.length === 0) {
+                cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
+                this.toggleCartVisibility(); 
+                this.updateCartTotals(); 
+                return;
+            }
+
+            cartItemsContainer.innerHTML = ''; 
+
+            this.cart.forEach((item) => {
+                const itemHtml = `
+                    <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
+                        <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
+                        <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-size">Veličina: ${item.size}</div>
+                            <div class="cart-item-controls">
+                                <div class="cart-item-qty-wrapper">
+                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
+                                    <span class="cart-item-qty">${item.quantity}</span>
+                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
+                                </div>
+                                <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+            });
+
+            this.toggleCartVisibility(); 
+            this.updateCartTotals();
+        }
+
+        updateCartItem(productId, size, change) {
+            const item = this.cart.find(i => i.productId === productId && i.size === size);
+            if (!item) return;
+
+            item.quantity += change;
+            
+            if (item.quantity < 1) {
+                this.removeCartItem(productId, size); 
+                return;
+            }
+            
+            this.saveCart();
+            this.updateCartCount();
+            
+            const cartItem = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
+            if(cartItem) {
+                cartItem.querySelector('.cart-item-qty').textContent = item.quantity;
+                cartItem.querySelector('.cart-item-price').textContent = (item.price * item.quantity) + ' RSD';
+            }
+            
+            this.updateCartTotals();
+            this.showToast(change > 0 ? "Količina povećana" : "Količina smanjena");
+        }
+
+        removeCartItem(productId, size) {
+            const index = this.cart.findIndex(i => i.productId === productId && i.size === size);
+            const cartItemElement = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
+
+            if (index > -1) {
+                const itemName = this.cart[index].name;
+                this.cart.splice(index, 1);
+                this.saveCart();
+                
+                if (cartItemElement) {
+                    cartItemElement.remove();
+                }
+
+                this.updateCartCount(); 
+                this.showToast(`"${itemName}" je uklonjen iz korpe`);
+                
+                if (this.cart.length === 0) {
+                    this.renderCart(); 
+                }
+            }
+        }
+
+        updateCartTotals(preview = false) {
+            const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+            const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+            const total = subtotal + shipping - discount;
+            
+            if (preview) {
+                document.getElementById('previewSubtotal').textContent = subtotal + ' RSD';
+                document.getElementById('previewShipping').textContent = shipping + ' RSD';
+                document.getElementById('previewDiscount').textContent = discount + ' RSD';
+                document.getElementById('previewTotal').textContent = total + ' RSD';
+            } else {
+                document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
+                document.getElementById('cartShipping').textContent = shipping + ' RSD';
+                document.getElementById('cartDiscount').textContent = discount + ' RSD';
+                
+                const totalElement = document.getElementById('cartTotal');
+                totalElement.textContent = total + ' RSD';
+
+                totalElement.classList.remove('quick-pulse'); 
+                void totalElement.offsetWidth; 
+                totalElement.classList.add('quick-pulse');
+            }
+        }
+
+        clearCart() {
+            if (this.cart.length === 0) {
+                this.showToast("Korpa je već prazna!");
+                return;
+            }
+            
+            if (confirm("Da li ste sigurni da želite da ispraznite korpu? Ova akcija se ne može poništiti.")) {
+                this.cart = [];
+                this.saveCart();
+                this.updateCartCount();
+                this.renderCart(); 
+                this.showToast("Korpa je ispražnjena!");
+            }
+        }
+        
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        }
+
+        showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('show');
+            void toast.offsetWidth;
+            toast.classList.add('show');
+            
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }
+
+        toggleCart() {
+             document.getElementById('cartSidebar').classList.toggle('active');
+             document.body.classList.toggle('no-scroll');
+        }
+
+        toggleSizeTable() { 
+            const table = document.getElementById('sizeTable');
+            table.style.display = table.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // =========================================================
+        // === METODE ZA CHECKOUT I FORME ===
+        // =========================================================
+
+        getPaymentMethodText(method) {
+            switch (method) {
+                case 'pouzecem': return 'Pouzećem (Plaćanje prilikom preuzimanja)';
+                case 'racun': return 'Uplata na račun (E-banking)';
+                case 'licno': return 'Lično preuzimanje (dogovor)';
+                default: return 'Nepoznato';
+            }
+        }
+
+        startCheckout() {
+            if (this.cart.length === 0) {
+                this.showToast("Vaša korpa je prazna!");
+                return;
+            }
+            this.toggleCart(); 
+            this.goToStep(1);
+            document.getElementById('checkoutModal').style.display = 'block';
+            document.body.classList.add('no-scroll');
+        }
+
+        closeCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            document.body.classList.remove('no-scroll');
+            this.goToStep(1); 
+        }
+
+        goToStep(step) {
+            document.getElementById('checkoutStep1').style.display = step === 1 ? 'block' : 'none';
+            document.getElementById('checkoutStep2').style.display = step === 2 ? 'block' : 'none';
+            document.getElementById('checkoutStep3').style.display = step === 3 ? 'block' : 'none';
+        }
+
+        submitShippingForm(event) {
+            event.preventDefault();
+
+            // Prikupite podatke iz forme
+            this.checkoutData = {
+                ime: document.getElementById('ime').value,
+                prezime: document.getElementById('prezime').value,
+                email: document.getElementById('email').value,
+                telefon: document.getElementById('telefon').value,
+                ulica: document.getElementById('ulica').value,
+                postanskiBroj: document.getElementById('postanskiBroj').value,
+                grad: document.getElementById('grad').value,
+                opstina: document.getElementById('opstina').value,
+                placanje: document.getElementById('placanje').value,
+                napomena: document.getElementById('napomena').value
+            };
+
+            // Renderujte podatke za pregled
+            document.getElementById('previewIme').innerHTML = `<strong>Ime i Prezime:</strong> ${this.checkoutData.ime} ${this.checkoutData.prezime}`;
+            document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${this.checkoutData.email}`;
+            document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${this.checkoutData.telefon}`;
+            document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${this.checkoutData.ulica}`;
+            document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`;
+            document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(this.checkoutData.placanje)}`;
+            document.getElementById('previewNapomena').innerHTML = `<strong>Napomena:</strong> ${this.checkoutData.napomena || 'Nema napomene.'}`;
+
+
+            // Renderujte stavke porudžbine i rekapitulaciju
+            this.renderPreviewOrderItems();
+            this.updateCartTotals(true);
+
+            this.goToStep(2); 
+        }
+
+        renderPreviewOrderItems() {
+            const container = document.getElementById('previewOrderItems');
+            container.innerHTML = this.cart.map(item => `
+                <div class="preview-item">
+                    <span style="font-weight: 700;">${item.quantity}x ${item.name} (${item.size})</span>
+                    <span style="float: right;">${item.price * item.quantity} RSD</span>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Konvertuje niz proizvoda u formatiranu HTML listu za EmailJS template.
+         * @returns {string} HTML lista stavki porudžbine.
+         */
+        formatOrderItemsForEmail() {
+            if (this.cart.length === 0) return '<p>Nema stavki u porudžbini.</p>';
+
+            let html = '<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9;">';
+            this.cart.forEach(item => {
+                const total = item.quantity * item.price;
+                html += `
+                    <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
+                        <p style="font-size: 16px; font-weight: bold; color: #121212; margin: 0 0 5px 0;">${item.name}</p>
+                        <p style="font-size: 14px; margin: 0;">Veličina: <strong>${item.size}</strong></p>
+                        <p style="font-size: 14px; margin: 0;">Količina: ${item.quantity} kom.</p>
+                        <p style="font-size: 14px; margin: 0;">Jedinična cena: ${item.price} RSD</p>
+                        <p style="font-size: 14px; font-weight: bold; margin: 5px 0 0 0; color: #D4AF37;">Ukupno za stavku: ${total} RSD</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+        
+        // =========================================================
+        // === AŽURIRANA completeOrder() FUNKCIJA (FINALNA) ===
+        // =========================================================
+        completeOrder() {
+            if (!this.checkoutData.email) {
+                this.showToast("Greška: Podaci kupca nisu popunjeni.");
+                return;
+            }
+            
+            document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
+            
+            // Prikupite i izračunajte ukupne vrednosti
+            const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+            const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+            const total = subtotal + shipping - discount;
+
+            const BRAND_NAME = 'AresNyX'; 
+
+            // Formiranje objekta podataka za EmailJS
+            const templateParams = {
+                // Podaci o kupcu
+                ime_kupca: this.checkoutData.ime,
+                prezime_kupca: this.checkoutData.prezime,
+                email_kupca: this.checkoutData.email,
+                telefon_kupca: this.checkoutData.telefon,
+                
+                // Adresa
+                adresa_dostave: `${this.checkoutData.ulica}, ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`,
+                
+                // Porudžbina
+                broj_porudzbine: 'ARX-' + Date.now(), 
+                nacin_placanja: this.getPaymentMethodText(this.checkoutData.placanje),
+                napomena: this.checkoutData.napomena || 'Nema napomene.',
+                
+                // Finansije
+                medjuzbir: `${subtotal} RSD`,
+                postarina: `${shipping} RSD`,
+                popust: `${discount} RSD`,
+                ukupno: `${total} RSD`,
+                
+                // Lista proizvoda
+                lista_proizvoda: this.formatOrderItemsForEmail(),
+                
+                // Specijalno polje za Kupca
+                poslati_kupcu: this.checkoutData.email,
+                
+                // Prosleđivanje brenda šablonu
+                brend_naziv: BRAND_NAME 
+            };
+            
+            // EMAIL KONFIGURACIJA
+            const SERVICE_ID = 'service_rxj533m';
+            const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
+            const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
+
+            // Kreiramo oba obećanja (Promise) za slanje
+            const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
+            const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
+
+
+            // Koristimo Promise.all() da sačekamo OBA obećanja
+            Promise.all([sendAdminPromise, sendCustomerPromise])
+                .then((responses) => {
+                    console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.', responses);
+                    
+                    // 1. Resetovanje korpe
+                    this.cart = [];
+                    this.saveCart();
+                    this.updateCartCount();
+                    this.renderCart(); 
+                    
+                    // 2. Prelazak na Korak 3 (Potvrda)
+                    this.goToStep(3);
+                    
+                    // 3. Prikazivanje poruke o uspehu
+                    this.showToast("Porudžbina uspešno poslata! Proverite Vaš email.");
+                })
+                .catch((error) => {
+                    // Ako BILO KOJE slanje ne uspe
+                    console.error('Greška pri slanju jedne ili obe porudžbine:', error);
+                    
+                    // Ne resetujemo korpu
+                    this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
+                
+                });
+        }
+    } // <--- OVDE SE ZAVRŠAVA CELA KLASA
+
+    // =========================================================
+    // === OBAVEZNO POKRETANJE ===
+    // =========================================================
+    const shop = new AresNyXShop(); 
+    </script>                                           
 
 </body>
 </html>
