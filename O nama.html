@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O nama – Misija, Vizija i Priča AresNyX</title>
+    <meta name="description" content="AresNyX — luksuzni prirodni donji veš od pamuka, lana i svile. Bez sintetike, bez kompromisa. Zdravlje i udobnost iz Srbije.">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-    /* ========================================================= */
-    /* OPŠTI STILOVI ZA DOSLEDNOST BRENDA */
-    /* ========================================================= */
     :root {
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
         --color-accent-gold: #D4AF37; 
-        --color-button: #C7574B; /* Terakota / Bordo */
+        --color-button: #C7574B;
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
     }
@@ -43,6 +43,7 @@
         letter-spacing: 2px; 
         text-transform: uppercase;
         margin: 0;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
     }
     .brand-emphasis { font-weight: 700; }
     
@@ -72,7 +73,6 @@
         padding: 0 20px; 
     }
 
-    /* SEKCIJE */
     section {
         margin-bottom: 60px;
         padding: 30px;
@@ -86,8 +86,16 @@
         margin-bottom: 30px;
         color: var(--color-button); 
     }
+    section p { 
+        margin-bottom: 1.2em;
+    }
 
-    /* MISIJA I VIZIJA LISTA */
+    hr {
+        border: none; 
+        border-top: 1px solid #ddd; 
+        margin: 50px 0;
+    }
+
     .mission-points {
         display: flex;
         justify-content: space-around;
@@ -102,6 +110,9 @@
         border: 1px solid #eeeeee;
         transition: transform 0.3s;
     }
+    .mission-item:hover {
+        transform: translateY(-5px);
+    }
     .mission-item i {
         font-size: 3em;
         color: var(--color-accent-gold);
@@ -111,8 +122,7 @@
         font-size: 1.2em;
         margin-top: 0;
     }
-    
-    /* DUGME POZIV NA AKCIJU */
+
     .cta-container {
         text-align: center;
         margin-top: 40px;
@@ -134,8 +144,7 @@
     .cta-button:hover {
         background-color: #A84236;
     }
-    
-    /* FOOTER */
+
     footer { 
         background: var(--color-dark-bg); 
         color: #fff; 
@@ -144,11 +153,15 @@
         margin-top: 60px;
     }
 
-    /* RESPONSIVNOST */
     @media (max-width: 768px) {
         .mission-points {
             flex-direction: column;
         }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        .cta-button { width: 100%; }
     }
     </style>
 </head>
@@ -162,24 +175,24 @@
     <a href="index.html">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html" style="color:var(--color-accent-gold);">O Nama</a>
-    <a href="#">Kontakt</a>
+    <a href="mailto:info@aresnyx.com">Kontakt</a>
 </nav>
 
 <main>
     <section>
         <h2>Naša Priča: Zašto AresNyX?</h2>
         <p>
-            Priča o AresNyX-u počinje sa frustracijom. Umorni od traženja donjeg veša koji kombinuje **istinski luksuz i zdravu funkcionalnost**, shvatili smo da tržište nudi samo kompromise: ili veštački streč materijali koji guše kožu, ili neprivlačan klasičan veš.
+            Priča o AresNyX-u počinje sa frustracijom. Umorni od traženja donjeg veša koji kombinuje <strong>istinski luksuz i zdravu funkcionalnost</strong>, shvatili smo da tržište nudi samo kompromise: ili veštački streč materijali koji guše kožu, ili neprivlačan klasičan veš.
         </p>
         <p>
-            Naš odgovor je jednostavan, ali radikalan: **potpuna isključenost sintetike**. AresNyX je posvećen isključivo **Prirodnim Materijalima** i labavom, prozračnom **Fit Loss Kroju**. Ne verujemo u brzo modno rešenje; verujemo u **dugoročno zdravlje i udobnost** koje jedino mogu da obezbede pamuk, lan i svila.
+            Naš odgovor je jednostavan, ali radikalan: <strong>potpuna isključenost sintetike</strong>. AresNyX je posvećen isključivo <strong>prirodnim materijalima</strong> i labavom, prozračnom <strong>Fit Loss kroju</strong>. Ne verujemo u brzo modno rešenje; verujemo u dugoročno zdravlje i udobnost koje jedino mogu da obezbede pamuk, lan i svila.
         </p>
         <p style="font-weight: 600; color: #C7574B;">
-            Mi nismo samo prodavci bokserica – mi smo **čvrsti zastupnici promene standarda**. Kupovinom AresNyX-a birate proizvod stvoren sa svesnom odlukom da se brine o Vašem zdravlju, bez ustupaka.
+            Mi nismo samo prodavci bokserica – mi smo <strong>čvrsti zastupnici promene standarda</strong>. Kupovinom AresNyX-a birate proizvod stvoren sa svesnom odlukom da se brine o Vašem zdravlju, bez ustupaka.
         </p>
     </section>
 
-    ---
+    <hr>
 
     <section>
         <h2>Naša Vizija i Posvećenost Kvalitetu</h2>
@@ -192,7 +205,7 @@
             <div class="mission-item">
                 <i class="fas fa-hands-clapping"></i>
                 <h3>Etika Proizvodnje</h3>
-                <p>Svi naši proizvodi su dizajnirani i proizvedeni u **Srbiji**. Podržavamo lokalnu zajednicu i garantujemo etičke uslove rada.</p>
+                <p>Svi naši proizvodi su dizajnirani i proizvedeni u <strong>Srbiji</strong>. Podržavamo lokalnu zajednicu i garantujemo etičke uslove rada.</p>
             </div>
             <div class="mission-item">
                 <i class="fas fa-balance-scale"></i>
@@ -202,7 +215,7 @@
         </div>
     </section>
     
-    ---
+    <hr>
 
     <section>
         <h2>AresNyX u brojkama</h2>
@@ -222,7 +235,7 @@
 </main>
 
 <footer>
-    &copy; 2024 AresNyX. Zdravlje i Udobnost.
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
 </body>
