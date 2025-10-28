@@ -1,500 +1,526 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PULS Gel – Prirodni Stimulans za Muškarce i Žene (100% Zadovoljstvo) | Official</title>
-<meta name="description" content="PULS Gel je prirodna formula za pojačanu osetljivost i vitalnost. Efekat uporediv sa tabletama, uz pojačan užitak. Poručite danas i osetite razliku!">
-<meta name="keywords" content="Puls gel, gel za potenciju, prirodni stimulans, intimni gel, gel za parove, jačanje erekcije, vlažnost vagine">
-<meta property="og:title" content="PULS Gel – Prirodni Stimulans za Muškarce i Žene">
-<meta property="og:description" content="PULS Gel je prirodna formula za pojačanu osetljivost i vitalnost. Efekat uporediv sa tabletama, uz pojačan užitak.">
-<meta property="og:type" content="product">
-<style>
-/* STILOVI OSTALI ISTI KAO PRETHODNO */
-body { background-color: #000; color: #fff; font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-h1 { color: #fff; text-align: center; margin-top: 20px; }
-h2 { color: #b22222; margin-top: 40px; }
-h3 { color: #ff4c4c; margin-top: 20px; }
-p, li { margin: 10px 0; }
-ul { margin: 10px 0 20px 20px; }
-.puls-card { border: 1px solid #444; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #111; }
-form { display: flex; flex-direction: column; max-width: 500px; margin: 20px auto; padding: 20px; background-color: #111; border-radius: 10px; border: 1px solid #444; }
-input, select, textarea, button { margin: 8px 0; padding: 10px; border-radius: 5px; border: 1px solid #444; background-color: #222; color: #fff; font-size: 16px; }
-input[readonly] { background-color: #333; cursor: not-allowed; }
-button { background-color: #b22222; color: #fff; border: none; cursor: pointer; }
-button:hover { background-color: #ff4c4c; }
-
-/* NOVI STILOVI ZA MODAL */
-#pregledModal {
-    display: none; 
-    position: fixed;
-    z-index: 101; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.8); 
-}
-.modal-sadrzaj {
-    background-color: #111;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #b22222;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 10px;
-}
-.modal-sadrzaj h2 {
-    color: #ff4c4c;
-    text-align: center;
-}
-.modal-sadrzaj p {
-    color: #ccc;
-    margin-bottom: 5px;
-}
-.modal-sadrzaj strong {
-    color: #fff;
-    display: inline-block;
-    width: 120px; 
-}
-#potvrdiPorudzbinu {
-    background-color: #b22222;
-    margin-top: 20px;
-}
-#izmijeniPodatke {
-    background-color: #444;
-}
-#izmijeniPodatke:hover {
-    background-color: #666;
-}
-
-/* STILOVI ZA PRIKAZ UKUPNE CENE SA DOSTAVOM */
-#ukupno_za_placanje {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ff4c4c;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 15px;
-    border-top: 1px dashed #444;
-    border-bottom: 1px dashed #444;
-}
-/* STILOVI ZA POPUST */
-#popust_prikaz_polje {
-    background-color: #283328; 
-    color: #00ff00; 
-}
-#popust_prikaz {
-    color: #00ff00; 
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-/* STIL ZA INFORMATIVNI TEKST */
-.info-box {
-    background-color: #330000;
-    border: 1px solid #b22222;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-.info-box span {
-    color: #00ff00;
-    font-weight: bold;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AresNyX - Premium Boxer Shorts Shop</title>
+    
+    <style>
+    /* ===== CRITICAL CSS ===== */
+    :root {
+        --primary-dark: #121212;
+        --accent-gold: #D4AF37;
+        --success: #27AE60;
+        --danger: #E74C3C;
+        --gray-light: #F8F9FA;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: #fff; color: #2C3E50; line-height: 1.6;
+        display: flex; flex-direction: column; min-height: 100vh;
+    }
+    
+    /* HEADER */
+    .header { 
+        background: var(--primary-dark); padding: 1rem 2rem; 
+        position: sticky; top: 0; z-index: 1000; 
+    }
+    .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--accent-gold); text-decoration: none; letter-spacing: 3px; }
+    .cart-icon { position: relative; cursor: pointer; padding: 0.5rem 1rem; color: #fff; font-size: 1.1rem; }
+    .cart-count { position: absolute; top: -8px; right: -8px; background: var(--danger); color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; font-weight: 600; }
+    
+    /* PRODUCTS GRID */
+    .products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; flex: 1; }
+    .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+    .product-image { width: 100%; height: 200px; object-fit: cover; background: #f7f7f7; }
+    .product-info { padding: 1.2rem; }
+    .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .product-material { color: #666; font-size: 0.9rem; margin-bottom: 0.8rem; }
+    .product-price { font-size: 1.2rem; font-weight: 700; }
+    
+    /* MODAL */
+    .modal-overlay { 
+        display: none; position: fixed; top: 0; left: 0; 
+        width: 100%; height: 100%; background: rgba(0,0,0,0.9); 
+        z-index: 2000; 
+    }
+    .modal-container { 
+        position: absolute; top: 50%; left: 50%; 
+        transform: translate(-50%, -50%); 
+        background: white; border-radius: 16px; 
+        width: 90%; max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto; 
+    }
+    .modal-close { 
+        position: absolute; top: 1rem; right: 1rem; 
+        background: rgba(0,0,0,0.5); color: white; 
+        border: none; width: 40px; height: 40px; 
+        border-radius: 50%; cursor: pointer; z-index: 10; 
+        font-size: 1.2rem; 
+    }
+    .modal-content { padding: 2rem; }
+    
+    .modal-gallery { text-align: center; margin-bottom: 1rem; }
+    .modal-main-image { 
+        width: 100%; max-width: 300px;
+        height: 200px;
+        object-fit: cover; border-radius: 10px; margin-bottom: 1rem; 
+    }
+    
+    .modal-details h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .modal-material { color: #666; margin-bottom: 1rem; }
+    .modal-price { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+    
+    /* SIZE SELECTION */
+    .size-section { margin-bottom: 1.5rem; }
+    .size-section h3 { margin-bottom: 1rem; }
+    .size-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
+    .size-option { 
+        padding: 1rem 0.5rem; border: 2px solid #E9ECEF; 
+        border-radius: 8px; text-align: center; cursor: pointer; 
+        font-weight: 500; background: white; 
+    }
+    .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
+    
+    /* QUANTITY */
+    .quantity-section { margin-bottom: 1.5rem; }
+    .quantity-section h3 { margin-bottom: 1rem; }
+    .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
+    .qty-btn { 
+        width: 40px; height: 40px; border: 2px solid #E9ECEF; 
+        background: white; border-radius: 8px; cursor: pointer; 
+        font-size: 1.2rem; font-weight: bold; 
+    }
+    .qty-display { font-size: 1.2rem; font-weight: 600; min-width: 50px; text-align: center; padding: 0.5rem; background: #F8F9FA; border-radius: 8px; }
+    
+    /* ACTIONS */
+    .modal-actions { display: flex; gap: 1rem; margin-top: 2rem; }
+    .add-to-cart-btn { 
+        flex: 1;
+        background: var(--primary-dark); color: white; 
+        border: none; padding: 1rem 1.5rem;
+        border-radius: 8px; font-size: 1.1rem; font-weight: 600; 
+        cursor: pointer; 
+    }
+    
+    /* CART */
+    .cart-sidebar { 
+        position: fixed; top: 0; right: -400px; width: 400px; 
+        height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
+        transition: right 0.3s ease; z-index: 1500; display: flex; flex-direction: column; 
+    }
+    .cart-sidebar.active { right: 0; }
+    .cart-header { 
+        padding: 1.5rem; border-bottom: 1px solid #E9ECEF; 
+        display: flex; justify-content: space-between; align-items: center; 
+        background: var(--primary-dark); color: white; 
+    }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item { 
+        display: flex; gap: 1rem; padding: 1rem 0; 
+        border-bottom: 1px solid #E9ECEF; align-items: center; 
+        position: relative;
+    }
+    .cart-item-remove {
+        position: absolute;
+        top: 0.5rem;
+        right: 0;
+        background: var(--danger);
+        color: white;
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .cart-item-image { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; }
+    .cart-item-details { flex: 1; }
+    .cart-item-title { font-weight: 600; margin-bottom: 0.3rem; }
+    .cart-item-size { color: #666; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .cart-item-controls { 
+        display: flex; align-items: center; gap: 0.8rem; 
+    }
+    .cart-item-qty-btn { 
+        width: 30px; height: 30px; border: 1px solid #E9ECEF; 
+        background: white; border-radius: 4px; cursor: pointer; 
+        font-weight: bold; 
+    }
+    .cart-item-qty { 
+        padding: 0.3rem 0.8rem; background: #F8F9FA; 
+        border-radius: 4px; font-weight: 600; min-width: 40px; 
+        text-align: center; 
+    }
+    .cart-item-price { font-weight: 600; }
+    
+    .cart-actions { padding: 1rem; border-top: 1px solid #E9ECEF; }
+    .clear-cart-btn { 
+        width: 100%; background: var(--danger); color: white; 
+        border: none; padding: 0.8rem; border-radius: 6px; 
+        cursor: pointer; font-weight: 500; 
+    }
+    
+    .cart-footer { padding: 1.5rem; border-top: 1px solid #E9ECEF; background: #F8F9FA; }
+    .cart-totals { margin-bottom: 1rem; }
+    .cart-total-row { 
+        display: flex; justify-content: space-between; 
+        margin-bottom: 0.5rem; 
+    }
+    .cart-total-row.final { 
+        font-weight: 700; font-size: 1.2rem; 
+        border-top: 2px solid #E9ECEF; padding-top: 0.8rem; 
+        margin-top: 0.5rem; 
+    }
+    .checkout-btn { 
+        width: 100%; background: var(--success); color: white; 
+        border: none; padding: 1.2rem; border-radius: 8px; 
+        font-size: 1.1rem; font-weight: 600; cursor: pointer; 
+    }
+    .empty-cart { text-align: center; padding: 3rem 1rem; color: #666; }
+    
+    .toast { 
+        position: fixed; bottom: 2rem; right: 2rem; 
+        background: var(--success); color: white; padding: 1rem 1.5rem; 
+        border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        transform: translateX(400px); transition: transform 0.3s ease; 
+        z-index: 3000; 
+    }
+    .toast.show { transform: translateX(0); }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-<h1>🌙 PULSGel – Kada telo pamti dodir</h1>
-<p>Jedan Puls. Hiljadu načina da ga osetiš.</p>
-
-<h2>🔥 1. Uvod</h2>
-<p>PulsGel je prirodna, snažna formula koja pomaže u aktiviranju telesnog odgovora, pojačava osetljivost i cirkulaciju u intimnim zonama. Idealan je za parove i pojedince koji žele dublju, intenzivniju vezu i doživljaj.</p>
-<article class="puls-card">
-  <h3>Za muškarce</h3>
-  <p>Brza, snažna i postojana vitalnost — efekat uporediv sa tabletama, uz pojačan užitak i dublji, intenzivniji seksualni doživljaj.</p>
-</article>
-
-<h2>🔥 2. Za žene</h2>
-<article class="puls-card">
-  <p>Vidljivo podržava prirodnu vlažnost i punoću, budi želju i oživljava intimne zone.</p>
-</article>
-
-<h2>🔥 3. Za oralni sex</h2>
-<article class="puls-card">
-  <p>Prijatan miris i ukus. Nežan, siguran i potpuno prijatan u kontaktu sa usnama i jezikom.</p>
-</article>
-
-<h2>🔥 4. Za analni sex</h2>
-<article class="puls-card">
-  <p>Omogućava lakšu penetraciju, dugotrajan klizak osećaj i nadražaj koji obuhvata celu zonu užitka.</p>
-</article>
-
-<h2>🔥 5. Za solo trenutke</h2>
-<article class="puls-card">
-  <p>Savršen saputnik za istraživanje sopstvenih želja. Kompatibilan sa svim seksualnim igračkama — za maksimalan, prirodan užitak.</p>
-</article>
-
-<h2>🔥 6. Novi nivo povezanosti</h2>
-<p>Svaka pora tela se oživljava uz Puls. Dok muški organ postaje čvrst i snažan, ženske intimne zone prirodno se šire i pulsiraju. Toplina se prenosi kroz dodir – partneri postaju jedno telo koje diše, kuca i pulsira u istom ritmu.</p>
-<p>Svaki sledeći dodir izaziva dublji talas prijatne toplote i prokrvljenosti. To nije mehanički efekat – to je hemija tela koja prepoznaje dodir, toplinu i miris kože.</p>
-<p>Puls ne samo da pojačava osetljivost, već stvara most između fizičke aktivacije i emotivne povezanosti. Ono što počinje kao fizički osećaj, pretvara se u dublji, zajednički ritam – jedan Puls koji pripada i njoj i njemu.</p>
-
-<h2>🌿 7. Moć prirode</h2>
-<p>U srcu PULS formule nalazi se više od 20 prirodnih i biljnih sastojaka – od ekstrakata gvarane, đumbira, ginsenga, cvekle i mace, do prirodnih afrodizijaka poput iikarina i ylang-ylanga. Njihovo dejstvo je pažljivo balansirano: toplina, cirkulacija, miris i dodir se usklađuju tako da telo samo aktivira svoj puni potencijal.</p>
-<p>💎 Sinergijska snaga 22 aktivne supstance – PULS sadrži 22 bioaktivne supstance koje zajedno stvaraju trofazno dejstvo: trenutnu stimulaciju, produženi vaskularni efekat i dugoročno jačanje vitalnosti i tonusa tkiva.</p>
-
-<h2>💫 8. Efekti i stimulacija</h2>
-<p>Penis postaje čvrst, debeo i spreman za penetraciju. Vagina i usmine postaju prokrvljene, uvećane i izuzetno osetljive. Puls je prijatan, nežan, ukusan i bezbedan – idealan i za oralnu igru.</p>
-<p>Senzacije postaju intenzivne i dugotrajne. Vagina postaje vlažna, prokrvljena i spremna za penetraciju. Penetracija samo produžava ono što je Puls započeo. Puls vodi do vrhunca, ali zadržava osećaj punine i zadovoljstva.</p>
-
-<h2>🔹 9. Dugoročni efekat redovne upotrebe</h2>
-<ul>
-  <li>Veći tonus penisa u opuštenom stanju</li>
-  <li>Održana kontrola i čvrstina erekcije</li>
-  <li>Poboljšana vlažnost vagine i tonus usmina i klitorisa</li>
-</ul>
-
-<h2>💎 10. Za koga je</h2>
-<ul>
-  <li>Muškarcima sa erektilnom disfunkcijom ili skraćenim trajanjem erekcije</li>
-  <li>Ženama sa suvoćom ili smanjenom osetljivošću</li>
-  <li>Svima koji žele da probude izgubljenu želju i užitak</li>
-  <li>Onima koji žele stimulaciju i solo i partnerski</li>
-</ul>
-
-<h2>💎 11. Prednosti formule</h2>
-<ul>
-  <li>Deluje lokalno na erogene zone i genitalne organe, bez uticaja na ceo organizam</li>
-  <li>Potpuno prirodan sastav, bez rizika i nuspojava, i najvažnije bez opasnih lekova</li>
-  <li>Pogodan za oba pola i sve tipove kože</li>
-  <li>Brz i dugotrajan efekat</li>
-  <li>Povećava cirkulaciju i osetljivost</li>
-  <li>Obnavlja prirodnu vlažnost i pojačava užitak</li>
-  <li>Ugrađeni penetratori i sonifikatori poslednje generacije, aktivnne sastojake dovode duboko u penis ili vaginu čime pojačavaju dejstvo i ovu formulu čine jedinstvenom na tržištu</li>
-</ul>
-
-<h2>❤️ 12. Upotreba</h2>
-<p>Nanesite malu količinu (1–2 ml / dva stiska pumpice) i lagano utrljajte. Efekat se javlja u roku od nekoliko minuta. Sigurno za kontakt sa sluzokožom: penis, vagina, usmine, klitoris, bradavice, usne, jezik, analni otvor. Prijatan miris i ukus – oralno sigurno i ukusno.</p>
-
-<h2>💧 13. Pakovanja i cena</h2>
-<ul>
-  <li>30 ml — 1500 RSD</li>
-  <li>50 ml — 2200 RSD</li>
-</ul>
-
-<h2>⚠️ 14. Napomena / Bezbednost</h2>
-<ul>
-  <li>Samo za spoljašnju primenu, osim na navedenim erogenim zonama</li>
-  <li>Čuvati na suvom i hladnom mestu</li>
-  <li>Ne koristiti ako postoji alergija na neki od sastojaka</li>
-</ul>
-
-<h2>🔘 15. Porudžbina</h2>
-<form id="forma-porudzbine">
-  
-  <div class="info-box">
-      <p style="margin: 0; color: #fff;">
-          🚚 Porudžbine preko <span>4000 RSD</span> ostvaruju **BESPLATNU POŠTARINU**.
-      </p>
-      <p style="margin: 5px 0 0 0; color: #fff;">
-          🎁 Porudžbine preko <span>9000 RSD</span> ostvaruju **DODATNIH 10% POPUSTA**.
-      </p>
-  </div>
-  <input type="text" name="ime" placeholder="Ime" required aria-label="Ime">
-  <input type="text" name="prezime" placeholder="Prezime" required aria-label="Prezime">
-  <input type="email" name="email" placeholder="Email" required aria-label="Email adresa">
-  <input type="tel" name="telefon" placeholder="Telefon" aria-label="Telefon">
-  <input type="text" name="adresa" placeholder="Adresa" aria-label="Adresa za dostavu">
-  <input type="text" name="grad" placeholder="Grad" aria-label="Grad">
-  <input type="text" name="postanski_broj" placeholder="Poštanski broj" aria-label="Poštanski broj">
-  
-  <label for="pakovanje">Pakovanje:</label>
-  <select name="pakovanje" id="pakovanje">
-    <option value="30 ml" data-cena-rsd="1500">30 ml (1500 RSD)</option>
-    <option value="50 ml" data-cena-rsd="2200">50 ml (2200 RSD)</option>
-  </select>
-  
-  <label for="kolicina">Količina:</label>
-  <input type="number" name="kolicina" id="kolicina" value="1" min="1">
-  
-  <input type="text" name="iznos_rsd" id="iznos_rsd" placeholder="Iznos Proizvoda (RSD)" readonly>
-  
-  <label for="dostava">Način isporuke:</label>
-  <select name="dostava" id="dostava">
-    <option value="Lično preuzimanje" data-cena-dostave="0">Lično preuzimanje (0 RSD)</option>
-    <option value="Kurirska služba" data-cena-dostave="400">Kurirska služba (400 RSD)</option>
-  </select>
-
-  <input type="text" name="popust_prikaz" id="popust_prikaz_polje" placeholder="Popust (RSD)" readonly>
-  <p id="popust_prikaz"></p> <div id="ukupno_za_placanje">Ukupno za plaćanje: ...</div>
-  
-  <label for="placanje">Način plaćanja:</label>
-  <select name="placanje">
-    <option value="Pouzećem">Pouzećem</option>
-    <option value="Račun">Račun</option>
-  </select>
-  
-  <textarea name="napomena" placeholder="Napomena" aria-label="Napomena za porudžbinu"></textarea>
-  <button type="submit">Pošalji porudžbinu</button>
-</form>
-
-<div id="pregledModal">
-    <div class="modal-sadrzaj">
-        <h2>Pregled Porudžbine</h2>
-        <div id="detaljiIsporuke">
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">ARESNYX</a>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
             </div>
-        <p style="text-align: center; color: #ff4c4c;">Proverite podatke pre konačne potvrde!</p>
+        </nav>
+    </header>
 
-        <button type="button" id="potvrdiPorudzbinu">Potvrdi Porudžbinu</button>
-        
-        <button type="button" id="izmijeniPodatke">Izmeni Podatke</button>
-    </div>
-</div>
+    <main class="main-content">
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+    </main>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">ARESNYX</div>
+            <p class="footer-tagline">Premium kvalitet. Izuzetan komfor. Vaš stil.</p>
+        </div>
+    </footer>
 
-<script type="text/javascript">
+    <!-- Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-content">
+                <div class="modal-gallery">
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="">
+                </div>
+                
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-material" id="modalMaterial"></p>
+                    <p class="modal-price" id="modalPrice"></p>
+                    
+                    <div class="size-section">
+                        <h3>Odaberite veličinu:</h3>
+                        <div class="size-selector" id="sizeSelector"></div>
+                    </div>
 
-// Inicijalizacija EmailJS (Sada je na pravom mestu, nakon učitavanja biblioteke)
-(function(){
-  emailjs.init("WKV419-gz6OQWSgRJ"); 
-})();
+                    <div class="quantity-section">
+                        <h3>Količina:</h3>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                            <span class="qty-display" id="modalQty">1</span>
+                            <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
 
-// Čekamo da se kompletan DOM učita
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Dohvatanje DOM elemenata
-    const forma = document.getElementById('forma-porudzbine');
-    const pakovanjeEl = document.getElementById('pakovanje');
-    const kolicinaEl = document.getElementById('kolicina');
-    const dostavaEl = document.getElementById('dostava');
-
-    const iznosRsdEl = document.getElementById('iznos_rsd');
-    const ukupnoZaPlacanjeEl = document.getElementById('ukupno_za_placanje'); 
-    const popustPrikazPoljeEl = document.getElementById('popust_prikaz_polje');
-    const popustPrikazTekstEl = document.getElementById('popust_prikaz');
-
-    const dugmePotvrdi = document.getElementById('potvrdiPorudzbinu');
-    const dugmeIzmeni = document.getElementById('izmijeniPodatke');
-    const pregledModal = document.getElementById('pregledModal');
-    const detaljiIsporuke = document.getElementById('detaljiIsporuke');
-
-    let globalFormData = {}; 
-
-    // === KONFIGURACIJA ===
-    const ADMIN_TEMPLATE_ID = 'template_5o6etkn'; 
-    const KUPAC_TEMPLATE_ID = 'template_u8dh76a'; 
-    const SERVICE_ID = 'service_rxj533m';      
-    const BREND_NAZIV = 'PulsGel';
-
-    // KONSTANTE ZA PRAG (4000 RSD dostava, 9000 RSD popust)
-    const CENA_KURIRSKE_SLUZBE = 400; 
-    const PRAG_ZA_BESPLATNU_DOSTAVU = 4000; 
-    const PRAG_ZA_POPUST = 9000; 
-    const PROCENT_POPUSTA = 0.10; 
-    // =====================
-
-    // FUNKCIJA ZA AUTOMATSKI PRERAČUN
-    function updateIznos() {
-      
-      const kolicinaValue = parseInt(kolicinaEl.value);
-      const kolicina = (kolicinaValue >= 1 && !isNaN(kolicinaValue)) ? kolicinaValue : 1;
-      
-      const selectedPakovanje = pakovanjeEl.options[pakovanjeEl.selectedIndex];
-      const cenaRsd = parseInt(selectedPakovanje.getAttribute('data-cena-rsd')) || 0; 
-      
-      let medjuzbirRSD = cenaRsd * kolicina;
-      
-      let postarinaRSD = 0;
-      let popustIznos = 0;
-      let popustPoruka = '';
-      
-      const dostavaTip = dostavaEl.value;
-
-      // 1. LOGIKA ZA BESPLATNU DOSTAVU (4000 RSD)
-      if (dostavaTip === 'Kurirska služba') {
-        if (medjuzbirRSD >= PRAG_ZA_BESPLATNU_DOSTAVU) {
-          postarinaRSD = 0;
-          popustPoruka = "✅ Besplatna poštarina!";
-        } else {
-          postarinaRSD = CENA_KURIRSKE_SLUZBE;
-        }
-      } 
-      
-      // Ukupan iznos PRE popusta
-      let iznosPrePopusta = medjuzbirRSD + postarinaRSD;
-      
-      // 2. LOGIKA ZA POPUST OD 10% (9000 RSD)
-      if (iznosPrePopusta >= PRAG_ZA_POPUST) {
-          popustIznos = Math.round(iznosPrePopusta * PROCENT_POPUSTA); 
-          popustPoruka += (popustPoruka ? ' & ' : '') + `🎁 Popust 10% uključen!`;
-      }
-
-      // Konačni iznos za plaćanje
-      const ukupnoRSD = iznosPrePopusta - popustIznos;
-
-
-      // AŽURIRANJE PRIKAZA NA FORMI
-      
-      // Prikaz cena proizvoda
-      iznosRsdEl.value = medjuzbirRSD + " RSD";
-      
-      // Prikaz popusta (polje i tekst)
-      if (popustIznos > 0) {
-        popustPrikazPoljeEl.value = `- ${popustIznos} RSD (10%)`;
-      } else {
-        popustPrikazPoljeEl.value = `0 RSD`;
-      }
-      
-      // Prikaz poruka o pogodnostima
-      popustPrikazTekstEl.textContent = popustPoruka;
-      
-      // Prikaz ukupne cene sa dostavom i popustom
-      ukupnoZaPlacanjeEl.textContent = `Ukupno za plaćanje: ${ukupnoRSD} RSD`;
-      
-      return { medjuzbirRSD, postarinaRSD, popustIznos, ukupnoRSD, dostavaTip };
-    }
-
-    // Event listeneri se sada dodaju unutar DOMContentLoaded
-    pakovanjeEl.addEventListener('change', updateIznos);
-    kolicinaEl.addEventListener('input', updateIznos);
-    dostavaEl.addEventListener('change', updateIznos);
-
-
-    // *** KRITIČNA INICIJALIZACIJA ZA POKRETANJE PRORAČUNA ***
-    
-    if (parseInt(kolicinaEl.value) < 1 || isNaN(parseInt(kolicinaEl.value))) {
-        kolicinaEl.value = '1';
-    }
-
-    updateIznos(); 
-
-    kolicinaEl.dispatchEvent(new Event('input'));
-
-    // ***************************************************************
-
-
-  // **FUNKCIJA ZA KONAČNO SLANJE**
-function sendMail() {
-    dugmePotvrdi.disabled = true;
-    dugmePotvrdi.textContent = 'Šaljem...';
-
-    const slanjeVama = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, globalFormData);
-    const slanjeKupcu = emailjs.send(SERVICE_ID, KUPAC_TEMPLATE_ID, globalFormData);
-        
-    Promise.all([slanjeVama, slanjeKupcu])
-        .then(() => {
-            alert("Porudžbina uspešno potvrđena! Proverite Vaš e-mail za potvrdu.");
-            forma.reset();
-            updateIznos(); 
-            pregledModal.style.display = 'none';
-        })
-        .catch((error) => {
-            console.error("Greška pri slanju jedne ili obe poruke:", error);
-            alert("Došlo je do greške pri slanju porudžbine. Molimo pokušajte ponovo.");
-        })
-        .finally(() => {
-            dugmePotvrdi.disabled = false;
-            dugmePotvrdi.textContent = 'Potvrdi Porudžbinu';
-            pregledModal.style.display = 'none';
-        });
-}
-
-// **FUNKCIJA ZA PRIKAZ PREGLEDA**
-forma.addEventListener('submit', function(e){
-    e.preventDefault(); 
-    
-    if (!forma.checkValidity()) {
-        forma.reportValidity(); 
-        return; 
-    }
-
-    const finanse = updateIznos(); 
-
-    // --- PRIPREMA PODATAKA ZA EMAILJS ---
-    
-    globalFormData = {
-        ime_kupca: this.ime.value,
-        prezime_kupca: this.prezime.value,
-        email_kupca: this.email.value,
-        poslati_kupcu: this.email.value, 
-        telefon_kupca: this.telefon.value,
-        adresa_dostave: `${this.adresa.value}, ${this.postanski_broj.value} ${this.grad.value}`,
-        
-        // Finansije (formatirano za EmailJS)
-        medjuzbir: finanse.medjuzbirRSD + ' RSD',
-        postarina: finanse.postarinaRSD + ' RSD',
-        popust: finanse.popustIznos + ' RSD', 
-        ukupno: finanse.ukupnoRSD + ' RSD', 
-        
-        // Ostalo
-        broj_porudzbine: 'PULS-' + Date.now(), 
-        nacin_placanja: this.placanje.value,
-        napomena: this.napomena.value || 'Nema napomene',
-        brend_naziv: BREND_NAZIV, 
-        
-        // HTML lista proizvoda 
-        lista_proizvoda: formatPulsGelForEmail({
-            pakovanje: this.pakovanje.value,
-            kolicina: this.kolicina.value,
-            medjuzbir: finanse.medjuzbirRSD + ' RSD'
-        }),
-
-        dostava: finanse.dostavaTip
-    };
-
-    // --- GENERISANJE HTML prikaza u modalu ---
-    detaljiIsporuke.innerHTML = `
-        <p><strong>Ime i Prezime:</strong> ${globalFormData.ime_kupca} ${globalFormData.prezime_kupca}</p>
-        <p><strong>Email:</strong> ${globalFormData.email_kupca}</p>
-        <p><strong>Telefon:</strong> ${globalFormData.telefon_kupca || 'Nije navedeno'}</p>
-        <hr style="border-color:#444;">
-        <p><strong>Adresa:</strong> ${globalFormData.adresa_dostave}</p>
-        <p><strong>Isporuka:</strong> ${globalFormData.dostava}</p>
-        <p><strong>Plaćanje:</strong> ${globalFormData.nacin_placanja}</p>
-        <hr style="border-color:#444;">
-        <p><strong>Proizvod:</strong> PULS Gel ${this.pakovanje.value}</p>
-        <p><strong>Količina:</strong> ${this.kolicina.value}</p>
-        <p><strong>Iznos Proizvoda:</strong> ${globalFormData.medjuzbir}</p>
-        <p><strong>Poštarina:</strong> ${globalFormData.postarina}</p>
-        <p><strong>Popust (10%):</strong> <span style="color: ${finanse.popustIznos > 0 ? '#00ff00' : '#ccc'};">- ${globalFormData.popust}</span></p>
-        <p><strong>Ukupno za Plaćanje:</strong> <span style="color: #b22222; font-weight: bold;">${globalFormData.ukupno}</span></p>
-        <hr style="border-color:#444;">
-        <p><strong>Napomena:</strong> ${globalFormData.napomena}</p>
-    `;
-
-    // Prikaz Modala
-    pregledModal.style.display = 'block';
-});
-
-// **FUNKCIJA ZA POTVRDU I IZMENU**
-dugmePotvrdi.addEventListener('click', sendMail);
-dugmeIzmeni.addEventListener('click', function() {
-    pregledModal.style.display = 'none';
-});
-    
-    // Funkcija za generisanje HTML liste proizvoda za EmailJS šablon
-    function formatPulsGelForEmail(data) {
-        const pakovanje = data.pakovanje;
-        const kolicina = data.kolicina;
-        const medjuzbir = data.medjuzbir;
-        
-        return `
-            <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9;">
-                <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
-                    <p style="font-size: 16px; font-weight: bold; color: #121212; margin: 0 0 5px 0;">PULS Gel ${pakovanje}</p>
-                    <p style="font-size: 14px; margin: 0;">Količina: <strong>${kolicina} kom.</strong></p>
-                    <p style="font-size: 14px; font-weight: bold; margin: 5px 0 0 0; color: #D4AF37;">Ukupno za stavku: ${medjuzbir}</p>
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" onclick="addToCartFromModal()">
+                            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                        </button>
+                    </div>
                 </div>
             </div>
-        `;
+        </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Vaša Korpa</h3>
+            <button class="modal-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart" id="emptyCart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Vaša korpa je prazna</p>
+            </div>
+        </div>
+        
+        <div class="cart-actions" id="cartActions" style="display: none;">
+            <button class="clear-cart-btn" onclick="clearCart()">
+                <i class="fas fa-trash"></i> Isprazni Korpu
+            </button>
+        </div>
+        
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-totals">
+                <div class="cart-total-row"><span>Međuzbir:</span><span id="cartSubtotal">0 RSD</span></div>
+                <div class="cart-total-row"><span>Poštarina:</span><span id="cartShipping">0 RSD</span></div>
+                <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
+                <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()"><i class="fas fa-lock"></i> Završi Kupovinu</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+    // ===== JEDNOSTAVAN I RADNI KOD =====
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentProduct = null;
+    let currentSize = 'M';
+    let currentQuantity = 1;
+
+    const products = [
+        { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, images: ["images/pamuk-1.jpg"] },
+        { id: 2, name: "Premium Lan", material: "100% Premium Lan", price: 1500, images: ["images/lan-1.jpg"] },
+        { id: 3, name: "Elegant Svila", material: "100% Prirodna Svila", price: 1800, images: ["images/svila-1.jpg"] },
+        { id: 4, name: "Night Black", material: "100% Premium Pamuk", price: 1300, images: ["images/crna-1.jpg"] },
+        { id: 5, name: "Pure White", material: "100% Organski Pamuk", price: 1300, images: ["images/bela-1.jpg"] },
+        { id: 6, name: "Navy Stripes", material: "100% Premium Pamuk", price: 1400, images: ["images/navy-1.jpg"] }
+    ];
+
+    // INICIJALIZACIJA
+    function init() {
+        renderProducts();
+        updateCartCount();
+        renderCart();
     }
 
-}); // Kraj DOMContentLoaded
-</script>
+    // RENDER PROIZVODA
+    function renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = products.map(product => `
+            <div class="product-card" onclick="openProductModal(${product.id})">
+                <img src="${product.images[0]}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-material">${product.material}</p>
+                    <p class="product-price">${product.price} RSD</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // MODAL
+    function openProductModal(productId) {
+        currentProduct = products.find(p => p.id === productId);
+        if (!currentProduct) return;
+
+        currentSize = 'M';
+        currentQuantity = 1;
+
+        document.getElementById('modalTitle').textContent = currentProduct.name;
+        document.getElementById('modalMaterial').textContent = currentProduct.material;
+        document.getElementById('modalPrice').textContent = `${currentProduct.price} RSD`;
+        document.getElementById('modalQty').textContent = '1';
+        document.getElementById('modalMainImage').src = currentProduct.images[0];
+
+        const sizeSelector = document.getElementById('sizeSelector');
+        sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
+            <div class="size-option ${size === 'M' ? 'selected' : ''}" onclick="selectSize('${size}')">${size}</div>
+        `).join('');
+
+        document.getElementById('productModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    function selectSize(size) {
+        currentSize = size;
+        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+        event.target.classList.add('selected');
+    }
+
+    function changeQuantity(change) {
+        currentQuantity = Math.max(1, currentQuantity + change);
+        document.getElementById('modalQty').textContent = currentQuantity;
+    }
+
+    // DODAVANJE U KORPU - INSTANT
+    function addToCartFromModal() {
+        if (!currentProduct) return;
+        
+        // DODAJ U KORPU
+        addToCart(currentProduct.id, currentSize, currentQuantity);
+        
+        // OSVEŽI PRIKAZ
+        updateCartCount();
+        renderCart();
+        
+        // PRIKAŽI PORUKU
+        showToast(`${currentProduct.name} je dodat u korpu!`);
+        
+        // ZATVORI MODAL
+        closeModal();
+    }
+
+    function addToCart(productId, size, quantity) {
+        const product = products.find(p => p.id === productId);
+        const existingItem = cart.find(item => item.productId === productId && item.size === size);
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({
+                productId,
+                size, 
+                quantity,
+                name: product.name,
+                price: product.price,
+                image: product.images[0]
+            });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // KORPA
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').textContent = totalItems;
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartFooter = document.getElementById('cartFooter');
+        const cartActions = document.getElementById('cartActions');
+        const emptyCart = document.getElementById('emptyCart');
+
+        if (cart.length === 0) {
+            emptyCart.style.display = 'block';
+            cartFooter.style.display = 'none';
+            cartActions.style.display = 'none';
+            cartItems.innerHTML = '';
+            cartItems.appendChild(emptyCart);
+            return;
+        }
+
+        emptyCart.style.display = 'none';
+        cartFooter.style.display = 'block';
+        cartActions.style.display = 'block';
+
+        cartItems.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <button class="cart-item-remove" onclick="removeCartItem(${index})">×</button>
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-size">Veličina: ${item.size}</div>
+                    <div class="cart-item-controls">
+                        <button class="cart-item-qty-btn" onclick="updateCartItem(${index}, -1)">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button class="cart-item-qty-btn" onclick="updateCartItem(${index}, 1)">+</button>
+                        <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        updateCartTotals();
+    }
+
+    function updateCartItem(index, change) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity < 1) {
+            cart.splice(index, 1);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+
+    function removeCartItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+
+    function updateCartTotals() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
+        const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+        const total = subtotal + shipping - discount;
+
+        document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
+        document.getElementById('cartShipping').textContent = shipping + ' RSD';
+        document.getElementById('cartDiscount').textContent = discount + ' RSD';
+        document.getElementById('cartTotal').textContent = total + ' RSD';
+    }
+
+    function clearCart() {
+        if (cart.length === 0) return;
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+        showToast("Korpa je ispražnjena!");
+    }
+
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('active');
+    }
+
+    function checkout() {
+        if (cart.length === 0) return;
+        showToast(`Porudžbina uspešna!`);
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+        toggleCart();
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // POKRENI
+    init();
+
+    // EVENT LISTENERI
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal();
+        }
+    });
+    </script>
 </body>
 </html>
