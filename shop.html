@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+p<!DOCTYPE html>
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
@@ -954,7 +954,7 @@
             return html;
         }
         
-        // =========================================================
+             // =========================================================
         // === AŽURIRANA completeOrder() FUNKCIJA (FINALNA) ===
         // =========================================================
         completeOrder() {
@@ -963,6 +963,11 @@
                 return;
             }
             
+            // --- NOVE LINIJE ZA DINAMIKU ---
+            const ADMIN_MAIL = 'ares.nyx.info@gmail.com'; 
+            const SENDER_NAME = 'AresNyX Porudžbina';
+            // ------------------------------------
+
             document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
             
             // Prikupite i izračunajte ukupne vrednosti
@@ -976,6 +981,10 @@
 
             // Formiranje objekta podataka za EmailJS
             const templateParams = {
+                // DINAMIČKI PARAMETRI ZA ADMINA/POŠILJAOCA:
+                sender_name: SENDER_NAME, // Postavlja From Name (Koristi se u Customer Template)
+                admin_email: ADMIN_MAIL,   // Postavlja To Email (Koristi se u Admin Template)
+                
                 // Podaci o kupcu
                 ime_kupca: this.checkoutData.ime,
                 prezime_kupca: this.checkoutData.prezime,
@@ -1011,6 +1020,12 @@
             const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
             const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
 
+            // Onemogućavanje dugmeta za slanje dok je proces u toku
+            const submitBtn = document.querySelector('#checkoutStep2 .submit-order-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Slanje...';
+            submitBtn.disabled = true;
+
             // Kreiramo oba obećanja (Promise) za slanje
             const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
             const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
@@ -1037,11 +1052,14 @@
                     // Ako BILO KOJE slanje ne uspe
                     console.error('Greška pri slanju jedne ili obe porudžbine:', error);
                     
-                    // Ne resetujemo korpu
+                    // Ne resetujemo korpu i vraćamo dugme u normalu
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                     this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
                 
                 });
         }
+
     } // <--- OVDE SE ZAVRŠAVA CELA KLASA
 
     // =========================================================
