@@ -11,11 +11,11 @@
 /* ========================================================= */
 :root {
     --font-primary: 'Montserrat', sans-serif;
-    --color-dark-bg: #121212;
-    --color-accent-gold: #D4AF37;
-    --color-button: #C7574B;
-    --color-text-main: #333333;
-    --color-light-bg: #f7f7f7;
+    --color-dark-bg: #121212; /* Tamnija crna za luksuz */
+    --color-accent-gold: #D4AF37; /* NOVO: Bogatija zlatna za bolji kontrast */
+    --color-button: #C7574B; /* Prigušena terakota/bordo */
+    --color-text-main: #333333; /* Tamno siva umesto čiste crne */
+    --color-light-bg: #f7f7f7; /* Svetla siva pozadina */
 }
 
 /* ========================================================= */
@@ -30,60 +30,69 @@ body {
     line-height: 1.6;
 }
 
+/* NASLOVI */
 h1, h2, h3 {
     font-weight: 600; 
     color: var(--color-text-main);
 }
 
 /* ========================================================= */
-/* HEADER SEKCIJA */
+/* HEADER SEKCIJA (Crna pozadina) - Luksuzni Akcenat */
 /* ========================================================= */
 header { 
     background: var(--color-dark-bg); 
     color: #fff; 
-    padding: 60px 20px 80px 20px;
+    padding: 60px 20px 80px 20px; /* Više vertikalnog prostora (Whitespace) */
     text-align: center; 
 }
 
+/* AresNyX Boxer Shorts */
 header h1 { 
-    font-size: 44px;
-    font-weight: 300;
+    font-size: 44px; /* Veliki naslov */
+    font-weight: 300; /* Tanka slova za eleganciju */
     margin-bottom: 5px; 
     margin-top: 0;
-    color: var(--color-accent-gold);
+    color: var(--color-accent-gold); /* KORIŠTENJE NOVE ZLATNE */
     letter-spacing: 3px; 
     text-transform: uppercase;
 }
+/* Klasa za podebljanje samo imena brenda (AresNyX) */
+.brand-emphasis {
+    font-weight: 600; 
+}
 
-.brand-emphasis { font-weight: 600; }
 
+/* Opis ispod naslova */
 header p { 
     font-size: 16px; 
-    margin-bottom: 40px;
+    margin-bottom: 40px; /* Više prostora pre dugmeta */
     font-weight: 300;
     letter-spacing: 1px;
     color: #DDDDDD;
 }
 
+/* Dugme */
 header button { 
     padding: 18px 40px; 
     font-size: 1.1em; 
     cursor: pointer; 
-    background: var(--color-button);
+    background: var(--color-button); /* Prigušena boja */
     color: #fff; 
     border: none; 
-    border-radius: 4px;
+    border-radius: 4px; /* Suptilno zaobljenje */
     transition: background-color 0.3s;
     text-transform: uppercase;
     font-weight: 600;
 }
-header button:hover { background-color: #A84236; }
+header button:hover {
+    background-color: #A84236;
+}
 
 /* ========================================================= */
 /* SEKCIJE SA SADRŽAJEM */
 /* ========================================================= */
 section { 
-    padding: 60px 20px;
+    padding: 60px 20px; /* Više prostora */
     max-width: 900px; 
     margin: auto; 
     text-align: center;
@@ -92,26 +101,31 @@ section {
 h2 { 
     text-align: center; 
     font-size: 2em;
-    margin-bottom: 40px;
+    margin-bottom: 40px; /* Više prostora */
 }
 
+/* Lista prednosti (Zašto odabrati AresNyX?) */
+.features-list-section {
+    padding-bottom: 20px;
+}
 .features-list-section ul {
-    list-style: none;
+    list-style: none; /* Uklanjamo standardne tačke */
     padding: 0;
     max-width: 550px;
     margin: 0 auto;
     text-align: left;
 }
 .features-list-section li {
-    margin-bottom: 25px;
+    margin-bottom: 25px; /* Povećavamo vertikalni razmak */
     position: relative;
     padding-left: 30px;
     font-size: 1.1em;
-    font-weight: 300;
+    font-weight: 300; /* Tanji font za listu */
 }
+/* Kreiranje custom tačke za listu */
 .features-list-section li::before {
     content: "•"; 
-    color: var(--color-button);
+    color: var(--color-button); /* Koristimo boju dugmeta kao akcent */
     font-size: 1.8em;
     position: absolute;
     left: 0;
@@ -120,15 +134,12 @@ h2 {
 }
 
 /* ========================================================= */
-/* TABELA KOMPARACIJA */
+/* TABELA KOMPARACIJA - Minimalizam */
 /* ========================================================= */
 .comparison-table-section {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    padding: 30px;
-    margin: 40px auto;
-    max-width: 900px;
 }
 .comparison-table { 
     width: 100%; 
@@ -137,8 +148,9 @@ h2 {
     table-layout: fixed; 
 }
 .comparison-table th, .comparison-table td { 
+    /* UKLANJANJE SVIH VERTIKALNIH LINIJA */
     border: none; 
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee; /* Samo tanke horizontalne linije */
     padding: 15px 10px; 
     text-align: center; 
 }
@@ -151,25 +163,32 @@ h2 {
     font-size: 0.9em;
     letter-spacing: 0.5px;
 }
-.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:last-child td {
+    border-bottom: none; 
+}
 .comparison-table tr td:first-child {
-    text-align: left !important;
+    text-align: left !important; /* Karakteristike ostaju levo poravnate za čitljivost */
     font-weight: 600;
 }
-.comparison-table td { font-weight: 300; }
+.comparison-table td {
+    font-weight: 300;
+}
+
 
 /* ========================================================= */
-/* BLOG SEKCIJA */
+/* BLOG SEKCIJA (Nove teme) */
 /* ========================================================= */
 #blog {
-    background-color: #fcfcfc;
+    background-color: #fcfcfc; /* Skoro bela */
     padding: 80px 20px;
 }
+
 #blog h2 {
-    color: var(--color-accent-gold);
+    color: var(--color-accent-gold); /* Luksuzna boja na blog naslovu */
     font-size: 2.5em; 
     margin-bottom: 60px;
 }
+
 .blog-topic-item {
     display: flex; 
     flex-wrap: wrap; 
@@ -187,20 +206,34 @@ h2 {
     justify-content: center; 
     align-items: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    order: 1; 
 }
 .blog-content {
     flex: 1 1 45%; 
-    padding: 10px 10px 10px 40px;
+    padding: 10px 10px 10px 40px; 
+    order: 2; 
 }
-.blog-topic-item:nth-child(even) .blog-image-container { order: 2; padding-left: 40px; }
-.blog-topic-item:nth-child(even) .blog-content { order: 1; padding: 10px 40px 10px 10px; }
+/* Naizmenično premeštanje kolona za estetski izgled */
+.blog-topic-item:nth-child(even) .blog-image-container {
+    order: 2;
+    padding-left: 40px; 
+}
+.blog-topic-item:nth-child(even) .blog-content {
+    order: 1;
+    padding: 10px 40px 10px 10px;
+}
+/* Naslovi tema */
 .blog-content h3 {
-    color: var(--color-button);
+    color: var(--color-button); /* Boja dugmeta kao akcenat u tekstu */
     font-size: 1.6em; 
     margin-bottom: 15px;
 }
-.blog-content p { margin-bottom: 15px; font-weight: 300; }
+.blog-content p {
+    margin-bottom: 15px;
+    font-weight: 300;
+}
 
+/* PODEŠAVANJE ZA MANJE EKRANE (Mobile Responsiveness) */
 @media (max-width: 768px) {
     .blog-topic-item,
     .blog-topic-item:nth-child(even) {
@@ -209,10 +242,18 @@ h2 {
         margin-bottom: 40px;
     }
     .blog-content,
-    .blog-topic-item:nth-child(even) .blog-content { padding: 20px 0 0 0; order: 2; }
+    .blog-topic-item:nth-child(even) .blog-content {
+        padding: 20px 0 0 0;
+        order: 2;
+    }
     .blog-image-container,
-    .blog-topic-item:nth-child(even) .blog-image-container { order: 1; height: 200px; padding: 10px 0; }
+    .blog-topic-item:nth-child(even) .blog-image-container {
+        order: 1;
+        height: 200px;
+        padding: 10px 0;
+    }
 }
+
 
 /* ========================================================= */
 /* FOOTER */
@@ -220,11 +261,15 @@ h2 {
 footer { 
     background: var(--color-dark-bg); 
     color: #fff; 
-    padding: 40px 20px;
+    padding: 40px 20px; /* Više prostora */
     text-align: center; 
 }
-footer p { margin-bottom: 25px; font-weight: 300; }
+footer p {
+    margin-bottom: 25px;
+    font-weight: 300;
+}
 footer button { 
+    /* Koristimo iste stilove kao dugme u headeru */
     padding: 18px 40px; 
     font-size: 1.1em; 
     cursor: pointer; 
@@ -236,7 +281,9 @@ footer button {
     text-transform: uppercase;
     font-weight: 600;
 }
-footer button:hover { background-color: #A84236; }
+footer button:hover {
+    background-color: #A84236;
+}
 </style>
 </head>
 <body>
@@ -288,8 +335,8 @@ footer button:hover { background-color: #A84236; }
     </tr>
     <tr>
       <td>Materijal</td>
-      <td>P фанrodni</td>
-      <td>Veštački, streč vlakna, sintetika / miks</td>
+      <td>Prirodni</td>
+      <td>Veštački, streč vlakna,sintetika / miks</td>
     </tr>
   </table>
 </section>
@@ -330,16 +377,24 @@ footer button:hover { background-color: #A84236; }
     </div>
   </div>
 </section>
-
 <div style="text-align:center; margin:60px 0;">
   <a href="blog-zdravlje-donjeg-vesa.html"
-     style="display:inline-block; padding:14px 60px; border:2px solid #E2725B; color:#4a4a4a; font-family:'Montserrat', Arial, sans-serif; font-weight:600; font-size:1rem; text-decoration:none; transition:background-color 0.3s, color 0.3s;"
+     style="
+       display:inline-block;
+       padding:14px 60px;
+       border:2px solid #E2725B;
+       color:#4a4a4a;
+       font-family:'Montserrat', Arial, sans-serif;
+       font-weight:600;
+       font-size:1rem;
+       text-decoration:none;
+       transition:background-color 0.3s, color 0.3s;
+     "
      onmouseover="this.style.backgroundColor='#E2725B'; this.style.color='#fff';"
      onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a4a4a';">
-     Zdravlje počinje od donjeg veša
+     📰 Zdravlje počinje od donjeg veša →
   </a>
 </div>
-
 <footer>
   <p>Spremni da probate AresNyX bokserice?</p>
   <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
