@@ -3,70 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontaktirajte nas - AresNyX</title>
-    <link rel="stylesheet" href="styles.css"> <link rel="stylesheet" href="styles/main.css"> </head>
+    <title>Kontakt - AresNyX</title>
+    <meta name="description" content="Kontaktirajte AresNyX tim. Pišite nam za sva pitanja, porudžbine ili saradnje. Tu smo za vas.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    :root {
+        --font-primary: 'Montserrat', sans-serif;
+        --color-dark-bg: #121212; 
+        --color-accent-gold: #D4AF37; 
+        --color-button: #C7574B;
+        --color-text-main: #333333; 
+        --color-light-bg: #f7f7f7; 
+    }
+
+    body { 
+        font-family: var(--font-primary); 
+        margin: 0; 
+        padding: 0; 
+        background: var(--color-light-bg); 
+        color: var(--color-text-main);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+
+    /* HEADER */
+    header { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 40px 20px; 
+        text-align: center; 
+    }
+    header h1 { 
+        font-size: 32px;
+        color: var(--color-accent-gold); 
+        letter-spacing: 2px; 
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .brand-emphasis { font-weight: 700; }
+    
+    /* NAVIGACIJA */
+    nav {
+        background-color: var(--color-dark-bg);
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 400;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
+    nav a:hover, nav a.active {
+        color: var(--color-accent-gold);
+    }
+
+    /* MAIN CONTENT */
+    main { 
+        max-width: 900px; 
+        margin: 60px auto; 
+        padding: 0 20px; 
+    }
+
+    section {
+        margin-bottom: 60px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    section h2 { 
+        text-align: center; 
+        font-size: 2em;
+        margin-bottom: 30px;
+        color: var(--color-button); 
+    }
+    section p { 
+        margin-bottom: 1.2em;
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    .contact-info {
+        padding: 20px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        padding: 15px;
+        border-radius: 8px;
+        background: var(--color-light-bg);
+    }
+
+    .contact-item i {
+        font-size: 1.5em;
+        color: var(--color-accent-gold);
+        margin-right: 15px;
+        width: 30px;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .contact-details {
+        flex: 1;
+    }
+
+    .contact-details h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.1em;
+        color: var(--color-text-main);
+    }
+
+    .contact-details p {
+        margin: 0;
+        color: #666;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: var(--color-text-main);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: var(--font-primary);
+        font-size: 1em;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-accent-gold);
+    }
+
+    .form-group textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .cta-button { 
+        padding: 15px 35px; 
+        font-size: 1.1em; 
+        cursor: pointer; 
+        background: var(--color-button); 
+        color: #fff; 
+        border: none; 
+        border-radius: 4px; 
+        transition: background-color 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+    }
+    .cta-button:hover {
+        background-color: #A84236;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .lead {
+        font-size: 1.1em;
+        color: #666;
+    }
+
+    footer { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 30px 20px; 
+        text-align: center; 
+        margin-top: 60px;
+    }
+
+    .footer-links {
+        margin: 20px 0;
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    @media (max-width: 768px) {
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+        nav a { margin: 0 10px; }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        .cta-button { width: 100%; }
+        nav a { display: block; margin: 5px 0; }
+    }
+    </style>
+</head>
 <body>
 
-    <main class="page-content">
-        <section class="contact-section padding-y-80">
-            <div class="container">
-                <h1 class="text-center mb-5">Kontaktirajte AresNyX</h1>
-                <p class="text-center lead">
-                    Bilo da imate pitanja o materijalima, naručivanju ili saradnji, naš tim je tu da vam pomogne.
-                </p>
+<header>
+    <h1><span class="brand-emphasis">AresNyX</span></h1>
+</header>
 
-                <div class="row mt-5">
+<nav>
+    <a href="index.html">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravije-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html" class="active">Kontakt</a>
+</nav>
+
+<main>
+    <section>
+        <h2>Kontaktirajte AresNyX</h2>
+        <p class="text-center lead">
+            Bilo da imate pitanja o materijalima, naručivanju ili saradnji, naš tim je tu da vam pomogne.
+        </p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="section-title">Naši Podaci</h2>
+                
+                <div class="contact-item">
+                    <i class="fas fa-building"></i>
+                    <div class="contact-details">
+                        <h3>Naziv</h3>
+                        <p>AresNyX d.o.o</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-details">
+                        <h3>Sedište</h3>
+                        <p>34300 Aranđelovac, Industrijska zona bb</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-details">
+                        <h3>Telefon</h3>
+                        <p>+381 64 8700220</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>ares.nyx.info@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2 class="section-title">Pošaljite nam Poruku</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="ime">Ime i Prezime</label>
+                        <input type="text" id="ime" name="user_name" required>
+                    </div>
                     
-                    <div class="col-md-6 mb-4">
-                        <h2 class="section-title mb-4">Naši Podaci</h2>
-                        <ul class="list-unstyled contact-details">
-                            <li class="mb-3">
-                                <i class="icon fas fa-building"></i> 
-                                **Naziv:** AresNyX d.o.o
-                            </li>
-                            <li class="mb-3">
-                                <i class="icon fas fa-map-marker-alt"></i> 
-                                **Sedište:** 34300 Aranđelovac, Industrijska zona bb
-                            </li>
-                            <li class="mb-3">
-                                <i class="icon fas fa-phone"></i> 
-                                **Telefon:** +381 64 8700220
-                            </li>
-                            <li class="mb-3">
-                                <i class="icon fas fa-envelope"></i> 
-                                **Email:** ares.nyx.info@gmail.com
-                            </li>
-                            </ul>
+                    <div class="form-group">
+                        <label for="email">Email Adresa</label>
+                        <input type="email" id="email" name="user_email" required>
                     </div>
-
-                    <div class="col-md-6">
-                        <h2 class="section-title mb-4">Pošaljite nam Poruku</h2>
-                        <form id="contactForm" class="contact-form">
-                            <div class="form-group mb-3">
-                                <label for="ime">Ime i Prezime</label>
-                                <input type="text" class="form-control" id="ime" name="user_name" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="email">Email Adresa</label>
-                                <input type="email" class="form-control" id="email" name="user_email" required>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="poruka">Vaša Poruka</label>
-                                <textarea class="form-control" id="poruka" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Pošalji Poruku</button>
-                            <p id="formStatus" class="mt-3 text-center"></p>
-                        </form>
+                    
+                    <div class="form-group">
+                        <label for="poruka">Vaša Poruka</label>
+                        <textarea id="poruka" name="message" rows="5" required></textarea>
                     </div>
-                </div>
+                    
+                    <button type="submit" class="cta-button">Pošalji Poruku</button>
+                    <p id="formStatus" class="text-center" style="margin-top: 15px;"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
 
-                </div>
-        </section>
-    </main>
+<footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
+</footer>
 
-    <script>
-        // OVDE DODAJTE JAVASCRIPT LOGIKU ZA SLANJE FORME PREKO EMAILJS
-        // (Slično funkciji koju već imate u shop.html)
-    </script>
+<script>
+    // EmailJS funkcionalnost (možete dodati kasnije)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formStatus = document.getElementById('formStatus');
+        formStatus.textContent = "Hvala Vam na poruci! Odgovorićemo u najkraćem mogućem roku.";
+        formStatus.style.color = "var(--color-button)";
+        
+        // Reset forme
+        this.reset();
+        
+        // Sakrij poruku nakon 5 sekundi
+        setTimeout(() => {
+            formStatus.textContent = "";
+        }, 5000);
+    });
+</script>
+
 </body>
 </html>
