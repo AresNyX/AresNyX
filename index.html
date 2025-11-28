@@ -4,20 +4,247 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AresNyX Boxer Shorts – Zdravlje i Udobnost</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================================= */
+/* DEFINE LUKSUZNE BOJE I FONTOVE */
+/* ========================================================= */
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --color-dark-bg: #121212;
+    --color-accent-gold: #D4AF37;
+    --color-button: #C7574B;
+    --color-text-main: #333333;
+    --color-light-bg: #f7f7f7;
+}
 
-<link rel="stylesheet" href="styles.css"> 
+/* ========================================================= */
+/* OPŠTI STIL */
+/* ========================================================= */
+body { 
+    font-family: var(--font-primary); 
+    margin: 0; 
+    padding: 0; 
+    background: var(--color-light-bg); 
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
 
+h1, h2, h3 {
+    font-weight: 600; 
+    color: var(--color-text-main);
+}
+
+/* ========================================================= */
+/* HEADER SEKCIJA */
+/* ========================================================= */
+header { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 60px 20px 80px 20px;
+    text-align: center; 
+}
+
+header h1 { 
+    font-size: 44px;
+    font-weight: 300;
+    margin-bottom: 5px; 
+    margin-top: 0;
+    color: var(--color-accent-gold);
+    letter-spacing: 3px; 
+    text-transform: uppercase;
+}
+
+.brand-emphasis { font-weight: 600; }
+
+header p { 
+    font-size: 16px; 
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #DDDDDD;
+}
+
+header button { 
+    padding: 18px 40px; 
+    font-size: 1.1em; 
+    cursor: pointer; 
+    background: var(--color-button);
+    color: #fff; 
+    border: none; 
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+header button:hover { background-color: #A84236; }
+
+/* ========================================================= */
+/* SEKCIJE SA SADRŽAJEM */
+/* ========================================================= */
+section { 
+    padding: 60px 20px;
+    max-width: 900px; 
+    margin: auto; 
+    text-align: center;
+}
+
+h2 { 
+    text-align: center; 
+    font-size: 2em;
+    margin-bottom: 40px;
+}
+
+.features-list-section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: left;
+}
+.features-list-section li {
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 30px;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+.features-list-section li::before {
+    content: "•"; 
+    color: var(--color-button);
+    font-size: 1.8em;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    line-height: 1;
+}
+
+/* ========================================================= */
+/* TABELA KOMPARACIJA */
+/* ========================================================= */
+.comparison-table-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 900px;
+}
+.comparison-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 20px 0 0 0;
+    table-layout: fixed; 
+}
+.comparison-table th, .comparison-table td { 
+    border: none; 
+    border-bottom: 1px solid #eeeeee;
+    padding: 15px 10px; 
+    text-align: center; 
+}
+.comparison-table th {
+    background-color: #fcfcfc;
+    font-weight: 600;
+    color: var(--color-text-main);
+    border-bottom: 2px solid #dddddd;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr td:first-child {
+    text-align: left !important;
+    font-weight: 600;
+}
+.comparison-table td { font-weight: 300; }
+
+/* ========================================================= */
+/* BLOG SEKCIJA */
+/* ========================================================= */
+#blog {
+    background-color: #fcfcfc;
+    padding: 80px 20px;
+}
+#blog h2 {
+    color: var(--color-accent-gold);
+    font-size: 2.5em; 
+    margin-bottom: 60px;
+}
+.blog-topic-item {
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    margin-bottom: 80px;
+    text-align: left;
+}
+.blog-image-container {
+    flex: 1 1 55%; 
+    padding: 15px; 
+    background-color: #f0f0f0; 
+    border-radius: 8px; 
+    height: 250px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+.blog-content {
+    flex: 1 1 45%; 
+    padding: 10px 10px 10px 40px;
+}
+.blog-topic-item:nth-child(even) .blog-image-container { order: 2; padding-left: 40px; }
+.blog-topic-item:nth-child(even) .blog-content { order: 1; padding: 10px 40px 10px 10px; }
+.blog-content h3 {
+    color: var(--color-button);
+    font-size: 1.6em; 
+    margin-bottom: 15px;
+}
+.blog-content p { margin-bottom: 15px; font-weight: 300; }
+
+@media (max-width: 768px) {
+    .blog-topic-item,
+    .blog-topic-item:nth-child(even) {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .blog-content,
+    .blog-topic-item:nth-child(even) .blog-content { padding: 20px 0 0 0; order: 2; }
+    .blog-image-container,
+    .blog-topic-item:nth-child(even) .blog-image-container { order: 1; height: 200px; padding: 10px 0; }
+}
+
+/* ========================================================= */
+/* FOOTER */
+/* ========================================================= */
+footer { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 40px 20px;
+    text-align: center; 
+}
+footer p { margin-bottom: 25px; font-weight: 300; }
+footer button { 
+    padding: 18px 40px; 
+    font-size: 1.1em; 
+    cursor: pointer; 
+    background: var(--color-button); 
+    color: #fff; 
+    border: none; 
+    border-radius: 4px; 
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+footer button:hover { background-color: #A84236; }
+</style>
 </head>
 <body>
 
 <header>
-  <div class="container">
-      <h1><span class="brand-emphasis">AresNyX</span> Boxer Shorts</h1>
-      <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
-      <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
-  </div>
+  <h1><span class="brand-emphasis">AresNyX</span> Boxer Shorts</h1>
+  <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
+  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
 </header>
 
 <section class="features-list-section">
@@ -61,8 +288,8 @@
     </tr>
     <tr>
       <td>Materijal</td>
-      <td>Prirodni</td>
-      <td>Veštački, streč vlakna,sintetika / miks</td>
+      <td>P фанrodni</td>
+      <td>Veštački, streč vlakna, sintetika / miks</td>
     </tr>
   </table>
 </section>
@@ -103,60 +330,20 @@
     </div>
   </div>
 </section>
+
 <div style="text-align:center; margin:60px 0;">
-  <a href="blog-zdravlje-donjeg-vesa.html" class="blog-cta-link">
-     📰 Zdravlje počinje od donjeg veša →
+  <a href="blog-zdravlje-donjeg-vesa.html"
+     style="display:inline-block; padding:14px 60px; border:2px solid #E2725B; color:#4a4a4a; font-family:'Montserrat', Arial, sans-serif; font-weight:600; font-size:1rem; text-decoration:none; transition:background-color 0.3s, color 0.3s;"
+     onmouseover="this.style.backgroundColor='#E2725B'; this.style.color='#fff';"
+     onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a4a4a';">
+     Zdravlje počinje od donjeg veša
   </a>
 </div>
 
-<footer class="footer py-5">
-    <div class="container">
-        <p>Spremni da probate AresNyX bokserice?</p>
-        <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
-        <hr style="border-top: 1px solid #444; margin: 30px 0;">
-
-        <div class="row">
-            <div class="col-md-4 mb-4 mb-md-0">
-                <h5 class="footer-title">AresNyX d.o.o.</h5>
-                <p class="footer-text">
-                    Premium bokserice od 100% prirodnih materijala, proizvedene u Srbiji. Fokusirani smo na udobnost, zdravlje i kvalitet bez kompromisa.
-                </p>
-            </div>
-
-            <div class="col-md-4 mb-4 mb-md-0">
-                <h5 class="footer-title">Korisni Linkovi</h5>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="o-nama.html" class="footer-link">O nama</a></li>
-                    <li><a href="blog-zdravlje-donjeg-vesa.html" class="footer-link">Blog</a></li>
-                    <li><a href="kontakt.html" class="footer-link">Kontakt</a></li>
-                    <li><a href="shop.html" class="footer-link">Prodavnica</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-4">
-                <h5 class="footer-title">Pravna Dokumenta</h5>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="politika-privatnosti.html" class="footer-link">Politika Privatnosti</a></li>
-                    <li><a href="uslovi-koriscenja.html" class="footer-link">Uslovi Korišćenja i Reklamacije</a></li>
-                    <li><a href="#" class="footer-link">Pravila Isporuke</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="row mt-4 pt-3 border-top">
-            <div class="col-12 text-center">
-                <p class="copyright-text">
-                    &copy; <span id="currentYear"></span> AresNyX d.o.o. Sva prava zadržana.
-                </p>
-            </div>
-        </div>
-    </div>
+<footer>
+  <p>Spremni da probate AresNyX bokserice?</p>
+  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
 </footer>
-
-<script>
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
 
 </body>
 </html>
