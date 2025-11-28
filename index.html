@@ -1,403 +1,247 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AresNyX Boxer Shorts – Zdravlje i Udobnost</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-<style>
-/* ========================================================= */
-/* DEFINE LUKSUZNE BOJE I FONTOVE */
-/* ========================================================= */
-:root {
-    --font-primary: 'Montserrat', sans-serif;
-    --color-dark-bg: #121212; /* Tamnija crna za luksuz */
-    --color-accent-gold: #D4AF37; /* NOVO: Bogatija zlatna za bolji kontrast */
-    --color-button: #C7574B; /* Prigušena terakota/bordo */
-    --color-text-main: #333333; /* Tamno siva umesto čiste crne */
-    --color-light-bg: #f7f7f7; /* Svetla siva pozadina */
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AresNyX - Premium Boxer Shorts</title>
+    <meta name="description" content="AresNyX — luksuzni prirodni donji veš od pamuka, lana i svile. Bez sintetike, bez kompromisa. Zdravlje i udobnost iz Srbije.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-/* ========================================================= */
-/* OPŠTI STIL */
-/* ========================================================= */
-body { 
-    font-family: var(--font-primary); 
-    margin: 0; 
-    padding: 0; 
-    background: var(--color-light-bg); 
-    color: var(--color-text-main);
-    line-height: 1.6;
-}
-
-/* NASLOVI */
-h1, h2, h3 {
-    font-weight: 600; 
-    color: var(--color-text-main);
-}
-
-/* ========================================================= */
-/* HEADER SEKCIJA (Crna pozadina) - Luksuzni Akcenat */
-/* ========================================================= */
-header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 60px 20px 80px 20px; /* Više vertikalnog prostora (Whitespace) */
-    text-align: center; 
-}
-
-/* AresNyX Boxer Shorts */
-header h1 { 
-    font-size: 44px; /* Veliki naslov */
-    font-weight: 300; /* Tanka slova za eleganciju */
-    margin-bottom: 5px; 
-    margin-top: 0;
-    color: var(--color-accent-gold); /* KORIŠTENJE NOVE ZLATNE */
-    letter-spacing: 3px; 
-    text-transform: uppercase;
-}
-/* Klasa za podebljanje samo imena brenda (AresNyX) */
-.brand-emphasis {
-    font-weight: 600; 
-}
-
-
-/* Opis ispod naslova */
-header p { 
-    font-size: 16px; 
-    margin-bottom: 40px; /* Više prostora pre dugmeta */
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #DDDDDD;
-}
-
-/* Dugme */
-header button { 
-    padding: 18px 40px; 
-    font-size: 1.1em; 
-    cursor: pointer; 
-    background: var(--color-button); /* Prigušena boja */
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; /* Suptilno zaobljenje */
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-header button:hover {
-    background-color: #A84236;
-}
-
-/* ========================================================= */
-/* SEKCIJE SA SADRŽAJEM */
-/* ========================================================= */
-section { 
-    padding: 60px 20px; /* Više prostora */
-    max-width: 900px; 
-    margin: auto; 
-    text-align: center;
-}
-
-h2 { 
-    text-align: center; 
-    font-size: 2em;
-    margin-bottom: 40px; /* Više prostora */
-}
-
-/* Lista prednosti (Zašto odabrati AresNyX?) */
-.features-list-section {
-    padding-bottom: 20px;
-}
-.features-list-section ul {
-    list-style: none; /* Uklanjamo standardne tačke */
-    padding: 0;
-    max-width: 550px;
-    margin: 0 auto;
-    text-align: left;
-}
-.features-list-section li {
-    margin-bottom: 25px; /* Povećavamo vertikalni razmak */
-    position: relative;
-    padding-left: 30px;
-    font-size: 1.1em;
-    font-weight: 300; /* Tanji font za listu */
-}
-/* Kreiranje custom tačke za listu */
-.features-list-section li::before {
-    content: "•"; 
-    color: var(--color-button); /* Koristimo boju dugmeta kao akcent */
-    font-size: 1.8em;
-    position: absolute;
-    left: 0;
-    top: -5px;
-    line-height: 1;
-}
-
-/* ========================================================= */
-/* TABELA KOMPARACIJA - Minimalizam */
-/* ========================================================= */
-.comparison-table-section {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-.comparison-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin: 20px 0 0 0;
-    table-layout: fixed; 
-}
-.comparison-table th, .comparison-table td { 
-    /* UKLANJANJE SVIH VERTIKALNIH LINIJA */
-    border: none; 
-    border-bottom: 1px solid #eeeeee; /* Samo tanke horizontalne linije */
-    padding: 15px 10px; 
-    text-align: center; 
-}
-.comparison-table th {
-    background-color: #fcfcfc;
-    font-weight: 600;
-    color: var(--color-text-main);
-    border-bottom: 2px solid #dddddd;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.5px;
-}
-.comparison-table tr:last-child td {
-    border-bottom: none; 
-}
-.comparison-table tr td:first-child {
-    text-align: left !important; /* Karakteristike ostaju levo poravnate za čitljivost */
-    font-weight: 600;
-}
-.comparison-table td {
-    font-weight: 300;
-}
-
-
-/* ========================================================= */
-/* BLOG SEKCIJA (Nove teme) */
-/* ========================================================= */
-#blog {
-    background-color: #fcfcfc; /* Skoro bela */
-    padding: 80px 20px;
-}
-
-#blog h2 {
-    color: var(--color-accent-gold); /* Luksuzna boja na blog naslovu */
-    font-size: 2.5em; 
-    margin-bottom: 60px;
-}
-
-.blog-topic-item {
-    display: flex; 
-    flex-wrap: wrap; 
-    align-items: center; 
-    margin-bottom: 80px;
-    text-align: left;
-}
-.blog-image-container {
-    flex: 1 1 55%; 
-    padding: 15px; 
-    background-color: #f0f0f0; 
-    border-radius: 8px; 
-    height: 250px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    order: 1; 
-}
-.blog-content {
-    flex: 1 1 45%; 
-    padding: 10px 10px 10px 40px; 
-    order: 2; 
-}
-/* Naizmenično premeštanje kolona za estetski izgled */
-.blog-topic-item:nth-child(even) .blog-image-container {
-    order: 2;
-    padding-left: 40px; 
-}
-.blog-topic-item:nth-child(even) .blog-content {
-    order: 1;
-    padding: 10px 40px 10px 10px;
-}
-/* Naslovi tema */
-.blog-content h3 {
-    color: var(--color-button); /* Boja dugmeta kao akcenat u tekstu */
-    font-size: 1.6em; 
-    margin-bottom: 15px;
-}
-.blog-content p {
-    margin-bottom: 15px;
-    font-weight: 300;
-}
-
-/* PODEŠAVANJE ZA MANJE EKRANE (Mobile Responsiveness) */
-@media (max-width: 768px) {
-    .blog-topic-item,
-    .blog-topic-item:nth-child(even) {
-        flex-direction: column;
-        text-align: center;
-        margin-bottom: 40px;
+    <style>
+    :root {
+        --font-primary: 'Montserrat', sans-serif;
+        --color-dark-bg: #121212; 
+        --color-accent-gold: #D4AF37; 
+        --color-button: #C7574B;
+        --color-text-main: #333333; 
+        --color-light-bg: #f7f7f7; 
     }
-    .blog-content,
-    .blog-topic-item:nth-child(even) .blog-content {
-        padding: 20px 0 0 0;
-        order: 2;
+
+    body { 
+        font-family: var(--font-primary); 
+        margin: 0; 
+        padding: 0; 
+        background: var(--color-light-bg); 
+        color: var(--color-text-main);
+        line-height: 1.6;
     }
-    .blog-image-container,
-    .blog-topic-item:nth-child(even) .blog-image-container {
-        order: 1;
-        height: 200px;
+
+    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+
+    /* HEADER */
+    header { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 40px 20px; 
+        text-align: center; 
+    }
+    header h1 { 
+        font-size: 32px;
+        color: var(--color-accent-gold); 
+        letter-spacing: 2px; 
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .brand-emphasis { font-weight: 700; }
+    
+    /* NAVIGACIJA */
+    nav {
+        background-color: var(--color-dark-bg);
         padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
     }
-}
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 400;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
+    nav a:hover, nav a.active {
+        color: var(--color-accent-gold);
+    }
 
+    /* MAIN CONTENT */
+    main { 
+        max-width: 900px; 
+        margin: 60px auto; 
+        padding: 0 20px; 
+    }
 
-/* ========================================================= */
-/* FOOTER */
-/* ========================================================= */
-footer { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 40px 20px; /* Više prostora */
-    text-align: center; 
-}
-footer p {
-    margin-bottom: 25px;
-    font-weight: 300;
-}
-footer button { 
-    /* Koristimo iste stilove kao dugme u headeru */
-    padding: 18px 40px; 
-    font-size: 1.1em; 
-    cursor: pointer; 
-    background: var(--color-button); 
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; 
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-footer button:hover {
-    background-color: #A84236;
-}
-</style>
+    section {
+        margin-bottom: 60px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    section h2 { 
+        text-align: center; 
+        font-size: 2em;
+        margin-bottom: 30px;
+        color: var(--color-button); 
+    }
+    section p { 
+        margin-bottom: 1.2em;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 60px 30px;
+        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%);
+        color: white;
+        border-radius: 12px;
+    }
+    .hero-section h1 {
+        color: var(--color-accent-gold);
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    .hero-section p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #ddd;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    .feature-item {
+        text-align: center;
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid #eeeeee;
+        transition: transform 0.3s;
+    }
+    .feature-item:hover {
+        transform: translateY(-5px);
+    }
+    .feature-item i {
+        font-size: 2.5em;
+        color: var(--color-accent-gold);
+        margin-bottom: 15px;
+    }
+
+    .cta-container {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .cta-button { 
+        padding: 15px 35px; 
+        font-size: 1.1em; 
+        cursor: pointer; 
+        background: var(--color-button); 
+        color: #fff; 
+        border: none; 
+        border-radius: 4px; 
+        transition: background-color 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .cta-button:hover {
+        background-color: #A84236;
+    }
+
+    footer { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 30px 20px; 
+        text-align: center; 
+        margin-top: 60px;
+    }
+
+    .footer-links {
+        margin: 20px 0;
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        nav a { margin: 0 10px; }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        .cta-button { width: 100%; }
+        nav a { display: block; margin: 5px 0; }
+        .hero-section h1 { font-size: 2em; }
+    }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1><span class="brand-emphasis">AresNyX</span> Boxer Shorts</h1>
-  <p>Prirodna udobnost i zdravlje – široki fit loss bokserice koje dišu</p>
-  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
+    <h1><span class="brand-emphasis">AresNyX</span></h1>
 </header>
 
-<section class="features-list-section">
-  <h2>Zašto odabrati AresNyX?</h2>
-  <ul>
-    <li>Bolja ventilacija i prirodna regulacija temperature genitalija</li>
-    <li>Smanjuju znojenje i iritacije, preveniraju infekcije i neprirodno grejanje genitalija koje su prirodno predodređene da ne budu u tesnom, vlažnom okruženju</li>
-    <li>Prirodni materijali: 100% pamuk, lan, svila, bambus</li>
-    <li>Održavanje higijene i udobnosti tokom celog dana</li>
-    <li>Fit loss kroj koji prati pokret, ali nije tesan</li>
-  </ul>
-</section>
+<nav>
+    <a href="index.html" class="active">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravije-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
 
-<section class="comparison-table-section">
-  <h2>Komparacija sa streč uskim boksericama</h2>
-  <table class="comparison-table">
-    <tr>
-      <th>Karakteristika</th>
-      <th>AresNyX Široki Fit Loss</th>
-      <th>Streč Uske Bokserice</th>
-    </tr>
-    <tr>
-      <td>Ventilacija</td>
-      <td>Odlična</td>
-      <td>Loša</td>
-    </tr>
-    <tr>
-      <td>Temperatura genitalija</td>
-      <td>Prirodna regulacija</td>
-      <td>Pregrejavanje</td>
-    </tr>
-    <tr>
-      <td>Higijena</td>
-      <td>Bolja</td>
-      <td>Osetno lošija</td>
-    </tr>
-    <tr>
-      <td>Udobnost pokreta</td>
-      <td>Maksimalna</td>
-      <td>Ograničena- stegnutost streč neprirodnim materijalom</td>
-    </tr>
-    <tr>
-      <td>Materijal</td>
-      <td>Prirodni</td>
-      <td>Veštački, streč vlakna,sintetika / miks</td>
-    </tr>
-  </table>
-</section>
+<main>
+    <section class="hero-section">
+        <h1>Premium Donji Veš</h1>
+        <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+        <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
+    </section>
 
-<section id="blog">
-  <h2>Blog - Nove teme</h2>
-  
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika pamuka]</span>
-    </div>
-    <div class="blog-content">
-      <h3>Prirodni materijali za maksimalnu udobnost</h3>
-      <p>Pamuk, lan, svila i bambus omogućavaju koži da diše, zadržavaju udobnost tokom celog dana i smanjuju znojenje i iritacije, pa samim tim regija ostaje suva, čista bez rizika obolevanja.</p>
-      <p>Šire bokserice u kombinaciji sa prirodnim materijalima čuvaju zdravlje i omogućavaju optimalnu higijenu.</p>
-    </div>
-  </div>
+    <section>
+        <h2>Zašto AresNyX?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-leaf"></i>
+                <h3>Prirodni Materijali</h3>
+                <p>100% pamuk, lan i svila bez ikakvih veštačkih dodataka</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-heart"></i>
+                <h3>Zdravstvene Prednosti</h3>
+                <p>Labav fit loss kroj koji štiti vaše zdravlje</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Proizvodnja u Srbiji</h3>
+                <p>Kvalitet koji potiče iz naše zemlje</p>
+            </div>
+        </div>
+    </section>
 
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika lana]</span>
-    </div>
-    <div class="blog-content">
-      <h3>Kako šire bokserice čuvaju zdravlje</h3>
-      <p>Pregrejavanje genitalija može smanjiti plodnost i izazvati iritacije, infekcije, neugodan miris. Šire bokserice pomažu u prevenciji takvih rizika.</p>
-      <p>Fit loss kroj prati pokret tela bez pritiska, dok streč uske bokserice mogu izazvati nelagodnost i povećanu temperaturu čime se povećava znojenje i zdravstveni rizik od neplodnosti, gljivičnih i bakterijskih infekcija.</p>
-    </div>
-  </div>
+    <section>
+        <h2>Naša Filozofija</h2>
+        <p>Verujemo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
+        
+        <div class="cta-container">
+            <a href="o-nama.html" class="cta-button">Saznajte Više O Nama</a>
+        </div>
+    </section>
+</main>
 
-  <div class="blog-topic-item">
-    <div class="blog-image-container">
-      <span style="color:var(--color-text-main); font-size:1.2em;">[Slika svile]</span>
-    </div>
-    <div class="blog-content">
-      <h3>Fit loss kroj & streč kroj</h3>
-      <p>Fit loss kroj omogućava maksimalnu udobnost, bolji higijenski uticaj i slobodu pokreta, dok uske streč bokserice mogu izazvati veću zagrejanost genitalija i cele regije što je osnovni okidač mnogih zdravstvenih rizika.</p>
-      <p>Prirodni materijali u širokim boksericama smanjuju znojenje kroz povećanu ventilaciju čime se održava prirodna temperatura i higijena tokom celog dana.</p>
-    </div>
-  </div>
-</section>
-<div style="text-align:center; margin:60px 0;">
-  <a href="blog-zdravlje-donjeg-vesa.html"
-     style="
-       display:inline-block;
-       padding:14px 60px;
-       border:2px solid #E2725B;
-       color:#4a4a4a;
-       font-family:'Montserrat', Arial, sans-serif;
-       font-weight:600;
-       font-size:1rem;
-       text-decoration:none;
-       transition:background-color 0.3s, color 0.3s;
-     "
-     onmouseover="this.style.backgroundColor='#E2725B'; this.style.color='#fff';"
-     onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a4a4a';">
-     📰 Zdravlje počinje od donjeg veša →
-  </a>
-</div>
 <footer>
-  <p>Spremni da probate AresNyX bokserice?</p>
-  <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
 </body>
