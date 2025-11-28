@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktirajte nas - AresNyX</title>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="styles/main.css"> </head>
+<body>
+
+    <main class="page-content">
+        <section class="contact-section padding-y-80">
+            <div class="container">
+                <h1 class="text-center mb-5">Kontaktirajte AresNyX</h1>
+                <p class="text-center lead">
+                    Bilo da imate pitanja o materijalima, naručivanju ili saradnji, naš tim je tu da vam pomogne.
+                </p>
+
+                <div class="row mt-5">
+                    
+                    <div class="col-md-6 mb-4">
+                        <h2 class="section-title mb-4">Naši Podaci</h2>
+                        <ul class="list-unstyled contact-details">
+                            <li class="mb-3">
+                                <i class="icon fas fa-building"></i> 
+                                **Naziv:** AresNyX d.o.o
+                            </li>
+                            <li class="mb-3">
+                                <i class="icon fas fa-map-marker-alt"></i> 
+                                **Sedište:** 34300 Aranđelovac, Industrijska zona bb
+                            </li>
+                            <li class="mb-3">
+                                <i class="icon fas fa-phone"></i> 
+                                **Telefon:** +381 64 8700220
+                            </li>
+                            <li class="mb-3">
+                                <i class="icon fas fa-envelope"></i> 
+                                **Email:** ares.nyx.info@gmail.com
+                            </li>
+                            </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h2 class="section-title mb-4">Pošaljite nam Poruku</h2>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group mb-3">
+                                <label for="ime">Ime i Prezime</label>
+                                <input type="text" class="form-control" id="ime" name="user_name" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email Adresa</label>
+                                <input type="email" class="form-control" id="email" name="user_email" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="poruka">Vaša Poruka</label>
+                                <textarea class="form-control" id="poruka" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Pošalji Poruku</button>
+                            <p id="formStatus" class="mt-3 text-center"></p>
+                        </form>
+                    </div>
+                </div>
+
+                </div>
+        </section>
+    </main>
+
+    <script>
+        // OVDE DODAJTE JAVASCRIPT LOGIKU ZA SLANJE FORME PREKO EMAILJS
+        // (Slično funkciji koju već imate u shop.html)
+    </script>
+</body>
+</html>
