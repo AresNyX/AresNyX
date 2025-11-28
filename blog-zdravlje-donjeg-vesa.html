@@ -1,117 +1,228 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zdravlje donjeg veša – AresNyX Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background-color: #faf8f7;
-      color: #2c2c2c;
-      line-height: 1.6;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zdravlje donjeg veša – AresNyX Blog</title>
+    <meta name="description" content="Saznajte zašto je izbor donjeg veša ključan za vaše zdravlje. Prednosti prirodnih materijala i pravog kroja.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    :root {
+        --font-primary: 'Montserrat', sans-serif;
+        --color-dark-bg: #121212; 
+        --color-accent-gold: #D4AF37; 
+        --color-button: #C7574B;
+        --color-text-main: #333333; 
+        --color-light-bg: #f7f7f7; 
     }
+
+    body { 
+        font-family: var(--font-primary); 
+        margin: 0; 
+        padding: 0; 
+        background: var(--color-light-bg); 
+        color: var(--color-text-main);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
 
     /* HEADER */
-    header {
-      background-color: #000000 !important; /* crna pozadina */
-      text-align: center;
-      padding: 30px 20px;
+    header { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 40px 20px; 
+        text-align: center; 
+    }
+    header h1 { 
+        font-size: 32px;
+        color: var(--color-accent-gold); 
+        letter-spacing: 2px; 
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .brand-emphasis { font-weight: 700; }
+    
+    /* NAVIGACIJA */
+    nav {
+        background-color: var(--color-dark-bg);
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 400;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
+    nav a:hover, nav a.active {
+        color: var(--color-accent-gold);
     }
 
-    header h1 {
-      color: #ffffff !important; /* belim slovima */
-      margin: 0;
-      font-size: 1.8rem;
-      font-weight: 600;
+    /* MAIN CONTENT */
+    main { 
+        max-width: 900px; 
+        margin: 60px auto; 
+        padding: 0 20px; 
     }
 
-    /* MAIN SADRŽAJ */
-    main {
-      max-width: 850px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    section {
+        margin-bottom: 60px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    section h2 { 
+        text-align: center; 
+        font-size: 2em;
+        margin-bottom: 30px;
+        color: var(--color-button); 
+    }
+    section p { 
+        margin-bottom: 1.2em;
     }
 
-    h2 {
-      color: #7a3e2e !important; /* terakota */
-      margin-top: 30px;
-      font-size: 1.3rem;
+    .blog-content h3 {
+        color: var(--color-button);
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-size: 1.4em;
     }
 
-    p {
-      margin-bottom: 18px;
-      color: #2c2c2c !important;
+    .blog-content ul {
+        margin-bottom: 20px;
+        padding-left: 20px;
     }
 
-    ul li {
-      margin-bottom: 10px;
-      color: #2c2c2c !important;
+    .blog-content li {
+        margin-bottom: 10px;
     }
 
-    /* FOOTER */
-    footer {
-      background-color: #000000 !important; /* crna pozadina */
-      color: #ffffff !important; /* belim slovima */
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
+    .blog-content strong {
+        color: var(--color-button);
     }
-  </style>
+
+    .cta-container {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .cta-button { 
+        padding: 15px 35px; 
+        font-size: 1.1em; 
+        cursor: pointer; 
+        background: var(--color-button); 
+        color: #fff; 
+        border: none; 
+        border-radius: 4px; 
+        transition: background-color 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .cta-button:hover {
+        background-color: #A84236;
+    }
+
+    footer { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 30px 20px; 
+        text-align: center; 
+        margin-top: 60px;
+    }
+
+    .footer-links {
+        margin: 20px 0;
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    @media (max-width: 768px) {
+        nav a { margin: 0 10px; }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        .cta-button { width: 100%; }
+        nav a { display: block; margin: 5px 0; }
+    }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>AresNyX BOXER SHORTS</h1>
-  </header>
+<header>
+    <h1><span class="brand-emphasis">AresNyX</span></h1>
+</header>
 
-  <main>
-    <h2>Zdravlje počinje od donjeg veša: Zašto je prozračnost ključna za oba pola</h2>
+<nav>
+    <a href="index.html">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravije-donjeg-vesa.html" class="active">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
 
-    <p>​Zaboravite na Tesno – Udobnost je Zdravlje</p>
+<main>
+    <section>
+        <h2>Zdravlje počinje od donjeg veša</h2>
+        
+        <div class="blog-content">
+            <p>Vaš donji veš je jedina odeća koju nosite 24 sata dnevno, a izbor kroja i materijala direktno utiče na higijenu, udobnost i dugoročno zdravlje intimnog područja.</p>
 
-    <p>​Vaš donji veš je jedina odeća koju nosite 24 sata dnevno, a izbor kroja i materijala direktno utiče na higijenu, udobnost i dugoročno zdravlje intimnog područja. I muškarci i žene imaju izuzetne zdravstvene koristi od labavog, prozračnog rublja od prirodnih materijala.</p>
+            <h3>Zbogom Vlagi i Toploti</h3>
+            <p>Ključni zdravstveni benefit labavog kroja i prirodnih materijala (poput pamuka, lana, bambusa) je isti za oba pola: sprečavanje prekomerne vlage i toplote.</p>
+            
+            <ul>
+                <li><strong>Provetravanje (Ventilacija):</strong> Prirodni materijali omogućavaju koži da diše, smanjujući znojenje i iritacije.</li>
+                <li><strong>Smanjenje rizika od infekcija:</strong> Održavanje suvog i provetrenog okruženja smanjuje rizik od razvoja gljivičnih i bakterijskih infekcija.</li>
+                <li><strong>Udobnost i sloboda pokreta:</strong> "Fit loss" kroj poboljšava opštu higijenu i smanjuje neprijatan osećaj trenja.</li>
+            </ul>
 
-    <h2>​Zbogom Vlagi i Toploti (Univerzalna Prednost)</h2>
+            <h3>Prednosti za Muškarce: Fokus na Plodnost i Higijenu</h3>
+            <ul>
+                <li><strong>Prevencija Gljivičnih i Bakterijskih Infekcija:</strong> Uski veš zarobljava toplotu i vlagu, stvarajući idealne uslove za infekcije.</li>
+                <li><strong>Poboljšanje Plodnosti:</strong> Labav kroj pomaže u održavanju temperature oko testisa na optimalnom nivou.</li>
+                <li><strong>Naučni Dokazi:</strong> Studije pokazuju da muškarci koji nose labave bokserice imaju značajno veću koncentraciju spermatozoida.</li>
+            </ul>
 
-    <p>​Ključni zdravstveni benefit labavog kroja i prirodnih materijala (poput pamuka, lana, bambusa) je isti za oba pola: sprečavanje prekomerne vlage i toplote.</p>
+            <h3>Prednosti za Žene: Fokus na Prevenciju Infekcija</h3>
+            <ul>
+                <li><strong>Smanjen rizik od Vaginalnih Infekcija:</strong> Uska, sintetička odeća zadržava vlagu i toplotu, stvarajući idealno okruženje za gljivične infekcije.</li>
+                <li><strong>Regulacija vlage:</strong> Nošenje prozračnog donjeg veša od prirodnih materijala omogućava bolju ventilaciju.</li>
+                <li><strong>Higijena i Trenje:</strong> Labava odeća smanjuje iritaciju kože i omogućava provetravanje intimne zone.</li>
+            </ul>
 
-    <ul>
-      <li>​<strong>Provetravanje (Ventilacija)</strong>: Prirodni materijali omogućavaju koži da diše, smanjujući znojenje i iritacije.</li>
-      <li>​<strong>Smanjenje rizika od infekcija</strong>: Održavanje suvog i provetrenog okruženja smanjuje rizik od razvoja gljivičnih i bakterijskih infekcija, koje uspevaju u vlažnoj i toploj sredini.</li>
-      <li>​<strong>Udobnost i sloboda pokreta</strong>: "Fit loss" kroj i prirodna vlakna poboljšavaju opštu higijenu i smanjuju neprijatan osećaj trenja, doprinoseći boljem kvalitetu sna.</li>
-    </ul>
+            <h3>Birajte Zdravlje</h3>
+            <p>Bilo da ste muškarac kome je bitna plodnost i higijena, ili žena kojoj je prioritet prevencija infekcija i udobnost, labav, prozračan i udoban donji veš od prirodnih materijala je najbolji izbor.</p>
+        </div>
 
-    <h2>​Prednosti za Muškarce: Fokus na Plodnost i Higijenu</h2>
+        <div class="cta-container">
+            <a href="shop.html" class="cta-button">
+                Istražite našu kolekciju
+            </a>
+        </div>
+    </section>
+</main>
 
-    <ul>
-      <li>​<strong>Prevencija Gljivičnih i Bakterijskih Infekcija</strong>: Uski veš, posebno od sintetičkih materijala, zarobljava toplotu i vlagu. Ovo ne samo da izaziva pojačano znojenje, već stvara idealne uslove za razvoj gljivičnih i bakterijskih infekcija u preponama. Široke bokserice obezbeđuju kontinuiranu cirkulaciju vazduha, održavajući područje suvim.</li>
-      <li>​<strong>Poboljšanje Plodnosti (Potvrđeno Studijama)</strong>: Labav kroj pomaže u održavanju temperature oko testisa na optimalnom nivou.</li>
-      <li>​<strong>Naučni Dokazi</strong>: Studija koju je sprovela Harvard T.H. Chan School of Public Health i objavila u časopisu Human Reproduction utvrdila je da muškarci koji nose labave bokserice imaju značajno veću koncentraciju i ukupan broj spermatozoida u poređenju sa onima koji nose uske gaće.</li>
-      <li>​<strong>Ključna Preporuka</strong>: Zbog dokazanog uticaja na kvalitet sperme, široki donji veš je uobičajena preporuka za muškarce koji žele da poboljšaju šanse za začeće deteta.</li>
-    </ul>
-
-    <h2>​Prednosti za Žene: Fokus na Prevenciju Infekcija</h2>
-
-    <ul>
-      <li>​<strong>Smanjen rizik od Vaginalnih Infekcija</strong>: Uska, sintetička odeća zadržava vlagu i toplotu, stvarajući idealno okruženje za razvoj gljivičnih infekcija (poput kandide).</li>
-      <li>​<strong>Regulacija vlage</strong>: Nošenje prozračnog donjeg veša od prirodnih materijala (poput pamuka) omogućava bolju ventilaciju, održavajući intimno područje suvim.</li>
-      <li>​<strong>Higijena i Trenje</strong>: Nošenje labave odeće, a često i spavanje bez donjeg veša, preporučuje se kako bi se smanjila iritacija kože i omogućilo provetravanje intimne zone, čime se poboljšava opšta genitalna higijena.</li>
-    </ul>
-
-    <h2>Birajte Zdravlje</h2>
-
-    <p>​Bilo da ste muškarac kome je bitna plodnost i higijena, ili žena kojoj je prioritet prevencija infekcija i udobnost, labav, prozračan i udoban donji veš od prirodnih materijala je najbolji izbor. Birajte kroj koji Vas ne sputava i materijal koji Vam dozvoljava da dišete.</p>
-  </main>
-
-  <footer>
-    AresNyX
-  </footer>
+<footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
+</footer>
 
 </body>
 </html>
