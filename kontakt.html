@@ -344,47 +344,10 @@
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
-<scri/* POBOLJŠANJE ZA MODAL SLIKE */
-.modal-main-image {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 0 auto 1rem auto; /* Centrira sliku */
-    display: block;
-}/* POBOLJŠANJE ZA MODAL SLIKE */
-.modal-main-image {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 0 auto 1rem auto; /* Centrira sliku */
-    display: block;
-}/* POBOLJŠANJE ZA MODAL SLIKE */
-.modal-main-image {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 0 auto 1rem auto; /* Centrira sliku */
-    display: block;
-}
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
     // Inicijalizacija EmailJS sa vašim PUBLIC KEY
-    emailjs.init("WKV419-gz6OQWSgRJ"); // ISTI KLJUČ KAO U SHOP-U
+    emailjs.init("WKV419-gz6OQWSgRJ");
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -404,7 +367,7 @@
             user_name: document.getElementById('ime').value,
             user_email: document.getElementById('email').value,
             message: document.getElementById('poruka').value,
-            to_email: 'ares.nyx.info@gmail.com', // VAŠ EMAIL
+            to_email: 'ares.nyx.info@gmail.com',
             from_name: 'AresNyX Kontakt Forma'
         };
 
@@ -438,6 +401,5 @@
             });
     });
 </script>
-
 </body>
 </html>
