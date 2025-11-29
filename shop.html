@@ -342,7 +342,7 @@ nav a:hover, nav a.active {
     position: relative;
     margin-left: auto;
     margin-right: 20px;
-}9
+}
     
     </style>
     
@@ -352,15 +352,25 @@ nav a:hover, nav a.active {
     </noscript>
 </head>
 <body>
-    <header class="header">
-    <nav class="navbar">
-        <a href="index.html" class="logo">ARESNYX</a>
-        <div class="cart-icon" onclick="shop.toggleCart()">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="cart-count" id="cartCount">0</span>
-        </div>
-    </nav>
-    </header>
+    <header>
+    <h1>
+        <span class="brand-emphasis">ARESNYX</span><br>
+        <span class="subtitle">BOXER SHORTS</span>
+    </h1>
+</header>
+
+<nav>
+    <a href="index.html">Početna</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+    <!-- CART IKONA -->
+    <a href="javascript:void(0)" onclick="shop.toggleCart()" class="cart-nav-link">
+        <i class="fas fa-shopping-bag"></i>
+        Korpa (<span id="cartCount">0</span>)
+    </a>
+</nav>
 
     <main class="main-content">
         <section class="products-section">
