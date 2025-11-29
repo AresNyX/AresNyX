@@ -346,7 +346,6 @@
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-    // Inicijalizacija EmailJS sa vašim PUBLIC KEY
     emailjs.init("WKV419-gz6OQWSgRJ");
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -356,46 +355,43 @@
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         
-        // Onemogući dugme tokom slanja
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
         submitBtn.disabled = true;
         formStatus.textContent = "Šaljem poruku...";
         formStatus.style.color = "var(--color-accent-gold)";
 
-        // Prikupi podatke iz forme
+        // KORISTITE ADMIN TEMPLATE I POLJA KOJA ON OČEKUJE
         const formData = {
-            user_name: document.getElementById('ime').value,
-            user_email: document.getElementById('email').value,
-            message: document.getElementById('poruka').value,
-            to_email: 'ares.nyx.info@gmail.com',
-            from_name: 'AresNyX Kontakt Forma'
+            ime_kupca: document.getElementById('ime').value,
+            email_kupca: document.getElementById('email').value,
+            telefon_kupca: 'Kontakt forma',
+            napomena: `KONTAKT FORMA - Poruka: ${document.getElementById('poruka').value}`,
+            brend_naziv: 'AresNyX',
+            // OVO JE BITNO - template očekuje ova polja
+            sender_name: 'AresNyX Kontakt',
+            admin_email: 'ares.nyx.info@gmail.com'
         };
 
-        // Pošalji email preko EmailJS
-        emailjs.send('service_rxj533m', 'template_u8dh76a', formData)
+        // KORISTITE ADMIN TEMPLATE
+        emailjs.send('service_rxj533m', 'template_5o6etkn', formData)
             .then(function(response) {
                 console.log('Email uspešno poslat!', response);
                 formStatus.textContent = "✅ Hvala Vam na poruci! Odgovorićemo u najkraćem mogućem roku.";
                 formStatus.style.color = "var(--color-button)";
                 
-                // Reset forme
                 document.getElementById('contactForm').reset();
-                
-                // Vrati dugme u normalno stanje
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
                 
-                // Sakrij poruku nakon 5 sekundi
                 setTimeout(() => {
                     formStatus.textContent = "";
                 }, 5000);
             })
             .catch(function(error) {
                 console.error('Greška pri slanju emaila:', error);
-                formStatus.textContent = "❌ Greška pri slanju poruke. Molimo pokušajte ponovo ili nas kontaktirajte direktno.";
+                formStatus.textContent = "❌ Greška pri slanju poruke. Molimo pokušajte ponovo.";
                 formStatus.style.color = "red";
                 
-                // Vrati dugme u normalno stanje
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
