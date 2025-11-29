@@ -4,85 +4,278 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Politika Privatnosti - AresNyX</title>
-    <link rel="stylesheet" href="styles.css"> 
-    </head>
+    <meta name="description" content="Politika privatnosti AresNyX d.o.o. - kako prikupljamo, koristimo i štitimo vaše lične podatke.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    :root {
+        --font-primary: 'Montserrat', sans-serif;
+        --color-dark-bg: #121212; 
+        --color-accent-gold: #D4AF37; 
+        --color-button: #C7574B;
+        --color-text-main: #333333; 
+        --color-light-bg: #f7f7f7; 
+    }
+
+    body { 
+        font-family: var(--font-primary); 
+        margin: 0; 
+        padding: 0; 
+        background: var(--color-light-bg); 
+        color: var(--color-text-main);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+
+    /* HEADER */
+    header { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 40px 20px; 
+        text-align: center; 
+    }
+    header h1 { 
+        font-size: 32px;
+        color: var(--color-accent-gold); 
+        letter-spacing: 2px; 
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    .brand-emphasis { font-weight: 700; }
+    
+    /* NAVIGACIJA */
+    nav {
+        background-color: var(--color-dark-bg);
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 400;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
+    nav a:hover, nav a.active {
+        color: var(--color-accent-gold);
+    }
+
+    /* MAIN CONTENT */
+    main { 
+        max-width: 900px; 
+        margin: 60px auto; 
+        padding: 0 20px; 
+    }
+
+    section {
+        margin-bottom: 60px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    section h2 { 
+        text-align: center; 
+        font-size: 2em;
+        margin-bottom: 30px;
+        color: var(--color-button); 
+    }
+    section p { 
+        margin-bottom: 1.2em;
+    }
+
+    .policy-content h2 {
+        color: var(--color-button);
+        margin-top: 40px;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+        border-bottom: 2px solid var(--color-accent-gold);
+        padding-bottom: 5px;
+    }
+
+    .policy-content h3 {
+        color: var(--color-text-main);
+        margin-top: 25px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .policy-content ul {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .policy-content li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 10px;
+    }
+
+    .policy-content li strong {
+        color: var(--color-button);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .lead {
+        font-size: 1.1em;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .highlight-box {
+        background: var(--color-light-bg);
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid var(--color-accent-gold);
+        margin: 20px 0;
+    }
+
+    footer { 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 30px 20px; 
+        text-align: center; 
+        margin-top: 60px;
+    }
+
+    .footer-links {
+        margin: 20px 0;
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    @media (max-width: 768px) {
+        nav a { margin: 0 10px; }
+        .policy-content h2 { font-size: 1.3em; }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        nav a { display: block; margin: 5px 0; }
+        section { padding: 20px; }
+    }
+    </style>
+</head>
 <body>
 
-    <main class="page-content">
-        <section class="privacy-policy-section padding-y-80">
-            <div class="container">
-                <h1 class="text-center mb-5">Politika Privatnosti</h1>
-                
-                <p class="lead text-center mb-5">
-                    Ovaj dokument objašnjava kako **AresNyX d.o.o.** prikuplja, koristi i štiti Vaše lične podatke. Vaša privatnost nam je prioritet.
-                </p>
+<header>
+    <h1><span class="brand-emphasis">AresNyX</span></h1>
+</header>
 
-                <div class="policy-content">
+<nav>
+    <a href="index.html">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravije-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
 
-                    <h2 class="mt-4">1. Podaci o Rukovaocu Podacima</h2>
-                    <p>Rukovalac podacima je:</p>
-                    <ul>
-                        <li>**Naziv firme:** AresNyX d.o.o</li>
-                        <li>**Sedište:** 34300 Aranđelovac, Industrijska zona bb</li>
-                        <li>**Kontakt Email:** ares.nyx.info@gmail.com</li>
-                        <li>**Kontakt Telefon:** +381 64 8700220</li>
-                    </ul>
-                    
-                    <h2 class="mt-4">2. Podaci Koje Prikupljamo</h2>
-                    <p>Prikupljamo samo one podatke koji su neophodni za izvršenje naših usluga i komunikaciju sa Vama. </p>
-                    
-                    <h3 class="mt-3">2.1. Podaci prikupljeni putem forme za Naručivanje (Shop)</h3>
-                    <p>Ovi podaci su neophodni za izvršenje ugovora o prodaji i isporuku proizvoda:</p>
-                    <ul>
-                        <li>Ime i prezime</li>
-                        <li>Adresa za dostavu (Ulica, Grad, Poštanski broj)</li>
-                        <li>Broj telefona (za potrebe dostavne službe)</li>
-                        <li>Email adresa (za potvrdu porudžbine i komunikaciju)</li>
-                        <li>Detalji naručenih proizvoda (tip, veličina, količina)</li>
-                    </ul>
+<main>
+    <section>
+        <h2>Politika Privatnosti</h2>
+        
+        <p class="lead text-center">
+            Ovaj dokument objašnjava kako <strong>AresNyX d.o.o.</strong> prikuplja, koristi i štiti Vaše lične podatke. Vaša privatnost nam je prioritet.
+        </p>
 
-                    <h3 class="mt-3">2.2. Podaci prikupljeni putem Kontakt forme</h3>
-                    <p>Ovi podaci se prikupljaju isključivo radi odgovora na Vaš upit:</p>
-                    <ul>
-                        <li>Ime i prezime</li>
-                        <li>Email adresa</li>
-                        <li>Sadržaj poruke</li>
-                    </ul>
+        <div class="policy-content">
+            <h2>1. Podaci o Rukovaocu Podacima</h2>
+            <p>Rukovalac podacima je:</p>
+            <ul>
+                <li><strong>Naziv firme:</strong> AresNyX d.o.o</li>
+                <li><strong>Sedište:</strong> 34300 Aranđelovac, Industrijska zona bb</li>
+                <li><strong>Kontakt Email:</strong> ares.nyx.info@gmail.com</li>
+                <li><strong>Kontakt Telefon:</strong> +381 64 8700220</li>
+            </ul>
+            
+            <h2>2. Podaci Koje Prikupljamo</h2>
+            <p>Prikupljamo samo one podatke koji su neophodni za izvršenje naših usluga i komunikaciju sa Vama.</p>
+            
+            <h3>2.1. Podaci prikupljeni putem forme za Naručivanje (Shop)</h3>
+            <p>Ovi podaci su neophodni za izvršenje ugovora o prodaji i isporuku proizvoda:</p>
+            <ul>
+                <li>Ime i prezime</li>
+                <li>Adresa za dostavu (Ulica, Grad, Poštanski broj)</li>
+                <li>Broj telefona (za potrebe dostavne službe)</li>
+                <li>Email adresa (za potvrdu porudžbine i komunikaciju)</li>
+                <li>Detalji naručenih proizvoda (tip, veličina, količina)</li>
+            </ul>
 
-                    <h2 class="mt-4">3. Svrha i Pravni Osnov Obrade</h2>
-                    <ul>
-                        <li>**Za izvršenje ugovora:** Obrada podataka pri naručivanju je neophodna za obradu, pakovanje i isporuku Vaše robe.</li>
-                        <li>**Za komunikaciju:** Obrada podataka putem kontakt forme se vrši na osnovu Vaše saglasnosti i legitimnog interesa da Vam odgovorimo na upite.</li>
-                    </ul>
-                    
-                    <h2 class="mt-4">4. Deljenje Podataka sa Trećim Stranama</h2>
-                    <p>Vaše podatke delimo samo kada je to neophodno za izvršenje usluge:</p>
-                    <ul>
-                        <li>**Kurirske službe:** Ime, adresa i telefon se dele sa dostavnom službom (npr. Post Express, BEX, i sl.) radi isključivo isporuke.</li>
-                        <li>**Email servis (EmailJS):** Za slanje potvrde porudžbine i prijema upita koristimo eksterni servis EmailJS. Ovaj servis je u ulozi obrađivača podataka i koristi se isključivo za potrebe komunikacije.</li>
-                    </ul>
+            <h3>2.2. Podaci prikupljeni putem Kontakt forme</h3>
+            <p>Ovi podaci se prikupljaju isključivo radi odgovora na Vaš upit:</p>
+            <ul>
+                <li>Ime i prezime</li>
+                <li>Email adresa</li>
+                <li>Sadržaj poruke</li>
+            </ul>
 
-                    <h2 class="mt-4">5. Zaštita i Rok Čuvanja Podataka</h2>
-                    <p>Preduzimamo sve tehničke i organizacione mere da zaštitimo Vaše lične podatke od neovlašćenog pristupa, gubitka ili uništenja.</p>
-                    <ul>
-                        <li>Podaci se čuvaju onoliko dugo koliko je neophodno za izvršenje ugovora i zakonskih obaveza (npr. čuvanje računa).</li>
-                        <li>Podaci iz kontakt forme se brišu nakon rešavanja upita, osim ako je potrebna dalja komunikacija.</li>
-                    </ul>
+            <h2>3. Svrha i Pravni Osnov Obrade</h2>
+            <ul>
+                <li><strong>Za izvršenje ugovora:</strong> Obrada podataka pri naručivanju je neophodna za obradu, pakovanje i isporuku Vaše robe.</li>
+                <li><strong>Za komunikaciju:</strong> Obrada podataka putem kontakt forme se vrši na osnovu Vaše saglasnosti i legitimnog interesa da Vam odgovorimo na upite.</li>
+            </ul>
+            
+            <h2>4. Deljenje Podataka sa Trećim Stranama</h2>
+            <p>Vaše podatke delimo samo kada je to neophodno za izvršenje usluge:</p>
+            <ul>
+                <li><strong>Kurirske službe:</strong> Ime, adresa i telefon se dele sa dostavnom službom (npr. Post Express, BEX, i sl.) radi isključivo isporuke.</li>
+                <li><strong>Email servis (EmailJS):</strong> Za slanje potvrde porudžbine i prijema upita koristimo eksterni servis EmailJS. Ovaj servis je u ulozi obrađivača podataka i koristi se isključivo za potrebe komunikacije.</li>
+            </ul>
 
-                    <h2 class="mt-4">6. Prava Korisnika</h2>
-                    <p>Kao lice čiji se podaci obrađuju, imate sledeća prava:</p>
-                    <ul>
-                        <li>Pravo na pristup (uvid u podatke koje čuvamo o Vama).</li>
-                        <li>Pravo na ispravku netačnih podataka.</li>
-                        <li>Pravo na brisanje (pravo da zatražite brisanje podataka, pod određenim zakonskim uslovima).</li>
-                        <li>Pravo na prigovor na obradu.</li>
-                    </ul>
-                    <p>Za ostvarivanje Vaših prava, možete nas kontaktirati putem email adrese **ares.nyx.info@gmail.com**.</p>
-                    
-                </div>
+            <h2>5. Zaštita i Rok Čuvanja Podataka</h2>
+            <p>Preduzimamo sve tehničke i organizacione mere da zaštitimo Vaše lične podatke od neovlašćenog pristupa, gubitka ili uništenja.</p>
+            <ul>
+                <li>Podaci se čuvaju onoliko dugo koliko je neophodno za izvršenje ugovora i zakonskih obaveza (npr. čuvanje računa).</li>
+                <li>Podaci iz kontakt forme se brišu nakon rešavanja upita, osim ako je potrebna dalja komunikacija.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>Važno:</h3>
+                <p>Ne prodajemo, ne iznajmljujemo i ne razmenjujemo Vaše lične podatke sa trećim stranama u marketinške svrhe.</p>
             </div>
-        </section>
-    </main>
 
-    </body>
+            <h2>6. Prava Korisnika</h2>
+            <p>Kao lice čiji se podaci obrađuju, imate sledeća prava:</p>
+            <ul>
+                <li>Pravo na pristup (uvid u podatke koje čuvamo o Vama)</li>
+                <li>Pravo na ispravku netačnih podataka</li>
+                <li>Pravo na brisanje (pravo da zatražite brisanje podataka, pod određenim zakonskim uslovima)</li>
+                <li>Pravo na prigovor na obradu</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>Za ostvarivanje Vaših prava</strong>, možete nas kontaktirati putem email adrese:</p>
+                <p style="text-align: center; font-size: 1.1em; margin: 10px 0;">
+                    <strong>ares.nyx.info@gmail.com</strong>
+                </p>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; font-style: italic;">
+                Poslednja izmena: Januar 2025.
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
+</footer>
+
+</body>
 </html>
