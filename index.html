@@ -201,9 +201,12 @@
 
 .footer-links {
     margin: 20px 0;
-    font-size: 1.1em;  /* ← DODAJTE OVO */
+    font-size: 1.1em;
+    display: flex;           /* ← DODAJTE OVO */
+    flex-direction: column;  /* ← DODAJTE OVO - vertikalno */
+    align-items: center;     /* ← DODAJTE OVO - centrirano */
+    gap: 10px;              /* ← DODAJTE OVO - manji razmak */
 }
-
 .footer-links a {
     color: var(--color-accent-gold);
     text-decoration: none;
