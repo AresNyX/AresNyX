@@ -658,16 +658,16 @@ nav a:hover, nav a.active {
             }
             
             grid.innerHTML = this.products.map(product => `
-                <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
-                    ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-                    <img src="${product.images[0]}" alt="AresNyX Bokserice: ${product.name}" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-material">${product.material}</p>
-                        <p class="product-price">${product.price} RSD</p>
-                    </div>
-                </div>
-            `).join('');
+        <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
+        ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+        <img src="${product.images[0]}" alt="AresNyX Bokserice: ${product.name}" class="product-image" loading="lazy">
+        <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-material">${product.material}</p>
+            <p class="product-price">${product.price} RSD</p>
+        </div>
+    </div>
+`).join('');
         }
 
         openProductModal(productId) {
@@ -821,23 +821,23 @@ nav a:hover, nav a.active {
 
             this.cart.forEach((item) => {
                 const itemHtml = `
-                    <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
-                        <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
-                        <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
-                        <div class="cart-item-details">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-size">Veličina: ${item.size}</div>
-                            <div class="cart-item-controls">
-                                <div class="cart-item-qty-wrapper">
-                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
-                                    <span class="cart-item-qty">${item.quantity}</span>
-                                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
-                                </div>
-                                <span class="cart-item-price">${item.price * item.quantity} RSD</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
+    <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
+        <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
+        <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
+        <div class="cart-item-details">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-size">Veličina: ${item.size}</div>
+            <div class="cart-item-controls">
+                <div class="cart-item-qty-wrapper">
+                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
+                    <span class="cart-item-qty">${item.quantity}</span>
+                    <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
+                </div>
+                <span class="cart-item-price">${item.price * item.quantity} RSD</span>
+            </div>
+        </div>
+    </div>
+`;
                 cartItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
             });
 
