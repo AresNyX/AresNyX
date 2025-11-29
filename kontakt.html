@@ -344,22 +344,98 @@
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
+<scri/* POBOLJŠANJE ZA MODAL SLIKE */
+.modal-main-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto 1rem auto; /* Centrira sliku */
+    display: block;
+}/* POBOLJŠANJE ZA MODAL SLIKE */
+.modal-main-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto 1rem auto; /* Centrira sliku */
+    display: block;
+}/* POBOLJŠANJE ZA MODAL SLIKE */
+.modal-main-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto 1rem auto; /* Centrira sliku */
+    display: block;
+}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-    // EmailJS funkcionalnost (možete dodati kasnije)
+    // Inicijalizacija EmailJS sa vašim PUBLIC KEY
+    emailjs.init("WKV419-gz6OQWSgRJ"); // ISTI KLJUČ KAO U SHOP-U
+
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const formStatus = document.getElementById('formStatus');
-        formStatus.textContent = "Hvala Vam na poruci! Odgovorićemo u najkraćem mogućem roku.";
-        formStatus.style.color = "var(--color-button)";
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
         
-        // Reset forme
-        this.reset();
-        
-        // Sakrij poruku nakon 5 sekundi
-        setTimeout(() => {
-            formStatus.textContent = "";
-        }, 5000);
+        // Onemogući dugme tokom slanja
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
+        submitBtn.disabled = true;
+        formStatus.textContent = "Šaljem poruku...";
+        formStatus.style.color = "var(--color-accent-gold)";
+
+        // Prikupi podatke iz forme
+        const formData = {
+            user_name: document.getElementById('ime').value,
+            user_email: document.getElementById('email').value,
+            message: document.getElementById('poruka').value,
+            to_email: 'ares.nyx.info@gmail.com', // VAŠ EMAIL
+            from_name: 'AresNyX Kontakt Forma'
+        };
+
+        // Pošalji email preko EmailJS
+        emailjs.send('service_rxj533m', 'template_u8dh76a', formData)
+            .then(function(response) {
+                console.log('Email uspešno poslat!', response);
+                formStatus.textContent = "✅ Hvala Vam na poruci! Odgovorićemo u najkraćem mogućem roku.";
+                formStatus.style.color = "var(--color-button)";
+                
+                // Reset forme
+                document.getElementById('contactForm').reset();
+                
+                // Vrati dugme u normalno stanje
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Sakrij poruku nakon 5 sekundi
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            })
+            .catch(function(error) {
+                console.error('Greška pri slanju emaila:', error);
+                formStatus.textContent = "❌ Greška pri slanju poruke. Molimo pokušajte ponovo ili nas kontaktirajte direktno.";
+                formStatus.style.color = "red";
+                
+                // Vrati dugme u normalno stanje
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
     });
 </script>
 
