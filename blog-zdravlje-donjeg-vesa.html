@@ -28,8 +28,6 @@
         line-height: 1.6;
     }
 
-    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
-
     /* HEADER */
     header { 
         background: var(--color-dark-bg); 
@@ -43,7 +41,6 @@
         letter-spacing: 2px; 
         text-transform: uppercase;
         margin: 0;
-        text-shadow: 0 0 10px rgba(212,175,55,0.3);
     }
     .brand-emphasis { font-weight: 700; }
     
@@ -140,23 +137,15 @@
         margin-top: 60px;
     }
 
-    .footer-links {
-        margin: 20px 0;
-    }
-    .footer-links a {
-        color: var(--color-accent-gold);
-        text-decoration: none;
-        margin: 0 15px;
-    }
-
     @media (max-width: 768px) {
-        nav a { margin: 0 10px; }
-    }
-
-    @media (max-width: 480px) {
-        header h1 { font-size: 26px; }
-        .cta-button { width: 100%; }
-        nav a { display: block; margin: 5px 0; }
+        nav a { 
+            display: block; 
+            margin: 10px 0; 
+        }
+        .cta-button {
+            width: 100%;
+            max-width: 300px;
+        }
     }
     </style>
 </head>
@@ -190,18 +179,16 @@
                 <li><strong>Udobnost i sloboda pokreta:</strong> "Fit loss" kroj poboljšava opštu higijenu i smanjuje neprijatan osećaj trenja.</li>
             </ul>
 
-            <h3>Prednosti za Muškarce: Fokus na Plodnost i Higijenu</h3>
+            <h3>Prednosti za Muškarce</h3>
             <ul>
                 <li><strong>Prevencija Gljivičnih i Bakterijskih Infekcija:</strong> Uski veš zarobljava toplotu i vlagu, stvarajući idealne uslove za infekcije.</li>
                 <li><strong>Poboljšanje Plodnosti:</strong> Labav kroj pomaže u održavanju temperature oko testisa na optimalnom nivou.</li>
-                <li><strong>Naučni Dokazi:</strong> Studije pokazuju da muškarci koji nose labave bokserice imaju značajno veću koncentraciju spermatozoida.</li>
             </ul>
 
-            <h3>Prednosti za Žene: Fokus na Prevenciju Infekcija</h3>
+            <h3>Prednosti za Žene</h3>
             <ul>
-                <li><strong>Smanjen rizik od Vaginalnih Infekcija:</strong> Uska, sintetička odeća zadržava vlagu i toplotu, stvarajući idealno okruženje za gljivične infekcije.</li>
-                <li><strong>Regulacija vlage:</strong> Nošenje prozračnog donjeg veša od prirodnih materijala omogućava bolju ventilaciju.</li>
-                <li><strong>Higijena i Trenje:</strong> Labava odeća smanjuje iritaciju kože i omogućava provetravanje intimne zone.</li>
+                <li><strong>Smanjen rizik od Vaginalnih Infekcija:</strong> Uska, sintetička odeća zadržava vlagu i toplotu.</li>
+                <li><strong>Regulacija vlage:</strong> Nošenje prozračnog donjeg veša omogućava bolju ventilaciju.</li>
             </ul>
 
             <h3>Birajte Zdravlje</h3>
@@ -217,10 +204,6 @@
 </main>
 
 <footer>
-    <div class="footer-links">
-        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-        <a href="politika-privatnosti.html">Politika privatnosti</a>
-    </div>
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
