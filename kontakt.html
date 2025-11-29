@@ -312,26 +312,28 @@
             
             <div class="contact-form">
                 <h2 class="section-title">Pošaljite nam Poruku</h2>
-                <form action="mailto:ares.nyx.info@gmail.com" method="post" enctype="text/plain">
-    <input type="hidden" name="subject" value="Pitanje sa AresNyX sajta">
+         <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
     
     <div class="form-group">
         <label for="ime">Ime i Prezime</label>
-        <input type="text" id="ime" name="name" required>
+        <input type="text" id="ime" name="Ime i prezime" required>
     </div>
     
     <div class="form-group">
         <label for="email">Email Adresa</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="Email" required>
     </div>
     
     <div class="form-group">
         <label for="poruka">Vaša Poruka</label>
-        <textarea id="poruka" name="body" rows="5" required></textarea>
+        <textarea id="poruka" name="Poruka" rows="5" required></textarea>
     </div>
     
     <button type="submit" class="cta-button">Pošalji Poruku</button>
-                </form>
+         </form>
     
             </div>
         </div>
