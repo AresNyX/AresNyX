@@ -112,7 +112,7 @@
         margin-top: 40px;
     }
     .cta-button { 
-        padding: 15px 35px; 
+        padding: 15px 30px; 
         font-size: 1.1em; 
         cursor: pointer; 
         background: var(--color-button); 
@@ -124,6 +124,8 @@
         font-weight: 600;
         text-decoration: none;
         display: inline-block;
+        max-width: 280px;
+        width: 100%;
     }
     .cta-button:hover {
         background-color: #A84236;
@@ -137,15 +139,29 @@
         margin-top: 60px;
     }
 
+    .footer-links {
+        margin: 20px 0;
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
     @media (max-width: 768px) {
         nav a { 
             display: block; 
             margin: 10px 0; 
         }
         .cta-button {
-            width: 100%;
-            max-width: 300px;
+            max-width: 250px;
         }
+    }
+
+    @media (max-width: 480px) {
+        header h1 { font-size: 26px; }
+        nav a { display: block; margin: 5px 0; }
+        section { padding: 20px; }
     }
     </style>
 </head>
@@ -204,6 +220,10 @@
 </main>
 
 <footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
