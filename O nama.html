@@ -10,130 +10,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    :root {
-        --font-primary: 'Montserrat', sans-serif;
-        --color-dark-bg: #121212; 
-        --color-accent-gold: #D4AF37; 
-        --color-button: #C7574B;
-        --color-text-main: #333333; 
-        --color-light-bg: #f7f7f7; 
-    }
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --color-dark-bg: #121212; 
+    --color-accent-gold: #D4AF37; 
+    --color-button: #C7574B;
+    --color-text-main: #333333; 
+    --color-light-bg: #f7f7f7; 
+}
 
-    body { 
-        font-family: var(--font-primary); 
-        margin: 0; 
-        padding: 0; 
-        background: var(--color-light-bg); 
-        color: var(--color-text-main);
-        line-height: 1.6;
-    }
+body { 
+    font-family: var(--font-primary); 
+    margin: 0; 
+    padding: 0; 
+    background: var(--color-light-bg); 
+    color: var(--color-text-main);
+    line-height: 1.6;
+}
 
-    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+/* HEADER */
+header { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 40px 20px; 
+    text-align: center; 
+}
+header h1 { 
+    font-size: 32px;
+    color: var(--color-accent-gold); 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    margin: 0;
+}
+.brand-emphasis { font-weight: 700; }
 
-    /* HEADER */
-    header { 
-        background: var(--color-dark-bg); 
-        color: #fff; 
-        padding: 40px 20px; 
-        text-align: center; 
-    }
-    header h1 { 
-        font-size: 32px;
-        color: var(--color-accent-gold); 
-        letter-spacing: 2px; 
-        text-transform: uppercase;
-        margin: 0;
-        text-shadow: 0 0 10px rgba(212,175,55,0.3);
-    }
-    .brand-emphasis { font-weight: 700; }
-    
-    /* NAVIGACIJA */
-    nav {
-        background-color: var(--color-dark-bg);
-        padding: 10px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-    }
-    nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: 400;
-        font-size: 1em;
-        transition: color 0.3s;
-    }
-    nav a:hover {
-        color: var(--color-accent-gold);
-    }
+/* NAVIGACIJA */
+nav {
+    background-color: var(--color-dark-bg);
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+nav a:hover, nav a.active {
+    color: var(--color-accent-gold);
+}
 
-    /* MAIN CONTENT */
-    main { 
-        max-width: 900px; 
-        margin: 60px auto; 
-        padding: 0 20px; 
-    }
+/* MAIN CONTENT */
+main { 
+    max-width: 900px; 
+    margin: 60px auto; 
+    padding: 0 20px; 
+}
 
-    section {
-        margin-bottom: 60px;
-        padding: 30px;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    section h2 { 
-        text-align: center; 
-        font-size: 2em;
-        margin-bottom: 30px;
-        color: var(--color-button); 
-    }
-    section p { 
-        margin-bottom: 1.2em;
-    }
+section {
+    margin-bottom: 60px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+section h2 { 
+    text-align: center; 
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: var(--color-button); 
+}
+section p { 
+    margin-bottom: 1.2em;
+}
 
-    hr {
-        border: none; 
-        border-top: 1px solid #ddd; 
-        margin: 50px 0;
-    }
-
-    .mission-points {
-        display: flex;
-        justify-content: space-around;
-        gap: 30px;
-        margin-top: 40px;
-        text-align: center;
-    }
-    .mission-item {
-        flex: 1;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #eeeeee;
-        transition: transform 0.3s;
-    }
-    .mission-item:hover {
-        transform: translateY(-5px);
-    }
-    .mission-item i {
-        font-size: 3em;
-        color: var(--color-accent-gold);
-        margin-bottom: 15px;
-    }
-    .mission-item h3 {
-        font-size: 1.2em;
-        margin-top: 0;
-    }
+.mission-points {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+.mission-item {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eeeeee;
+}
+.mission-item i {
+    font-size: 3em;
+    color: var(--color-accent-gold);
+    margin-bottom: 15px;
+}
 
 .cta-container {
     text-align: center;
     margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
 }
-
 .cta-button { 
-    padding: 15px 30px; 
+    padding: 15px 35px; 
     font-size: 1.1em; 
     cursor: pointer; 
     background: var(--color-button); 
@@ -145,26 +123,32 @@
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
-    min-width: 200px;
-    text-align: center;
 }
-    .cta-button:hover {
-        background-color: #A84236;
-    }
+.cta-button:hover {
+    background-color: #A84236;
+}
 
-    footer { 
-        background: var(--color-dark-bg); 
-        color: #fff; 
-        padding: 30px 20px; 
-        text-align: center; 
-        margin-top: 60px;
-    }
+footer { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 30px 20px; 
+    text-align: center; 
+    margin-top: 60px;
+}
 
-    @media (max-width: 768px) {
-        .mission-points {
-            flex-direction: column;
-        }
+@media (max-width: 768px) {
+    .mission-points {
+        flex-direction: column;
     }
+    nav a { 
+        display: block; 
+        margin: 10px 0; 
+    }
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
 
     @media (max-width: 480px) {
         header h1 { font-size: 26px; }
