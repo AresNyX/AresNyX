@@ -172,11 +172,8 @@
         text-align: center;
         margin-top: 40px;
     }
-   .cta-button { 
-    padding: 15px 30px; 
-    font-size: 1.1em; 
-    cursor: pointer; 
-    background: var(--color-dark-bg);  /* ← TAMNA
+ .cta-button { 
+    background: #A84236;  /* ← TAMNO CRVENA */
     color: #fff; 
     border: none; 
     border-radius: 4px; 
@@ -187,28 +184,32 @@
     display: inline-block;
     max-width: 280px;
     width: 100%;
-   }
-    .cta-button:hover {
-        background-color: #A84236;
-    }
+}
+.cta-button:hover {
+    background-color: #8C352B;  /* ← TAMNIJA CRVENA */
+}
 
     footer { 
-        background: var(--color-dark-bg); 
-        color: #fff; 
-        padding: 30px 20px; 
-        text-align: center; 
-        margin-top: 60px;
-    }
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 30px 20px; 
+    text-align: center; 
+    margin-top: 60px;
+    font-size: 1.1em;  /* ← DODAJTE OVO - VECI FONT */
+    font-weight: 500;  /* ← DODAJTE OVO - DEBLJI FONT */
+}
 
-    .footer-links {
-        margin: 20px 0;
-    }
-    .footer-links a {
-        color: var(--color-accent-gold);
-        text-decoration: none;
-        margin: 0 15px;
-    }
+.footer-links {
+    margin: 20px 0;
+    font-size: 1.1em;  /* ← DODAJTE OVO */
+}
 
+.footer-links a {
+    color: var(--color-accent-gold);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;  /* ← DODAJTE OVO */
+}
     @media (max-width: 768px) {
         .features-grid {
             grid-template-columns: 1fr;
