@@ -26,7 +26,7 @@ Mini web sajt: AresNyX bokserice, landing + shop + EmailJS porudžbine
 - ✅ **Potpuno responzivan** dizajn
 - ✅ **SEO optimizovan** (meta tagovi, Open Graph)
 - ✅ **Accessibility** (100/100 Lighthouse)
-- ✅ **Brzo učitavanje** (Performance 83/100)
+- ✅ **Brzo učitavanje** (Performance 94/100)
 - ✅ **Funkcionalna korpa** sa localStorage
 - ✅ **Email notifikacije** za porudžbine
 - ✅ **Kontakt forma** sa FormSubmit
@@ -48,7 +48,7 @@ Mini web sajt: AresNyX bokserice, landing + shop + EmailJS porudžbine
 - Promenite boje kroz CSS custom properties u `:root`
 
 ## 📱 Performance
-- **Performance:** 83/100
+- **Performance:** 94/100
 - **Accessibility:** 100/100  
 - **Best Practices:** 100/100
 - **SEO:** 100/100
