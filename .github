@@ -1,0 +1,7 @@
+AresNyX/
+├── .github/
+│   └── workflows/
+│       └── custom-headers.yml    ← OVDE PODEŠAVAŠ HEADERS
+├── index.html
+├── shop.html
+└── ...
