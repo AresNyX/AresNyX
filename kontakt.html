@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AresNyX - Premium Donji Veš</title>
+    <title>AresNyX - Kontaktirajte Nas | Premium Donji Veš</title>
     
     <!-- Fontovi i eksterni CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- SEO META TAGOVI -->
-    <meta name="description" content="AresNyX - Premium donji veš za zdravlje i udobnost. Prirodni materijali kao pamuk, lan i bambus. Besplatna dostava.">
-    <meta name="keywords" content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus">
+    <meta name="description" content="Kontaktirajte AresNyX za sva pitanja o premium donjem vešu. Pišite nam ili pozovite na +381 64 8700220. Brzi odgovori.">
+    <meta name="keywords" content="kontakt AresNyX, pitanja donji veš, naručivanje, kupovina, podrška, telefon, email">
     <meta name="author" content="AresNyX">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="AresNyX - Premium Donji Veš">
-    <meta property="og:description" content="Zdravlje i udobnost donjeg veša od prirodnih materijala. Pamuk, lan i bambus za optimalnu ventilaciju.">
+    <meta property="og:title" content="AresNyX - Kontaktirajte Nas | Premium Donji Veš">
+    <meta property="og:description" content="Imate pitanja o našem donjem vešu? Kontaktirajte nas putem telefona, email-a ili kontakt forme.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/">
+    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/kontakt.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AresNyX">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
-    <meta name="twitter:description" content="Zdravlje i udobnost donjeg veša od prirodnih materijala.">
+    <meta name="twitter:title" content="AresNyX - Kontaktirajte Nas | Premium Donji Veš">
+    <meta name="twitter:description" content="Imate pitanja o našem donjem vešu? Kontaktirajte nas putem telefona, email-a ili kontakt forme.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
 
     <style>
@@ -36,12 +36,10 @@
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
         --color-accent-gold: #D4AF37; 
-        --color-button: #C7574B;
+        --color-button: #8C352B; /* TAMNIJA BOJA ZA BOLJI KONTRAST (WCAG AA) */
+        --color-button-hover: #6B281F; /* JOŠ TAMNIJI HOVER */
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
-        --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO - Kontrast sa #fff je 5.4:1 (PASS) */
-        --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover - Kontrast sa #fff je 6.7:1 (PASS) */
-    }
     }
 
     body { 
@@ -55,11 +53,11 @@
 
     h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
 
-    /* HEADER */
+    /* HEADER SA PODNASLOVOM */
     header { 
         background: var(--color-dark-bg); 
         color: #fff; 
-        padding: 40px 20px; 
+        padding: 25px 20px 10px 20px;
         text-align: center; 
     }
     header h1 { 
@@ -69,38 +67,57 @@
         text-transform: uppercase;
         margin: 0;
         text-shadow: 0 0 10px rgba(212,175,55,0.3);
+        line-height: 1.3;
     }
-    .brand-emphasis { font-weight: 700; }
+    .brand-emphasis { 
+        font-weight: 700; 
+        font-size: 1.2em;
+    }
+    .subtitle {
+        font-size: 0.8em;
+        color: #fff;
+        font-weight: 400;
+        letter-spacing: 1px;
+        display: block;
+        margin-top: 8px;
+    }
     
-    /* NAVIGACIJA */
+    /* NAVIGACIJA - POBOLJŠANA PREDSTUPNOST */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 10px 0;
+        padding: 8px 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
     }
     nav a {
         color: #fff;
         text-decoration: none;
-        margin: 0 15px;
+        margin: 0 10px;
         font-weight: 400;
         font-size: 1em;
-        transition: color 0.3s;
+        transition: all 0.3s;
+        padding: 5px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        min-height: 20px;
+        line-height: 1.4;
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
+        background-color: rgba(255, 255, 255, 0.08);
+        transform: translateY(-1px);
     }
 
     /* MAIN CONTENT */
     main { 
         max-width: 900px; 
-        margin: 60px auto; 
+        margin: 50px auto;
         padding: 0 20px; 
     }
 
     section {
-        margin-bottom: 60px;
-        padding: 30px;
+        margin-bottom: 50px;
+        padding: 25px;
         background-color: #ffffff;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -108,13 +125,14 @@
     section h2 { 
         text-align: center; 
         font-size: 2em;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         color: var(--color-button); 
     }
     section p { 
         margin-bottom: 1.2em;
     }
 
+    /* KONTAKT STILOVI */
     .contact-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -123,7 +141,15 @@
     }
 
     .contact-info {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+        color: var(--color-button);
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--color-accent-gold);
     }
 
     .contact-item {
@@ -133,6 +159,12 @@
         padding: 15px;
         border-radius: 8px;
         background: var(--color-light-bg);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .contact-item i {
@@ -157,10 +189,11 @@
     .contact-details p {
         margin: 0;
         color: #666;
+        font-size: 0.95em;
     }
 
     .contact-form {
-        padding: 20px;
+        padding: 15px;
     }
 
     .form-group {
@@ -169,50 +202,86 @@
 
     .form-group label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         font-weight: 600;
         color: var(--color-text-main);
+        font-size: 0.95em;
     }
 
     .form-group input,
     .form-group textarea {
         width: 100%;
-        padding: 12px;
+        padding: 12px 15px;
         border: 1px solid #ddd;
-        border-radius: 4px;
+        border-radius: 6px;
         font-family: var(--font-primary);
         font-size: 1em;
-        transition: border-color 0.3s;
+        transition: all 0.3s;
+        box-sizing: border-box;
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
         outline: none;
         border-color: var(--color-accent-gold);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
     }
 
     .form-group textarea {
         height: 120px;
         resize: vertical;
+        min-height: 100px;
     }
 
-  .cta-button { 
-        background: var(--color-button); /* Koristi novu varijablu */
+    /* DUGMAD - ISPRAVLJENO CENTRIRANJE TEKSTA */
+    .cta-container {
+        text-align: center;
+        margin-top: 40px;
+    }
+    
+    .cta-button, 
+    button.cta-button { 
+        background: var(--color-button);
         color: #fff; 
         border: none; 
-        border-radius: 4px; 
-        transition: background-color 0.3s;
+        border-radius: 6px;
+        transition: all 0.3s;
         text-transform: uppercase;
         font-weight: 600;
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         max-width: 280px;
         width: 100%;
-        padding: 15px 30px;
+        padding: 14px 25px;
         font-size: 1.1em;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 8px rgba(140, 53, 43, 0.25);
+        line-height: normal;
+        min-height: 50px;
+        text-align: center;
+        cursor: pointer;
+        font-family: var(--font-primary);
     }
-    .cta-button:hover {
-        background-color: var(--color-button-hover); /* Koristi novu varijablu za hover */
+    
+    .cta-button:hover,
+    button.cta-button:hover {
+        background-color: var(--color-button-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(107, 40, 31, 0.3);
+    }
+    
+    .cta-button:active,
+    button.cta-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(107, 40, 31, 0.2);
+    }
+    
+    .cta-button:focus,
+    button.cta-button:focus {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
     }
 
     .text-center {
@@ -222,37 +291,149 @@
     .lead {
         font-size: 1.1em;
         color: #666;
+        margin-bottom: 30px;
     }
 
     footer { 
         background: var(--color-dark-bg); 
         color: #fff; 
-        padding: 30px 20px; 
+        padding: 25px 20px; 
         text-align: center; 
-        margin-top: 60px;
+        margin-top: 50px;
+        font-size: 1em;
+        font-weight: 500;
     }
 
     .footer-links {
-        margin: 20px 0;
+        margin: 15px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
     }
+    
     .footer-links a {
         color: var(--color-accent-gold);
         text-decoration: none;
-        margin: 0 15px;
+        font-weight: 500;
+        padding: 4px 8px;
+        border-radius: 3px;
+        transition: background-color 0.3s;
     }
-
+    
+    .footer-links a:hover {
+        background-color: rgba(212, 175, 55, 0.1);
+    }
+    
+    /* RESPONSIVE STILOVI */
     @media (max-width: 768px) {
         .contact-container {
             grid-template-columns: 1fr;
+            gap: 30px;
         }
-        nav a { margin: 0 10px; }
+        
+        .contact-info,
+        .contact-form {
+            padding: 10px;
+        }
+        
+        /* NAVIGACIJA NA MOBILNOM */
+        nav a { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4px auto;
+            padding: 10px 15px;
+            width: 200px;
+            max-width: 85%;
+            text-align: center;
+            font-size: 1.05em;
+        }
+        
+        main { 
+            margin: 30px auto; 
+        }
+        
+        section {
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .cta-button,
+        button.cta-button {
+            max-width: 280px;
+            padding: 12px 22px;
+            font-size: 1em;
+        }
+        
+        .section-title {
+            font-size: 1.3em;
+        }
     }
 
     @media (max-width: 480px) {
-        header h1 { font-size: 26px; }
-        .cta-button { width: 100%; }
-        nav a { display: block; margin: 5px 0; }
+        header h1 { 
+            font-size: 26px; 
+        }
+        
+        .subtitle { 
+            font-size: 0.7em; 
+        }
+        
+        nav a {
+            padding: 8px 12px;
+            width: 180px;
+            margin: 3px auto;
+            font-size: 1em;
+        }
+        
+        .contact-item {
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            font-size: 1.3em;
+            margin-right: 12px;
+        }
+        
+        .footer-links {
+            gap: 6px;
+        }
+        
+        .footer-links a {
+            padding: 3px 6px;
+            font-size: 0.95em;
+        }
+        
+        section h2 {
+            font-size: 1.7em;
+        }
+        
+        .cta-button,
+        button.cta-button {
+            padding: 10px 20px;
+            min-height: 45px;
+            max-width: 260px;
+        }
+        
+        .lead {
+            font-size: 1em;
+        }
     }
+    
+    /* ANIMACIJE */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-section {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.2s;
+    }
+
     </style>
 </head>
 <body>
@@ -268,12 +449,12 @@
     <a href="index.html">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html">O Nama</a>
-    <a href="blog-zdravije-donjeg-vesa.html">Blog</a>
+    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
     <a href="kontakt.html" class="active">Kontakt</a>
 </nav>
 
 <main>
-    <section>
+    <section class="fade-in-section">
         <h2>Kontaktirajte AresNyX</h2>
         <p class="text-center lead">
             Bilo da imate pitanja o materijalima, naručivanju ili saradnji, naš tim je tu da vam pomogne.
@@ -318,31 +499,32 @@
             
             <div class="contact-form">
                 <h2 class="section-title">Pošaljite nam Poruku</h2>
-         <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-    <!-- HIDDEN FIELDS -->
-    <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
-    
-    <!-- VIDLJIVA POLJA -->
-    <div class="form-group">
-        <label for="ime">Ime i Prezime</label>
-        <input type="text" id="ime" name="Ime i prezime" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="email">Email Adresa</label>
-        <input type="email" id="email" name="Email" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="poruka">Vaša Poruka</label>
-        <textarea id="poruka" name="Poruka" rows="5" required></textarea>
-    </div>
-    
-    <button type="submit" class="cta-button">Pošalji Poruku</button>
-         </form>
-    
+                <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
+                    <!-- HIDDEN FIELDS -->
+                    <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- VIDLJIVA POLJA -->
+                    <div class="form-group">
+                        <label for="ime">Ime i Prezime</label>
+                        <input type="text" id="ime" name="Ime i prezime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Adresa</label>
+                        <input type="email" id="email" name="Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="poruka">Vaša Poruka</label>
+                        <textarea id="poruka" name="Poruka" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="cta-button">Pošalji Poruku</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -355,7 +537,6 @@
     </div>
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
-
 
 </body>
 </html>
