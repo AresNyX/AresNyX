@@ -14,6 +14,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
     
+    <!-- DODAT FONT AWESOME CSS LINK - POTREBAN ZA IKONICE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEbFlcgUj6HjpfSITnZIDyTzGYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- SEO META TAGOVI -->
     <meta name="description" 
           content="AresNyX premium donji veš od prirodnih materijala. 
@@ -141,7 +144,8 @@
     .hero-section {
         text-align: center;
         padding: 60px 30px;
-        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%);
+        /* KORIŠĆENJE VARIJABLI I PREDNOST GRADIENTA */
+        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
         color: white;
         border-radius: 12px;
     }
@@ -183,8 +187,9 @@
         text-align: center;
         margin-top: 40px;
     }
+ /* KORIŠĆENJE CSS VARIJABLE ZA POZADINU DUGMETA */
  .cta-button { 
-    background: #A84236;  /* ← TAMNO CRVENA */
+    background: var(--color-button); /* PROMENJENO: Korišćenje CSS varijable */
     color: #fff; 
     border: none; 
     border-radius: 4px; 
@@ -195,9 +200,11 @@
     display: inline-block;
     max-width: 280px;
     width: 100%;
+    padding: 15px 30px; /* Dodat padding za bolji izgled */
+    font-size: 1.1em; /* Dodat font-size za bolju čitljivost */
 }
 .cta-button:hover {
-    background-color: #8C352B;  /* ← TAMNIJA CRVENA */
+    background-color: #8C352B;  /* ← Zadržana malo tamnija boja za hover */
 }
 
     footer { 
@@ -251,10 +258,16 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0; 
+/* DODATO: PRIMENA FADE-IN ANIMACIJE NA SEKCIJE */
+.fade-in-section {
+    animation: fadeIn 0.8s ease-out forwards; /* Malo duža animacija */
+    opacity: 0; /* Početna nevidljivost */
+    /* Kašnjenje animacije za svaku sekciju */
 }
+.fade-in-section:nth-child(1) { animation-delay: 0.2s; }
+.fade-in-section:nth-child(2) { animation-delay: 0.4s; }
+.fade-in-section:nth-child(3) { animation-delay: 0.6s; }
+
         .header-logo {
     height: 100px;
     margin-bottom: 25px;
@@ -284,7 +297,8 @@
 </nav>
 
 <main>
- <section class="hero-section" fetchpriority="high" style="background: #121212">
+    <!-- UKLONJEN INLINE STYLE I DODAT CLASS ZA ANIMACIJU -->
+ <section class="hero-section fade-in-section" fetchpriority="high">
     <h1>Premium Donji Veš</h1>
     <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
     <div class="cta-container">
@@ -292,18 +306,21 @@
     </div>
  </section>
 
-    <section>
+    <!-- DODAT CLASS ZA ANIMACIJU -->
+    <section class="fade-in-section">
         <h2>Zašto AresNyX?</h2>
         <div class="features-grid">
             <div class="feature-item">
                 <i class="fas fa-leaf"></i>
                 <h3>Prirodni Materijali</h3>
-                <p>100% pamuk, lan i svila bez ikakvih veštačkih dodataka</p>
+                <!-- PROMENJENO: USKLAĐENO "svila" sa "bambus" iz meta opisa -->
+                <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
             </div>
             <div class="feature-item">
                 <i class="fas fa-heart"></i>
                 <h3>Zdravstvene Prednosti</h3>
-                <p>Labav fit loss kroj koji štiti vaše zdravlje</p>
+                <!-- PROMENJENO: Korišćen jasniji izraz "Opušten kroj" -->
+                <p>Opušten kroj koji štiti vaše zdravlje</p>
             </div>
             <div class="feature-item">
                 <i class="fas fa-shield-alt"></i>
@@ -313,7 +330,8 @@
         </div>
     </section>
 
-    <section>
+    <!-- DODAT CLASS ZA ANIMACIJU -->
+    <section class="fade-in-section">
         <h2>Naša Filozofija</h2>
         <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
         
