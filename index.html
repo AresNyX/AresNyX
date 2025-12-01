@@ -99,10 +99,10 @@
         margin-top: 8px;
     }
     
-    /* NAVIGACIJA - POVEĆAN RAZMAK IZMEĐU LINKOVA */
+    /* NAVIGACIJA - SMANJEN RAZMAK NA DESKTOPU */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 15px 0; /* POVEĆAN PADDING */
+        padding: 10px 0; /* SMANJENO SA 15px */
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
     }
@@ -110,7 +110,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 25px; /* UMESTO MARGINA, KORISTIMO GAP ZA JEDNOLIK RAZMAK */
+        gap: 15px; /* SMANJENO SA 25px */
     }
     nav a {
         color: #fff;
@@ -118,13 +118,13 @@
         font-weight: 400;
         font-size: 1em;
         transition: color 0.3s;
-        padding: 8px 12px; /* DODAT PADDING ZA VEĆU KLIK OBLAST */
+        padding: 6px 10px; /* SMANJEN PADDING */
         border-radius: 4px;
         white-space: nowrap;
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
-        background-color: rgba(255, 255, 255, 0.05); /* SUPTILNA POZADINA NA HOVER */
+        background-color: rgba(255, 255, 255, 0.05);
     }
 
     /* MAIN CONTENT */
@@ -197,10 +197,10 @@
         margin-top: 40px;
     }
     .cta-button { 
-        background: var(--color-button); /* TAMNIJA BOJA ZA BOLJI KONTRAST */
+        background: var(--color-button);
         color: #fff; 
         border: none; 
-        border-radius: 6px; /* ZAOBLJENIJA IVICA */
+        border-radius: 6px;
         transition: all 0.3s;
         text-transform: uppercase;
         font-weight: 600;
@@ -208,7 +208,7 @@
         display: inline-block;
         max-width: 280px;
         width: 100%;
-        padding: 16px 30px; /* POVEĆAN PADDING ZA VEĆU KLIK OBLAST */
+        padding: 16px 30px;
         font-size: 1.1em;
         letter-spacing: 0.5px;
         box-shadow: 0 4px 8px rgba(168, 60, 48, 0.2);
@@ -238,13 +238,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15px; /* POVEĆAN RAZMAK */
+        gap: 10px; /* SMANJEN RAZMAK */
     }
     .footer-links a {
         color: var(--color-accent-gold);
         text-decoration: none;
         font-weight: 500;
-        padding: 5px 10px; /* DODAT PADDING ZA LAKŠI KLIK */
+        padding: 5px 10px;
         border-radius: 3px;
     }
     .footer-links a:hover {
@@ -256,16 +256,16 @@
             grid-template-columns: 1fr;
         }
         .nav-links {
-            gap: 15px;
+            gap: 8px; /* SMANJENO NA MOBILNOM */
             flex-direction: column;
             align-items: center;
         }
         nav a {
-            padding: 12px 20px; /* VEĆE DUGME NA MOBILNOM */
-            width: 200px;
+            padding: 10px 15px; /* NEŠTO MANJE NA MOBILNOM */
+            width: 180px;
             max-width: 80%;
             text-align: center;
-            margin: 3px 0; /* DODATNA MARGINA IZMEĐU */
+            margin: 2px 0; /* SMANJENA MARGINA */
         }
         .hero-section {
             padding: 40px 20px;
@@ -282,11 +282,11 @@
         }
         .hero-section h1 { font-size: 2em; }
         .footer-links {
-            gap: 10px;
+            gap: 8px;
         }
         nav a {
-            padding: 10px 15px;
-            width: 180px;
+            padding: 8px 12px;
+            width: 160px;
         }
     }
     
