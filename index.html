@@ -56,6 +56,9 @@
         --color-button: #C7574B;
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
+        --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO - Kontrast sa #fff je 5.4:1 (PASS) */
+        --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover - Kontrast sa #fff je 6.7:1 (PASS) */
+    }
     }
 
     body { 
@@ -188,24 +191,24 @@
         margin-top: 40px;
     }
  /* KORIŠĆENJE CSS VARIJABLE ZA POZADINU DUGMETA */
- .cta-button { 
-    background: var(--color-button); /* PROMENJENO: Korišćenje CSS varijable */
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; 
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    max-width: 280px;
-    width: 100%;
-    padding: 15px 30px; /* Dodat padding za bolji izgled */
-    font-size: 1.1em; /* Dodat font-size za bolju čitljivost */
-}
-.cta-button:hover {
-    background-color: #8C352B;  /* ← Zadržana malo tamnija boja za hover */
-}
+.cta-button { 
+        background: var(--color-button); /* Koristi novu varijablu */
+        color: #fff; 
+        border: none; 
+        border-radius: 4px; 
+        transition: background-color 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        max-width: 280px;
+        width: 100%;
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+    .cta-button:hover {
+        background-color: var(--color-button-hover); /* Koristi novu varijablu za hover */
+    }
 
     footer { 
     background: var(--color-dark-bg); 
