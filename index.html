@@ -48,229 +48,9 @@
           content="Premium donji veš od prirodnih materijala 
                    za zdravlje i udobnost.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
-    <style>
-    :root {
-        --font-primary: 'Montserrat', sans-serif;
-        --color-dark-bg: #121212; 
-        --color-accent-gold: #D4AF37; 
-        --color-button: #C7574B;
-        --color-text-main: #333333; 
-        --color-light-bg: #f7f7f7; 
-        --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO - Kontrast sa #fff je 5.4:1 (PASS) */
-        --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover - Kontrast sa #fff je 6.7:1 (PASS) */
-    }
-    }
-
-    body { 
-        font-family: var(--font-primary); 
-        margin: 0; 
-        padding: 0; 
-        background: var(--color-light-bg); 
-        color: var(--color-text-main);
-        line-height: 1.6;
-    }
-
-    h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
-
-    /* HEADER SA PODNASLOVOM */
-    header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 25px 20px 15px 20px; /* ← JOŠ MANJE */
-    text-align: center; 
-    }
-    header h1 { 
-        font-size: 32px;
-        color: var(--color-accent-gold); 
-        letter-spacing: 2px; 
-        text-transform: uppercase;
-        margin: 0;
-        text-shadow: 0 0 10px rgba(212,175,55,0.3);
-        line-height: 1.3;
-    }
-    .brand-emphasis { 
-        font-weight: 700; 
-        font-size: 1.2em;
-    }
-    .subtitle {
-        font-size: 0.8em;
-        color: #fff;
-        font-weight: 400;
-        letter-spacing: 1px;
-        display: block;
-        margin-top: 8px;
-    }
     
-    /* NAVIGACIJA */
-    nav {
-        background-color: var(--color-dark-bg);
-        padding: 10px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-    }
-    nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: 400;
-        font-size: 1em;
-        transition: color 0.3s;
-    }
-    nav a:hover, nav a.active {
-        color: var(--color-accent-gold);
-    }
-
-    /* MAIN CONTENT */
-    main { 
-        max-width: 900px; 
-        margin: 60px auto; 
-        padding: 0 20px; 
-    }
-
-    section {
-        margin-bottom: 60px;
-        padding: 30px;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    section h2 { 
-        text-align: center; 
-        font-size: 2em;
-        margin-bottom: 30px;
-        color: var(--color-button); 
-    }
-    section p { 
-        margin-bottom: 1.2em;
-    }
-
-    .hero-section {
-        text-align: center;
-        padding: 60px 30px;
-        /* KORIŠĆENJE VARIJABLI I PREDNOST GRADIENTA */
-        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
-        color: white;
-        border-radius: 12px;
-    }
-    .hero-section h1 {
-        color: var(--color-accent-gold);
-        font-size: 2.5em;
-        margin-bottom: 20px;
-    }
-    .hero-section p {
-        font-size: 1.2em;
-        margin-bottom: 30px;
-        color: #ddd;
-    }
-
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-    }
-    .feature-item {
-        text-align: center;
-        padding: 25px;
-        border-radius: 8px;
-        border: 1px solid #eeeeee;
-        transition: transform 0.3s;
-    }
-    .feature-item:hover {
-        transform: translateY(-5px);
-    }
-    .feature-item i {
-        font-size: 2.5em;
-        color: var(--color-accent-gold);
-        margin-bottom: 15px;
-    }
-
-    /* DUGMAD */
-    .cta-container {
-        text-align: center;
-        margin-top: 40px;
-    }
- /* KORIŠĆENJE CSS VARIJABLE ZA POZADINU DUGMETA */
-.cta-button { 
-        background: var(--color-button); /* Koristi novu varijablu */
-        color: #fff; 
-        border: none; 
-        border-radius: 4px; 
-        transition: background-color 0.3s;
-        text-transform: uppercase;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        max-width: 280px;
-        width: 100%;
-        padding: 15px 30px;
-        font-size: 1.1em;
-    }
-    .cta-button:hover {
-        background-color: var(--color-button-hover); /* Koristi novu varijablu za hover */
-    }
-
-    footer { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 30px 20px; 
-    text-align: center; 
-    margin-top: 60px;
-    font-size: 1.1em;  /* ← DODAJTE OVO - VECI FONT */
-    font-weight: 500;  /* ← DODAJTE OVO - DEBLJI FONT */
-}
-
-.footer-links {
-    margin: 20px 0;
-    font-size: 1.1em;
-    display: flex;           /* ← DODAJTE OVO */
-    flex-direction: column;  /* ← DODAJTE OVO - vertikalno */
-    align-items: center;     /* ← DODAJTE OVO - centrirano */
-    gap: 10px;              /* ← DODAJTE OVO - manji razmak */
-}
-.footer-links a {
-    color: var(--color-accent-gold);
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;  /* ← DODAJTE OVO */
-}
-    @media (max-width: 768px) {
-        .features-grid {
-            grid-template-columns: 1fr;
-        }
-        nav a { 
-            display: block; 
-            margin: 10px 0; 
-        }
-    }
-
-    @media (max-width: 480px) {
-        header h1 { font-size: 26px; }
-        .subtitle { font-size: 0.7em; }
-        .cta-button { 
-            max-width: 250px;
-            padding: 12px 25px;
-            font-size: 1em;
-        }
-        nav a { display: block; margin: 5px 0; }
-        .hero-section h1 { font-size: 2em; }
-        .hero-section { padding: 40px 20px; }
-    }
-        @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* DODATO: PRIMENA FADE-IN ANIMACIJE NA SEKCIJE */
-.fade-in-section {
-    animation: fadeIn 0.8s ease-out forwards; /* Malo duža animacija */
-    opacity: 0; /* Početna nevidljivost */
-    /* Kašnjenje animacije za svaku sekciju */
-}
-.fade-in-section:nth-child(1) { animation-delay: 0.2s; }
-.fade-in-section:nth-child(2) { animation-delay: 0.4s; }
-.fade-in-section:nth-child(3) { animation-delay: 0.6s; }
-    <style>
+     
+            <style>
     :root {
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
@@ -324,24 +104,28 @@
     /* NAVIGACIJA */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 10px 0;
+        padding: 10px 0; /* Ostavljamo ovaj padding da drži nav otvorenim */
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
     }
     nav a {
         color: #fff;
         text-decoration: none;
-        margin: 0 15px;
+        margin: 0 15px; /* Horizontalni margin za razmak između linkova */
         font-weight: 400;
         font-size: 1em;
         transition: color 0.3s;
-        /* --- DODATO/ISPRAVLJENO ZA TAP TARGET --- */
-        display: inline-block; 
-        padding: 10px 15px;   
-        min-width: 44px;      
-        min-height: 44px;     
+        
+        /* --- PROMENE ZA TAP TARGET SA MINIMALNIM UVEĆANJEM VISINE --- */
+        display: inline-flex; /* Omogućava flex ponašanje unutar inline bloka */
+        align-items: center; /* Vertikalno centrira tekst */
+        justify-content: center; /* Horizontalno centrira tekst */
+
+        min-width: 44px;      /* Minimalna širina mete za dodir */
+        min-height: 44px;     /* Minimalna visina mete za dodir */
         box-sizing: border-box; 
-        /* --- KRAJ DODATO/ISPRAVLJENO --- */
+        padding: 0 5px;       /* Samo mali horizontalni padding za tekst, vertikalni je min-height */
+        /* --- KRAJ PROMENA --- */
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
@@ -432,7 +216,7 @@
         font-size: 1.1em;
     }
     .cta-button:hover {
-        background-color: var(--color-button-hover); /* Korišćenje varijable */
+        background-color: var(--color-button-hover); 
     }
 
     footer { 
@@ -456,15 +240,14 @@
     .footer-links a {
         color: var(--color-accent-gold);
         text-decoration: none;
-        /* margin: 0 15px; - UKLONJEN JER FLEX + GAP PREUZIMA RAZMAK */
         font-weight: 500;  
-        /* --- DODATO/ISPRAVLJENO ZA TAP TARGET --- */
+        /* --- PROMENE ZA FOOTER LINKOVE (Manji uticaj na layout nego nav, veći padding je ok) --- */
         display: inline-block; 
-        padding: 8px 15px;    
+        padding: 8px 15px;    /* Zadržavamo izdašniji padding jer ne utiče na "above the fold" */
         min-width: 44px;      
         min-height: 44px;     
         box-sizing: border-box; 
-        /* --- KRAJ DODATO/ISPRAVLJENO --- */
+        /* --- KRAJ PROMENA --- */
     }
     @media (max-width: 768px) {
         .features-grid {
@@ -473,8 +256,8 @@
         nav a { 
             display: block; 
             margin: 10px 0; 
-            /* Min-width/height i padding se već primenjuju, samo prilagodite margin ako treba */
-            padding: 12px 15px; /* Možda malo veći padding za lakši dodir na mobilnim */
+            /* Na mobilnim se može vratiti na veći padding, jer su linkovi stackovani */
+            padding: 12px 15px; 
         }
     }
 
@@ -495,7 +278,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* DODATO: PRIMENA FADE-IN ANIMACIJE NA SEKCIJE */
     .fade-in-section {
         animation: fadeIn 0.8s ease-out forwards; 
         opacity: 0; 
@@ -511,7 +293,7 @@
         margin-left: auto;
         margin-right: auto;
     }
-    </style>
+            </style>
 </head>
 <body>
 
