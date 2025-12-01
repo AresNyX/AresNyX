@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Premium Donji Veš</title>
     
-    <!-- Fontovi i eksterni CSS -->
+    <!-- OPTIMIZOVANI FONTOVI -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- DODAT FONT AWESOME CSS LINK - POTREBAN ZA IKONICE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEbFlcgUj6HjpfSITnZIDyTzGYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- UKLONJEN FONT AWESOME - ZAMENJEN SA INLINE SVG -->
     
     <!-- SEO META TAGOVI -->
     <meta name="description" 
@@ -53,8 +50,8 @@
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
         --color-accent-gold: #D4AF37; 
-        --color-button: #8C352B; /* TAMNIJA BOJA ZA BOLJI KONTRAST (WCAG AA) */
-        --color-button-hover: #6B281F; /* JOŠ TAMNIJI HOVER */
+        --color-button: #8C352B;
+        --color-button-hover: #6B281F;
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
     }
@@ -70,11 +67,11 @@
 
     h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
 
-    /* HEADER SA PODNASLOVOM */
+    /* HEADER */
     header { 
         background: var(--color-dark-bg); 
         color: #fff; 
-        padding: 25px 20px 10px 20px; /* SMANJEN DONJI PADDING */
+        padding: 25px 20px 10px 20px;
         text-align: center; 
     }
     header h1 { 
@@ -99,21 +96,21 @@
         margin-top: 8px;
     }
     
-    /* NAVIGACIJA - POBOLJŠANA PREDSTUPNOST */
+    /* NAVIGACIJA */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 8px 0; /* SMANJENO */
+        padding: 8px 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
     }
     nav a {
         color: #fff;
         text-decoration: none;
-        margin: 0 10px; /* SMANJEN RAZMAK */
+        margin: 0 10px;
         font-weight: 400;
         font-size: 1em;
         transition: all 0.3s;
-        padding: 5px 8px; /* DODAT PADDING ZA VEĆU KLIK OBLAST */
+        padding: 5px 8px;
         border-radius: 4px;
         display: inline-block;
         min-height: 20px;
@@ -121,19 +118,19 @@
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
-        background-color: rgba(255, 255, 255, 0.08); /* SUPTILNA POZADINA */
+        background-color: rgba(255, 255, 255, 0.08);
         transform: translateY(-1px);
     }
 
     /* MAIN CONTENT */
     main { 
         max-width: 900px; 
-        margin: 50px auto; /* SMANJENA MARGINA */
+        margin: 50px auto;
         padding: 0 20px; 
     }
 
     section {
-        margin-bottom: 50px; /* SMANJENO */
+        margin-bottom: 50px;
         padding: 25px;
         background-color: #ffffff;
         border-radius: 8px;
@@ -151,14 +148,14 @@
 
     .hero-section {
         text-align: center;
-        padding: 50px 25px; /* SMANJEN PADDING */
+        padding: 50px 25px;
         background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
         color: white;
         border-radius: 12px;
     }
     .hero-section h1 {
         color: var(--color-accent-gold);
-        font-size: 2.3em; /* NEŠTO MANJE */
+        font-size: 2.3em;
         margin-bottom: 15px;
     }
     .hero-section p {
@@ -183,13 +180,23 @@
     .feature-item:hover {
         transform: translateY(-5px);
     }
-    .feature-item i {
-        font-size: 2.3em;
-        color: var(--color-accent-gold);
-        margin-bottom: 12px;
+    
+    /* INLINE SVG IKONICE - OPTIMIZOVANO */
+    .icon-svg {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 12px;
+        display: block;
+    }
+    .icon-svg path {
+        fill: var(--color-accent-gold);
+        transition: fill 0.3s;
+    }
+    .feature-item:hover .icon-svg path {
+        fill: #b8941f; /* malo tamnija zlatna */
     }
 
-    /* DUGMAD - ISPRAVLJENO CENTRIRANJE TEKSTA */
+    /* DUGMAD */
     .cta-container {
         text-align: center;
         margin-top: 35px;
@@ -203,16 +210,16 @@
         text-transform: uppercase;
         font-weight: 600;
         text-decoration: none;
-        display: inline-flex; /* PROMENJENO: flex za bolje centriranje */
-        align-items: center; /* VERTIKALNO CENTRIRANJE */
-        justify-content: center; /* HORIZONTALNO CENTRIRANJE */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         max-width: 280px;
         width: 100%;
         padding: 14px 25px;
         font-size: 1.1em;
         letter-spacing: 0.5px;
         box-shadow: 0 4px 8px rgba(140, 53, 43, 0.25);
-        line-height: normal; /* UKLONJENO: line-height: 1.4 */
+        line-height: normal;
         min-height: 50px;
         text-align: center;
     }
@@ -266,12 +273,11 @@
             gap: 20px;
         }
         
-        /* NAVIGACIJA NA MOBILNOM - BOLJA PREDSTUPNOST */
         nav a { 
-            display: flex; /* PROMENJENO: flex za centriranje */
+            display: flex;
             align-items: center;
             justify-content: center;
-            margin: 4px auto; /* CENTRIRANO SA MANJIM RAZMAKOM */
+            margin: 4px auto;
             padding: 10px 15px;
             width: 200px;
             max-width: 85%;
@@ -345,6 +351,11 @@
             padding: 10px 20px;
             min-height: 45px;
         }
+        
+        .icon-svg {
+            width: 40px;
+            height: 40px;
+        }
     }
     
     /* ANIMACIJE */
@@ -356,6 +367,7 @@
     .fade-in-section {
         animation: fadeIn 0.8s ease-out forwards;
         opacity: 0;
+        will-change: opacity, transform;
     }
     .fade-in-section:nth-child(1) { animation-delay: 0.2s; }
     .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
@@ -363,13 +375,13 @@
 
     /* LOGO */
     .header-logo {
-        height: 90px; /* NEŠTO MANJE */
+        height: 90px;
         margin-bottom: 20px;
         display: block;
         margin-left: auto;
         margin-right: auto;
+        loading: lazy;
     }
-
     </style>
 </head>
 <body>
@@ -382,8 +394,8 @@
     </h1>
 </header>
 
-<nav>
-    <a href="index.html" class="active">Početna</a>
+<nav aria-label="Glavna navigacija">
+    <a href="index.html" class="active" aria-current="page">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html">O Nama</a>
     <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
@@ -403,17 +415,23 @@
         <h2>Zašto AresNyX?</h2>
         <div class="features-grid">
             <div class="feature-item">
-                <i class="fas fa-leaf"></i>
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
+                </svg>
                 <h3>Prirodni Materijali</h3>
                 <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
             </div>
             <div class="feature-item">
-                <i class="fas fa-heart"></i>
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
+                </svg>
                 <h3>Zdravstvene Prednosti</h3>
                 <p>Opušten kroj koji štiti vaše zdravlje</p>
             </div>
             <div class="feature-item">
-                <i class="fas fa-shield-alt"></i>
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
+                </svg>
                 <h3>Proizvodnja u Srbiji</h3>
                 <p>Kvalitet koji potiče iz naše zemlje</p>
             </div>
