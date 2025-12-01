@@ -53,8 +53,8 @@
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
         --color-accent-gold: #D4AF37; 
-        --color-button: #A83C30; /* TAMNIJA BOJA ZA BOLJI KONTRAST */
-        --color-button-hover: #8C2A20; /* JOŠ TAMNIJI HOVER */
+        --color-button: #8C352B; /* TAMNIJA BOJA ZA BOLJI KONTRAST (WCAG AA) */
+        --color-button-hover: #6B281F; /* JOŠ TAMNIJI HOVER */
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
     }
@@ -72,10 +72,10 @@
 
     /* HEADER SA PODNASLOVOM */
     header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 25px 20px 15px 20px;
-    text-align: center; 
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 25px 20px 10px 20px; /* SMANJEN DONJI PADDING */
+        text-align: center; 
     }
     header h1 { 
         font-size: 32px;
@@ -99,44 +99,42 @@
         margin-top: 8px;
     }
     
-    /* NAVIGACIJA - SMANJEN RAZMAK NA DESKTOPU */
+    /* NAVIGACIJA - POBOLJŠANA PREDSTUPNOST */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 10px 0; /* SMANJENO SA 15px */
+        padding: 8px 0; /* SMANJENO */
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
-    }
-    .nav-links {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px; /* SMANJENO SA 25px */
     }
     nav a {
         color: #fff;
         text-decoration: none;
+        margin: 0 10px; /* SMANJEN RAZMAK */
         font-weight: 400;
         font-size: 1em;
-        transition: color 0.3s;
-        padding: 6px 10px; /* SMANJEN PADDING */
+        transition: all 0.3s;
+        padding: 5px 8px; /* DODAT PADDING ZA VEĆU KLIK OBLAST */
         border-radius: 4px;
-        white-space: nowrap;
+        display: inline-block;
+        min-height: 20px;
+        line-height: 1.4;
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgba(255, 255, 255, 0.08); /* SUPTILNA POZADINA */
+        transform: translateY(-1px);
     }
 
     /* MAIN CONTENT */
     main { 
         max-width: 900px; 
-        margin: 60px auto; 
+        margin: 50px auto; /* SMANJENA MARGINA */
         padding: 0 20px; 
     }
 
     section {
-        margin-bottom: 60px;
-        padding: 30px;
+        margin-bottom: 50px; /* SMANJENO */
+        padding: 25px;
         background-color: #ffffff;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -144,7 +142,7 @@
     section h2 { 
         text-align: center; 
         font-size: 2em;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         color: var(--color-button); 
     }
     section p { 
@@ -153,31 +151,31 @@
 
     .hero-section {
         text-align: center;
-        padding: 60px 30px;
+        padding: 50px 25px; /* SMANJEN PADDING */
         background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
         color: white;
         border-radius: 12px;
     }
     .hero-section h1 {
         color: var(--color-accent-gold);
-        font-size: 2.5em;
-        margin-bottom: 20px;
+        font-size: 2.3em; /* NEŠTO MANJE */
+        margin-bottom: 15px;
     }
     .hero-section p {
-        font-size: 1.2em;
-        margin-bottom: 30px;
+        font-size: 1.1em;
+        margin-bottom: 25px;
         color: #ddd;
     }
 
     .features-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
+        gap: 25px;
+        margin-top: 35px;
     }
     .feature-item {
         text-align: center;
-        padding: 25px;
+        padding: 22px;
         border-radius: 8px;
         border: 1px solid #eeeeee;
         transition: transform 0.3s;
@@ -186,18 +184,18 @@
         transform: translateY(-5px);
     }
     .feature-item i {
-        font-size: 2.5em;
+        font-size: 2.3em;
         color: var(--color-accent-gold);
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
-    /* DUGMAD - POBOLJŠAN KONTRAST */
+    /* DUGMAD - POBOLJŠAN KONTRAST I VEĆA KLIK OBLAST */
     .cta-container {
         text-align: center;
-        margin-top: 40px;
+        margin-top: 35px;
     }
     .cta-button { 
-        background: var(--color-button);
+        background: var(--color-button); /* TAMNIJA BOJA - BOLJI KONTRAST */
         color: #fff; 
         border: none; 
         border-radius: 6px;
@@ -208,88 +206,138 @@
         display: inline-block;
         max-width: 280px;
         width: 100%;
-        padding: 16px 30px;
+        padding: 14px 25px; /* OPTIMALNI PADDING */
         font-size: 1.1em;
         letter-spacing: 0.5px;
-        box-shadow: 0 4px 8px rgba(168, 60, 48, 0.2);
+        box-shadow: 0 4px 8px rgba(140, 53, 43, 0.25);
+        line-height: 1.4;
+        min-height: 50px; /* MINIMALNA VISINA ZA LAKŠI KLIK */
     }
     .cta-button:hover {
         background-color: var(--color-button-hover);
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(140, 42, 32, 0.25);
+        box-shadow: 0 6px 12px rgba(107, 40, 31, 0.3);
     }
     .cta-button:active {
         transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(107, 40, 31, 0.2);
+    }
+    .cta-button:focus {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
     }
 
     footer { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 30px 20px; 
-    text-align: center; 
-    margin-top: 60px;
-    font-size: 1.1em;
-    font-weight: 500;
+        background: var(--color-dark-bg); 
+        color: #fff; 
+        padding: 25px 20px; 
+        text-align: center; 
+        margin-top: 50px;
+        font-size: 1em;
+        font-weight: 500;
     }
 
     .footer-links {
-        margin: 20px 0;
-        font-size: 1.1em;
+        margin: 15px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 6px; /* SMANJEN RAZMAK */
+        gap: 8px;
     }
     .footer-links a {
         color: var(--color-accent-gold);
         text-decoration: none;
         font-weight: 500;
-        padding: 5px 10px;
+        padding: 4px 8px;
         border-radius: 3px;
+        transition: background-color 0.3s;
     }
     .footer-links a:hover {
         background-color: rgba(212, 175, 55, 0.1);
     }
     
+    /* RESPONSIVE STILOVI */
     @media (max-width: 768px) {
         .features-grid {
             grid-template-columns: 1fr;
+            gap: 20px;
         }
-        .nav-links {
-            gap: 6px; /* SMANJENO NA MOBILNOM */
-            flex-direction: column;
-            align-items: center;
-        }
-        nav a {
-            padding: 8px 12px; /* NEŠTO MANJE NA MOBILNOM */
-            width: 180px;
-            max-width: 80%;
+        
+        /* NAVIGACIJA NA MOBILNOM - BOLJA PREDSTUPNOST */
+        nav a { 
+            display: block; 
+            margin: 4px auto; /* CENTRIRANO SA MANJIM RAZMAKOM */
+            padding: 10px 15px;
+            width: 200px;
+            max-width: 85%;
             text-align: center;
-            margin: 2px 0; /* SMANJENA MARGINA */
+            font-size: 1.05em; /* NEŠTO VEĆI FONT */
         }
+        
         .hero-section {
             padding: 40px 20px;
+        }
+        .hero-section h1 {
+            font-size: 2em;
+        }
+        
+        main { 
+            margin: 30px auto; 
+        }
+        
+        section {
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .cta-button {
+            max-width: 260px;
+            padding: 12px 22px;
+            font-size: 1em;
         }
     }
 
     @media (max-width: 480px) {
-        header h1 { font-size: 26px; }
-        .subtitle { font-size: 0.7em; }
-        .cta-button { 
-            max-width: 250px;
-            padding: 14px 25px;
-            font-size: 1em;
+        header h1 { 
+            font-size: 26px; 
         }
-        .hero-section h1 { font-size: 2em; }
-        .footer-links {
-            gap: 8px;
+        .subtitle { 
+            font-size: 0.7em; 
         }
+        
         nav a {
             padding: 8px 12px;
-            width: 160px;
+            width: 180px;
+            margin: 3px auto;
+            font-size: 1em;
+        }
+        
+        .hero-section h1 { 
+            font-size: 1.8em; 
+        }
+        .hero-section p {
+            font-size: 1em;
+        }
+        
+        .footer-links {
+            gap: 6px;
+        }
+        
+        .footer-links a {
+            padding: 3px 6px;
+            font-size: 0.95em;
+        }
+        
+        .feature-item {
+            padding: 18px;
+        }
+        
+        section h2 {
+            font-size: 1.7em;
         }
     }
     
+    /* ANIMACIJE */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -303,9 +351,10 @@
     .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
     .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
 
+    /* LOGO */
     .header-logo {
-        height: 100px;
-        margin-bottom: 25px;
+        height: 90px; /* NEŠTO MANJE */
+        margin-bottom: 20px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -324,13 +373,11 @@
 </header>
 
 <nav>
-    <div class="nav-links">
-        <a href="index.html" class="active">Početna</a>
-        <a href="shop.html">Shop</a>
-        <a href="o-nama.html">O Nama</a>
-        <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
-        <a href="kontakt.html">Kontakt</a>
-    </div>
+    <a href="index.html" class="active">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
 </nav>
 
 <main>
