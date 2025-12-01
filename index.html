@@ -53,7 +53,8 @@
         --font-primary: 'Montserrat', sans-serif;
         --color-dark-bg: #121212; 
         --color-accent-gold: #D4AF37; 
-        --color-button: #C7574B;
+        --color-button: #A83C30; /* TAMNIJA BOJA ZA BOLJI KONTRAST */
+        --color-button-hover: #8C2A20; /* JOŠ TAMNIJI HOVER */
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
     }
@@ -73,7 +74,7 @@
     header { 
     background: var(--color-dark-bg); 
     color: #fff; 
-    padding: 25px 20px 15px 20px; /* ← JOŠ MANJE */
+    padding: 25px 20px 15px 20px;
     text-align: center; 
     }
     header h1 { 
@@ -98,23 +99,32 @@
         margin-top: 8px;
     }
     
-    /* NAVIGACIJA */
+    /* NAVIGACIJA - POVEĆAN RAZMAK IZMEĐU LINKOVA */
     nav {
         background-color: var(--color-dark-bg);
-        padding: 10px 0;
+        padding: 15px 0; /* POVEĆAN PADDING */
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
+    }
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px; /* UMESTO MARGINA, KORISTIMO GAP ZA JEDNOLIK RAZMAK */
     }
     nav a {
         color: #fff;
         text-decoration: none;
-        margin: 0 15px;
         font-weight: 400;
         font-size: 1em;
         transition: color 0.3s;
+        padding: 8px 12px; /* DODAT PADDING ZA VEĆU KLIK OBLAST */
+        border-radius: 4px;
+        white-space: nowrap;
     }
     nav a:hover, nav a.active {
         color: var(--color-accent-gold);
+        background-color: rgba(255, 255, 255, 0.05); /* SUPTILNA POZADINA NA HOVER */
     }
 
     /* MAIN CONTENT */
@@ -144,7 +154,6 @@
     .hero-section {
         text-align: center;
         padding: 60px 30px;
-        /* KORIŠĆENJE VARIJABLI I PREDNOST GRADIENTA */
         background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
         color: white;
         border-radius: 12px;
@@ -182,30 +191,36 @@
         margin-bottom: 15px;
     }
 
-    /* DUGMAD */
+    /* DUGMAD - POBOLJŠAN KONTRAST */
     .cta-container {
         text-align: center;
         margin-top: 40px;
     }
- /* KORIŠĆENJE CSS VARIJABLE ZA POZADINU DUGMETA */
- .cta-button { 
-    background: var(--color-button); /* PROMENJENO: Korišćenje CSS varijable */
-    color: #fff; 
-    border: none; 
-    border-radius: 4px; 
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    max-width: 280px;
-    width: 100%;
-    padding: 15px 30px; /* Dodat padding za bolji izgled */
-    font-size: 1.1em; /* Dodat font-size za bolju čitljivost */
-}
-.cta-button:hover {
-    background-color: #8C352B;  /* ← Zadržana malo tamnija boja za hover */
-}
+    .cta-button { 
+        background: var(--color-button); /* TAMNIJA BOJA ZA BOLJI KONTRAST */
+        color: #fff; 
+        border: none; 
+        border-radius: 6px; /* ZAOBLJENIJA IVICA */
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        max-width: 280px;
+        width: 100%;
+        padding: 16px 30px; /* POVEĆAN PADDING ZA VEĆU KLIK OBLAST */
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 8px rgba(168, 60, 48, 0.2);
+    }
+    .cta-button:hover {
+        background-color: var(--color-button-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(140, 42, 32, 0.25);
+    }
+    .cta-button:active {
+        transform: translateY(0);
+    }
 
     footer { 
     background: var(--color-dark-bg); 
@@ -213,31 +228,47 @@
     padding: 30px 20px; 
     text-align: center; 
     margin-top: 60px;
-    font-size: 1.1em;  /* ← DODAJTE OVO - VECI FONT */
-    font-weight: 500;  /* ← DODAJTE OVO - DEBLJI FONT */
-}
-
-.footer-links {
-    margin: 20px 0;
     font-size: 1.1em;
-    display: flex;           /* ← DODAJTE OVO */
-    flex-direction: column;  /* ← DODAJTE OVO - vertikalno */
-    align-items: center;     /* ← DODAJTE OVO - centrirano */
-    gap: 10px;              /* ← DODAJTE OVO - manji razmak */
-}
-.footer-links a {
-    color: var(--color-accent-gold);
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;  /* ← DODAJTE OVO */
-}
+    font-weight: 500;
+    }
+
+    .footer-links {
+        margin: 20px 0;
+        font-size: 1.1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* POVEĆAN RAZMAK */
+    }
+    .footer-links a {
+        color: var(--color-accent-gold);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 5px 10px; /* DODAT PADDING ZA LAKŠI KLIK */
+        border-radius: 3px;
+    }
+    .footer-links a:hover {
+        background-color: rgba(212, 175, 55, 0.1);
+    }
+    
     @media (max-width: 768px) {
         .features-grid {
             grid-template-columns: 1fr;
         }
-        nav a { 
-            display: block; 
-            margin: 10px 0; 
+        .nav-links {
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+        }
+        nav a {
+            padding: 12px 20px; /* VEĆE DUGME NA MOBILNOM */
+            width: 200px;
+            max-width: 80%;
+            text-align: center;
+            margin: 3px 0; /* DODATNA MARGINA IZMEĐU */
+        }
+        .hero-section {
+            padding: 40px 20px;
         }
     }
 
@@ -246,35 +277,39 @@
         .subtitle { font-size: 0.7em; }
         .cta-button { 
             max-width: 250px;
-            padding: 12px 25px;
+            padding: 14px 25px;
             font-size: 1em;
         }
-        nav a { display: block; margin: 5px 0; }
         .hero-section h1 { font-size: 2em; }
-        .hero-section { padding: 40px 20px; }
-    }
-        @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* DODATO: PRIMENA FADE-IN ANIMACIJE NA SEKCIJE */
-.fade-in-section {
-    animation: fadeIn 0.8s ease-out forwards; /* Malo duža animacija */
-    opacity: 0; /* Početna nevidljivost */
-    /* Kašnjenje animacije za svaku sekciju */
-}
-.fade-in-section:nth-child(1) { animation-delay: 0.2s; }
-.fade-in-section:nth-child(2) { animation-delay: 0.4s; }
-.fade-in-section:nth-child(3) { animation-delay: 0.6s; }
-
-        .header-logo {
-    height: 100px;
-    margin-bottom: 25px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+        .footer-links {
+            gap: 10px;
         }
+        nav a {
+            padding: 10px 15px;
+            width: 180px;
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-section {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+    }
+    .fade-in-section:nth-child(1) { animation-delay: 0.2s; }
+    .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
+    .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
+
+    .header-logo {
+        height: 100px;
+        margin-bottom: 25px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     </style>
 </head>
@@ -289,37 +324,35 @@
 </header>
 
 <nav>
-    <a href="index.html" class="active">Početna</a>
-    <a href="shop.html">Shop</a>
-    <a href="o-nama.html">O Nama</a>
-    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
-    <a href="kontakt.html">Kontakt</a>
+    <div class="nav-links">
+        <a href="index.html" class="active">Početna</a>
+        <a href="shop.html">Shop</a>
+        <a href="o-nama.html">O Nama</a>
+        <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+        <a href="kontakt.html">Kontakt</a>
+    </div>
 </nav>
 
 <main>
-    <!-- UKLONJEN INLINE STYLE I DODAT CLASS ZA ANIMACIJU -->
- <section class="hero-section fade-in-section" fetchpriority="high">
-    <h1>Premium Donji Veš</h1>
-    <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
-    <div class="cta-container">
-        <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
-    </div>
- </section>
+    <section class="hero-section fade-in-section" fetchpriority="high">
+        <h1>Premium Donji Veš</h1>
+        <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+        <div class="cta-container">
+            <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
+        </div>
+    </section>
 
-    <!-- DODAT CLASS ZA ANIMACIJU -->
     <section class="fade-in-section">
         <h2>Zašto AresNyX?</h2>
         <div class="features-grid">
             <div class="feature-item">
                 <i class="fas fa-leaf"></i>
                 <h3>Prirodni Materijali</h3>
-                <!-- PROMENJENO: USKLAĐENO "svila" sa "bambus" iz meta opisa -->
                 <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
             </div>
             <div class="feature-item">
                 <i class="fas fa-heart"></i>
                 <h3>Zdravstvene Prednosti</h3>
-                <!-- PROMENJENO: Korišćen jasniji izraz "Opušten kroj" -->
                 <p>Opušten kroj koji štiti vaše zdravlje</p>
             </div>
             <div class="feature-item">
@@ -330,7 +363,6 @@
         </div>
     </section>
 
-    <!-- DODAT CLASS ZA ANIMACIJU -->
     <section class="fade-in-section">
         <h2>Naša Filozofija</h2>
         <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
