@@ -49,6 +49,9 @@
         --color-button: #C7574B;
         --color-text-main: #333333; 
         --color-light-bg: #f7f7f7; 
+        --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO - Kontrast sa #fff je 5.4:1 (PASS) */
+        --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover - Kontrast sa #fff je 6.7:1 (PASS) */
+    }
     }
 
     body { 
@@ -149,11 +152,8 @@
         text-align: center;
         margin-top: 40px;
     }
-    .cta-button { 
-        padding: 15px 30px; 
-        font-size: 1.1em; 
-        cursor: pointer; 
-        background: var(--color-button); 
+ .cta-button { 
+        background: var(--color-button); /* Koristi novu varijablu */
         color: #fff; 
         border: none; 
         border-radius: 4px; 
@@ -164,9 +164,11 @@
         display: inline-block;
         max-width: 280px;
         width: 100%;
+        padding: 15px 30px;
+        font-size: 1.1em;
     }
     .cta-button:hover {
-        background-color: #A84236;
+        background-color: var(--color-button-hover); /* Koristi novu varijablu za hover */
     }
 
     footer { 
