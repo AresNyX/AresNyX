@@ -189,13 +189,13 @@
         margin-bottom: 12px;
     }
 
-    /* DUGMAD - POBOLJŠAN KONTRAST I VEĆA KLIK OBLAST */
+    /* DUGMAD - ISPRAVLJENO CENTRIRANJE TEKSTA */
     .cta-container {
         text-align: center;
         margin-top: 35px;
     }
     .cta-button { 
-        background: var(--color-button); /* TAMNIJA BOJA - BOLJI KONTRAST */
+        background: var(--color-button);
         color: #fff; 
         border: none; 
         border-radius: 6px;
@@ -203,15 +203,18 @@
         text-transform: uppercase;
         font-weight: 600;
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex; /* PROMENJENO: flex za bolje centriranje */
+        align-items: center; /* VERTIKALNO CENTRIRANJE */
+        justify-content: center; /* HORIZONTALNO CENTRIRANJE */
         max-width: 280px;
         width: 100%;
-        padding: 14px 25px; /* OPTIMALNI PADDING */
+        padding: 14px 25px;
         font-size: 1.1em;
         letter-spacing: 0.5px;
         box-shadow: 0 4px 8px rgba(140, 53, 43, 0.25);
-        line-height: 1.4;
-        min-height: 50px; /* MINIMALNA VISINA ZA LAKŠI KLIK */
+        line-height: normal; /* UKLONJENO: line-height: 1.4 */
+        min-height: 50px;
+        text-align: center;
     }
     .cta-button:hover {
         background-color: var(--color-button-hover);
@@ -265,13 +268,15 @@
         
         /* NAVIGACIJA NA MOBILNOM - BOLJA PREDSTUPNOST */
         nav a { 
-            display: block; 
+            display: flex; /* PROMENJENO: flex za centriranje */
+            align-items: center;
+            justify-content: center;
             margin: 4px auto; /* CENTRIRANO SA MANJIM RAZMAKOM */
             padding: 10px 15px;
             width: 200px;
             max-width: 85%;
             text-align: center;
-            font-size: 1.05em; /* NEŠTO VEĆI FONT */
+            font-size: 1.05em;
         }
         
         .hero-section {
@@ -334,6 +339,11 @@
         
         section h2 {
             font-size: 1.7em;
+        }
+        
+        .cta-button {
+            padding: 10px 20px;
+            min-height: 45px;
         }
     }
     
