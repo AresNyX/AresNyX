@@ -553,6 +553,135 @@ nav a:hover, nav a.active {
             width: 100%;
             margin-top: 5px;
         }
+        /* --- NOVI STILOVI ZA FILTER/SORT PANEL --- */
+
+/* Kontejner gde se nalazi samo dugme za filter */
+.shop-controls {
+    display: flex;
+    justify-content: flex-end; /* Pomerite dugme skroz udesno */
+    margin-bottom: 1.5rem;
+    position: relative; /* Bitno za pozicioniranje padajućeg panela */
+}
+
+/* Stil za samo dugme Filteri & Sortiranje */
+.filter-sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-dark);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.filter-sort-btn:hover {
+    background: var(--accent-gold);
+}
+
+.filter-sort-btn .icon {
+    display: inline-flex;
+    transform: rotate(90deg); /* Postavite linije vertikalno */
+}
+
+.filter-sort-btn svg {
+    stroke: white;
+    width: 20px;
+    height: 20px;
+}
+
+/* Padajući Panel koji sadrži sve filtere */
+.filter-sort-panel {
+    position: absolute;
+    top: 50px; /* Spustite ga ispod dugmeta */
+    right: 0;
+    width: 300px;
+    background: white;
+    border: 1px solid var(--gray-medium);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    z-index: 500;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.filter-sort-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.filter-sort-panel h3 {
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+/* Stilovi za Veličine */
+.size-filter-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.size-btn {
+    background: var(--gray-light);
+    border: 1px solid var(--gray-medium);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.size-btn:hover {
+    background: var(--accent-gold);
+    color: white;
+    border-color: var(--accent-gold);
+}
+
+.size-btn.active {
+    background: var(--primary-dark);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
+.apply-filters-btn {
+    width: 100%;
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Mobilna prilagođavanja za Filter Panel */
+@media (max-width: 600px) {
+    .filter-sort-panel {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        right: auto;
+    }
+    .filter-sort-panel.active {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
     }
     </style>
     
@@ -582,25 +711,54 @@ nav a:hover, nav a.active {
         <section class="products-section">
     
     <div class="shop-controls">
-        
-        <div class="filter-group">
-            <label for="materialFilter">Filter po materijalu:</label>
-            <select id="materialFilter" onchange="shop.filterProducts(this.value)">
-                <option value="all">Svi materijali</option>
-                <option value="pamuk">Pamuk</option>
-                <option value="lan">Lan</option>
-                <option value="bambus">Bambus</option>
-            </select>
-        </div>
+    <button class="filter-sort-btn" onclick="shop.toggleFilterPanel()">
+        <span class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="7" y1="6" x2="17" y2="6"></line>
+                <line x1="11" y1="18" x2="13" y2="18"></line>
+            </svg>
+        </span>
+        Filteri & Sortiranje
+    </button>
+</div>
 
-        <div class="filter-group">
-            <label for="priceSort">Sortiraj po ceni:</label>
-            <select id="priceSort" onchange="shop.sortProducts(this.value)">
-                <option value="default">Podrazumevano</option>
-                <option value="lowToHigh">Cena: Najniža ka najvišoj</option>
-                <option value="highToLow">Cena: Najviša ka najnižoj</option>
-            </select>
-        </div>
+<div class="filter-sort-panel" id="filterSortPanel">
+    
+    <h3>Sortiranje</h3>
+    <div class="filter-group">
+        <label for="priceSort">Cena:</label>
+        <select id="priceSort" onchange="shop.sortProducts(this.value)">
+            <option value="default">Podrazumevano</option>
+            <option value="lowToHigh">Najniža ka najvišoj</option>
+            <option value="highToLow">Najviša ka najnižoj</option>
+        </select>
+    </div>
+
+    <h3>Filter po Materijalu</h3>
+    <div class="filter-group">
+        <label for="materialFilter">Materijal:</label>
+        <select id="materialFilter" onchange="shop.filterProducts(this.value, 'material')">
+            <option value="all">Svi materijali</option>
+            <option value="pamuk">Pamuk</option>
+            <option value="lan">Lan</option>
+            <option value="bambus">Bambus</option>
+        </select>
+    </div>
+
+    <h3>Filter po Veličini</h3>
+    <div class="size-filter-options" id="sizeFilterOptions">
+        <button class="size-btn" data-size="S" onclick="shop.filterProducts('S', 'size')">S</button>
+        <button class="size-btn" data-size="M" onclick="shop.filterProducts('M', 'size')">M</button>
+        <button class="size-btn" data-size="L" onclick="shop.filterProducts('L', 'size')">L</button>
+        <button class="size-btn" data-size="XL" onclick="shop.filterProducts('XL', 'size')">XL</button>
+        <button class="size-btn active" data-size="all" onclick="shop.filterProducts('all', 'size')">Sve</button>
+    </div>
+    
+    <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
+
+</div>
+
 
     </div>
     <div class="products-grid" id="productsGrid">
@@ -832,14 +990,16 @@ nav a:hover, nav a.active {
     
     class AresNyXShop {
     constructor() {
-        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-        this.products = [];
-        this.filteredProducts = []; // <-- NOVO: niz za filtrirane proizvode
-        this.currentFilter = 'all'; // <-- NOVO: prati trenutni filter
-        this.currentSort = 'default'; // <-- NOVO: prati trenutno sortiranje
-        this.currentProduct = null;
-        // ... ostalo
-        this.init();
+    this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+    this.products = [];
+    this.filteredProducts = []; 
+    // 👇 NOVI STANJA ZA FILTERE 👇
+    this.currentMaterialFilter = 'all'; // Preimenovano
+    this.currentSizeFilter = 'all';     // NOVO
+    // 👆
+    this.currentSort = 'default'; 
+    this.currentProduct = null;
+    this.init();
     }
 
         init() {
@@ -861,112 +1021,158 @@ nav a:hover, nav a.active {
         // =========================================================
 
         loadProducts() {
-            this.products = [
-                { 
-                    id: 1, 
-                    name: "Classic Pamuk", 
-                    material: "100% Organski Pamuk", 
-                    price: 1300, 
-                    category: "pamuk", 
-                    images: ["slike/slika1.webp", "slike/slika1a.webp"], // Dodata slika 1a
-                    badge: "BESTSELLER" 
-                },
-                { 
-                    id: 2, 
-                    name: "Premium Pamuk", 
-                    material: "100% Premium Pamuk", 
-                    price: 1500, 
-                    category: "pamuk", 
-                    images: ["slike/slika2.webp", "slike/slika2a.webp"], // Dodata slika 2a
-                    badge: "PREMIUM" 
-                },
-                { 
-                    id: 3, 
-                    name: "Elegant", 
-                    material: "100% Prirodni Pamuk", 
-                    price: 1800, 
-                    category: "pamuk", 
-                    images: ["slike/slika3.webp", "slike/slika3a.webp"], // Dodata slika 3a
-                    badge: "LUXURY" 
-                },
-                { 
-                    id: 4, 
-                    name: "Night Black", 
-                    material: "100% Premium Pamuk", 
-                    price: 1300, 
-                    category: "pamuk", 
-                    images: ["slike/slika4.webp", "slike/slika4a.webp"], // Dodata slika 4a
-                    badge: "POPULAR" 
-                },
-                { 
-                    id: 5, 
-                    name: "Pure White", 
-                    material: "100% Organski Pamuk", 
-                    price: 1300, 
-                    category: "pamuk", 
-                    images: ["slike/slika5.webp", "slike/slika5a.webp"], // Dodata slika 5a
-                    badge: "CLASSIC" 
-                },
-                { 
-                    id: 6, 
-                    name: "Navy Stripes", 
-                    material: "100% Premium Pamuk", 
-                    price: 1400, 
-                    category: "pamuk", 
-                    images: ["slike/slika6.webp", "slike/slika6a.webp"], // Dodata slika 6a
-                    badge: "TRENDING" 
-                },
-                { 
-                    id: 7, 
-                    name: "Dark Grey", 
-                    material: "100% Premium Pamuk", 
-                    price: 1300, 
-                    category: "pamuk", 
-                    images: ["slike/slika7.webp", "slike/slika7a.webp"], // Dodata slika 7a
-                    badge: "ESSENTIAL" 
-                },
-                { 
-                    id: 8, 
-                    name: "Blue Stripes", 
-                    material: "100% Premium Pamuk", 
-                    price: 1400, 
-                    category: "pamuk", 
-                    images: ["slike/slika8.webp", "slike/slika8a.webp"], // Dodata slika 8a
-                    badge: "NEW" 
-                },
-                { 
-                    id: 9, 
-                    name: "Charcoal Black", 
-                    material: "100% Premium Pamuk", 
-                    price: 1350, 
-                    category: "pamuk", 
-                    images: ["slike/slika9.webp", "slike/slika9a.webp"], // Dodata slika 9a
-                    badge: "PREMIUM" 
-                },
-                { 
-                    id: 10, 
-                    name: "Navy", 
-                    material: "100% Arabic Pamuk", 
-                    price: 1600, 
-                    category: "lan", 
-                    images: ["slike/slika10.webp", "slike/slika10a.webp"], // Dodata slika 10a
-                    badge: "ECO" 
-                },
-                // === PROIZVOD 11 (Ostavljen nepromenjen) ===
-                { 
-                    id: 11, 
-                    name: "Bamboo Cool", 
-                    material: "70% Bambus, 30% Organski Pamuk", 
-                    price: 1900, 
-                    category: "bambus", 
-                    images: ["slike/slika11.webp", "slike/slika11a.webp"], 
-                    badge: "BAMBUS" 
-                }
-            ];
-            this.filteredProducts = [...this.products]; 
-           this.renderProducts();
+    this.products = [
+        { 
+            id: 1, 
+            name: "Classic Pamuk", 
+            material: "100% Organski Pamuk", 
+            price: 1300, 
+            category: "pamuk", 
+            images: ["slike/slika1.webp", "slike/slika1a.webp"],
+            badge: "BESTSELLER",
+            // ✅ NOVO: Dodavanje zaliha po veličinama
+            sizes: { S: 5, M: 12, L: 8, XL: 2 } 
+        },
+        { 
+            id: 2, 
+            name: "Premium Pamuk", 
+            material: "100% Premium Pamuk", 
+            price: 1500, 
+            category: "pamuk", 
+            images: ["slike/slika2.webp", "slike/slika2a.webp"], 
+            badge: "PREMIUM",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 0, M: 15, L: 10, XL: 4 } 
+        },
+        { 
+            id: 3, 
+            name: "Elegant", 
+            material: "100% Prirodni Pamuk", 
+            price: 1800, 
+            category: "pamuk", 
+            images: ["slike/slika3.webp", "slike/slika3a.webp"], 
+            badge: "LUXURY",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 7, M: 0, L: 5, XL: 0 } 
+        },
+        { 
+            id: 4, 
+            name: "Night Black", 
+            material: "100% Premium Pamuk", 
+            price: 1300, 
+            category: "pamuk", 
+            images: ["slike/slika4.webp", "slike/slika4a.webp"], 
+            badge: "POPULAR",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 10, M: 10, L: 10, XL: 10 } 
+        },
+        { 
+            id: 5, 
+            name: "Pure White", 
+            material: "100% Organski Pamuk", 
+            price: 1300, 
+            category: "pamuk", 
+            images: ["slike/slika5.webp", "slike/slika5a.webp"],
+            badge: "CLASSIC",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 2, M: 3, L: 0, XL: 0 } 
+        },
+        { 
+            id: 6, 
+            name: "Navy Stripes", 
+            material: "100% Premium Pamuk", 
+            price: 1400, 
+            category: "pamuk", 
+            images: ["slike/slika6.webp", "slike/slika6a.webp"], 
+            badge: "TRENDING",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 8, M: 8, L: 8, XL: 8 } 
+        },
+        { 
+            id: 7, 
+            name: "Dark Grey", 
+            material: "100% Premium Pamuk", 
+            price: 1300, 
+            category: "pamuk", 
+            images: ["slike/slika7.webp", "slike/slika7a.webp"], 
+            badge: "ESSENTIAL",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 6, M: 6, L: 6, XL: 6 } 
+        },
+        { 
+            id: 8, 
+            name: "Blue Stripes", 
+            material: "100% Premium Pamuk", 
+            price: 1400, 
+            category: "pamuk", 
+            images: ["slike/slika8.webp", "slike/slika8a.webp"], 
+            badge: "NEW",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 4, M: 9, L: 4, XL: 9 } 
+        },
+        { 
+            id: 9, 
+            name: "Charcoal Black", 
+            material: "100% Premium Pamuk", 
+            price: 1350, 
+            category: "pamuk", 
+            images: ["slike/slika9.webp", "slike/slika9a.webp"],
+            badge: "PREMIUM",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 1, M: 1, L: 1, XL: 1 } 
+        },
+        { 
+            id: 10, 
+            name: "Navy", 
+            material: "100% Arabic Pamuk", 
+            price: 1600, 
+            category: "lan", 
+            images: ["slike/slika10.webp", "slike/slika10a.webp"],
+            badge: "ECO",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 1, M: 1, L: 1, XL: 1 } 
+        },
+        { 
+            id: 11, 
+            name: "Bamboo Cool", 
+            material: "70% Bambus, 30% Organski Pamuk", 
+            price: 1900, 
+            category: "bambus", 
+            images: ["slike/slika11.webp", "slike/slika11a.webp"], 
+            badge: "BAMBUS",
+            // ✅ NOVO: Dodavanje zaliha
+            sizes: { S: 20, M: 20, L: 20, XL: 20 } 
         }
+    ];
 
+    // 👇 OBAVEZNO OSTATAK KODA ISPOD LISTE PROIZVODA 👇
+    this.filteredProducts = [...this.products]; 
+    this.renderProducts();
+}
+        // TOGGLE FUNKCIJA ZA OTVARANJE/ZATVARANJE PANELA
+toggleFilterPanel() {
+    const panel = document.getElementById('filterSortPanel');
+    panel.classList.toggle('active');
+}
+
+// SINHRONO PRIMENJUJE SVE FILTERE NAKON KLIKA NA DUGME
+applyAllFilters() {
+    // 1. ZATVORI PANEL
+    this.toggleFilterPanel();
+
+    // 2. PRIKUPI SVE VREDNOSTI
+    const materialValue = document.getElementById('materialFilter').value;
+    const sortValue = document.getElementById('priceSort').value;
+    
+    // Veličina je već setovana preko onClick, ali je ovde sinhronizujemo
+    // (Inače bi moglo da se pročita iz aktivnog dugmeta)
+    
+    this.currentMaterialFilter = materialValue;
+    this.currentSort = sortValue;
+    
+    // 3. POKRENI GLAVNU LOGIKU
+    this.applyFiltersAndSort(); 
+}
         // ZAMENITE POSTOJEĆU renderProducts() METODU
 
     renderProducts() {
@@ -999,50 +1205,88 @@ nav a:hover, nav a.active {
         `).join('');
     }
 
-// DODATI OVE DVE METODE UNUTAR class AresNyXShop { ... }
+// UNUTAR class AresNyXShop { ... }
 
-    // Logika za primenu filtera
-    filterProducts(material) {
-        this.currentFilter = material;
+// ----------------------------------------------
+// NOVE METODE ZA RUKOVANJE PANELOM I FILTERIMA
+// ----------------------------------------------
+
+// 1. TOGGLE FUNKCIJA ZA OTVARANJE/ZATVARANJE PANELA
+toggleFilterPanel() {
+    const panel = document.getElementById('filterSortPanel');
+    panel.classList.toggle('active');
+}
+
+// 2. AŽURIRANA filterProducts - SADA PRIMA filterType
+filterProducts(value, filterType) {
+    if (filterType === 'material') {
+        this.currentMaterialFilter = value;
+    } else if (filterType === 'size') {
+        // Logika za selekciju veličine (dugme)
+        this.currentSizeFilter = value;
         
-        if (material === 'all') {
-            // Ako je "Svi materijali"
-            this.filteredProducts = [...this.products];
+        // Ažuriranje aktivnog dugmeta za veličinu
+        document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+        if (value !== 'all') {
+            document.querySelector(`.size-btn[data-size="${value}"]`).classList.add('active');
         } else {
-            // Filtriranje po kategoriji (materijal je category)
-            this.filteredProducts = this.products.filter(p => p.category === material);
+            document.querySelector(`.size-btn[data-size="all"]`).classList.add('active');
         }
-        
-        // Nakon filtriranja, primeni trenutno sortiranje
-        this.applySort(); 
+    }
+    // NE POZIVAMO render/apply. Čekamo klik na "Primeni filtere".
+}
+
+// 3. AŽURIRANA sortProducts
+sortProducts(sortType) {
+    this.currentSort = sortType;
+    // NE POZIVAMO render/apply. Čekamo klik na "Primeni filtere".
+}
+
+// 4. NOVA METODA KOJA POKREĆE LOGIKU NAKON KLIKA NA DUGME
+applyAllFilters() {
+    // 1. ZATVORI PANEL
+    this.toggleFilterPanel();
+
+    // 2. SINHRONIZUJ TRENUTNE IZBORE (Ako su promenjeni u select menijima)
+    const materialValue = document.getElementById('materialFilter').value;
+    const sortValue = document.getElementById('priceSort').value;
+    
+    this.currentMaterialFilter = materialValue;
+    this.currentSort = sortValue;
+    
+    // 3. POKRENI GLAVNU LOGIKU
+    this.applyFiltersAndSort(); 
+}
+
+// 5. GLAVNA LOGIKA (ZAMENJUJE STARI applySort)
+applyFiltersAndSort() {
+    let tempProducts = [...this.products];
+
+    // 1. PRIMENA FILTERA PO MATERIJALU
+    if (this.currentMaterialFilter !== 'all') {
+         tempProducts = tempProducts.filter(p => p.category === this.currentMaterialFilter);
+    }
+
+    // 2. PRIMENA FILTERA PO VELIČINI (Provera zaliha > 0)
+    if (this.currentSizeFilter !== 'all') {
+        tempProducts = tempProducts.filter(p => 
+            // Proveravamo da li proizvod ima polje sizes I da li je zaliha te veličine veća od 0
+            p.sizes && p.sizes[this.currentSizeFilter] > 0
+        );
     }
     
-    // Logika za primenu sortiranja
-    sortProducts(sortType) {
-        this.currentSort = sortType;
-        this.applySort();
-    }
-    
-    // Pomoćna funkcija koja primenjuje i filter i sortiranje
-    applySort() {
-        // Prvo osiguraj da je filtriraniProducts setovan
-        if (this.currentFilter !== 'all') {
-             this.filteredProducts = this.products.filter(p => p.category === this.currentFilter);
-        } else {
-            this.filteredProducts = [...this.products];
-        }
+    this.filteredProducts = tempProducts;
 
-        // Zatim sortiraj taj set
-        if (this.currentSort === 'lowToHigh') {
-            this.filteredProducts.sort((a, b) => a.price - b.price);
-        } else if (this.currentSort === 'highToLow') {
-            this.filteredProducts.sort((a, b) => b.price - a.price);
-        }
-        // 'default' ne zahteva akciju
-
-        this.renderProducts();
+    // 3. PRIMENA SORTIRANJA
+    if (this.currentSort === 'lowToHigh') {
+        this.filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (this.currentSort === 'highToLow') {
+        this.filteredProducts.sort((a, b) => b.price - a.price);
     }
 
+    // 4. PRIKAZ REZULTATA
+    this.renderProducts();
+}
         openProductModal(productId) {
             this.currentProduct = this.products.find(p => p.id === productId);
             if (!this.currentProduct) return;
