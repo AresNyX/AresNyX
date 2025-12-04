@@ -498,7 +498,50 @@ nav a:hover, nav a.active {
         border-color: var(--success);
         color: var(--success);
     }
+    /* Dodati u <style> blok, unutar PRODUCTS GRID sekcije */
+    .shop-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap; /* Za mobilne uređaje */
+        gap: 15px;
+    }
     
+    .filter-group label {
+        font-weight: 600;
+        margin-right: 10px;
+        color: var(--text-dark);
+    }
+    
+    .filter-group select {
+        padding: 0.6rem 1rem;
+        border: 1px solid var(--gray-medium);
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: white;
+        transition: border-color 0.3s;
+    }
+    
+    .filter-group select:focus {
+        border-color: var(--accent-gold);
+        outline: none;
+    }
+    
+    @media (max-width: 600px) {
+        .shop-controls {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .filter-group {
+            width: 100%;
+        }
+        .filter-group select {
+            width: 100%;
+            margin-top: 5px;
+        }
+    }
     </style>
     
     <noscript>
@@ -525,9 +568,32 @@ nav a:hover, nav a.active {
 
     <main class="main-content">
         <section class="products-section">
-            <div class="products-grid" id="productsGrid">
-                </div>
-        </section>
+    
+    <div class="shop-controls">
+        
+        <div class="filter-group">
+            <label for="materialFilter">Filter po materijalu:</label>
+            <select id="materialFilter" onchange="shop.filterProducts(this.value)">
+                <option value="all">Svi materijali</option>
+                <option value="pamuk">Pamuk</option>
+                <option value="lan">Lan</option>
+                <option value="bambus">Bambus</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="priceSort">Sortiraj po ceni:</label>
+            <select id="priceSort" onchange="shop.sortProducts(this.value)">
+                <option value="default">Podrazumevano</option>
+                <option value="lowToHigh">Cena: Najniža ka najvišoj</option>
+                <option value="highToLow">Cena: Najviša ka najnižoj</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="products-grid" id="productsGrid">
+        </div>
+</section>
     </main>
 <footer class="footer">
     <div class="footer-content">
@@ -753,16 +819,16 @@ nav a:hover, nav a.active {
     <script>
     
     class AresNyXShop {
-        constructor() {
-            this.cart = JSON.parse(localStorage.getItem('cart')) || [];
-            this.products = [];
-            this.currentProduct = null;
-            this.currentSize = 'M';
-            this.currentQuantity = 1;
-            this.currentImageIndex = 0;
-            this.checkoutData = {};
-            this.init();
-        }
+    constructor() {
+        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        this.products = [];
+        this.filteredProducts = []; // <-- NOVO: niz za filtrirane proizvode
+        this.currentFilter = 'all'; // <-- NOVO: prati trenutni filter
+        this.currentSort = 'default'; // <-- NOVO: prati trenutno sortiranje
+        this.currentProduct = null;
+        // ... ostalo
+        this.init();
+    }
 
         init() {
             this.loadProducts();
@@ -885,34 +951,85 @@ nav a:hover, nav a.active {
                     badge: "BAMBUS" 
                 }
             ];
-            this.renderProducts();
+            this.filteredProducts = [...this.products]; 
+           this.renderProducts();
         }
 
-        renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            if (!this.products || this.products.length === 0) {
-                 grid.innerHTML = '<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #666;">Nema dostupnih proizvoda.</p>';
-                 return;
-            }
-            
-            grid.innerHTML = this.products.map(product => `
-                <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
-                ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-                <img 
-                    src="${product.images[0]}" 
-                    alt="AresNyX Bokserice: ${product.name}" 
-                    class="product-image" 
-                    loading="lazy"
-                    width="800"  
-                    height="200" >
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <p class="product-material">${product.material}</p>
-                    <p class="product-price">${product.price} RSD</p>
-                </div>
-            </div>
-            `).join('');
+        // ZAMENITE POSTOJEĆU renderProducts() METODU
+
+    renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        
+        // Koristimo this.filteredProducts umesto this.products
+        const displayProducts = this.filteredProducts; 
+
+        if (!displayProducts || displayProducts.length === 0) {
+             grid.innerHTML = '<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #666;">Nema dostupnih proizvoda prema izabranom filteru.</p>';
+             return;
         }
+        
+        grid.innerHTML = displayProducts.map(product => `
+            <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
+            ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+            <img 
+                src="${product.images[0]}" 
+                alt="AresNyX Bokserice: ${product.name}" 
+                class="product-image" 
+                loading="lazy"
+                width="800"  
+                height="200" >
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-material">${product.material}</p>
+                <p class="product-price">${product.price} RSD</p>
+            </div>
+        </div>
+        `).join('');
+    }
+
+// DODATI OVE DVE METODE UNUTAR class AresNyXShop { ... }
+
+    // Logika za primenu filtera
+    filterProducts(material) {
+        this.currentFilter = material;
+        
+        if (material === 'all') {
+            // Ako je "Svi materijali"
+            this.filteredProducts = [...this.products];
+        } else {
+            // Filtriranje po kategoriji (materijal je category)
+            this.filteredProducts = this.products.filter(p => p.category === material);
+        }
+        
+        // Nakon filtriranja, primeni trenutno sortiranje
+        this.applySort(); 
+    }
+    
+    // Logika za primenu sortiranja
+    sortProducts(sortType) {
+        this.currentSort = sortType;
+        this.applySort();
+    }
+    
+    // Pomoćna funkcija koja primenjuje i filter i sortiranje
+    applySort() {
+        // Prvo osiguraj da je filtriraniProducts setovan
+        if (this.currentFilter !== 'all') {
+             this.filteredProducts = this.products.filter(p => p.category === this.currentFilter);
+        } else {
+            this.filteredProducts = [...this.products];
+        }
+
+        // Zatim sortiraj taj set
+        if (this.currentSort === 'lowToHigh') {
+            this.filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (this.currentSort === 'highToLow') {
+            this.filteredProducts.sort((a, b) => b.price - a.price);
+        }
+        // 'default' ne zahteva akciju
+
+        this.renderProducts();
+    }
 
         openProductModal(productId) {
             this.currentProduct = this.products.find(p => p.id === productId);
