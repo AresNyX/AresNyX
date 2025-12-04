@@ -764,13 +764,19 @@ nav a:hover, nav a.active {
             this.init();
         }
 
-        init() {
+                init() {
             this.loadProducts();
             this.updateCartCount();
             this.renderCart();
-            this.updateCartPromoMessage(0); // <-- DODAJTE OVU LINIJU za početnu poruku!
-            // Postavite ovo unutar metode init() u klasi AresNyXSho
-              }
+            this.updateCartPromoMessage(0); // Postavlja početnu poruku za korpu/dostavu
+
+            // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
+            try {
+                emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
+            } catch (e) {
+                console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
+            }
+        } // <--- OVO JE SADA JEDINA ZAGRADA KOJA ZATVARA init()
 
             // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
             try {
