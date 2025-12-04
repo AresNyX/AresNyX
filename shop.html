@@ -1339,7 +1339,7 @@ nav a:hover, nav a.active {
             return html;
         }
         
-             // =========================================================
+                     // =========================================================
         // === AŽURIRANA completeOrder() FUNKCIJA (FINALNA) ===
         // =========================================================
         completeOrder() {
@@ -1348,27 +1348,31 @@ nav a:hover, nav a.active {
                 return;
             }
             
-            // --- NOVE LINIJE ZA DINAMIKU ---
+            // --- KONSTANTE ---
             const ADMIN_MAIL = 'ares.nyx.info@gmail.com'; 
             const SENDER_NAME = 'AresNyX Porudžbina';
+            const BRAND_NAME = 'AresNyX'; 
+            const FREE_SHIPPING_LIMIT = 4000; 
+            const DISCOUNT_LIMIT = 8000;
+            const baseShipping = 400; 
             // ------------------------------------
 
             document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
             
             // Prikupite i izračunajte ukupne vrednosti
             const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            const shipping = totalItems >= 5 ? 0 : (totalItems > 0 ? 400 : 0);
-            const discount = totalItems >= 7 ? Math.round(subtotal * 0.1) : 0;
+            
+            // NOVE FINANSIJSKE PROVERE ZASNOVANE NA RSD:
+            const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_LIMIT ? 0 : baseShipping);
+            const discount = subtotal >= DISCOUNT_LIMIT ? Math.round(subtotal * 0.1) : 0;
             const total = subtotal + shipping - discount;
 
-            const BRAND_NAME = 'AresNyX'; 
 
             // Formiranje objekta podataka za EmailJS
             const templateParams = {
                 // DINAMIČKI PARAMETRI ZA ADMINA/POŠILJAOCA:
-                sender_name: SENDER_NAME, // Postavlja From Name (Koristi se u Customer Template)
-                admin_email: ADMIN_MAIL,   // Postavlja To Email (Koristi se u Admin Template)
+                sender_name: SENDER_NAME, 
+                admin_email: ADMIN_MAIL,   
                 
                 // Podaci o kupcu
                 ime_kupca: this.checkoutData.ime,
@@ -1444,6 +1448,7 @@ nav a:hover, nav a.active {
                 
                 });
         }
+
 
     } // <--- OVDE SE ZAVRŠAVA CELA KLASA
 
