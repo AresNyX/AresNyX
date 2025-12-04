@@ -51,6 +51,23 @@
                    Zdravlje i udobnost.">
 
     <style>
+        /* 🛑 STIL ZA BLOKIRANU VELIČINU (ZALIHA 0) 🛑 */
+.size-option.disabled, 
+.size-option[disabled] {
+    background: var(--gray-light);
+    color: #999; 
+    border-color: #ddd;
+    cursor: not-allowed !important; 
+    opacity: 0.7; 
+    text-decoration: line-through; 
+    pointer-events: none; 
+}
+
+.size-option.disabled:hover {
+    background: var(--gray-light);
+    color: #999;
+}
+/* Kraj: STIL ZA BLOKIRANU VELIČINU */
     /* ===== CRITICAL CSS - OPTIMIZOVANO ===== */
     :root {
         --primary-dark: #121212;
@@ -759,8 +776,6 @@ nav a:hover, nav a.active {
     <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
 
 </div>
-
-
     </div>
     <div class="products-grid" id="productsGrid">
         </div>
@@ -1288,11 +1303,12 @@ applyFiltersAndSort() {
     // 4. PRIKAZ REZULTATA
     this.renderProducts();
 }
-        openProductModal(productId) {
+                openProductModal(productId) {
             this.currentProduct = this.products.find(p => p.id === productId);
             if (!this.currentProduct) return;
 
-            this.currentSize = 'M';
+            // Početno stanje
+            this.currentSize = null; // Resetuj izabranu veličinu
             this.currentQuantity = 1;
             this.currentImageIndex = 0;
 
@@ -1303,20 +1319,67 @@ applyFiltersAndSort() {
 
             this.updateModalImage();
 
+            // =========================================================
+            // ✅ AŽURIRANA LOGIKA ZA GENERISANJE VELIČINA (KORAK 1)
+            // =========================================================
             const sizeSelector = document.getElementById('sizeSelector');
-            sizeSelector.innerHTML = ['M', 'L', 'XL', 'XXL'].map(size => `
-                <div class="size-option ${size === 'M' ? 'selected' : ''}" onclick="shop.selectSize(event, '${size}')">${size}</div>
-            `).join('');
+            
+            let firstAvailableSize = null;
+
+            const sizesHtml = Object.keys(this.currentProduct.sizes)
+                .map(size => {
+                    const stock = this.currentProduct.sizes[size]; // Zaliha te veličine
+                    const isDisabled = stock === 0; // Provera: da li je zaliha 0
+                    
+                    // Automatski odaberi prvu dostupnu veličinu
+                    if (!isDisabled && !firstAvailableSize) {
+                        firstAvailableSize = size;
+                    }
+
+                    // Onemogućena dugmad dobijaju klasu 'disabled', 'disabled' atribut i onclick koji ništa ne radi
+                    return `
+                        <button 
+                            class="size-option ${isDisabled ? 'disabled' : ''}"
+                            data-size="${size}" 
+                            onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                            ${isDisabled ? 'disabled' : ''}
+                            title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                        >
+                            ${size}${isDisabled ? ' (Nema)' : ''}
+                        </button>
+                    `;
+                })
+                .join('');
+                
+            sizeSelector.innerHTML = sizesHtml;
+            // =========================================================
+            
+            // Postavi podrazumevanu veličinu i ažuriraj stanje
+            if (firstAvailableSize) {
+                this.currentSize = firstAvailableSize;
+                // Označi dugme kao aktivno
+                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`).classList.add('selected');
+            } else {
+                 // Ako nema dostupne veličine, dugme za dodavanje u korpu je onemogućeno
+                document.querySelector('.add-to-cart-btn').disabled = true;
+                document.querySelector('.add-to-cart-btn').innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+                document.querySelector('.add-to-cart-btn').style.background = 'var(--danger)';
+            }
+
 
             document.getElementById('sizeTable').style.display = 'none';
             document.getElementById('productModal').style.display = 'block';
             document.body.classList.add('no-scroll');
             
-            const btn = document.querySelector('.add-to-cart-btn');
-            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
-            btn.style.background = 'var(--primary-dark)';
-            btn.disabled = false;
+            // Provera je već urađena iznad, samo vraćamo default stanje ako je dostupno
+            if (firstAvailableSize) {
+                const btn = document.querySelector('.add-to-cart-btn');
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+                btn.style.background = 'var(--primary-dark)';
+                btn.disabled = false;
+            }
         }
+
 
         updateModalImage() {
             if (!this.currentProduct) return;
@@ -1342,13 +1405,116 @@ applyFiltersAndSort() {
             }
         }
 
-        selectSize(event, size) {
-            this.currentSize = size;
-            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-            event.target.classList.add('selected');
+        // ✅ AŽURIRANA selectSize() METODA
+selectSize(event, size, isDisabled) {
+    if (isDisabled) {
+        return;
+    }
+
+    this.currentSize = size;
+    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+}
+// UNUTAR class AresNyXShop { ... }
+
+// ... (mnogo koda iznad) ...
+
+        openProductModal(productId) {
+            this.currentProduct = this.products.find(p => p.id === productId);
+            if (!this.currentProduct) return;
+
+            // Početno stanje
+            this.currentSize = null; // Resetuj izabranu veličinu
+            this.currentQuantity = 1;
+            this.currentImageIndex = 0;
+
+            document.getElementById('modalTitle').textContent = this.currentProduct.name;
+            document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+            document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+            document.getElementById('modalQty').textContent = '1';
+
+            this.updateModalImage();
+
+            // =========================================================
+            // ✅ AŽURIRANA LOGIKA ZA GENERISANJE VELIČINA (KORAK 1)
+            // =========================================================
+            const sizeSelector = document.getElementById('sizeSelector');
+            
+            let firstAvailableSize = null;
+
+            const sizesHtml = Object.keys(this.currentProduct.sizes)
+                .map(size => {
+                    const stock = this.currentProduct.sizes[size]; // Zaliha te veličine
+                    const isDisabled = stock === 0; // Provera: da li je zaliha 0
+                    
+                    // Automatski odaberi prvu dostupnu veličinu
+                    if (!isDisabled && !firstAvailableSize) {
+                        firstAvailableSize = size;
+                    }
+
+                    // Onemogućena dugmad dobijaju klasu 'disabled', 'disabled' atribut i onclick koji ništa ne radi
+                    return `
+                        <button 
+                            class="size-option ${isDisabled ? 'disabled' : ''}"
+                            data-size="${size}" 
+                            onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                            ${isDisabled ? 'disabled' : ''}
+                            title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                        >
+                            ${size}${isDisabled ? ' (Nema)' : ''}
+                        </button>
+                    `;
+                })
+                .join('');
+                
+            sizeSelector.innerHTML = sizesHtml;
+            // =========================================================
+            
+            // Postavi podrazumevanu veličinu i ažuriraj stanje
+            if (firstAvailableSize) {
+                this.currentSize = firstAvailableSize;
+                // Označi dugme kao aktivno
+                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`).classList.add('selected');
+            } else {
+                 // Ako nema dostupne veličine, dugme za dodavanje u korpu je onemogućeno
+                document.querySelector('.add-to-cart-btn').disabled = true;
+                document.querySelector('.add-to-cart-btn').innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+                document.querySelector('.add-to-cart-btn').style.background = 'var(--danger)';
+            }
+
+
+            document.getElementById('sizeTable').style.display = 'none';
+            document.getElementById('productModal').style.display = 'block';
+            document.body.classList.add('no-scroll');
+            
+            // Provera je već urađena iznad, samo vraćamo default stanje ako je dostupno
+            if (firstAvailableSize) {
+                const btn = document.querySelector('.add-to-cart-btn');
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+                btn.style.background = 'var(--primary-dark)';
+                btn.disabled = false;
+            }
         }
 
-        changeQuantity(change) {
+        updateModalImage() {
+            // ... (Ostavite ovu funkciju neizmenjenu) ...
+        }
+
+        // ✅ AŽURIRANA selectSize() METODA
+        selectSize(event, size, isDisabled) {
+            // Provera: Ako je dugme onemogućeno (isDisabled === true), ignoriši klik
+            if (isDisabled) {
+                // Možete dodati mali vizuelni feedback ako želite, npr. showToast("Rasprodato!")
+                return;
+            }
+
+            this.currentSize = size;
+            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+            event.currentTarget.classList.add('selected'); // Koristi currentTarget da bi radilo i na SPAN elementima
+        }
+// ... (ostatak koda) ...
+
+       changeQuantity(change) {
             this.currentQuantity = Math.max(1, this.currentQuantity + change);
             document.getElementById('modalQty').textContent = this.currentQuantity;
         }
