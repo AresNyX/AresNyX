@@ -697,6 +697,36 @@ nav a:hover, nav a.active {
     .filter-sort-panel.active {
         transform: translateX(-50%) translateY(0);
     }
+    /* Stilovi za Varijacije (Thumbnails) */
+.variation-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.variation-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--gray-light);
+    padding: 3px;
+}
+.variation-thumb:hover,
+.variation-thumb.active-thumb {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+.variation-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
 }
 
     }
@@ -1031,6 +1061,35 @@ nav a:hover, nav a.active {
                 console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
             }
         } 
+                /**
+         * Proverava da li su svi artikli u korpi još uvek dostupni u traženoj količini.
+         * @returns {Array} Vraća niz artikala koji nisu prošli validaciju.
+         */
+        validateStock() {
+            const unavailableItems = [];
+
+            this.cart.forEach(cartItem => {
+                const product = this.products.find(p => p.id === cartItem.productId);
+
+                if (!product) {
+                    unavailableItems.push({ name: cartItem.name, size: cartItem.size, reason: 'Proizvod više ne postoji u katalogu.' });
+                    return;
+                }
+                
+                // Proverava da li je zaliha te veličine manja od tražene količine
+                const availableStock = product.sizes[cartItem.size] || 0; 
+
+                if (cartItem.quantity > availableStock) {
+                    unavailableItems.push({ 
+                        name: cartItem.name, 
+                        size: cartItem.size, 
+                        reason: `Traženo: ${cartItem.quantity}, Dostupno: ${availableStock}.` 
+                    });
+                }
+            });
+
+            return unavailableItems;
+        }
 
         // =========================================================
         // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
@@ -1904,7 +1963,7 @@ selectSize(event, size, isDisabled) {
         // =========================================================
         // === AŽURIRANA completeOrder() FUNKCIJA (FINALNA) ===
         // =========================================================
-        completeOrder() {
+                completeOrder() {
             if (!this.checkoutData.email) {
                 this.showToast("Greška: Podaci kupca nisu popunjeni.");
                 return;
@@ -1930,6 +1989,39 @@ selectSize(event, size, isDisabled) {
             const total = subtotal + shipping - discount;
 
 
+            // Onemogućavanje dugmeta za slanje dok je proces u toku (VRAĆENO)
+            const submitBtn = document.querySelector('#checkoutStep2 .submit-order-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Slanje...';
+            submitBtn.disabled = true;
+
+            // =========================================================
+            // 🛑 OVDE SE UBACUJE VALIDACIJA ZALIHA 🛑
+            // =========================================================
+            const stockCheck = this.validateStock();
+
+            if (stockCheck.length > 0) {
+                // Sastavi poruku o grešci
+                const errorDetails = stockCheck.map(item => 
+                    `(${item.size}) ${item.name} - ${item.reason}`
+                ).join('\n');
+                
+                const fullErrorMessage = `⚠️ Zalihe nisu dovoljne! Molimo izmenite korpu: \n\n${errorDetails}`;
+
+                console.error(fullErrorMessage);
+                
+                // Vraćanje dugmeta u normalno stanje
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                this.showToast("Greška: Nema dovoljno zaliha. Molimo izmenite korpu.");
+                
+                this.goToStep(1); 
+                
+                return; // ZAUSTAVI IZVRŠAVANJE
+            }
+            // =========================================================
+            
             // Formiranje objekta podataka za EmailJS
             const templateParams = {
                 // DINAMIČKI PARAMETRI ZA ADMINA/POŠILJAOCA:
