@@ -752,6 +752,7 @@ nav a:hover, nav a.active {
         <button class="size-btn" data-size="M" onclick="shop.filterProducts('M', 'size')">M</button>
         <button class="size-btn" data-size="L" onclick="shop.filterProducts('L', 'size')">L</button>
         <button class="size-btn" data-size="XL" onclick="shop.filterProducts('XL', 'size')">XL</button>
+        <button class="size-btn" data-size="XXL" onclick="shop.filterProducts('XXL', 'size')">XXL</button>
         <button class="size-btn active" data-size="all" onclick="shop.filterProducts('all', 'size')">Sve</button>
     </div>
     
@@ -1020,7 +1021,7 @@ nav a:hover, nav a.active {
         // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
         // =========================================================
 
-        loadProducts() {
+                    loadProducts() {
     this.products = [
         { 
             id: 1, 
@@ -1030,8 +1031,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika1.webp", "slike/slika1a.webp"],
             badge: "BESTSELLER",
-            // ✅ NOVO: Dodavanje zaliha po veličinama
-            sizes: { S: 5, M: 12, L: 8, XL: 2 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
         },
         { 
             id: 2, 
@@ -1041,8 +1042,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika2.webp", "slike/slika2a.webp"], 
             badge: "PREMIUM",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 0, M: 15, L: 10, XL: 4 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
         },
         { 
             id: 3, 
@@ -1052,8 +1053,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika3.webp", "slike/slika3a.webp"], 
             badge: "LUXURY",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 7, M: 0, L: 5, XL: 0 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } 
         },
         { 
             id: 4, 
@@ -1063,8 +1064,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika4.webp", "slike/slika4a.webp"], 
             badge: "POPULAR",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 10, M: 10, L: 10, XL: 10 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } 
         },
         { 
             id: 5, 
@@ -1074,8 +1075,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika5.webp", "slike/slika5a.webp"],
             badge: "CLASSIC",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 2, M: 3, L: 0, XL: 0 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } 
         },
         { 
             id: 6, 
@@ -1085,8 +1086,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika6.webp", "slike/slika6a.webp"], 
             badge: "TRENDING",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 8, M: 8, L: 8, XL: 8 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } 
         },
         { 
             id: 7, 
@@ -1096,8 +1097,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika7.webp", "slike/slika7a.webp"], 
             badge: "ESSENTIAL",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 6, M: 6, L: 6, XL: 6 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
         },
         { 
             id: 8, 
@@ -1107,8 +1108,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika8.webp", "slike/slika8a.webp"], 
             badge: "NEW",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 4, M: 9, L: 4, XL: 9 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
         },
         { 
             id: 9, 
@@ -1118,8 +1119,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika9.webp", "slike/slika9a.webp"],
             badge: "PREMIUM",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 1, M: 1, L: 1, XL: 1 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } 
         },
         { 
             id: 10, 
@@ -1129,8 +1130,8 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika10.webp", "slike/slika10a.webp"],
             badge: "ECO",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 1, M: 1, L: 1, XL: 1 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } // Primer: Nema XXL zaliha za ovaj proizvod
         },
         { 
             id: 11, 
@@ -1140,15 +1141,15 @@ nav a:hover, nav a.active {
             category: "pamuk", 
             images: ["slike/slika11.webp", "slike/slika11a.webp"], 
             badge: "BAMBUS",
-            // ✅ NOVO: Dodavanje zaliha
-            sizes: { S: 20, M: 20, L: 20, XL: 20 } 
+            // AŽURIRANO: Dodana XXL veličina
+            sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
         }
     ];
 
-    // 👇 OBAVEZNO OSTATAK KODA ISPOD LISTE PROIZVODA 👇
     this.filteredProducts = [...this.products]; 
     this.renderProducts();
 }
+
         // TOGGLE FUNKCIJA ZA OTVARANJE/ZATVARANJE PANELA
 toggleFilterPanel() {
     const panel = document.getElementById('filterSortPanel');
