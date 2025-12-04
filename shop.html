@@ -631,41 +631,39 @@ nav a:hover, nav a.active {
     </div>
 
     <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-promo-message" id="cartPromoMessage">
-            </div>
+    
+    <div class="cart-header">
+        <h3>Vaša Korpa</h3>
+        <button class="modal-close" onclick="shop.toggleCart()">×</button>
+    </div>
+    
+    <div class="cart-promo-message" id="cartPromoMessage">
+        </div>
 
-        <div class="cart-items" id="cartItems">
-            </div>
-        </div>
-        <div class="cart-header">
-            <h3>Vaša Korpa</h3>
-            <button class="modal-close" onclick="shop.toggleCart()">×</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart" id="emptyCart">
-                <i class="fas fa-shopping-bag"></i>
-                <p>Vaša korpa je prazna</p>
-            </div>
-        </div>
-        
-        <div class="cart-footer" id="cartFooter" style="display: none;">
-            
-            <div class="cart-actions-footer">
-                <button class="clear-cart-btn" onclick="shop.clearCart()">
-                    <i class="fas fa-trash"></i> Isprazni Korpu
-                </button>
-            </div>
-
-            <div class="cart-totals">
-                <div class="cart-total-row"><span>Međuzbir:</span><span id="cartSubtotal">0 RSD</span></div>
-                <div class="cart-total-row"><span>Poštarina:</span><span id="cartShipping">0 RSD</span></div>
-                <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
-                <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
-            </div>
-            <button class="checkout-btn" onclick="shop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
+    <div class="cart-items" id="cartItems">
+        <div class="empty-cart" id="emptyCart">
+            <i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i>
+            <p>Vaša korpa je prazna</p>
         </div>
     </div>
     
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+        
+        <div class="cart-actions-footer">
+            <button class="clear-cart-btn" onclick="shop.clearCart()">
+                <i class="fas fa-trash"></i> Isprazni Korpu
+            </button>
+        </div>
+
+        <div class="cart-totals">
+            <div class="cart-total-row"><span>Međuzbir:</span><span id="cartSubtotal">0 RSD</span></div>
+            <div class="cart-total-row"><span>Poštarina:</span><span id="cartShipping">0 RSD</span></div>
+            <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
+            <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
+        </div>
+        <button class="checkout-btn" onclick="shop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
+    </div>
+</div>  
     <div class="modal-overlay" id="checkoutModal">
         <div class="modal-container">
             <button class="modal-close" onclick="shop.closeCheckoutModal()">×</button>
