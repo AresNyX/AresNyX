@@ -128,6 +128,10 @@
     .modal-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 16px; width: 90%; max-width: 700px; max-height: 95vh; overflow-y: auto; }
     .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
     .modal-content { padding: 1.5rem; }
+        max-height: 90vh; /* Ograničite visinu na 90% visine ekrana */
+    overflow-y: auto;  /* Dozvolite skrolovanje po Y osi SAMO kada je potrebno */
+    box-sizing: border-box; /* Obezbeđuje da padding ne utiče na max-height */
+        }
      /* POBOLJŠANJE ZA MODAL SLIKE */
 .modal-main-image {
     width: 100%;
