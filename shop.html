@@ -1148,30 +1148,33 @@ nav a:hover, nav a.active {
             }
         }
 
-                updateCartTotals(preview = false) {
+                        updateCartTotals(preview = false) {
             const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            // const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0); // Ostavljamo ako treba za dinamicku poruku
-
+            
             // NOVI USLOVI
             const FREE_SHIPPING_LIMIT = 4000; // RSD
             const DISCOUNT_LIMIT = 8000;      // RSD
 
             // 1. POŠTARINA (Sada zasnovana na subtotalu)
             const baseShipping = 400; // Fiksna cena dostave
-            const shipping = subtotal >= FREE_SHIPPING_LIMIT ? 0 : (subtotal > 0 ? baseShipping : 0);
+            // Ako je subtotal 0, shipping je 0. Ako je >= limit, shipping je 0. Inače je 400.
+            const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_LIMIT ? 0 : baseShipping);
 
             // 2. POPUST (Sada zasnovan na subtotalu)
             const discount = subtotal >= DISCOUNT_LIMIT ? Math.round(subtotal * 0.1) : 0;
             
             const total = subtotal + shipping - discount;
             
-        }     
+            // === RENDEROVANJE TOTALA (VRAĆENI DEO KOJI JE FALI) ===
+
             if (preview) {
+                // Ažuriranje elemenata u CheckOut Koraku 2 (Preview)
                 document.getElementById('previewSubtotal').textContent = subtotal + ' RSD';
                 document.getElementById('previewShipping').textContent = shipping + ' RSD';
                 document.getElementById('previewDiscount').textContent = discount + ' RSD';
                 document.getElementById('previewTotal').textContent = total + ' RSD';
             } else {
+                // Ažuriranje elemenata u bočnoj Korpi (Sidebar)
                 document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
                 document.getElementById('cartShipping').textContent = shipping + ' RSD';
                 document.getElementById('cartDiscount').textContent = discount + ' RSD';
@@ -1182,36 +1185,12 @@ nav a:hover, nav a.active {
                 totalElement.classList.remove('quick-pulse'); 
                 void totalElement.offsetWidth; 
                 totalElement.classList.add('quick-pulse');
+                
+                // POZIV DINAMIČKE PORUKE
                 this.updateCartPromoMessage(subtotal);
             }
         }
-                updateCartPromoMessage(currentSubtotal) {
-            const FREE_SHIPPING_LIMIT = 4000;
-            const DISCOUNT_LIMIT = 8000;
-            const messageElement = document.getElementById('cartPromoMessage');
 
-            if (!messageElement) return;
-
-            let message = '';
-            messageElement.classList.remove('success');
-
-            if (currentSubtotal === 0) {
-                message = 'Dodajte proizvode da vidite specijalne ponude!';
-            } else if (currentSubtotal < FREE_SHIPPING_LIMIT) {
-                const needed = FREE_SHIPPING_LIMIT - currentSubtotal;
-                message = `Još samo <strong>${needed} RSD</strong> do Besplatne dostave!`;
-            } else if (currentSubtotal >= FREE_SHIPPING_LIMIT && currentSubtotal < DISCOUNT_LIMIT) {
-                const needed = DISCOUNT_LIMIT - currentSubtotal;
-                message = `🎉 **Dostava je BESPLATNA!** Još samo <strong>${needed} RSD</strong> do 10% popusta!`;
-                messageElement.classList.add('success');
-            } else {
-                message = '🚀 **Čestitamo!** Imate besplatnu dostavu i 10% popusta!';
-                messageElement.classList.add('success');
-            }
-
-            messageElement.innerHTML = message;
-        
-                }
         clearCart() {
             if (this.cart.length === 0) {
                 this.showToast("Korpa je već prazna!");
