@@ -795,14 +795,13 @@ nav a:hover, nav a.active {
 
     <h3>Filter po Veličini</h3>
     <div class="size-filter-options" id="sizeFilterOptions">
-        <button class="size-btn" data-size="S" onclick="shop.filterProducts('S', 'size')">S</button>
-        <button class="size-btn" data-size="M" onclick="shop.filterProducts('M', 'size')">M</button>
-        <button class="size-btn" data-size="L" onclick="shop.filterProducts('L', 'size')">L</button>
-        <button class="size-btn" data-size="XL" onclick="shop.filterProducts('XL', 'size')">XL</button>
-        <button class="size-btn" data-size="XXL" onclick="shop.filterProducts('XXL', 'size')">XXL</button>
-        <button class="size-btn active" data-size="all" onclick="shop.filterProducts('all', 'size')">Sve</button>
-    </div>
-    
+    <button class="size-btn" data-size="S">S</button>
+    <button class="size-btn" data-size="M">M</button>
+    <button class="size-btn" data-size="L">L</button>
+    <button class="size-btn" data-size="XL">XL</button>
+    <button class="size-btn" data-size="XXL">XXL</button>
+    <button class="size-btn active" data-size="all">Sve</button>
+</div>  
     <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
 
 </div>
@@ -1054,8 +1053,7 @@ nav a:hover, nav a.active {
 
     init() {
         // ⭐ KLJUČNA IZMENA: POZIV loadProducts() OVDE ⭐
-        this.loadProducts(); 
-        
+        this.loadProducts();   
         this.updateCartCount();
         this.renderCart();
         this.updateCartPromoMessage(0); 
@@ -1068,9 +1066,35 @@ nav a:hover, nav a.active {
             console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
         }
     } 
+            /**
+     * Postavlja sve event listenere koji nisu inline u HTML-u.
+     */
+    attachEventListeners() {
+        // 1. EVENT LISTENER ZA FILTRIRANJE PO VELIČINI
+        const sizeFilterOptions = document.getElementById('sizeFilterOptions');
+        if (sizeFilterOptions) {
+            sizeFilterOptions.addEventListener('click', (e) => {
+                const btn = e.target.closest('.size-btn');
+                if (btn) {
+                    const size = btn.dataset.size;
+                    
+                    // Ukloni 'active' klasu sa svih dugmadi
+                    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                    
+                    // Dodaj 'active' klasu kliknutom dugmetu
+                    btn.classList.add('active');
+                    
+                    // Sačuvaj izabranu veličinu u stanju klase
+                    this.currentSizeFilter = size;
+                    
+                    // Bitno: Ne pozivamo render/apply ovde. Čeka se klik na 'Primeni filtere'.
+                }
+            });
+        }
+    }
+
     // =========================================================
-    
-    // ... (Ostatak klasa se nastavlja) ...
+
 
     /**
      * Proverava da li su svi artikli u korpi još uvek dostupni u traženoj količini.
@@ -1974,14 +1998,17 @@ nav a:hover, nav a.active {
     }
 
     } // <--- OVDE SE ZAVRŠAVA CELA KLASA
+// =========================================================
+// === OBAVEZNO POKRETANJE NAKON UČITAVANJA DOM-a ===
+// =========================================================
+let shop;
 
-    // =========================================================
-    // === OBAVEZNO POKRETANJE ===
-    // =========================================================
-    const shop = new AresNyXShop(); 
-    </script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicijalizacija klase tek kada su svi elementi dostupni
+    shop = new AresNyXShop(); 
+});
 
-              
+    </script>            
 
 </body>
     </html>
