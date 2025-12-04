@@ -764,7 +764,7 @@ nav a:hover, nav a.active {
             this.init();
         }
 
-                init() {
+        init() {
             this.loadProducts();
             this.updateCartCount();
             this.renderCart();
@@ -776,21 +776,13 @@ nav a:hover, nav a.active {
             } catch (e) {
                 console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
             }
-        } // <--- OVO JE SADA JEDINA ZAGRADA KOJA ZATVARA init()
-
-            // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
-            try {
-                emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
-            } catch (e) {
-                console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana. Proverite da li je skripta uvezena.");
-            }
-        }
+        } 
 
         // =========================================================
         // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
         // =========================================================
 
-                loadProducts() {
+        loadProducts() {
             this.products = [
                 { 
                     id: 1, 
@@ -952,7 +944,7 @@ nav a:hover, nav a.active {
             btn.disabled = false;
         }
 
-                updateModalImage() {
+        updateModalImage() {
             if (!this.currentProduct) return;
             document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
             
@@ -1154,48 +1146,40 @@ nav a:hover, nav a.active {
                 }
             }
         }
-// Postavite ovo unutar klase AresNyXShop
-updateCartPromoMessage(subtotal) {
-    const promoBar = document.getElementById('promoBar');
-    const cartPromo = document.getElementById('cartPromoMessage');
 
-    const FREE_SHIPPING_LIMIT = 4000;
-    const DISCOUNT_LIMIT = 8000;
-    
-    // --- Poruka u traci (Top-Promo-Bar) ---
-    // NAPOMENA: Vaš HTML za promoBar je zakomentarisan/izbrisan u <style> bloku, 
-    // ali ovde je kod ako ga vratite:
-    // if (promoBar) {
-    //     promoBar.innerHTML = '🚚 Besplatna dostava za porudžbine preko 4000 RSD! | ✨ 10% Popusta za kupovinu preko 8000 RSD!';
-    // }
+        updateCartPromoMessage(subtotal) {
+            const promoBar = document.getElementById('promoBar');
+            const cartPromo = document.getElementById('cartPromoMessage');
 
-    // --- Poruka u bočnoj korpi (Cart Sidebar) ---
-    if (!cartPromo) return;
+            const FREE_SHIPPING_LIMIT = 4000;
+            const DISCOUNT_LIMIT = 8000;
+            
+            // --- Poruka u bočnoj korpi (Cart Sidebar) ---
+            if (!cartPromo) return;
 
-    if (subtotal >= DISCOUNT_LIMIT) {
-        cartPromo.classList.add('success');
-        cartPromo.innerHTML = '✅ Ostvarili ste <strong>Besplatnu dostavu</strong> i <strong>10% Popusta</strong>!';
-    } else if (subtotal >= FREE_SHIPPING_LIMIT) {
-        const nextTarget = DISCOUNT_LIMIT - subtotal;
-        cartPromo.classList.remove('success');
-        cartPromo.innerHTML = `🔥 Ostvarili ste <strong>BESPLATNU DOSTAVU</strong>! Dodajte još <strong>${nextTarget} RSD</strong> za 10% Popusta!`;
-    } else {
-        const nextTarget = FREE_SHIPPING_LIMIT - subtotal;
-        cartPromo.classList.remove('success');
-        cartPromo.innerHTML = `Dodajte još <strong>${nextTarget} RSD</strong> do Besplatne dostave!`;
-    }
-}
+            if (subtotal >= DISCOUNT_LIMIT) {
+                cartPromo.classList.add('success');
+                cartPromo.innerHTML = '✅ Ostvarili ste <strong>Besplatnu dostavu</strong> i <strong>10% Popusta</strong>!';
+            } else if (subtotal >= FREE_SHIPPING_LIMIT) {
+                const nextTarget = DISCOUNT_LIMIT - subtotal;
+                cartPromo.classList.remove('success');
+                cartPromo.innerHTML = `🔥 Ostvarili ste <strong>BESPLATNU DOSTAVU</strong>! Dodajte još <strong>${nextTarget} RSD</strong> za 10% Popusta!`;
+            } else {
+                const nextTarget = FREE_SHIPPING_LIMIT - subtotal;
+                cartPromo.classList.remove('success');
+                cartPromo.innerHTML = `Dodajte još <strong>${nextTarget} RSD</strong> do Besplatne dostave!`;
+            }
+        }
 
-                        updateCartTotals(preview = false) {
+        updateCartTotals(preview = false) {
             const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             // NOVI USLOVI
             const FREE_SHIPPING_LIMIT = 4000; // RSD
             const DISCOUNT_LIMIT = 8000;      // RSD
+            const baseShipping = 400; // Fiksna cena dostave
 
             // 1. POŠTARINA (Sada zasnovana na subtotalu)
-            const baseShipping = 400; // Fiksna cena dostave
-            // Ako je subtotal 0, shipping je 0. Ako je >= limit, shipping je 0. Inače je 400.
             const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_LIMIT ? 0 : baseShipping);
 
             // 2. POPUST (Sada zasnovan na subtotalu)
@@ -1377,7 +1361,7 @@ updateCartPromoMessage(subtotal) {
             return html;
         }
         
-                     // =========================================================
+        // =========================================================
         // === AŽURIRANA completeOrder() FUNKCIJA (FINALNA) ===
         // =========================================================
         completeOrder() {
@@ -1494,7 +1478,8 @@ updateCartPromoMessage(subtotal) {
     // === OBAVEZNO POKRETANJE ===
     // =========================================================
     const shop = new AresNyXShop(); 
-    </script>                                           
+    </script>
+              
 
 </body>
     </html>
