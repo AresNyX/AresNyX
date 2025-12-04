@@ -1474,9 +1474,6 @@ selectSize(event, size, isDisabled) {
     document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
     event.currentTarget.classList.add('selected');
 }
-// UNUTAR class AresNyXShop { ... }
-
-// ... (mnogo koda iznad) ...
 
         openProductModal(productId) {
             this.currentProduct = this.products.find(p => p.id === productId);
@@ -1826,9 +1823,38 @@ selectSize(event, size, isDisabled) {
                 this.showToast("Korpa je ispražnjena!");
             }
         }
-        
-        saveCart() {
+         
+            saveCart() {
             localStorage.setItem('cart', JSON.stringify(this.cart));
+          }
+        /**
+         * Metoda za validaciju zaliha u korpi pre slanja porudžbine.
+         * @returns {Array} Lista objekata sa detaljima o nedostajućim zalihama.
+         */
+        validateStock() {
+            const missingStock = [];
+            
+            this.cart.forEach(cartItem => {
+                const product = this.products.find(p => p.id === cartItem.productId);
+                
+                if (!product) {
+                    missingStock.push({ name: 'Nepoznat proizvod', size: cartItem.size, reason: 'Proizvod ne postoji.' });
+                    return;
+                }
+                
+                // Pretpostavljamo da 'sizes' sadrži zalihe, npr. { 'S': 5, 'M': 0 }
+                const availableStock = product.sizes[cartItem.size] || 0;
+
+                if (cartItem.quantity > availableStock) {
+                    missingStock.push({ 
+                        name: product.name, 
+                        size: cartItem.size, 
+                        reason: `Dostupno je samo ${availableStock} komada, a u korpi je ${cartItem.quantity}.` 
+                    });
+                }
+            });
+            
+            return missingStock; 
         }
 
         showToast(message) {
