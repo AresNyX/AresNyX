@@ -446,6 +446,37 @@ nav a:hover, nav a.active {
     color: #fff;
     font-weight: 500;
 }
+            /* NOVI STILOVI ZA SLIDER */
+    .modal-gallery {
+        position: relative;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    .slider-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 10px;
+        margin-top: 15px;
+    }
+    .slider-nav button {
+        background: var(--gray-medium);
+        color: var(--text-dark);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+    }
+    .slider-nav button:hover {
+        background: var(--accent-gold);
+        color: white;
+    }
     
     </style>
     
@@ -725,19 +756,109 @@ nav a:hover, nav a.active {
         // === METODE ZA PROIZVODE I RENDERIN (Proizvodi VRAĆENI) ===
         // =========================================================
 
-        loadProducts() {
+                loadProducts() {
             this.products = [
-    { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["slike/slika1.webp"], badge: "BESTSELLER" },
-    { id: 2, name: "Premium Pamuk", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slike/slika2.webp"], badge: "PREMIUM" },
-    { id: 3, name: "Elegant", material: "100% Prirodni Pamuk", price: 1800, category: "pamuk", images: ["slike/slika3.webp"], badge: "LUXURY" },
-    { id: 4, name: "Night Black", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["slike/slika4.webp"], badge: "POPULAR" },
-    { id: 5, name: "Pure White", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["slike/slika5.webp"], badge: "CLASSIC" },
-    { id: 6, name: "Navy Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["slike/slika6.webp"], badge: "TRENDING" },
-    { id: 7, name: "Dark Grey", material: "100% Premium Pamuk", price: 1300, category: "pamuk", images: ["slike/slika7.webp"], badge: "ESSENTIAL" },
-    { id: 8, name: "Blue Stripes", material: "100% Premium Pamuk", price: 1400, category: "pamuk", images: ["slike/slika8.webp"], badge: "NEW" },
-    { id: 9, name: "Charcoal Black", material: "100% Premium Pamuk", price: 1350, category: "pamuk", images: ["slike/slika9.webp"], badge: "PREMIUM" },
-    { id: 10, name: "Navy", material: "100% Arabic Pamuk", price: 1600, category: "lan", images: ["slike/slika10.webp"], badge: "ECO" }
-      ];
+                { 
+                    id: 1, 
+                    name: "Classic Pamuk", 
+                    material: "100% Organski Pamuk", 
+                    price: 1300, 
+                    category: "pamuk", 
+                    images: ["slike/slika1.webp", "slike/slika1a.webp"], // Dodata slika 1a
+                    badge: "BESTSELLER" 
+                },
+                { 
+                    id: 2, 
+                    name: "Premium Pamuk", 
+                    material: "100% Premium Pamuk", 
+                    price: 1500, 
+                    category: "pamuk", 
+                    images: ["slike/slika2.webp", "slike/slika2a.webp"], // Dodata slika 2a
+                    badge: "PREMIUM" 
+                },
+                { 
+                    id: 3, 
+                    name: "Elegant", 
+                    material: "100% Prirodni Pamuk", 
+                    price: 1800, 
+                    category: "pamuk", 
+                    images: ["slike/slika3.webp", "slike/slika3a.webp"], // Dodata slika 3a
+                    badge: "LUXURY" 
+                },
+                { 
+                    id: 4, 
+                    name: "Night Black", 
+                    material: "100% Premium Pamuk", 
+                    price: 1300, 
+                    category: "pamuk", 
+                    images: ["slike/slika4.webp", "slike/slika4a.webp"], // Dodata slika 4a
+                    badge: "POPULAR" 
+                },
+                { 
+                    id: 5, 
+                    name: "Pure White", 
+                    material: "100% Organski Pamuk", 
+                    price: 1300, 
+                    category: "pamuk", 
+                    images: ["slike/slika5.webp", "slike/slika5a.webp"], // Dodata slika 5a
+                    badge: "CLASSIC" 
+                },
+                { 
+                    id: 6, 
+                    name: "Navy Stripes", 
+                    material: "100% Premium Pamuk", 
+                    price: 1400, 
+                    category: "pamuk", 
+                    images: ["slike/slika6.webp", "slike/slika6a.webp"], // Dodata slika 6a
+                    badge: "TRENDING" 
+                },
+                { 
+                    id: 7, 
+                    name: "Dark Grey", 
+                    material: "100% Premium Pamuk", 
+                    price: 1300, 
+                    category: "pamuk", 
+                    images: ["slike/slika7.webp", "slike/slika7a.webp"], // Dodata slika 7a
+                    badge: "ESSENTIAL" 
+                },
+                { 
+                    id: 8, 
+                    name: "Blue Stripes", 
+                    material: "100% Premium Pamuk", 
+                    price: 1400, 
+                    category: "pamuk", 
+                    images: ["slike/slika8.webp", "slike/slika8a.webp"], // Dodata slika 8a
+                    badge: "NEW" 
+                },
+                { 
+                    id: 9, 
+                    name: "Charcoal Black", 
+                    material: "100% Premium Pamuk", 
+                    price: 1350, 
+                    category: "pamuk", 
+                    images: ["slike/slika9.webp", "slike/slika9a.webp"], // Dodata slika 9a
+                    badge: "PREMIUM" 
+                },
+                { 
+                    id: 10, 
+                    name: "Navy", 
+                    material: "100% Arabic Pamuk", 
+                    price: 1600, 
+                    category: "lan", 
+                    images: ["slike/slika10.webp", "slike/slika10a.webp"], // Dodata slika 10a
+                    badge: "ECO" 
+                },
+                // === PROIZVOD 11 (Ostavljen nepromenjen) ===
+                { 
+                    id: 11, 
+                    name: "Bamboo Cool", 
+                    material: "70% Bambus, 30% Organski Pamuk", 
+                    price: 1900, 
+                    category: "bambus", 
+                    images: ["slike/slika11.webp", "slike/slika11a.webp"], 
+                    badge: "BAMBUS" 
+                }
+            ];
             this.renderProducts();
         }
 
@@ -797,16 +918,28 @@ nav a:hover, nav a.active {
             btn.disabled = false;
         }
 
-        updateModalImage() {
+                updateModalImage() {
             if (!this.currentProduct) return;
             document.getElementById('modalMainImage').src = this.currentProduct.images[this.currentImageIndex];
             
-            // Logika za onemogućavanje dugmadi na početku/kraju ciklusa
-            const isFirst = this.currentImageIndex === 0;
-            const isLast = this.currentImageIndex === this.currentProduct.images.length - 1;
-            
-            document.getElementById('prevImageBtn').disabled = isFirst;
-            document.getElementById('nextImageBtn').disabled = isLast;
+            const totalImages = this.currentProduct.images.length;
+            const sliderNav = document.querySelector('.slider-nav');
+
+            if (totalImages > 1) {
+                sliderNav.style.display = 'flex'; // Prikazuje slider ako ima više od 1 slike
+                
+                // Logika za onemogućavanje dugmadi
+                const isFirst = this.currentImageIndex === 0;
+                const isLast = this.currentImageIndex === totalImages - 1;
+                
+                document.getElementById('prevImageBtn').disabled = isFirst;
+                document.getElementById('nextImageBtn').disabled = isLast;
+                
+                // Dodatna provera za dugme "Sledeća" da se ne vrti u krug, ako je to željeni efekat.
+                // Ako želite kružno kretanje, uklonite ove isLast/isFirst provere.
+            } else {
+                sliderNav.style.display = 'none'; // Sakriva slider ako ima samo 1 sliku
+            }
         }
 
         selectSize(event, size) {
