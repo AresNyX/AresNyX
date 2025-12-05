@@ -47,7 +47,7 @@ h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
     display: block;
     margin-left: auto;
     margin-right: auto;
-    loading: lazy;
+    /* Uklanjamo loading: lazy; odavde, jer je CSS za strukturu */
 }
 
 /* HEADER */
@@ -183,6 +183,7 @@ footer {
     font-weight: 500;
 }
 
+/* FOOTER LINKOVI (Uslovi/Privatnost) */
 .footer-links {
     margin: 15px 0;
     display: flex;
@@ -201,6 +202,37 @@ footer {
 .footer-links a:hover {
     background-color: rgba(212, 175, 55, 0.1);
 }
+
+/* DRUŠTVENE MREŽE (ISPRAVLJENO!) */
+.footer-social {
+    display: flex; /* Osigurava horizontalni raspored */
+    justify-content: center; 
+    align-items: center;
+    gap: 20px; /* Razmak između ikona */
+    margin: 20px 0 10px 0; /* Dodaje malo vertikalnog prostora */
+}
+
+.social-icon {
+    display: flex;
+    text-decoration: none;
+    transition: all 0.3s;
+    color: #fff; /* Osnovna boja ikone */
+}
+
+.social-icon:hover {
+    color: var(--color-accent-gold); 
+    transform: translateY(-2px);
+}
+
+.social-icon svg {
+    /* OVO DEFINIŠE ISPRAVNU VELIČINU IKONA */
+    width: 28px; 
+    height: 28px;
+    fill: currentColor; /* Ikona nasleđuje boju linka (.social-icon) */
+    transition: fill 0.3s, transform 0.3s;
+}
+/* KRAJ DRUŠTVENIH MREŽA */
+
 
 /* RESPONSIVE STILOVI */
 @media (max-width: 768px) {
@@ -273,4 +305,3 @@ footer {
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
 /* ============================================== */
-
