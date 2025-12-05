@@ -625,26 +625,21 @@
             }).join(', ');
             
             return `
-            <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
-                ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-                <img 
-                    src="${imageSrc}" 
-                    alt="AresNyX Bokserice: ${product.name}" 
-                    class="product-image" 
-                    loading="lazy"
-                    width="800"  
-                    height="200" 
-                    srcset="${srcset}"
-                    sizes="(max-width: 600px) 480px, 400px"
-                >
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <p class="product-material">${product.material}</p>
-                    <p class="product-price">${product.price} RSD</p>
-                </div>
+              <div class="product-card" data-id="${product.id}" onclick="shop.openProductModal(${product.id})">
+        ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+        
+        <img src="${imageSrc}" 
+             alt="${product.title}" 
+             srcset="${srcset}"
+             sizes="(min-width: 992px) 33vw, (min-width: 576px) 50vw, 100vw"
+             class="product-image"
+             loading="lazy"> 
+
+        <div class="product-info">
             </div>
-        `;
-        }).join('');
+    </div>
+`;
+}).join('');
     }
 
     // ----------------------------------------------
