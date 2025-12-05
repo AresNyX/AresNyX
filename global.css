@@ -1,17 +1,19 @@
-    /* ============================================== */
-/* GLOBAL.CSS - MINIMALNI FONT I BOJA TELA */
+/* ============================================== */
+/* GLOBAL.CSS - STILOVI ZAJEDNIČKI ZA SVE STRANICE */
 /* ============================================== */
 
-/* CSS VARIJABLE */
 :root {
     --font-primary: 'Montserrat', sans-serif;
+    --color-dark-bg: #121212; 
+    --color-accent-gold: #D4AF37; 
+    --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO */
+    --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover */
     --color-text-main: #333333; 
     --color-light-bg: #f7f7f7; 
 }
 
-/* OSNOVNI BODY STILOVI (Ovo je kritično za font) */
 body { 
-    font-family: var(--font-primary); /* Postavlja Montserrat na celo telo */
+    font-family: var(--font-primary); 
     margin: 0; 
     padding: 0; 
     background: var(--color-light-bg); 
@@ -19,10 +21,172 @@ body {
     line-height: 1.6;
 }
 
-/* Osnovno formatiranje naslova */
-h1, h2, h3 { 
-    font-weight: 600; 
-    color: var(--color-text-main); 
+h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+
+/* HEADER */
+header { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 40px 20px; 
+    text-align: center; 
+}
+header h1 { 
+    font-size: 32px;
+    color: var(--color-accent-gold); 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(212,175,55,0.3);
+}
+.brand-emphasis { font-weight: 700; }
+.subtitle {
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 8px; /* Dodato iz index.html strukture */
+}
+.header-logo { /* Dodato iz index.html strukture */
+    height: 90px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* NAVIGACIJA */
+nav {
+    background-color: var(--color-dark-bg);
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: 1em;
+    transition: color 0.3s;
+    /* Dodatni stilovi iz index.html za padding/border-radius */
+    padding: 5px 8px; 
+    border-radius: 4px;
+    display: inline-block;
+}
+nav a:hover, nav a.active {
+    color: var(--color-accent-gold);
+    /* Dodatni stil iz index.html */
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+/* MAIN CONTENT - Globalni stilovi za strukturu */
+main { 
+    max-width: 900px; 
+    margin: 60px auto; 
+    padding: 0 20px; 
+}
+
+section {
+    margin-bottom: 60px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+section h2 { 
+    text-align: center; 
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: var(--color-button); 
+}
+section p { 
+    margin-bottom: 1.2em;
+}
+
+/* STILOVI SPECIFIČNI ZA DOKUMENTE (Politika Privatnosti, Uslovi) */
+.policy-content h2 {
+    color: var(--color-button);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--color-accent-gold);
+    padding-bottom: 5px;
+}
+.policy-content h3 {
+    color: var(--color-text-main);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+.policy-content ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+.policy-content li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 10px;
+}
+.policy-content li strong {
+    color: var(--color-button);
+}
+.text-center {
+    text-align: center;
+}
+.lead {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+.highlight-box {
+    background: var(--color-light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-accent-gold);
+    margin: 20px 0;
+}
+/* KRAJ DOKUMENT STILOVA */
+
+
+/* FOOTER */
+footer { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 30px 20px; 
+    text-align: center; 
+    margin-top: 60px;
+}
+.footer-links {
+    margin: 20px 0;
+    display: flex; /* Dodato za horizontalni raspored, kao što je u futeru */
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.footer-links a {
+    color: var(--color-accent-gold);
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 5px; /* Dodato za lakši klik */
+}
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* RESPONSIVE STILOVI - Uključuje sve iz index.html i Privatnosti */
+@media (max-width: 768px) {
+    nav a { margin: 0 10px; }
+    .policy-content h2 { font-size: 1.3em; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 26px; }
+    nav a { display: block; margin: 5px 0; }
+    section { padding: 20px; }
+}
+/* ============================================== */
 /* KRAJ GLOBAL.CSS */
+/* ============================================== */
