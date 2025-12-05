@@ -239,6 +239,110 @@ footer {
     header h1 { font-size: 26px; }
     nav a { display: block; margin: 5px 0; }
     section { padding: 20px; }
+    /* --- DODATO: STILOVI SPECIFIČNI ZA KONTAKT STRANICU --- */
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-info {
+    padding: 15px;
+}
+
+.section-title {
+    font-size: 1.5em;
+    color: var(--color-button);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-accent-gold);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    background: var(--color-light-bg);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-item i {
+    font-size: 1.5em;
+    color: var(--color-accent-gold);
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    color: var(--color-text-main);
+}
+
+.contact-details p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95em;
+}
+
+.contact-form {
+    padding: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-main);
+    font-size: 0.95em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- KRAJ DODATIH KONTAKT STILOVA --- */
+
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
