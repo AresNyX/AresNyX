@@ -22,6 +22,46 @@ body {
 }
 
 h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+.cta-container {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.cta-button { 
+    background: var(--color-button);
+    color: #fff; 
+    border: none; 
+    border-radius: 6px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 280px;
+    width: 100%;
+    padding: 14px 25px;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25); /* Prilagođena boja za shadow */
+    line-height: normal;
+    min-height: 50px;
+    text-align: center;
+}
+.cta-button:hover {
+    background-color: var(--color-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3); /* Prilagođena boja za shadow */
+}
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(101, 34, 28, 0.2);
+}
+.cta-button:focus {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+}
 
 /* HEADER */
 header { 
