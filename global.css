@@ -52,7 +52,7 @@ header {
     background: var(--color-dark-bg); 
     color: #fff; 
     /* IZMENA: Smanjen vertikalni padding sa 40px na 25px */
-    padding: 25px 20px; 
+    padding: 15px 20px; 
     text-align: center; 
 }
 header h1 { 
