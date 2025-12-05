@@ -131,20 +131,42 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     color: var(--accent-gold); /* Koristimo var(--accent-gold) umesto --color-accent-gold */
 }
 
+/* ===== NOVI FOOTER STILOVI ===== */
+/* ... (Sav Vaš ostali footer kod) ... */
+
 .footer-social {
+    display: flex; /* Koristimo flex da bolje kontrolišemo centriranje */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Razmak između ikona */
     margin: 20px 0;
 }
 
 .social-icon {
-    color: #fff;
-    font-size: 1.5em;
-    margin: 0 10px;
-    transition: color 0.3s;
+    /* Uklonimo margin: 0 10px; jer sad koristimo gap: 20px; na .footer-social */
+    display: flex; /* Osigurava da je element linka (<a>) fleksibilan kontejner */
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
-.social-icon:hover {
-    color: var(--accent-gold);
+/* 🛑 KLJUČNA IZMENA: Ciljamo SVG element unutar linka 🛑 */
+.social-icon svg {
+    width: 28px; /* Povećajmo malo dimenzije */
+    height: 28px;
+    /* Postavljamo fill na belu boju, jer je pozadina futera tamna */
+    fill: #fff; 
+    transition: fill 0.3s;
 }
+
+/* 🛑 Efekat pri prelasku mišem (Hover) 🛑 */
+.social-icon:hover svg {
+    fill: var(--accent-gold); /* Promena boje na zlatnu */
+    transform: translateY(-2px); /* Lagani efekat lebdenja */
+}
+
+.footer-bottom {
+/* ... (Ostatak futer koda) ... */
+
 
 .footer-bottom {
     color: #fff;
