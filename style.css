@@ -82,15 +82,8 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .footer { background: var(--primary-dark); color: white; padding: 3rem 2rem 2rem; margin-top: auto; }
 
 
-/* ===== Značke/Badge-evi ===== */
-.product-badge.premium { background: var(--accent-gold); color: var(--primary-dark); }
-.product-badge.new { background: var(--danger); }
+/* ===== NOVI FOOTER STILOVI - KONSOLIDOVANO I ISPRAVLJENO ===== */
 
-/* Detalji Proizvoda */
-.product-material { color: #666; font-size: 0.9rem; margin-bottom: 0.8rem; }
-
-
-/* ===== NOVI FOOTER STILOVI ===== */
 .footer-content {
     text-align: center;
 }
@@ -128,14 +121,12 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 }
 
 .footer-links a:hover {
-    color: var(--accent-gold); /* Koristimo var(--accent-gold) umesto --color-accent-gold */
+    color: var(--accent-gold);
 }
 
-/* ===== NOVI FOOTER STILOVI ===== */
-/* ... (Sav Vaš ostali footer kod) ... */
-
+/* 🛑 KONAČNA ISPRAVKA ZA IKONE 🛑 */
 .footer-social {
-    display: flex; /* Koristimo flex da bolje kontrolišemo centriranje */
+    display: flex; 
     justify-content: center;
     align-items: center;
     gap: 20px; /* Razmak između ikona */
@@ -143,29 +134,23 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 }
 
 .social-icon {
-    /* Uklonimo margin: 0 10px; jer sad koristimo gap: 20px; na .footer-social */
-    display: flex; /* Osigurava da je element linka (<a>) fleksibilan kontejner */
+    display: flex; 
     text-decoration: none;
     transition: all 0.3s;
 }
 
-/* 🛑 KLJUČNA IZMENA: Ciljamo SVG element unutar linka 🛑 */
 .social-icon svg {
-    width: 28px; /* Povećajmo malo dimenzije */
+    width: 28px;
     height: 28px;
-    /* Postavljamo fill na belu boju, jer je pozadina futera tamna */
-    fill: #fff; 
-    transition: fill 0.3s;
+    fill: #fff; /* KLJUČNO: Postavlja boju SVG-a */
+    transition: fill 0.3s, transform 0.3s;
 }
 
-/* 🛑 Efekat pri prelasku mišem (Hover) 🛑 */
 .social-icon:hover svg {
-    fill: var(--accent-gold); /* Promena boje na zlatnu */
-    transform: translateY(-2px); /* Lagani efekat lebdenja */
+    fill: var(--accent-gold); 
+    transform: translateY(-2px); 
 }
-
-.footer-bottom {
-/* ... (Ostatak futer koda) ... */
+/* 🛑 KRAJ ISPRAVKE IKONA 🛑 */
 
 
 .footer-bottom {
