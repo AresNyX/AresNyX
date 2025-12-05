@@ -51,7 +51,8 @@ section p {
 header { 
     background: var(--color-dark-bg); 
     color: #fff; 
-    padding: 40px 20px; 
+    /* IZMENA: Smanjen vertikalni padding sa 40px na 25px */
+    padding: 25px 20px; 
     text-align: center; 
 }
 header h1 { 
@@ -72,8 +73,10 @@ header h1 {
     margin-top: 8px; 
 }
 .header-logo { 
-    height: 90px;
-    margin-bottom: 20px;
+    /* IZMENA: Smanjena visina sa 90px na 70px */
+    height: 70px;
+    /* IZMENA: Smanjena margina sa 20px na 15px */
+    margin-bottom: 15px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -183,7 +186,7 @@ nav a:hover, nav a.active {
     width: 48px;
     height: 48px;
     margin: 0 auto 12px;
-    display: block !important; /* ISPRAVKA: Povećana specifičnost za ikone */
+    display: block !important; 
 }
 .feature-item .icon-svg path {
     fill: var(--color-accent-gold);
