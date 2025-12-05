@@ -126,30 +126,40 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 
 /* 🛑 KONAČNA ISPRAVKA ZA IKONE 🛑 */
 .footer-social {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Razmak između ikona */
+    gap: 20px;
     margin: 20px 0;
 }
 
 .social-icon {
-    display: flex; 
+    display: flex;
     text-decoration: none;
     transition: all 0.3s;
 }
 
+/* 🛑 NOVO/AŽURIRANO: Osigurava da je SVG ispravne veličine */
 .social-icon svg {
-    width: 28px;
+    width: 28px; 
     height: 28px;
-    fill: #fff; /* KLJUČNO: Postavlja boju SVG-a */
     transition: fill 0.3s, transform 0.3s;
+    /* Uklanjamo fill odavde jer ga prebacujemo na path za sigurnost */
 }
 
-.social-icon:hover svg {
-    fill: var(--accent-gold); 
-    transform: translateY(-2px); 
+/* 🛑 KRITIČNA ISPRAVKA: Ciljamo putanju (path) za boju 🛑 */
+.social-icon svg path {
+    /* Postavljamo belu boju i forsira je preko !important */
+    fill: #fff !important; 
+    transition: fill 0.3s;
 }
+
+/* 🛑 HOVER: Ažuriramo pravilo da gađa putanju */
+.social-icon:hover svg path {
+    fill: var(--accent-gold) !important; /* Promena boje na zlatnu */
+    transform: translateY(-2px); /* Lagani efekat lebdenja */
+}
+
 /* 🛑 KRAJ ISPRAVKE IKONA 🛑 */
 
 
