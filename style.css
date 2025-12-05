@@ -125,40 +125,30 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 }
 
 /* 🛑 KONAČNA ISPRAVKA ZA IKONE 🛑 */
-.footer-social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
 .social-icon {
     display: flex;
     text-decoration: none;
     transition: all 0.3s;
+    /* 🛑 POSTAVITE BOJU TEKSTA NA LINKU 🛑 */
+    color: #fff; 
 }
 
-/* 🛑 NOVO/AŽURIRANO: Osigurava da je SVG ispravne veličine */
+/* 🛑 HOVER NA LINKU MENJA BOJU 🛑 */
+.social-icon:hover {
+    color: var(--accent-gold); 
+    transform: translateY(-2px); /* Lagani efekat lebdenja */
+}
+
 .social-icon svg {
     width: 28px; 
     height: 28px;
+    /* 🛑 REŠENJE: SVG nasleđuje boju teksta (color) 🛑 */
+    fill: currentColor; 
     transition: fill 0.3s, transform 0.3s;
-    /* Uklanjamo fill odavde jer ga prebacujemo na path za sigurnost */
 }
 
-/* 🛑 KRITIČNA ISPRAVKA: Ciljamo putanju (path) za boju 🛑 */
-.social-icon svg path {
-    /* Postavljamo belu boju i forsira je preko !important */
-    fill: #fff !important; 
-    transition: fill 0.3s;
-}
+/* Uklanjamo pravila za .social-icon svg path jer ih fill: currentColor čini redundantnim */
 
-/* 🛑 HOVER: Ažuriramo pravilo da gađa putanju */
-.social-icon:hover svg path {
-    fill: var(--accent-gold) !important; /* Promena boje na zlatnu */
-    transform: translateY(-2px); /* Lagani efekat lebdenja */
-}
 
 /* 🛑 KRAJ ISPRAVKE IKONA 🛑 */
 
