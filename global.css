@@ -131,6 +131,18 @@ section p {
 }
 .policy-content li strong {
     color: var(--color-button);
+    /* --- DODATO: STILOVI SPECIFIČNI ZA BLOG STRANICE --- */
+
+.blog-content h3 {
+    font-size: 1.2em;
+}
+
+.blog-intro {
+    font-size: 1em;
+    padding-left: 12px;
+}
+
+/* --- KRAJ DODATIH BLOG STILOVA --- */
 }
 .text-center {
     text-align: center;
