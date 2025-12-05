@@ -7,7 +7,6 @@
     <title>AresNyX Shop - Premium Boxer Shorts</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <link rel="preload" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
@@ -17,13 +16,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
 
-    <link rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" 
-          as="style" 
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
+      <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
+
+    <link rel="preload" 
+          as="image" 
+          href="https://aresnyx.github.io/AresNyX/slike/slika1.webp">
 
     <link rel="stylesheet" href="style.css">
 
@@ -351,9 +350,8 @@
     </div>
 
     <div class="toast" id="toast"></div>
-                
-                   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
     
     class AresNyXShop {
@@ -578,7 +576,6 @@
 
         this.filteredProducts = [...this.products]; 
         
-        this.renderProducts();
     }
     // TOGGLE FUNKCIJA ZA OTVARANJE/ZATVARANJE PANELA
     toggleFilterPanel() {
@@ -1343,8 +1340,15 @@
 let shop;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicijalizacija klase tek kada su svi elementi dostupni
+    // 1. INICIJALIZACIJA: Instancirajte klasu tek kada je DOM spreman.
+    // (Klasa će pozvati loadProducts(), koja ne sme da renderuje proizvode!)
     shop = new AresNyXShop(); 
+    
+    // 2. ODLOŽENO RENDEROVANJE (TIMEOUT)
+    setTimeout(() => {
+        // Sada je 'shop' sigurno instanca klase, i renderProducts() će raditi.
+        shop.renderProducts(); 
+    }, 50); 
 });
 
     </script>            
