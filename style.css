@@ -123,13 +123,67 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .footer-links a:hover {
     color: var(--accent-gold);
 }
-/* ===== NOVI FOOTER STILOVI - KONSOLIDOVANI LAYOUT I IKONE ===== */
+/* ------------------------------------------------ */
+/* FOOTER - Potpuno ispravljen blok */
+/* ------------------------------------------------ */
+
+.footer { 
+    background: var(--primary-dark); 
+    color: white; 
+    padding: 3rem 2rem 2rem; 
+    margin-top: auto; 
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.footer-tagline {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent-gold);
+}
+
+
+/* 🚀 IKONE DRUŠTVENIH MREŽA - HORIZONTALNO SLAGANJE I BOJA 🚀 */
 
 .footer-social {
-    display: flex; /* KLJUČNO: Postavlja ikone u red */
-    justify-content: center; /* Centriranje ikona */
+    display: flex; /* 🛑 OVO REŠAVA VERTIKALNO SLAGANJE 🛑 */
+    justify-content: center; /* Centriranje */
     align-items: center;
-    gap: 20px; /* Razmak između ikona */
+    gap: 20px;
     margin: 20px 0;
 }
 
@@ -137,13 +191,12 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     display: flex;
     text-decoration: none;
     transition: all 0.3s;
-    
-    /* 🛑 KONTROLA BOJE 1: Postavljamo osnovnu boju (tekst) na linku 🛑 */
+    /* Postavljamo belu boju na roditeljskom elementu */
     color: #fff; 
 }
 
-/* 🛑 HOVER NA LINKU: Menja boju teksta, a SVG nasleđuje promenu 🛑 */
 .social-icon:hover {
+    /* Hover na roditeljskom elementu - menja boju */
     color: var(--accent-gold); 
     transform: translateY(-2px);
 }
@@ -151,13 +204,10 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .social-icon svg {
     width: 28px; 
     height: 28px;
-    
-    /* 🛑 KONTROLA BOJE 2: SVG putanja nasleđuje boju roditeljskog elementa (link) 🛑 */
+    /* SVG nasleđuje boju od roditelja (bela/zlatna) */
     fill: currentColor; 
     transition: fill 0.3s, transform 0.3s;
 }
-
-/* ===== KRAJ KONSOLIDACIJE IKONA ===== */
 
 .footer-bottom {
     color: #fff;
