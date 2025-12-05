@@ -123,35 +123,41 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .footer-links a:hover {
     color: var(--accent-gold);
 }
+/* ===== NOVI FOOTER STILOVI - KONSOLIDOVANI LAYOUT I IKONE ===== */
 
-/* 🛑 KONAČNA ISPRAVKA ZA IKONE 🛑 */
+.footer-social {
+    display: flex; /* KLJUČNO: Postavlja ikone u red */
+    justify-content: center; /* Centriranje ikona */
+    align-items: center;
+    gap: 20px; /* Razmak između ikona */
+    margin: 20px 0;
+}
+
 .social-icon {
     display: flex;
     text-decoration: none;
     transition: all 0.3s;
-    /* 🛑 POSTAVITE BOJU TEKSTA NA LINKU 🛑 */
+    
+    /* 🛑 KONTROLA BOJE 1: Postavljamo osnovnu boju (tekst) na linku 🛑 */
     color: #fff; 
 }
 
-/* 🛑 HOVER NA LINKU MENJA BOJU 🛑 */
+/* 🛑 HOVER NA LINKU: Menja boju teksta, a SVG nasleđuje promenu 🛑 */
 .social-icon:hover {
     color: var(--accent-gold); 
-    transform: translateY(-2px); /* Lagani efekat lebdenja */
+    transform: translateY(-2px);
 }
 
 .social-icon svg {
     width: 28px; 
     height: 28px;
-    /* 🛑 REŠENJE: SVG nasleđuje boju teksta (color) 🛑 */
+    
+    /* 🛑 KONTROLA BOJE 2: SVG putanja nasleđuje boju roditeljskog elementa (link) 🛑 */
     fill: currentColor; 
     transition: fill 0.3s, transform 0.3s;
 }
 
-/* Uklanjamo pravila za .social-icon svg path jer ih fill: currentColor čini redundantnim */
-
-
-/* 🛑 KRAJ ISPRAVKE IKONA 🛑 */
-
+/* ===== KRAJ KONSOLIDACIJE IKONA ===== */
 
 .footer-bottom {
     color: #fff;
