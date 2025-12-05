@@ -12,6 +12,7 @@
     --color-light-bg: #f7f7f7; 
 }
 
+/* OSNOVNI BODY I NASLOVI */
 body { 
     font-family: var(--font-primary); 
     margin: 0; 
@@ -20,8 +21,9 @@ body {
     color: var(--color-text-main);
     line-height: 1.6;
 }
-
 h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+
+/* DUGMAD (CTA) - VAN RESPONSIVE BLOKA */
 .cta-container {
     text-align: center;
     margin-top: 35px;
@@ -44,7 +46,7 @@ h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
     padding: 14px 25px;
     font-size: 1.1em;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25); /* Prilagođena boja za shadow */
+    box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25);
     line-height: normal;
     min-height: 50px;
     text-align: center;
@@ -52,7 +54,7 @@ h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
 .cta-button:hover {
     background-color: var(--color-button-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3); /* Prilagođena boja za shadow */
+    box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3);
 }
 .cta-button:active {
     transform: translateY(0);
@@ -85,9 +87,9 @@ header h1 {
     font-weight: 400;
     letter-spacing: 1px;
     display: block;
-    margin-top: 8px; /* Dodato iz index.html strukture */
+    margin-top: 8px; 
 }
-.header-logo { /* Dodato iz index.html strukture */
+.header-logo { 
     height: 90px;
     margin-bottom: 20px;
     display: block;
@@ -109,14 +111,12 @@ nav a {
     font-weight: 400;
     font-size: 1em;
     transition: color 0.3s;
-    /* Dodatni stilovi iz index.html za padding/border-radius */
     padding: 5px 8px; 
     border-radius: 4px;
     display: inline-block;
 }
 nav a:hover, nav a.active {
     color: var(--color-accent-gold);
-    /* Dodatni stil iz index.html */
     background-color: rgba(255, 255, 255, 0.08);
     transform: translateY(-1px);
 }
@@ -171,8 +171,9 @@ section p {
 }
 .policy-content li strong {
     color: var(--color-button);
-    /* --- DODATO: STILOVI SPECIFIČNI ZA BLOG STRANICE --- */
+}
 
+/* STILOVI SPECIFIČNI ZA BLOG STRANICE */
 .blog-content h3 {
     font-size: 1.2em;
 }
@@ -181,9 +182,9 @@ section p {
     font-size: 1em;
     padding-left: 12px;
 }
+/* KRAJ DODATIH BLOG STILOVA */
 
-/* --- KRAJ DODATIH BLOG STILOVA --- */
-}
+
 .text-center {
     text-align: center;
 }
@@ -212,7 +213,7 @@ footer {
 }
 .footer-links {
     margin: 20px 0;
-    display: flex; /* Dodato za horizontalni raspored, kao što je u futeru */
+    display: flex; 
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
@@ -221,7 +222,7 @@ footer {
     color: var(--color-accent-gold);
     text-decoration: none;
     transition: color 0.3s;
-    padding: 5px; /* Dodato za lakši klik */
+    padding: 5px; 
 }
 .footer-links a:hover {
     color: #fff;
