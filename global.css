@@ -472,6 +472,26 @@ footer {
     .stats-container strong {
         font-size: 1.7em;
     }
+    /* --- DODATO: STILOVI SPECIFIČNI ZA USLOVE KORIŠĆENJA (koriste iste klase za H2/H3 kao politika) --- */
+
+.warning-box {
+    background: #fff3f3;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-button);
+    margin: 20px 0;
+    border: 1px solid #ffcdd2;
+}
+
+.info-box {
+    background: var(--color-light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-accent-gold);
+    margin: 20px 0;
+}
+
+/* KRAJ STILOVA ZA USLOVE KORIŠĆENJA */
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
