@@ -1,6 +1,4 @@
 
-    <script>
-    
     class AresNyXShop {
     
     // =========================================================
@@ -996,7 +994,5 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sada je 'shop' sigurno instanca klase, i renderProducts() će raditi.
         shop.renderProducts(); 
     }, 50); 
-});
-
-    </script>            
+});      
 
