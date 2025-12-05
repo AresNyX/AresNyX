@@ -2,17 +2,18 @@
 /* GLOBAL.CSS - STILOVI ZAJEDNIČKI ZA SVE STRANICE */
 /* ============================================== */
 
+/* --- 1. PROMENLJIVE --- */
 :root {
     --font-primary: 'Montserrat', sans-serif;
     --color-dark-bg: #121212; 
     --color-accent-gold: #D4AF37; 
-    --color-button: #802B24; /* NOVA, TAMNIJA NIJANSA CRVENE/BORDO */
-    --color-button-hover: #65221C; /* NOVA, JOŠ TAMNIJA NIJANSA za hover */
+    --color-button: #802B24; /* Tamna Bordo */
+    --color-button-hover: #65221C; /* Tamnija Bordo za hover */
     --color-text-main: #333333; 
     --color-light-bg: #f7f7f7; 
 }
 
-/* OSNOVNI BODY I NASLOVI */
+/* --- 2. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
     font-family: var(--font-primary); 
     margin: 0; 
@@ -23,12 +24,90 @@ body {
 }
 h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
 
-/* DUGMAD (CTA) - VAN RESPONSIVE BLOKA */
+main { 
+    max-width: 900px; 
+    margin: 60px auto; 
+    padding: 0 20px; 
+}
+section {
+    margin-bottom: 60px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+section h2 { 
+    text-align: center; 
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: var(--color-button); 
+}
+section p { 
+    margin-bottom: 1.2em;
+}
+
+
+/* --- 3. HEADER I NAVIGACIJA --- */
+header { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 40px 20px; 
+    text-align: center; 
+}
+header h1 { 
+    font-size: 32px;
+    color: var(--color-accent-gold); 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(212,175,55,0.3);
+}
+.brand-emphasis { font-weight: 700; }
+.subtitle {
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 8px; 
+}
+.header-logo { 
+    height: 90px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    background-color: var(--color-dark-bg);
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: 1em;
+    transition: color 0.3s;
+    padding: 5px 8px; 
+    border-radius: 4px;
+    display: inline-block;
+}
+nav a:hover, nav a.active {
+    color: var(--color-accent-gold);
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+
+/* --- 4. DUGMAD (CTA) --- */
 .cta-container {
     text-align: center;
     margin-top: 35px;
 }
-
 .cta-button { 
     background: var(--color-button);
     color: #fff; 
@@ -65,326 +144,7 @@ h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
     outline-offset: 2px;
 }
 
-/* HEADER */
-header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 40px 20px; 
-    text-align: center; 
-}
-header h1 { 
-    font-size: 32px;
-    color: var(--color-accent-gold); 
-    letter-spacing: 2px; 
-    text-transform: uppercase;
-    margin: 0;
-    text-shadow: 0 0 10px rgba(212,175,55,0.3);
-}
-.brand-emphasis { font-weight: 700; }
-.subtitle {
-    font-size: 0.8em;
-    color: #fff;
-    font-weight: 400;
-    letter-spacing: 1px;
-    display: block;
-    margin-top: 8px; 
-}
-.header-logo { 
-    height: 90px;
-    margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* NAVIGACIJA */
-nav {
-    background-color: var(--color-dark-bg);
-    padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 1em;
-    transition: color 0.3s;
-    padding: 5px 8px; 
-    border-radius: 4px;
-    display: inline-block;
-}
-nav a:hover, nav a.active {
-    color: var(--color-accent-gold);
-    background-color: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
-}
-
-/* MAIN CONTENT - Globalni stilovi za strukturu */
-main { 
-    max-width: 900px; 
-    margin: 60px auto; 
-    padding: 0 20px; 
-}
-
-section {
-    margin-bottom: 60px;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-section h2 { 
-    text-align: center; 
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: var(--color-button); 
-}
-section p { 
-    margin-bottom: 1.2em;
-}
-
-/* -------------------------------------------------------------------- */
-/* STILOVI SPECIFIČNI ZA RAZNE SEKCIJE */
-/* -------------------------------------------------------------------- */
-
-/* STILOVI ZA DOKUMENTE (Politika Privatnosti, Uslovi) */
-.policy-content h2 {
-    color: var(--color-button);
-    margin-top: 40px;
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    border-bottom: 2px solid var(--color-accent-gold);
-    padding-bottom: 5px;
-}
-.policy-content h3 {
-    color: var(--color-text-main);
-    margin-top: 25px;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-.policy-content ul {
-    margin-bottom: 20px;
-    padding-left: 20px;
-}
-.policy-content li {
-    margin-bottom: 8px;
-    position: relative;
-    padding-left: 10px;
-}
-.policy-content li strong {
-    color: var(--color-button);
-}
-
-.warning-box {
-    background: #fff3f3;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--color-button);
-    margin: 20px 0;
-    border: 1px solid #ffcdd2;
-}
-
-.info-box {
-    background: var(--color-light-bg);
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--color-accent-gold);
-    margin: 20px 0;
-}
-
-/* STILOVI SPECIFIČNI ZA BLOG STRANICE */
-.blog-content h3 {
-    font-size: 1.2em;
-}
-
-.blog-intro {
-    font-size: 1em;
-    padding-left: 12px;
-}
-
-/* STILOVI SPECIFIČNI ZA KONTAKT STRANICU */
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 30px;
-}
-
-.contact-info {
-    padding: 15px;
-}
-
-.section-title {
-    font-size: 1.5em;
-    color: var(--color-button);
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-accent-gold);
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    padding: 15px;
-    border-radius: 8px;
-    background: var(--color-light-bg);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.contact-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.contact-item i {
-    font-size: 1.5em;
-    color: var(--color-accent-gold);
-    margin-right: 15px;
-    width: 30px;
-    text-align: center;
-    margin-top: 5px;
-}
-
-.contact-details {
-    flex: 1;
-}
-
-.contact-details h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.1em;
-    color: var(--color-text-main);
-}
-
-.contact-details p {
-    margin: 0;
-    color: #666;
-    font-size: 0.95em;
-}
-
-.contact-form {
-    padding: 15px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--color-text-main);
-    font-size: 0.95em;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: var(--font-primary);
-    font-size: 1em;
-    transition: all 0.3s;
-    box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-accent-gold);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-}
-
-.form-group textarea {
-    height: 120px;
-    resize: vertical;
-    min-height: 100px;
-}
-/* KRAJ KONTAKT STILOVA */
-
-
-/* STILOVI SPECIFIČNI ZA O NAMA STRANICU */
-hr {
-    border: none; 
-    border-top: 1px solid #eee; 
-    margin: 40px 0;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.mission-points {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-    margin-top: 40px;
-    text-align: center;
-}
-
-.mission-item {
-    flex: 1;
-    padding: 25px 20px;
-    border-radius: 8px;
-    border: 1px solid #eeeeee;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background: #fff;
-}
-
-.mission-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-.mission-item i {
-    font-size: 2.5em;
-    color: var(--color-accent-gold);
-    margin-bottom: 15px;
-}
-
-.mission-item h3 {
-    font-size: 1.2em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: var(--color-button);
-}
-
-.mission-item p {
-    font-size: 0.95em;
-    color: #666;
-    margin-bottom: 0;
-}
-
-.highlight-text {
-    font-weight: 600; 
-    color: var(--color-button);
-    font-size: 1.1em;
-    line-height: 1.8;
-    border-left: 4px solid var(--color-accent-gold);
-    padding-left: 20px;
-    margin: 30px 0;
-}
-
-.stats-container {
-    text-align: center;
-    padding: 30px;
-    background: linear-gradient(135deg, var(--color-light-bg) 0%, #ffffff 100%);
-    border-radius: 10px;
-    margin: 40px 0;
-}
-
-.stats-container strong {
-    font-size: 2em;
-    color: var(--color-accent-gold);
-    display: block;
-    margin-bottom: 10px;
-}
-/* KRAJ O NAMA STILOVA */
-
-/* STILOVI SPECIFIČNI ZA INDEX STRANICU (POČETNA) */
+/* --- 5. STILOVI ZA INDEX STRANICU (POČETNA) --- */
 .hero-section {
     text-align: center;
     padding: 50px 25px;
@@ -402,7 +162,6 @@ hr {
     margin-bottom: 25px;
     color: #ddd;
 }
-
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -420,60 +179,230 @@ hr {
 .feature-item:hover {
     transform: translateY(-5px);
 }
-
-/* INLINE SVG IKONICE */
-.icon-svg {
+.feature-item .icon-svg {
     width: 48px;
     height: 48px;
     margin: 0 auto 12px;
-    display: block;
+    display: block !important; /* ISPRAVKA: Povećana specifičnost za ikone */
 }
-.icon-svg path {
+.feature-item .icon-svg path {
     fill: var(--color-accent-gold);
     transition: fill 0.3s;
 }
 .feature-item:hover .icon-svg path {
-    fill: #b8941f; /* malo tamnija zlatna */
+    fill: #b8941f;
 }
-/* KRAJ INDEX STILOVA */
 
-
-/* ZAJEDNIČKI POMOĆNI STILOVI */
-.text-center {
+/* --- 6. STILOVI ZA O NAMA STRANICU --- */
+hr {
+    border: none; 
+    border-top: 1px solid #eee; 
+    margin: 40px 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mission-points {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 40px;
     text-align: center;
 }
-.lead {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 30px;
+.mission-item {
+    flex: 1;
+    padding: 25px 20px;
+    border-radius: 8px;
+    border: 1px solid #eeeeee;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #fff;
 }
-.highlight-box {
+.mission-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.mission-item i {
+    font-size: 2.5em;
+    color: var(--color-accent-gold);
+    margin-bottom: 15px;
+}
+.mission-item h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--color-button);
+}
+.mission-item p {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 0;
+}
+.highlight-text {
+    font-weight: 600; 
+    color: var(--color-button);
+    font-size: 1.1em;
+    line-height: 1.8;
+    border-left: 4px solid var(--color-accent-gold);
+    padding-left: 20px;
+    margin: 30px 0;
+}
+.stats-container {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--color-light-bg) 0%, #ffffff 100%);
+    border-radius: 10px;
+    margin: 40px 0;
+}
+.stats-container strong {
+    font-size: 2em;
+    color: var(--color-accent-gold);
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+/* --- 7. STILOVI ZA KONTAKT STRANICU --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+.contact-info {
+    padding: 15px;
+}
+.section-title {
+    font-size: 1.5em;
+    color: var(--color-button);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-accent-gold);
+}
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    background: var(--color-light-bg);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.contact-item i {
+    font-size: 1.5em;
+    color: var(--color-accent-gold);
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+    margin-top: 5px;
+}
+.contact-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    color: var(--color-text-main);
+}
+.contact-details p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95em;
+}
+.contact-form {
+    padding: 15px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-main);
+    font-size: 0.95em;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+/* --- 8. STILOVI ZA DOKUMENTE I BLOG (Politika, Uslovi, Blog) --- */
+.policy-content h2 {
+    color: var(--color-button);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--color-accent-gold);
+    padding-bottom: 5px;
+}
+.policy-content h3 {
+    color: var(--color-text-main);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+.policy-content li strong {
+    color: var(--color-button);
+}
+.warning-box {
+    background: #fff3f3;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-button);
+    margin: 20px 0;
+    border: 1px solid #ffcdd2;
+}
+.info-box {
     background: var(--color-light-bg);
     padding: 20px;
     border-radius: 8px;
     border-left: 4px solid var(--color-accent-gold);
     margin: 20px 0;
 }
+.blog-content h3 {
+    font-size: 1.2em;
+}
+.blog-intro {
+    font-size: 1em;
+    padding-left: 12px;
+}
 
-/* ANIMACIJE (Generalno primenjivo) */
+
+/* --- 9. ANIMACIJE --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 .fade-in-section {
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
 }
-
 .fade-in-section:nth-child(1) { animation-delay: 0.2s; }
 .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
 .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
 
-/* KRAJ DOKUMENT STILOVA */
 
-
-/* FOOTER */
+/* --- 10. FOOTER --- */
 footer { 
     background: var(--color-dark-bg); 
     color: #fff; 
@@ -507,36 +436,22 @@ footer {
     nav a { margin: 0 10px; }
     .policy-content h2 { font-size: 1.3em; }
     
-    /* Pravilo za kontakt na manjim ekranima (Tableti) */
+    /* Kontakt */
     .contact-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    .contact-info,
-    .contact-form {
-        padding: 10px;
-    }
-    .section-title {
-        font-size: 1.3em;
-    }
 
-    /* Pravila za O Nama na manjim ekranima (Tableti) */
+    /* O Nama */
     .mission-points {
         flex-direction: column;
         gap: 20px;
     }
-    .mission-item {
-        padding: 20px 15px;
-    }
     .mission-item i {
         font-size: 2.2em;
     }
-    .highlight-text {
-        padding-left: 15px;
-        font-size: 1em;
-    }
-
-    /* Pravila za Index (Početnu) na manjim ekranima */
+    
+    /* Index (Početna) */
     .features-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -554,15 +469,12 @@ footer {
     nav a { display: block; margin: 5px 0; }
     section { padding: 20px; }
     
-    /* Pravila za O Nama na manjim ekranima (Telefoni) */
-    .stats-container {
-        padding: 20px 15px;
-    }
+    /* O Nama */
     .stats-container strong {
         font-size: 1.7em;
     }
     
-    /* Pravila za Index (Početnu) na manjim ekranima */
+    /* Index (Početna) */
     .hero-section h1 { 
         font-size: 1.8em; 
     }
@@ -572,7 +484,7 @@ footer {
     .feature-item {
         padding: 18px;
     }
-    .icon-svg {
+    .feature-item .icon-svg { 
         width: 40px;
         height: 40px;
     }
