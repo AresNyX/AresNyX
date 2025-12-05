@@ -144,6 +144,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     height: 28px;
     fill: #fff; /* KLJUČNO: Postavlja boju SVG-a */
     transition: fill 0.3s, transform 0.3s;
+    preserveAspectRatio: xMidYMid meet; 
 }
 
 .social-icon:hover svg {
