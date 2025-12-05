@@ -1129,8 +1129,10 @@ nav a:hover, nav a.active {
     // =========================================================
     // === METODE ZA PROIZVODE I RENDERIN (AŽURIRANO) ===
     // =========================================================
+            loadProducts() {
+        // ⭐ NOVO: DEFINICIJA BAZE (APSULUTNE) PUTANJE ⭐
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
 
-    loadProducts() {
         this.products = [
             { 
                 id: 1, 
@@ -1138,7 +1140,8 @@ nav a:hover, nav a.active {
                 material: "100% Organski Pamuk", 
                 price: 1300, 
                 category: "pamuk", 
-                images: ["slike/slika1.webp", "slike/slika1a.webp"],
+                // Sada koristimo samo imena fajlova
+                images: ["slika1.webp", "slika1a.webp"],
                 badge: "BESTSELLER",
                 sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
             },
@@ -1148,7 +1151,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
-                images: ["slike/slika2.webp", "slike/slika2a.webp"], 
+                images: ["slika2.webp", "slike2a.webp"], 
                 badge: "PREMIUM",
                 sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
             },
@@ -1158,7 +1161,7 @@ nav a:hover, nav a.active {
                 material: "100% Prirodni Pamuk", 
                 price: 1800, 
                 category: "pamuk", 
-                images: ["slike/slika3.webp", "slike/slika3a.webp"], 
+                images: ["slika3.webp", "slika3a.webp"], 
                 badge: "LUXURY",
                 sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } 
             },
@@ -1168,7 +1171,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1300, 
                 category: "pamuk", 
-                images: ["slike/slika4.webp", "slike/slika4a.webp"], 
+                images: ["slika4.webp", "slika4a.webp"], 
                 badge: "POPULAR",
                 sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } 
             },
@@ -1178,7 +1181,7 @@ nav a:hover, nav a.active {
                 material: "100% Organski Pamuk", 
                 price: 1300, 
                 category: "pamuk", 
-                images: ["slike/slika5.webp", "slike/slika5a.webp"],
+                images: ["slika5.webp", "slika5a.webp"],
                 badge: "CLASSIC",
                 sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } 
             },
@@ -1188,7 +1191,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1400, 
                 category: "pamuk", 
-                images: ["slike/slika6.webp", "slike/slika6a.webp"], 
+                images: ["slika6.webp", "slika6a.webp"], 
                 badge: "TRENDING",
                 sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } 
             },
@@ -1198,7 +1201,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1300, 
                 category: "pamuk", 
-                images: ["slike/slika7.webp", "slike/slika7a.webp"], 
+                images: ["slika7.webp", "slika7a.webp"], 
                 badge: "ESSENTIAL",
                 sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
             },
@@ -1208,7 +1211,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1400, 
                 category: "pamuk", 
-                images: ["slike/slika8.webp", "slike/slika8a.webp"], 
+                images: ["slika8.webp", "slika8a.webp"], 
                 badge: "NEW",
                 sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
             },
@@ -1218,7 +1221,7 @@ nav a:hover, nav a.active {
                 material: "100% Premium Pamuk", 
                 price: 1350, 
                 category: "pamuk", 
-                images: ["slike/slika9.webp", "slike/slika9a.webp"],
+                images: ["slika9.webp", "slika9a.webp"],
                 badge: "PREMIUM",
                 sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } 
             },
@@ -1228,7 +1231,7 @@ nav a:hover, nav a.active {
                 material: "100% Arabic Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
-                images: ["slike/slika10.webp", "slike/slika10a.webp"],
+                images: ["slika10.webp", "slika10a.webp"],
                 badge: "ECO",
                 sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } 
             },
@@ -1238,18 +1241,22 @@ nav a:hover, nav a.active {
                 material: "10% Organski Pamuk", 
                 price: 1900, 
                 category: "pamuk", 
-                images: ["slike/slika11.webp", "slike/slika11a.webp"], 
+                images: ["slika11.webp", "slika11a.webp"], 
                 badge: "BAMBUS",
                 sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
             }
         ];
+        
+        // ⭐ KLJUČNA IZMENA (Redovi 468-470): PRIPREMA APSOLUTNE PUTANJE ⭐
+        // Za svaki proizvod, dodajemo BASE_IMAGE_URL ispred imena fajla
+        this.products.forEach(p => {
+            p.images = p.images.map(imgName => BASE_IMAGE_URL + imgName);
+        });
 
         this.filteredProducts = [...this.products]; 
         
-        // ⭐ KLJUČNA IZMENA: RENDERUJ PROIZVODE ODMAH NAKON UČITAVANJA ⭐
         this.renderProducts();
     }
-
     // TOGGLE FUNKCIJA ZA OTVARANJE/ZATVARANJE PANELA
     toggleFilterPanel() {
         const panel = document.getElementById('filterSortPanel');
@@ -1271,12 +1278,9 @@ nav a:hover, nav a.active {
         // 3. POKRENI GLAVNU LOGIKU
         this.applyFiltersAndSort(); 
     }
-        
-    // ZAMENITE POSTOJEĆU renderProducts() METODU
+            // ZAMENITE POSTOJEĆU renderProducts() METODU OVIM:
     renderProducts() {
         const grid = document.getElementById('productsGrid');
-        
-        // Koristimo this.filteredProducts umesto this.products
         const displayProducts = this.filteredProducts; 
 
         if (!displayProducts || displayProducts.length === 0) {
@@ -1284,23 +1288,40 @@ nav a:hover, nav a.active {
              return;
         }
         
-        grid.innerHTML = displayProducts.map(product => `
+        grid.innerHTML = displayProducts.map(product => {
+            // ⭐ NOVO: Kreiranje optimizovanog SRCSET-a ⭐
+            // Pretpotsvka: Slike u nizu su u različitim rezolucijama (npr. velika, srednja)
+            // Ako imate samo 2 slike u nizu (slika1.webp, slika1a.webp), možemo pretpostaviti 
+            // da su prva glavna (npr. 800w) a druga thumbnail (npr. 400w).
+            const imageSrc = product.images[0]; // Prva (glavna) slika
+            
+            // Primer kreiranja srcset-a (Apsolutne putanje su već u product.images)
+            const srcset = product.images.map((imgUrl, index) => {
+                const width = (index === 0) ? '800w' : '400w'; // Glavna slika 800px, druga 400px
+                return `${imgUrl} ${width}`;
+            }).join(', ');
+            
+            return `
             <div class="product-card fade-in" onclick="shop.openProductModal(${product.id})">
-            ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
-            <img 
-                src="${product.images[0]}" 
-                alt="AresNyX Bokserice: ${product.name}" 
-                class="product-image" 
-                loading="lazy"
-                width="800"  
-                height="200" >
-            <div class="product-info">
-                <h3 class="product-title">${product.name}</h3>
-                <p class="product-material">${product.material}</p>
-                <p class="product-price">${product.price} RSD</p>
+                ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+                <img 
+                    src="${imageSrc}" 
+                    alt="AresNyX Bokserice: ${product.name}" 
+                    class="product-image" 
+                    loading="lazy"
+                    width="800"  
+                    height="200" 
+                    srcset="${srcset}"
+                    sizes="(max-width: 600px) 480px, 400px"
+                >
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-material">${product.material}</p>
+                    <p class="product-price">${product.price} RSD</p>
+                </div>
             </div>
-        </div>
-        `).join('');
+        `;
+        }).join('');
     }
 
     // ----------------------------------------------
