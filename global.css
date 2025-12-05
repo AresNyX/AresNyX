@@ -239,7 +239,21 @@ footer {
     header h1 { font-size: 26px; }
     nav a { display: block; margin: 5px 0; }
     section { padding: 20px; }
+    
     /* --- DODATO: STILOVI SPECIFIČNI ZA KONTAKT STRANICU --- */
+      .contact-container {
+        grid-template-columns: 1fr; /* Dodato: Stavlja kontakt formu i info vertikalno na tabletima/mobilnim */
+        gap: 30px;
+    }
+    
+    .contact-info,
+    .contact-form {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 1.3em;
+    }
 
 .contact-container {
     display: grid;
