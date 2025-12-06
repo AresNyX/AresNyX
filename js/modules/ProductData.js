@@ -29,7 +29,7 @@ export const ProductData = {
                 category: "pamuk", 
                 images: ["slika1.webp", "slika1a.webp"],
                 badge: "BESTSELLER",
-                sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
+                sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 }
             },
             { 
                 id: 2, 
@@ -39,7 +39,7 @@ export const ProductData = {
                 category: "pamuk", 
                 images: ["slika2.webp", "slike2a.webp"], 
                 badge: "BESTSELLER",
-                sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
+                sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: }
             },
             { 
                 id: 3, 
@@ -49,7 +49,7 @@ export const ProductData = {
                 category: "pamuk", 
                 images: ["slika3.webp", "slika3a.webp"], 
                 badge: "LUXURY",
-                sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } 
+                sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 }
             },
             { 
                 id: 4, 
@@ -60,6 +60,7 @@ export const ProductData = {
                 images: ["slika4.webp", "slika4a.webp"], 
                 badge: "PREMIUM",
                 sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } 
+                
             },
             { 
                 id: 5, 
@@ -70,6 +71,7 @@ export const ProductData = {
                 images: ["slika5.webp", "slika5a.webp"],
                 badge: "LUXURY",
                 sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } 
+                
             },
             { 
                 id: 6, 
@@ -80,6 +82,7 @@ export const ProductData = {
                 images: ["slika6.webp", "slika6a.webp"], 
                 badge: "TRENDING",
                 sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } 
+                
             },
             { 
                 id: 7, 
@@ -90,6 +93,7 @@ export const ProductData = {
                 images: ["slika7.webp", "slika7a.webp"], 
                 badge: "LUXURY",
                 sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
+                
             },
             { 
                 id: 8, 
@@ -100,6 +104,7 @@ export const ProductData = {
                 images: ["slika8.webp", "slika8a.webp"], 
                 badge: "NEW",
                 sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
+                
             },
             { 
                 id: 9, 
@@ -109,7 +114,8 @@ export const ProductData = {
                 category: "pamuk", 
                 images: ["slika9.webp", "slika9a.webp"],
                 badge: "PREMIUM",
-                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } 
+                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 }
+            
             },
             { 
                 id: 10, 
@@ -120,6 +126,7 @@ export const ProductData = {
                 images: ["slika10.webp", "slika10a.webp"],
                 badge: "LUXURY",
                 sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } 
+            
             },
             { 
                 id: 11, 
@@ -130,6 +137,7 @@ export const ProductData = {
                 images: ["slika11.webp", "slika11a.webp"], 
                 badge: "PREMIUM",
                 sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
+    
             }
         ];
     },
