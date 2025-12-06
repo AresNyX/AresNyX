@@ -45,19 +45,18 @@ window.AresNyXShop = {
     filterProducts: ProductData.updateFilterState.bind(ProductData), 
     sortProducts: ProductData.updateSortState.bind(ProductData) 
 };
-
-
 // === Inicijalizacija ===
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Inicijalizacija Logike i Podataka
     ProductData.init(); 
-    CartLogic.init(); // <- OVDE SE UČITAVAJU STARI PODACI IZ MEMORIJE
+    CartLogic.init(); // <- UČITAVA PODATKE IZ LOCALSTORAGE
     UIManager.init();
     
     // 2. Ažuriranje Brojača
-    // MORAMO POZVATI updateCartCount ODMAH, nakon učitavanja podataka iz CartLogic.
-    UIManager.updateCartCount(); // <- NOVI RED! OVO REŠAVA PROBLEM "LAŽNE NULE"
+    // OVAJ RED GARANTUJE DA SE BROJAČ KORPE AŽURIRA ČIM SE PODACI IZ LOCALSTORAGE UČITAJU
+    UIManager.updateCartCount(); // <- DODATO
     
     // 3. Inicijalno Renderovanje
     UIManager.renderCart(); 
 });
+
