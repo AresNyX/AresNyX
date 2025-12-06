@@ -2,14 +2,6 @@
 
 import { ProductData } from './ProductData.js';
 import { CartLogic } from './CartLogic.js';
-
-// Globalna inicijalizacija EmailJS (Preuzeto iz starog koda)
-try {
-    emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
-} catch (e) {
-    console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
-}
-
 export const UIManager = {
     // === STANJE (SADA U UIMANAGERU) ===
     currentProduct: null,
