@@ -10,7 +10,7 @@
           as="image" 
           href="https://aresnyx.github.io/AresNyX/slike/slika1.webp">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
 
     <meta name="description" 
           content="AresNyX Shop - Premium boxer shorts od pamuka, lana i bambusa. 
@@ -37,22 +37,30 @@
     <meta name="twitter:description" 
           content="Premium boxer shorts od prirodnih materijala. 
                    Zdravlje i udobnost.">
-
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-</head>
+                   
+    </head>
 <body>
 <header>
+    <img 
+        src="slike/logo.webp" 
+        alt="AresNyX Logo" 
+        class="header-logo"
+        width="70" 
+        height="70"
+    >
     <h1>
         <span class="brand-emphasis">ARESNYX</span><br>
         <span class="subtitle">BOXER SHORTS</span>
     </h1>
 </header>
 
-<nav>
+<nav aria-label="Glavna navigacija i Korpa">
     <a href="index.html">Početna</a>
-    <!-- CART IKONA -->
+    <a href="shop.html" class="active" aria-current="page">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+    
     <a href="javascript:void(0)" onclick="shop.toggleCart()" class="cart-nav-link">
         <i class="fas fa-shopping-bag"></i>
         Korpa (<span id="cartCount">0</span>)
@@ -344,6 +352,7 @@
                                                                     
     <script src="script.js" defer></script> 
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </body>
-    </html>
+</html>
