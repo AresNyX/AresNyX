@@ -281,7 +281,6 @@
         // 3. POKRENI GLAVNU LOGIKU
         this.applyFiltersAndSort(); 
     }
-            // ZAMENITE POSTOJEĆU renderProducts() METODU OVIM:
         // ZAMENITE POSTOJEĆU renderProducts() METODU OVIM:
     renderProducts() {
         const grid = document.getElementById('productsGrid');
