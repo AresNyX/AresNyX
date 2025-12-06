@@ -35,7 +35,10 @@ main {
     max-width: 900px; 
     margin: 60px auto; 
     padding: 0 20px; 
+    /* DODATO: Minimalna visina za sprečavanje pomeranja dok se fontovi/slike unutra ne učitaju */
+    min-height: 400px; /* Preporučena početna vrednost - prilagodite je ako je potrebno */
 }
+
 section {
     margin-bottom: 60px;
     padding: 30px;
