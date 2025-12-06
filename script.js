@@ -37,7 +37,6 @@ class AresNyXShop {
 
     /**
      * Učitava proizvode u memoriju.
-     * ⭐ KLJUČNO: Ovde NEMA mapiranja putanja slika! To radi renderProducts().
      */
     loadProducts() {
         this.products = [
@@ -303,10 +302,6 @@ class AresNyXShop {
 
     /**
      * Renderuje listu proizvoda na stranicu.
-     * ⭐ KLJUČNO: OBRADA PUTANJE SLIKE SE RADI OVDE! ⭐
-     */
-            /**
-     * Renderuje listu proizvoda na stranicu.
      * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
@@ -359,6 +354,52 @@ class AresNyXShop {
         }).join('');
     }
 
+    // =========================================================
+    // === METODE ZA MODAL I KORPU ===
+    // =========================================================
+
+    openProductModal(productId) {
+        this.currentProduct = this.products.find(p => p.id === productId);
+        if (!this.currentProduct) return;
+
+        this.currentSize = null; 
+        this.currentQuantity = 1;
+        this.currentImageIndex = 0;
+
+        document.getElementById('modalTitle').textContent = this.currentProduct.name;
+        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+        document.getElementById('modalQty').textContent = '1';
+
+        this.updateModalImage();
+
+        const sizeSelector = document.getElementById('sizeSelector');
+        let firstAvailableSize = null;
+
+        const sizesHtml = Object.keys(this.currentProduct.sizes)
+            .map(size => {
+                const stock = this.currentProduct.sizes[size]; 
+                const isDisabled = stock === 0; 
+                
+                if (!isDisabled && !firstAvailableSize) {
+                    firstAvailableSize = size;
+                }
+
+                return `
+                    <button 
+                        class="size-option ${isDisabled ? 'disabled' : ''}"
+                        data-size="${size}" 
+                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                        ${isDisabled ? 'disabled' : ''}
+                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                    >
+                        ${size}${isDisabled ? ' (Nema)' : ''}
+                    </button>
+                `;
+            })
+            .join('');
+            
+        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
         
         if (firstAvailableSize) {
@@ -514,7 +555,7 @@ class AresNyXShop {
             this.updateCartTotals(); 
             return;
         }
-        // ... (Logika za renderovanje stavki korpe ostaje ista) ...
+        
         cartItemsContainer.innerHTML = ''; 
 
         this.cart.forEach((item) => {
@@ -543,7 +584,6 @@ class AresNyXShop {
         this.updateCartTotals();
     }
 
-    // ... (Metode za updateCartItem, removeCartItem, updateCartPromoMessage, updateCartTotals, clearCart, saveCart, showToast, closeModal, toggleCart, toggleSizeTable ostaju nepromenjene) ...
     
     updateCartItem(productId, size, change) {
         const item = this.cart.find(i => i.productId === productId && i.size === size);
@@ -893,8 +933,7 @@ class AresNyXShop {
             
             });
     }
-
-    } 
+} 
 // =========================================================
 // === POKRETANJE NAKON UČITAVANJA DOM-a ===
 // =========================================================
