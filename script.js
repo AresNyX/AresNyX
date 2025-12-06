@@ -305,10 +305,10 @@ class AresNyXShop {
      * Renderuje listu proizvoda na stranicu.
      * ⭐ KLJUČNO: OBRADA PUTANJE SLIKE SE RADI OVDE! ⭐
      */
-    renderProducts() {
+        renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; // Definisanje putanje ovde je najsigurnije
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
 
         if (!displayProducts || displayProducts.length === 0) {
              grid.innerHTML = '<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #666;">Nema dostupnih proizvoda prema izabranom filteru.</p>';
@@ -320,7 +320,6 @@ class AresNyXShop {
             const imageSrc = BASE_IMAGE_URL + product.images[0]; 
             const badgeClass = this.getBadgeClass(product.badge);
 
-            // Kreiranje srcset-a, formirajući putanju za svaku sliku
             const srcset = product.images.map((imgName, index) => {
                 const width = (index === 0) ? '800w' : '400w'; 
                 return `${BASE_IMAGE_URL}${imgName} ${width}`;
@@ -340,60 +339,13 @@ class AresNyXShop {
 
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
-                    <p class="product-price">${product.price} RSD</p> 
- 
+                    <p class="product-material">${product.material}</p> <p class="product-price">${product.price} RSD</p> 
                 </div>
             </div>
         `;
         }).join('');
     }
 
-    // =========================================================
-    // === METODE ZA MODAL I KORPU ===
-    // =========================================================
-
-    openProductModal(productId) {
-        this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) return;
-
-        // ... (Logika za modal ostaje ista: updateModalImage, size selection, dugme za korpu) ...
-        this.currentSize = null; 
-        this.currentQuantity = 1;
-        this.currentImageIndex = 0;
-
-        document.getElementById('modalTitle').textContent = this.currentProduct.name;
-        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
-        document.getElementById('modalQty').textContent = '1';
-
-        this.updateModalImage();
-
-        const sizeSelector = document.getElementById('sizeSelector');
-        let firstAvailableSize = null;
-
-        const sizesHtml = Object.keys(this.currentProduct.sizes)
-            .map(size => {
-                const stock = this.currentProduct.sizes[size]; 
-                const isDisabled = stock === 0; 
-                
-                if (!isDisabled && !firstAvailableSize) {
-                    firstAvailableSize = size;
-                }
-
-                return `
-                    <button 
-                        class="size-option ${isDisabled ? 'disabled' : ''}"
-                        data-size="${size}" 
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}
-                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
-                    >
-                        ${size}${isDisabled ? ' (Nema)' : ''}
-                    </button>
-                `;
-            })
-            .join('');
-            
         sizeSelector.innerHTML = sizesHtml;
         
         if (firstAvailableSize) {
