@@ -4,6 +4,17 @@ import { UIManager } from './modules/UIManager.js';
 import { ProductData } from './modules/ProductData.js';
 import { CartLogic } from './modules/CartLogic.js';
 
+// ===================================================
+// === NOVO: EMAILJS INICIJALIZACIJA JE SADA OVDE ===
+// Koristimo Vaš Public Key
+try {
+    emailjs.init("WKV419-gz6OQWSgRJ"); 
+} catch (e) {
+    console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
+}
+// ===================================================
+
+
 // === Glavni ARESNYXSHOP Objekat (Globalni API) ===
 window.AresNyXShop = {
     // UIManager metode
@@ -30,8 +41,8 @@ window.AresNyXShop = {
     clearCart: CartLogic.clearCart.bind(CartLogic),
     
     // ProductData metode (Poziva se iz statičkog HTML-a filtera - i dalje ih treba rešiti u UIManager.js)
-    filterProducts: ProductData.updateFilterState.bind(ProductData), // Postavlja stanje filtera
-    sortProducts: ProductData.updateSortState.bind(ProductData) // Postavlja stanje sortiranja
+    filterProducts: ProductData.updateFilterState.bind(ProductData), 
+    sortProducts: ProductData.updateSortState.bind(ProductData) 
 };
 
 
