@@ -58,6 +58,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("AresNyX modularni šop je spreman.");
 });
 
-// Stari shop objekat se sada referencira preko window.AresNyXShop
-let shop = window.AresNyXShop; 
-
