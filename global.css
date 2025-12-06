@@ -491,6 +491,91 @@ footer {
         width: 40px;
         height: 40px;
     }
+    /* ============================================== */
+/* INDEX.CSS - STILOVI SPECIFIČNI SAMO ZA POČETNU STRANICU */
+/* ============================================== */
+
+/* HERO SEKCIJA */
+.hero-section {
+    text-align: center;
+    padding: 50px 25px;
+    background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
+    color: white;
+    border-radius: 12px;
+}
+.hero-section h1 {
+    color: var(--color-accent-gold);
+    font-size: 2.3em;
+    margin-bottom: 15px;
+}
+.hero-section p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: #ddd;
+}
+
+/* KARAKTERISTIKE */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+.feature-item {
+    text-align: center;
+    padding: 22px;
+    border-radius: 8px;
+    border: 1px solid #eeeeee;
+    transition: transform 0.3s;
+    background-color: #ffffff;
+}
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+/* INLINE SVG IKONICE */
+.icon-svg {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 12px;
+    display: block;
+}
+.icon-svg path {
+    fill: var(--color-accent-gold);
+    transition: fill 0.3s;
+}
+.feature-item:hover .icon-svg path {
+    fill: #b8941f;
+}
+
+/* RESPONSIVE INDEX STILOVI */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .hero-section {
+        padding: 40px 20px;
+    }
+    .hero-section h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 { 
+        font-size: 1.8em; 
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+    .feature-item {
+        padding: 18px;
+    }
+    .icon-svg {
+        width: 40px;
+        height: 40px;
+    }
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
