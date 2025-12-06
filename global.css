@@ -4,7 +4,9 @@
 
 /* --- 1. PROMENLJIVE --- */
 :root {
-    --font-primary: 'Montserrat', sans-serif;
+    /* Uklonjena referenca na 'Montserrat' */
+    /* --font-primary: 'Montserrat', sans-serif; */ 
+    
     --color-dark-bg: #121212; 
     --color-accent-gold: #D4AF37; 
     --color-button: #802B24; /* Tamna Bordo */
@@ -15,14 +17,19 @@
 
 /* --- 2. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
-    font-family: var(--font-primary); 
+    /* Implementiran BRZI SISTEMSKI FONT STACK umesto Montserrat-a */
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin: 0; 
     padding: 0; 
     background: var(--color-light-bg); 
     color: var(--color-text-main);
     line-height: 1.6;
 }
-h1, h2, h3 { font-weight: 600; color: var(--color-text-main); }
+h1, h2, h3 { 
+    /* I ovde će se primeniti sistemski font jer nasleđuju od body */
+    font-weight: 600; 
+    color: var(--color-text-main); 
+}
 
 main { 
     max-width: 900px; 
@@ -45,8 +52,6 @@ section h2 {
 section p { 
     margin-bottom: 1.2em;
 }
-
-
 /* --- 3. HEADER I NAVIGACIJA --- */
 header { 
     background: var(--color-dark-bg); 
