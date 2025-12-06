@@ -340,7 +340,8 @@ class AresNyXShop {
 
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
-                    <p class="product-price">${(product.price / 100).toFixed(2)} RSD</p> 
+                    <p class="product-price">${product.price} RSD</p> 
+ 
                 </div>
             </div>
         `;
