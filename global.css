@@ -72,16 +72,14 @@ header h1 {
     display: block;
     margin-top: 8px; 
 }
-.header-logo { 
-    /* IZMENA: Smanjena visina sa 90px na 70px */
-    height: 70px;
-    /* IZMENA: Smanjena margina sa 20px na 15px */
-    margin-bottom: 15px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+<img 
+    src="slike/logo.webp" 
+    alt="AresNyX Logo" 
+    class="header-logo"
+    width="70" 
+    height="70"  /* Ispravljeno sa 90 na 70 */
+    /* UKLONJENO: loading="lazy" */
+>
 nav {
     background-color: var(--color-dark-bg);
     padding: 10px 0;
