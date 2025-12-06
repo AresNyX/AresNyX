@@ -103,7 +103,7 @@ class AresNyXShop {
             },
             { 
                 id: 7, 
-                name: "Svetlo Plavo", 
+                name: "Karirano Crno Belo", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -113,7 +113,7 @@ class AresNyXShop {
             },
             { 
                 id: 8, 
-                name: "Petrolej Plavo", 
+                name: "Svetlo Plavo", 
                 material: "100% Premium Pamuk", 
                 price: 1700, 
                 category: "Pima Pamuk", 
@@ -123,7 +123,7 @@ class AresNyXShop {
             },
             { 
                 id: 9, 
-                name: "Tamno teget", 
+                name: "PetrolejPlavo", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -144,7 +144,7 @@ class AresNyXShop {
             { 
                 id: 11, 
                 name: "Tamne štrafte", 
-                material: "10% Organski Pamuk", 
+                material: "100% Organski Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
                 images: ["slika11.webp", "slika11a.webp"], 
