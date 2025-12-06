@@ -56,5 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     CartLogic.updateCartState(); // Poziva updateCartCount i renderCart
     
     console.log("AresNyX modularni šop je spreman.");
+
+let shop = window.AresNyXShop;
+
 });
 
