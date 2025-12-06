@@ -563,17 +563,19 @@ export const UIManager = {
 
         const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
         const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
-
-
-        Promise.all([sendAdminPromise, sendCustomerPromise])
+        
+         Promise.all([sendAdminPromise, sendCustomerPromise])
             .then(() => {
                 console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.');
                 
-                // ČIŠĆENJE KORPE (Koristi CartLogic)
-                CartLogic.cart = [];
-                CartLogic.saveCart();
-                this.updateCartCount(); // Ažurira prikaz brojača
-                this.renderCart(); // Ažurira prikaz korpe
+                // === ISPRAVLJENO: Koristimo CartLogic ===
+                CartLogic.cart = [];       
+                CartLogic.saveCart();      
+                // ======================================
+                
+                // Ostatak su UIManager metode koje se zovu sa 'this.'
+                this.updateCartCount(); 
+                this.renderCart(); 
                 
                 this.goToStep(3);
                 
@@ -586,5 +588,7 @@ export const UIManager = {
                 submitBtn.disabled = false;
                 this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
             });
-    }
-};
+    } // Zatvara completeOrder
+}; // Zatvara UIManager
+
+        
