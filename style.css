@@ -66,18 +66,34 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
 .product-price { font-size: 1.2rem; font-weight: 700; }
 
-/* Opšte stilizovanje za badge */
+/* IZMENJENA VERZIJA NA OSNOVU VAŠEG KODA */
 .product-badge {
     position: absolute;
     top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white; /* Beli tekst na znački */
-    font-weight: bold;
-    font-size: 0.8em;
+    /* ⭐ PROMENA: Postavite ga na levu stranu (ako želite stil trake) ⭐ */
+    left: 0; 
+    right: auto; /* Poništite desno pozicioniranje */
+
+    /* ⭐ PROMENA: Čini da se širina prilagodi sadržaju (tekstu) ⭐ */
+    display: inline-block; 
+    width: auto; /* Osigurava da nema fiksne širine */
+    
+    /* ⭐ PROMENA: Uži padding za izgled trake ⭐ */
+    padding: 0.2rem 0.6rem; /* Manji vertikalni, malo širi horizontalni padding */
+    
+    /* Promenite border-radius za efekat trake */
+    border-radius: 0 3px 3px 0; /* Zaobljeno samo desno */
+
+    color: white; 
+    font-weight: 700; /* Povećano za bolji naglasak */
+    font-size: 0.75em; /* Nešto manji font */
+    text-transform: uppercase; /* Dodajte za profesionalniji izgled */
     z-index: 10;
+    
+    /* Opcionalno: senka za isticanje */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 .product-material {
     font-size: 0.85rem; /* Nešto manji font */
     color: #555; /* Tamno siva boja */
