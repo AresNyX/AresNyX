@@ -167,7 +167,7 @@
     </div>
 </footer>
 
-    <div class="modal-overlay" id="productModal">
+<div class="modal-overlay" id="productModal">
     <div class="modal-container">
         
         <button class="modal-close" onclick="shop.closeModal()">×</button> 
@@ -184,18 +184,54 @@
                     </div>
                 </div>
                 
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-material" id="modalMaterial"></p>
+                    <p class="modalPrice" id="modalPrice"></p>
+                    
+                    <div class="size-section">
+                        <h3>Odaberite veličinu:</h3>
+                        <div class="size-selector" id="sizeSelector"></div>
+                        <div class="size-info" onclick="shop.toggleSizeTable()">
+                            <i class="fas fa-ruler"></i>
+                            <span>Tabela veličina</span>
+                        </div>
+                    </div>
+
+                    <div class="size-table-container" id="sizeTable" style="display: none;">
+                        <h4><i class="fas fa-table"></i> Tabela veličina (cm)</h4>
+                        <table class="size-table">
+                            <thead>
+                                <tr><th>Veličina</th><th>Struk</th><th>Dužina</th><th>Širina nogavice</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>M</strong></td><td>72-76</td><td>28</td><td>24</td></tr>
+                                <tr><td><strong>L</strong></td><td>77-81</td><td>29</td><td>25</td></tr>
+                                <tr><td><strong>XL</strong></td><td>82-86</td><td>30</td><td>26</td></tr>
+                                <tr><td><strong>XXL</strong></td><td>87-91</td><td>31</td><td>27</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quantity-section">
+                        <h3>Količina:</h3>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                            <span class="qty-display" id="modalQty">1</span>
+                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                        </div>
+                    </div>
                 </div>
-        
-            </div>
-        <div class="modal-footer" id="modalFooter">
+                </div> </div> <div class="modal-footer" id="modalFooter">
              <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                 <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
              </button>
+             <button class="continue-shopping" onclick="shop.closeModal()">
+                 Nastavi kupovinu
+             </button>
         </div>
 
-    </div>
-</div>
-
+    </div> </div>
                 
                 <div class="modal-details">
                     <h2 id="modalTitle"></h2>
