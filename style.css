@@ -19,10 +19,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    /* Uklanjamo 'Montserrat' i koristimo brzi sistemski font stack */
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: #fff; color: var(--text-dark); line-height: 1.6;
     display: flex; flex-direction: column; min-height: 100vh;
 }
+
 body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 
 /* PROMO BAR */
