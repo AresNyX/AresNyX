@@ -282,6 +282,7 @@
         this.applyFiltersAndSort(); 
     }
             // ZAMENITE POSTOJEĆU renderProducts() METODU OVIM:
+        // ZAMENITE POSTOJEĆU renderProducts() METODU OVIM:
     renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
@@ -292,30 +293,31 @@
         }
         
         grid.innerHTML = displayProducts.map(product => {
-            // ⭐ NOVO: Kreiranje optimizovanog SRCSET-a ⭐
-            // Pretpotsvka: Slike u nizu su u različitim rezolucijama (npr. velika, srednja)
-            // Ako imate samo 2 slike u nizu (slika1.webp, slika1a.webp), možemo pretpostaviti 
-            // da su prva glavna (npr. 800w) a druga thumbnail (npr. 400w).
-            const imageSrc = product.images[0]; // Prva (glavna) slika
+            const imageSrc = product.images[0]; 
             
-            // Primer kreiranja srcset-a (Apsolutne putanje su već u product.images)
+            // ⭐ KOREKCIJA: Koristi se this.getBadgeClass() za dinamičku boju
+            const badgeClass = this.getBadgeClass(product.badge);
+
             const srcset = product.images.map((imgUrl, index) => {
-                const width = (index === 0) ? '800w' : '400w'; // Glavna slika 800px, druga 400px
+                const width = (index === 0) ? '800w' : '400w'; 
                 return `${imgUrl} ${width}`;
             }).join(', ');
             
             return `
               <div class="product-card" data-id="${product.id}" onclick="shop.openProductModal(${product.id})">
-        ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+        
+        ${product.badge ? `<div class="product-badge ${badgeClass}">${product.badge}</div>` : ''}
         
         <img src="${imageSrc}" 
-             alt="${product.title}" 
+             alt="${product.name}" 
              srcset="${srcset}"
              sizes="(min-width: 992px) 33vw, (min-width: 576px) 50vw, 100vw"
              class="product-image"
              loading="lazy"> 
 
         <div class="product-info">
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-price">${(product.price / 100).toFixed(2)} RSD</p> 
             </div>
     </div>
 `;
