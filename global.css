@@ -5,8 +5,6 @@
 /* --- 1. PROMENLJIVE --- */
 :root {
     /* Uklonjena referenca na 'Montserrat' */
-    /* --font-primary: 'Montserrat', sans-serif; */ 
-    
     --color-dark-bg: #121212; 
     --color-accent-gold: #D4AF37; 
     --color-button: #802B24; /* Tamna Bordo */
@@ -17,7 +15,7 @@
 
 /* --- 2. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
-    /* Implementiran BRZI SISTEMSKI FONT STACK umesto Montserrat-a */
+    /* Implementiran BRZI SISTEMSKI FONT STACK */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin: 0; 
     padding: 0; 
@@ -26,17 +24,17 @@ body {
     line-height: 1.6;
 }
 h1, h2, h3 { 
-    /* I ovde će se primeniti sistemski font jer nasleđuju od body */
     font-weight: 600; 
     color: var(--color-text-main); 
 }
 
 main { 
     max-width: 900px; 
-    margin: 60px auto; 
+    /* Smanjena gornja margina za smanjenje praznog prostora */
+    margin: 30px auto; 
     padding: 0 20px; 
-    /* DODATO: Minimalna visina za sprečavanje pomeranja dok se fontovi/slike unutra ne učitaju */
-    min-height: 400px; /* Preporučena početna vrednost - prilagodite je ako je potrebno */
+    /* Dodat min-height za rešavanje CLS-a */
+    min-height: 400px; 
 }
 
 section {
@@ -55,11 +53,11 @@ section h2 {
 section p { 
     margin-bottom: 1.2em;
 }
+
 /* --- 3. HEADER I NAVIGACIJA --- */
 header { 
-    background: var(--color-dark-bg); 
+    background: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
     color: #fff; 
-    /* IZMENA: Smanjen vertikalni padding sa 40px na 25px */
     padding: 15px 20px; 
     text-align: center; 
 }
@@ -80,16 +78,10 @@ header h1 {
     display: block;
     margin-top: 8px; 
 }
-<img 
-    src="slike/logo.webp" 
-    alt="AresNyX Logo" 
-    class="header-logo"
-    width="70" 
-    height="70"  /* Ispravljeno sa 90 na 70 */
-    /* UKLONJENO: loading="lazy" */
->
+/* Uklonjen je zalutali <img> HTML kod iz ovog bloka */
+
 nav {
-    background-color: var(--color-dark-bg);
+    background-color: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
     padding: 10px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -337,7 +329,8 @@ hr {
     padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    font-family: var(--font-primary);
+    /* Uklonjena referenca na font-primary iz input polja */
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 1em;
     transition: all 0.3s;
     box-sizing: border-box;
@@ -494,91 +487,6 @@ footer {
         padding: 18px;
     }
     .feature-item .icon-svg { 
-        width: 40px;
-        height: 40px;
-    }
-    /* ============================================== */
-/* INDEX.CSS - STILOVI SPECIFIČNI SAMO ZA POČETNU STRANICU */
-/* ============================================== */
-
-/* HERO SEKCIJA */
-.hero-section {
-    text-align: center;
-    padding: 50px 25px;
-    background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%); 
-    color: white;
-    border-radius: 12px;
-}
-.hero-section h1 {
-    color: var(--color-accent-gold);
-    font-size: 2.3em;
-    margin-bottom: 15px;
-}
-.hero-section p {
-    font-size: 1.1em;
-    margin-bottom: 25px;
-    color: #ddd;
-}
-
-/* KARAKTERISTIKE */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 35px;
-}
-.feature-item {
-    text-align: center;
-    padding: 22px;
-    border-radius: 8px;
-    border: 1px solid #eeeeee;
-    transition: transform 0.3s;
-    background-color: #ffffff;
-}
-.feature-item:hover {
-    transform: translateY(-5px);
-}
-
-/* INLINE SVG IKONICE */
-.icon-svg {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 12px;
-    display: block;
-}
-.icon-svg path {
-    fill: var(--color-accent-gold);
-    transition: fill 0.3s;
-}
-.feature-item:hover .icon-svg path {
-    fill: #b8941f;
-}
-
-/* RESPONSIVE INDEX STILOVI */
-@media (max-width: 768px) {
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .hero-section {
-        padding: 40px 20px;
-    }
-    .hero-section h1 {
-        font-size: 2em;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-section h1 { 
-        font-size: 1.8em; 
-    }
-    .hero-section p {
-        font-size: 1em;
-    }
-    .feature-item {
-        padding: 18px;
-    }
-    .icon-svg {
         width: 40px;
         height: 40px;
     }
