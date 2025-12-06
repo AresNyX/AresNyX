@@ -45,7 +45,7 @@ class AresNyXShop {
                 id: 1, 
                 name: "Classic Pamuk", 
                 material: "100% Organski Pamuk", 
-                price: 1200, 
+                price: 1300, 
                 category: "pamuk", 
                 images: ["slika1.webp", "slika1a.webp"],
                 badge: "BESTSELLER",
@@ -108,14 +108,14 @@ class AresNyXShop {
                 price: 1600, 
                 category: "pamuk", 
                 images: ["slika7.webp", "slika7a.webp"], 
-                badge: "LUX",
+                badge: "LUXURY",
                 sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
             },
             { 
                 id: 8, 
                 name: "Svetlo Plavo", 
                 material: "100% Premium Pamuk", 
-                price: 1700, 
+                price: 1400, 
                 category: "Pima Pamuk", 
                 images: ["slika8.webp", "slika8a.webp"], 
                 badge: "NEW",
@@ -138,7 +138,7 @@ class AresNyXShop {
                 price: 1600, 
                 category: "pamuk", 
                 images: ["slika10.webp", "slika10a.webp"],
-                badge: "LUX",
+                badge: "LUXURY",
                 sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } 
             },
             { 
