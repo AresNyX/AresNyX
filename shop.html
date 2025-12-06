@@ -168,9 +168,14 @@
 </footer>
 
     <div class="modal-overlay" id="productModal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="shop.closeModal()">×</button>
-            <div class="modal-content">
+    <div class="modal-container">
+        
+        <button class="modal-close" onclick="shop.closeModal()">×</button> 
+        
+        <div class="modal-body-scroll"> 
+            
+            <div class="modal-content modal-details-wrapper"> 
+                
                 <div class="modal-gallery">
                     <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
                     <div class="slider-nav">
@@ -178,6 +183,19 @@
                         <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
+                
+                </div>
+        
+            </div>
+        <div class="modal-footer" id="modalFooter">
+             <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+                <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+             </button>
+        </div>
+
+    </div>
+</div>
+
                 
                 <div class="modal-details">
                     <h2 id="modalTitle"></h2>
