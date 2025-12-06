@@ -123,7 +123,7 @@ class AresNyXShop {
             },
             { 
                 id: 9, 
-                name: "PetrolejPlavo", 
+                name: "Petrolej Plavo", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -143,7 +143,7 @@ class AresNyXShop {
             },
             { 
                 id: 11, 
-                name: "Tamne štrafte", 
+                name: "Tamne pruge", 
                 material: "100% Organski Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
