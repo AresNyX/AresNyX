@@ -93,7 +93,7 @@ class AresNyXShop {
             },
             { 
                 id: 6, 
-                name: "Karirano Crno/Belo", 
+                name: "Plavo Bele Prugice", 
                 material: "100% Premium Pamuk", 
                 price: 1400, 
                 category: "pamuk", 
