@@ -1,4 +1,4 @@
-// js/modules/UIManager.js
+// js/modules/UIManager.js - ISPRAVLJENA VERZIJA (Potvrđeno korišćenje 'AresNyXShop')
 
 // Uvoz modula za logiku i podatke
 import { ProductData } from './ProductData.js';
@@ -570,6 +570,8 @@ export const UIManager = {
             .then(() => {
                 console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.');
                 
+                ProductData.updateStock(CartLogic.cart); // Ažuriranje zaliha na serveru nakon uspešne porudžbine
+                
                 CartLogic.cart = []; // Brisanje korpe nakon uspešne porudžbine
                 CartLogic.saveCart();
                 CartLogic.updateCartState(); // Ažuriranje prikaza
@@ -588,4 +590,3 @@ export const UIManager = {
             });
     }
 };
-
