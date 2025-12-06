@@ -211,6 +211,45 @@
                 sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
             }
         ];
+               // ⭐ NOVO: Funkcija za dobijanje CSS klase na osnovu badge teksta ⭐
+    this.getBadgeClass = (badgeText) => {
+        const text = badgeText.toUpperCase();
+        if (text === "PREMIUM" || text === "LUXURY") {
+            return "badge-premium"; // Zlatna
+        } else if (text === "CLASSIC" || text === "BESTSELLER" || text === "ECO") {
+            return "badge-classic"; // Zelena
+        } else {
+            return "badge-default"; // Plava (za sve ostale: POPULAR, TRENDING, ESSENTIAL, NEW, BAMBUS...)
+        }
+    };
+    
+    // ⭐ PRIMER: Prikaz proizvoda (pozovite ovu funkciju gde generišete HTML) ⭐
+    this.renderProducts = () => {
+        const container = document.getElementById('products-container'); // Pretpostavljena ID-ja
+        
+        this.products.forEach(product => {
+            const badgeClass = this.getBadgeClass(product.badge);
+            const imageUrl = BASE_IMAGE_URL + product.images[0];
+            
+            const productHtml = `
+                <div class="product-card">
+                    <div class="product-badge ${badgeClass}">${product.badge}</div>
+                    <img src="${imageUrl}" alt="${product.name}" class="product-image">
+                    
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        
+                        <p class="product-price">${(product.price / 100).toFixed(2)} RSD</p> 
+                    </div>
+                </div>
+            `;
+            // container.innerHTML += productHtml; // Dodajte u kontejner
+            // console.log(productHtml); // Samo za test
+        });
+    }
+
+    // this.renderProducts(); // Pokrenite renderovanje nakon učitavanja
+            }
         
         // ⭐ KLJUČNA IZMENA (Redovi 468-470): PRIPREMA APSOLUTNE PUTANJE ⭐
         // Za svaki proizvod, dodajemo BASE_IMAGE_URL ispred imena fajla
