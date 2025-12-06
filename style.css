@@ -78,7 +78,13 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     font-size: 0.8em;
     z-index: 10;
 }
-
+.product-material {
+    font-size: 0.85rem; /* Nešto manji font */
+    color: #555; /* Tamno siva boja */
+    margin-top: 0.1rem;
+    margin-bottom: 0.3rem; /* Mali razmak od cene */
+    font-weight: 400; /* Normalna težina fonta */
+}
 /* 🏆 PREMIUM/LUXURY (Zlatna/Žuta) */
 .badge-premium {
     background-color: #ffc107; /* Zlatna/Tamno Žuta */
