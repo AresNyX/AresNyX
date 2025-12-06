@@ -5,7 +5,7 @@ import { ProductData } from './modules/ProductData.js';
 import { CartLogic } from './modules/CartLogic.js';
 
 // ===================================================
-// === NOVO: EMAILJS INICIJALIZACIJA JE SADA OVDE ===
+// === EMAILJS INICIJALIZACIJA (REŠAVA PROBLEM SLANJA) ===
 // Koristimo Vaš Public Key
 try {
     emailjs.init("WKV419-gz6OQWSgRJ"); 
@@ -16,6 +16,7 @@ try {
 
 
 // === Glavni ARESNYXSHOP Objekat (Globalni API) ===
+// Ovo mapira metode modula na globalni objekat, koji HTML poziva preko onclick="..."
 window.AresNyXShop = {
     // UIManager metode
     toggleCart: UIManager.toggleCart.bind(UIManager),
@@ -35,12 +36,12 @@ window.AresNyXShop = {
     toggleFilterPanel: UIManager.toggleFilterPanel.bind(UIManager),
     applyAllFilters: UIManager.applyAllFilters.bind(UIManager),
     
-    // CartLogic metode (Poziva se iz generisanog HTML-a)
+    // CartLogic metode
     removeCartItem: CartLogic.removeCartItem.bind(CartLogic),
     updateCartItem: CartLogic.updateCartItem.bind(CartLogic),
     clearCart: CartLogic.clearCart.bind(CartLogic),
     
-    // ProductData metode (Poziva se iz statičkog HTML-a filtera - i dalje ih treba rešiti u UIManager.js)
+    // ProductData metode
     filterProducts: ProductData.updateFilterState.bind(ProductData), 
     sortProducts: ProductData.updateSortState.bind(ProductData) 
 };
@@ -50,10 +51,13 @@ window.AresNyXShop = {
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Inicijalizacija Logike i Podataka
     ProductData.init(); 
-    CartLogic.init(); 
+    CartLogic.init(); // <- OVDE SE UČITAVAJU STARI PODACI IZ MEMORIJE
     UIManager.init();
     
-    // 2. Inicijalno Renderovanje
-    // ProductData.init() poziva UIManager.renderProducts()
+    // 2. Ažuriranje Brojača
+    // MORAMO POZVATI updateCartCount ODMAH, nakon učitavanja podataka iz CartLogic.
+    UIManager.updateCartCount(); // <- NOVI RED! OVO REŠAVA PROBLEM "LAŽNE NULE"
+    
+    // 3. Inicijalno Renderovanje
     UIManager.renderCart(); 
 });
