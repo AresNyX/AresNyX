@@ -1,5 +1,4 @@
-
-    class AresNyXShop {
+  class AresNyXShop {
     
     // =========================================================
     // === ISPRAVLJENI KONSTRUKTOR I INIT METODA ===
