@@ -150,10 +150,10 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .filter-sort-btn {
     display: flex; 
     align-items: center; 
-    gap: 6px; /* Smanjeno sa 8px */
+    gap: 4px; /* Smanjeno sa 8px */
     background: var(--primary-dark);
     color: white; 
-    padding: 0.6rem 1rem; /* Smanjeno sa 0.8rem 1.2rem */
+    padding: 0.4rem 0.8rem; /* Smanjeno sa 0.8rem 1.2rem */
     border: none; 
     border-radius: 8px;
     cursor: pointer; 
