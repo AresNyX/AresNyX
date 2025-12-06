@@ -30,10 +30,9 @@ h1, h2, h3 {
 
 main { 
     max-width: 900px; 
-    /* Smanjena gornja margina za smanjenje praznog prostora */
-    margin: 30px auto; 
+    /* Uklanjanje gornje margine ili dramatično smanjenje */
+    margin: 15px auto 60px auto; /* Nova margina */
     padding: 0 20px; 
-    /* Dodat min-height za rešavanje CLS-a */
     min-height: 400px; 
 }
 
