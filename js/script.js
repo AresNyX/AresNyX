@@ -1,63 +1,58 @@
-// js/script.js
+// js/script.js - ISPRAVLJENA GLAVNA SKRIPTA
 
+import { UIManager } from './modules/UIManager.js';
 import { ProductData } from './modules/ProductData.js';
 import { CartLogic } from './modules/CartLogic.js';
-import { UIManager } from './modules/UIManager.js';
 
-// Globalni objekat da bi funkcije iz HTML-a (onclick) radile
+// === Glavni ARESNYXSHOP Objekat ===
+// Svi pozivi iz HTML-a (onclick) moraju ići preko ovog objekta
 window.AresNyXShop = {
-    // Svi metodi koje je HTML ranije pozivao (npr. onclick="shop.openProductModal(id)")
-    // Sada ih mapiramo na UIManager i CartLogic
-    openProductModal: UIManager.openProductModal,
-    selectSize: UIManager.selectSize,
-    changeQuantity: UIManager.changeQuantity,
-    addToCartFromModal: UIManager.addToCartFromModal,
-    prevImage: UIManager.prevImage,
-    nextImage: UIManager.nextImage,
-    closeModal: UIManager.closeModal,
-    toggleSizeTable: UIManager.toggleSizeTable,
-    toggleCart: UIManager.toggleCart,
+    // UIManager metode
+    toggleCart: UIManager.toggleCart.bind(UIManager),
+    closeModal: UIManager.closeModal.bind(UIManager),
+    openProductModal: UIManager.openProductModal.bind(UIManager),
+    prevImage: UIManager.prevImage.bind(UIManager),
+    nextImage: UIManager.nextImage.bind(UIManager),
+    changeQuantity: UIManager.changeQuantity.bind(UIManager),
+    selectSize: UIManager.selectSize.bind(UIManager),
+    addToCartFromModal: UIManager.addToCartFromModal.bind(UIManager),
+    toggleSizeTable: UIManager.toggleSizeTable.bind(UIManager),
+    clearCart: CartLogic.clearCart.bind(CartLogic),
+    startCheckout: UIManager.startCheckout.bind(UIManager),
+    closeCheckoutModal: UIManager.closeCheckoutModal.bind(UIManager),
+    goToStep: UIManager.goToStep.bind(UIManager),
+    submitShippingForm: UIManager.submitShippingForm.bind(UIManager),
+    completeOrder: UIManager.completeOrder.bind(UIManager),
+    toggleFilterPanel: UIManager.toggleFilterPanel.bind(UIManager),
+    applyAllFilters: UIManager.applyAllFilters.bind(UIManager),
     
-    // Metode za filtere
-    toggleFilterPanel: UIManager.toggleFilterPanel,
-    applyAllFilters: UIManager.applyAllFilters,
-    
-    // Metode za korpu
-    removeCartItem: CartLogic.removeCartItem,
-    updateCartItem: CartLogic.updateCartItem,
-    clearCart: CartLogic.clearCart,
-    
-    // Metode za checkout
-    startCheckout: UIManager.startCheckout,
-    closeCheckoutModal: UIManager.closeCheckoutModal,
-    submitShippingForm: UIManager.submitShippingForm,
-    completeOrder: UIManager.completeOrder
+    // Metode za Korpu koje se pozivaju iz generisanog HTML-a u UIManager-u
+    removeCartItem: CartLogic.removeCartItem.bind(CartLogic),
+    updateCartItem: CartLogic.updateCartItem.bind(CartLogic),
+
+    // Metode za filtriranje/sortiranje koje se pozivaju iz statičkog HTML-a
+    // Iako UIManager.js to sada upravlja preko applyAllFilters, ostavljamo ih kao fallback/clarity
+    filterProducts: ProductData.filterProducts.bind(ProductData),
+    sortProducts: ProductData.sortProducts.bind(ProductData)
 };
 
+
+// === Inicijalizacija ===
+// DOMContentLoaded osigurava da je HTML učitan pre izvršenja skripte
 document.addEventListener('DOMContentLoaded', () => {
-    // EmailJS inicijalizacija je deo globalne inicijalizacije
-    try {
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
-        } else {
-             console.error("EmailJS biblioteka nije pronađena. Proverite link.");
-        }
-    } catch (e) {
-        console.error("Greška pri inicijalizaciji EmailJS:", e);
-    }
-    
-    // Inicijalizacija modula
-    ProductData.init();
+    // 1. Učitavanje proizvoda (i inicijalno postavljanje filtera/sorta)
+    ProductData.init(); 
+
+    // 2. Učitavanje korpe iz localStorage-a i ažuriranje prikaza
     CartLogic.init(); 
+    
+    // 3. Postavljanje svih Event Listeners-a (koji nisu inline)
     UIManager.init();
-    
-    // Inicijalizacija uvek mora da uključi renderovanje
+
+    // 4. Inicijalno renderovanje (sada već filtriranih/sortiranih) proizvoda
     UIManager.renderProducts(); 
-    CartLogic.updateCartState(); // Poziva updateCartCount i renderCart
     
-    console.log("AresNyX modularni šop je spreman.");
-
-let shop = window.AresNyXShop;
-
+    // 5. Inicijalno renderovanje korpe (sa stanjem iz local storage-a)
+    UIManager.renderCart(); 
+    UIManager.updateCartCount();
 });
-
