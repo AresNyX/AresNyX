@@ -305,10 +305,20 @@ class AresNyXShop {
      * Renderuje listu proizvoda na stranicu.
      * ⭐ KLJUČNO: OBRADA PUTANJE SLIKE SE RADI OVDE! ⭐
      */
-        renderProducts() {
+            /**
+     * Renderuje listu proizvoda na stranicu.
+     * Uključuje sigurnosnu proveru za materijal.
+     */
+    renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+        // Sigurnosna putanja definisana unutar metode
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
+
+        if (!grid) {
+             console.error('HTML element #productsGrid nije pronađen!');
+             return;
+        }
 
         if (!displayProducts || displayProducts.length === 0) {
              grid.innerHTML = '<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #666;">Nema dostupnih proizvoda prema izabranom filteru.</p>';
@@ -339,7 +349,10 @@ class AresNyXShop {
 
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
-                    <p class="product-material">${product.material}</p> <p class="product-price">${product.price} RSD</p> 
+                    
+                    ${product.material ? `<p class="product-material">${product.material}</p>` : ''}
+                    
+                    <p class="product-price">${product.price} RSD</p> 
                 </div>
             </div>
         `;
