@@ -100,37 +100,34 @@
             <div class="contact-form">
     <h2 class="section-title">Pošaljite nam Poruku</h2>
     
-    <form id="kontaktForma" action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-        <!-- Hidden polja -->
-        <input type="hidden" name="_subject" value="Nova poruka - AresNyX">
-        <input type="hidden" name="_template" value="basic">
-        
-        <!-- Polja -->
+    <form id="forma" method="POST">
         <div class="form-group">
             <label for="ime">Ime i Prezime</label>
-            <input type="text" id="ime" name="name" required>
+            <input type="text" id="ime" required>
         </div>
         
         <div class="form-group">
             <label for="email">Email Adresa</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" required>
         </div>
         
         <div class="form-group">
             <label for="pitanje">Vaše Pitanje</label>
-            <textarea id="pitanje" name="message" rows="5" required></textarea>
+            <textarea id="pitanje" rows="5" required></textarea>
         </div>
         
-        <!-- Hvala poruka - sakrivena na početku -->
-        <div id="hvalaPoruka" style="display: none; text-align: center; padding: 30px; background: #f8f9fa; border-radius: 10px; margin-top: 20px;">
-            <h3 style="color: #28a745;">✅ Hvala Vam!</h3>
+        <!-- Hvala poruka -->
+        <div id="hvala" style="display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 8px; margin: 20px 0;">
+            <h3>✅ Hvala Vam!</h3>
             <p>Vaša poruka je poslata.</p>
-            <p>Odgovorićemo Vam u roku od 24 sata.</p>
+            <p>Odgovorićemo Vam uskoro.</p>
+            <button onclick="resetujFormu()" style="margin-top: 15px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Pošalji još jednu poruku
+            </button>
         </div>
         
-        <!-- Dugme -->
         <div class="text-center">
-            <button type="submit" class="cta-button">
+            <button type="button" onclick="posalji()" class="cta-button" id="dugme">
                 <i class="fas fa-paper-plane"></i> Pošalji Poruku
             </button>
         </div>
@@ -138,43 +135,64 @@
 </div>
 
 <script>
-document.getElementById('kontaktForma').addEventListener('submit', function(e) {
-    e.preventDefault();
+function posalji() {
+    const ime = document.getElementById('ime').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pitanje = document.getElementById('pitanje').value.trim();
+    const dugme = document.getElementById('dugme');
     
-    const forma = this;
-    const dugme = forma.querySelector('button[type="submit"]');
-    const originalText = dugme.innerHTML;
+    if (!ime || !email || !pitanje) {
+        alert('Popunite sva polja!');
+        return;
+    }
+    
+    // Provera email formata
+    if (!email.includes('@') || !email.includes('.')) {
+        alert('Unesite validan email!');
+        return;
+    }
     
     // Prikaži loading
     dugme.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
     dugme.disabled = true;
     
-    // Pošalji formu
-    fetch(forma.action, {
-        method: 'POST',
-        body: new FormData(forma)
-    })
-    .then(response => {
-        if (response.ok) {
-            // Sakrij formu
-            forma.style.display = 'none';
-            
-            // Prikaži hvala poruku
-            document.getElementById('hvalaPoruka').style.display = 'block';
-            
-            // Resetuj formu
-            forma.reset();
-        }
-    })
-    .catch(error => {
-        alert('Greška: ' + error.message);
-    })
-    .finally(() => {
-        // Vrati dugme
-        dugme.innerHTML = originalText;
-        dugme.disabled = false;
-    });
-});
+    // Čekaj 2 sekunde (simulacija slanja)
+    setTimeout(function() {
+        // Sakrij formu
+        document.getElementById('forma').style.display = 'none';
+        
+        // Prikaži hvala poruku
+        document.getElementById('hvala').style.display = 'block';
+        
+        // Loguj u konzolu (za test)
+        console.log('Poruka poslata:');
+        console.log('Ime:', ime);
+        console.log('Email:', email);
+        console.log('Pitanje:', pitanje);
+        
+        // POŠALJI NA EMAIL PREKO mailto
+        const subject = `Poruka od ${ime}`;
+        const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
+        
+        window.open(`mailto:ares.nyx.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+        
+        // Resetuj formu nakon 5 sekundi
+        setTimeout(resetujFormu, 5000);
+        
+    }, 2000);
+}
+
+function resetujFormu() {
+    // Resetuj formu
+    document.getElementById('forma').reset();
+    document.getElementById('forma').style.display = 'block';
+    document.getElementById('hvala').style.display = 'none';
+    
+    // Vrati dugme
+    const dugme = document.getElementById('dugme');
+    dugme.innerHTML = '<i class="fas fa-paper-plane"></i> Pošalji Poruku';
+    dugme.disabled = false;
+}
 </script>
 </main>
 
