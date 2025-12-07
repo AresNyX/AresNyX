@@ -92,7 +92,7 @@ class AresNyXShop {
             },
             { 
                 id: 6, 
-                name: "Blue White", 
+                name: "Light Blue", 
                 material: "100% Premium Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
@@ -112,7 +112,7 @@ class AresNyXShop {
             },
             { 
                 id: 8, 
-                name: "Light Blue", 
+                name: "Blue & White", 
                 material: "100% Premium Pamuk", 
                 price: 1400, 
                 category: "100% Pamuk", 
@@ -122,7 +122,7 @@ class AresNyXShop {
             },
             { 
                 id: 9, 
-                name: "Blue", 
+                name: "Blue-Cyan", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -142,7 +142,7 @@ class AresNyXShop {
             },
             { 
                 id: 11, 
-                name: "Grey White", 
+                name: "Grey & White", 
                 material: "100% Organski Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
