@@ -331,7 +331,8 @@ header h1 {
 nav {
     background-color: var(--primary-dark);
     padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 0.8mm solid #D4AF37; /* Иста као у global.css */
+    border-top: 2px solid #D4AF37; /* Исти fallback */
     text-align: center;
 }
 nav a {
