@@ -171,6 +171,8 @@ async function posaljiPoruku() {
     dugme.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
     dugme.disabled = true;
     
+    let formSubmitUspeo = false;
+    
     try {
         // POKUŠAJ FORMSUBMIT
         const formData = new FormData();
@@ -187,6 +189,7 @@ async function posaljiPoruku() {
         });
         
         if (response.ok) {
+            formSubmitUspeo = true;
             hvalaTekst.textContent = '✅ Vaša poruka je uspešno poslata!';
             console.log('Poruka poslata preko FormSubmit');
         } else {
@@ -194,19 +197,8 @@ async function posaljiPoruku() {
         }
         
     } catch (error) {
-        console.log('FormSubmit greška, koristim mailto:', error);
-        hvalaTekst.textContent = '📧 Otvaram email klijent...';
-        
-        // Kratka pauza da se poruka prikaže
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // MAILTO FALLBACK
-        const subject = `Poruka od ${ime} - AresNyX Kontakt`;
-        const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
-        
-        window.location.href = `mailto:ares.nyx.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        hvalaTekst.textContent = '✅ Molimo potvrdite slanje u vašem email klijentu!';
+        console.log('FormSubmit greška:', error);
+        hvalaTekst.textContent = '📧 Pripremam email...';
     }
     
     // 1. PRIKAŽI "HVALA" PORUKU
@@ -219,10 +211,32 @@ async function posaljiPoruku() {
     dugme.innerHTML = originalText;
     dugme.disabled = false;
     
-    // 4. SKLONI "HVALA" PORUKU NAKON 5 SEKUNDI
+    // 4. AKO FORMSUBMIT NIJE USPEO, OTVORI MAILTO NAKON 1 SEKUNDU
+    if (!formSubmitUspeo) {
+        setTimeout(() => {
+            const subject = `Poruka od ${ime} - AresNyX Kontakt`;
+            const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
+            
+            // Otvori mailto u novom tabu/tab-u da ne prekine stranicu
+            const mailtoUrl = `mailto:ares.nyx.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Kreiraj link i klikni ga
+            const link = document.createElement('a');
+            link.href = mailtoUrl;
+            link.target = '_blank';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            hvalaTekst.textContent = '✅ Molimo potvrdite slanje u vašem email klijentu!';
+        }, 1000); // Sačekaj 1 sekundu da se prikaže hvala poruka
+    }
+    
+    // 5. SKLONI "HVALA" PORUKU NAKON 8 SEKUNDI
     setTimeout(() => {
         hvalaDiv.style.display = 'none';
-    }, 5000);
+    }, 8000);
 }
 
 // Event listener za Enter u poljima
