@@ -13,7 +13,42 @@
     --color-light-bg: #f7f7f7; 
 }
 
-/* --- 2. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
+/* --- 2. OPTIMIZED FONTAWESOME (ONLY ICONS YOU USE) --- */
+/* Font Awesome фонт (само solid иконке) */
+@font-face {
+    font-family: 'FA-Solid-Custom';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
+}
+
+/* Основни стилови за све иконке */
+.fas {
+    font-family: 'FA-Solid-Custom';
+    font-weight: 900;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Специфичне иконке које користиш */
+.fa-building:before { content: "\f1ad"; }
+.fa-map-marker-alt:before { content: "\f3c5"; }
+.fa-phone:before { content: "\f095"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-paper-plane:before { content: "\f1d8"; }
+.fa-spinner:before { content: "\f110"; }
+.fa-check-circle:before { content: "\f058"; }
+.fa-home:before { content: "\f015"; }
+.fa-shopping-bag:before { content: "\f290"; }
+.fa-users:before { content: "\f0c0"; }
+.fa-blog:before { content: "\f781"; }
+.fa-address-card:before { content: "\f2bb"; }
+
+/* --- 3. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
     /* Implementiran BRZI SISTEMSKI FONT STACK */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -53,7 +88,7 @@ section p {
     margin-bottom: 1.2em;
 }
 
-/* --- 3. HEADER I NAVIGACIJA --- */
+/* --- 4. HEADER I NAVIGACIJA --- */
 header { 
     background: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
     color: #fff; 
@@ -103,7 +138,7 @@ nav a:hover, nav a.active {
 }
 
 
-/* --- 4. DUGMAD (CTA) --- */
+/* --- 5. DUGMAD (CTA) --- */
 .cta-container {
     text-align: center;
     margin-top: 35px;
@@ -144,7 +179,7 @@ nav a:hover, nav a.active {
     outline-offset: 2px;
 }
 
-/* --- 5. STILOVI ZA INDEX STRANICU (POČETNA) --- */
+/* --- 6. STILOVI ZA INDEX STRANICU (POČETNA) --- */
 .hero-section {
     text-align: center;
     padding: 50px 25px;
@@ -193,7 +228,7 @@ nav a:hover, nav a.active {
     fill: #b8941f;
 }
 
-/* --- 6. STILOVI ZA O NAMA STRANICU --- */
+/* --- 7. STILOVI ZA O NAMA STRANICU --- */
 hr {
     border: none; 
     border-top: 1px solid #eee; 
@@ -261,7 +296,7 @@ hr {
 }
 
 
-/* --- 7. STILOVI ZA KONTAKT STRANICU --- */
+/* --- 8. STILOVI ZA KONTAKT STRANICU --- */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -347,7 +382,7 @@ hr {
 }
 
 
-/* --- 8. STILOVI ZA DOKUMENTE I BLOG (Politika, Uslovi, Blog) --- */
+/* --- 9. STILOVI ZA DOKUMENTE I BLOG (Politika, Uslovi, Blog) --- */
 .policy-content h2 {
     color: var(--color-button);
     margin-top: 40px;
@@ -389,7 +424,7 @@ hr {
 }
 
 
-/* --- 9. ANIMACIJE --- */
+/* --- 10. ANIMACIJE --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -403,7 +438,7 @@ hr {
 .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
 
 
-/* --- 10. FOOTER --- */
+/* --- 11. FOOTER --- */
 footer { 
     background: var(--color-dark-bg); 
     color: #fff; 
@@ -489,45 +524,6 @@ footer {
         width: 40px;
         height: 40px;
     }
-/* ===== OPTIMIZED FONTAWESOME (ONLY ICONS YOU USE) ===== */
-
-/* Font Awesome фонт (само solid иконке) */
-@font-face {
-    font-family: 'FA-Solid-Custom';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
-}
-
-/* Основни стилови за све иконке */
-.fas {
-    font-family: 'FA-Solid-Custom';
-    font-weight: 900;
-    font-style: normal;
-    display: inline-block;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Специфичне иконке које користиш */
-.fa-building:before { content: "\f1ad"; }
-.fa-map-marker-alt:before { content: "\f3c5"; }
-.fa-phone:before { content: "\f095"; }
-.fa-envelope:before { content: "\f0e0"; }
-.fa-paper-plane:before { content: "\f1d8"; }
-.fa-spinner:before { content: "\f110"; }
-.fa-check-circle:before { content: "\f058"; }
-.fa-home:before { content: "\f015"; }
-.fa-shopping-bag:before { content: "\f290"; }
-.fa-users:before { content: "\f0c0"; }
-.fa-blog:before { content: "\f781"; }
-.fa-address-card:before { content: "\f2bb"; }
-
-/* ===== PRELOAD HINT FOR BROWSER ===== */
-/* (Ово иде у <head> секцију HTML-а) */
-}
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
