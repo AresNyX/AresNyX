@@ -115,81 +115,79 @@
         background-color: rgba(255, 255, 255, 0.08);
     }
     
-    /* === HERO SECTION - КЉУЧ ЗА LCP === */
-    /* === HERO SECTION - КЉУЧ ЗА LCP === */
-#hero-section {
-    text-align: center;
-    padding: 70px 40px; /* ПОВЕЋАНО: са 40px на 70px (вертикално), са 20px на 40px (бочно) */
-    background: #121212;
-    color: white;
-    border-radius: 16px; /* ПОВЕЋАНО: са 12px на 16px */
-    margin: 30px auto 0; /* ПОВЕЋАНО: са 20px на 30px горња маргина */
-    max-width: 1000px; /* ПОВЕЋАНО: са 900px на 1000px */
-    opacity: 1;
-    contain: content;
-    min-height: 300px; /* ПОВЕЋАНО: са 200px на 300px */
-}
-
-#hero-title {
-    color: #D4AF37;
-    font-size: 2.8em; /* ПОВЕЋАНО: са 2em на 2.8em */
-    margin: 0 0 20px 0; /* ПОВЕЋАНО: са 15px на 20px */
-    opacity: 1;
-    line-height: 1.3;
-    font-family: Arial, sans-serif;
-}
-
-#hero-text {
-    font-size: 1.3em; /* ПОВЕЋАНО: са 1em на 1.3em */
-    margin: 0 0 35px 0; /* ПОВЕЋАНО: са 25px на 35px */
-    color: #ddd;
-    opacity: 1;
-    line-height: 1.6; /* ПОВЕЋАНО: са 1.5 на 1.6 */
-    font-family: Arial, sans-serif;
-    max-width: 800px; /* ДОДАТО: ограничи ширину текста */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-cta-container {
-    text-align: center;
-    margin-top: 35px; /* ПОВЕЋАНО: са 25px на 35px */
-    opacity: 1;
-}
-
-.hero-cta-button {
-    background: #802B24;
-    color: #fff;
-    border: none;
-    border-radius: 8px; /* ПОВЕЋАНО: са 6px на 8px */
-    text-transform: uppercase;
-    font-weight: 700; /* ПОВЕЋАНО: са 600 на 700 */
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 320px; /* ПОВЕЋАНО: са 280px на 320px */
-    width: 100%;
-    padding: 16px 30px; /* ПОВЕЋАНО: са 12px на 16px (вертикално), са 20px на 30px (бочно) */
-    font-size: 1.2em; /* ПОВЕЋАНО: са 1em на 1.2em */
-    letter-spacing: 0.5px;
-    line-height: normal;
-    min-height: 55px; /* ПОВЕЋАНО: са 44px на 55px */
-    text-align: center;
-    cursor: pointer;
-    opacity: 1;
-    font-family: Arial, sans-serif;
-}
-
-/* === MAIN CONTENT === */
-#main-content {
-    max-width: 1000px; /* ПОВЕЋАНО: са 900px на 1000px (да буде као херо) */
-    margin: 25px auto 60px; /* ПОВЕЋАНО: са 15px на 25px горња маргина */
-    padding: 0 20px;
-    min-height: 400px;
-    opacity: 1;
-}
-/
+    /* === HERO SECTION === */
+    #hero-section {
+        text-align: center;
+        padding: 70px 40px;
+        background: #121212;
+        color: white;
+        border-radius: 16px;
+        margin: 30px auto 0;
+        max-width: 1000px;
+        opacity: 1;
+        contain: content;
+        min-height: 300px;
+    }
+    
+    #hero-title {
+        color: #D4AF37;
+        font-size: 2.8em;
+        margin: 0 0 20px 0;
+        opacity: 1;
+        line-height: 1.3;
+        font-family: Arial, sans-serif;
+    }
+    
+    #hero-text {
+        font-size: 1.3em;
+        margin: 0 0 35px 0;
+        color: #ddd;
+        opacity: 1;
+        line-height: 1.6;
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-cta-container {
+        text-align: center;
+        margin-top: 35px;
+        opacity: 1;
+    }
+    
+    .hero-cta-button {
+        background: #802B24;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 320px;
+        width: 100%;
+        padding: 16px 30px;
+        font-size: 1.2em;
+        letter-spacing: 0.5px;
+        line-height: normal;
+        min-height: 55px;
+        text-align: center;
+        cursor: pointer;
+        opacity: 1;
+        font-family: Arial, sans-serif;
+    }
+    
+    /* === MAIN CONTENT === */
+    #main-content {
+        max-width: 1000px;
+        margin: 25px auto 60px;
+        padding: 0 20px;
+        min-height: 400px;
+        opacity: 1;
+    }
     
     /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
     .features-grid {
@@ -201,107 +199,143 @@
         content-visibility: auto;
         contain-intrinsic-size: 0 500px;
     }
-        /* === КРИТИЧНИ СТИЛОВИ ЗА ПОЧЕТНУ СТРАНУ === */
-
-/* CTA DUGME */
-.cta-button {
-    background-color: #802B24;
-    color: #fff;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    font-size: 1.1em;
-    padding: 14px 25px;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(128, 43, 36, 0.2);
-    border: none;
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 280px;
-    width: 100%;
-    min-height: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 0 auto;
-}
-
-/* FOOTER LINKOVI */
-footer {
-    background: #121212;
-    color: #ddd;
-    text-align: center;
-    padding: 25px 20px;
-    margin-top: 40px;
-    font-size: 0.9em;
-}
-
-.footer-links {
-    margin-bottom: 15px;
-}
-
-.footer-links a {
-    color: #D4AF37;
-    text-decoration: none;
-    margin: 0 12px;
-    font-weight: 500;
-}
-
-/* SVG IKONE */
-.icon-svg {
-    fill: #D4AF37;
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 15px;
-    display: block;
-}
-        /* ДОДАЈ ОВО НА КРАЈ ТВОГ CSS-А (пре </style>) */
-@media (max-width: 768px) {
-    #hero-section {
-        padding: 50px 25px; /* Прилагоди за мобилни */
-        min-height: 250px;
-        margin: 20px 15px 0;
-        max-width: calc(100% - 30px);
-    }
     
-    #hero-title {
-        font-size: 2.2em;
-    }
-    
-    #hero-text {
+    /* === КРИТИЧНИ СТИЛОВИ ЗА ПОЧЕТНУ СТРАНУ === */
+    .cta-button {
+        background-color: #802B24;
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.5px;
         font-size: 1.1em;
-        margin-bottom: 25px;
-    }
-    
-    .hero-cta-button {
         padding: 14px 25px;
-        font-size: 1.1em;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(128, 43, 36, 0.2);
+        border: none;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         max-width: 280px;
-    }
-}
-
-@media (max-width: 480px) {
-    #hero-section {
-        padding: 40px 20px;
-        min-height: 220px;
-        margin: 15px 10px 0;
-        max-width: calc(100% - 20px);
+        width: 100%;
+        min-height: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0 auto;
     }
     
-    #hero-title {
-        font-size: 1.9em;
+    /* FOOTER LINKOVI */
+    footer {
+        background: #121212;
+        color: #ddd;
+        text-align: center;
+        padding: 25px 20px;
+        margin-top: 40px;
+        font-size: 0.9em;
     }
     
-    #hero-text {
-        font-size: 1em;
+    .footer-links {
+        margin-bottom: 15px;
     }
     
-    .hero-cta-button {
-        padding: 12px 20px;
-        font-size: 1em;
-        max-width: 250px;
+    .footer-links a {
+        color: #D4AF37;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: 500;
     }
+    
+    /* SVG IKONE */
+    .icon-svg {
+        fill: #D4AF37;
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 15px;
+        display: block;
+    }
+    
+    /* RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+        #main-header {
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            min-height: 120px;
+            height: auto;
+        }
+        
+        #main-header h1 {
+            font-size: 28px;
+        }
+        
+        #hero-section {
+            padding: 50px 25px;
+            min-height: 250px;
+            margin: 20px 15px 0;
+            max-width: calc(100% - 30px);
+        }
+        
+        #hero-title {
+            font-size: 2.2em;
+        }
+        
+        #hero-text {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+        
+        #main-nav a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+        
+        .hero-cta-button {
+            padding: 14px 25px;
+            font-size: 1.1em;
+            max-width: 280px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #main-header h1 {
+            font-size: 24px;
+        }
+        
+        .header-logo {
+            width: 60px;
+            height: 60px;
+        }
+        
+        #hero-section {
+            padding: 40px 20px;
+            min-height: 220px;
+            margin: 15px 10px 0;
+            max-width: calc(100% - 20px);
+        }
+        
+        #hero-title {
+            font-size: 1.9em;
+        }
+        
+        #hero-text {
+            font-size: 1em;
+        }
+        
+        #main-nav a {
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .hero-cta-button {
+            padding: 12px 20px;
+            font-size: 1em;
+            max-width: 250px;
+        }
+        
+        .footer-links a {
+            display: inline-block;
+            margin: 5px 10px;
+        }
     }
     </style>
     
@@ -327,7 +361,7 @@ footer {
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
-    <meta name="twitter:description" content="Premium donji veš od prirodnih материјала за здравље и удобност.">
+    <meta name="twitter:description" content="Premium donji veš od prirodних материјала за здравље и удобност.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     
     <!-- ASINHRONI CSS -->
@@ -424,15 +458,12 @@ footer {
 
     <!-- DEFEROVANI SCRIPT -->
     <script defer>
-    // Када се страница потпуно учита, додај gradient и позадинске стилове
     window.addEventListener('load', function() {
-        // 1. Додај gradient hero секцији
         const heroSection = document.getElementById('hero-section');
         if (heroSection) {
             heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
         }
         
-        // 2. Додај hover ефекте за navigation
         const navLinks = document.querySelectorAll('#main-nav a');
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', function() {
@@ -443,7 +474,6 @@ footer {
             });
         });
         
-        // 3. Додај hover ефекте за CTA дугме
         const ctaButton = document.querySelector('.hero-cta-button');
         if (ctaButton) {
             ctaButton.addEventListener('mouseenter', function() {
@@ -458,20 +488,9 @@ footer {
             });
         }
         
-        // 4. Додај FontAwesome фонт (ако је потребан за друге странице)
-        const fontLink = document.createElement('link');
-        fontLink.rel = 'preload';
-        fontLink.as = 'font';
-        fontLink.type = 'font/woff2';
-        fontLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2';
-        fontLink.crossOrigin = 'anonymous';
-        document.head.appendChild(fontLink);
-        
-        // 5. Додај CSS класе за анимације
         setTimeout(function() {
             const style = document.createElement('style');
             style.textContent = `
-                /* Анимације које се додају касније */
                 @keyframes fadeIn {
                     from { opacity: 0; transform: translateY(10px); }
                     to { opacity: 1; transform: translateY(0); }
@@ -485,7 +504,6 @@ footer {
                 .lazy-section:nth-child(1) { animation-delay: 0.2s; }
                 .lazy-section:nth-child(2) { animation-delay: 0.4s; }
                 
-                /* Стилови из global.css који су потребни */
                 .feature-item {
                     text-align: center;
                     padding: 22px;
@@ -533,37 +551,16 @@ footer {
                     text-decoration: none;
                     margin: 0 15px;
                 }
-                
-                /* FontAwesome стилови */
-                @font-face {
-                    font-family: 'FA-Solid-Custom';
-                    font-style: normal;
-                    font-weight: 900;
-                    font-display: swap;
-                    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
-                }
-                
-                .fas {
-                    font-family: 'FA-Solid-Custom';
-                    font-weight: 900;
-                    font-style: normal;
-                    display: inline-block;
-                    line-height: 1;
-                    -webkit-font-smoothing: antialiased;
-                    -moz-osx-font-smoothing: grayscale;
-                }
             `;
             document.head.appendChild(style);
             
-            // Покрени анимације
             document.querySelectorAll('.lazy-section').forEach((section, index) => {
                 section.style.animationDelay = (index * 0.2 + 0.2) + 's';
             });
             
-        }, 500); // 0.5 секунди након load-а
+        }, 500);
     });
     
-    // Fallback за CSS ако се не учита
     setTimeout(function() {
         const links = document.querySelectorAll('link[rel="stylesheet"]');
         let hasGlobal = false;
