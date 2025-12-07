@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX Shop - Premium Boxer Shorts</title>
+
     <link rel="preload" 
           as="image" 
           href="https://aresnyx.github.io/AresNyX/slike/slika1.webp">
 
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css"> 
 
     <meta name="description" 
           content="AresNyX Shop - Premium boxer shorts od pamuka, lana i bambusa. 
@@ -36,9 +37,6 @@
     <meta name="twitter:description" 
           content="Premium boxer shorts od prirodnih materijala. 
                    Zdravlje i udobnost.">
-      <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-      </script>
                    
     </head>
 <body>
@@ -63,7 +61,7 @@
     <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
     <a href="kontakt.html">Kontakt</a>
     
-    <a href="javascript:void(0)" onclick="AresNyXShop.toggleCart()" class="cart-nav-link">
+    <a href="javascript:void(0)" onclick="shop.toggleCart()" class="cart-nav-link">
         <i class="fas fa-shopping-bag"></i>
         Korpa (<span id="cartCount">0</span>)
     </a>
@@ -73,7 +71,7 @@
         <section class="products-section">
     
     <div class="shop-controls">
-    <button class="filter-sort-btn" onclick="AresNyXShop.toggleFilterPanel()">
+    <button class="filter-sort-btn" onclick="shop.toggleFilterPanel()">
         <span class="icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -90,7 +88,7 @@
     <h3>Sortiranje</h3>
     <div class="filter-group">
         <label for="priceSort">Cena:</label>
-        <select id="priceSort" onchange="AresNyXShop.sortProducts(this.value)">
+        <select id="priceSort" onchange="shop.sortProducts(this.value)">
             <option value="default">Podrazumevano</option>
             <option value="lowToHigh">Najniža ka najvišoj</option>
             <option value="highToLow">Najviša ka najnižoj</option>
@@ -100,7 +98,7 @@
     <h3>Filter po Materijalu</h3>
     <div class="filter-group">
         <label for="materialFilter">Materijal:</label>
-        <select id="materialFilter" onchange="AresNyXShop.filterProducts(this.value, 'material')">
+        <select id="materialFilter" onchange="shop.filterProducts(this.value, 'material')">
             <option value="all">Svi materijali</option>
             <option value="pamuk">Pamuk</option>
             <option value="lan">Lan</option>
@@ -118,7 +116,7 @@
     <button class="size-btn" data-size="XXL">XXL</button>
     <button class="size-btn active" data-size="all">Sve</button>
 </div>  
-    <button class="apply-filters-btn" onclick="AresNyXShop.applyAllFilters()">Primeni filtere</button>
+    <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
 
 </div>
     </div>
@@ -171,13 +169,13 @@
 
     <div class="modal-overlay" id="productModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="AresNyXShop.closeModal()">×</button>
+            <button class="modal-close" onclick="shop.closeModal()">×</button>
             <div class="modal-content">
                 <div class="modal-gallery">
                     <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
                     <div class="slider-nav">
-                        <button id="prevImageBtn" onclick="AresNyXShop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                        <button id="nextImageBtn" onclick="AresNyXShop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
                 
@@ -189,7 +187,7 @@
                     <div class="size-section">
                         <h3>Odaberite veličinu:</h3>
                         <div class="size-selector" id="sizeSelector"></div>
-                        <div class="size-info" onclick="AresNyXShop.toggleSizeTable()">
+                        <div class="size-info" onclick="shop.toggleSizeTable()">
                             <i class="fas fa-ruler"></i>
                             <span>Tabela veličina</span>
                         </div>
@@ -213,17 +211,17 @@
                     <div class="quantity-section">
                         <h3>Količina:</h3>
                         <div class="quantity-selector">
-                            <button class="qty-btn" onclick="AresNyXShop.changeQuantity(-1)">-</button>
+                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
                             <span class="qty-display" id="modalQty">1</span>
-                            <button class="qty-btn" onclick="AresNyXShop.changeQuantity(1)">+</button>
+                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
                         </div>
                     </div>
 
                     <div class="modal-actions">
-                        <button class="add-to-cart-btn" onclick="AresNyXShop.addToCartFromModal(event)">
+                        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                             <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
                         </button>
-                        <button class="continue-shopping" onclick="AresNyXShop.closeModal()">
+                        <button class="continue-shopping" onclick="shop.closeModal()">
                             Nastavi kupovinu
                         </button>
                     </div>
@@ -236,7 +234,7 @@
     
     <div class="cart-header">
         <h3>Vaša Korpa</h3>
-        <button class="modal-close" onclick="AresNyXShop.toggleCart()">×</button>
+        <button class="modal-close" onclick="shop.toggleCart()">×</button>
     </div>
     
     <div class="cart-promo-message" id="cartPromoMessage">
@@ -252,7 +250,7 @@
     <div class="cart-footer" id="cartFooter" style="display: none;">
         
         <div class="cart-actions-footer">
-            <button class="clear-cart-btn" onclick="AresNyXShop.clearCart()">
+            <button class="clear-cart-btn" onclick="shop.clearCart()">
                 <i class="fas fa-trash"></i> Isprazni Korpu
             </button>
         </div>
@@ -263,16 +261,16 @@
             <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
             <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
         </div>
-        <button class="checkout-btn" onclick="AresNyXShop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
+        <button class="checkout-btn" onclick="shop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
     </div>
 </div>  
     <div class="modal-overlay" id="checkoutModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="AresNyXShop.closeCheckoutModal()">×</button>
+            <button class="modal-close" onclick="shop.closeCheckoutModal()">×</button>
             <div class="modal-content" id="checkoutModalContent">
                 
                 <div id="checkoutStep1">
-                    <form class="checkout-form" onsubmit="AresNyXShop.submitShippingForm(event)">
+                    <form class="checkout-form" onsubmit="shop.submitShippingForm(event)">
                         <h2>Podaci za isporuku</h2>
                         
                         <div class="form-group"><label for="ime">Ime*</label><input type="text" id="ime" required></div>
@@ -329,8 +327,8 @@
                         </div>
                     </div>
                     <div class="preview-actions">
-                        <button class="edit-data-btn" onclick="AresNyXShop.goToStep(1)"><i class="fas fa-edit"></i> Izmeni Podatke</button>
-                        <button class="submit-order-btn" onclick="AresNyXShop.completeOrder()"><i class="fas fa-paper-plane"></i> Pošalji Porudžbinu</button>
+                        <button class="edit-data-btn" onclick="shop.goToStep(1)"><i class="fas fa-edit"></i> Izmeni Podatke</button>
+                        <button class="submit-order-btn" onclick="shop.completeOrder()"><i class="fas fa-paper-plane"></i> Pošalji Porudžbinu</button>
                     </div>
                 </div>
 
@@ -340,7 +338,7 @@
                         <p>Vaša porudžbina je uspešno primljena i biće obrađena u najkraćem mogućem roku.</p>
                         <p>Detalji su poslati na Vašu email adresu: <strong id="confirmationEmail"></strong></p>
                         <p>Uskoro ćete biti kontaktirani radi potvrde porudžbine.</p>
-                        <button class="submit-btn" onclick="AresNyXShop.closeCheckoutModal()">Nastavite sa kupovinom</button>
+                        <button class="submit-btn" onclick="shop.closeCheckoutModal()">Nastavite sa kupovinom</button>
                     </div>
                 </div>
 
@@ -349,6 +347,12 @@
     </div>
 
     <div class="toast" id="toast"></div>
-<script src="./js/shop.js?v=4" type="module"></script> 
-</body>   
-</html>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+                                                                    
+    <script src="script.js" defer></script> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</body>
+    </html>
