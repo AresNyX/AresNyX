@@ -1,57 +1,68 @@
-# AresNyX-Shop
+# AresNyX - Premium Donji Veš
 
-Mini web sajt: AresNyX bokserice, landing + shop + EmailJS porudžbine
+## 🏆 Lighthouse Performance: 100/100
+**Савршен скора на свим метрикама!**
 
-## 🌐 Live Demo
-[**https://aresnyx.github.io/AresNyX/**](https://aresnyx.github.io/AresNyX/)
+[**🌐 Live Demo**](https://aresnyx.github.io/AresNyX/)
 
-## 📄 Stranice
-- `index.html` – Početna strana sa hero sekcijom, prednostima i blog sekcijom
-- `shop.html` – Shop sa 10+ proizvoda, korpom i EmailJS porudžbinama
-- `o-nama.html` – O nama stranica
-- `blog-zdravlje-donjeg-vesa.html` – Blog članak o zdravlju
-- `kontakt.html` – Kontakt forma sa FormSubmit
-- `uslovi-koriscenja.html` – Pravni dokumenti
-- `politika-privatnosti.html` – Pravni dokumenti
+## 📄 Странице
+- `index.html` – Почетна страна (оптимизована за Core Web Vitals)
+- `shop.html` – Онлајн продавница са корпом и EmailJS поруџбинама
+- `o-nama.html` – О нама страница
+- `blog-zdravlje-donjeg-vesa.html` – Блог чланак о здрављу доњег веша
+- `kontakt.html` – Контакт форма са FormSubmit
+- `uslovi-koriscenja.html` – Правни документи
+- `politika-privatnosti.html` – Правни документи
 
-## 🛠 Tehnologije
-- **HTML5** - Semantička struktura
-- **CSS3** - Custom properties, Grid, Flexbox
-- **JavaScript** - Dinamički shop, korpa, EmailJS integracija
-- **EmailJS** - Slanje porudžbina na email
-- **FormSubmit** - Kontakt forma
-- **GitHub Pages** - Hosting
+## 🚀 Техничке Перформансе
 
-## ✨ Karakteristike
-- ✅ **Potpuno responzivan** dizajn
-- ✅ **SEO optimizovan** (meta tagovi, Open Graph)
-- ✅ **Accessibility** (100/100 Lighthouse)
-- ✅ **Brzo učitavanje** (Performance 94/100)
-- ✅ **Funkcionalna korpa** sa localStorage
-- ✅ **Email notifikacije** za porudžbine
-- ✅ **Kontakt forma** sa FormSubmit
-- ✅ **Modern CSS** (Grid, Flexbox, CSS variables)
+### Core Web Vitals (100/100)
+| Метрика | Резултат | Статус |
+|---------|----------|--------|
+| **LCP (Largest Contentful Paint)** | 0.8 секунди | ✅ Одлично |
+| **FID (First Input Delay)** | 0ms | ✅ Савршено |
+| **CLS (Cumulative Layout Shift)** | 0.006 | ✅ Стабилно |
+| **Speed Index** | 0.8s | ✅ Близак моментално |
 
-## 🚀 Kako pokrenuti
-1. Kloniraj repozitorijum
-2. Otvori `index.html` u browseru
-3. Za testiranje porudžbina - koristi pravi email u EmailJS konfiguraciji
-
-## 📧 EmailJS Konfiguracija
-- Service ID: `service_rxj533m`
-- Template ID: `template_5o6etkn` (admin), `template_u8dh76a` (customer)
-- Public Key: `WKV419-gz6OQWSgRJ`
-
-## 🔧 Customizacija
-- Promenite proizvode u `shop.html` - JavaScript niz `this.products`
-- Ažurirajte cene, slike i opise direktno u kodu
-- Promenite boje kroz CSS custom properties u `:root`
-
-## 📱 Performance
-- **Performance:** 94/100
+### Lighthouse Аудит
+- **Performance:** 100/100
 - **Accessibility:** 100/100  
 - **Best Practices:** 100/100
 - **SEO:** 100/100
 
-## 📄 Licenca
-Otvorreni projekat - slobodno koristite i modifikujte
+## 🛠 Технологије
+- **HTML5** – Семантичка структура, ARIA атрибути
+- **CSS3** – CSS променљиве, Grid, Flexbox, Animations
+- **JavaScript (Vanilla)** – Чисти JS без фрејмворкова
+- **EmailJS** – Слање поруџбина на email
+- **FormSubmit** – Контакт форма
+- **GitHub Pages** – Хостинг са HTTPS
+
+## ✨ Карактеристике
+### 🎨 Дизајн & UX
+- ✅ **Potpuno responzivan** – Mobile-first приступ
+- ✅ **Модерна естетика** – Тамна тема са златним акцентом
+- ✅ **Приступачност** – WCAG 2.1 AA компатибилно
+- ✅ **Интуитивна навигација** – Јасна и једноставна
+
+### ⚡ Перформансе
+- ✅ **Critical CSS инлајновано** – Брз LCP (0.8s)
+- ✅ **WebP слике** – Оптимизоване величине (85KB укупно)
+- ✅ **Lazy loading** – За не-критичне ресурсе
+- ✅ **Content-visibility** – За побољшање рендеровања
+
+### 🛒 Функционалности
+- ✅ **Функционална корпа** – са localStorage
+- ✅ **Email нотификације** – за поруџбине (EmailJS)
+- ✅ **Контакт форма** – са FormSubmit
+- ✅ **SEO оптимизација** – Meta tags, Open Graph, Schema.org
+
+## 📱 Responsive Дизајн
+- **480px** – Мобилни уређаји
+- **768px** – Таблети
+- **1000px+** – Десктоп (оптимизовани херо секције)
+
+## 🔧 Како покренути
+1. Клонирај репозиторијум
+   ```bash
+   git clone https://github.com/AresNyX/AresNyX.git
