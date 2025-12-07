@@ -139,10 +139,10 @@ export const UIManager = {
         const btn = document.querySelector('.add-to-cart-btn');
         if (!firstAvailableSize) {
              btn.disabled = true;
-             btn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+             btn.innerHTML = '❌ RASPRODATO';
              btn.style.background = 'var(--danger)';
         } else {
-            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+            btn.innerHTML = '🛒 Dodaj u Korpu';
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
         }
@@ -206,7 +206,7 @@ export const UIManager = {
         btn.disabled = true;
 
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
+        btn.innerHTML = '✅ Dodato!';
         btn.style.background = 'var(--success)';
         
         // POZIVAMO LOGIKU KORPE
@@ -507,7 +507,7 @@ export const UIManager = {
 
         const submitBtn = document.querySelector('#checkoutStep2 .submit-order-btn');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Slanje...';
+        submitBtn.innerHTML = '⏳ Slanje...';
         submitBtn.disabled = true;
 
         // 🛑 VALIDACIJA ZALIHA (Koristi ProductData i CartLogic) 🛑
