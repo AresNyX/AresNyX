@@ -86,35 +86,34 @@
         opacity: 1;
         font-family: Arial, sans-serif;
     }
-    
-    /* === NAVIGACIJA === */
-    #main-nav {
-        background-color: #121212;
-        padding: 10px 0;
-        border-top: 0.35mm solid rgba(212, 175, 55, 0.8) !important;
-border-top: 1px solid rgba(212, 175, 55, 0.8) !important;
-        text-align: center;
-        position: relative;
-        z-index: 999;
-        contain: content;
-    }
-    
-    #main-nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: 400;
-        font-size: 1em;
-        padding: 5px 8px;
-        border-radius: 4px;
-        display: inline-block;
-        font-family: Arial, sans-serif;
-    }
-    
-    #main-nav a:hover, #main-nav a.active {
-        color: #D4AF37;
-        background-color: rgba(255, 255, 255, 0.08);
-    }
+ /* === NAVIGACIJA === */
+#main-nav {
+    background-color: #121212;
+    padding: 10px 0;
+    border-top: 0.8mm solid #D4AF37; /* Дебеља златна линија */
+    border-top: 2px solid #D4AF37; /* Fallback за старије прегледаче */
+    text-align: center;
+    position: relative;
+    z-index: 999;
+    contain: content;
+}
+
+#main-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 5px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+#main-nav a:hover, #main-nav a.active {
+    color: #D4AF37;
+    background-color: rgba(255, 255, 255, 0.08);
+}
     
     /* === HERO SECTION === */
     #hero-section {
