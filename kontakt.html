@@ -99,12 +99,19 @@
             
             <div class="contact-form">
     <h2 class="section-title">Pošaljite nam Poruku</h2>
-    <form name="KontaktForma" action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
-        <input type="hidden" name="_template" value="table">
+    <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
+        <!-- FormSubmit konfiguracija -->
+        <input type="hidden" name="_subject" value="Nova poruka sa AresNyX sajta">
+        <input type="hidden" name="_template" value="basic">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://aresnyx.github.io/AresNyX/hvala.html"> <!-- Dodajte ako želite thank you page -->
         
+        <!-- Sakriveno polje za anti-spam -->
+        <input type="text" name="_honey" style="display:none">
+        
+        <!-- Redirect nakon slanja (opciono) -->
+        <input type="hidden" name="_next" value="https://aresnyx.github.io/AresNyX/hvala.html">
+        
+        <!-- Polja forme - BITNO: koristite OVA IMENA -->
         <div class="form-group">
             <label for="ime">Ime i Prezime</label>
             <input type="text" id="ime" name="name" required>
