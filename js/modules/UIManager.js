@@ -258,7 +258,7 @@ export const UIManager = {
         if (!cartItemsContainer) return;
 
         if (CartLogic.cart.length === 0) {
-            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
+            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><span style="font-size: 3rem; color: #ccc;">🛍️</span><p>Vaša korpa je prazna</p></div>`;
             this.toggleCartVisibility(); 
             this.updateCartTotals(); 
             return;
