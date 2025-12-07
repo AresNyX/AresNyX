@@ -47,7 +47,7 @@ class AresNyXShop {
                 price: 1300, 
                 category: "pamuk", 
                 images: ["slika1.webp", "slika1a.webp"],
-                badge: "BESTSELLER",
+                badge: "CLASSIC",
                 sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
             },
             { 
@@ -72,7 +72,7 @@ class AresNyXShop {
             },
             { 
                 id: 4, 
-                name: "Tamno Sivo", 
+                name: "Grey Elegant", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -82,9 +82,9 @@ class AresNyXShop {
             },
             { 
                 id: 5, 
-                name: "Mastilo Plavo", 
+                name: "Ink Blue", 
                 material: "100% Organski Pamuk", 
-                price: 1700, 
+                price: 1500, 
                 category: "pamuk", 
                 images: ["slika5.webp", "slika5a.webp"],
                 badge: "LUXURY",
@@ -92,9 +92,9 @@ class AresNyXShop {
             },
             { 
                 id: 6, 
-                name: "Plavo Bele Prugice", 
+                name: "Blue White", 
                 material: "100% Premium Pamuk", 
-                price: 1400, 
+                price: 1500, 
                 category: "pamuk", 
                 images: ["slika6.webp", "slika6a.webp"], 
                 badge: "TRENDING",
@@ -102,9 +102,9 @@ class AresNyXShop {
             },
             { 
                 id: 7, 
-                name: "Karirano Crno Belo", 
+                name: "Black & White", 
                 material: "100% Premium Pamuk", 
-                price: 1600, 
+                price: 1500, 
                 category: "pamuk", 
                 images: ["slika7.webp", "slika7a.webp"], 
                 badge: "LUXURY",
@@ -112,17 +112,17 @@ class AresNyXShop {
             },
             { 
                 id: 8, 
-                name: "Svetlo Plavo", 
+                name: "Light Blue", 
                 material: "100% Premium Pamuk", 
                 price: 1400, 
-                category: "Pima Pamuk", 
+                category: "100% Pamuk", 
                 images: ["slika8.webp", "slika8a.webp"], 
                 badge: "NEW",
                 sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
             },
             { 
                 id: 9, 
-                name: "Petrolej Plavo", 
+                name: "Blue", 
                 material: "100% Premium Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -132,7 +132,7 @@ class AresNyXShop {
             },
             { 
                 id: 10, 
-                name: "Teget", 
+                name: "Petrol Blue", 
                 material: "100% Arabic Pamuk", 
                 price: 1600, 
                 category: "pamuk", 
@@ -142,7 +142,7 @@ class AresNyXShop {
             },
             { 
                 id: 11, 
-                name: "Tamne pruge", 
+                name: "Grey White", 
                 material: "100% Organski Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
