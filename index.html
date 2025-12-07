@@ -115,136 +115,103 @@
         background-color: rgba(255, 255, 255, 0.08);
     }
     
-  /* === HERO SECTION === */
-#hero-section {
-    text-align: center;
-    padding: 90px 49px; /* +20% вертикално, +10% бочно (70→84px, 40→44px) */
-    background: #121212;
-    color: white;
-    border-radius: 16px;
-    margin: 30px auto 0;
-    max-width: 1200px; /* +10% ширина (1000→1100px) */
-    opacity: 1;
-    contain: content;
-    min-height: 400px; /* +20% висина (300→360px) */
-}
-
-#hero-title {
-    color: #D4AF37;
-    font-size: 3.4em; /* +10% (2.8→3.1em) */
-    margin: 0 0 28px 0; /* +20% (20→24px) */
-    opacity: 1;
-    line-height: 1.3;
-    font-family: Arial, sans-serif;
-}
-
-#hero-text {
-    font-size: 1.53em; /* +10% (1.3→1.43em) */
-    margin: 0 0 49px 0; /* +20% (35→42px) */
-    color: #ddd;
-    opacity: 1;
-    line-height: 1.6;
-    font-family: Arial, sans-serif;
-    max-width: 960px; /* +10% (800→880px) */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-cta-container {
-    text-align: center;
-    margin-top: 46px; /* +20% (35→42px) */
-    opacity: 1;
-}
-
-.hero-cta-button {
-    background: #802B24;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 382px; /* +10% (320→352px) */
-    width: 100%;
-    padding: 22px 36px; /* +20% вертикално (16→19px), +10% бочно (30→33px) */
-    font-size: 1.42em; /* +10% (1.2→1.32em) */
-    letter-spacing: 0.5px;
-    line-height: normal;
-    min-height: 74px; /* +20% (55→66px) */
-    text-align: center;
-    cursor: pointer;
-    opacity: 1;
-    font-family: Arial, sans-serif;
-}
-
-/* === MAIN CONTENT === */
-#main-content {
-    max-width: 1200px; /* +10% да прати херо (1000→1100px) */
-    margin: 25px auto 60px;
-    padding: 0 20px;
-    min-height: 400px;
-    opacity: 1;
-}
-
-/* RESPONSIVE - такође повећано пропорционално */
-@media (max-width: 768px) {
+    /* === HERO SECTION === */
     #hero-section {
-        padding:70px 38px; /* +20% вертикално, +10% бочно */
-        min-height: 330px; /* +20% (250→300px) */
-        margin: 20px 15px 0;
-        max-width: calc(100% - 30px);
+        text-align: center;
+        padding: 84px 44px;
+        background: #121212;
+        color: white;
+        border-radius: 16px;
+        margin: 30px auto 0;
+        max-width: 1100px;
+        opacity: 1;
+        contain: content;
+        min-height: 360px;
     }
     
     #hero-title {
-        font-size: 2.52em; /* +10% (2.2→2.42em) */
+        color: #D4AF37;
+        font-size: 3.1em;
+        margin: 0 0 24px 0;
+        opacity: 1;
+        line-height: 1.3;
+        font-family: Arial, sans-serif;
     }
     
     #hero-text {
-        font-size: 1.30em; /* +10% (1.1→1.21em) */
-        margin-bottom: 33px; /* +20% (25→30px) */
+        font-size: 1.43em;
+        margin: 0 0 42px 0;
+        color: #ddd;
+        opacity: 1;
+        line-height: 1.6;
+        font-family: Arial, sans-serif;
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-cta-container {
+        text-align: center;
+        margin-top: 42px;
+        opacity: 1;
     }
     
     .hero-cta-button {
-        padding: 22px 33px; /* +20% вертикално, +10% бочно */
-        font-size: 1.3em; /* +10% (1.1→1.21em) */
-        max-width: 328px; /* +10% (280→308px) */
-        min-height: 59px; /* +20% (44→53px за mobile) */
-    }
-}
-
-@media (max-width: 480px) {
-    #hero-section {
-        padding: 55px 25px; /* +20% вертикално, +10% бочно */
-        min-height: 280px; /* +20% (220→264px) */
-        margin: 15px 10px 0;
-        max-width: calc(100% - 20px);
+        background: #802B24;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 352px;
+        width: 100%;
+        padding: 19px 33px;
+        font-size: 1.32em;
+        letter-spacing: 0.5px;
+        line-height: normal;
+        min-height: 66px;
+        text-align: center;
+        cursor: pointer;
+        opacity: 1;
+        font-family: Arial, sans-serif;
     }
     
-    #hero-title {
-        font-size: 2.19em; /* +10% (1.9→2.09em) */
-    }
-    
-    #hero-text {
-        font-size: 1.2em; /* +10% (1→1.1em) */
-    }
-    
-    .hero-cta-button {
-        padding: 18px 26px; /* +20% вертикално, +10% бочно */
-        font-size: 1.2em; /* +10% (1→1.1em) */
-        max-width: 290px; /* +10% (250→275px) */
-        min-height: 58px; /* +20% (44→53px) */
-    }
-        }
     /* === MAIN CONTENT === */
     #main-content {
-        max-width: 1000px;
+        max-width: 1100px;
         margin: 25px auto 60px;
         padding: 0 20px;
         min-height: 400px;
         opacity: 1;
+    }
+    
+    /* === СТИЛОВИ ЗА ПРИРОДНЕ СЛИКЕ === */
+    .natural-image {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 12px;
+        margin: 25px auto;
+        display: block;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .natural-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Контејнери за слике */
+    .hero-image-container,
+    .feature-image-container,
+    .philosophy-image-container {
+        text-align: center;
+        margin: 30px 0;
     }
     
     /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
@@ -312,6 +279,27 @@
         display: block;
     }
     
+    /* FEATURE ITEM STYLES */
+    .feature-item {
+        text-align: center;
+        padding: 22px;
+        border-radius: 8px;
+        border: 1px solid #eeeeee;
+        background-color: #ffffff;
+    }
+    
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 35px;
+    }
+    
+    .cta-container {
+        text-align: center;
+        margin-top: 35px;
+    }
+    
     /* RESPONSIVE STYLES */
     @media (max-width: 768px) {
         #main-header {
@@ -327,19 +315,19 @@
         }
         
         #hero-section {
-            padding: 50px 25px;
-            min-height: 250px;
+            padding: 60px 28px;
+            min-height: 300px;
             margin: 20px 15px 0;
             max-width: calc(100% - 30px);
         }
         
         #hero-title {
-            font-size: 2.2em;
+            font-size: 2.42em;
         }
         
         #hero-text {
-            font-size: 1.1em;
-            margin-bottom: 25px;
+            font-size: 1.21em;
+            margin-bottom: 30px;
         }
         
         #main-nav a {
@@ -348,9 +336,22 @@
         }
         
         .hero-cta-button {
-            padding: 14px 25px;
-            font-size: 1.1em;
-            max-width: 280px;
+            padding: 17px 28px;
+            font-size: 1.21em;
+            max-width: 308px;
+            min-height: 53px;
+        }
+        
+        /* Responsive за слике */
+        .natural-image {
+            max-width: 90%;
+            margin: 20px auto;
+        }
+        
+        .hero-image-container,
+        .feature-image-container,
+        .philosophy-image-container {
+            margin: 25px 0;
         }
     }
     
@@ -365,18 +366,18 @@
         }
         
         #hero-section {
-            padding: 40px 20px;
-            min-height: 220px;
+            padding: 48px 22px;
+            min-height: 264px;
             margin: 15px 10px 0;
             max-width: calc(100% - 20px);
         }
         
         #hero-title {
-            font-size: 1.9em;
+            font-size: 2.09em;
         }
         
         #hero-text {
-            font-size: 1em;
+            font-size: 1.1em;
         }
         
         #main-nav a {
@@ -385,14 +386,21 @@
         }
         
         .hero-cta-button {
-            padding: 12px 20px;
-            font-size: 1em;
-            max-width: 250px;
+            padding: 14px 22px;
+            font-size: 1.1em;
+            max-width: 275px;
+            min-height: 53px;
         }
         
         .footer-links a {
             display: inline-block;
             margin: 5px 10px;
+        }
+        
+        /* Responsive за слике */
+        .natural-image {
+            max-width: 95%;
+            margin: 15px auto;
         }
     }
     </style>
@@ -461,6 +469,13 @@
         <section id="hero-section">
             <h1 id="hero-title">Premium Donji Veš</h1>
             <p id="hero-text">100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+            
+            <!-- PRVA SLIKА - испод херо текста -->
+            <div class="hero-image-container">
+                <img src="slike/pamuk.webp" alt="Pamučni donji veš AresNyX" 
+                     width="280" height="180" loading="lazy" class="natural-image">
+            </div>
+            
             <div class="hero-cta-container">
                 <a href="shop.html" class="hero-cta-button">Otkrijte Kolekciju</a>
             </div>
@@ -477,6 +492,13 @@
                     <h3>Prirodni Materijali</h3>
                     <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
                 </div>
+                
+                <!-- DRUGA SLIKА - између feature елемената -->
+                <div class="feature-image-container">
+                    <img src="slike/lan.webp" alt="Lanski donji veš AresNyX" 
+                         width="280" height="180" loading="lazy" class="natural-image">
+                </div>
+                
                 <div class="feature-item">
                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="48" height="48">
                         <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
@@ -484,12 +506,13 @@
                     <h3>Zdravstvene Prednosti</h3>
                     <p>Opušten kroj koji štiti vaše zdravlje</p>
                 </div>
+                
                 <div class="feature-item">
                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="48" height="48">
                         <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
                     </svg>
                     <h3>Proizvodnja u Srbiji</h3>
-                    <p>Kvalitet koji potiče iz naše zemlje</p>
+                    <p>Kvalitet koji potiče iz naше zemlje</p>
                 </div>
             </div>
         </section>
@@ -498,6 +521,12 @@
         <section class="lazy-section" id="philosophy">
             <h2>Naša Filozofija</h2>
             <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
+            
+            <!-- TREĆА SLIKА - после филозофије текста -->
+            <div class="philosophy-image-container">
+                <img src="slike/svila.webp" alt="Donji veš od svile AresNyX" 
+                     width="280" height="180" loading="lazy" class="natural-image">
+            </div>
             
             <div class="cta-container">
                 <a href="o-nama.html" class="cta-button">Saznajte Više O Nama</a>
@@ -545,6 +574,19 @@
                 this.style.backgroundColor = '#802B24';
             });
         }
+        
+        // Додај hover ефекте за слике
+        const images = document.querySelectorAll('.natural-image');
+        images.forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.2)';
+            });
+            img.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+            });
+        });
         
         setTimeout(function() {
             const style = document.createElement('style');
