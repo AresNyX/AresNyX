@@ -4,51 +4,50 @@ import { UIManager } from './modules/UIManager.js';
 import { ProductData } from './modules/ProductData.js';
 import { CartLogic } from './modules/CartLogic.js';
 
-// === Glavni ARESNYXSHOP Objekat (Globalni API) ===
-// Ovo mapira metode modula na globalni objekat, koji HTML poziva preko onclick="..."
+// === ГЛОБАЛНИ ОБЈЕКАТ (КЉУЧНО ЗА ONCLICK ИЗ HTML-а) ===
 window.AresNyXShop = {
-    // UIManager metode
-    toggleCart: UIManager.toggleCart.bind(UIManager),
-    closeModal: UIManager.closeModal.bind(UIManager),
+    // === UIManager (Sve metode za prikaz i interakciju) ===
     openProductModal: UIManager.openProductModal.bind(UIManager),
+    selectSize: UIManager.selectSize.bind(UIManager),
+    changeQuantity: UIManager.changeQuantity.bind(UIManager),
     prevImage: UIManager.prevImage.bind(UIManager),
     nextImage: UIManager.nextImage.bind(UIManager),
-    changeQuantity: UIManager.changeQuantity.bind(UIManager),
-    selectSize: UIManager.selectSize.bind(UIManager),
     addToCartFromModal: UIManager.addToCartFromModal.bind(UIManager),
+    toggleCart: UIManager.toggleCart.bind(UIManager),
     toggleSizeTable: UIManager.toggleSizeTable.bind(UIManager),
+    removeCartItem: CartLogic.removeCartItem.bind(CartLogic), // Metoda je u CartLogic
+    updateCartItem: CartLogic.updateCartItem.bind(CartLogic), // Metoda je u CartLogic
+    clearCart: CartLogic.clearCart.bind(CartLogic), // Metoda je u CartLogic
+    toggleFilterPanel: UIManager.toggleFilterPanel.bind(UIManager),
+    applyAllFilters: UIManager.applyAllFilters.bind(UIManager),
+    
+    // === Checkout (Logika i forme) ===
     startCheckout: UIManager.startCheckout.bind(UIManager),
     closeCheckoutModal: UIManager.closeCheckoutModal.bind(UIManager),
     goToStep: UIManager.goToStep.bind(UIManager),
     submitShippingForm: UIManager.submitShippingForm.bind(UIManager),
     completeOrder: UIManager.completeOrder.bind(UIManager),
-    toggleFilterPanel: UIManager.toggleFilterPanel.bind(UIManager),
-    applyAllFilters: UIManager.applyAllFilters.bind(UIManager),
     
-    // CartLogic metode
-    removeCartItem: CartLogic.removeCartItem.bind(CartLogic),
-    updateCartItem: CartLogic.updateCartItem.bind(CartLogic),
-    clearCart: CartLogic.clearCart.bind(CartLogic),
-    
-    // ProductData metode
-    filterProducts: ProductData.updateFilterState.bind(ProductData), 
-    sortProducts: ProductData.updateSortState.bind(ProductData) 
+    // === Produkt Data (Za evente filtriranja) ===
+    updateFilterState: ProductData.updateFilterState.bind(ProductData),
+    updateSortState: ProductData.updateSortState.bind(ProductData)
 };
-// === Inicijalizacija ===
+
+
+// === INICIJALIZACIJA PRI UČITAVANJU STRANICE ===
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inicijalizacija Logike i Podataka
-    ProductData.init(); 
-    CartLogic.init(); // <- UČITAVA PODATKE IZ LOCALSTORAGE
+    // Inicijalizacija CartLogic (učitava iz localStorage)
+    CartLogic.init(); 
+
+    // Inicijalizacija UIManager (postavlja event listenere i renderuje)
     UIManager.init();
     
-    // 2. Ažuriranje Brojača
-    // OVAJ RED GARANTUJE DA SE BROJAČ KORPE AŽURIRA ČIM SE PODACI IZ LOCALSTORAGE UČITAJU
-    UIManager.updateCartCount(); // <- DODATO
+    // Početno renderovanje svih proizvoda
+    UIManager.renderProducts();
     
-    // 3. Inicijalno Renderovanje
+    // Početno renderovanje korpe
     UIManager.renderCart(); 
+    
+    // Ažuriranje brojača korpe
+    UIManager.updateCartCount(); 
 });
-<script src="./js/script.js" type="module"></script> 
-</body>
-</html>
-
