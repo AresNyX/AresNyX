@@ -98,34 +98,33 @@
             </div>
             
             <div class="contact-form">
-                <h2 class="section-title">Pošaljite nam Poruku</h2>
-                <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-                    <form name="KontaktForma" action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <div class="form-group">
-                        <label for="ime">Ime i Prezime</label>
-                        <input type="text" id="ime" name="Ime i prezime" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Adresa</label>
-                        <input type="email" id="email" name="Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="poruka">Vaša Poruka</label>
-                        <textarea id="poruka" name="Poruka" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="text-center">
-                        <button type="submit" class="cta-button">Pošalji Poruku</button>
-                    </div>
-                </form>
-            </div>
+    <h2 class="section-title">Pošaljite nam Poruku</h2>
+    <form name="KontaktForma" action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Novo pitanje sa AresNyX sajta">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://aresnyx.github.io/AresNyX/hvala.html"> <!-- Dodajte ako želite thank you page -->
+        
+        <div class="form-group">
+            <label for="ime">Ime i Prezime</label>
+            <input type="text" id="ime" name="name" required>
         </div>
+        
+        <div class="form-group">
+            <label for="email">Email Adresa</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="poruka">Vaša Poruka</label>
+            <textarea id="poruka" name="message" rows="5" required></textarea>
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" class="cta-button">Pošalji Poruku</button>
+        </div>
+    </form>
+            </div>
     </section>
 </main>
 
