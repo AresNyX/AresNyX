@@ -1,45 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- ГЛАВНА СТРАНИЦА - Highest Priority -->
   <url>
     <loc>https://aresnyx.github.io/AresNyX/</loc>
-    <lastmod>2024-11-29</lastmod>
+    <lastmod>2025-12-07T18:00:00+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/logo.webp</image:loc>
+      <image:title>AresNyX Premium Donji Veš - Logo</image:title>
+      <image:caption>AresNyX - Premium donji veš od prirodnih materijala</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/pamuk.webp</image:loc>
+      <image:title>AresNyX - Prirodni pamučni donji veš</image:title>
+    </image:image>
   </url>
+  
+  <!-- SHOP - High Priority (са свим производима и сликама) -->
   <url>
     <loc>https://aresnyx.github.io/AresNyX/shop.html</loc>
-    <lastmod>2024-11-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-12-07T18:00:00+01:00</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    
+    <!-- Лого -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/logo.webp</image:loc>
+      <image:title>AresNyX Shop - Online prodavnica premium donjeg veša</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 1: Classic Pamuk -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika1.webp</image:loc>
+      <image:title>AresNyX Classic Pamuk - Premium pamučne bokserice</image:title>
+      <image:caption>Classic Pamuk bokserice - 100% organski pamuk - 1.300 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika1a.webp</image:loc>
+      <image:title>AresNyX Classic Pamuk - Alternativni pogled</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 2: Egipt Pamuk (BESTSELLER) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika2.webp</image:loc>
+      <image:title>AresNyX Egipt Pamuk - BESTSELLER - Premium pamučne bokserice</image:title>
+      <image:caption>Egipt Pamuk bokserice - 100% premium pamuk - BESTSELLER - 1.500 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika2a.webp</image:loc>
+      <image:title>AresNyX Egipt Pamuk - Detalji kvaliteta</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 3: Elegant (LUXURY) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika3.webp</image:loc>
+      <image:title>AresNyX Elegant - LUXURY pamučne bokserice</image:title>
+      <image:caption>Elegant bokserice - 100% prirodni pamuk - LUXURY serija - 1.600 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika3a.webp</image:loc>
+      <image:title>AresNyX Elegant - Luksuzni detalji</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 4: Grey Elegant (PREMIUM) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika4.webp</image:loc>
+      <image:title>AresNyX Grey Elegant - PREMIUM sive bokserice</image:title>
+      <image:caption>Grey Elegant bokserice - 100% premium pamuk - PREMIUM kvalitet - 1.600 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika4a.webp</image:loc>
+      <image:title>AresNyX Grey Elegant - Premium materijal</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 5: Ink Blue (LUXURY) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika5.webp</image:loc>
+      <image:title>AresNyX Ink Blue - LUXURY tamnoplave bokserice</image:title>
+      <image:caption>Ink Blue bokserice - 100% organski pamuk - LUXURY serija - 1.500 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika5a.webp</image:loc>
+      <image:title>AresNyX Ink Blue - Duboka plava boja</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 6: Light Blue (TRENDING) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika6.webp</image:loc>
+      <image:title>AresNyX Light Blue - TRENDING svetloplave bokserice</image:title>
+      <image:caption>Light Blue bokserice - 100% premium pamuk - TRENDING model - 1.500 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika6a.webp</image:loc>
+      <image:title>AresNyX Light Blue - Svetloplavi tonovi</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 7: Black & White (LUXURY) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika7.webp</image:loc>
+      <image:title>AresNyX Black & White - LUXURY crno-bele bokserice</image:title>
+      <image:caption>Black & White bokserice - 100% premium pamuk - LUXURY dizajn - 1.500 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika7a.webp</image:loc>
+      <image:title>AresNyX Black & White - Kontrastni dizajn</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 8: Blue & White (NEW) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika8.webp</image:loc>
+      <image:title>AresNyX Blue & White - NOVE plavo-bele bokserice</image:title>
+      <image:caption>Blue & White bokserice - 100% pamuk - NOV model - 1.400 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika8a.webp</image:loc>
+      <image:title>AresNyX Blue & White - Nova kolekcija</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 9: Blue-Cyan (PREMIUM) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika9.webp</image:loc>
+      <image:title>AresNyX Blue-Cyan - PREMIUM cian plave bokserice</image:title>
+      <image:caption>Blue-Cyan bokserice - 100% premium pamuk - PREMIUM serija - 1.600 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika9a.webp</image:loc>
+      <image:title>AresNyX Blue-Cyan - Jedinstvena cian boja</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 10: Petrol Blue (LUXURY) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika10.webp</image:loc>
+      <image:title>AresNyX Petrol Blue - LUXURY petrol plave bokserice</image:title>
+      <image:caption>Petrol Blue bokserice - 100% Arabic pamuk - LUXURY kvalitet - 1.600 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika10a.webp</image:loc>
+      <image:title>AresNyX Petrol Blue - Arabic pamuk kvalitet</image:title>
+    </image:image>
+    
+    <!-- PROIZVOD 11: Grey & White (PREMIUM) -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika11.webp</image:loc>
+      <image:title>AresNyX Grey & White - PREMIUM sivo-bele bokserice</image:title>
+      <image:caption>Grey & White bokserice - 100% organski pamuk - PREMIUM serija - 1.500 RSD - AresNyX</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/slika11a.webp</image:loc>
+      <image:title>AresNyX Grey & White - Premium organski pamuk</image:title>
+    </image:image>
+    
+    <!-- Додатне слике материјала -->
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/lan.webp</image:loc>
+      <image:title>AresNyX - Kvalitetni prirodni materijali za donji veš</image:title>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://aresnyx.github.io/AresNyX/slike/svila.webp</image:loc>
+      <image:title>AresNyX - Premium kvalitet i udobnost donjeg veša</image:title>
+    </image:image>
   </url>
+  
+  <!-- Остале странице -->
   <url>
     <loc>https://aresnyx.github.io/AresNyX/o-nama.html</loc>
-    <lastmod>2024-11-29</lastmod>
+    <lastmod>2025-12-07T18:00:00+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://aresnyx.github.io/AresNyX/blog-zdravlje-donjeg-vesa.html</loc>
-    <lastmod>2024-11-29</lastmod>
+    <lastmod>2025-12-07T18:00:00+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://aresnyx.github.io/AresNyX/kontakt.html</loc>
+    <lastmod>2025-12-07T18:00:00+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://aresnyx.github.io/AresNyX/kontakt.html</loc>
-    <lastmod>2024-11-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  
   <url>
     <loc>https://aresnyx.github.io/AresNyX/uslovi-koriscenja.html</loc>
-    <lastmod>2024-11-29</lastmod>
+    <lastmod>2025-12-07T00:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
   <url>
     <loc>https://aresnyx.github.io/AresNyX/politika-privatnosti.html</loc>
-    <lastmod>2024-11-29</lastmod>
+    <lastmod>2025-12-07T00:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  
 </urlset>
