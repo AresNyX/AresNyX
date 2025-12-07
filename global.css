@@ -115,10 +115,10 @@ header h1 {
 /* Uklonjen je zalutali <img> HTML kod iz ovog bloka */
 
 nav {
-    background-color: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
+    background-color: var(--color-dark-bg);
     padding: 10px 0;
-    border-top: 0.35mm solid rgba(212, 175, 55, 0.8);
-border-top: 1px solid rgba(212, 175, 55, 0.8); /* fallback */
+    border-top: 0.5mm solid var(--color-accent-gold); /* Дебља и пуна боја */
+    border-top: 2px solid var(--color-accent-gold); /* Дебљи fallback */
     text-align: center;
 }
 nav a {
