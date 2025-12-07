@@ -100,6 +100,13 @@
             <div class="contact-form">
                 <h2 class="section-title">Pošaljite nam Poruku</h2>
                 
+                <!-- Hvala poruka - prikazuje se IZNAD forme -->
+                <div id="hvala" style="display: none; text-align: center; padding: 20px; background: #d4edda; color: #155724; border-radius: 8px; margin-bottom: 25px; border: 1px solid #c3e6cb;">
+                    <h3 style="margin-top: 0; color: #155724;">✅ Hvala Vam!</h3>
+                    <p id="hvalaTekst" style="margin-bottom: 5px;">Vaša poruka je poslata.</p>
+                    <p style="font-size: 0.9em; color: #0c4128; margin: 0;">Odgovorićemo Vam u najkraćem mogućem roku.</p>
+                </div>
+                
                 <form id="forma">
                     <div class="form-group">
                         <label for="ime">Ime i Prezime *</label>
@@ -114,16 +121,6 @@
                     <div class="form-group">
                         <label for="pitanje">Vaše Pitanje *</label>
                         <textarea id="pitanje" rows="5" required placeholder="Opišite Vaše pitanje..."></textarea>
-                    </div>
-                    
-                    <!-- Hvala poruka -->
-                    <div id="hvala" style="display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 8px; margin: 20px 0;">
-                        <h3>✅ Hvala Vam!</h3>
-                        <p id="hvalaTekst">Vaša poruka je poslata.</p>
-                        <p>Odgovorićemo Vam u najkraćem mogućem roku.</p>
-                        <button type="button" onclick="resetujFormu()" style="margin-top: 15px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                            Pošalji još jednu poruku
-                        </button>
                     </div>
                     
                     <div class="text-center">
@@ -154,6 +151,7 @@ async function posaljiPoruku() {
     const email = document.getElementById('email').value.trim();
     const pitanje = document.getElementById('pitanje').value.trim();
     const dugme = document.getElementById('dugme');
+    const hvalaDiv = document.getElementById('hvala');
     const hvalaTekst = document.getElementById('hvalaTekst');
     
     if (!ime || !email || !pitanje) {
@@ -166,10 +164,15 @@ async function posaljiPoruku() {
         return;
     }
     
+    // Sačuvaj originalni tekst dugmeta
+    const originalText = dugme.innerHTML;
+    
+    // Prikaži loading na dugmetu
     dugme.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
     dugme.disabled = true;
     
     try {
+        // POKUŠAJ FORMSUBMIT
         const formData = new FormData();
         formData.append('_subject', `Poruka od ${ime} - AresNyX Kontakt`);
         formData.append('name', ime);
@@ -194,8 +197,10 @@ async function posaljiPoruku() {
         console.log('FormSubmit greška, koristim mailto:', error);
         hvalaTekst.textContent = '📧 Otvaram email klijent...';
         
+        // Kratka pauza da se poruka prikaže
         await new Promise(resolve => setTimeout(resolve, 500));
         
+        // MAILTO FALLBACK
         const subject = `Poruka od ${ime} - AresNyX Kontakt`;
         const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
         
@@ -204,34 +209,35 @@ async function posaljiPoruku() {
         hvalaTekst.textContent = '✅ Molimo potvrdite slanje u vašem email klijentu!';
     }
     
-    document.getElementById('forma').style.display = 'none';
-    document.getElementById('hvala').style.display = 'block';
+    // 1. PRIKAŽI "HVALA" PORUKU
+    hvalaDiv.style.display = 'block';
     
-    setTimeout(() => {
-        dugme.innerHTML = '<i class="fas fa-paper-plane"></i> Pošalji Poruku';
-        dugme.disabled = false;
-    }, 3000);
-}
-
-function resetujFormu() {
+    // 2. RESETUJ FORMU NA PRAZNO
     document.getElementById('forma').reset();
-    document.getElementById('forma').style.display = 'block';
-    document.getElementById('hvala').style.display = 'none';
     
-    const dugme = document.getElementById('dugme');
-    dugme.innerHTML = '<i class="fas fa-paper-plane"></i> Pošalji Poruku';
+    // 3. VRATI DUGME U NORMALNO STANJE
+    dugme.innerHTML = originalText;
     dugme.disabled = false;
+    
+    // 4. SKLONI "HVALA" PORUKU NAKON 5 SEKUNDI
+    setTimeout(() => {
+        hvalaDiv.style.display = 'none';
+    }, 5000);
 }
 
+// Event listener za Enter u poljima
 document.addEventListener('DOMContentLoaded', function() {
     const forma = document.getElementById('forma');
     
+    // Enter u bilo kom polju osim textarea šalje formu
     forma.addEventListener('keypress', function(e) {
         if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
             e.preventDefault();
+            posaljiPoruku();
         }
     });
     
+    // Ctrl+Enter u textarea šalje formu
     document.getElementById('pitanje').addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && e.ctrlKey) {
             e.preventDefault();
