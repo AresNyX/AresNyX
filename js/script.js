@@ -67,4 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Inicijalno Renderovanje
     UIManager.renderCart(); 
 });
+<script src="./js/script.js" type="module"></script> 
+</body>
+</html>
 
