@@ -99,19 +99,13 @@
             
             <div class="contact-form">
     <h2 class="section-title">Pošaljite nam Poruku</h2>
-    <form action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
-        <!-- FormSubmit konfiguracija -->
-        <input type="hidden" name="_subject" value="Nova poruka sa AresNyX sajta">
+    
+    <form id="kontaktForma" action="https://formsubmit.co/ares.nyx.info@gmail.com" method="POST">
+        <!-- Hidden polja -->
+        <input type="hidden" name="_subject" value="Nova poruka - AresNyX">
         <input type="hidden" name="_template" value="basic">
-        <input type="hidden" name="_captcha" value="false">
         
-        <!-- Sakriveno polje za anti-spam -->
-        <input type="text" name="_honey" style="display:none">
-        
-        <!-- Redirect nakon slanja (opciono) -->
-        <input type="hidden" name="_next" value="https://aresnyx.github.io/AresNyX/hvala.html">
-        
-        <!-- Polja forme - BITNO: koristite OVA IMENA -->
+        <!-- Polja -->
         <div class="form-group">
             <label for="ime">Ime i Prezime</label>
             <input type="text" id="ime" name="name" required>
@@ -123,16 +117,65 @@
         </div>
         
         <div class="form-group">
-            <label for="poruka">Vaša Poruka</label>
-            <textarea id="poruka" name="message" rows="5" required></textarea>
+            <label for="pitanje">Vaše Pitanje</label>
+            <textarea id="pitanje" name="message" rows="5" required></textarea>
         </div>
         
+        <!-- Hvala poruka - sakrivena na početku -->
+        <div id="hvalaPoruka" style="display: none; text-align: center; padding: 30px; background: #f8f9fa; border-radius: 10px; margin-top: 20px;">
+            <h3 style="color: #28a745;">✅ Hvala Vam!</h3>
+            <p>Vaša poruka je poslata.</p>
+            <p>Odgovorićemo Vam u roku od 24 sata.</p>
+        </div>
+        
+        <!-- Dugme -->
         <div class="text-center">
-            <button type="submit" class="cta-button">Pošalji Poruku</button>
+            <button type="submit" class="cta-button">
+                <i class="fas fa-paper-plane"></i> Pošalji Poruku
+            </button>
         </div>
     </form>
-            </div>
-    </section>
+</div>
+
+<script>
+document.getElementById('kontaktForma').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const forma = this;
+    const dugme = forma.querySelector('button[type="submit"]');
+    const originalText = dugme.innerHTML;
+    
+    // Prikaži loading
+    dugme.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
+    dugme.disabled = true;
+    
+    // Pošalji formu
+    fetch(forma.action, {
+        method: 'POST',
+        body: new FormData(forma)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Sakrij formu
+            forma.style.display = 'none';
+            
+            // Prikaži hvala poruku
+            document.getElementById('hvalaPoruka').style.display = 'block';
+            
+            // Resetuj formu
+            forma.reset();
+        }
+    })
+    .catch(error => {
+        alert('Greška: ' + error.message);
+    })
+    .finally(() => {
+        // Vrati dugme
+        dugme.innerHTML = originalText;
+        dugme.disabled = false;
+    });
+});
+</script>
 </main>
 
 <footer>
