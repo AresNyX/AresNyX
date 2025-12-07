@@ -489,6 +489,45 @@ footer {
         width: 40px;
         height: 40px;
     }
+/* ===== OPTIMIZED FONTAWESOME (ONLY ICONS YOU USE) ===== */
+
+/* Font Awesome фонт (само solid иконке) */
+@font-face {
+    font-family: 'FA-Solid-Custom';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
+}
+
+/* Основни стилови за све иконке */
+.fas {
+    font-family: 'FA-Solid-Custom';
+    font-weight: 900;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Специфичне иконке које користиш */
+.fa-building:before { content: "\f1ad"; }
+.fa-map-marker-alt:before { content: "\f3c5"; }
+.fa-phone:before { content: "\f095"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-paper-plane:before { content: "\f1d8"; }
+.fa-spinner:before { content: "\f110"; }
+.fa-check-circle:before { content: "\f058"; }
+.fa-home:before { content: "\f015"; }
+.fa-shopping-bag:before { content: "\f290"; }
+.fa-users:before { content: "\f0c0"; }
+.fa-blog:before { content: "\f781"; }
+.fa-address-card:before { content: "\f2bb"; }
+
+/* ===== PRELOAD HINT FOR BROWSER ===== */
+/* (Ово иде у <head> секцију HTML-а) */
+}
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
