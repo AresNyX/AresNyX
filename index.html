@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
+    <!-- 1. META TAGOVI I PRELOAD -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Premium Donji Veš</title>
+    
+    <!-- Preconnect za brže učitavanje -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload kritične resurse -->
+    <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" 
+          crossorigin="anonymous">
+    
+    <!-- SEO Meta tagovi -->
     <meta name="description" 
-          content="AresNyX premium donji veš od prirodnih materijala. 
-                   Pamuk, lan i bambus za zdravlje i udobnost. 
-                   Besplatna dostava.">
+          content="AresNyX premium donji veš od prirodnih materijala. Pamuk, lan i bambus za zdravlje i udobnost. Besplatna dostava.">
     <meta name="keywords" 
-          content="donji veš, pamučni donji veš, zdravlje, udobnost, 
-                   AresNyX, muški donji veš, ženski donji veš, 
-                   prirodni materijali, pamuk, lan, bambus">
+          content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus">
     <meta name="author" content="AresNyX">
     <meta name="robots" content="index, follow">
-     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Open Graph za društvene mreže -->
     <meta property="og:title" content="AresNyX - Premium Donji Veš">
     <meta property="og:description" 
-          content="Premium donji veš od prirodnih materijala 
-                   za zdravlje i udobnost. Pamuk, lan i bambus.">
+          content="Premium donji veš od prirodnih materijala za zdravlje i udobnost. Pamuk, lan i bambus.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -27,129 +35,396 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AresNyX">
     
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
     <meta name="twitter:description" 
-          content="Premium donji veš od prirodnih materijala 
-                   za zdravlje i udobnost.">
+          content="Premium donji veš od prirodnih materijala za zdravlje i udobnost.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
- <style>
-/* --- KRITIČNI CSS ZA HEADER I BODY (INLINE) --- */
-:root {
-    --color-dark-bg: #121212; 
-    --color-accent-gold: #D4AF37; 
-    --color-text-main: #333333; 
-    --color-light-bg: #f7f7f7; 
-}
-body { 
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    margin: 0; padding: 0; 
-    background: var(--color-light-bg); 
-    color: var(--color-text-main);
-    line-height: 1.6;
-}
-header { 
-    background: var(--color-dark-bg); 
-    color: #fff; 
-    padding: 15px 20px; 
-    text-align: center; 
-}
-nav {
-    background-color: var(--color-dark-bg);
-    padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 1em;
-    padding: 5px 8px; 
-    display: inline-block;
-}
-</style>
     
-    <link rel="stylesheet" href="global.css">
-
-</head>        
-<body>
-<header>
-    <img 
-        src="slike/logo.webp" 
-        alt="AresNyX Logo" 
-        class="header-logo"
-        width="70" 
-        height="70"
-    >
-    <h1>
-        <span class="brand-emphasis">ARESNYX</span><br>
-        <span class="subtitle">BOXER SHORTS</span>
-    </h1>
-</header>
-
-
-<nav aria-label="Glavna navigacija">
-    <a href="index.html" class="active" aria-current="page">Početna</a>
-    <a href="shop.html">Shop</a>
-    <a href="o-nama.html">O Nama</a>
-    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
-    <a href="kontakt.html">Kontakt</a>
-</nav>
-
-<main>
-    <section class="hero-section fade-in-section" fetchpriority="high">
-        <h1>Premium Donji Veš</h1>
-        <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
-        <div class="cta-container">
-            <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
-        </div>
-    </section>
-
-    <section class="fade-in-section">
-        <h2>Zašto AresNyX?</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
-                </svg>
-                <h3>Prirodni Materijali</h3>
-                <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
-            </div>
-            <div class="feature-item">
-                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
-                </svg>
-                <h3>Zdravstvene Prednosti</h3>
-                <p>Opušten kroj koji štiti vaše zdravlje</p>
-            </div>
-            <div class="feature-item">
-                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
-                </svg>
-                <h3>Proizvodnja u Srbiji</h3>
-                <p>Kvalitet koji potiče iz naše zemlje</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="fade-in-section">
-        <h2>Naša Filozofija</h2>
-        <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
+    
+    <!-- ===== KRITIČNI CSS - INLAJNOVANO ===== -->
+    <style>
+    /* === PROMENLJIVE === */
+    :root {
+        --color-dark-bg: #121212;
+        --color-accent-gold: #D4AF37;
+        --color-button: #802B24;
+        --color-button-hover: #65221C;
+        --color-text-main: #333333;
+        --color-light-bg: #f7f7f7;
+    }
+    
+    /* === OSNOVNI STILOVI KOJI SE VIDI ODMАH === */
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: var(--color-light-bg);
+        color: var(--color-text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    
+    /* === HEADER - PRVO ŠTO SE VIDI === */
+    header {
+        background: var(--color-dark-bg);
+        color: #fff;
+        padding: 15px 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .header-logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+        display: block;
+    }
+    
+    header h1 {
+        font-size: 32px;
+        color: var(--color-accent-gold);
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+    
+    .brand-emphasis {
+        font-weight: 700;
+    }
+    
+    .subtitle {
+        font-size: 0.8em;
+        color: #fff;
+        font-weight: 400;
+        letter-spacing: 1px;
+        display: block;
+        margin-top: 8px;
+    }
+    
+    /* === NAVIGACIJA - VIDLJIVA ODMАH === */
+    nav {
+        background-color: var(--color-dark-bg);
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 400;
+        font-size: 1em;
+        transition: color 0.3s;
+        padding: 5px 8px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    
+    nav a:hover, nav a.active {
+        color: var(--color-accent-gold);
+        background-color: rgba(255, 255, 255, 0.08);
+        transform: translateY(-1px);
+    }
+    
+    /* === MAIN CONTENT AREA === */
+    main {
+        max-width: 900px;
+        margin: 15px auto 60px;
+        padding: 0 20px;
+        min-height: 400px;
+    }
+    
+    /* === HERO SECTION (za index.html) === */
+    .hero-section {
+        text-align: center;
+        padding: 50px 25px;
+        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%);
+        color: white;
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+    
+    .hero-section h1 {
+        color: var(--color-accent-gold);
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        margin-top: 0;
+    }
+    
+    .hero-section p {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+        color: #ddd;
+    }
+    
+    /* === CTA DUGME === */
+    .cta-container {
+        text-align: center;
+        margin-top: 35px;
+    }
+    
+    .cta-button {
+        background: var(--color-button);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 280px;
+        width: 100%;
+        padding: 14px 25px;
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25);
+        line-height: normal;
+        min-height: 50px;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    .cta-button:hover {
+        background-color: var(--color-button-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3);
+    }
+    
+    /* === FONTAWESOME FONT (samo solid ikone) === */
+    @font-face {
+        font-family: 'FA-Solid-Custom';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
+    }
+    
+    .fas {
+        font-family: 'FA-Solid-Custom';
+        font-weight: 900;
+        font-style: normal;
+        display: inline-block;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* === LAZY LOADING ANIMACIJA === */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in-section {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .fade-in-section:nth-child(1) { animation-delay: 0.2s; }
+    .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
+    .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
+    
+    /* === RESPONSIVE ODMАH === */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+        }
         
-        <div class="cta-container">
-            <a href="o-nama.html" class="cta-button">Saznajte Više O Nama</a>
-        </div>
-    </section>
-</main>
+        header h1 {
+            font-size: 28px;
+        }
+        
+        .hero-section {
+            padding: 40px 20px;
+        }
+        
+        .hero-section h1 {
+            font-size: 2em;
+        }
+        
+        nav a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 24px;
+        }
+        
+        .header-logo {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .hero-section h1 {
+            font-size: 1.8em;
+        }
+        
+        nav a {
+            display: block;
+            margin: 5px 0;
+        }
+    }
+    </style>
+    <!-- ===== KRAJ KRITIČNOG CSS ===== -->
+    
+    <!-- ASINHRONO UČITAVANJE OSTATKA CSS-a -->
+    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="global.css"></noscript>
+    
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <img 
+            src="slike/logo.webp" 
+            alt="AresNyX Logo" 
+            class="header-logo"
+            width="70" 
+            height="70"
+            loading="eager"
+            decoding="async"
+        >
+        <h1>
+            <span class="brand-emphasis">ARESNYX</span><br>
+            <span class="subtitle">BOXER SHORTS</span>
+        </h1>
+    </header>
 
-<footer>
-    <div class="footer-links">
-        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-        <a href="politika-privatnosti.html">Politika privatnosti</a>
-    </div>
-    &copy; 2025 AresNyX. Zdravlje i Udobnost.
-</footer>
+    <!-- NAVIGACIJA -->
+    <nav aria-label="Glavna navigacija">
+        <a href="index.html" class="active" aria-current="page">Početna</a>
+        <a href="shop.html">Shop</a>
+        <a href="o-nama.html">O Nama</a>
+        <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <!-- GLAVNI SADRŽAJ -->
+    <main>
+        <!-- HERO SEKCIJA -->
+        <section class="hero-section fade-in-section">
+            <h1>Premium Donji Veš</h1>
+            <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+            <div class="cta-container">
+                <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
+            </div>
+        </section>
+
+        <!-- FEATURE SEKCIJA -->
+        <section class="fade-in-section">
+            <h2>Zašto AresNyX?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
+                    </svg>
+                    <h3>Prirodni Materijali</h3>
+                    <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
+                    </svg>
+                    <h3>Zdravstvene Prednosti</h3>
+                    <p>Opušten kroj koji štiti vaše zdravlje</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
+                    </svg>
+                    <h3>Proizvodnja u Srbiji</h3>
+                    <p>Kvalitet koji potiče iz naše zemlje</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILOZOFIJA SEKCIJA -->
+        <section class="fade-in-section">
+            <h2>Naša Filozofija</h2>
+            <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
+            
+            <div class="cta-container">
+                <a href="o-nama.html" class="cta-button">Saznajte Više O Nama</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+            <a href="politika-privatnosti.html">Politika privatnosti</a>
+        </div>
+        &copy; 2025 AresNyX. Zdravlje i Udobnost.
+    </footer>
+
+    <!-- LAZY LOADING SCRIPT -->
+    <script>
+    // Intersection Observer za lazy loading
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.fade-in-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            section.style.animationPlayState = 'paused';
+            observer.observe(section);
+        });
+    });
+    </script>
+    
+    <!-- ASINHRONO UČITAVANJE GLOBAL.CSS -->
+    <script>
+    // Fallback za CSS preload
+    function loadGlobalCSS() {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'global.css';
+        link.media = 'all';
+        document.head.appendChild(link);
+    }
+    
+    window.addEventListener('load', function() {
+        // Ako se global.css nije učitao, pokušaj ponovo
+        setTimeout(function() {
+            const styles = document.querySelectorAll('link[rel="stylesheet"]');
+            let globalLoaded = false;
+            
+            styles.forEach(style => {
+                if (style.href.includes('global.css')) {
+                    globalLoaded = true;
+                }
+            });
+            
+            if (!globalLoaded) {
+                loadGlobalCSS();
+            }
+        }, 1000);
+    });
+    </script>
 </body>
 </html>
