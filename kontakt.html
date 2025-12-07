@@ -98,44 +98,59 @@
             </div>
             
             <div class="contact-form">
-    <h2 class="section-title">Pošaljite nam Poruku</h2>
-    
-    <form id="forma" method="POST">
-        <div class="form-group">
-            <label for="ime">Ime i Prezime</label>
-            <input type="text" id="ime" required>
+                <h2 class="section-title">Pošaljite nam Poruku</h2>
+                
+                <form id="forma">
+                    <div class="form-group">
+                        <label for="ime">Ime i Prezime</label>
+                        <input type="text" id="ime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Adresa</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pitanje">Vaše Pitanje</label>
+                        <textarea id="pitanje" rows="5" required></textarea>
+                    </div>
+                    
+                    <!-- Hvala poruka -->
+                    <div id="hvala" style="display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 8px; margin: 20px 0;">
+                        <h3>✅ Hvala Vam!</h3>
+                        <p>Vaša poruka je poslata.</p>
+                        <p>Odgovorićemo Vam uskoro.</p>
+                        <button type="button" onclick="resetujFormu()" style="margin-top: 15px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Pošalji još jednu poruku
+                        </button>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="button" onclick="posaljiPoruku()" class="cta-button" id="dugme">
+                            <i class="fas fa-paper-plane"></i> Pošalji Poruku
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-        <div class="form-group">
-            <label for="email">Email Adresa</label>
-            <input type="email" id="email" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="pitanje">Vaše Pitanje</label>
-            <textarea id="pitanje" rows="5" required></textarea>
-        </div>
-        
-        <!-- Hvala poruka -->
-        <div id="hvala" style="display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 8px; margin: 20px 0;">
-            <h3>✅ Hvala Vam!</h3>
-            <p>Vaša poruka je poslata.</p>
-            <p>Odgovorićemo Vam uskoro.</p>
-            <button onclick="resetujFormu()" style="margin-top: 15px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Pošalji još jednu poruku
-            </button>
-        </div>
-        
-        <div class="text-center">
-            <button type="button" onclick="posalji()" class="cta-button" id="dugme">
-                <i class="fas fa-paper-plane"></i> Pošalji Poruku
-            </button>
-        </div>
-    </form>
-</div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
+</footer>
+
+<!-- FontAwesome OSTAVLJEN NA KRAJU kao u originalu -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script>
-function posalji() {
+// Funkcija za slanje poruke
+function posaljiPoruku() {
     const ime = document.getElementById('ime').value.trim();
     const email = document.getElementById('email').value.trim();
     const pitanje = document.getElementById('pitanje').value.trim();
@@ -170,18 +185,22 @@ function posalji() {
         console.log('Email:', email);
         console.log('Pitanje:', pitanje);
         
-        // POŠALJI NA EMAIL PREKO mailto
-        const subject = `Poruka od ${ime}`;
-        const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
-        
-        window.open(`mailto:ares.nyx.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
-        
-        // Resetuj formu nakon 5 sekundi
-        setTimeout(resetujFormu, 5000);
+        // POŠALJI NA EMAIL PREKO mailto (opciono)
+        try {
+            const subject = `Poruka od ${ime}`;
+            const body = `Ime: ${ime}%0D%0AEmail: ${email}%0D%0A%0D%0APitanje:%0D%0A${pitanje}`;
+            
+            // Otvori email klijent
+            window.location.href = `mailto:ares.nyx.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        } catch (e) {
+            console.log('Mailto nije uspeo:', e);
+            // I dalje prikaži hvala poruku čak i ako mailto ne radi
+        }
         
     }, 2000);
 }
 
+// Funkcija za resetovanje forme
 function resetujFormu() {
     // Resetuj formu
     document.getElementById('forma').reset();
@@ -193,18 +212,23 @@ function resetujFormu() {
     dugme.innerHTML = '<i class="fas fa-paper-plane"></i> Pošalji Poruku';
     dugme.disabled = false;
 }
+
+// Dodaj event listener za Enter key
+document.addEventListener('DOMContentLoaded', function() {
+    // Dodaj event listener za Enter u poljima
+    const inputs = document.querySelectorAll('#forma input, #forma textarea');
+    inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (this.tagName === 'TEXTAREA' && !e.shiftKey) {
+                    posaljiPoruku();
+                }
+            }
+        });
+    });
+});
 </script>
-</main>
-
-<footer>
-    <div class="footer-links">
-        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-        <a href="politika-privatnosti.html">Politika privatnosti</a>
-    </div>
-    &copy; 2025 AresNyX. Zdravlje i Udobnost.
-</footer>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </body>
 </html>
