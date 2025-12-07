@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <!-- 1. META I PRELOAD ЗА БРЗИ LCP -->
+    <!-- META И PRELOAD ЗА БРЗИ LCP -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Premium Donji Veš</title>
     
     <!-- Critical preloads -->
     <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
-    <link rel="preload" as="font" type="font/woff2" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" 
-          crossorigin="anonymous">
     
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- 2. KRITIČNI CSS - INLAJNOVANO ЗА БРЗИ РЕНДЕР -->
+    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО -->
     <style>
-    /* === PROMENLJIVE === */
-    :root {
-        --color-dark-bg: #121212;
-        --color-accent-gold: #D4AF37;
-        --color-button: #802B24;
-        --color-button-hover: #65221C;
-        --color-text-main: #333333;
-        --color-light-bg: #f7f7f7;
-    }
-    
-    /* === OSNOVNI KOJI SE VIDI ODMАH === */
+    /* === RESET === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     
+    /* === BODY === */
     body, html {
         margin: 0;
         padding: 0;
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background: var(--color-light-bg);
-        color: var(--color-text-main);
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f7f7;
+        color: #333333;
         line-height: 1.6;
         overflow-x: hidden;
-        font-display: swap;
+        font-display: block;
     }
     
     /* === HEADER - LCP ELEMENT === */
-    header {
-        background: var(--color-dark-bg);
+    #main-header {
+        background: #121212;
         color: #fff;
         padding: 15px 20px;
         text-align: center;
@@ -55,33 +42,32 @@
         gap: 15px;
         flex-wrap: wrap;
         min-height: 100px;
+        height: 100px;
+        contain: strict;
         position: relative;
-        z-index: 100;
+        z-index: 1000;
     }
     
     .header-logo {
-        width: 70px !important;
-        height: 70px !important;
+        width: 70px;
+        height: 70px;
         min-width: 70px;
         min-height: 70px;
-        max-width: 70px;
-        max-height: 70px;
         aspect-ratio: 1/1;
         display: block;
         border-radius: 8px;
         opacity: 1;
-        will-change: transform;
     }
     
-    header h1 {
+    #main-header h1 {
         font-size: 32px;
-        color: var(--color-accent-gold);
+        color: #D4AF37;
         letter-spacing: 2px;
         margin: 0;
         text-transform: uppercase;
-        text-shadow: 0 0 10px rgba(212,175,55,0.3);
         line-height: 1.2;
         opacity: 1;
+        font-family: Arial, sans-serif;
     }
     
     .brand-emphasis {
@@ -98,19 +84,21 @@
         margin-top: 8px;
         min-height: 1.2em;
         opacity: 1;
+        font-family: Arial, sans-serif;
     }
     
     /* === NAVIGACIJA === */
-    nav {
-        background-color: var(--color-dark-bg);
+    #main-nav {
+        background-color: #121212;
         padding: 10px 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
         position: relative;
-        z-index: 99;
+        z-index: 999;
+        contain: content;
     }
     
-    nav a {
+    #main-nav a {
         color: #fff;
         text-decoration: none;
         margin: 0 15px;
@@ -119,62 +107,57 @@
         padding: 5px 8px;
         border-radius: 4px;
         display: inline-block;
-        transition: all 0.2s ease;
+        font-family: Arial, sans-serif;
     }
     
-    nav a:hover, nav a.active {
-        color: var(--color-accent-gold);
+    #main-nav a:hover, #main-nav a.active {
+        color: #D4AF37;
         background-color: rgba(255, 255, 255, 0.08);
-        transform: translateY(-1px);
     }
     
     /* === HERO SECTION - КЉУЧ ЗА LCP === */
-    .hero-section {
+    #hero-section {
         text-align: center;
-        padding: 50px 25px;
-        background: linear-gradient(135deg, var(--color-dark-bg) 0%, #2c2c2c 100%);
+        padding: 40px 20px;
+        background: #121212;
         color: white;
         border-radius: 12px;
         margin: 20px auto 0;
         max-width: 900px;
-        opacity: 1 !important;
-        animation: none !important;
-        will-change: transform;
-        contain: layout style paint;
+        opacity: 1;
+        contain: content;
+        min-height: 200px;
     }
     
-    .hero-section h1 {
-        color: var(--color-accent-gold);
-        font-size: 2.3em;
+    #hero-title {
+        color: #D4AF37;
+        font-size: 2em;
         margin: 0 0 15px 0;
-        opacity: 1 !important;
-        animation: none !important;
+        opacity: 1;
         line-height: 1.3;
+        font-family: Arial, sans-serif;
     }
     
-    .hero-section p {
-        font-size: 1.1em;
+    #hero-text {
+        font-size: 1em;
         margin: 0 0 25px 0;
         color: #ddd;
-        opacity: 1 !important;
-        animation: none !important;
+        opacity: 1;
         line-height: 1.5;
+        font-family: Arial, sans-serif;
     }
     
-    /* === CTA DUGME === */
-    .cta-container {
+    .hero-cta-container {
         text-align: center;
-        margin-top: 35px;
-        opacity: 1 !important;
-        animation: none !important;
+        margin-top: 25px;
+        opacity: 1;
     }
     
-    .cta-button {
-        background: var(--color-button);
+    .hero-cta-button {
+        background: #802B24;
         color: #fff;
         border: none;
         border-radius: 6px;
-        transition: all 0.3s;
         text-transform: uppercase;
         font-weight: 600;
         text-decoration: none;
@@ -183,27 +166,19 @@
         justify-content: center;
         max-width: 280px;
         width: 100%;
-        padding: 14px 25px;
-        font-size: 1.1em;
+        padding: 12px 20px;
+        font-size: 1em;
         letter-spacing: 0.5px;
-        box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25);
         line-height: normal;
-        min-height: 50px;
+        min-height: 44px;
         text-align: center;
         cursor: pointer;
-        opacity: 1 !important;
-        animation: none !important;
-        will-change: transform, background-color;
-    }
-    
-    .cta-button:hover {
-        background-color: var(--color-button-hover);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3);
+        opacity: 1;
+        font-family: Arial, sans-serif;
     }
     
     /* === MAIN CONTENT === */
-    main {
+    #main-content {
         max-width: 900px;
         margin: 15px auto 60px;
         padding: 0 20px;
@@ -211,87 +186,62 @@
         opacity: 1;
     }
     
-    /* === FONTAWESOME FONT === */
-    @font-face {
-        font-family: 'FA-Solid-Custom';
-        font-style: normal;
-        font-weight: 900;
-        font-display: optional;
-        src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
-    }
-    
-    .fas {
-        font-family: 'FA-Solid-Custom';
-        font-weight: 900;
-        font-style: normal;
-        display: inline-block;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    
-    /* === RESPONSIVE ODMАH === */
+    /* === RESPONSIVE === */
     @media (max-width: 768px) {
-        header {
+        #main-header {
             flex-direction: column;
             gap: 10px;
             padding: 15px;
             min-height: 120px;
+            height: auto;
         }
         
-        header h1 {
+        #main-header h1 {
             font-size: 28px;
         }
         
-        .hero-section {
-            padding: 40px 20px;
+        #hero-section {
+            padding: 30px 15px;
             margin: 15px auto 0;
         }
         
-        .hero-section h1 {
-            font-size: 2em;
+        #hero-title {
+            font-size: 1.8em;
         }
         
-        nav a {
+        #main-nav a {
             margin: 0 10px;
             display: inline-block;
         }
     }
     
     @media (max-width: 480px) {
-        header h1 {
+        #main-header h1 {
             font-size: 24px;
         }
         
         .header-logo {
-            width: 60px !important;
-            height: 60px !important;
+            width: 60px;
+            height: 60px;
         }
         
-        .hero-section {
-            padding: 30px 15px;
-            margin: 10px auto 0;
+        #hero-section {
+            padding: 25px 10px;
         }
         
-        .hero-section h1 {
-            font-size: 1.8em;
+        #hero-title {
+            font-size: 1.6em;
         }
         
-        nav a {
+        #main-nav a {
             display: block;
             margin: 5px 0;
         }
         
-        .cta-button {
-            padding: 12px 20px;
-            font-size: 1em;
+        .hero-cta-button {
+            padding: 10px 16px;
+            font-size: 0.95em;
         }
-    }
-    
-    /* === ANIMACIJE (дефероване) === */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
     }
     
     /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
@@ -300,13 +250,13 @@
         contain-intrinsic-size: 0 400px;
     }
     
-    section:not(.hero-section) {
+    .lazy-section {
         content-visibility: auto;
         contain-intrinsic-size: 0 500px;
     }
     </style>
     
-    <!-- 3. SEO META TAGOVI -->
+    <!-- SEO META -->
     <meta name="description" 
           content="AresNyX premium donji veš od prirodnih materijala. Pamuk, lan i bambus za zdravlje i udobnost. Besplatna dostava.">
     <meta name="keywords" 
@@ -317,7 +267,7 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="AresNyX - Premium Donji Veš">
-    <meta property="og:description" content="Premium donji veš od prirodnih materijala za zdravlje i udobnost. Pamuk, lan i bambus.">
+    <meta property="og:description" content="Premium donji veš od prirodних материјала за здравље и удобност. Памук, лан и бамбус.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -328,10 +278,10 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
-    <meta name="twitter:description" content="Premium donji veš od prirodnih materijala za zdravlje i udobnost.">
+    <meta name="twitter:description" content="Premium donji veš od prirodnih материјала за здравље и удобност.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     
-    <!-- 4. ASINHRONI CSS -->
+    <!-- ASINHRONI CSS -->
     <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="global.css"></noscript>
     
@@ -347,10 +297,8 @@
             height="70"
             loading="eager"
             decoding="async"
-            fetchpriority="high"
-            importance="high"
-            onload="this.style.opacity='1'"
-        >
+            fetchpriority="high">
+        
         <h1>
             <span class="brand-emphasis">ARESNYX</span>
             <span class="subtitle">BOXER SHORTS</span>
@@ -358,7 +306,7 @@
     </header>
 
     <!-- NAVIGACIJA -->
-    <nav aria-label="Glavna navigacija">
+    <nav id="main-nav" aria-label="Glavna navigacija">
         <a href="index.html" class="active" aria-current="page">Početna</a>
         <a href="shop.html">Shop</a>
         <a href="o-nama.html">O Nama</a>
@@ -369,16 +317,16 @@
     <!-- GLAVNI SADRŽAJ -->
     <main id="main-content">
         <!-- HERO SEKCIJA -->
-        <section class="hero-section" id="hero">
-            <h1>Premium Donji Veš</h1>
-            <p>100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
-            <div class="cta-container">
-                <a href="shop.html" class="cta-button">Otkrijte Kolekciju</a>
+        <section id="hero-section">
+            <h1 id="hero-title">Premium Donji Veš</h1>
+            <p id="hero-text">100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+            <div class="hero-cta-container">
+                <a href="shop.html" class="hero-cta-button">Otkrijte Kolekciju</a>
             </div>
         </section>
 
         <!-- FEATURE SEKCIJA -->
-        <section class="fade-in-section" id="features">
+        <section class="lazy-section" id="features">
             <h2>Zašto AresNyX?</h2>
             <div class="features-grid">
                 <div class="feature-item">
@@ -406,7 +354,7 @@
         </section>
 
         <!-- FILOZOFIJA SEKCIJA -->
-        <section class="fade-in-section" id="philosophy">
+        <section class="lazy-section" id="philosophy">
             <h2>Naša Filozofija</h2>
             <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
             
@@ -425,88 +373,165 @@
         &copy; 2025 AresNyX. Zdravlje i Udobnost.
     </footer>
 
-    <!-- DEFEROVANI SCRIPT ЗА АНИМАЦИЈЕ -->
+    <!-- DEFEROVANI SCRIPT -->
     <script defer>
-    // Лени лоадинг за анимације
-    document.addEventListener('DOMContentLoaded', function() {
-        // Покрени анимације кад су видљиве
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        // Посматрај све секције осим hero
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Додај CSS класу за анимацију
-        const style = document.createElement('style');
-        style.textContent = `
-            .fade-in-section.animated {
-                animation: fadeIn 0.8s ease-out forwards;
-                opacity: 0;
-            }
-            .fade-in-section.animated:nth-child(1) { animation-delay: 0.2s; }
-            .fade-in-section.animated:nth-child(2) { animation-delay: 0.4s; }
-            .fade-in-section.animated:nth-child(3) { animation-delay: 0.6s; }
-            
-            /* Оптимизоване SVG анимације */
-            .feature-item:hover .icon-svg path {
-                fill: #b8941f;
-                transition: fill 0.3s ease;
-            }
-        `;
-        document.head.appendChild(style);
-    });
-    
-    // Приоритетно учитавање слика
+    // Када се страница потпуно учита, додај gradient и позадинске стилове
     window.addEventListener('load', function() {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            if (img.complete) {
-                img.style.opacity = '1';
-            } else {
-                img.onload = function() {
-                    this.style.opacity = '1';
-                };
+        // 1. Додај gradient hero секцији
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) {
+            heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
+        }
+        
+        // 2. Додај hover ефекте за navigation
+        const navLinks = document.querySelectorAll('#main-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-1px)';
+            });
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // 3. Додај hover ефекте за CTA дугме
+        const ctaButton = document.querySelector('.hero-cta-button');
+        if (ctaButton) {
+            ctaButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 12px rgba(101, 34, 28, 0.3)';
+                this.style.backgroundColor = '#65221C';
+            });
+            ctaButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+                this.style.backgroundColor = '#802B24';
+            });
+        }
+        
+        // 4. Додај FontAwesome фонт (ако је потребан за друге странице)
+        const fontLink = document.createElement('link');
+        fontLink.rel = 'preload';
+        fontLink.as = 'font';
+        fontLink.type = 'font/woff2';
+        fontLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2';
+        fontLink.crossOrigin = 'anonymous';
+        document.head.appendChild(fontLink);
+        
+        // 5. Додај CSS класе за анимације
+        setTimeout(function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                /* Анимације које се додају касније */
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                .lazy-section {
+                    animation: fadeIn 0.8s ease-out forwards;
+                    opacity: 0;
+                }
+                
+                .lazy-section:nth-child(1) { animation-delay: 0.2s; }
+                .lazy-section:nth-child(2) { animation-delay: 0.4s; }
+                
+                /* Стилови из global.css који су потребни */
+                .feature-item {
+                    text-align: center;
+                    padding: 22px;
+                    border-radius: 8px;
+                    border: 1px solid #eeeeee;
+                    background-color: #ffffff;
+                }
+                
+                .features-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 25px;
+                    margin-top: 35px;
+                }
+                
+                .cta-container {
+                    text-align: center;
+                    margin-top: 35px;
+                }
+                
+                .cta-button {
+                    background: #802B24;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    max-width: 280px;
+                    width: 100%;
+                    padding: 14px 25px;
+                    font-size: 1.1em;
+                    letter-spacing: 0.5px;
+                    line-height: normal;
+                    min-height: 50px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+                
+                .footer-links a {
+                    color: #D4AF37;
+                    text-decoration: none;
+                    margin: 0 15px;
+                }
+                
+                /* FontAwesome стилови */
+                @font-face {
+                    font-family: 'FA-Solid-Custom';
+                    font-style: normal;
+                    font-weight: 900;
+                    font-display: swap;
+                    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
+                }
+                
+                .fas {
+                    font-family: 'FA-Solid-Custom';
+                    font-weight: 900;
+                    font-style: normal;
+                    display: inline-block;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Покрени анимације
+            document.querySelectorAll('.lazy-section').forEach((section, index) => {
+                section.style.animationDelay = (index * 0.2 + 0.2) + 's';
+            });
+            
+        }, 500); // 0.5 секунди након load-а
+    });
+    
+    // Fallback за CSS ако се не учита
+    setTimeout(function() {
+        const links = document.querySelectorAll('link[rel="stylesheet"]');
+        let hasGlobal = false;
+        
+        links.forEach(link => {
+            if (link.href && link.href.includes('global.css')) {
+                hasGlobal = true;
             }
         });
-    });
-    </script>
-    
-    <!-- Fallback за CSS -->
-    <script>
-    (function() {
-        const loadCSS = function() {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'global.css';
-            link.media = 'all';
-            document.head.appendChild(link);
-        };
         
-        // Ако се CSS није учитао за 3 секунде, присили учитавање
-        setTimeout(function() {
-            const styles = document.styleSheets;
-            let hasGlobal = false;
-            
-            for (let i = 0; i < styles.length; i++) {
-                if (styles[i].href && styles[i].href.includes('global.css')) {
-                    hasGlobal = true;
-                    break;
-                }
-            }
-            
-            if (!hasGlobal) {
-                loadCSS();
-            }
-        }, 3000);
-    })();
+        if (!hasGlobal) {
+            const fallbackLink = document.createElement('link');
+            fallbackLink.rel = 'stylesheet';
+            fallbackLink.href = 'global.css';
+            document.head.appendChild(fallbackLink);
+        }
+    }, 2000);
     </script>
 </body>
 </html>
