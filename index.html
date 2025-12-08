@@ -1,36 +1,39 @@
-<!DOCTYPE html>
+   
+  <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <!-- META И PRELOAD ЗА БРЗИ LCP -->
+    <!-- ===== OSNOVNI META TAGOVI ===== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AresNyX - Premium Donji Veš</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- Critical preloads -->
-    <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
+    <!-- ===== TITLE I CANONICAL ===== -->
+    <title>AresNyX - Premium Donji Veš | Prirodni Materijali</title>
+    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/">
     
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- ===== PRELOAD KRITIČNIH RESURSA ===== -->
+    <!-- Logo - LCP element -->
+    <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high" imagesrcset="slike/logo.webp" imagesizes="70px">
+    
+    <!-- Prva hero slika - LCP kandidat -->
+    <link rel="preload" as="image" href="slike/pamuk.webp" type="image/webp" fetchpriority="high" imagesrcset="slike/pamuk.webp 1x, slike/pamuk@2x.webp 2x" imagesizes="(max-width: 768px) 90vw, 600px">
+    
+    <!-- Inline CSS je kritičan -->
+    <link rel="preload" as="style" href="#inline-styles">
+    
+    <!-- ===== RESOURCE HINTS ===== -->
+    <!-- Za Google Fonts (ako kasnije dodaš) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Za CDN (ako budeš koristio) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО -->
-    <style>
-    /* === RESET === */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    /* === BODY === */
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f7f7f7;
-        color: #333333;
-        line-height: 1.6;
-        overflow-x: hidden;
-        font-display: block;
-    }
-    
-    /* === HEADER - LCP ELEMENT === */
+    <!-- ===== KRITIČNI INLINE CSS (LCP OPTIMIZACIJA) ===== -->
+    <style id="inline-styles">
+    /* === ULTRA-KRITIČNI STILOVI ZA LCP === */
+    /* Samo za header i hero - render blocking */
     #main-header {
         background: #121212;
         color: #fff;
@@ -40,9 +43,8 @@
         justify-content: center;
         gap: 15px;
         flex-wrap: wrap;
-        min-height: 200px !important;
-        height: auto !important;
-        padding: 30px 20px !important;
+        min-height: 200px;
+        padding: 30px 20px;
         contain: strict;
         position: relative;
         z-index: 1000;
@@ -57,383 +59,172 @@
         display: block;
         border-radius: 8px;
         opacity: 1;
+        object-fit: contain;
     }
     
     #main-header h1 {
-        font-size: 32px;
+        font-size: clamp(24px, 5vw, 32px);
         color: #D4AF37;
         letter-spacing: 2px;
         margin: 0;
         text-transform: uppercase;
         line-height: 1.2;
-        opacity: 1;
-        font-family: Arial, sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
     }
     
-    .brand-emphasis {
-        font-weight: 700;
-        display: block;
-    }
-    
-    .subtitle {
-        font-size: 0.8em;
-        color: #fff;
-        font-weight: 400;
-        letter-spacing: 1px;
-        display: block;
-        margin-top: 8px;
-        min-height: 1.2em;
-        opacity: 1;
-        font-family: Arial, sans-serif;
-    }
- /* === NAVIGACIJA === */
-#main-nav {
-    background-color: #121212;
-    padding: 10px 0;
-    border-top: 0.8mm solid #D4AF37; /* Дебеља златна линија */
-    border-top: 2px solid #D4AF37; /* Fallback за старије прегледаче */
-    text-align: center;
-    position: relative;
-    z-index: 999;
-    contain: content;
-}
-
-#main-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 1em;
-    padding: 5px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    font-family: Arial, sans-serif;
-}
-
-#main-nav a:hover, #main-nav a.active {
-    color: #D4AF37;
-    background-color: rgba(255, 255, 255, 0.08);
-}
-    
-    /* === HERO SECTION === */
     #hero-section {
-        text-align: center;
-        padding: 84px 44px;
         background: #121212;
         color: white;
-        border-radius: 16px;
-        margin: 30px auto 0;
-        max-width: 1100px;
-        opacity: 1;
-        contain: content;
-        min-height: 360px;
-    }
-    
-    #hero-title {
-        color: #D4AF37;
-        font-size: 3.1em;
-        margin: 0 0 24px 0;
-        opacity: 1;
-        line-height: 1.3;
-        font-family: Arial, sans-serif;
-    }
-    
-    #hero-text {
-        font-size: 1.43em;
-        margin: 0 0 42px 0;
-        color: #ddd;
-        opacity: 1;
-        line-height: 1.6;
-        font-family: Arial, sans-serif;
-        max-width: 880px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-cta-container {
         text-align: center;
-        margin-top: 42px;
-        opacity: 1;
-    }
-    
-    .hero-cta-button {
-        background: #802B24;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        text-transform: uppercase;
-        font-weight: 700;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
+        padding: 60px 20px;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        max-width: 352px;
-        width: 100%;
-        padding: 19px 33px;
-        font-size: 1.32em;
-        letter-spacing: 0.5px;
-        line-height: normal;
-        min-height: 66px;
-        text-align: center;
-        cursor: pointer;
-        opacity: 1;
-        font-family: Arial, sans-serif;
     }
     
-    /* === MAIN CONTENT === */
-    #main-content {
-        max-width: 1100px;
-        margin: 25px auto 60px;
-        padding: 0 20px;
-        min-height: 400px;
-        opacity: 1;
-    }
-    
-    /* === СТИЛОВИ ЗА ПРИРОДНЕ СЛИКЕ === */
-    .natural-image {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-        border-radius: 12px;
-        margin: 25px auto;
-        display: block;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    
-    .natural-image:hover {
-        transform: scale(1.02);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Контејнери за слике */
-    .hero-image-container,
-    .feature-image-container,
-    .philosophy-image-container {
-        text-align: center;
-        margin: 30px 0;
-    }
-    
-    /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
-    .features-grid {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 400px;
-    }
-    
-    .lazy-section {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 500px;
-    }
-    
-    /* === КРИТИЧНИ СТИЛОВИ ЗА ПОЧЕТНУ СТРАНУ === */
-    .cta-button {
-        background-color: #802B24;
-        color: #fff;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        font-size: 1.1em;
-        padding: 14px 25px;
-        border-radius: 6px;
-        box-shadow: 0 4px 8px rgba(128, 43, 36, 0.2);
-        border: none;
-        text-transform: uppercase;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 280px;
-        width: 100%;
-        min-height: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 0 auto;
-    }
-    
-    /* FOOTER LINKOVI */
-    footer {
-        background: #121212;
-        color: #ddd;
-        text-align: center;
-        padding: 25px 20px;
-        margin-top: 40px;
-        font-size: 0.9em;
-    }
-    
-    .footer-links {
-        margin-bottom: 15px;
-    }
-    
-    .footer-links a {
-        color: #D4AF37;
-        text-decoration: none;
-        margin: 0 12px;
-        font-weight: 500;
-    }
-    
-    /* SVG IKONE */
-    .icon-svg {
-        fill: #D4AF37;
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 15px;
-        display: block;
-    }
-    
-    /* FEATURE ITEM STYLES */
-    .feature-item {
-        text-align: center;
-        padding: 22px;
-        border-radius: 8px;
-        border: 1px solid #eeeeee;
-        background-color: #ffffff;
-    }
-    
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin-top: 35px;
-    }
-    
-    .cta-container {
-        text-align: center;
-        margin-top: 35px;
-    }
-    
-    /* RESPONSIVE STYLES */
-    @media (max-width: 768px) {
-        #main-header {
-            flex-direction: column;
-            gap: 10px;
-            padding: 15px;
-            min-height: 120px;
-            height: auto;
-        }
-        
-        #main-header h1 {
-            font-size: 28px;
-        }
-        
-        #hero-section {
-            padding: 60px 28px;
-            min-height: 300px;
-            margin: 20px 15px 0;
-            max-width: calc(100% - 30px);
-        }
-        
-        #hero-title {
-            font-size: 2.42em;
-        }
-        
-        #hero-text {
-            font-size: 1.21em;
-            margin-bottom: 30px;
-        }
-        
-        #main-nav a {
-            margin: 0 10px;
-            display: inline-block;
-        }
-        
-        .hero-cta-button {
-            padding: 17px 28px;
-            font-size: 1.21em;
-            max-width: 308px;
-            min-height: 53px;
-        }
-        
-        /* Responsive за слике */
-        .natural-image {
-            max-width: 90%;
-            margin: 20px auto;
-        }
-        
-        .hero-image-container,
-        .feature-image-container,
-        .philosophy-image-container {
-            margin: 25px 0;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        #main-header h1 {
-            font-size: 24px;
-        }
-        
-        .header-logo {
-            width: 60px;
-            height: 60px;
-        }
-        
-        #hero-section {
-            padding: 48px 22px;
-            min-height: 264px;
-            margin: 15px 10px 0;
-            max-width: calc(100% - 20px);
-        }
-        
-        #hero-title {
-            font-size: 2.09em;
-        }
-        
-        #hero-text {
-            font-size: 1.1em;
-        }
-        
-        #main-nav a {
-            display: block;
-            margin: 5px 0;
-        }
-        
-        .hero-cta-button {
-            padding: 14px 22px;
-            font-size: 1.1em;
-            max-width: 275px;
-            min-height: 53px;
-        }
-        
-        .footer-links a {
-            display: inline-block;
-            margin: 5px 10px;
-        }
-        
-        /* Responsive за слике */
-        .natural-image {
-            max-width: 95%;
-            margin: 15px auto;
-        }
+    /* === SPAŠAVANJE KORISNIKA SA ISKLJUČENIM JS === */
+    noscript > style {
+        display: block !important;
     }
     </style>
     
-    <!-- SEO META -->
+    <!-- ===== SEO META TAGOVI ===== -->
+    <!-- Primary Meta Tags -->
     <meta name="description" 
-          content="AresNyX premium donji veš od prirodnih materijala. Pamuk, lan i bambus za zdravlje i udobnost. Besplatna dostava.">
+          content="AresNyX premium donji veš od prirodnih materijala. 100% pamuk, lan i bambus za optimalno zdravlje i udobnost. Besplatna dostava po Srbiji.">
     <meta name="keywords" 
-          content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus">
+          content="donji veš, pamučni donji veš, muški donji veš, ženski donji veš, pamuk, lan, bambus, prirodni materijali, zdravo donje rublje, AresNyX, boxer shorts, gaće, donje rublje, made in Serbia">
     <meta name="author" content="AresNyX">
-    <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
+    <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large, max-video-preview:-1">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="AresNyX - Premium Donji Veš">
-    <meta property="og:description" content="Premium donji veš od prirodних материјала за здравље и удобност. Памук, лан и бамбус.">
-    <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE">
+    
+    <!-- ===== OPEN GRAPH (Facebook, LinkedIn) ===== -->
+    <meta property="og:locale" content="sr_RS">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AresNyX - Premium Donji Veš | Prirodni Materijali">
+    <meta property="og:description" content="100% prirodni materijali za zdravlje i udobnost. Pamuk, lan i bambus. Proizvodnja u Srbiji.">
+    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/">
+    <meta property="og:site_name" content="AresNyX">
+    <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/og-image.webp">
+    <meta property="og:image:secure_url" content="https://aresnyx.github.io/AresNyX/slike/og-image.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="AresNyX">
+    <meta property="og:image:alt" content="AresNyX Premium Donji Veš - Prirodni Materijali">
+    <meta property="og:image:type" content="image/webp">
     
-    <!-- Twitter -->
+    <!-- ===== TWITTER CARD ===== -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
-    <meta name="twitter:description" content="Premium donji veš od prirodних материјала за здравље и удобност.">
-    <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
+    <meta name="twitter:title" content="AresNyX - Premium Donji Veš | Prirodni Materijali">
+    <meta name="twitter:description" content="100% prirodni materijali za zdravlje i udobnost. Proizvodnja u Srbiji.">
+    <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/twitter-card.webp">
+    <meta name="twitter:image:alt" content="AresNyX Premium Donji Veš">
+    <meta name="twitter:site" content="@AresNyX">
+    <meta name="twitter:creator" content="@AresNyX">
     
-    <!-- ASINHRONI CSS -->
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://aresnyx.github.io/AresNyX/#organization",
+        "name": "AresNyX",
+        "url": "https://aresnyx.github.io/AresNyX/",
+        "logo": "https://aresnyx.github.io/AresNyX/slike/logo.webp",
+        "description": "Proizvođač premium donjeg veša od prirodnih materijala",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RS",
+            "addressRegion": "Srbija"
+        },
+        "sameAs": []
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://aresnyx.github.io/AresNyX/#website",
+        "url": "https://aresnyx.github.io/AresNyX/",
+        "name": "AresNyX",
+        "description": "Premium donji veš od prirodnih materijala",
+        "publisher": {
+            "@id": "https://aresnyx.github.io/AresNyX/#organization"
+        },
+        "potentialAction": [{
+            "@type": "SearchAction",
+            "target": "https://aresnyx.github.io/AresNyX/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }]
+    }
+    </script>
+    
+    <!-- ===== FAVICON & APP ICONS ===== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest" crossorigin="use-credentials">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#121212">
+    <meta name="apple-mobile-web-app-title" content="AresNyX">
+    <meta name="application-name" content="AresNyX">
+    <meta name="msapplication-TileColor" content="#121212">
+    <meta name="theme-color" content="#121212">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- ===== PWA MANIFEST ===== -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- ===== ASINHRONI CSS (NON-CRITICAL) ===== -->
+    <!-- Global CSS se učitava asinhrono -->
     <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="global.css"></noscript>
     
+    <!-- ===== WEB FONTOVI (ASINHRONO) ===== -->
+    <!-- Ako kasnije dodaš fontove -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- ===== PRELOAD DRUGIH SLIKA ===== -->
+    <!-- Preload slika koje su vidljive bez skrolanja -->
+    <link rel="preload" as="image" href="slike/lan.webp" type="image/webp" fetchpriority="low" imagesrcset="slike/lan.webp 1x, slike/lan@2x.webp 2x">
+    
+    <!-- ===== DNS PREFETCH ZA OSTALE DOMENE ===== -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- ===== IOS SPECIFIC ===== -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- ===== ANDROID SPECIFIC ===== -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- ===== SECURITY HEADERS (simulacija) ===== -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'">
+    
+    <!-- ===== BROWSER HINTS ===== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="date=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
+    
+    <!-- ===== CLS PREVENTION ===== -->
+    <style>
+    /* Reserve space for images to prevent layout shifts */
+    .natural-image, .header-logo {
+        aspect-ratio: attr(width) / attr(height);
+    }
+    
+    /* Reserve space for ads/embeds if any */
+    .ad-container, .embed-container {
+        aspect-ratio: 16/9;
+    }
+    </style>
 </head>
 <body>
     <!-- HEADER -->
