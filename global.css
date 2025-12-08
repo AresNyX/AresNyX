@@ -47,6 +47,9 @@
 .fa-users:before { content: "\f0c0"; }
 .fa-blog:before { content: "\f781"; }
 .fa-address-card:before { content: "\f2bb"; }
+.fa-leaf:before { content: "\f06c"; }
+.fa-heart:before { content: "\f004"; }
+.fa-shield-alt:before { content: "\f3ed"; }
 
 /* --- 3. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
