@@ -1,7 +1,80 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-63WM74353T'); </script>
+    <!-- GOOGLE ANALYTICS 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-63WM74353T');
+    </script>
+    
+    <!-- ENHANCED TRACKING ZA ARESNYX -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track CTA button clicks
+      const trackCTA = (button, label) => {
+        button.addEventListener('click', () => {
+          gtag('event', 'select_content', {
+            content_type: 'button',
+            content_id: label,
+            method: 'click'
+          });
+          gtag('event', 'cta_click', {
+            button_text: button.textContent.trim(),
+            page_location: window.location.pathname
+          });
+        });
+      };
+
+      // Track all CTA buttons
+      document.querySelectorAll('.cta-button, .hero-cta-button').forEach(btn => {
+        trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
+      });
+
+      // Track navigation clicks
+      document.querySelectorAll('#main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          gtag('event', 'navigation_click', {
+            menu_item: link.textContent.trim(),
+            menu_url: link.getAttribute('href')
+          });
+        });
+      });
+
+      // Track scroll depth
+      let scrollPercentages = [25, 50, 75, 90];
+      let trackedScrolls = [];
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = Math.floor((scrollTop / scrollHeight) * 100);
+        
+        scrollPercentages.forEach(percent => {
+          if (scrolled >= percent && !trackedScrolls.includes(percent)) {
+            gtag('event', `scroll_${percent}_percent`);
+            trackedScrolls.push(percent);
+          }
+        });
+      });
+
+      // Track time on page
+      let pageStartTime = Date.now();
+      window.addEventListener('beforeunload', () => {
+        const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+        if (timeSpent > 10) {
+          gtag('event', 'time_on_page', {
+            time_seconds: timeSpent,
+            page_path: window.location.pathname
+          });
+        }
+      });
+    });
+    </script>
+    
+    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
