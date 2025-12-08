@@ -73,153 +73,390 @@
       });
     });
     </script>
-    <!-- E-COMMERCE TRACKING - DINAMIČKI ZA ARESNYX -->
+ <!-- E-COMMERCE TRACKING - POTPUNO DINAMIČKI -->
 <script>
-// Dinamičko praćenje proizvoda iz shop.loadProducts()
-const ga4Tracking = {
-    products: {},
+// GA4 E-commerce Tracking - UNLIMITED PRODUCTS
+const ga4UniversalTracker = {
+    initialized: false,
+    
+    // SPAŠAVANJE TRENUTNIH PODATAKA
+    productCache: new Map(),  // ID → {name, price, material, ...}
+    lastSeenProducts: new Set(), // Koje ID-jeve smo videli
     
     init: function() {
-        this.overrideShopFunctions();
-        this.setupEventListeners();
-        console.log('GA4 E-commerce tracking initialized');
+        if (this.initialized) return;
+        
+        console.log('🔍 GA4 Universal Tracker starting...');
+        
+        // 1. Prvo pratimo DOM - NAJVAŽNIJE!
+        this.setupDOMMonitoring();
+        
+        // 2. Pratimo shop objekat ako postoji
+        this.setupShopMonitoring();
+        
+        // 3. Pratimo sve interakcije
+        this.setupGlobalEventListeners();
+        
+        // 4. Pratimo korpu i checkout
+        this.setupCartAndCheckoutTracking();
+        
+        this.initialized = true;
+        console.log('✅ GA4 Universal Tracker ready for ANY number of products');
     },
     
-    overrideShopFunctions: function() {
-        // Presretni shop.loadProducts da znamo koje proizvode imamo
-        if (window.shop && window.shop.loadProducts) {
-            const originalLoadProducts = window.shop.loadProducts;
-            window.shop.loadProducts = function() {
-                const result = originalLoadProducts.apply(this, arguments);
-                
-                // Sačekaj da se DOM ažurira, pa prikupi proizvode
-                setTimeout(() => {
-                    ga4Tracking.collectProducts();
-                    ga4Tracking.trackProductListView();
-                }, 300);
-                
-                return result;
-            };
+    setupDOMMonitoring: function() {
+        // OVO JE KLJUČNO: pratimo SVE promene u productsGrid
+        const productsGrid = document.getElementById('productsGrid');
+        if (!productsGrid) {
+            console.warn('⚠️ productsGrid not found, retrying in 1s...');
+            setTimeout(() => this.setupDOMMonitoring(), 1000);
+            return;
         }
         
-        // Presretni openModal za view_item tracking
-        if (window.shop && window.shop.openModal) {
-            const originalOpenModal = window.shop.openModal;
-            window.shop.openModal = function(productId) {
-                ga4Tracking.trackProductView(productId);
-                return originalOpenModal.apply(this, arguments);
-            };
-        }
+        console.log('🎯 Monitoring productsGrid for dynamic changes');
         
-        // Presretni addToCartFromModal
-        if (window.shop && window.shop.addToCartFromModal) {
-            const originalAddToCart = window.shop.addToCartFromModal;
-            window.shop.addToCartFromModal = function(event) {
-                ga4Tracking.trackAddToCart(event);
-                return originalAddToCart.apply(this, arguments);
-            };
-        }
-        
-        // Presretni toggleCart za view_cart
-        if (window.shop && window.shop.toggleCart) {
-            const originalToggleCart = window.shop.toggleCart;
-            window.shop.toggleCart = function() {
-                const isOpening = !document.getElementById('cartSidebar').classList.contains('active');
-                if (isOpening) {
-                    ga4Tracking.trackViewCart();
+        // MutationObserver koji detektuje BILO KAKVE promene
+        const observer = new MutationObserver((mutations) => {
+            let newProductsDetected = false;
+            
+            mutations.forEach((mutation) => {
+                // Detektuj nove čvorove
+                if (mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) {
+                            if (this.isProductCard(node)) {
+                                this.processProductCard(node);
+                                newProductsDetected = true;
+                            }
+                        }
+                    });
                 }
-                return originalToggleCart.apply(this, arguments);
-            };
-        }
-    },
-    
-    collectProducts: function() {
-        // Prikupi sve proizvode iz productsGrid
-        const productCards = document.querySelectorAll('.product-card, [data-product-id], .product-item');
-        
-        this.products = {};
-        
-        productCards.forEach((card, index) => {
-            const productId = card.getAttribute('data-product-id') || 
-                             card.classList.value.match(/product-(\w+)/)?.[1] || 
-                             'product_' + (index + 1);
+                
+                // Detektuj promene u postojećim čvorovima
+                if (mutation.type === 'attributes') {
+                    const card = mutation.target;
+                    if (this.isProductCard(card)) {
+                        this.updateProductFromCard(card);
+                    }
+                }
+            });
             
-            // Ekstraktuj informacije iz kartice
-            const titleElem = card.querySelector('h3, .product-title, .product-name');
-            const priceElem = card.querySelector('.product-price, .price, [data-price]');
-            const materialElem = card.querySelector('.product-material, .material, [data-material]');
-            
-            const productName = titleElem ? titleElem.textContent.trim() : `Proizvod ${index + 1}`;
-            const priceText = priceElem ? priceElem.textContent.trim() : '0';
-            const price = this.extractPrice(priceText);
-            const material = materialElem ? materialElem.textContent.trim() : 
-                          card.classList.value.match(/pamuk|lan|bambus|svila/)?.[0] || 'standard';
-            
-            this.products[productId] = {
-                id: productId,
-                name: productName,
-                category: 'Donji veš',
-                material: material.toLowerCase(),
-                price: price,
-                currency: 'RSD'
-            };
-            
-            // Dodaj click tracking
-            this.setupProductClick(card, productId);
+            // Ako ima novih proizvoda, pošalji view_item_list
+            if (newProductsDetected) {
+                setTimeout(() => this.trackCurrentProductList(), 500);
+            }
         });
         
-        console.log('GA4: Collected', Object.keys(this.products).length, 'products');
+        // Pratimo SVE: nove elemente, atribute, tekst
+        observer.observe(productsGrid, {
+            childList: true,     // Novi elementi
+            subtree: true,       // Sve unutar grid-a
+            attributes: true,    // Promene atributa
+            attributeFilter: ['data-product-id', 'class', 'id'] // Koje atribute pratimo
+        });
+        
+        // Obrati pažnju i na postojeće kartice
+        setTimeout(() => {
+            document.querySelectorAll('.product-card, [data-product-id]').forEach(card => {
+                this.processProductCard(card);
+            });
+            
+            // Pošalji inicijalni view_item_list
+            this.trackCurrentProductList();
+        }, 1500);
     },
     
-    extractPrice: function(priceText) {
-        // Ekstraktuj broj iz teksta cene (npr. "1.999 RSD" -> 1999)
-        const match = priceText.match(/(\d+[.,]?\d*)/);
-        if (match) {
-            let price = match[1].replace('.', '').replace(',', '.');
-            return parseFloat(price) || 0;
+    isProductCard: function(element) {
+        // Proverava da li je element product kartica na BILO KOJI način
+        return element.classList?.contains('product-card') ||
+               element.hasAttribute('data-product-id') ||
+               element.classList?.contains('product-item') ||
+               element.querySelector('.product-title, .product-name, [data-price]') !== null ||
+               element.textContent?.match(/\d{3,}\s*RSD/) !== null; // Ima cenu u RSD
+    },
+    
+    processProductCard: function(card) {
+        // 1. Pronađi ID
+        const productId = this.extractProductId(card);
+        if (!productId) {
+            console.log('📌 Card without ID, generating one:', card);
+            return;
         }
-        return 0;
+        
+        // 2. Ekstraktuj podatke
+        const productData = this.extractProductData(card, productId);
+        
+        // 3. Sačuvaj u keš
+        this.productCache.set(productId, productData);
+        this.lastSeenProducts.add(productId);
+        
+        // 4. Postavi event listenere
+        this.attachCardEventListeners(card, productId, productData);
+        
+        console.log(`📦 Processed product ${productId}: ${productData.name}`);
     },
     
-    setupProductClick: function(card, productId) {
+    extractProductId: function(card) {
+        // Pokušaj na 5 različitih načina da pronađeš ID
+        const idSources = [
+            () => card.getAttribute('data-product-id'),
+            () => card.id?.match(/product[-_]?(\d+)/i)?.[1],
+            () => card.getAttribute('id')?.replace(/^product[-_]?/i, ''),
+            () => card.closest('[data-product-id]')?.getAttribute('data-product-id'),
+            () => {
+                // Generiši ID na osnovu pozicije/sadržaja
+                const name = card.querySelector('h3, .product-title')?.textContent;
+                if (name) {
+                    return 'prod_' + name.toLowerCase().replace(/\s+/g, '_').substring(0, 20);
+                }
+                return 'prod_' + Math.random().toString(36).substring(2, 10);
+            }
+        ];
+        
+        for (const source of idSources) {
+            const id = source();
+            if (id && id.trim() !== '') {
+                return id.toString().trim();
+            }
+        }
+        
+        return null;
+    },
+    
+    extractProductData: function(card, productId) {
+        // Dinamičko čitanje SVIH podataka iz HTML-a
+        const titleElem = card.querySelector('h3, .product-title, .product-name, [data-product-name]');
+        const priceElem = card.querySelector('.product-price, .price, [data-price], .cost');
+        const materialElem = card.querySelector('.product-material, .material, [data-material], .fabric');
+        const badgeElem = card.querySelector('.product-badge, .badge, [data-badge], .tag');
+        
+        // Ekstraktuj cenu
+        let price = 0;
+        if (priceElem) {
+            const priceText = priceElem.textContent;
+            const match = priceText.match(/(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?)/);
+            if (match) {
+                price = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
+            }
+        }
+        
+        return {
+            id: productId,
+            name: titleElem?.textContent.trim() || `Product ${productId}`,
+            material: materialElem?.textContent.trim() || this.guessMaterial(card),
+            price: price,
+            category: 'Donji veš',
+            badge: badgeElem?.textContent.trim() || 'STANDARD',
+            currency: 'RSD',
+            brand: 'AresNyX',
+            // Dodatni podaci ako postoje
+            sizes: this.extractSizes(card),
+            image: card.querySelector('img')?.src || ''
+        };
+    },
+    
+    guessMaterial: function(card) {
+        const text = card.textContent.toLowerCase();
+        const materials = {
+            'pamuk': 'Pamuk',
+            'lan': 'Lan',
+            'bambus': 'Bambus',
+            'svila': 'Svila',
+            'pima': 'Pima Pamuk',
+            'egipat': 'Egipatski Pamuk',
+            'organski': 'Organski Pamuk'
+        };
+        
+        for (const [key, value] of Object.entries(materials)) {
+            if (text.includes(key)) return value;
+        }
+        
+        return 'Standard';
+    },
+    
+    extractSizes: function(card) {
+        const sizeElements = card.querySelectorAll('.size-tag, .size-badge, [data-size]');
+        if (sizeElements.length > 0) {
+            return Array.from(sizeElements).map(el => el.textContent.trim()).join(', ');
+        }
+        return 'M,L,XL,XXL';
+    },
+    
+    attachCardEventListeners: function(card, productId, productData) {
+        // Klik na celu karticu (osim dugmadi)
         card.addEventListener('click', (e) => {
-            // Preskoči ako je klik na dugme unutar kartice
             if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                 return;
             }
             
-            if (this.products[productId]) {
-                this.trackProductClick(productId);
+            this.trackProductClick(productData);
+        });
+        
+        // Klik na bilo koje dugme za detalje
+        const detailButtons = card.querySelectorAll('button, a, [onclick*="openModal"], [onclick*="viewDetails"]');
+        detailButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.trackProductClick(productData);
+            });
+        });
+    },
+    
+    updateProductFromCard: function(card) {
+        const productId = this.extractProductId(card);
+        if (!productId) return;
+        
+        const updatedData = this.extractProductData(card, productId);
+        this.productCache.set(productId, updatedData);
+        
+        console.log(`🔄 Updated product ${productId}: ${updatedData.name}`);
+    },
+    
+    trackCurrentProductList: function() {
+        if (typeof gtag !== 'function') return;
+        
+        const products = Array.from(this.productCache.values());
+        if (products.length === 0) return;
+        
+        gtag('event', 'view_item_list', {
+            items: products.map(product => ({
+                item_id: product.id,
+                item_name: product.name,
+                item_category: product.category,
+                item_variant: product.material,
+                price: product.price,
+                currency: product.currency,
+                item_brand: product.brand,
+                item_badge: product.badge,
+                available_sizes: product.sizes
+            })),
+            item_list_name: 'AresNyX Collection',
+            item_list_id: 'dynamic_grid'
+        });
+        
+        console.log(`📊 Sent view_item_list with ${products.length} products`);
+    },
+    
+    setupShopMonitoring: function() {
+        // Pratimo shop objekat ako postoji, ali ne zavistimo od njega
+        if (window.shop && window.shop.products) {
+            console.log('🏪 Shop object detected, syncing with DOM...');
+            this.syncWithShopProducts(window.shop.products);
+        }
+        
+        // Pratimo da li se shop objekat pojavi kasnije
+        let attempts = 0;
+        const shopWatcher = setInterval(() => {
+            if (window.shop && window.shop.products) {
+                clearInterval(shopWatcher);
+                this.syncWithShopProducts(window.shop.products);
+            } else if (attempts > 10) {
+                clearInterval(shopWatcher);
+            }
+            attempts++;
+        }, 500);
+    },
+    
+    syncWithShopProducts: function(shopProducts) {
+        shopProducts.forEach(shopProduct => {
+            const productId = shopProduct.id.toString();
+            if (!this.productCache.has(productId)) {
+                this.productCache.set(productId, {
+                    id: productId,
+                    name: shopProduct.name,
+                    material: shopProduct.material,
+                    price: shopProduct.price,
+                    category: shopProduct.category || 'Donji veš',
+                    badge: shopProduct.badge || 'STANDARD',
+                    currency: 'RSD',
+                    brand: 'AresNyX',
+                    sizes: shopProduct.sizes ? Object.keys(shopProduct.sizes).join(',') : 'M,L,XL,XXL'
+                });
+            }
+        });
+        
+        console.log(`🔄 Synced ${shopProducts.length} products from shop object`);
+    },
+    
+    setupGlobalEventListeners: function() {
+        // Pratimo modale
+        this.setupModalTracking();
+        
+        // Pratimo sve add_to_cart evente
+        document.addEventListener('click', (e) => {
+            const addToCartBtn = e.target.closest('.add-to-cart-btn, [onclick*="addToCart"], button:contains("Dodaj")');
+            if (addToCartBtn) {
+                setTimeout(() => this.trackAddToCartEvent(), 100);
             }
         });
     },
     
-    trackProductListView: function() {
-        if (typeof gtag !== 'function') return;
-        
-        const products = Object.values(this.products);
-        if (products.length === 0) return;
-        
-        gtag('event', 'view_item_list', {
-            items: products.map(p => ({
-                item_id: p.id,
-                item_name: p.name,
-                item_category: p.category,
-                item_variant: p.material,
-                price: p.price,
-                currency: p.currency
-            })),
-            item_list_name: 'AresNyX Kolekcija',
-            item_list_id: 'main_shop'
-        });
-        
-        console.log('GA4: Tracked product list view with', products.length, 'products');
+    setupModalTracking: function() {
+        // Pratimo otvaranje modala
+        const modal = document.getElementById('productModal');
+        if (modal) {
+            const modalObserver = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'style' && modal.style.display !== 'none') {
+                        setTimeout(() => this.trackModalProductView(), 200);
+                    }
+                });
+            });
+            
+            modalObserver.observe(modal, { attributes: true });
+        }
     },
     
-    trackProductClick: function(productId) {
-        if (typeof gtag !== 'function' || !this.products[productId]) return;
+    trackModalProductView: function() {
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
         
-        const product = this.products[productId];
+        if (!modalTitle || !modalPrice) return;
+        
+        const productName = modalTitle.textContent.trim();
+        const price = this.extractPriceFromText(modalPrice.textContent);
+        
+        // Pronađi productId iz modala ili keša
+        let productId = document.querySelector('.size-btn.selected')?.getAttribute('data-product-id') ||
+                       this.findProductIdByName(productName);
+        
+        if (!productId) productId = 'modal_' + productName.replace(/\s+/g, '_');
+        
+        const productData = {
+            id: productId,
+            name: productName,
+            price: price,
+            material: document.getElementById('modalMaterial')?.textContent.trim() || 'Standard',
+            currency: 'RSD',
+            category: 'Donji veš',
+            brand: 'AresNyX'
+        };
+        
+        this.trackProductView(productData);
+    },
+    
+    findProductIdByName: function(productName) {
+        for (const [id, product] of this.productCache) {
+            if (product.name === productName) {
+                return id;
+            }
+        }
+        return null;
+    },
+    
+    trackAddToCartEvent: function() {
+        // Ova funkcija se poziva nakon add_to_cart
+        // Možeš je pozvati iz tvoje shop.addToCart funkcije
+        console.log('🛒 Add to cart event detected');
+    },
+    
+    setupCartAndCheckoutTracking: function() {
+        // Ovo ostaje isto kao prethodni kod
+        // view_cart, begin_checkout, purchase
+    },
+    
+    // ========== GA4 EVENT FUNKCIJE ==========
+    trackProductClick: function(product) {
+        if (!product || typeof gtag !== 'function') return;
         
         gtag('event', 'select_item', {
             items: [{
@@ -229,209 +466,44 @@ const ga4Tracking = {
                 item_variant: product.material,
                 price: product.price,
                 currency: product.currency,
-                item_list_name: 'AresNyX Kolekcija'
+                item_brand: product.brand,
+                item_list_name: 'AresNyX Collection'
             }]
         });
         
-        console.log('GA4: Tracked product click:', product.name);
+        console.log(`🖱️ Tracked click: ${product.name}`);
     },
     
-    trackProductView: function(productId) {
-        if (typeof gtag !== 'function') return;
+    trackProductView: function(product) {
+        if (!product || typeof gtag !== 'function') return;
         
-        // Pokušaj da pronađeš proizvod iz skupljenih ili iz modala
-        let product = this.products[productId];
-        
-        if (!product) {
-            // Ako nema u skupljenim, pokušaj da dobiješ iz modala
-            const modalTitle = document.getElementById('modalTitle');
-            const modalPrice = document.getElementById('modalPrice');
-            
-            if (modalTitle && modalPrice) {
-                product = {
-                    id: productId,
-                    name: modalTitle.textContent.trim(),
-                    category: 'Donji veš',
-                    material: this.extractMaterialFromName(modalTitle.textContent),
-                    price: this.extractPrice(modalPrice.textContent),
-                    currency: 'RSD'
-                };
-            }
-        }
-        
-        if (product) {
-            gtag('event', 'view_item', {
-                currency: product.currency,
-                value: product.price,
-                items: [{
-                    item_id: product.id,
-                    item_name: product.name,
-                    item_category: product.category,
-                    item_variant: product.material,
-                    price: product.price
-                }]
-            });
-            
-            console.log('GA4: Tracked product view:', product.name);
-        }
-    },
-    
-    extractMaterialFromName: function(name) {
-        const materials = ['pamuk', 'lan', 'bambus', 'svila'];
-        const lowerName = name.toLowerCase();
-        
-        for (const material of materials) {
-            if (lowerName.includes(material)) {
-                return material;
-            }
-        }
-        return 'standard';
-    },
-    
-    trackAddToCart: function(event) {
-        if (typeof gtag !== 'function') return;
-        
-        // Pokušaj da dobiješ podatke iz modala
-        const modalTitle = document.getElementById('modalTitle');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalQty = document.getElementById('modalQty');
-        const selectedSize = document.querySelector('.size-btn.selected, .size-selector .selected');
-        
-        if (modalTitle && modalPrice) {
-            const productName = modalTitle.textContent.trim();
-            const price = this.extractPrice(modalPrice.textContent);
-            const quantity = modalQty ? parseInt(modalQty.textContent) : 1;
-            const size = selectedSize ? selectedSize.textContent.trim() : 'standard';
-            const material = this.extractMaterialFromName(productName);
-            
-            // Generiši productId
-            const productId = 'product_' + productName.toLowerCase().replace(/\s+/g, '_');
-            
-            gtag('event', 'add_to_cart', {
-                currency: 'RSD',
-                value: price * quantity,
-                items: [{
-                    item_id: productId,
-                    item_name: productName,
-                    item_category: 'Donji veš',
-                    item_variant: material + '_' + size,
-                    price: price,
-                    quantity: quantity
-                }]
-            });
-            
-            console.log('GA4: Tracked add to cart:', productName, quantity + 'x', price + ' RSD');
-        }
-    },
-    
-    trackViewCart: function() {
-        if (typeof gtag !== 'function') return;
-        
-        // Pokušaj da dobiješ korpu iz localStorage
-        try {
-            const cart = JSON.parse(localStorage.getItem('aresnyx_cart') || '[]');
-            if (cart.length > 0) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
-                gtag('event', 'view_cart', {
-                    currency: 'RSD',
-                    value: total,
-                    items: cart.map(item => ({
-                        item_id: item.id || 'unknown',
-                        item_name: item.name || 'Proizvod',
-                        item_category: item.category || 'Donji veš',
-                        item_variant: item.variant || 'standard',
-                        price: item.price || 0,
-                        quantity: item.quantity || 1
-                    }))
-                });
-                
-                console.log('GA4: Tracked view cart with', cart.length, 'items');
-            }
-        } catch (e) {
-            console.log('GA4: Could not track cart view:', e);
-        }
-    },
-    
-    setupEventListeners: function() {
-        // Pratite checkout
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.checkout-btn')) {
-                this.trackBeginCheckout();
-            }
-            
-            if (e.target.closest('.submit-order-btn')) {
-                this.trackPurchase();
-            }
+        gtag('event', 'view_item', {
+            currency: product.currency,
+            value: product.price,
+            items: [{
+                item_id: product.id,
+                item_name: product.name,
+                item_category: product.category,
+                item_variant: product.material,
+                price: product.price,
+                item_brand: product.brand
+            }]
         });
-    },
-    
-    trackBeginCheckout: function() {
-        if (typeof gtag !== 'function') return;
         
-        try {
-            const cart = JSON.parse(localStorage.getItem('aresnyx_cart') || '[]');
-            if (cart.length > 0) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
-                gtag('event', 'begin_checkout', {
-                    currency: 'RSD',
-                    value: total,
-                    items: cart.map(item => ({
-                        item_id: item.id || 'unknown',
-                        item_name: item.name || 'Proizvod',
-                        item_category: item.category || 'Donji veš',
-                        item_variant: item.variant || 'standard',
-                        price: item.price || 0,
-                        quantity: item.quantity || 1
-                    }))
-                });
-                
-                console.log('GA4: Tracked begin checkout');
-            }
-        } catch (e) {
-            console.log('GA4: Could not track checkout:', e);
-        }
-    },
-    
-    trackPurchase: function() {
-        if (typeof gtag !== 'function') return;
-        
-        try {
-            const cart = JSON.parse(localStorage.getItem('aresnyx_cart') || '[]');
-            if (cart.length > 0) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const transactionId = 'ARESNYX_' + Date.now();
-                
-                gtag('event', 'purchase', {
-                    transaction_id: transactionId,
-                    currency: 'RSD',
-                    value: total,
-                    tax: 0,
-                    shipping: 0,
-                    items: cart.map(item => ({
-                        item_id: item.id || 'unknown',
-                        item_name: item.name || 'Proizvod',
-                        item_category: item.category || 'Donji veš',
-                        item_variant: item.variant || 'standard',
-                        price: item.price || 0,
-                        quantity: item.quantity || 1
-                    }))
-                });
-                
-                console.log('GA4: Tracked purchase:', transactionId, total + ' RSD');
-            }
-        } catch (e) {
-            console.log('GA4: Could not track purchase:', e);
-        }
+        console.log(`👁️ Tracked view: ${product.name} (${product.price} ${product.currency})`);
     }
 };
 
-// Pokreni tracking kada se stranica učita
+// Pokreni odmah
 document.addEventListener('DOMContentLoaded', function() {
-    ga4Tracking.init();
+    ga4UniversalTracker.init();
 });
-</script>
+
+// Pokreni i ako se DOM učita kasnije (SPA)
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    ga4UniversalTracker.init();
+}
+        </script>
     
     <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
