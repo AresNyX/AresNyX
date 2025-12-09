@@ -552,6 +552,18 @@ nav a.active {
     70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
     100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
+/* LINKS WITH BETTER VISIBILITY */
+a:not(.cta-button):not(.nav-link) {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+/* Posebno za footer links */
+.footer-links a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
 
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
