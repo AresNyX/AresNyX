@@ -112,25 +112,58 @@ header h1 {
 
 nav {
     background-color: var(--color-dark-bg);
-    padding: 10px 0;
+    padding: 15px 0;
     border-top: 2px solid var(--color-accent-gold);
     text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
+
 nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 18px; /* PROMENI: 0 15px → 0 18px */
-    font-weight: 400;
-    font-size: 1.1em; /* PROMENI: 1em → 1.1em (10% VECE) */
-    transition: color 0.3s;
-    padding: 8px 12px; /* PROMENI: 5px 8px → 8px 12px */
-    border-radius: 4px;
-    display: inline-block;
+    /* FIKSNA ŠIRINA ZA SVE - ŠIRA OD "KONTAKT" */
+    min-width: 160px !important;
+    width: 160px !important;
+    box-sizing: border-box !important;
+    
+    /* PODVLAČENJE - LINIJA ISPOD TEKSTA */
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 6px !important;  /* OVAJ RAZMAK IZMICUJE LINIJU OD SLOVA */
+    text-decoration-color: rgba(255, 255, 255, 0.9) !important;
+    
+    /* TEKST */
+    color: #fff !important;
+    font-weight: 500 !important;
+    font-size: 1.1em !important;
+    text-align: center !important;
+    
+    /* PRAZNI PROSTOR OKO TEKSTA */
+    padding: 12px 5px !important;
+    margin: 0 !important;
+    
+    /* OSTALO */
+    display: inline-block !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease !important;
+    background-color: transparent !important;
 }
-nav a:hover, nav a.active {
-    color: var(--color-accent-gold);
-    background-color: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
+
+/* HOVER EFIKAT */
+nav a:hover, 
+nav a.active {
+    color: var(--color-accent-gold) !important;
+    text-decoration-color: var(--color-accent-gold) !important;
+    background-color: rgba(212, 175, 55, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* FOKUS ZA TASTATURU */
+nav a:focus {
+    outline: 3px solid var(--color-accent-gold) !important;
+    outline-offset: 2px !important;
+    background-color: rgba(212, 175, 55, 0.2) !important;
 }
 
 /* --- 5. DUGMAD (CTA) --- */
@@ -588,49 +621,6 @@ input:focus-visible {
     outline: 3px solid #D4AF37 !important;
     outline-offset: 3px !important;
     border-radius: 4px !important;
-}
-
-/* JACA VERZIJA KOJA SIGURNO RADI */
-nav {
-    display: flex !important;
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-}
-
-nav a {
-    /* FIKSNA DIMENZIJA */
-    flex: 0 0 170px !important;  /* fiksno 170px, ne raste, ne smanjuje */
-    width: 170px !important;
-    min-width: 170px !important;
-    max-width: 170px !important;
-    height: 50px !important;
-    box-sizing: border-box !important;
-    
-    /* CENTRIRANJE */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    
-    /* TEKST */
-    text-align: center !important;
-    text-decoration: underline !important;
-    text-underline-offset: 8px !important;  /* JOS VISE ODMICI */
-    text-decoration-thickness: 2px !important;
-    
-    /* PADDING */
-    padding: 0 15px !important;
-    margin: 5px !important;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    nav a {
-        flex: 0 0 150px !important;
-        width: 150px !important;
-        min-width: 150px !important;
-        max-width: 150px !important;
-    }
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
