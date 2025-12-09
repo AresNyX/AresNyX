@@ -604,6 +604,12 @@ footer a,
     text-decoration-thickness: 2px !important;
     text-underline-offset: 3px !important;
 }
+/* NAVIGACIJA - ŠIRINA +1cm */
+nav a {
+    padding: 12px 19px !important; /* +1cm (19px = ~0.5cm sa svake strane) */
+    text-align: center;
+    text-decoration: underline;
+}
 
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
