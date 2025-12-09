@@ -119,11 +119,11 @@ nav {
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 18px;
+    margin: 0 18px; /* PROMENI: 0 15px → 0 18px */
     font-weight: 400;
-    font-size: 1.1em;
-    transition: all 0.3s;
-    padding: 8px 12px;
+    font-size: 1.1em; /* PROMENI: 1em → 1.1em (10% VECE) */
+    transition: color 0.3s;
+    padding: 8px 12px; /* PROMENI: 5px 8px → 8px 12px */
     border-radius: 4px;
     display: inline-block;
 }
