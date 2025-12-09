@@ -564,6 +564,46 @@ a:not(.cta-button):not(.nav-link) {
     text-decoration: underline;
     text-decoration-thickness: 2px;
 }
+/* ============================================ */
+/* FIX ZA LIGHTHOUSE - SAMO OVO DODAJ! */
+/* ============================================ */
+
+/* 1. LINKS UNDERLINE (resava: "Линкови могу да се разликују тек уз боју") */
+a:not(.cta-button):not(.btn):not(.social-icon) {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 3px !important;
+}
+
+/* 2. LOGO ALT TEXT FIX (dodaje alt ako ga nema) */
+img[src*="logo"]:not([alt]),
+img[src*="logo"][alt=""] {
+    border: 2px solid red !important; /* SAMO DA VIDIS DA LI IMA */
+}
+
+/* 3. FOCUS FOR KEYBOARD NAVIGATION */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #D4AF37 !important;
+    outline-offset: 3px !important;
+    border-radius: 4px !important;
+}
+
+/* 4. NAV LINKS SPECIFIC */
+nav a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px !important;
+}
+
+/* 5. FOOTER LINKS */
+footer a,
+.footer-links a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 3px !important;
+}
 
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
