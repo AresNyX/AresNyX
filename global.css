@@ -110,7 +110,7 @@ header h1 {
     margin-top: 8px; 
 }
 
-nav {
+#main-nav {
     background-color: var(--color-dark-bg);
     padding: 15px 0;
     border-top: 2px solid var(--color-accent-gold);
@@ -121,7 +121,7 @@ nav {
     gap: 8px;
 }
 
-nav a {
+#main-nav a {
     /* FIKSNA ŠIRINA ZA SVE - ŠIRA OD "KONTAKT" */
     min-width: 160px !important;
     width: 160px !important;
@@ -130,7 +130,7 @@ nav a {
     /* PODVLAČENJE - LINIJA ISPOD TEKSTA */
     text-decoration: underline !important;
     text-decoration-thickness: 2px !important;
-    text-underline-offset: 6px !important;  /* OVAJ RAZMAK IZMICUJE LINIJU OD SLOVA */
+    text-underline-offset: 6px !important;
     text-decoration-color: rgba(255, 255, 255, 0.9) !important;
     
     /* TEKST */
@@ -148,6 +148,22 @@ nav a {
     border-radius: 4px !important;
     transition: all 0.3s ease !important;
     background-color: transparent !important;
+}
+
+/* HOVER EFIKAT */
+#main-nav a:hover, 
+#main-nav a.active {
+    color: var(--color-accent-gold) !important;
+    text-decoration-color: var(--color-accent-gold) !important;
+    background-color: rgba(212, 175, 55, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* FOKUS ZA TASTATURU */
+#main-nav a:focus {
+    outline: 3px solid var(--color-accent-gold) !important;
+    outline-offset: 2px !important;
+    background-color: rgba(212, 175, 55, 0.2) !important;
 }
 
 /* HOVER EFIKAT */
@@ -536,15 +552,6 @@ footer {
         font-size: 1em;
     }
 }
-
-@media (max-width: 480px) {
-    header h1 { font-size: 26px; }
-    nav a { 
-        display: block; 
-        margin: 8px 0;
-        font-size: 1em;
-        padding: 5px 8px;
-    }
     section { padding: 20px; }
     
     .stats-container strong {
@@ -564,6 +571,23 @@ footer {
         width: 40px;
         height: 40px;
     }
+@media (max-width: 768px) {
+    #main-nav a { 
+        margin: 0 12px;
+        font-size: 1.05em;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* ... ostalo ... */
+    #main-nav a { 
+        display: block; 
+        margin: 8px 0;
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+}
 }
 
 /* ============================================ */
