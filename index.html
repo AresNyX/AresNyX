@@ -86,7 +86,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО (samo najbitnije) -->
+    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО -->
     <style>
     /* === RESET === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -158,6 +158,55 @@
         min-height: 1.2em;
         opacity: 1;
         font-family: Arial, sans-serif;
+    }
+    
+    /* === NAVIGACIJA - OBAVEZNO! === */
+    #main-nav {
+        background-color: #121212 !important;
+        padding: 15px 0 !important;
+        border-top: 2px solid #D4AF37 !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+    
+    #main-nav a {
+        /* VELIKI FONT */
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        color: #ffffff !important;
+        
+        /* PODVLAČENJE */
+        text-decoration: underline !important;
+        text-decoration-thickness: 2px !important;
+        text-underline-offset: 6px !important;
+        text-decoration-color: rgba(255, 255, 255, 0.8) !important;
+        
+        /* FIKSNA ŠIRINA */
+        min-width: 150px !important;
+        width: 150px !important;
+        display: inline-block !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        
+        /* PADDING */
+        padding: 12px 5px !important;
+        margin: 0 !important;
+        
+        /* OSTALO */
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border-radius: 4px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    #main-nav a:hover,
+    #main-nav a.active {
+        color: #D4AF37 !important;
+        text-decoration-color: #D4AF37 !important;
+        background-color: rgba(212, 175, 55, 0.2) !important;
+        transform: translateY(-2px) !important;
     }
     
     /* === HERO SECTION === */
@@ -305,6 +354,19 @@
             font-size: 28px;
         }
         
+        /* NAVIGACIJA RESPONSIVE */
+        #main-nav {
+            gap: 5px !important;
+            padding: 10px 0 !important;
+        }
+        
+        #main-nav a {
+            min-width: 130px !important;
+            width: 130px !important;
+            font-size: 16px !important;
+            padding: 10px 3px !important;
+        }
+        
         #hero-section {
             padding: 60px 28px;
             min-height: 300px;
@@ -349,6 +411,21 @@
         .header-logo {
             width: 60px;
             height: 60px;
+        }
+        
+        /* NAVIGACIJA RESPONSIVE ZA TELEFONE */
+        #main-nav {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        
+        #main-nav a {
+            min-width: 90% !important;
+            width: 90% !important;
+            margin: 2px 0 !important;
+            font-size: 15px !important;
+            padding: 12px 5px !important;
         }
         
         #hero-section {
@@ -435,7 +512,7 @@
         </h1>
     </header>
 
-    <!-- NAVIGACIJA - STILOVI IZ global.css -->
+    <!-- NAVIGACIJA -->
     <nav id="main-nav" aria-label="Glavna navigacija">
         <a href="index.html" class="active" aria-current="page">Početna</a>
         <a href="shop.html">Shop</a>
