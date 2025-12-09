@@ -624,6 +624,32 @@ input:focus-visible {
     outline-offset: 3px !important;
     border-radius: 4px !important;
 }
+/* ============================================ */
+/* NAVIGACIJA - JEDNOSTAVAN FIX */
+/* ============================================ */
+
+nav {
+    background: #121212 !important;
+    padding: 15px 0 !important;
+    border-top: 2px solid #D4AF37 !important;
+    text-align: center !important;
+}
+
+nav a {
+    color: white !important;
+    font-size: 16px !important;
+    padding: 10px 20px !important;
+    margin: 0 10px !important;
+    text-decoration: underline !important;
+    text-underline-offset: 5px !important;
+    display: inline-block !important;
+    min-width: 140px !important;
+    text-align: center !important;
+}
+
+nav a:hover {
+    color: #D4AF37 !important;
+}
 
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
