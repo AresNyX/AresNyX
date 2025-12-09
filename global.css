@@ -1150,3 +1150,119 @@ a:not(.cta-button):not(.share-button):not(.tag):not(.breadcrumb-list a) {
     text-decoration-thickness: 1.5px;
     text-underline-offset: 2px;
 }
+/* === BLOG SPECIFIČNI STILOVI === */
+
+.article-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--color-accent-gold);
+}
+
+.article-title {
+    font-size: 2rem;
+    color: var(--color-button);
+    margin-bottom: 10px;
+}
+
+.article-meta {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 20px;
+}
+
+.lead-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+.info-box {
+    background: var(--color-light-bg);
+    border-left: 4px solid var(--color-accent-gold);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.benefit-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.benefit-card h3 {
+    color: var(--color-button);
+    margin-top: 0;
+}
+
+.comparison-table-container {
+    overflow-x: auto;
+    margin: 30px 0;
+}
+
+.materials-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 300px;
+}
+
+.materials-table th,
+.materials-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.materials-table thead th {
+    background: var(--color-button);
+    color: white;
+}
+
+.materials-table tbody tr:hover {
+    background: var(--color-light-bg);
+}
+
+.conclusion-box {
+    background: var(--color-light-bg);
+    border-radius: 8px;
+    padding: 25px;
+    margin: 30px 0;
+    border-left: 4px solid var(--color-button);
+}
+
+.expert-advice {
+    background: white;
+    border-left: 4px solid var(--color-accent-gold);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Accessibility */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--color-dark-bg);
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-to-main:focus {
+    top: 10px;
+    outline: 3px solid var(--color-accent-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 1.8rem;
+    }
+}
