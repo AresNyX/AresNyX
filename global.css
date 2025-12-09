@@ -539,63 +539,14 @@ footer {
     margin-bottom: 2em;
     font-weight: 500;
 }
-/* ============================================== */
-/* KRAJ GLOBAL.CSS */
-/* ============================================== */
-/* ============================================ */
-/* ZLATNI FOKUS EFEKTI */
-/* ============================================ */
-
-/* Zlatni okvir kada se klikne/fokusira navigacija */
-nav a:focus {
-    outline: 3px solid var(--color-accent-gold);
-    outline-offset: 3px;
-    border-radius: 6px;
-    background-color: rgba(212, 175, 55, 0.15);
-}
-
-/* Pulsirajući efekat za aktivnu stranicu */
-nav a.active {
-    position: relative;
-    animation: goldPulse 1.5s ease-in-out;
-}
-
-@keyframes goldPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
-    }
-    70% {
-        box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-    }
-}
-
-/* Responsive za manje ekrane */
-@media (max-width: 768px) {
-    nav a {
-        font-size: 1.05em; /* manje povećanje */
-        margin: 0 12px;
-        padding: 6px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    nav a {
-        font-size: 1em; /* original na malim ekranima */
-        margin: 0 8px;
-        padding: 5px 8px;
-    }
-}
-/* ============================================ */
-/* SVE PROMENE NA JEDNOM MESTU */
+    /* ============================================ */
+/* SVE PROMENE - NAV, FOOTER, BOJE, FOKUS */
 /* ============================================ */
 
 /* 1. TAMNIJE BORDO BOJE */
 :root {
-    --color-button: #5c1f1a;        /* TAMNIJA 10% */
-    --color-button-hover: #481914;  /* TAMNIJA 10% */
+    --color-button: #5c1f1a;
+    --color-button-hover: #481914;
 }
 
 /* 2. NAVIGACIJA 10% VECA */
@@ -606,16 +557,16 @@ nav a {
 }
 
 /* 3. FOOTER 10% VECI */
-footer {
+footer,
+.footer-links a {
     font-size: 1.1em;
 }
 
 .footer-links a {
-    font-size: 1.1em;
     padding: 8px 12px;
 }
 
-/* 4. ZLATNI FOKUS EFEKTI */
+/* 4. ZLATNI FOKUS */
 nav a:focus {
     outline: 3px solid var(--color-accent-gold);
     outline-offset: 3px;
@@ -654,3 +605,10 @@ nav a.active {
         padding: 5px 8px;
     }
 }
+
+/* ============================================== */
+/* KRAJ GLOBAL.CSS */
+/* ============================================== */
+/* ============================================== */
+/* KRAJ GLOBAL.CSS */
+/* ============================================== */
