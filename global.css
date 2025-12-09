@@ -590,27 +590,32 @@ input:focus-visible {
     border-radius: 4px !important;
 }
 
-/* 4. NAV LINKS SPECIFIC */
+/* FIKSNA ŠIRINA SAMO ZA NAV LINKOVE */
 nav a {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-    text-underline-offset: 4px !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    text-align: center !important;
+    padding: 12px 10px !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
 }
 
-/* 5. FOOTER LINKS */
-footer a,
-.footer-links a {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-    text-underline-offset: 3px !important;
-}
-/* NAVIGACIJA - ŠIRINA +1cm */
-nav a {
-    padding: 12px 19px !important; /* +1cm (19px = ~0.5cm sa svake strane) */
-    text-align: center;
-    text-decoration: underline;
+/* ZA MANJE EKRANE */
+@media (max-width: 768px) {
+    nav a {
+        width: 140px !important;
+        min-width: 140px !important;
+        padding: 10px 5px !important;
+    }
 }
 
+@media (max-width: 480px) {
+    nav a {
+        width: 100% !important;  /* PUNO PO SEKRAN */
+        min-width: 100% !important;
+        margin: 5px 0 !important;
+    }
+}
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
 /* ============================================== */
