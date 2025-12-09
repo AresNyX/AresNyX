@@ -590,30 +590,46 @@ input:focus-visible {
     border-radius: 4px !important;
 }
 
-/* FIKSNA ŠIRINA SAMO ZA NAV LINKOVE */
+/* JACA VERZIJA KOJA SIGURNO RADI */
+nav {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
 nav a {
-    width: 160px !important;
-    min-width: 160px !important;
-    text-align: center !important;
-    padding: 12px 10px !important;
+    /* FIKSNA DIMENZIJA */
+    flex: 0 0 170px !important;  /* fiksno 170px, ne raste, ne smanjuje */
+    width: 170px !important;
+    min-width: 170px !important;
+    max-width: 170px !important;
+    height: 50px !important;
     box-sizing: border-box !important;
-    display: inline-block !important;
+    
+    /* CENTRIRANJE */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* TEKST */
+    text-align: center !important;
+    text-decoration: underline !important;
+    text-underline-offset: 8px !important;  /* JOS VISE ODMICI */
+    text-decoration-thickness: 2px !important;
+    
+    /* PADDING */
+    padding: 0 15px !important;
+    margin: 5px !important;
 }
 
-/* ZA MANJE EKRANE */
-@media (max-width: 768px) {
+/* RESPONSIVE */
+@media (max-width: 900px) {
     nav a {
-        width: 140px !important;
-        min-width: 140px !important;
-        padding: 10px 5px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    nav a {
-        width: 100% !important;  /* PUNO PO SEKRAN */
-        min-width: 100% !important;
-        margin: 5px 0 !important;
+        flex: 0 0 150px !important;
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
     }
 }
 /* ============================================== */
