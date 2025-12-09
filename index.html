@@ -86,7 +86,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО -->
+    <!-- КРИТИЧНИ CSS - ИНЛАЈНОВАНО (samo najbitnije) -->
     <style>
     /* === RESET === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -159,34 +159,6 @@
         opacity: 1;
         font-family: Arial, sans-serif;
     }
- /* === NAVIGACIJA === */
-#main-nav {
-    background-color: #121212;
-    padding: 10px 0;
-    border-top: 0.8mm solid #D4AF37; /* Дебеља златна линија */
-    border-top: 2px solid #D4AF37; /* Fallback за старије прегледаче */
-    text-align: center;
-    position: relative;
-    z-index: 999;
-    contain: content;
-}
-
-#main-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 1em;
-    padding: 5px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    font-family: Arial, sans-serif;
-}
-
-#main-nav a:hover, #main-nav a.active {
-    color: #D4AF37;
-    background-color: rgba(255, 255, 255, 0.08);
-}
     
     /* === HERO SECTION === */
     #hero-section {
@@ -298,30 +270,6 @@
         contain-intrinsic-size: 0 500px;
     }
     
-    /* === КРИТИЧНИ СТИЛОВИ ЗА ПОЧЕТНУ СТРАНУ === */
-    .cta-button {
-        background-color: #802B24;
-        color: #fff;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        font-size: 1.1em;
-        padding: 14px 25px;
-        border-radius: 6px;
-        box-shadow: 0 4px 8px rgba(128, 43, 36, 0.2);
-        border: none;
-        text-transform: uppercase;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 280px;
-        width: 100%;
-        min-height: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 0 auto;
-    }
-    
     /* FOOTER LINKOVI */
     footer {
         background: #121212;
@@ -341,36 +289,6 @@
         text-decoration: none;
         margin: 0 12px;
         font-weight: 500;
-    }
-    
-    /* SVG IKONE */
-    .icon-svg {
-        fill: #D4AF37;
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 15px;
-        display: block;
-    }
-    
-    /* FEATURE ITEM STYLES */
-    .feature-item {
-        text-align: center;
-        padding: 22px;
-        border-radius: 8px;
-        border: 1px solid #eeeeee;
-        background-color: #ffffff;
-    }
-    
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin-top: 35px;
-    }
-    
-    .cta-container {
-        text-align: center;
-        margin-top: 35px;
     }
     
     /* RESPONSIVE STYLES */
@@ -401,11 +319,6 @@
         #hero-text {
             font-size: 1.21em;
             margin-bottom: 30px;
-        }
-        
-        #main-nav a {
-            margin: 0 10px;
-            display: inline-block;
         }
         
         .hero-cta-button {
@@ -453,11 +366,6 @@
             font-size: 1.1em;
         }
         
-        #main-nav a {
-            display: block;
-            margin: 5px 0;
-        }
-        
         .hero-cta-button {
             padding: 14px 22px;
             font-size: 1.1em;
@@ -475,42 +383,6 @@
             max-width: 95%;
             margin: 15px auto;
         }
-    
-/* STAVI OVO U <head> SEKCIJU */
-nav a {
-    min-width: 150px !important;
-    width: 150px !important;
-    text-align: center !important;
-    padding: 10px 20px !important;
-    text-underline-offset: 6px !important;  /* OVO ODMICE LINIJU */
-    display: inline-block !important;
-}
-Покажи ми твој ТРЕНУТНИ CSS за nav a! Копирај овај део из твог global.css:
-
-```css
-nav a {
-    /* KOPIRAJ MI OVAJ DEO */
-}
-```
-
-Јер ако већ имаш нека правила за nav a, онда морам да знам шта да препишем.
-
-АЛТЕРНАТИВА - покушај ово:
-
-```css
-/* PROBAJ OVO - JACE !important */
-nav a {
-    padding: 10px 30px !important;
-    min-width: 150px !important;
-    text-align: center !important;
-    display: inline-block !important;
-}
-/* DODAJ OVO U <head> */
-nav a {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
-    text-decoration: underline !important;
-}
     }
     </style>
     
@@ -563,7 +435,7 @@ nav a {
         </h1>
     </header>
 
-    <!-- NAVIGACIJA -->
+    <!-- NAVIGACIJA - STILOVI IZ global.css -->
     <nav id="main-nav" aria-label="Glavna navigacija">
         <a href="index.html" class="active" aria-current="page">Početna</a>
         <a href="shop.html">Shop</a>
@@ -658,30 +530,6 @@ nav a {
         const heroSection = document.getElementById('hero-section');
         if (heroSection) {
             heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
-        }
-        
-        const navLinks = document.querySelectorAll('#main-nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-1px)';
-            });
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-        
-        const ctaButton = document.querySelector('.hero-cta-button');
-        if (ctaButton) {
-            ctaButton.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 6px 12px rgba(101, 34, 28, 0.3)';
-                this.style.backgroundColor = '#65221C';
-            });
-            ctaButton.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-                this.style.backgroundColor = '#802B24';
-            });
         }
         
         // Додај hover ефекте за слике
