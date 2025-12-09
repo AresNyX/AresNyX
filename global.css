@@ -6,13 +6,13 @@
 :root {
     --color-dark-bg: #121212; 
     --color-accent-gold: #D4AF37; 
-    --color-button: #5c1f1a; /* 10% TAMNIJA BORDO (umesto #802B24) */
-    --color-button-hover: #481914; /* 10% TAMNIJA (umesto #65221C) */
+    --color-button: #5c1f1a; /* 10% TAMNIJA BORDO */
+    --color-button-hover: #481914; /* 10% TAMNIJA */
     --color-text-main: #333333; 
     --color-light-bg: #f7f7f7; 
 }
+
 /* --- 2. OPTIMIZED FONTAWESOME (ONLY ICONS YOU USE) --- */
-/* Font Awesome фонт (само solid иконке) */
 @font-face {
     font-family: 'FA-Solid-Custom';
     font-style: normal;
@@ -21,7 +21,6 @@
     src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
 }
 
-/* Основни стилови за све иконке */
 .fas {
     font-family: 'FA-Solid-Custom';
     font-weight: 900;
@@ -32,7 +31,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Специфичне иконке које користиш */
 .fa-building:before { content: "\f1ad"; }
 .fa-map-marker-alt:before { content: "\f3c5"; }
 .fa-phone:before { content: "\f095"; }
@@ -51,7 +49,6 @@
 
 /* --- 3. OSNOVNI BODY, TYPOGRAPHY, I STRUKTURA --- */
 body { 
-    /* Implementiran BRZI SISTEMSKI FONT STACK */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin: 0; 
     padding: 0; 
@@ -66,8 +63,7 @@ h1, h2, h3 {
 
 main { 
     max-width: 900px; 
-    /* Uklanjanje gornje margine ili dramatično smanjenje */
-    margin: 15px auto 60px auto; /* Nova margina */
+    margin: 15px auto 60px auto;
     padding: 0 20px; 
     min-height: 400px; 
 }
@@ -91,7 +87,7 @@ section p {
 
 /* --- 4. HEADER I NAVIGACIJA --- */
 header { 
-    background: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
+    background: var(--color-dark-bg);
     color: #fff; 
     padding: 15px 20px; 
     text-align: center; 
@@ -113,23 +109,21 @@ header h1 {
     display: block;
     margin-top: 8px; 
 }
-/* Uklonjen je zalutali <img> HTML kod iz ovog bloka */
 
 nav {
     background-color: var(--color-dark-bg);
     padding: 10px 0;
-    border-top: 0.5mm solid var(--color-accent-gold); /* Дебља и пуна боја */
-    border-top: 2px solid var(--color-accent-gold); /* Дебљи fallback */
+    border-top: 2px solid var(--color-accent-gold);
     text-align: center;
 }
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 18px; /* povećano sa 15px */
+    margin: 0 18px;
     font-weight: 400;
-    font-size: 1.1em; /* POVEĆANO SA 1em na 1.1em (10%) */
-    transition: color 0.3s;
-    padding: 8px 12px; /* povećano sa 5px 8px */
+    font-size: 1.1em;
+    transition: all 0.3s;
+    padding: 8px 12px;
     border-radius: 4px;
     display: inline-block;
 }
@@ -138,7 +132,6 @@ nav a:hover, nav a.active {
     background-color: rgba(255, 255, 255, 0.08);
     transform: translateY(-1px);
 }
-
 
 /* --- 5. DUGMAD (CTA) --- */
 .cta-container {
@@ -162,7 +155,7 @@ nav a:hover, nav a.active {
     padding: 14px 25px;
     font-size: 1.1em;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 8px rgba(128, 43, 36, 0.25);
+    box-shadow: 0 4px 8px rgba(92, 31, 26, 0.25);
     line-height: normal;
     min-height: 50px;
     text-align: center;
@@ -170,14 +163,14 @@ nav a:hover, nav a.active {
 .cta-button:hover {
     background-color: var(--color-button-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(101, 34, 28, 0.3);
+    box-shadow: 0 6px 12px rgba(72, 25, 20, 0.3);
 }
 .cta-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(101, 34, 28, 0.2);
+    box-shadow: 0 2px 4px rgba(72, 25, 20, 0.2);
 }
 .cta-button:focus {
-    outline: 2px solid var(--color-accent-gold);
+    outline: 3px solid var(--color-accent-gold);
     outline-offset: 2px;
 }
 
@@ -297,7 +290,6 @@ hr {
     margin-bottom: 10px;
 }
 
-
 /* --- 8. STILOVI ZA KONTAKT STRANICU --- */
 .contact-container {
     display: grid;
@@ -365,7 +357,6 @@ hr {
     padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    /* Uklonjena referenca na font-primary iz input polja */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 1em;
     transition: all 0.3s;
@@ -383,8 +374,7 @@ hr {
     min-height: 100px;
 }
 
-
-/* --- 9. STILOVI ZA DOKUMENTE I BLOG (Politika, Uslovi, Blog) --- */
+/* --- 9. STILOVI ZA DOKUMENTE I BLOG --- */
 .policy-content h2 {
     color: var(--color-button);
     margin-top: 40px;
@@ -419,12 +409,17 @@ hr {
 }
 .blog-content h3 {
     font-size: 1.2em;
+    color: var(--color-button);
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
 }
 .blog-intro {
-    font-size: 1em;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 2em;
+    font-weight: 500;
     padding-left: 12px;
 }
-
 
 /* --- 10. ANIMACIJE --- */
 @keyframes fadeIn {
@@ -439,7 +434,6 @@ hr {
 .fade-in-section:nth-child(2) { animation-delay: 0.4s; }
 .fade-in-section:nth-child(3) { animation-delay: 0.6s; }
 
-
 /* --- 11. FOOTER --- */
 footer { 
     background: var(--color-dark-bg); 
@@ -447,6 +441,7 @@ footer {
     padding: 30px 20px; 
     text-align: center; 
     margin-top: 60px;
+    font-size: 1.1em;
 }
 .footer-links {
     margin: 20px 0;
@@ -459,7 +454,8 @@ footer {
     color: var(--color-accent-gold);
     text-decoration: none;
     transition: color 0.3s;
-    padding: 5px; 
+    padding: 8px 12px;
+    font-size: 1.1em;
 }
 .footer-links a:hover {
     color: #fff;
@@ -471,16 +467,18 @@ footer {
 /* ============================================== */
 
 @media (max-width: 768px) {
-    nav a { margin: 0 10px; }
+    nav a { 
+        margin: 0 12px;
+        font-size: 1.05em;
+        padding: 6px 10px;
+    }
     .policy-content h2 { font-size: 1.3em; }
     
-    /* Kontakt */
     .contact-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
 
-    /* O Nama */
     .mission-points {
         flex-direction: column;
         gap: 20px;
@@ -489,7 +487,6 @@ footer {
         font-size: 2.2em;
     }
     
-    /* Index (Početna) */
     .features-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -500,19 +497,27 @@ footer {
     .hero-section h1 {
         font-size: 2em;
     }
+    
+    footer,
+    .footer-links a {
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 480px) {
     header h1 { font-size: 26px; }
-    nav a { display: block; margin: 5px 0; }
+    nav a { 
+        display: block; 
+        margin: 8px 0;
+        font-size: 1em;
+        padding: 5px 8px;
+    }
     section { padding: 20px; }
     
-    /* O Nama */
     .stats-container strong {
         font-size: 1.7em;
     }
     
-    /* Index (Početna) */
     .hero-section h1 { 
         font-size: 1.8em; 
     }
@@ -526,47 +531,11 @@ footer {
         width: 40px;
         height: 40px;
     }
-/* BLOG SPECIFIC - MINIMAL */
-.blog-content h3 {
-    color: var(--color-button);
-    margin-top: 1.8em;
-    margin-bottom: 0.8em;
 }
 
-.blog-intro {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 2em;
-    font-weight: 500;
-}
-    /* ============================================ */
-/* SVE PROMENE - NAV, FOOTER, BOJE, FOKUS */
 /* ============================================ */
-
-/* 1. TAMNIJE BORDO BOJE */
-:root {
-    --color-button: #5c1f1a;
-    --color-button-hover: #481914;
-}
-
-/* 2. NAVIGACIJA 10% VECA */
-nav a {
-    font-size: 1.1em;
-    margin: 0 18px;
-    padding: 8px 12px;
-}
-
-/* 3. FOOTER 10% VECI */
-footer,
-.footer-links a {
-    font-size: 1.1em;
-}
-
-.footer-links a {
-    padding: 8px 12px;
-}
-
-/* 4. ZLATNI FOKUS */
+/* ZLATNI FOKUS EFEKTI */
+/* ============================================ */
 nav a:focus {
     outline: 3px solid var(--color-accent-gold);
     outline-offset: 3px;
@@ -584,31 +553,6 @@ nav a.active {
     100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    nav a {
-        font-size: 1.05em;
-        margin: 0 12px;
-        padding: 6px 10px;
-    }
-    
-    footer,
-    .footer-links a {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 480px) {
-    nav a {
-        font-size: 1em;
-        margin: 0 8px;
-        padding: 5px 8px;
-    }
-}
-
-/* ============================================== */
-/* KRAJ GLOBAL.CSS */
-/* ============================================== */
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
 /* ============================================== */
