@@ -1,8 +1,9 @@
 /* ===================================
-   STABILNA OSNOVA: GLOBAL.CSS
+   ARESNYX - GLOBAL.CSS (STABILNA VERZIJA ZA SVE STRANICE)
    =================================== */
 :root {
     --primary: #D4AF37; 
+    --primary-dark: #A8863A;
     --secondary: #121212; 
     --background: #f4f4f4;
     --border-color: #ddd;
@@ -27,7 +28,33 @@ body {
     padding: 0 15px;
 }
 
-/* HEADER - STABILNA VERZIJA */
+/* Tipografija i Opšti Stilovi */
+h1, h2, h3, h4 {
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+.lead {
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--primary);
+}
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+strong {
+    font-weight: bold;
+}
+
+/* HEADER - GLOBALNI STILOVI (sa poslednjim optimizacijama) */
 .main-header {
     background: var(--secondary);
     color: white;
@@ -46,6 +73,15 @@ body {
     color: var(--primary);
 }
 
+.header-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-toggle-btn { display: none; } 
+.cart-icon { display: none; } /* Sakrivamo ikone na globalnim stranicama ako nisu potrebne */
+
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -57,17 +93,19 @@ body {
     text-decoration: none;
     font-weight: bold;
     padding: 5px;
+    transition: color 0.2s;
 }
 
-.nav-toggle-btn { display: none; } /* Sakrivamo hamburger na desktopu */
-.header-controls { display: flex; align-items: center; gap: 15px; }
+.main-nav a:hover {
+    color: var(--primary);
+}
 
 
-/* FOOTER - STABILNA VERZIJA */
+/* FOOTER - GLOBALNI STILOVI (sa poslednjim optimizacijama) */
 .main-footer {
     background-color: var(--secondary); 
     color: #f4f4f4;
-    padding: 40px 0; 
+    padding: 50px 0; 
     margin-top: 50px;
     border-top: 3px solid var(--primary);
 }
@@ -75,7 +113,7 @@ body {
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
@@ -84,6 +122,8 @@ body {
 .footer-column h3, .footer-column h4 {
     color: var(--primary);
     margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
 }
 
 .footer-column ul {
@@ -94,27 +134,84 @@ body {
 .footer-column ul li a {
     color: #ccc;
     text-decoration: none;
-    line-height: 1.8;
+    font-size: 1.05rem; 
+    line-height: 2.2; 
+    padding: 3px 0;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
 }
 
 .social-icons {
     display: flex;
-    gap: 15px; 
+    gap: 18px; 
+    margin-bottom: 20px;
 }
 
 .social-icons a {
     color: #fff;
-    font-size: 1.5rem; 
+    font-size: 1.8rem; 
+    transition: color 0.2s, transform 0.2s;
 }
 
-/* RESPONSIVE - SAMO OSNOVNO */
-@media (max-width: 768px) {
-    .main-nav { display: none; } /* Privremeno sakrivamo celu navigaciju za test */
-    .nav-toggle-btn { display: block; }
+.social-icons a:hover {
+    color: var(--primary);
+    transform: scale(1.15); 
+}
 
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-toggle-btn { display: block; }
+    
+    .main-nav {
+        /* Morate dodati JavaScript logiku da bi ovo radilo (hamburger meni) */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--secondary);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 40; 
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        padding: 60px 30px;
+        align-items: flex-start;
+    }
+
+    .main-nav li {
+        margin-bottom: 20px;
+    }
+
+    .main-nav a {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
     .footer-grid {
         grid-template-columns: 1fr; 
         text-align: center;
     }
+    .footer-social { order: -1; }
+    .social-icons { justify-content: center; }
 }
+
 
