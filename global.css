@@ -1,4 +1,8 @@
 /* ===================================
+   ARESNYX - GLOBAL.CSS (FINALNA, SPOJENA VERZIJA)
+   =================================== */
+
+/* ===================================
    1. OSNOVNI RESET I VARIJABLE
    =================================== */
 :root {
@@ -36,14 +40,37 @@ body.no-scroll {
     padding: 0 15px;
 }
 
+/* 🚨 NOVO: OPŠTA TIPOGRAFIJA ZA SVE STRANICE (nedostajalo je) 🚨 */
+h1, h2, h3, h4 {
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+p {
+    margin-bottom: 15px;
+}
+a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--primary);
+}
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+/* Kraj novih opštih stilova */
+
+
 /* ===================================
-   2. HEADER & NAVIGACIJA
+   2. HEADER & NAVIGACIJA (AŽURIRANO)
    =================================== */
 
 .main-header {
     background: var(--secondary);
     color: white;
-    padding: 15px 30px;
+    padding: 20px 30px; /* POVEĆAN HEADER (ranije 15px) */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -131,7 +158,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   3. MREŽA PROIZVODA I HERO SELECTION
+   3. MREŽA PROIZVODA I HERO SELECTION (SHOP SPECIFIČNO)
    =================================== */
 
 .shop-content {
@@ -207,7 +234,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   4. FILTER PANEL
+   4. FILTER PANEL (SHOP SPECIFIČNO)
    =================================== */
    
 .filter-sort-panel {
@@ -277,7 +304,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   5. SIDEBAR KORPA
+   5. SIDEBAR KORPA (SHOP SPECIFIČNO)
    =================================== */
 
 .sidebar {
@@ -444,7 +471,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   6. MODAL STILOVI
+   6. MODAL STILOVI (SHOP SPECIFIČNO)
    =================================== */
 .modal {
     display: none; 
@@ -597,7 +624,7 @@ body.no-scroll {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
-    display: none; /* Inicijalno skriveno */
+    display: none; 
 }
 
 .size-table table {
@@ -613,7 +640,7 @@ body.no-scroll {
 
 
 /* ===================================
-   7. CHECKOUT STILOVI
+   7. CHECKOUT STILOVI (SHOP SPECIFIČNO)
    =================================== */
 
 .checkout-content {
@@ -744,7 +771,7 @@ body.no-scroll {
 
 
 /* ===================================
-   8. TOAST
+   8. TOAST (GLOBALNO)
    =================================== */
 
 .toast {
@@ -771,13 +798,13 @@ body.no-scroll {
 }
 
 /* ===================================
-   9. FOOTER STILOVI
+   9. FOOTER STILOVI (AŽURIRANO)
    =================================== */
 
 .main-footer {
     background-color: var(--secondary); 
     color: #f4f4f4;
-    padding: 40px 0;
+    padding: 50px 0; /* POVEĆAN BOTTOM PADDING (ranije 40px) */
     margin-top: 50px;
     border-top: 3px solid var(--primary);
 }
@@ -806,16 +833,20 @@ body.no-scroll {
     padding: 0;
 }
 
+/* POVEĆAN FONT I KLIKABILNOST LINKOVA (ranije 0.95rem/line-height 2) */
 .footer-column ul li a {
     color: #ccc;
     text-decoration: none;
-    font-size: 0.95rem;
-    line-height: 2;
-    transition: color 0.2s;
+    font-size: 1.05rem; /* Povećano */
+    line-height: 2.2; /* Povećano za bolju klikabilnost */
+    padding: 3px 0; /* Dodato za klikabilnost */
+    display: inline-block; /* Omogućava padding i transform */
+    transition: color 0.2s, transform 0.2s;
 }
 
 .footer-column ul li a:hover {
     color: var(--primary);
+    transform: translateX(5px);
 }
 
 .footer-brand p:last-child {
@@ -824,21 +855,22 @@ body.no-scroll {
     color: #999;
 }
 
-/* Društvene mreže */
+/* Društvene mreže (AŽURIRANO) */
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 18px; /* Mali razmak */
     margin-bottom: 20px;
 }
 
 .social-icons a {
     color: #fff;
-    font-size: 1.5rem;
-    transition: color 0.2s;
+    font-size: 1.8rem; /* Povećane ikone (ranije 1.5rem) */
+    transition: color 0.2s, transform 0.2s;
 }
 
 .social-icons a:hover {
     color: var(--primary);
+    transform: scale(1.15); 
 }
 
 .footer-contact-info {
@@ -852,7 +884,7 @@ body.no-scroll {
 
 
 /* ===================================
-   10. RESPONSIVE I MOBILNA OPTIMIZACIJA
+   10. RESPONSIVE I MOBILNA OPTIMIZACIJA (AŽURIRANO)
    =================================== */
 
 @media (max-width: 992px) {
@@ -872,6 +904,10 @@ body.no-scroll {
     /* Header/Navigacija Mobilni */
     .nav-toggle-btn {
         display: block; 
+    }
+    
+    .main-header {
+        padding: 15px 15px; /* Manji padding za mobilni header */
     }
     
     .main-nav {
@@ -906,21 +942,19 @@ body.no-scroll {
         color: white;
     }
 
-    /* Hero efekat (prvi proizvod) */
+    /* 🚨 AŽURIRANO: SMANJENJE HERO SEKCIJE (ranije je bilo preveliko 100vh) 🚨 */
     .product-grid {
-        grid-template-columns: 1fr; /* Samo jedan proizvod po redu */
+        grid-template-columns: 1fr; 
     }
     
-    /* Prvi proizvod zauzima većinu vertikalnog prostora (Hero) */
     .product-grid > .product-card:first-child {
-        height: calc(100vh - 60px); /* 100vh minus visina header-a (oko 60px) */
-        max-height: 800px;
+        height: calc(85vh - 60px); /* Smanjujemo visinu na ~85% ekrana */
+        max-height: 650px; /* Dodajemo gornju granicu */
         margin-top: 0;
     }
     
-    /* Slika unutar prve kartice */
     .product-grid > .product-card:first-child .product-image {
-        height: calc(100vh - 180px); 
+        height: calc(85vh - 160px); /* Prilagođavamo visinu slike */
     }
 
     /* Sidebar/Modal */
@@ -935,11 +969,6 @@ body.no-scroll {
     .modal-grid {
         grid-template-columns: 1fr;
     }
-
-    /* Manji padding u header-u */
-    .main-header {
-        padding: 10px 15px;
-    }
 }
 
 @media (max-width: 576px) {
@@ -950,7 +979,7 @@ body.no-scroll {
     }
     
     .footer-social {
-        order: -1; /* Socijalne mreže na vrh */
+        order: -1; 
     }
 
     .social-icons {
@@ -966,9 +995,8 @@ body.no-scroll {
     }
     
     .form-grid {
-        grid-template-columns: 1fr; /* Checkout forma - jedna kolona */
+        grid-template-columns: 1fr; 
     }
 }
-
 
 
