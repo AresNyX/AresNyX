@@ -22,10 +22,12 @@ Class AresNyXShop {
         this.renderCart();
         this.updateCartPromoMessage(0); 
         this.attachEventListeners();
+        
+        // ⭐ POKREĆEMO INICIJALNO FILTRIRANJE/RENDER NA KRAJU INICIJALIZACIJE ⭐
+        this.applyFiltersAndSort(); 
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
-            // Proveriti da li je emailjs.js skripta učitana
             if (typeof emailjs !== 'undefined') {
                 emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
             } else {
@@ -212,7 +214,6 @@ Class AresNyXShop {
      * Postavlja sve event listenere koji nisu inline u HTML-u.
      */
     attachEventListeners() {
-        // ... (Kod je isti, radi filtriranje) ...
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
@@ -224,7 +225,8 @@ Class AresNyXShop {
                     btn.classList.add('active');
                     
                     this.currentSizeFilter = size;
-                    this.applyFiltersAndSort(); // Dodato za real-time filtriranje sa desktop bara
+                    // ⭐ POZIVAMO FILTRIRANJE NAKON KLIKA NA VELIČINU ⭐
+                    this.applyFiltersAndSort(); 
                 }
             });
         }
@@ -252,6 +254,7 @@ Class AresNyXShop {
 
     /**
      * Ažurira stanje filtera/sortiranja.
+     * NAPOMENA: Ova funkcija se koristi za ažuriranje stanja, ali ne pokreće odmah render.
      */
     filterProducts(value, filterType) {
         if (filterType === 'material') {
@@ -270,22 +273,24 @@ Class AresNyXShop {
 
     /**
      * Ažurira stanje sortiranja.
+     * NAPOMENA: Ova funkcija se koristi za ažuriranje stanja, ali ne pokreće odmah render.
      */
     sortProducts(sortType) {
         this.currentSort = sortType;
     }
 
     /**
-     * Pokreće kompletnu logiku filtera nakon klika na dugme "Primeni filtere".
+     * Pokreće kompletnu logiku filtera nakon klika na dugme "Primeni filtere" u mobilnom panelu.
      */
     applyAllFilters() {
         this.toggleFilterPanel();
 
-        const materialValue = document.getElementById('materialFilter').value;
-        const sortValue = document.getElementById('priceSort').value;
+        // Čitanje vrednosti iz padajućih lista unutar panela
+        const materialFilterElement = document.getElementById('materialFilter');
+        const priceSortElement = document.getElementById('priceSort');
         
-        this.currentMaterialFilter = materialValue;
-        this.currentSort = sortValue;
+        if (materialFilterElement) this.currentMaterialFilter = materialFilterElement.value;
+        if (priceSortElement) this.currentSort = priceSortElement.value;
         
         this.applyFiltersAndSort(); 
     }
@@ -323,7 +328,6 @@ Class AresNyXShop {
 
     /**
      * Renderuje listu proizvoda na stranicu.
-     * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
@@ -405,7 +409,6 @@ Class AresNyXShop {
                     firstAvailableSize = size;
                 }
 
-                // NAPOMENA: Uklonjen nepostojeći 'title' i ispravljen tekst kod disabled dugmeta
                 return `
                     <button 
                         class="size-option ${isDisabled ? 'disabled' : ''}"
@@ -427,11 +430,10 @@ Class AresNyXShop {
         } 
         
         const btn = document.querySelector('.add-to-cart-btn');
-        // KORIŠĆENJE FONT AWESOME IKONA (Potrebno je da ih imate u <head>)
         if (!firstAvailableSize) {
              btn.disabled = true;
              btn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-             btn.style.backgroundColor = 'var(--danger)'; // Direktna manipulacija CSS varijablom
+             btn.style.backgroundColor = 'var(--danger)'; 
         } else {
             btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
             btn.style.backgroundColor = 'var(--primary-dark)';
@@ -440,7 +442,6 @@ Class AresNyXShop {
 
         document.getElementById('sizeTable').style.display = 'none';
         
-        // ⭐ KRITIČNA PROMENA: Koristimo CSS klasu `modal-overlay` koja je responsivna ⭐
         document.getElementById('productModal').style.display = 'flex'; 
         document.body.classList.add('no-scroll');
     }
@@ -473,13 +474,11 @@ Class AresNyXShop {
         document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
         event.currentTarget.classList.add('selected');
         
-        // Ažuriranje količine pri promeni veličine
         this.currentQuantity = 1;
         document.getElementById('modalQty').textContent = this.currentQuantity;
     }
 
     changeQuantity(change) {
-        // Dodatna provera za maksimalnu količinu
         const maxStock = this.currentProduct?.sizes[this.currentSize] || 0;
         
         let newQty = this.currentQuantity + change;
@@ -516,7 +515,7 @@ Class AresNyXShop {
         btn.disabled = true;
 
         const originalText = btn.innerHTML;
-        const originalBg = btn.style.backgroundColor; // Čuvamo originalnu boju
+        const originalBg = btn.style.backgroundColor; 
         
         btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
         btn.style.backgroundColor = 'var(--success)';
@@ -531,7 +530,7 @@ Class AresNyXShop {
         setTimeout(() => {
             this.closeModal();
             btn.innerHTML = originalText;
-            btn.style.backgroundColor = originalBg; // Vraćamo originalnu boju
+            btn.style.backgroundColor = originalBg; 
             btn.disabled = false;
         }, 500); 
     }
@@ -541,10 +540,11 @@ Class AresNyXShop {
         const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
 
         if (existingItem) {
-            // Dodatna provera: Ažurirana količina ne sme preći maksimum na zalihama
             const maxStock = product.sizes[size] || 0;
-            existingItem.quantity = Math.min(maxStock, existingItem.quantity + quantity);
-            if (existingItem.quantity < quantity + existingItem.quantity) {
+            const newTotalQuantity = existingItem.quantity + quantity;
+            existingItem.quantity = Math.min(maxStock, newTotalQuantity);
+            
+            if (newTotalQuantity > maxStock) {
                  this.showToast(`Maksimalna količina za veličinu ${size} je ${maxStock}.`);
             }
         } else {
@@ -568,12 +568,10 @@ Class AresNyXShop {
         const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
         const cartCount = document.getElementById('cartCount');
         
-        // Prikazuje brojač samo ako ima stavki
         cartCount.style.display = totalItems > 0 ? 'block' : 'none'; 
         
         cartCount.textContent = totalItems;
         
-        // Animacija
         cartCount.classList.remove('quick-pulse'); 
         void cartCount.offsetWidth;
         cartCount.classList.add('quick-pulse');
@@ -585,7 +583,6 @@ Class AresNyXShop {
     toggleCartVisibility() {
         const cartFooter = document.getElementById('cartFooter');
         const emptyCart = document.getElementById('emptyCart');
-        const cartItems = document.getElementById('cartItems'); // Da proverimo da li je prazna
 
         if (this.cart.length === 0) {
             if (emptyCart) emptyCart.style.display = 'block';
@@ -741,7 +738,6 @@ Class AresNyXShop {
             const totalElement = document.getElementById('cartTotal');
             totalElement.textContent = total + ' RSD';
 
-            // Animacija ukupnog iznosa
             totalElement.classList.remove('quick-pulse'); 
             void totalElement.offsetWidth; 
             totalElement.classList.add('quick-pulse');
@@ -756,7 +752,6 @@ Class AresNyXShop {
             return;
         }
         
-        // Koristimo confirm za jednostavnu potvrdu, ali JS kod je dobar
         if (confirm("Da li ste sigurni da želite da ispraznite korpu? Ova akcija se ne može poništiti.")) {
             this.cart = [];
             this.saveCart();
@@ -772,7 +767,7 @@ Class AresNyXShop {
     
     showToast(message) {
         const toast = document.getElementById('toast');
-        if (!toast) return; // Sigurnosna provera
+        if (!toast) return; 
         
         toast.textContent = message;
         toast.classList.remove('show');
@@ -783,7 +778,6 @@ Class AresNyXShop {
     }
 
     closeModal() {
-        // ⭐ KRITIČNA PROMENA: Vraćamo display na 'none' za overlay ⭐
         document.getElementById('productModal').style.display = 'none';
         document.body.classList.remove('no-scroll');
     }
@@ -795,7 +789,7 @@ Class AresNyXShop {
 
     toggleSizeTable() { 
         const table = document.getElementById('sizeTable');
-        table.style.display = table.style.display === 'none' ? 'table' : 'none'; // Promenjeno na 'table'
+        table.style.display = table.style.display === 'none' ? 'table' : 'none'; 
     }
 
     // =========================================================
@@ -818,7 +812,6 @@ Class AresNyXShop {
         }
         this.toggleCart(); 
         this.goToStep(1);
-        // ⭐ KRITIČNA PROMENA: Vraćamo display na 'flex' za overlay ⭐
         document.getElementById('checkoutModal').style.display = 'flex'; 
         document.body.classList.add('no-scroll');
     }
@@ -844,6 +837,180 @@ Class AresNyXShop {
             email: document.getElementById('email').value,
             telefon: document.getElementById('telefon').value,
             ulica: document.getElementById('ulica').value,
-            postanskiBro
+            postanskiBroj: document.getElementById('postanskiBroj').value,
+            grad: document.getElementById('grad').value,
+            opstina: document.getElementById('opstina').value,
+            placanje: document.getElementById('placanje').value,
+            napomena: document.getElementById('napomena').value
+        };
+
+        document.getElementById('previewIme').innerHTML = `<strong>Ime i Prezime:</strong> ${this.checkoutData.ime} ${this.checkoutData.prezime}`;
+        document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${this.checkoutData.email}`;
+        document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${this.checkoutData.telefon}`;
+        document.getElementById('previewAdresa').innerHTML = `<strong>Adresa:</strong> ${this.checkoutData.ulica}`;
+        document.getElementById('previewPostaGrad').innerHTML = `<strong>Mesto:</strong> ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`;
+        document.getElementById('previewPlacanje').innerHTML = `<strong>Plaćanje:</strong> ${this.getPaymentMethodText(this.checkoutData.placanje)}`;
+        document.getElementById('previewNapomena').innerHTML = `<strong>Napomena:</strong> ${this.checkoutData.napomena || 'Nema napomene.'}`;
+
+        this.renderPreviewOrderItems();
+        this.updateCartTotals(true);
+
+        this.goToStep(2); 
+    }
+
+    renderPreviewOrderItems() {
+        const container = document.getElementById('previewOrderItems');
+        container.innerHTML = this.cart.map(item => `
+            <div class="preview-item">
+                <span style="font-weight: 700;">${item.quantity}x ${item.name} (${item.size})</span>
+                <span style="float: right;">${item.price * item.quantity} RSD</span>
+            </div>
+        `).join('');
+    }
+
+    formatOrderItemsForEmail() {
+        if (this.cart.length === 0) return '<p>Nema stavki u porudžbini.</p>';
+
+        let html = '<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9;">';
+        this.cart.forEach(item => {
+            const total = item.quantity * item.price;
+            html += `
+                <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
+                    <p style="font-size: 16px; font-weight: bold; color: #121212; margin: 0 0 5px 0;">${item.name}</p>
+                    <p style="font-size: 14px; margin: 0;">Veličina: <strong>${item.size}</strong></p>
+                    <p style="font-size: 14px; margin: 0;">Količina: ${item.quantity} kom.</p>
+                    <p style="font-size: 14px; margin: 0;">Jedinična cena: ${item.price} RSD</p>
+                    <p style="font-size: 14px; font-weight: bold; margin: 5px 0 0 0; color: #D4AF37;">Ukupno za stavku: ${total} RSD</p>
+                </div>
+            `;
+        });
+        html += '</div>';
+        return html;
+    }
+    
+    // =========================================================
+    // === completeOrder() FUNKCIJA (FINALNA) ===
+    // =========================================================
+    completeOrder() {
+        if (!this.checkoutData.email) {
+            this.showToast("Greška: Podaci kupca nisu popunjeni.");
+            return;
+        }
+        
+        if (typeof emailjs === 'undefined' || !emailjs.isInitialized()) {
+             this.showToast("Greška: Sistem za slanje email-ova nije dostupan. Proverite EmailJS inicijalizaciju.");
+             return;
+        }
+        
+        const ADMIN_MAIL = 'ares.nyx.info@gmail.com'; 
+        const SENDER_NAME = 'AresNyX Porudžbina';
+        const BRAND_NAME = 'AresNyX'; 
+        const FREE_SHIPPING_LIMIT = 4000; 
+        const DISCOUNT_LIMIT = 8000;
+        const baseShipping = 400; 
+
+        document.getElementById('confirmationEmail').textContent = this.checkoutData.email;
+        
+        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_LIMIT ? 0 : baseShipping);
+        const discount = subtotal >= DISCOUNT_LIMIT ? Math.round(subtotal * 0.1) : 0;
+        const total = subtotal + shipping - discount;
+
+        const submitBtn = document.querySelector('#checkoutStep2 .submit-order-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Slanje...';
+        submitBtn.disabled = true;
+
+        // 🛑 VALIDACIJA ZALIHA 🛑
+        const stockCheck = this.validateStock();
+
+        if (stockCheck.length > 0) {
+            const errorDetails = stockCheck.map(item => 
+                `(${item.size}) ${item.name} - ${item.reason}`
+            ).join('\n');
+            
+            console.error(`⚠️ Zalihe nisu dovoljne! \n\n${errorDetails}`);
+            
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            this.showToast("Greška: Nema dovoljno zaliha. Molimo izmenite korpu.");
+            
+            this.goToStep(1); 
+            
+            return; 
+        }
+        
+        const templateParams = {
+            sender_name: SENDER_NAME, 
+            admin_email: ADMIN_MAIL,   
+            
+            ime_kupca: this.checkoutData.ime,
+            prezime_kupca: this.checkoutData.prezime,
+            email_kupca: this.checkoutData.email,
+            telefon_kupca: this.checkoutData.telefon,
+            
+            adresa_dostave: `${this.checkoutData.ulica}, ${this.checkoutData.postanskiBroj} ${this.checkoutData.grad}${this.checkoutData.opstina ? ` (${this.checkoutData.opstina})` : ''}`,
+            
+            broj_porudzbine: 'ARX-' + Date.now(), 
+            nacin_placanja: this.getPaymentMethodText(this.checkoutData.placanje),
+            napomena: this.checkoutData.napomena || 'Nema napomene.',
+            
+            medjuzbir: `${subtotal} RSD`,
+            postarina: `${shipping} RSD`,
+            popust: `${discount} RSD`,
+            ukupno: `${total} RSD`,
+            
+            lista_proizvoda: this.formatOrderItemsForEmail(),
+            
+            poslati_kupcu: this.checkoutData.email,
+            
+            brend_naziv: BRAND_NAME 
+        };
+        
+        const SERVICE_ID = 'service_rxj533m';
+        const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
+        const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
+
+        const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
+        const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
+
+
+        Promise.all([sendAdminPromise, sendCustomerPromise])
+            .then((responses) => {
+                console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.', responses);
+                
+                this.cart = [];
+                this.saveCart();
+                this.updateCartCount();
+                this.renderCart(); 
+                
+                this.goToStep(3);
+                
+                this.showToast("Porudžbina uspešno poslata! Proverite Vaš email.");
+            })
+            .catch((error) => {
+                console.error('Greška pri slanju jedne ili obe porudžbine:', error);
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
+            
+            });
+    }
+} 
+// =========================================================
+// === POKRETANJE NAKON UČITAVANJA DOM-a ===
+// =========================================================
+let shop;
+
+document.addEventListener('DOMContentLoaded', () => {
+    shop = new AresNyXShop(); 
+    
+    // ⭐ UKLONJENO ODLOŽENO RENDEROVANJE, jer ga init() sada poziva na kraju. ⭐
+    // shop.renderProducts() se sada poziva unutar init -> applyFiltersAndSort()
+});
+
 
 
