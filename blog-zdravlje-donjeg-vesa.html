@@ -6,6 +6,8 @@
     <title>Zdravlje Donjeg Veša - AresNyX Blog</title>
     <meta name="description" content="Kako labav kroj i prirodni materijali donjeg veša štite od infekcija i poboljšavaju udobnost.">
     
+    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/blog-zdravlje-donjeg-vesa.html">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,12 +16,20 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
-    <link rel="stylesheet" href="global.css">
+    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="global.css"></noscript>
 </head>
 <body>
     <header>
-        <a href="index.html" aria-label="Početna">
-            <img src="slike/logo.webp" alt="AresNyX Logo" width="70" height="70">
+        <a href="index.html" aria-label="Početna strana AresNyX">
+            <img 
+                src="slike/logo.webp" 
+                alt="AresNyX Logo" 
+                class="header-logo" 
+                width="70" 
+                height="70"
+                loading="eager"
+                decoding="async">
         </a>
         <h1>
             <span class="brand-emphasis">ARESNYX</span><br>
@@ -27,7 +37,7 @@
         </h1>
     </header>
     
-    <nav aria-label="Glavna navigacija">
+    <nav id="main-nav" aria-label="Glavna navigacija">
         <a href="index.html">Početna</a>
         <a href="shop.html">Shop</a>
         <a href="o-nama.html">O Nama</a>
@@ -50,6 +60,10 @@
                     <li><strong>Smanjenje rizika od infekcija:</strong> Održavanje suvog i provetrenog okruženja smanjuje rizik od razvoja gljivičnih i bakterijskih infekcija.</li>
                     <li><strong>Udobnost i sloboda pokreta:</strong> "Fit loss" kroj poboljšava opštu higijenu i smanjuje neprijatan osećaj trenja.</li>
                 </ul>
+                
+                <p class="info-box">
+                    Prirodni materijali poput lana i bambusa poseduju prirodna antibakterijska svojstva.
+                </p>
 
                 <h3>Prednosti za Muškarce</h3>
                 <ul>
@@ -82,5 +96,28 @@
         </div>
         &copy; 2025 AresNyX. Zdravlje i Udobnost.
     </footer>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    .fade-in-section {
+                        animation: fadeIn 0.8s ease-out forwards;
+                        opacity: 0;
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                document.querySelectorAll('.fade-in-section').forEach((section, index) => {
+                    section.style.animationDelay = (index * 0.2 + 0.2) + 's';
+                });
+            }, 500);
+        });
+    </script>
 </body>
 </html>
+
