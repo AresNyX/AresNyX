@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
+    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,106 +10,128 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
+    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Funkcija za praćenje klikova
-      const trackClick = (element, eventName, details) => {
-        element.addEventListener('click', () => {
-          gtag('event', eventName, details);
+      // Track CTA button clicks
+      const trackCTA = (button, label) => {
+        button.addEventListener('click', () => {
+          gtag('event', 'select_content', {
+            content_type: 'button',
+            content_id: label,
+            method: 'click'
+          });
+          gtag('event', 'cta_click', {
+            button_text: button.textContent.trim(),
+            page_location: window.location.pathname
+          });
         });
       };
 
-      // Praćenje navigacije (Koristi #main-nav - ispravljen ID)
+      // Track all CTA buttons
+      document.querySelectorAll('.cta-button, .hero-cta-button').forEach(btn => {
+        trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
+      });
+
+      // Track navigation clicks
       document.querySelectorAll('#main-nav a').forEach(link => {
-        trackClick(link, 'navigation_click', {
-          menu_item: link.textContent.trim(),
-          menu_url: link.getAttribute('href')
+        link.addEventListener('click', () => {
+          gtag('event', 'navigation_click', {
+            menu_item: link.textContent.trim(),
+            menu_url: link.getAttribute('href')
+          });
         });
       });
-      // Ostale funkcije za scroll i time on page se izvršavaju nepromenjene.
+
+      // Track scroll depth
+      let scrollPercentages = [25, 50, 75, 90];
+      let trackedScrolls = [];
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = Math.floor((scrollTop / scrollHeight) * 100);
+        
+        scrollPercentages.forEach(percent => {
+          if (scrolled >= percent && !trackedScrolls.includes(percent)) {
+            gtag('event', `scroll_${percent}_percent`);
+            trackedScrolls.push(percent);
+          }
+        });
+      });
+
+      // Track time on page
+      let pageStartTime = Date.now();
+      window.addEventListener('beforeunload', () => {
+        const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+        if (timeSpent > 10) {
+          gtag('event', 'time_on_page', {
+            time_seconds: timeSpent,
+            page_path: window.location.pathname
+          });
+        }
+      });
     });
     </script>
     
+    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Uslovi Korišćenja i Prodaje</title>
     
-    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/uslovi-koriscenja.html">
+    <link rel="stylesheet" href="global.css">
+
     <meta name="description" 
           content="Opšti uslovi korišćenja AresNyX web sajta. Informacije o naručivanju, isporuci, povratu robe i reklamacijama za donji veš.">
     <meta name="keywords" 
           content="uslovi korišćenja, uslovi prodaje, donji veš povrat, AresNyX, reklamacija, isporuka, plaćanje pouzećem">
+    <meta name="author" content="AresNyX">
     <meta name="robots" content="index, follow">
-
-    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="global.css"></noscript>
     
-    <style>
-        /* Ovi stilovi sprečavaju Layout Shift za LCP elemente pre nego što se uчита global.css */
-        header { 
-            background: #121212; color: #fff; padding: 15px 20px; text-align: center; 
-        }
-        header h1 { 
-            font-size: 32px; color: #D4AF37; margin: 0; 
-        }
-        .subtitle { display: block; margin-top: 8px; }
-        #main-nav {
-            background-color: #121212; padding: 15px 0; border-top: 2px solid #D4AF37;
-            display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
-        }
-        #main-nav a {
-            color: #fff; font-weight: 500; font-size: 1.1em; padding: 12px 5px;
-            text-decoration: underline; text-underline-offset: 6px;
-            min-width: 160px; text-align: center; display: inline-block;
-        }
-        main { 
-            max-width: 900px; margin: 15px auto 60px auto; padding: 0 20px; min-height: 400px; 
-        }
-        .policy-content {
-            padding: 30px; background-color: #ffffff; border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .policy-content ul { list-style-type: square; padding-left: 25px; }
-        .info-box, .warning-box { margin: 30px 0; padding: 15px; border-radius: 4px; }
-    </style>
+    <meta property="og:title" content="AresNyX - Uslovi Korišćenja i Prodaje">
+    <meta property="og:description" 
+          content="Detaljni uslovi korišćenja i kupovine za AresNyX premium donji veš.">
+    <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
+    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/uslovi-koriscenja.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AresNyX">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AresNyX - Uslovi Korišćenja i Prodaje">
+    <meta name="twitter:description" 
+          content="Detaljni uslovi korišćenja i kupovine za AresNyX premium donji veš.">
 
 </head>
 <body>
 
-    <header id="main-header">
-        <a href="index.html" class="logo-link" aria-label="Početna stranica AresNyX">
-             <img 
-                 src="slike/logo-140x140.webp" 
-                 alt="AresNyX Logo" 
-                 class="header-logo"
-                 width="70" 
-                 height="70"
-                 loading="eager"
-                 decoding="async"
-                 fetchpriority="high">
-        </a>
-        
-        <h1>
-            <span class="brand-emphasis">ARESNYX</span>
-            <span class="subtitle">BOXER SHORTS</span>
-        </h1>
-    </header>
+<header>
+    <img 
+        src="slike/logo.webp" 
+        alt="AresNyX Logo" 
+        class="header-logo"
+        width="70" 
+        height="70"
+    >
+    <h1>
+        <span class="brand-emphasis">ARESNYX</span><br>
+        <span class="subtitle">BOXER SHORTS</span>
+    </h1>
+</header>
 
-    <nav id="main-nav" aria-label="Glavna navigacija">
-        <a href="index.html">Početna</a>
-        <a href="shop.html">Shop</a>
-        <a href="o-nama.html">O Nama</a>
-        <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
-        <a href="kontakt.html">Kontakt</a>
-    </nav>
+<nav aria-label="Glavna navigacija">
+    <a href="index.html">Početna</a>
+    <a href="shop.html">Shop</a>
+    <a href="o-nama.html">O Nama</a>
+    <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
 
-
-<main id="main-content">
-    <section class="policy-content fade-in-section">
+<main>
+    <section class="policy-content">
         <h2>Opšti Uslovi Korišćenja i Prodaje</h2>
         
-        <p class="lead" style="text-align: center;">
+        <p class="lead text-center">
             Ovaj dokument definiše uslove korišćenja web sajta, proces naručivanja, isporuke i prava Kupca u pogledu povrata i reklamacija.
         </p>
 
@@ -117,8 +140,8 @@
         <ul>
             <li><strong>Naziv firme:</strong> AresNyX d.o.o</li>
             <li><strong>Sedište:</strong> 34300 Aranđelovac, Industrijska zona bb</li>
-            <li><strong>Kontakt Email:</strong> <a href="mailto:ares.nyx.info@gmail.com">ares.nyx.info@gmail.com</a></li>
-            <li><strong>Kontakt Telefon:</strong> <a href="tel:+381648700220">+381 64 8700220</a></li>
+            <li><strong>Kontakt Email:</strong> ares.nyx.info@gmail.com</li>
+            <li><strong>Kontakt Telefon:</strong> +381 64 8700220</li>
         </ul>
         <p>Kupac je svako lice koje elektronskim putem naruči makar jedan proizvod sa sajta.</p>
         
@@ -133,19 +156,19 @@
         <h2>3. Politika Isporuke</h2>
         <ul>
             <li><strong>Rok Isporuke:</strong> Isporuka se vrši u roku od <strong>2 do 5 radnih dana</strong> od dana potvrde porudžbine.</li>
-            <li><strong>Troškovi Dostave:</strong> Standardna cena dostave je **400 RSD**. Dostava je besplatna za porudžbine koje uključuju **5 ili više komada** proizvoda.</li>
-            <li><strong>Preuzimanje:</strong> Kupac je dužan da prilikom preuzimanja pošiljke, **vizuelno pregleda spoljašnje pakovanje** u smislu eventualnih oštećenja nastalih u transportu.</li>
+            <li><strong>Troškovi Dostave:</strong> Standardna cena dostave je <strong>400 RSD</strong>. Dostava je besplatna za porudžbine koje uključuju <strong>5 ili više komada</strong> proizvoda.</li>
+            <li><strong>Preuzimanje:</strong> Kupac je dužan da prilikom preuzimanja pošiljke od kurirske službe, bez odlaganja, <strong>vizuelno pregleda spoljašnje pakovanje</strong> u smislu eventualnih oštećenja nastalih u transportu. Pregled sadržaja pošiljke i provera kompletnosti se vrši nakon preuzimanja.</li>
         </ul>
         
         <h2>4. Pravo na Odustanak (Povrat Robe)</h2>
         <p>U skladu sa Zakonom o zaštiti potrošača, Kupac ima pravo da odustane od ugovora u roku od <strong>14 dana</strong> od dana prijema robe.</p>
         
-        <div class="warning-box" style="border-left: 4px solid #856404; background: #fff3cd;">
+        <div class="warning-box">
             <h3>Izuzetak za Donji Veš (Bokserice):</h3>
             <p><strong>Pravo na odustanak od kupovine i povrat novca ne važi za proizvode koji nisu pogodni za vraćanje iz zdravstvenih i higijenskih razloga.</strong></p>
             <ul>
-                <li>Donji veš (bokserice) se **ne može vratiti nakon što je raspakovan i proban/nošen**.</li>
-                <li>Proizvod mora biti vraćen **neoštećen, nenošen, u originalnoj ambalaži i sa svim pripadajućim etiketama**.</li>
+                <li>Donji veš (bokserice) spada u robu koja se <strong>ne može vratiti nakon što je raspakovana i probana/nošena</strong>.</li>
+                <li>Proizvod mora biti vraćen <strong>neoštećen, nenošen, u originalnoj ambalaži i sa svim pripadajućim etiketama</strong>.</li>
                 <li>Troškove povrata (slanja) robe snosi Kupac.</li>
             </ul>
         </div>
@@ -153,13 +176,13 @@
         <h2>5. Politika Reklamacija (Nesaobraznost)</h2>
         <p>U slučaju da je isporučena roba neispravna, oštećena ili nesaobrazna ugovoru, Kupac ima pravo na reklamaciju u roku od dve godine od kupovine.</p>
         <ul>
-            <li>**Način podnošenja:** Reklamacija se podnosi pisanim putem na email: <a href="mailto:ares.nyx.info@gmail.com">ares.nyx.info@gmail.com</a>.</li>
-            <li>**Rok za odgovor:** Prodavac je dužan da Vam odgovori na reklamaciju u roku od **8 dana** od dana prijema.</li>
-            <li>**Rok za rešavanje:** Reklamacija će biti rešena u najkraćem mogućem roku, a najkasnije u roku od **15 dana** od dana prijema.</li>
+            <li><strong>Način podnošenja:</strong> Reklamacija se podnosi pisanim putem na email: ares.nyx.info@gmail.com.</li>
+            <li><strong>Rok za odgovor:</strong> Prodavac je dužan da Vam odgovori na reklamaciju u roku od <strong>8 dana</strong> od dana prijema.</li>
+            <li><strong>Rok za rešavanje:</strong> Reklamacija će biti rešena u najkraćem mogućem roku, a najkasnije u roku od <strong>15 dana</strong> od dana prijema.</li>
             <li>U slučaju opravdane reklamacije, Kupac ima pravo na zamenu, popravku ili raskid ugovora.</li>
         </ul>
 
-        <div class="info-box" style="border-left: 4px solid #D4AF37; background: #f8f8f8;">
+        <div class="info-box">
             <h3>Važne Napomene:</h3>
             <ul>
                 <li>Svi proizvodi su proizvedeni u Srbiji i podložni su standardnoj kontroli kvaliteta.</li>
@@ -174,19 +197,14 @@
     </section>
 </main>
 
-    <footer>
-        <div class="footer-links">
-            <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-            <a href="politika-privatnosti.html">Politika privatnosti</a>
-            <a href="kontakt.html">Kontakt</a>
-        </div>
-        &copy; 2025 AresNyX. Zdravlje i Udobnost.
-    </footer>
-    
-    <script defer>
-        // Primer jednostavnog JS-a za praćenje, ako je potrebno
-        // Funkcije kao što je scroll tracking su već gore definisane.
-    </script>
+<footer>
+    <div class="footer-links">
+        <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+        <a href="politika-privatnosti.html">Politika privatnosti</a>
+    </div>
+    &copy; 2025 AresNyX. Zdravlje i Udobnost.
+</footer>
+
 </body>
 </html>
 
