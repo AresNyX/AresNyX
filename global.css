@@ -4,15 +4,13 @@
 
 /* --- 1. PROMENLJIVE --- */
 :root {
-    /* Uklonjena referenca na 'Montserrat' */
     --color-dark-bg: #121212; 
     --color-accent-gold: #D4AF37; 
-    --color-button: #802B24; /* Tamna Bordo */
-    --color-button-hover: #65221C; /* Tamnija Bordo za hover */
+    --color-button: #5c1f1a; /* 10% TAMNIJA BORDO (umesto #802B24) */
+    --color-button-hover: #481914; /* 10% TAMNIJA (umesto #65221C) */
     --color-text-main: #333333; 
     --color-light-bg: #f7f7f7; 
 }
-
 /* --- 2. OPTIMIZED FONTAWESOME (ONLY ICONS YOU USE) --- */
 /* Font Awesome фонт (само solid иконке) */
 @font-face {
@@ -127,11 +125,11 @@ nav {
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 18px; /* povećano sa 15px */
     font-weight: 400;
-    font-size: 1em;
+    font-size: 1.1em; /* POVEĆANO SA 1em na 1.1em (10%) */
     transition: color 0.3s;
-    padding: 5px 8px; 
+    padding: 8px 12px; /* povećano sa 5px 8px */
     border-radius: 4px;
     display: inline-block;
 }
@@ -528,10 +526,68 @@ footer {
         width: 40px;
         height: 40px;
     }
+/* BLOG SPECIFIC - MINIMAL */
+.blog-content h3 {
+    color: var(--color-button);
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
+}
+
+.blog-intro {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 2em;
+    font-weight: 500;
 }
 /* ============================================== */
 /* KRAJ GLOBAL.CSS */
 /* ============================================== */
+/* ============================================ */
+/* ZLATNI FOKUS EFEKTI */
+/* ============================================ */
+
+/* Zlatni okvir kada se klikne/fokusira navigacija */
+nav a:focus {
+    outline: 3px solid var(--color-accent-gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+    background-color: rgba(212, 175, 55, 0.15);
+}
+
+/* Pulsirajući efekat za aktivnu stranicu */
+nav a.active {
+    position: relative;
+    animation: goldPulse 1.5s ease-in-out;
+}
+
+@keyframes goldPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* Responsive za manje ekrane */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 1.05em; /* manje povećanje */
+        margin: 0 12px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        font-size: 1em; /* original na malim ekranima */
+        margin: 0 8px;
+        padding: 5px 8px;
+    }
+    }
 
 
 
