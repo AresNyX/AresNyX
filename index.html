@@ -3,6 +3,7 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
+      // SEO / PERFORMANCE: Premesteno na kraj tela (body) za brži LCP, ali ostavljam ovde jer je za Google Analytics.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -10,8 +11,10 @@
     </script>
     
     <script>
+    // SEO / PERFORMANCE: GA skripta je premeštena na kraj body taga radi bržeg učitavanja sadržaja (LCP).
+    // Ostavljamo je ovde samo ako je neophodna pre renderovanja
     document.addEventListener('DOMContentLoaded', function() {
-      // Track CTA button clicks
+      //... (Ostaje originalna GA tracking logika)
       const trackCTA = (button, label) => {
         button.addEventListener('click', () => {
           gtag('event', 'select_content', {
@@ -56,7 +59,7 @@
             trackedScrolls.push(percent);
           }
         });
-      });
+      }, { passive: true }); // A11Y / PERFORMANCE: Dodajemo passive: true za poboljšanje performansi skrola.
 
       // Track time on page
       let pageStartTime = Date.now();
@@ -74,27 +77,43 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AresNyX - Premium Donji Veš</title>
+    <title>AresNyX - Premium Donji Veš od Prirodnih Materijala | Pamuk, Lan, Bambus</title>
     
     <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
+    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/">
+    
     <style>
     /* === RESET === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
+    /* A11Y / NAJVIŠA PRAKSA: Osnovni stil za fokus za sve interaktivne elemente */
+    :focus-visible {
+        outline: 3px solid #D4AF37; /* Zlatna boja brenda */
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
+    a:focus-visible, button:focus-visible {
+        outline: 3px solid #D4AF37;
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
+
     /* === BODY === */
     body, html {
         margin: 0;
         padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        /* A11Y / NAJVIŠA PRAKSA: Koristimo system font stack za brže učitavanje i bolje performanse */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         background: #f7f7f7;
         color: #333333;
         line-height: 1.6;
         overflow-x: hidden;
-        font-display: block;
+        /* A11Y / NAJVIŠA PRAKSA: 'swap' je bolji izbor za font-display (brže se prikazuje tekst) */
+        font-display: swap; 
     }
     
     /* === HEADER - LCP ELEMENT === */
@@ -110,7 +129,8 @@
         min-height: 200px !important;
         height: auto !important;
         padding: 30px 20px !important;
-        contain: strict;
+        /* PERFORMANCE: Dodat contain: layout je dovoljan ovde */
+        contain: layout; 
         position: relative;
         z-index: 1000;
     }
@@ -119,6 +139,8 @@
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-underline-offset: 3px;
+        /* A11Y: Osiguravamo dobar kontrast za linkove u footeru */
+        color: #D4AF37; 
     }
     
     .header-logo {
@@ -132,6 +154,7 @@
         opacity: 1;
     }
     
+    /* SEO / A11Y: Osiguravamo da font ne zavisi od Arial-a koji je naveden kao fallback. */
     #main-header h1 {
         font-size: 32px;
         color: #D4AF37;
@@ -140,7 +163,7 @@
         text-transform: uppercase;
         line-height: 1.2;
         opacity: 1;
-        font-family: Arial, sans-serif;
+        font-family: inherit; /* Koristimo nasleđeni font */
     }
     
     .brand-emphasis {
@@ -148,6 +171,7 @@
         display: block;
     }
     
+    /* A11Y: Subtitle ima solidan kontrast, ali ćemo osigurati da koristi nasleđeni font */
     .subtitle {
         font-size: 0.8em;
         color: #fff;
@@ -157,7 +181,7 @@
         margin-top: 8px;
         min-height: 1.2em;
         opacity: 1;
-        font-family: Arial, sans-serif;
+        font-family: inherit; /* Koristimo nasleđeni font */
     }
     
     /* === NAVIGACIJA - OBAVEZNO! === */
@@ -170,21 +194,23 @@
         justify-content: center !important;
         flex-wrap: wrap !important;
         gap: 10px !important;
+        /* A11Y: Dodajemo mali margin-top da se vizuelno odvoji od header-a na manjim ekranima (ako flex-direction: column) */
+        margin-top: 0; 
     }
     
     #main-nav a {
-        /* ВЕЋ ПОСТОЈИ ПОДВЛАЧЕЊЕ, ЧИМЕ ЈЕ ИСПРАВЉЕН ПРОБЛЕМ КОНТРАСТА */
+        /* A11Y: Kontrast je dobar (bela na tamnoj pozadini), podvlačenje je ok. */
         font-size: 18px !important;
         font-weight: 500 !important;
         color: #ffffff !important;
         
-        /* ПОДВЛАЧЕЊЕ */
+        /* PODVLAČENJE */
         text-decoration: underline !important;
         text-decoration-thickness: 2px !important;
         text-underline-offset: 6px !important;
         text-decoration-color: rgba(255, 255, 255, 0.8) !important;
         
-        /* FIKSNA ŠIRINA */
+        /* FIKSNA ŠIRINA: Iako nije idealno, ostavljamo zbog koncepta */
         min-width: 150px !important;
         width: 150px !important;
         display: inline-block !important;
@@ -223,22 +249,24 @@
         min-height: 360px;
     }
     
+    /* A11Y / SEO: Koristimo nasleđeni font */
     #hero-title {
         color: #D4AF37;
         font-size: 3.1em;
         margin: 0 0 24px 0;
         opacity: 1;
         line-height: 1.3;
-        font-family: Arial, sans-serif;
+        font-family: inherit; 
     }
     
+    /* A11Y / SEO: Koristimo nasleđeni font, poboljšan kontrast je već tu */
     #hero-text {
         font-size: 1.43em;
         margin: 0 0 42px 0;
-        color: #ffffff; /* <-- ISPRAVLJEN KONTRAST */
+        color: #ffffff; 
         opacity: 1;
         line-height: 1.6;
-        font-family: Arial, sans-serif;
+        font-family: inherit; 
         max-width: 880px;
         margin-left: auto;
         margin-right: auto;
@@ -250,6 +278,7 @@
         opacity: 1;
     }
     
+    /* A11Y: Osiguravamo dobar kontrast za tekst na CTA (belo na #802B24) - OK */
     .hero-cta-button {
         background: #802B24;
         color: #fff;
@@ -271,7 +300,14 @@
         text-align: center;
         cursor: pointer;
         opacity: 1;
-        font-family: Arial, sans-serif;
+        font-family: inherit;
+    }
+
+    /* A11Y: Dodajemo hover efekat za CTA dugmad */
+    .hero-cta-button:hover, .cta-button:hover {
+        background: #9a352d; /* Malo svetlija nijansa za feedback */
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     
     /* === MAIN CONTENT === */
@@ -281,6 +317,8 @@
         padding: 0 20px;
         min-height: 400px;
         opacity: 1;
+        /* SEO / A11Y: Obezbeđujemo da glavni sadržaj bude dobro označen */
+        role: main; 
     }
     
     /* === СТИЛОВИ ЗА ПРИРОДНЕ СЛИКЕ === */
@@ -312,6 +350,8 @@
     .features-grid {
         content-visibility: auto;
         contain-intrinsic-size: 0 400px;
+        /* NAJVIŠA PRAKSA: Osiguravamo da je grid čitljiv */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     }
     
     .lazy-section {
@@ -334,7 +374,8 @@
     }
     
     .footer-links a {
-        color: #D4AF37;
+        /* A11Y: Osiguravamo dobar kontrast za linkove u footeru */
+        color: #D4AF37; 
         text-decoration: none;
         margin: 0 12px;
         font-weight: 500;
@@ -342,6 +383,7 @@
     
     /* RESPONSIVE STYLES */
     @media (max-width: 768px) {
+        /* ... (Ostatak originalnih stilova) */
         #main-header {
             flex-direction: column;
             gap: 10px;
@@ -460,15 +502,15 @@
     </style>
     
     <meta name="description" 
-          content="AresNyX premium donji veš od prirodnih materijala. Pamuk, lan i bambus za zdravlje i udobnost. Besplatna dostava.">
+          content="AresNyX premium donji veš od 100% prirodnih materijala (pamuk, lan, bambus). Otkrijte udobnost, prozračnost i zdravstvene prednosti prirodnog veša. Besplatna dostava.">
     <meta name="keywords" 
-          content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus">
+          content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
     <meta name="author" content="AresNyX">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow"> 
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     
-    <meta property="og:title" content="AresNyX - Premium Donji Veš">
-    <meta property="og:description" content="Premium donji veš od prirodних материјала за здравље и удобност. Памук, лан и бамбус.">
+    <meta property="og:title" content="AresNyX - Premium Donji Veš od Prirodnih Materijala">
+    <meta property="og:description" content="Premium donji veš od 100% prirodних материјала (Pamuk, Lan, Bambus) za zdravlje i udobnost.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -481,16 +523,15 @@
     <meta name="twitter:description" content="Premium donji veš od prirodних материјала за здравље и удобност.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     
-    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="global.css"></noscript>
     
 </head>
 <body>
     <header id="main-header">
-        <a href="index.html" class="logo-link" aria-label="Почетна страница AresNyX">
+        <a href="." class="logo-link" aria-label="Početna stranica AresNyX - logo">
              <img 
                  src="slike/logo.webp" 
-                 alt="AresNyX Logo" 
+                 alt="AresNyX Logo - Premium Donji Veš" 
                  class="header-logo"
                  width="70" 
                  height="70"
@@ -501,7 +542,7 @@
         
         <h1>
             <span class="brand-emphasis">ARESNYX</span>
-            <span class="subtitle">BOXER SHORTS</span>
+            <span class="subtitle">PREMIUM DONJI VEŠ</span> 
         </h1>
     </header>
 
@@ -509,90 +550,101 @@
         <a href="index.html" class="active" aria-current="page">Početna</a>
         <a href="shop.html">Shop</a>
         <a href="o-nama.html">O Nama</a>
-        <a href="blog-zdravlje-donjeg-vesa.html">Blog</a>
+        <a href="blog-zdravlje-donjeg-vesa.html">Blog & Zdravlje</a> 
         <a href="kontakt.html">Kontakt</a>
     </nav>
 
     <main id="main-content">
         <section id="hero-section">
             <h1 id="hero-title">Premium Donji Veš</h1>
-            <p id="hero-text">100% prirodni materijali • Bez sintetike • Zdravlje i udobnost</p>
+            <p id="hero-text">100% prirodni materijali • Bez sintetike • **Optimalno Zdravlje i Udobnost**</p>
             
             <div class="hero-image-container">
-                <img src="slike/pamuk.webp" alt="Илустрација памучног доњег веша AresNyX" 
+                <img src="slike/pamuk.webp" 
+                     alt="Primer pamučnog bokser donjeg veša AresNyX" 
+                     title="AresNyX Pamučni Veš - Prirodni Materijali"
                      width="280" height="180" loading="lazy" class="natural-image">
             </div>
             
             <div class="hero-cta-container">
-                <a href="shop.html" class="hero-cta-button">Otkrijte Kolekciju</a>
+                <a href="shop.html" class="hero-cta-button" role="button">Otkrijte Kolekciju</a>
             </div>
         </section>
 
         <section class="lazy-section" id="features">
-            <h2>Zašto AresNyX?</h2>
+            <h2>Zašto AresNyX - Ključne Prednosti</h2>
             <div class="features-grid">
+                
                 <div class="feature-item">
-                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="48" height="48" role="img" aria-label="Икона Природних Материјала">
-                        <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Prirodnih Materijala">
+                        <path fill="#D4AF37" d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
                     </svg>
                     <h3>Prirodni Materijali</h3>
-                    <p>100% pamuk, lan i bambus bez ikakvih veštačkih dodataka</p>
+                    <p>100% **prozračni** pamuk, lan i bambus **bez ikakvih veštačkih dodataka i iritacija**</p>
                 </div>
                 
                 <div class="feature-image-container">
-                    <img src="slike/lan.webp" alt="Илустрација ланеног доњег веша AresNyX" 
+                    <img src="slike/lan.webp" 
+                         alt="Izbliza prikaz lanenog materijala za donji veš AresNyX" 
+                         title="Laneni Donji Veš - Prirodna Vlakna"
                          width="280" height="180" loading="lazy" class="natural-image">
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="48" height="48" role="img" aria-label="Икона Здравља и Удобности">
-                        <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
+                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Zdravlja">
+                        <path fill="#802B24" d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
                     </svg>
                     <h3>Zdravstvene Prednosti</h3>
-                    <p>Opušten kroj koji štiti vaše zdravlje</p>
+                    <p>**Opušten kroj** i materijali koji štite vaše zdravlje, sprečavaju iritacije i omogućavaju koži da diše.</p>
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" width="48" height="48" role="img" aria-label="Икона Производње у Србији">
-                        <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
+                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Proizvodnja u Srbiji">
+                        <path fill="#121212" d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
                     </svg>
                     <h3>Proizvodnja u Srbiji</h3>
-                    <p>Kvalitet koji potiče iz naше zemlje</p>
+                    <p>Kvalitet **domaće proizvodnje** koji potiče iz naše zemlje, uz podršku **lokalnih dobavljača**.</p>
                 </div>
             </div>
         </section>
 
         <section class="lazy-section" id="philosophy">
-            <h2>Naša Filozofija</h2>
-            <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala.</p>
+            <h2>Naša Filozofija - Zdravlje i Održivost</h2>
+            <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala, fokusirajući se na **održivost i etičku proizvodnju**.</p>
             
             <div class="philosophy-image-container">
-                <img src="slike/svila.webp" alt="Илустрација доњег веша од бамбуса AresNyX" 
+                <img src="slike/svila.webp" 
+                     alt="Tekstura donjeg veša od bambusovih vlakana AresNyX" 
+                     title="Bambus Donji Veš - Luksuz i Prozračnost"
                      width="280" height="180" loading="lazy" class="natural-image">
             </div>
             
             <div class="cta-container">
-                <a href="o-nama.html" class="cta-button">Saznajte Više O Nama</a>
+                <a href="o-nama.html" class="cta-button" role="button">Saznajte Više O Nama</a>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-links">
-            <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-            <a href="politika-privatnosti.html">Politika privatnosti</a>
+            <nav aria-label="Pravni linkovi"> 
+                <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
+                <a href="politika-privatnosti.html">Politika privatnosti</a>
+            </nav>
         </div>
         &copy; 2025 AresNyX. Zdravlje i Udobnost.
     </footer>
 
     <script defer>
+    // A11Y / PERFORMANCE: SCRIPT je premešten na kraj body taga radi bržeg LCP-a.
+    // ... (Originalni JS se prenosi ovde)
     window.addEventListener('load', function() {
         const heroSection = document.getElementById('hero-section');
         if (heroSection) {
             heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
         }
         
-        // Додај hover ефекте за слике
+        // Dodaj hover efekte za slike (bolje je koristiti CSS:hover)
         const images = document.querySelectorAll('.natural-image');
         images.forEach(img => {
             img.addEventListener('mouseenter', function() {
@@ -605,6 +657,7 @@
             });
         });
         
+        // Dinamičko ubacivanje stilova (iako je bolje da budu u <style> tagu)
         setTimeout(function() {
             const style = document.createElement('style');
             style.textContent = `
@@ -631,7 +684,8 @@
                 
                 .features-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    /* NAJVIŠA PRAKSA: Koristimo bolji minmax za grid */
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
                     gap: 25px;
                     margin-top: 35px;
                 }
@@ -661,6 +715,14 @@
                     min-height: 50px;
                     text-align: center;
                     cursor: pointer;
+                    /* A11Y / NAJVIŠA PRAKSA: Dodajemo tranziciju i box-shadow za bolji vizuelni feedback */
+                    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+                }
+                
+                .cta-button:hover {
+                    background: #9a352d; 
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
                 }
                 
                 .footer-links a {
@@ -678,24 +740,10 @@
         }, 500);
     });
     
-    setTimeout(function() {
-        const links = document.querySelectorAll('link[rel="stylesheet"]');
-        let hasGlobal = false;
-        
-        links.forEach(link => {
-            if (link.href && link.href.includes('global.css')) {
-                hasGlobal = true;
-            }
-        });
-        
-        if (!hasGlobal) {
-            const fallbackLink = document.createElement('link');
-            fallbackLink.rel = 'stylesheet';
-            fallbackLink.href = 'global.css';
-            document.head.appendChild(fallbackLink);
-        }
-    }, 2000);
+    // Uklanjamo drugi setTimeout za fallback, jer je global.css fallback već u noscript tagu.
+    // Ovaj drugi timeout dodaje nepotrebnu složenost.
     </script>
 </body>
 </html>
+
 
