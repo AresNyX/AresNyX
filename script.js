@@ -1,3 +1,7 @@
+/* ------------------------------------------------ */
+/* AresNyXShop - Glavni JavaScript Fajl (BEZ FONT AWESOME) */
+/* ------------------------------------------------ */
+
 class AresNyXShop {
     
     // =========================================================
@@ -11,153 +15,56 @@ class AresNyXShop {
         this.currentSizeFilter = 'all';     
         this.currentSort = 'default'; 
         this.currentProduct = null;
+        this.currentSize = null; 
+        this.currentQuantity = 1;
+        this.currentImageIndex = 0;
         this.checkoutData = {};
+        this.BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
         
         this.init(); 
     }
 
     init() {
         this.loadProducts();   
+        this.attachEventListeners();
+        
+        this.applyFiltersAndSort(); 
         this.updateCartCount();
         this.renderCart();
         this.updateCartPromoMessage(0); 
-        this.attachEventListeners();
 
-        // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
-            emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
+            if (typeof emailjs !== 'undefined' && emailjs.init) {
+                 emailjs.init("WKV419-gz6OQWSgRJ"); 
+            } else {
+                 console.error("EmailJS objekat nije dostupan.");
+            }
         } catch (e) {
-            console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
+            console.error("EmailJS inicijalizacija nije uspela:", e);
         }
     } 
     
     // =========================================================
-    // === POMOĆNE METODE ZA OBRADU PODATAKA ===
+    // === POMOĆNE METODE ZA OBRADU PODATAKA (Nepromenjeno) ===
     // =========================================================
-
-    /**
-     * Učitava proizvode u memoriju.
-     */
     loadProducts() {
         this.products = [
-            { 
-                id: 1, 
-                name: "Classic Pamuk", 
-                material: "100% Organski Pamuk", 
-                price: 1300, 
-                category: "pamuk", 
-                images: ["slika1.webp", "slika1a.webp"],
-                badge: "CLASSIC",
-                sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
-            },
-            { 
-                id: 2, 
-                name: "Egipt Pamuk", 
-                material: "100% Premium Pamuk", 
-                price: 1500, 
-                category: "pamuk", 
-                images: ["slika2.webp", "slike2a.webp"], 
-                badge: "BESTSELLER",
-                sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
-            },
-            { 
-                id: 3, 
-                name: "Elegant", 
-                material: "100% Prirodni Pamuk", 
-                price: 1600, 
-                category: "pamuk", 
-                images: ["slika3.webp", "slika3a.webp"], 
-                badge: "LUXURY",
-                sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } 
-            },
-            { 
-                id: 4, 
-                name: "Grey Elegant", 
-                material: "100% Premium Pamuk", 
-                price: 1600, 
-                category: "pamuk", 
-                images: ["slika4.webp", "slika4a.webp"], 
-                badge: "PREMIUM",
-                sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } 
-            },
-            { 
-                id: 5, 
-                name: "Ink Blue", 
-                material: "100% Organski Pamuk", 
-                price: 1500, 
-                category: "pamuk", 
-                images: ["slika5.webp", "slika5a.webp"],
-                badge: "LUXURY",
-                sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } 
-            },
-            { 
-                id: 6, 
-                name: "Blue White", 
-                material: "100% Premium Pamuk", 
-                price: 1500, 
-                category: "pamuk", 
-                images: ["slika6.webp", "slika6a.webp"], 
-                badge: "TRENDING",
-                sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } 
-            },
-            { 
-                id: 7, 
-                name: "Black & White", 
-                material: "100% Premium Pamuk", 
-                price: 1500, 
-                category: "pamuk", 
-                images: ["slika7.webp", "slika7a.webp"], 
-                badge: "LUXURY",
-                sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
-            },
-            { 
-                id: 8, 
-                name: "Light Blue", 
-                material: "100% Premium Pamuk", 
-                price: 1400, 
-                category: "100% Pamuk", 
-                images: ["slika8.webp", "slika8a.webp"], 
-                badge: "NEW",
-                sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
-            },
-            { 
-                id: 9, 
-                name: "Blue", 
-                material: "100% Premium Pamuk", 
-                price: 1600, 
-                category: "pamuk", 
-                images: ["slika9.webp", "slika9a.webp"],
-                badge: "PREMIUM",
-                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } 
-            },
-            { 
-                id: 10, 
-                name: "Petrol Blue", 
-                material: "100% Arabic Pamuk", 
-                price: 1600, 
-                category: "pamuk", 
-                images: ["slika10.webp", "slika10a.webp"],
-                badge: "LUXURY",
-                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } 
-            },
-            { 
-                id: 11, 
-                name: "Grey White", 
-                material: "100% Organski Pamuk", 
-                price: 1500, 
-                category: "pamuk", 
-                images: ["slika11.webp", "slika11a.webp"], 
-                badge: "PREMIUM",
-                sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
-            }
+            { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["slika1.webp", "slika1a.webp"], badge: "CLASSIC", sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } },
+            { id: 2, name: "Egipt Pamuk", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika2.webp", "slike2a.webp"], badge: "BESTSELLER", sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } },
+            { id: 3, name: "Elegant", material: "100% Prirodni Pamuk", price: 1600, category: "pamuk", images: ["slika3.webp", "slika3a.webp"], badge: "LUXURY", sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } },
+            { id: 4, name: "Grey Elegant", material: "100% Premium Pamuk", price: 1600, category: "pamuk", images: ["slika4.webp", "slika4a.webp"], badge: "PREMIUM", sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } },
+            { id: 5, name: "Ink Blue", material: "100% Organski Pamuk", price: 1500, category: "pamuk", images: ["slika5.webp", "slika5a.webp"], badge: "LUXURY", sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } },
+            { id: 6, name: "Blue White", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika6.webp", "slika6a.webp"], badge: "TRENDING", sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } },
+            { id: 7, name: "Black & White", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika7.webp", "slika7a.webp"], badge: "LUXURY", sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } },
+            { id: 8, name: "Light Blue", material: "100% Premium Pamuk", price: 1400, category: "100% Pamuk", images: ["slika8.webp", "slika8a.webp"], badge: "NEW", sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } },
+            { id: 9, name: "Blue", material: "100% Premium Pamuk", price: 1600, category: "pamuk", images: ["slika9.webp", "slika9a.webp"], badge: "PREMIUM", sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } },
+            { id: 10, name: "Petrol Blue", material: "100% Arabic Pamuk", price: 1600, category: "pamuk", images: ["slika10.webp", "slika10a.webp"], badge: "LUXURY", sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } },
+            { id: 11, name: "Grey White", material: "100% Organski Pamuk", price: 1500, category: "pamuk", images: ["slika11.webp", "slika11a.webp"], badge: "PREMIUM", sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } }
         ];
         
         this.filteredProducts = [...this.products]; 
     }
 
-    /**
-     * Postavlja CSS klasu za badge na osnovu teksta (za stilizaciju boje).
-     */
     getBadgeClass(badgeText) {
         const text = badgeText.toUpperCase();
         if (text === "PREMIUM" || text === "LUXURY") {
@@ -169,22 +76,15 @@ class AresNyXShop {
         }
     }
     
-    /**
-     * Proverava da li su artikli u korpi još dostupni u traženoj količini.
-     */
     validateStock() {
         const unavailableItems = [];
-
         this.cart.forEach(cartItem => {
             const product = this.products.find(p => p.id === cartItem.productId);
-
             if (!product) {
                 unavailableItems.push({ name: cartItem.name, size: cartItem.size, reason: 'Proizvod više ne postoji u katalogu.' });
                 return;
             }
-            
             const availableStock = product.sizes[cartItem.size] || 0; 
-
             if (cartItem.quantity > availableStock) {
                 unavailableItems.push({ 
                     name: cartItem.name, 
@@ -193,23 +93,18 @@ class AresNyXShop {
                 });
             }
         });
-
         return unavailableItems;
     }
 
     // =========================================================
-    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER ===
+    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (Nepromenjeno) ===
     // =========================================================
-
-    /**
-     * Postavlja sve event listenere koji nisu inline u HTML-u.
-     */
     attachEventListeners() {
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
                 const btn = e.target.closest('.size-btn');
-                if (btn) {
+                if (btn && !btn.classList.contains('active')) { 
                     const size = btn.dataset.size;
                     
                     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
@@ -221,45 +116,26 @@ class AresNyXShop {
         }
     }
 
-    /**
-     * Otvara/zatvara panel za filtere.
-     */
     toggleFilterPanel() {
         const panel = document.getElementById('filterSortPanel');
         panel.classList.toggle('active');
     }
 
-    /**
-     * Ažurira stanje filtera/sortiranja.
-     */
-    filterProducts(value, filterType) {
+    updateFilter(elementId, filterType) {
+        const value = document.getElementById(elementId).value;
+
         if (filterType === 'material') {
             this.currentMaterialFilter = value;
-        } else if (filterType === 'size') {
-            this.currentSizeFilter = value;
-            
-            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
-            if (value !== 'all') {
-                document.querySelector(`.size-btn[data-size="${value}"]`)?.classList.add('active');
-            } else {
-                document.querySelector(`.size-btn[data-size="all"]`)?.classList.add('active');
-            }
+        } else if (filterType === 'sort') {
+            this.currentSort = value;
         }
     }
-
-    /**
-     * Ažurira stanje sortiranja.
-     */
-    sortProducts(sortType) {
-        this.currentSort = sortType;
+    
+    updateSizeFilter(size) {
+        this.currentSizeFilter = size;
     }
 
-    /**
-     * Pokreće kompletnu logiku filtera nakon klika na dugme "Primeni filtere".
-     */
     applyAllFilters() {
-        this.toggleFilterPanel();
-
         const materialValue = document.getElementById('materialFilter').value;
         const sortValue = document.getElementById('priceSort').value;
         
@@ -267,20 +143,16 @@ class AresNyXShop {
         this.currentSort = sortValue;
         
         this.applyFiltersAndSort(); 
+        this.toggleFilterPanel(); 
     }
 
-    /**
-     * Glavna logika za primenu svih filtera i sortiranja.
-     */
     applyFiltersAndSort() {
         let tempProducts = [...this.products];
 
-        // 1. PRIMENA FILTERA PO MATERIJALU
         if (this.currentMaterialFilter !== 'all') {
              tempProducts = tempProducts.filter(p => p.category === this.currentMaterialFilter);
         }
 
-        // 2. PRIMENA FILTERA PO VELIČINI
         if (this.currentSizeFilter !== 'all') {
             tempProducts = tempProducts.filter(p => 
                 p.sizes && p.sizes[this.currentSizeFilter] > 0
@@ -289,26 +161,18 @@ class AresNyXShop {
         
         this.filteredProducts = tempProducts;
 
-        // 3. PRIMENA SORTIRANJA
         if (this.currentSort === 'lowToHigh') {
             this.filteredProducts.sort((a, b) => a.price - b.price);
         } else if (this.currentSort === 'highToLow') {
             this.filteredProducts.sort((a, b) => b.price - a.price);
         }
 
-        // 4. PRIKAZ REZULTATA
         this.renderProducts();
     }
 
-    /**
-     * Renderuje listu proizvoda na stranicu.
-     * Uključuje sigurnosnu proveru za materijal.
-     */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
-        // Sigurnosna putanja definisana unutar metode
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
 
         if (!grid) {
              console.error('HTML element #productsGrid nije pronađen!');
@@ -322,12 +186,12 @@ class AresNyXShop {
         
         grid.innerHTML = displayProducts.map(product => {
             
-            const imageSrc = BASE_IMAGE_URL + product.images[0]; 
+            const imageSrc = this.BASE_IMAGE_URL + product.images[0]; 
             const badgeClass = this.getBadgeClass(product.badge);
 
             const srcset = product.images.map((imgName, index) => {
                 const width = (index === 0) ? '800w' : '400w'; 
-                return `${BASE_IMAGE_URL}${imgName} ${width}`;
+                return `${this.BASE_IMAGE_URL}${imgName} ${width}`;
             }).join(', ');
             
             return `
@@ -355,7 +219,7 @@ class AresNyXShop {
     }
 
     // =========================================================
-    // === METODE ZA MODAL I KORPU ===
+    // === METODE ZA MODAL I KORPU (Izmenjeno) ===
     // =========================================================
 
     openProductModal(productId) {
@@ -399,21 +263,24 @@ class AresNyXShop {
             })
             .join('');
             
-        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
         
         if (firstAvailableSize) {
             this.currentSize = firstAvailableSize;
             document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-        } 
+        } else {
+             this.currentSize = null;
+        }
         
-        const btn = document.querySelector('.add-to-cart-btn');
+        const btn = document.querySelector('#productModal .add-to-cart-btn');
         if (!firstAvailableSize) {
              btn.disabled = true;
-             btn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+             // ZAMENA IKONE: RASPRODATO tekst
+             btn.innerHTML = '✖ RASPRODATO'; 
              btn.style.background = 'var(--danger)';
         } else {
-            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+            // ZAMENA IKONE: Simbol KORPE
+            btn.innerHTML = '🛒 Dodaj u Korpu'; 
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
         }
@@ -426,18 +293,20 @@ class AresNyXShop {
     updateModalImage() {
         if (!this.currentProduct) return;
         
-        // Logika za formiranje putanje slike u modalu
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
+        document.getElementById('modalMainImage').src = this.BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
         
         const totalImages = this.currentProduct.images.length;
-        const sliderNav = document.querySelector('.slider-nav');
+        const sliderNav = document.querySelector('#productModal .slider-nav');
 
         if (totalImages > 1) {
             sliderNav.style.display = 'flex'; 
             
             const isFirst = this.currentImageIndex === 0;
             const isLast = this.currentImageIndex === totalImages - 1;
+            
+            // ZAMENA IKONA: < i >
+            document.getElementById('prevImageBtn').innerHTML = '&lt;';
+            document.getElementById('nextImageBtn').innerHTML = '&gt;';
             
             document.getElementById('prevImageBtn').disabled = isFirst;
             document.getElementById('nextImageBtn').disabled = isLast;
@@ -449,7 +318,7 @@ class AresNyXShop {
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
         this.currentSize = size;
-        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+        document.querySelectorAll('#productModal .size-option').forEach(opt => opt.classList.remove('selected'));
         event.currentTarget.classList.add('selected');
     }
 
@@ -460,25 +329,29 @@ class AresNyXShop {
 
     prevImage() {
         if (!this.currentProduct) return;
-        this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
+        this.currentImageIndex = Math.max(0, this.currentImageIndex - 1);
         this.updateModalImage();
     }
 
     nextImage() {
         if (!this.currentProduct) return;
-        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
+        this.currentImageIndex = Math.min(this.currentProduct.images.length - 1, this.currentImageIndex + 1);
         this.updateModalImage();
     }
 
     addToCartFromModal(event) {
-        if (!this.currentProduct || !this.currentSize) return;
+        if (!this.currentProduct || !this.currentSize) {
+            this.showToast("Molimo odaberite veličinu!");
+            return;
+        }
         
         const btn = event.currentTarget;
         if (btn.disabled) return;
         btn.disabled = true;
 
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
+        // ZAMENA IKONE: CHECK
+        btn.innerHTML = '✔ Dodato!'; 
         btn.style.background = 'var(--success)';
         
         this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
@@ -503,27 +376,25 @@ class AresNyXShop {
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
-            // ⭐ Važno: Sliku za korpu formiramo ovde, jer je u this.products neobrađena ⭐
-            const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-            const imageURL = BASE_IMAGE_URL + product.images[0];
-
+            const imageURL = this.BASE_IMAGE_URL + product.images[0];
             this.cart.push({ 
                 productId, 
                 size, 
                 quantity, 
                 name: product.name, 
                 price: product.price, 
-                image: imageURL // Postavljamo punu putanju za renderCart()
+                image: imageURL 
             });
         }
-
         this.saveCart();
     }
 
     updateCartCount() {
         const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
         const cartCount = document.getElementById('cartCount');
+        
         cartCount.textContent = totalItems;
+        cartCount.style.display = totalItems > 0 ? 'inline-flex' : 'none'; 
         
         cartCount.classList.remove('quick-pulse'); 
         void cartCount.offsetWidth;
@@ -536,21 +407,18 @@ class AresNyXShop {
     toggleCartVisibility() {
         const cartFooter = document.getElementById('cartFooter');
         const emptyCart = document.getElementById('emptyCart');
+        const hasItems = this.cart.length > 0;
         
-        if (this.cart.length === 0) {
-            if (emptyCart) emptyCart.style.display = 'block';
-            if (cartFooter) cartFooter.style.display = 'none';
-        } else {
-            if (emptyCart) emptyCart.style.display = 'none';
-            if (cartFooter) cartFooter.style.display = 'block';
-        }
+        if (emptyCart) emptyCart.style.display = hasItems ? 'none' : 'block';
+        if (cartFooter) cartFooter.style.display = hasItems ? 'block' : 'none';
     }
 
     renderCart() {
         const cartItemsContainer = document.getElementById('cartItems');
 
         if (this.cart.length === 0) {
-            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
+            // ZAMENA IKONE: Prazna korpa
+            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart"><span class="empty-cart-icon">🛍️</span><p>Vaša korpa je prazna</p></div>`;
             this.toggleCartVisibility(); 
             this.updateCartTotals(); 
             return;
@@ -568,7 +436,7 @@ class AresNyXShop {
         <div class="cart-item-size">Veličina: ${item.size}</div>
         <div class="cart-item-controls">
             <div class="cart-item-qty-wrapper">
-                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
+                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">−</button>
                 <span class="cart-item-qty">${item.quantity}</span>
                 <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
             </div>
@@ -632,7 +500,6 @@ class AresNyXShop {
     }
 
     updateCartPromoMessage(subtotal) {
-        const promoBar = document.getElementById('promoBar');
         const cartPromo = document.getElementById('cartPromoMessage');
 
         const FREE_SHIPPING_LIMIT = 4000;
@@ -641,9 +508,11 @@ class AresNyXShop {
         if (!cartPromo) return;
 
         if (subtotal >= DISCOUNT_LIMIT) {
+            // ZAMENA IKONE: CHECK
             cartPromo.classList.add('success');
-            cartPromo.innerHTML = '✅ Ostvarili ste <strong>Besplatnu dostavu</strong> i <strong>10% Popusta</strong>!';
+            cartPromo.innerHTML = '✔ Ostvarili ste <strong>Besplatnu dostavu</strong> i <strong>10% Popusta</strong>!';
         } else if (subtotal >= FREE_SHIPPING_LIMIT) {
+            // ZAMENA IKONE: VATRA
             const nextTarget = DISCOUNT_LIMIT - subtotal;
             cartPromo.classList.remove('success');
             cartPromo.innerHTML = `🔥 Ostvarili ste <strong>BESPLATNU DOSTAVU</strong>! Dodajte još <strong>${nextTarget} RSD</strong> za 10% Popusta!`;
@@ -732,9 +601,8 @@ class AresNyXShop {
     }
 
     // =========================================================
-    // === METODE ZA CHECKOUT I FORME ===
+    // === METODE ZA CHECKOUT I FORME (Nepromenjeno) ===
     // =========================================================
-
     getPaymentMethodText(method) {
         switch (method) {
             case 'pouzecem': return 'Pouzećem (Plaćanje prilikom preuzimanja)';
@@ -757,7 +625,7 @@ class AresNyXShop {
 
     closeCheckoutModal() {
         document.getElementById('checkoutModal').style.display = 'none';
-        document.body.classList.remove('no-scroll');
+        document.body.classList.remove('no-scroll'); 
         this.goToStep(1); 
     }
 
@@ -828,7 +696,7 @@ class AresNyXShop {
     }
     
     // =========================================================
-    // === completeOrder() FUNKCIJA (FINALNA) ===
+    // === completeOrder() FUNKCIJA (Izmenjeno) ===
     // =========================================================
     completeOrder() {
         if (!this.checkoutData.email) {
@@ -853,10 +721,10 @@ class AresNyXShop {
 
         const submitBtn = document.querySelector('#checkoutStep2 .submit-order-btn');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Slanje...';
+        // ZAMENA IKONE: Spinner - tekstualna notifikacija
+        submitBtn.innerHTML = '⟳ Slanje...'; 
         submitBtn.disabled = true;
 
-        // 🛑 VALIDACIJA ZALIHA 🛑
         const stockCheck = this.validateStock();
 
         if (stockCheck.length > 0) {
@@ -907,6 +775,15 @@ class AresNyXShop {
         const ADMIN_TEMPLATE_ID = 'template_5o6etkn';
         const CUSTOMER_TEMPLATE_ID = 'template_u8dh76a';
 
+        if (typeof emailjs === 'undefined' || !emailjs.send) {
+            console.error("EmailJS nije dostupan. Ne može se poslati porudžbina.");
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.showToast("Greška: Servis za slanje email-a nije dostupan.");
+            return;
+        }
+
+
         const sendAdminPromise = emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, templateParams);
         const sendCustomerPromise = emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, templateParams);
 
@@ -920,7 +797,7 @@ class AresNyXShop {
                 this.updateCartCount();
                 this.renderCart(); 
                 
-                this.goToStep(3);
+                this.goToStep(3); 
                 
                 this.showToast("Porudžbina uspešno poslata! Proverite Vaš email.");
             })
@@ -934,6 +811,7 @@ class AresNyXShop {
             });
     }
 } 
+
 // =========================================================
 // === POKRETANJE NAKON UČITAVANJA DOM-a ===
 // =========================================================
@@ -941,10 +819,6 @@ let shop;
 
 document.addEventListener('DOMContentLoaded', () => {
     shop = new AresNyXShop(); 
-    
-    // Odloženo renderovanje je dobra praksa
-    setTimeout(() => {
-        shop.renderProducts(); 
-    }, 50); 
 });
+
 
