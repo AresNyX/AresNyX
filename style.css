@@ -240,6 +240,47 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     border-bottom: 2px solid rgba(212, 175, 55, 0.3);
     padding-bottom: 0.5rem;
 }
+/* ========================================================= */
+/* MODIFIKOVANI STILOVI ZAHTEVANI OD STRANE KORISNIKA */
+/* ========================================================= */
+
+/* 1. NASLOV BRENDA (ARESNYX SHOP) - DUPLO VEĆI FONT */
+.logo-naslov {
+    /* Ako je osnovna veličina h1 elementa 2em, ovde je postavljamo na 4em (duplo veće) */
+    font-size: 4em; 
+    font-weight: 700; /* Podebljan za bolju vidljivost */
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* 2. UVEĆANJE OSTALOG TEKSTA ZA 30% */
+
+/* Opis prodavnice */
+.opis-prodavnice p {
+    font-size: 1.3em; /* 1.3 puta veće = +30% */
+    line-height: 1.7; /* Povećavamo razmak između redova radi čitljivosti */
+    color: #555;
+}
+
+/* Naslovi sekcija (Korisni linkovi, Kontakt) */
+h2 {
+    font-size: 1.69em; /* 1.3 * 1.3 = približno 1.69em, čime h2 ostaje veći od p taga */
+    margin-top: 35px;
+}
+
+/* Linkovi */
+.korisni-linkovi a {
+    font-size: 1.3em; /* +30% */
+    text-decoration: none;
+    color: #007bff; /* Neka standardna boja linkova */
+}
+
+/* Kontakt detalji */
+.kontakt-detalji p {
+    font-size: 1.3em; /* +30% */
+    color: #555;
+}
+
 
 /* Sekcija linkova */
 .footer-section-custom.links ul {
