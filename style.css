@@ -394,7 +394,7 @@ nav a:hover, nav a.active {
     margin-right: 20px;
 }
 
-/* ===== MODAL (Proizvod) ===== */
+/* ===== MODAL (Proizvod) - KORIGOVANA VERZIJA (Fokus samo na SLICI) ===== */
 .modal-overlay { 
     display: none; position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
@@ -403,7 +403,7 @@ nav a:hover, nav a.active {
 .modal-container { 
     position: absolute; top: 50%; left: 50%; 
     transform: translate(-50%, -50%); background: white; 
-    border-radius: 16px; width: 90%; max-width: 900px; /* POVEĆANA ŠIRINA MODALA */
+    border-radius: 16px; width: 90%; max-width: 900px; /* Vraćena originalna MAX ŠIRINA modala */
     max-height: 95vh; overflow-y: auto; 
 }
 .modal-close { 
@@ -415,37 +415,36 @@ nav a:hover, nav a.active {
 }
 .modal-content { 
     padding: 1.5rem; max-height: 90vh; overflow-y: auto; box-sizing: border-box; 
-    /* DODAT RASPORED ZA SLIKU I DETALJE */
     display: flex; 
     gap: 2rem;
 }
-/* POBOLJŠANJE ZA MODAL SLIKE */
+/* POBOLJŠANJE ZA MODAL SLIKE (Povećavamo prostor za sliku) */
 .modal-gallery {
     position: relative;
     text-align: center;
-    margin-bottom: 0; /* Uklanjamo marginu jer je u flexu */
-    flex: 1 1 40%; /* Zauzima 40% prostora */
+    margin-bottom: 0; 
+    flex: 1 1 50%; /* Dajemo slici veći deo prostora (50%) */
 }
 
 .modal-details {
-    flex: 1 1 60%; /* Zauzima 60% prostora */
+    flex: 1 1 50%; /* Detaljima ostavljamo 50% prostora */
 }
 
 .modal-main-image {
     width: 100%;
-    /* KRITIČNO: Povećavamo visinu slike unutar Modala */
-    height: 500px; 
-    max-width: none; /* Poništavamo stari max-width */
-    max-height: none; /* Poništavamo stari max-height */
+    /* KRITIČNO: POVEĆANA VISINA SLIKE (unutar istog kontejnera) */
+    height: 600px; /* Povećano sa 500px na 600px ili više, zavisno od potrebe */
+    max-width: none; 
+    max-height: none; 
     object-fit: contain;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 20px;
     border-radius: 10px;
-    margin: 0; /* Uklanjamo auto marginu */
+    margin: 0; 
     display: block;
 }
 
-/* NOVI STILOVI ZA SLIDER */
+/* NOVI STILOVI ZA SLIDER (Vraćeni na standardne vrednosti) */
 .slider-nav {
     display: flex;
     justify-content: space-between;
@@ -498,8 +497,7 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
 }
 .variation-section h3 {
-    /* KRITIČNA IZMENA: Povećanje teksta za 30% (sa 1rem na 1.3rem) */
-    font-size: 1.3rem;
+    font-size: 1rem; /* Vraćeno na originalnu veličinu */
     font-weight: 600;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
@@ -507,12 +505,11 @@ nav a:hover, nav a.active {
 }
 
 .size-option { 
-    /* KRITIČNA IZMENA: Povećanje paddinga i fonta za +30% */
-    display: inline-block; padding: 0.78rem 1.3rem; /* 0.6*1.3 i 1*1.3 */
+    display: inline-block; padding: 0.6rem 1rem; /* Vraćeno na originalnu veličinu */
     border: 2px solid var(--gray-medium); 
-    border-radius: 8px; cursor: pointer; margin-right: 0.65rem; /* 0.5*1.3 */
+    border-radius: 8px; cursor: pointer; margin-right: 0.5rem; 
     transition: var(--transition); 
-    font-size: 1.3em; /* +30% */
+    font-size: 1em; /* Vraćeno na originalnu veličinu */
 }
 .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
 
@@ -537,36 +534,35 @@ nav a:hover, nav a.active {
 
 .quantity-selector { display: flex; align-items: center; gap: 1rem; max-width: 200px; }
 .qty-btn { 
-    width: 45px; height: 45px; /* Povećano */
+    width: 40px; height: 40px; /* Vraćeno na originalnu veličinu */
     border: 2px solid var(--gray-medium); 
     background: white; border-radius: 8px; cursor: pointer; transition: all 0.3s; 
-    font-size: 1.5rem; /* Povećano */
+    font-size: 1.2rem; /* Vraćeno na originalnu veličinu */
     font-weight: bold; display: flex; 
     align-items: center; justify-content: center; 
 }
 .qty-display { 
-    font-size: 1.5rem; /* Povećano */
-    font-weight: 600; min-width: 65px; /* Povećano */
+    font-size: 1.2rem; /* Vraćeno na originalnu veličinu */
+    font-weight: 600; min-width: 50px; /* Vraćeno na originalnu veličinu */
     text-align: center; 
-    padding: 0.65rem; /* Povećano */
+    padding: 0.5rem; /* Vraćeno na originalnu veličinu */
     background: var(--gray-light); border-radius: 8px; 
 }
-.modal-actions { display: flex; gap: 1.3rem; /* Povećano */ margin-top: 2rem; /* Povećano */ }
+.modal-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
 .add-to-cart-btn { 
     flex: 2; background: var(--primary-dark); color: white; border: none; 
-    padding: 1.3rem 1.95rem; /* Povećano */
-    border-radius: 8px; font-size: 1.43rem; /* 1.1*1.3 */
+    padding: 1rem 1.5rem; /* Vraćeno na originalnu veličinu */
+    border-radius: 8px; font-size: 1.1rem; /* Vraćeno na originalnu veličinu */
     font-weight: 600; 
     cursor: pointer; transition: all 0.3s; display: flex; align-items: center; 
-    justify-content: center; gap: 0.65rem; /* Povećano */ min-height: 65px; /* Povećano */
+    justify-content: center; gap: 0.5rem; min-height: 50px; 
 }
 .continue-shopping { 
     flex: 1; background: white; color: var(--primary-dark); 
-    border: 2px solid var(--primary-dark); 
-    padding: 1.3rem 1.95rem; /* Povećano */
-    border-radius: 8px; font-size: 1.3rem; /* 1.0*1.3 */
+    border: 2px solid var(--primary-dark); padding: 1rem 1.5rem; /* Vraćeno na originalnu veličinu */
+    border-radius: 8px; font-size: 1rem; /* Vraćeno na originalnu veličinu */
     font-weight: 600; 
-    cursor: pointer; transition: all 0.3s; min-height: 65px; /* Povećano */
+    cursor: pointer; transition: all 0.3s; min-height: 50px; 
 }
 
 /* Media Query za Modal (Mobilni i manji ekrani) */
@@ -576,12 +572,14 @@ nav a:hover, nav a.active {
         gap: 1.5rem;
     }
     .modal-main-image {
-        height: 350px; /* Smanjeno malo za mobilni */
+        /* Sliku vraćamo na standardnu mobilnu visinu, jer 600px može biti previše */
+        height: 350px; 
     }
     .modal-gallery, .modal-details {
         flex: 1 1 100%;
     }
 }
+
 
     /* ===== FILTERI I SORTIRANJE (Panel) - AŽURIRANO ===== */
 
