@@ -37,7 +37,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   2. HEADER I KONTROLE
+   2. HEADER & NAVIGACIJA
    =================================== */
 
 .main-header {
@@ -48,6 +48,14 @@ body.no-scroll {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Zakači header na vrh */
+    top: 0;
+    z-index: 50;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary);
 }
 
 .header-controls {
@@ -56,13 +64,44 @@ body.no-scroll {
     align-items: center;
 }
 
-.cart-icon {
-    position: relative;
-    cursor: pointer;
+.nav-toggle-btn {
+    display: none; /* Skriveno na desktopu */
+    background: none;
+    border: none;
+    color: white;
     font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Glavna navigacija */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.main-nav a:hover {
+    color: var(--primary);
+}
+
+.cart-icon, .filter-sort-btn {
+    font-size: 1.2rem;
+    color: white;
     padding: 5px 10px;
     border-radius: 5px;
     transition: background 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
 }
 
 .cart-icon:hover {
@@ -92,8 +131,12 @@ body.no-scroll {
 }
 
 /* ===================================
-   3. MREŽA PROIZVODA
+   3. MREŽA PROIZVODA I HERO SELECTION
    =================================== */
+
+.shop-content {
+    margin-top: 20px;
+}
 
 .product-grid {
     display: grid;
@@ -166,41 +209,53 @@ body.no-scroll {
 /* ===================================
    4. FILTER PANEL
    =================================== */
-.filter-sort-btn {
-    background: var(--primary);
-    color: var(--secondary);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
+   
 .filter-sort-panel {
-    display: none; /* Skrijemo ga na početku */
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--card-shadow);
-    margin-bottom: 20px;
+    /* Radi kao sidebar/modal na svim ekranima za doslednost */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 150; 
+    top: 0;
+    left: 0; /* Dolazi sa leve strane */
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.3s;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
-@media (min-width: 992px) {
-    /* Za veće ekrane, prikazujemo ga inline */
-    .filter-sort-panel {
-        display: block;
+.filter-sort-panel.active {
+    width: 300px;
+}
+
+@media (max-width: 600px) {
+    .filter-sort-panel.active {
+        width: 90%; 
     }
-    .filter-sort-btn {
-        display: none;
-    }
+}
+
+.filter-sort-panel .panel-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-sort-panel .panel-content {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 
 .filter-sort-panel select,
-.filter-sort-panel button {
+.filter-sort-panel .apply-filters-btn {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
 }
@@ -218,6 +273,8 @@ body.no-scroll {
     border: 1px solid var(--border-color) !important;
     color: var(--secondary);
     cursor: pointer;
+    padding: 10px 5px;
+    font-size: 0.85rem;
 }
 
 .size-btn.active {
@@ -247,12 +304,6 @@ body.no-scroll {
 
 .sidebar.active {
     width: 350px;
-}
-
-@media (max-width: 600px) {
-    .sidebar.active {
-        width: 100%;
-    }
 }
 
 .cart-header {
@@ -395,6 +446,10 @@ body.no-scroll {
     border-top: 1px dashed var(--border-color);
 }
 
+.cart-actions {
+    margin-top: 15px;
+}
+
 /* ===================================
    6. MODAL STILOVI
    =================================== */
@@ -445,12 +500,6 @@ body.no-scroll {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-}
-
-@media (max-width: 768px) {
-    .modal-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .image-gallery {
@@ -688,6 +737,19 @@ body.no-scroll {
     padding: 50px 20px;
 }
 
+/* Overlay za sidebare */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+    display: none;
+}
+
+
 /* ===================================
    8. TOAST
    =================================== */
@@ -716,23 +778,194 @@ body.no-scroll {
 }
 
 /* ===================================
-   9. RESPONSIVE
+   9. FOOTER STILOVI
    =================================== */
 
-@media (max-width: 600px) {
+.main-footer {
+    background-color: var(--secondary); /* Tamna pozadina kao header */
+    color: #f4f4f4;
+    padding: 40px 0;
+    margin-top: 50px;
+    border-top: 3px solid var(--primary);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kolone na desktopu */
+    gap: 30px;
+}
+
+.footer-column h3, 
+.footer-column h4 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 2;
+    transition: color 0.2s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary);
+}
+
+.footer-brand p:last-child {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Društvene mreže */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: var(--primary);
+}
+
+.footer-contact-info {
+    font-size: 0.9rem;
+}
+
+.footer-contact-info i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+
+/* ===================================
+   10. RESPONSIVE I MOBILNA OPTIMIZACIJA
+   =================================== */
+
+@media (max-width: 992px) {
+    /* Footer tablet */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    
+    /* Header/Navigacija Mobilni */
+    .nav-toggle-btn {
+        display: block; 
+    }
+    
+    .main-nav {
+        /* Postavljanje navigacije kao full screen menija */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--secondary);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 40; 
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        padding: 60px 30px;
+        align-items: flex-start;
+    }
+
+    .main-nav li {
+        margin-bottom: 20px;
+    }
+
+    .main-nav a {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    /* Hero efekat (prvi proizvod) */
+    .product-grid {
+        grid-template-columns: 1fr; /* Samo jedan proizvod po redu */
+    }
+    
+    /* Ciljamo prvi proizvod da zauzme ostatak ekrana (Hero) */
+    .product-grid > .product-card:first-child {
+        height: calc(100vh - 60px); /* 100vh minus visina header-a (oko 60px) */
+        max-height: 800px;
+        margin-top: 0;
+    }
+    
+    /* Slike u prvoj kartici zauzimaju veću visinu */
+    .product-grid > .product-card:first-child .product-image {
+        height: calc(100vh - 180px); /* 100vh - header - info panel */
+    }
+
+    /* Sidebar/Modal */
+    .sidebar.active {
+        width: 100%; /* Korpa preko celog ekrana na mobilnom */
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Manji padding u header-u */
     .main-header {
         padding: 10px 15px;
     }
 
-    .filter-sort-panel,
-    .filter-sort-btn {
-        width: 100%;
+}
+
+@media (max-width: 576px) {
+    /* Footer mobilni */
+    .footer-grid {
+        grid-template-columns: 1fr; 
+        text-align: center;
+    }
+    
+    .footer-social {
+        order: -1; 
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
+    .social-icons {
+        justify-content: center;
     }
+    
+    .footer-column h3, .footer-column h4 {
+        margin-top: 20px;
+    }
+    
+    .filter-sort-panel.active {
+        width: 100%;
+    }
+    
 }
+
 
 
 
