@@ -76,7 +76,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - Premium Donji Veš</title>
     
-    <link rel="preload" as="image" href="slike/logo-140x140.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -115,7 +115,6 @@
         z-index: 1000;
     }
 
-    /* ИСПРАВКА 3: Додат стил за подвлачење линкова у футеру. */
     footer a {
         text-decoration: underline;
         text-decoration-thickness: 1px;
@@ -131,18 +130,6 @@
         display: block;
         border-radius: 8px;
         opacity: 1;
-    }
-
-    /* ИСПРАВКА 4: Стил за скривање текста за читаче екрана. */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
     }
     
     #main-header h1 {
@@ -236,8 +223,240 @@
         min-height: 360px;
     }
     
-    /* (Остали стилови су непромењени) */
+    #hero-title {
+        color: #D4AF37;
+        font-size: 3.1em;
+        margin: 0 0 24px 0;
+        opacity: 1;
+        line-height: 1.3;
+        font-family: Arial, sans-serif;
+    }
     
+    #hero-text {
+        font-size: 1.43em;
+        margin: 0 0 42px 0;
+        color: #ffffff; /* <-- ISPRAVLJEN KONTRAST */
+        opacity: 1;
+        line-height: 1.6;
+        font-family: Arial, sans-serif;
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-cta-container {
+        text-align: center;
+        margin-top: 42px;
+        opacity: 1;
+    }
+    
+    .hero-cta-button {
+        background: #802B24;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 352px;
+        width: 100%;
+        padding: 19px 33px;
+        font-size: 1.32em;
+        letter-spacing: 0.5px;
+        line-height: normal;
+        min-height: 66px;
+        text-align: center;
+        cursor: pointer;
+        opacity: 1;
+        font-family: Arial, sans-serif;
+    }
+    
+    /* === MAIN CONTENT === */
+    #main-content {
+        max-width: 1100px;
+        margin: 25px auto 60px;
+        padding: 0 20px;
+        min-height: 400px;
+        opacity: 1;
+    }
+    
+    /* === СТИЛОВИ ЗА ПРИРОДНЕ СЛИКЕ === */
+    .natural-image {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 12px;
+        margin: 25px auto;
+        display: block;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .natural-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Контејнери за слике */
+    .hero-image-container,
+    .feature-image-container,
+    .philosophy-image-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
+    .features-grid {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 400px;
+    }
+    
+    .lazy-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 500px;
+    }
+    
+    /* FOOTER LINKOVI */
+    footer {
+        background: #121212;
+        color: #ddd;
+        text-align: center;
+        padding: 25px 20px;
+        margin-top: 40px;
+        font-size: 0.9em;
+    }
+    
+    .footer-links {
+        margin-bottom: 15px;
+    }
+    
+    .footer-links a {
+        color: #D4AF37;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: 500;
+    }
+    
+    /* RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+        #main-header {
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            min-height: 120px;
+            height: auto;
+        }
+        
+        #main-header h1 {
+            font-size: 28px;
+        }
+        
+        /* NAVIGACIJA RESPONSIVE */
+        #main-nav {
+            gap: 5px !important;
+            padding: 10px 0 !important;
+        }
+        
+        #main-nav a {
+            min-width: 130px !important;
+            width: 130px !important;
+            font-size: 16px !important;
+            padding: 10px 3px !important;
+        }
+        
+        #hero-section {
+            padding: 60px 28px;
+            min-height: 300px;
+            margin: 20px 15px 0;
+            max-width: calc(100% - 30px);
+        }
+        
+        #hero-title {
+            font-size: 2.42em;
+        }
+        
+        #hero-text {
+            font-size: 1.21em;
+            margin-bottom: 30px;
+        }
+        
+        .hero-cta-button {
+            padding: 17px 28px;
+            font-size: 1.21em;
+            max-width: 308px;
+            min-height: 53px;
+        }
+        
+        /* Responsive за слике */
+        .natural-image {
+            max-width: 90%;
+            margin: 20px auto;
+        }
+        
+        .hero-image-container,
+        .feature-image-container,
+        .philosophy-image-container {
+            margin: 25px 0;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #main-header h1 {
+            font-size: 24px;
+        }
+        
+        .header-logo {
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* NAVIGACIJA RESPONSIVE ZA TELEFONE */
+        #main-nav {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        
+        #main-nav a {
+            min-width: 90% !important;
+            width: 90% !important;
+            margin: 2px 0 !important;
+            font-size: 15px !important;
+            padding: 12px 5px !important;
+        }
+        
+        #hero-section {
+            padding: 48px 22px;
+            min-height: 264px;
+            margin: 15px 10px 0;
+            max-width: calc(100% - 20px);
+        }
+        
+        #hero-title {
+            font-size: 2.09em;
+        }
+        
+        .hero-cta-button {
+            padding: 14px 22px;
+            font-size: 1.1em;
+            max-width: 275px;
+            min-height: 53px;
+        }
+        
+        .footer-links a {
+            display: inline-block;
+            margin: 5px 10px;
+        }
+        
+        /* Responsive за слике */
+        .natural-image {
+            max-width: 95%;
+            margin: 15px auto;
+        }
+    }
     </style>
     
     <meta name="description" 
@@ -250,7 +469,7 @@
     
     <meta property="og:title" content="AresNyX - Premium Donji Veš">
     <meta property="og:description" content="Premium donji veš od prirodних материјала за здравље и удобност. Памук, лан и бамбус.">
-    <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo-140x140.webp">
+    <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://aresnyx.github.io/AresNyX/">
@@ -260,7 +479,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
     <meta name="twitter:description" content="Premium donji veš od prirodних материјала за здравље и удобност.">
-    <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo-140x140.webp">
+    <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     
     <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="global.css"></noscript>
@@ -269,17 +488,16 @@
 <body>
     <header id="main-header">
         <a href="index.html" class="logo-link" aria-label="Почетна страница AresNyX">
-             <a href="index.html" class="logo-link" aria-label="Почетна страница AresNyX">
-     <img 
-         src="slike/logo.webp" 
-         alt="AresNyX Logo" 
-         class="header-logo"
-         width="70" 
-         height="70"
-         loading="eager"
-         decoding="async"
-         fetchpriority="high">
-</a>
+             <img 
+                 src="slike/logo.webp" 
+                 alt="AresNyX Logo" 
+                 class="header-logo"
+                 width="70" 
+                 height="70"
+                 loading="eager"
+                 decoding="async"
+                 fetchpriority="high">
+        </a>
         
         <h1>
             <span class="brand-emphasis">ARESNYX</span>
@@ -447,7 +665,7 @@
                 
                 .footer-links a {
                     color: #D4AF37;
-                    text-decoration: underline; /* Поновљено подвлачење за сигурност */
+                    text-decoration: underline;
                     margin: 0 15px;
                 }
             `;
