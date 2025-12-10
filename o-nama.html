@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,7 +9,6 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
-    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Track CTA button clicks
@@ -74,13 +72,15 @@
     });
     </script>
     
-    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AresNyX - O Nama | Premium Donji Veš</title>
     
-    <link rel="stylesheet" href="global.css">
+    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/o-nama.html">
+    
+    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="global.css"></noscript>
     
     <meta name="description" content="Saznajte priču iza AresNyX brenda. Premium donji veš od 100% prirodnih materijala proizveden u Srbiji za zdravlje i udobnost.">
     <meta name="keywords" content="priča AresNyX, proizvodnja u Srbiji, etička moda, prirodni materijali, kvalitet, posvećenost">
@@ -103,20 +103,23 @@
 <body>
 
 <header>
-    <img 
-        src="slike/logo.webp" 
-        alt="AresNyX Logo" 
-        class="header-logo"
-        width="70" 
-        height="70"
-        >
+    <a href="index.html" aria-label="Početna strana AresNyX"> 
+        <img 
+            src="slike/logo.webp" 
+            alt="AresNyX Logo" 
+            class="header-logo"
+            width="70" 
+            height="70"
+            loading="eager"
+            decoding="async">
+    </a>
     <h1>
         <span class="brand-emphasis">ARESNYX</span><br>
         <span class="subtitle">BOXER SHORTS</span>
     </h1>
 </header>
 
-<nav aria-label="Glavna navigacija">
+<nav id="main-nav" aria-label="Glavna navigacija">
     <a href="index.html">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html" class="active" aria-current="page">O Nama</a>
@@ -145,17 +148,17 @@
         <h2>Naša Vizija i Posvećenost Kvalitetu</h2>
         <div class="mission-points">
             <div class="mission-item">
-                <i class="fas fa-gem"></i>
+                <i class="fas fa-gem" role="img" aria-hidden="true"></i>
                 <h3>Kvalitet & Trajnost</h3>
                 <p>Koristimo pažljivo birane prirodne sirovine koje garantuju izdržljivost, mekoću i postojanost boje nakon više pranja.</p>
             </div>
             <div class="mission-item">
-                <i class="fas fa-hands"></i>
+                <i class="fas fa-hands" role="img" aria-hidden="true"></i>
                 <h3>Etika Proizvodnje</h3>
                 <p>Svi naši proizvodi su dizajnirani i proizvedeni u <strong>Srbiji</strong>. Podržavamo lokalnu zajednicu i garantujemo etičke uslove rada.</p>
             </div>
             <div class="mission-item">
-                <i class="fas fa-balance-scale"></i>
+                <i class="fas fa-balance-scale" role="img" aria-hidden="true"></i>
                 <h3>Transparentnost</h3>
                 <p>Svaka stavka ima jasnu deklaraciju materijala. Znamo šta prodajemo i želimo da znate šta nosite.</p>
             </div>
@@ -189,5 +192,62 @@
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+<script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                /* Animacije kao na ostalim stranicama */
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .fade-in-section {
+                    animation: fadeIn 0.8s ease-out forwards;
+                    opacity: 0;
+                }
+                .mission-points {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 30px;
+                    margin-top: 30px;
+                    text-align: center;
+                }
+                .mission-item i {
+                    font-size: 2.5em;
+                    color: #802B24;
+                    margin-bottom: 15px;
+                }
+                .stats-container {
+                    text-align: center;
+                    font-size: 1.5em;
+                    line-height: 2.2;
+                    margin: 40px auto;
+                    padding: 20px;
+                    background: #f0f0f0;
+                    border-radius: 8px;
+                    max-width: 600px;
+                }
+                .highlight-text {
+                    padding: 20px;
+                    background: #fff;
+                    border-left: 5px solid #D4AF37;
+                    margin: 25px 0;
+                    font-style: italic;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.querySelectorAll('.fade-in-section').forEach((section, index) => {
+                section.style.animationDelay = (index * 0.2 + 0.2) + 's';
+            });
+        }, 500);
+    });
+</script>
+
 </body>
 </html>
+
