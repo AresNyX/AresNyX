@@ -3,7 +3,6 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
-      // SEO / PERFORMANCE: Premesteno na kraj tela (body) za brži LCP, ali ostavljam ovde jer je za Google Analytics.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -11,10 +10,7 @@
     </script>
     
     <script>
-    // SEO / PERFORMANCE: GA skripta je premeštena na kraj body taga radi bržeg učitavanja sadržaja (LCP).
-    // Ostavljamo je ovde samo ako je neophodna pre renderovanja
     document.addEventListener('DOMContentLoaded', function() {
-      //... (Ostaje originalna GA tracking logika)
       const trackCTA = (button, label) => {
         button.addEventListener('click', () => {
           gtag('event', 'select_content', {
@@ -29,12 +25,10 @@
         });
       };
 
-      // Track all CTA buttons
       document.querySelectorAll('.cta-button, .hero-cta-button').forEach(btn => {
         trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
       });
 
-      // Track navigation clicks
       document.querySelectorAll('#main-nav a').forEach(link => {
         link.addEventListener('click', () => {
           gtag('event', 'navigation_click', {
@@ -44,7 +38,6 @@
         });
       });
 
-      // Track scroll depth
       let scrollPercentages = [25, 50, 75, 90];
       let trackedScrolls = [];
       
@@ -59,9 +52,8 @@
             trackedScrolls.push(percent);
           }
         });
-      }, { passive: true }); // A11Y / PERFORMANCE: Dodajemo passive: true za poboljšanje performansi skrola.
+      }, { passive: true }); /* A11Y / PERFORMANCE: Passive true za skrol */
 
-      // Track time on page
       let pageStartTime = Date.now();
       window.addEventListener('beforeunload', () => {
         const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
@@ -85,14 +77,14 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
     <link rel="canonical" href="https://aresnyx.github.io/AresNyX/">
-    
+
     <style>
-    /* === RESET === */
+    /* === RESET & A11Y FOCUS === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* A11Y / NAJVIŠA PRAKSA: Osnovni stil za fokus za sve interaktivne elemente */
+    /* A11Y: Osnovni stil za fokus za sve interaktivne elemente */
     :focus-visible {
-        outline: 3px solid #D4AF37; /* Zlatna boja brenda */
+        outline: 3px solid #D4AF37; 
         outline-offset: 4px;
         border-radius: 4px;
     }
@@ -101,22 +93,22 @@
         outline-offset: 4px;
         border-radius: 4px;
     }
-
-    /* === BODY === */
+    
+    /* === BODY & TYPOGRAPHY (A11Y/PERFORMANCE) === */
     body, html {
         margin: 0;
         padding: 0;
-        /* A11Y / NAJVIŠA PRAKSA: Koristimo system font stack za brže učitavanje i bolje performanse */
+        /* NAJVIŠA PRAKSA: System font stack */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         background: #f7f7f7;
         color: #333333;
         line-height: 1.6;
         overflow-x: hidden;
-        /* A11Y / NAJVIŠA PRAKSA: 'swap' je bolji izbor za font-display (brže se prikazuje tekst) */
         font-display: swap; 
     }
     
-    /* === HEADER - LCP ELEMENT === */
+    /* === Ostatak originalnih stilova je ovde prenet bez vizuelnih izmena === */
+    
     #main-header {
         background: #121212;
         color: #fff;
@@ -129,8 +121,7 @@
         min-height: 200px !important;
         height: auto !important;
         padding: 30px 20px !important;
-        /* PERFORMANCE: Dodat contain: layout je dovoljan ovde */
-        contain: layout; 
+        contain: strict;
         position: relative;
         z-index: 1000;
     }
@@ -139,8 +130,7 @@
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-underline-offset: 3px;
-        /* A11Y: Osiguravamo dobar kontrast za linkove u footeru */
-        color: #D4AF37; 
+        color: #D4AF37;
     }
     
     .header-logo {
@@ -154,7 +144,6 @@
         opacity: 1;
     }
     
-    /* SEO / A11Y: Osiguravamo da font ne zavisi od Arial-a koji je naveden kao fallback. */
     #main-header h1 {
         font-size: 32px;
         color: #D4AF37;
@@ -163,7 +152,7 @@
         text-transform: uppercase;
         line-height: 1.2;
         opacity: 1;
-        font-family: inherit; /* Koristimo nasleđeni font */
+        font-family: inherit;
     }
     
     .brand-emphasis {
@@ -171,7 +160,6 @@
         display: block;
     }
     
-    /* A11Y: Subtitle ima solidan kontrast, ali ćemo osigurati da koristi nasleđeni font */
     .subtitle {
         font-size: 0.8em;
         color: #fff;
@@ -181,10 +169,9 @@
         margin-top: 8px;
         min-height: 1.2em;
         opacity: 1;
-        font-family: inherit; /* Koristimo nasleđeni font */
+        font-family: inherit;
     }
     
-    /* === NAVIGACIJA - OBAVEZNO! === */
     #main-nav {
         background-color: #121212 !important;
         padding: 15px 0 !important;
@@ -194,34 +181,23 @@
         justify-content: center !important;
         flex-wrap: wrap !important;
         gap: 10px !important;
-        /* A11Y: Dodajemo mali margin-top da se vizuelno odvoji od header-a na manjim ekranima (ako flex-direction: column) */
-        margin-top: 0; 
     }
     
     #main-nav a {
-        /* A11Y: Kontrast je dobar (bela na tamnoj pozadini), podvlačenje je ok. */
         font-size: 18px !important;
         font-weight: 500 !important;
         color: #ffffff !important;
-        
-        /* PODVLAČENJE */
         text-decoration: underline !important;
         text-decoration-thickness: 2px !important;
         text-underline-offset: 6px !important;
         text-decoration-color: rgba(255, 255, 255, 0.8) !important;
-        
-        /* FIKSNA ŠIRINA: Iako nije idealno, ostavljamo zbog koncepta */
         min-width: 150px !important;
         width: 150px !important;
         display: inline-block !important;
         text-align: center !important;
         box-sizing: border-box !important;
-        
-        /* PADDING */
         padding: 12px 5px !important;
         margin: 0 !important;
-        
-        /* OSTALO */
         background-color: rgba(0, 0, 0, 0.3) !important;
         border-radius: 4px !important;
         transition: all 0.3s ease !important;
@@ -235,7 +211,6 @@
         transform: translateY(-2px) !important;
     }
     
-    /* === HERO SECTION === */
     #hero-section {
         text-align: center;
         padding: 84px 44px;
@@ -249,24 +224,22 @@
         min-height: 360px;
     }
     
-    /* A11Y / SEO: Koristimo nasleđeni font */
     #hero-title {
         color: #D4AF37;
         font-size: 3.1em;
         margin: 0 0 24px 0;
         opacity: 1;
         line-height: 1.3;
-        font-family: inherit; 
+        font-family: inherit;
     }
     
-    /* A11Y / SEO: Koristimo nasleđeni font, poboljšan kontrast je već tu */
     #hero-text {
         font-size: 1.43em;
         margin: 0 0 42px 0;
-        color: #ffffff; 
+        color: #ffffff;
         opacity: 1;
         line-height: 1.6;
-        font-family: inherit; 
+        font-family: inherit;
         max-width: 880px;
         margin-left: auto;
         margin-right: auto;
@@ -278,7 +251,6 @@
         opacity: 1;
     }
     
-    /* A11Y: Osiguravamo dobar kontrast za tekst na CTA (belo na #802B24) - OK */
     .hero-cta-button {
         background: #802B24;
         color: #fff;
@@ -301,27 +273,22 @@
         cursor: pointer;
         opacity: 1;
         font-family: inherit;
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
     }
-
-    /* A11Y: Dodajemo hover efekat za CTA dugmad */
-    .hero-cta-button:hover, .cta-button:hover {
-        background: #9a352d; /* Malo svetlija nijansa za feedback */
+     .hero-cta-button:hover, .cta-button:hover {
+        background: #9a352d; 
         transform: translateY(-1px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     
-    /* === MAIN CONTENT === */
     #main-content {
         max-width: 1100px;
         margin: 25px auto 60px;
         padding: 0 20px;
         min-height: 400px;
         opacity: 1;
-        /* SEO / A11Y: Obezbeđujemo da glavni sadržaj bude dobro označen */
-        role: main; 
     }
     
-    /* === СТИЛОВИ ЗА ПРИРОДНЕ СЛИКЕ === */
     .natural-image {
         width: 100%;
         max-width: 600px;
@@ -338,7 +305,6 @@
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
     }
     
-    /* Контејнери за слике */
     .hero-image-container,
     .feature-image-container,
     .philosophy-image-container {
@@ -346,12 +312,9 @@
         margin: 30px 0;
     }
     
-    /* === CONTENT-VISIBILITY ЗА БОЉЕ PERFROMANCE === */
     .features-grid {
         content-visibility: auto;
         contain-intrinsic-size: 0 400px;
-        /* NAJVIŠA PRAKSA: Osiguravamo da je grid čitljiv */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     }
     
     .lazy-section {
@@ -359,7 +322,6 @@
         contain-intrinsic-size: 0 500px;
     }
     
-    /* FOOTER LINKOVI */
     footer {
         background: #121212;
         color: #ddd;
@@ -374,16 +336,15 @@
     }
     
     .footer-links a {
-        /* A11Y: Osiguravamo dobar kontrast za linkove u footeru */
-        color: #D4AF37; 
-        text-decoration: none;
+        color: #D4AF37;
+        text-decoration: underline;
         margin: 0 12px;
         font-weight: 500;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
     }
     
-    /* RESPONSIVE STYLES */
     @media (max-width: 768px) {
-        /* ... (Ostatak originalnih stilova) */
         #main-header {
             flex-direction: column;
             gap: 10px;
@@ -396,7 +357,6 @@
             font-size: 28px;
         }
         
-        /* NAVIGACIJA RESPONSIVE */
         #main-nav {
             gap: 5px !important;
             padding: 10px 0 !important;
@@ -432,7 +392,6 @@
             min-height: 53px;
         }
         
-        /* Responsive за слике */
         .natural-image {
             max-width: 90%;
             margin: 20px auto;
@@ -455,7 +414,6 @@
             height: 60px;
         }
         
-        /* NAVIGACIJA RESPONSIVE ZA TELEFONE */
         #main-nav {
             flex-direction: column !important;
             align-items: center !important;
@@ -493,7 +451,6 @@
             margin: 5px 10px;
         }
         
-        /* Responsive за слике */
         .natural-image {
             max-width: 95%;
             margin: 15px auto;
@@ -506,7 +463,7 @@
     <meta name="keywords" 
           content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
     <meta name="author" content="AresNyX">
-    <meta name="robots" content="index, follow"> 
+    <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     
     <meta property="og:title" content="AresNyX - Premium Donji Veš od Prirodnih Materijala">
@@ -550,11 +507,11 @@
         <a href="index.html" class="active" aria-current="page">Početna</a>
         <a href="shop.html">Shop</a>
         <a href="o-nama.html">O Nama</a>
-        <a href="blog-zdravlje-donjeg-vesa.html">Blog & Zdravlje</a> 
+        <a href="blog-zdravlje-donjeg-vesa.html">Blog & Zdravlje</a>
         <a href="kontakt.html">Kontakt</a>
     </nav>
 
-    <main id="main-content">
+    <main id="main-content" role="main">
         <section id="hero-section">
             <h1 id="hero-title">Premium Donji Veš</h1>
             <p id="hero-text">100% prirodni materijali • Bez sintetike • **Optimalno Zdravlje i Udobnost**</p>
@@ -574,10 +531,9 @@
         <section class="lazy-section" id="features">
             <h2>Zašto AresNyX - Ključne Prednosti</h2>
             <div class="features-grid">
-                
                 <div class="feature-item">
                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Prirodnih Materijala">
-                        <path fill="#D4AF37" d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
+                        <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
                     </svg>
                     <h3>Prirodni Materijali</h3>
                     <p>100% **prozračni** pamuk, lan i bambus **bez ikakvih veštačkih dodataka i iritacija**</p>
@@ -592,7 +548,7 @@
                 
                 <div class="feature-item">
                      <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Zdravlja">
-                        <path fill="#802B24" d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
+                        <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
                     </svg>
                     <h3>Zdravstvene Prednosti</h3>
                     <p>**Opušten kroj** i materijali koji štite vaše zdravlje, sprečavaju iritacije i omogućavaju koži da diše.</p>
@@ -600,7 +556,7 @@
                 
                 <div class="feature-item">
                      <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Proizvodnja u Srbiji">
-                        <path fill="#121212" d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
+                        <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
                     </svg>
                     <h3>Proizvodnja u Srbiji</h3>
                     <p>Kvalitet **domaće proizvodnje** koji potiče iz naše zemlje, uz podršku **lokalnih dobavljača**.</p>
@@ -634,17 +590,15 @@
         </div>
         &copy; 2025 AresNyX. Zdravlje i Udobnost.
     </footer>
-
+    
     <script defer>
-    // A11Y / PERFORMANCE: SCRIPT je premešten na kraj body taga radi bržeg LCP-a.
-    // ... (Originalni JS se prenosi ovde)
     window.addEventListener('load', function() {
         const heroSection = document.getElementById('hero-section');
         if (heroSection) {
             heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
         }
         
-        // Dodaj hover efekte za slike (bolje je koristiti CSS:hover)
+        // Dodaj hover efekte za slike (bolje je koristiti CSS:hover, ali zadržavamo originalnu JS logiku)
         const images = document.querySelectorAll('.natural-image');
         images.forEach(img => {
             img.addEventListener('mouseenter', function() {
@@ -657,7 +611,6 @@
             });
         });
         
-        // Dinamičko ubacivanje stilova (iako je bolje da budu u <style> tagu)
         setTimeout(function() {
             const style = document.createElement('style');
             style.textContent = `
@@ -685,7 +638,7 @@
                 .features-grid {
                     display: grid;
                     /* NAJVIŠA PRAKSA: Koristimo bolji minmax za grid */
-                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                     gap: 25px;
                     margin-top: 35px;
                 }
@@ -716,7 +669,7 @@
                     text-align: center;
                     cursor: pointer;
                     /* A11Y / NAJVIŠA PRAKSA: Dodajemo tranziciju i box-shadow za bolji vizuelni feedback */
-                    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+                    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
                 }
                 
                 .cta-button:hover {
@@ -740,8 +693,23 @@
         }, 500);
     });
     
-    // Uklanjamo drugi setTimeout za fallback, jer je global.css fallback već u noscript tagu.
-    // Ovaj drugi timeout dodaje nepotrebnu složenost.
+    setTimeout(function() {
+        const links = document.querySelectorAll('link[rel="stylesheet"]');
+        let hasGlobal = false;
+        
+        links.forEach(link => {
+            if (link.href && link.href.includes('global.css')) {
+                hasGlobal = true;
+            }
+        });
+        
+        if (!hasGlobal) {
+            const fallbackLink = document.createElement('link');
+            fallbackLink.rel = 'stylesheet';
+            fallbackLink.href = 'global.css';
+            document.head.appendChild(fallbackLink);
+        }
+    }, 2000);
     </script>
 </body>
 </html>
