@@ -14,31 +14,44 @@
         🚚 BESPLATNA DOSTAVA za sve porudžbine iznad 4000 RSD!
     </div>
     
-    <div class="header">
-        <div class="navbar">
+    <header class="header">
+        <div class="navbar container">
             <a href="#" class="logo">AREsNyX</a>
             
-            <div style="position: relative;">
+            <div class="nav-right">
                 <button class="filter-sort-btn" id="filterSortBtn" onclick="shop.toggleFilterPanel()">
                     <i class="fas fa-filter"></i>
                     Filteri & Sortiranje
                 </button>
                 
-                <div class="filter-sort-panel" id="filterSortPanel">
-                    
+                <div class="cart-nav-link" onclick="shop.toggleCart()" role="button" tabindex="0" aria-label="Otvorite korpu">
+                    <i class="fas fa-shopping-cart cart-icon"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-sort-panel" id="filterSortPanel">
+            <div class="panel-content container">
+                
+                <div class="filter-group">
                     <h3><i class="fas fa-sort-amount-down-alt"></i> Sortiraj po ceni</h3>
-                    <select id="priceSort">
+                    <select id="priceSort" class="form-select">
                         <option value="default">Podrazumevano</option>
                         <option value="lowToHigh">Cena: Najniža - Najviša</option>
-                        <option value="highToLow">Cena: Najviša - Najniža</option>
+                        <option value="highToLow">Cena: Najviša - Najviša</option>
                     </select>
+                </div>
 
+                <div class="filter-group">
                     <h3><i class="fas fa-swatchbook"></i> Materijal</h3>
-                    <select id="materialFilter">
+                    <select id="materialFilter" class="form-select">
                         <option value="all">Svi materijali</option>
                         <option value="pamuk">Pamuk</option>
                         </select>
+                </div>
 
+                <div class="filter-group size-group">
                     <h3><i class="fas fa-ruler"></i> Veličina</h3>
                     <div class="size-filter-options" id="sizeFilterOptions">
                         <button class="size-btn active" data-size="all">Sve</button>
@@ -48,91 +61,110 @@
                         <button class="size-btn" data-size="XL">XL</button>
                         <button class="size-btn" data-size="XXL">XXL</button>
                     </div>
+                </div>
 
+                <div class="filter-action">
                     <button class="apply-filters-btn" id="applyFiltersBtn" onclick="shop.applyAllFilters()">
                         <i class="fas fa-check"></i> Primeni filtere
                     </button>
                 </div>
-            </div>
 
-            <div class="cart-nav-link" onclick="shop.toggleCart()">
-                <i class="fas fa-shopping-cart cart-icon"></i>
-                <span class="cart-count" id="cartCount">0</span>
             </div>
         </div>
-    </div>
+    </header>
     
-    <main class="products-section">
+    <main class="products-section container">
         <div class="products-grid" id="productsGrid">
             </div>
     </main>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">AresNyX</div>
-            <p class="footer-tagline">Kvalitet i elegancija na jednom mestu.</p>
-            
-            <div class="footer-links">
-                <a href="#">O nama</a>
-                <a href="#">Kontakt</a>
-                <a href="#">Uslovi korišćenja</a>
-                <a href="#">Politika privatnosti</a>
+        <div class="footer-content container">
+            <div class="footer-col footer-info">
+                <div class="footer-logo">AresNyX</div>
+                <p class="footer-tagline">Kvalitet, elegancija i udobnost.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h4>Informacije</h4>
+                <ul>
+                    <li><a href="#">O nama</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="#">Česta pitanja (FAQ)</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h4>Pravila</h4>
+                <ul>
+                    <li><a href="#">Uslovi korišćenja</a></li>
+                    <li><a href="#">Politika privatnosti</a></li>
+                    <li><a href="#">Reklamacije</a></li>
+                </ul>
             </div>
             
-            <div class="footer-social">
-                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <div class="footer-col footer-contact">
+                <h4>Kontakt</h4>
+                <p><i class="fas fa-envelope"></i> ares.nyx.info@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +381 60 123 4567</p>
             </div>
-            
-            <div class="footer-bottom">
-                &copy; <span id="currentYear">2024</span> AresNyX. Sva prava zadržana.
-            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="currentYear">2024</span> AresNyX. Sva prava zadržana.
         </div>
     </footer>
     
     <div class="modal-overlay" id="productModal">
         <div class="modal-container">
             <button class="modal-close" onclick="shop.closeModal()">×</button>
-            <div class="modal-content">
-                
-                <h2 id="modalTitle" style="color: var(--primary-dark); margin-bottom: 0.5rem;">Naziv proizvoda</h2>
-                <p id="modalMaterial" style="color: #666; margin-bottom: 1.5rem;"></p>
-
+            <div class="modal-content product-view">
                 <div class="modal-gallery">
                     <img id="modalMainImage" class="modal-main-image" src="" alt="Glavna slika proizvoda">
                     <div class="slider-nav">
-                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-arrow-left"></i> Prethodna</button>
-                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-arrow-right"></i></button>
+                        <button id="prevImageBtn" onclick="shop.prevImage()" title="Prethodna slika"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()" title="Sledeća slika"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <div class="variation-section">
-                    <h3>Veličina</h3>
-                    <div id="sizeSelector">
+                <div class="modal-details">
+                    <h2 id="modalTitle" class="modal-title">Naziv proizvoda</h2>
+                    <p id="modalMaterial" class="modal-subtitle"></p>
+
+                    <div class="price-section">
+                        <span id="modalPrice" class="product-price">CENA RSD</span>
+                    </div>
+
+                    <div class="variation-section">
+                        <h3>Veličina</h3>
+                        <div id="sizeSelector" class="size-selector">
+                            </div>
+                        <button class="size-guide-btn" onclick="shop.toggleSizeTable()">
+                            Tabela veličina <i class="fas fa-ruler-combined"></i>
+                        </button>
+                        <div id="sizeTable" class="size-table-info" style="display: none;">
+                            <p>Tabela dimenzija (Širina/Dužina) biće ovde prikazana.</p>
                         </div>
-                    <button style="margin-top: 10px; padding: 5px 10px; background: none; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;" onclick="shop.toggleSizeTable()">
-                        Tabela veličina <i class="fas fa-ruler-combined"></i>
-                    </button>
-                    <div id="sizeTable" style="display: none; padding: 10px; border: 1px solid #eee; margin-top: 10px;">
-                        <p>Ovde dolazi tabela sa dimenzijama (Širina/Dužina).</p>
                     </div>
-                </div>
-
-                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                    <span id="modalPrice" class="product-price">CENA RSD</span>
-                    <div class="quantity-selector">
-                        <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
-                        <span class="qty-display" id="modalQty">1</span>
-                        <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                    
+                    <div class="quantity-section">
+                        <h3>Količina</h3>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                            <span class="qty-display" id="modalQty">1</span>
+                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="modal-actions">
-                    <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
-                        <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-                    </button>
-                    <button class="continue-shopping" onclick="shop.closeModal()">Nastavi kupovinu</button>
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+                            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,143 +173,134 @@
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2><i class="fas fa-shopping-bag"></i> Vaša Korpa</h2>
-            <button class="modal-close" style="position: static; background: none; border: none;" onclick="shop.toggleCart()">
-                <i class="fas fa-times-circle" style="color: white; font-size: 1.5rem;"></i>
+            <button class="close-cart-btn" onclick="shop.toggleCart()">
+                <i class="fas fa-times"></i>
             </button>
         </div>
         
         <div class="cart-items" id="cartItems">
             </div>
 
-        <div class="cart-promo-message" id="cartPromoMessage" style="margin: 1rem;">
+        <div class="cart-promo-message" id="cartPromoMessage">
             </div>
 
-        <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-footer" id="cartFooter">
             <div class="cart-totals">
-                <p class="cart-total-row">Međuzbir: <span style="float: right;" id="cartSubtotal">0 RSD</span></p>
-                <p class="cart-total-row">Dostava: <span style="float: right;" id="cartShipping">400 RSD</span></p>
-                <p class="cart-total-row">Popust (10%): <span style="float: right;" id="cartDiscount">0 RSD</span></p>
-                <p class="cart-total-row final">Ukupno: <span style="float: right;" id="cartTotal">0 RSD</span></p>
+                <p class="cart-total-row">Međuzbir: <span id="cartSubtotal">0 RSD</span></p>
+                <p class="cart-total-row shipping">Dostava: <span id="cartShipping">400 RSD</span></p>
+                <p class="cart-total-row discount">Popust: <span id="cartDiscount">0 RSD</span></p>
+                <p class="cart-total-row final">Ukupno: <span id="cartTotal">0 RSD</span></p>
             </div>
             
             <button class="clear-cart-btn" onclick="shop.clearCart()">
                 <i class="fas fa-trash-alt"></i> Isprazni korpu
             </button>
             <button class="checkout-btn" onclick="shop.startCheckout()">
-                <i class="fas fa-credit-card"></i> Naruči
+                <i class="fas fa-credit-card"></i> Naruči i Plati
             </button>
         </div>
     </div>
     
     <div class="modal-overlay" id="checkoutModal">
-        <div class="modal-container">
+        <div class="modal-container checkout-container">
             <button class="modal-close" onclick="shop.closeCheckoutModal()">×</button>
             
-            <div id="checkoutStep1">
-                <form class="checkout-form" onsubmit="shop.submitShippingForm(event)">
-                    <h2>Korak 1: Adresa i Plaćanje</h2>
-                    
-                    <div class="form-group">
-                        <label for="ime">Ime*</label>
-                        <input type="text" id="ime" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="prezime">Prezime*</label>
-                        <input type="text" id="prezime" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email*</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefon">Telefon* (za dostavu)</label>
-                        <input type="tel" id="telefon" required>
-                    </div>
-                    <hr style="margin: 1.5rem 0;">
-                    
-                    <div class="form-group">
-                        <label for="ulica">Ulica i kućni broj*</label>
-                        <input type="text" id="ulica" required>
-                    </div>
-                    <div class="form-group" style="display: flex; gap: 10px;">
-                        <div style="flex: 1;">
-                            <label for="postanskiBroj">Poštanski broj*</label>
-                            <input type="text" id="postanskiBroj" required>
-                        </div>
-                        <div style="flex: 2;">
-                            <label for="grad">Grad*</label>
-                            <input type="text" id="grad" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="opstina">Opština (opciono)</label>
-                        <input type="text" id="opstina">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="placanje">Način plaćanja*</label>
-                        <select id="placanje" required>
-                            <option value="pouzecem">Pouzećem (Plaćanje prilikom preuzimanja)</option>
-                            <option value="racun">Uplata na račun (E-banking)</option>
-                            <option value="licno">Lično preuzimanje (dogovor)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="napomena">Napomena za dostavu (opciono)</label>
-                        <textarea id="napomena" rows="3"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" style="background: var(--primary-dark);">
-                        Nastavi na Pregled Porudžbine
-                    </button>
-                </form>
-            </div>
-
-            <div id="checkoutStep2" style="display: none;">
-                <h2>Korak 2: Pregled i Potvrda</h2>
-                <p>Molimo proverite podatke pre slanja porudžbine.</p>
+            <div class="checkout-steps-wrapper">
                 
-                <div class="preview-container">
-                    <div class="preview-shipping">
-                        <h3>Adresa i Plaćanje</h3>
-                        <p id="previewIme"></p>
-                        <p id="previewEmail"></p>
-                        <p id="previewTelefon"></p>
-                        <p id="previewAdresa"></p>
-                        <p id="previewPostaGrad"></p>
-                        <p id="previewPlacanje"></p>
-                        <p id="previewNapomena"></p>
-                    </div>
+                <div id="checkoutStep1" class="checkout-step">
+                    <form class="checkout-form" onsubmit="shop.submitShippingForm(event)">
+                        <h2>Korak 1: Podaci i Plaćanje</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group"><label for="ime">Ime*</label><input type="text" id="ime" required></div>
+                            <div class="form-group"><label for="prezime">Prezime*</label><input type="text" id="prezime" required></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="email">Email*</label><input type="email" id="email" required></div>
+                            <div class="form-group"><label for="telefon">Telefon*</label><input type="tel" id="telefon" required></div>
+                        </div>
+                        
+                        <h3 class="form-subtitle">Adresa za dostavu</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width"><label for="ulica">Ulica i kućni broj*</label><input type="text" id="ulica" required></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="postanskiBroj">Poštanski broj*</label><input type="text" id="postanskiBroj" required></div>
+                            <div class="form-group"><label for="grad">Grad*</label><input type="text" id="grad" required></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width"><label for="opstina">Opština (opciono)</label><input type="text" id="opstina"></div>
+                        </div>
+                        
+                        <h3 class="form-subtitle">Plaćanje</h3>
+
+                        <div class="form-group full-width">
+                            <label for="placanje">Način plaćanja*</label>
+                            <select id="placanje" required class="form-select">
+                                <option value="pouzecem">Pouzećem (Plaćanje prilikom preuzimanja)</option>
+                                <option value="racun">Uplata na račun (E-banking)</option>
+                                <option value="licno">Lično preuzimanje (dogovor)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="napomena">Napomena za dostavu (opciono)</label>
+                            <textarea id="napomena" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn full-width">
+                            Nastavi na Pregled Porudžbine <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="checkoutStep2" class="checkout-step" style="display: none;">
+                    <h2>Korak 2: Pregled i Potvrda</h2>
+                    <p class="subtitle-text">Molimo proverite podatke pre slanja porudžbine.</p>
                     
-                    <div class="preview-order">
-                        <h3>Detalji porudžbine</h3>
-                        <div id="previewOrderItems">
+                    <div class="preview-container">
+                        <div class="preview-card preview-shipping">
+                            <h3><i class="fas fa-map-marker-alt"></i> Adresa i Kontakt</h3>
+                            <p id="previewIme"></p>
+                            <p id="previewEmail"></p>
+                            <p id="previewTelefon"></p>
+                            <p id="previewAdresa"></p>
+                            <p id="previewPostaGrad"></p>
+                            <p id="previewPlacanje"></p>
+                            <p id="previewNapomena"></p>
+                        </div>
+                        
+                        <div class="preview-card preview-order">
+                            <h3><i class="fas fa-box-open"></i> Detalji porudžbine</h3>
+                            <div id="previewOrderItems" class="preview-order-items">
+                                </div>
+                            <div class="checkout-totals">
+                                <p class="cart-total-row">Međuzbir: <span id="previewSubtotal"></span></p>
+                                <p class="cart-total-row shipping">Dostava: <span id="previewShipping"></span></p>
+                                <p class="cart-total-row discount">Popust: <span id="previewDiscount"></span></p>
+                                <p class="cart-total-row final">Ukupno: <span id="previewTotal"></span></p>
                             </div>
-                        <hr>
-                        <p class="cart-total-row">Međuzbir: <span style="float: right;" id="previewSubtotal"></span></p>
-                        <p class="cart-total-row">Dostava: <span style="float: right;" id="previewShipping"></span></p>
-                        <p class="cart-total-row">Popust: <span style="float: right;" id="previewDiscount"></span></p>
-                        <p class="cart-total-row final">Ukupno: <span style="float: right;" id="previewTotal"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="preview-actions">
+                        <button class="submit-order-btn" onclick="shop.completeOrder()">
+                            <i class="fas fa-paper-plane"></i> Potvrdi i Pošalji Porudžbinu
+                        </button>
+                        <button class="edit-data-btn" onclick="shop.goToStep(1)">
+                            <i class="fas fa-edit"></i> Izmeni podatke
+                        </button>
                     </div>
                 </div>
 
-                <div class="preview-actions">
-                    <button class="submit-order-btn" onclick="shop.completeOrder()">
-                        <i class="fas fa-paper-plane"></i> Pošalji Porudžbinu
-                    </button>
-                    <button class="edit-data-btn" onclick="shop.goToStep(1)">
-                        <i class="fas fa-edit"></i> Izmeni podatke
-                    </button>
+                <div id="checkoutStep3" class="checkout-step confirmation-step" style="display: none;">
+                    <i class="fas fa-check-circle confirmation-icon"></i>
+                    <h2>Hvala na Porudžbini!</h2>
+                    <p class="subtitle-text">Uspešno ste poslali porudžbinu. Potvrdu i detalje o praćenju poslaćemo Vam uskoro na email:</p>
+                    <p class="confirmation-email" id="confirmationEmail"></p>
+                    <button class="submit-btn" onclick="shop.closeCheckoutModal()">Završi kupovinu</button>
                 </div>
-            </div>
-
-            <div id="checkoutStep3" style="display: none; text-align: center; padding: 3rem 1rem;">
-                <i class="fas fa-check-circle" style="color: var(--success); font-size: 4rem; margin-bottom: 1rem;"></i>
-                <h2>Hvala na Porudžbini!</h2>
-                <p>Uspešno ste poslali porudžbinu. Proverite sanduče na:</p>
-                <p style="font-weight: 700; color: var(--primary-dark);" id="confirmationEmail"></p>
-                <p style="margin-top: 1.5rem;">Potvrdu i detalje o praćenju poslaćemo Vam uskoro.</p>
-                <button class="submit-btn" style="background: var(--primary-dark); margin-top: 2rem;" onclick="shop.closeCheckoutModal()">Završi</button>
             </div>
         </div>
     </div>
@@ -286,10 +309,10 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
-    
     <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>
+
 
 
 
