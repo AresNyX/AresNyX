@@ -209,37 +209,6 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 }
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
-/* ===== NOVI FOOTER STILOVI - KONSOLIDOVANO I ISPRAVLJENO ===== */
-
-.site-footer {
-    background-color: #121212; /* Tamna pozadina */
-    color: #f4f4f4; /* Svetli tekst */
-    padding: 3rem 0;
-    margin-top: 5rem; /* Odvajanje od ostatka sadržaja */
-}
-
-.footer-content-custom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.footer-section-custom {
-    flex: 1 1 200px; /* Fleksibilna širina sekcija */
-}
-
-.footer-section-custom h3 {
-    color: var(--accent-gold); /* Zlatna/akcent boja */
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-    padding-bottom: 0.5rem;
-}
 /* ========================================================= */
 /* MODIFIKOVANI STILOVI ZAHTEVANI OD STRANE KORISNIKA */
 /* ========================================================= */
@@ -338,7 +307,7 @@ h2 {
     padding: 1rem 0;
     border-top: 1px solid #333;
     margin-top: 2rem;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     color: #aaa;
 }
 
