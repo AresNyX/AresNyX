@@ -10,11 +10,26 @@
 <body>
 
     <header class="main-header">
-        <h1>AresNyX Online Shop</h1>
+        <div class="logo">
+            <h1>AresNyX</h1> </div>
+
+        <nav id="mainNav" class="main-nav">
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="about.html">O Nama</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+        
         <div class="header-controls">
-            <button class="filter-sort-btn" onclick="shop.toggleFilterPanel()">
-                <i class="fas fa-filter"></i> Filteri
+            <button class="nav-toggle-btn" onclick="shop.toggleNav()">
+                <i class="fas fa-bars"></i>
             </button>
+            
+            <button class="filter-sort-btn" onclick="shop.toggleFilterPanel()">
+                <i class="fas fa-filter"></i>
+            </button>
+            
             <div class="cart-icon" onclick="shop.toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="cartCount">0</span>
@@ -23,45 +38,47 @@
     </header>
 
     <main class="container">
-        
-        <div id="filterSortPanel" class="filter-sort-panel">
-             <div class="panel-header">
-                <h3>Filteri i Sortiranje</h3>
-                <button class="close-btn" onclick="shop.toggleFilterPanel()">×</button>
-            </div>
-            <div class="panel-content">
-                
-                <h4>Materijal</h4>
-                <select id="materialFilter" onchange="shop.filterProducts(this.value, 'material')">
-                    <option value="all">Svi Materijali</option>
-                    <option value="pamuk">Pamuk</option>
-                    </select>
-
-                <h4>Veličina</h4>
-                <div id="sizeFilterOptions" class="size-filter-options">
-                    <button class="size-btn active" data-size="all">Sve</button>
-                    <button class="size-btn" data-size="S">S</button>
-                    <button class="size-btn" data-size="M">M</button>
-                    <button class="size-btn" data-size="L">L</button>
-                    <button class="size-btn" data-size="XL">XL</button>
-                    <button class="size-btn" data-size="XXL">XXL</button>
+        <section class="shop-content">
+            
+            <div id="filterSortPanel" class="filter-sort-panel">
+                 <div class="panel-header">
+                    <h3>Filteri i Sortiranje</h3>
+                    <button class="close-btn" onclick="shop.toggleFilterPanel()">×</button>
                 </div>
-                
-                <h4>Sortiranje po ceni</h4>
-                <select id="priceSort">
-                    <option value="default">Podrazumevano</option>
-                    <option value="lowToHigh">Cena: Najniža > Najviša</option>
-                    <option value="highToLow">Cena: Najviša < Najniža</option>
-                </select>
-                
-                <button class="apply-filters-btn" onclick="shop.applyAllFilters()">
-                    <i class="fas fa-check"></i> Primeni filtere
-                </button>
-            </div>
-        </div>
+                <div class="panel-content">
+                    
+                    <h4>Materijal</h4>
+                    <select id="materialFilter" onchange="shop.filterProducts(this.value, 'material')">
+                        <option value="all">Svi Materijali</option>
+                        <option value="pamuk">Pamuk</option>
+                        </select>
 
-        <div id="productsGrid" class="product-grid">
+                    <h4>Veličina</h4>
+                    <div id="sizeFilterOptions" class="size-filter-options">
+                        <button class="size-btn active" data-size="all">Sve</button>
+                        <button class="size-btn" data-size="S">S</button>
+                        <button class="size-btn" data-size="M">M</button>
+                        <button class="size-btn" data-size="L">L</button>
+                        <button class="size-btn" data-size="XL">XL</button>
+                        <button class="size-btn" data-size="XXL">XXL</button>
+                    </div>
+                    
+                    <h4>Sortiranje po ceni</h4>
+                    <select id="priceSort">
+                        <option value="default">Podrazumevano</option>
+                        <option value="lowToHigh">Cena: Najniža > Najviša</option>
+                        <option value="highToLow">Cena: Najviša < Najniža</option>
+                    </select>
+                    
+                    <button class="apply-filters-btn" onclick="shop.applyAllFilters()">
+                        <i class="fas fa-check"></i> Primeni filtere
+                    </button>
+                </div>
             </div>
+
+            <div id="productsGrid" class="product-grid">
+                </div>
+        </section>
     </main>
 
 
@@ -70,17 +87,13 @@
             <h2><i class="fas fa-shopping-cart"></i> Vaša Korpa</h2>
             <button class="close-btn" onclick="shop.toggleCart()">×</button>
         </div>
-        
-        <div id="cartPromoMessage" class="promo-bar">
-            </div>
-
+        <div id="cartPromoMessage" class="promo-bar"></div>
         <div id="cartItems" class="cart-items-container">
             <div class="empty-cart" id="emptyCart">
                 <i class="fas fa-shopping-bag"></i>
                 <p>Vaša korpa je prazna</p>
             </div>
         </div>
-
         <div id="cartFooter" class="cart-footer">
             <div class="cart-totals">
                 <div>Međuzbir: <span id="cartSubtotal">0 RSD</span></div>
@@ -88,7 +101,6 @@
                 <div>Dostava: <span id="cartShipping" class="shipping-price">400 RSD</span></div>
                 <div class="total-line">Ukupno: <span id="cartTotal">0 RSD</span></div>
             </div>
-
             <div class="cart-actions">
                 <button class="btn btn-primary checkout-btn" onclick="shop.startCheckout()">
                     <i class="fas fa-credit-card"></i> Nastavi na plaćanje
@@ -100,15 +112,13 @@
         </div>
     </div>
     
-    <div class="overlay" onclick="shop.toggleCart()"></div>
+    <div class="overlay" onclick="shop.toggleCart(); shop.toggleFilterPanel(false); shop.toggleNav(false);"></div>
 
 
     <div id="productModal" class="modal">
         <div class="modal-content product-details-content">
             <button class="modal-close" onclick="shop.closeModal()">&times;</button>
-            
             <div class="modal-grid">
-                
                 <div class="image-gallery">
                     <img id="modalMainImage" src="" alt="Proizvod" class="main-image">
                     <div class="slider-nav">
@@ -116,41 +126,31 @@
                         <button id="nextImageBtn" onclick="shop.nextImage()"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-
                 <div class="product-info-modal">
                     <h2 id="modalTitle">Ime Proizvoda</h2>
                     <p class="material" id="modalMaterial">Materijal</p>
                     <p class="price" id="modalPrice">0 RSD</p>
-                    
                     <hr>
-                    
                     <h4>Izaberi Veličinu:</h4>
-                    <div id="sizeSelector" class="size-selector">
-                        </div>
-                    
+                    <div id="sizeSelector" class="size-selector"></div>
                     <button class="size-guide-btn" onclick="shop.toggleSizeTable()">
                         <i class="fas fa-ruler-horizontal"></i> Tabela veličina
                     </button>
-
                     <div id="sizeTable" class="size-table">
                         <table>
-                           <thead>
-                                <tr><th>Veličina</th><th>Grudi</th><th>Dužina</th></tr>
-                            </thead>
+                           <thead><tr><th>Veličina</th><th>Grudi</th><th>Dužina</th></tr></thead>
                             <tbody>
                                 <tr><td>S</td><td>96 cm</td><td>68 cm</td></tr>
                                 <tr><td>M</td><td>100 cm</td><td>70 cm</td></tr>
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
-
                     <h4>Količina:</h4>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
                         <span id="modalQty">1</span>
                         <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
                     </div>
-                    
                     <button class="btn add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                         <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
                     </button>
@@ -162,7 +162,6 @@
     <div id="checkoutModal" class="modal">
         <div class="modal-content checkout-content">
             <button class="modal-close" onclick="shop.closeCheckoutModal()">&times;</button>
-            
             <div id="checkoutStep1">
                 <h2>1. Podaci za dostavu</h2>
                 <form onsubmit="shop.submitShippingForm(event)">
@@ -178,43 +177,28 @@
                         <input type="text" id="grad" placeholder="Grad" required>
                     </div>
                     <input type="text" id="opstina" placeholder="Opština (opciono)">
-
                     <h4>Način plaćanja</h4>
                     <select id="placanje" required>
                         <option value="pouzecem">Plaćanje pouzećem</option>
                         <option value="racun">Uplata na račun</option>
                         <option value="licno">Lično preuzimanje</option>
                     </select>
-
                     <h4>Napomena</h4>
                     <textarea id="napomena" placeholder="Dodatne napomene za kurira ili prodavca"></textarea>
-
-                    <button type="submit" class="btn btn-primary next-step-btn">
-                        Nastavi na pregled
-                    </button>
+                    <button type="submit" class="btn btn-primary next-step-btn">Nastavi na pregled</button>
                 </form>
             </div>
-
             <div id="checkoutStep2" style="display: none;">
                 <h2>2. Potvrda Porudžbine</h2>
-                
                 <div class="review-section">
                     <h3>Detalji Kupca <button class="edit-data-btn" onclick="shop.goToStep(1)"><i class="fas fa-edit"></i> Izmeni</button></h3>
-                    <p id="previewIme"></p>
-                    <p id="previewEmail"></p>
-                    <p id="previewTelefon"></p>
-                    <p id="previewAdresa"></p>
-                    <p id="previewPostaGrad"></p>
-                    <p id="previewPlacanje"></p>
-                    <p id="previewNapomena"></p>
+                    <p id="previewIme"></p><p id="previewEmail"></p><p id="previewTelefon"></p><p id="previewAdresa"></p>
+                    <p id="previewPostaGrad"></p><p id="previewPlacanje"></p><p id="previewNapomena"></p>
                 </div>
-
                 <div class="review-section">
                     <h3>Stavke Porudžbine</h3>
-                    <div id="previewOrderItems" class="preview-items-list">
-                        </div>
+                    <div id="previewOrderItems" class="preview-items-list"></div>
                 </div>
-
                 <div class="review-section total-summary">
                     <h3>Ukupno za plaćanje</h3>
                     <div>Međuzbir: <span id="previewSubtotal"></span></div>
@@ -222,19 +206,16 @@
                     <div>Dostava: <span id="previewShipping" class="shipping-price"></span></div>
                     <div class="total-line">Ukupno: <span id="previewTotal"></span></div>
                 </div>
-
                 <button class="btn btn-success submit-order-btn" onclick="shop.completeOrder()">
                     <i class="fas fa-paper-plane"></i> POTVRDI I POŠALJI PORUDŽBINU
                 </button>
             </div>
-
             <div id="checkoutStep3" class="success-screen" style="display: none;">
                 <h2>✅ Porudžbina je uspešno poslata!</h2>
                 <p>Hvala Vam na poverenju! Poslali smo Vam detalje porudžbine na email: <strong id="confirmationEmail"></strong>.</p>
                 <p>Očekujte potvrdu od nas u najkraćem roku.</p>
                 <button class="btn btn-primary" onclick="shop.closeCheckoutModal()">Zatvori</button>
             </div>
-
         </div>
     </div>
     
@@ -244,4 +225,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
