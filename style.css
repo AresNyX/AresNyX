@@ -207,15 +207,16 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
 
-/* ===== FOOTER STILOVI - KONSOLIDOVANO (SA POVEĆANJEM +30% I SMANJENOM VISINOM) ===== */
+/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I POJAČANE LINIJE ===== */
 
 .site-footer {
     background-color: #121212; 
     color: #f4f4f4; 
-    /* Smanjen vertikalni padding */
-    padding: 2rem 0;
-    margin-top: 5rem; 
-    /* Povećanje osnovnog teksta za 30% */
+    /* MAKSIMALNO SMANJEN vertikalni padding */
+    padding: 1.5rem 0;
+    /* Smanjen margin-top futera */
+    margin-top: 3rem; 
+    /* Povećanje osnovnog teksta za 30% (1.3em) */
     font-size: 1.3em; 
 }
 
@@ -226,41 +227,39 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* Smanjen gap */
-    gap: 1.5rem;
+    /* Smanjen gap između stubova */
+    gap: 1rem;
     position: relative; 
 }
 
 .footer-section-custom {
     flex: 1 1 200px; 
-    /* Dodajemo padding sa strane za razdvajanje od linija */
     padding: 0 0.5rem; 
     position: relative;
 }
 
-/* 1. ZLATNA LINIJA (Vertikalna) - Razdvaja prvu i drugu sekciju */
+/* 1. ZLATNA LINIJA (Vertikalna) - POJAČANA DEBLJINA (3px) */
 .footer-section-custom:nth-child(1)::after {
     content: '';
     position: absolute;
     top: 0;
     right: -0.5rem; 
     height: 100%;
-    width: 2px; 
+    width: 3px; 
     background: var(--accent-gold);
 }
 
-/* 2. ZLATNA LINIJA (Vertikalna) - Razdvaja drugu i treću sekciju */
+/* 2. ZLATNA LINIJA (Vertikalna) - POJAČANA DEBLJINA (3px) */
 .footer-section-custom:nth-child(2)::after {
     content: '';
     position: absolute;
     top: 0;
     right: -0.5rem; 
     height: 100%;
-    width: 2px; 
+    width: 3px; 
     background: var(--accent-gold);
 }
 
-/* Uklanjamo liniju posle poslednje sekcije */
 .footer-section-custom:last-child::after {
     content: none;
 }
@@ -268,13 +267,13 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .footer-section-custom h3 {
     color: var(--accent-gold); 
     /* Smanjen margin-bottom */
-    margin-bottom: 1rem;
-    /* Font nasleđuje 1.3em, ali je ovde eksplicitno zadržan */
+    margin-bottom: 0.7rem;
     font-size: 1.3em; 
     font-weight: 600;
-    border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+    /* POJAČANA: Linija naslova 3px, puna zlatna boja */
+    border-bottom: 3px solid var(--accent-gold);
     /* Smanjen padding-bottom */
-    padding-bottom: 0.3rem; 
+    padding-bottom: 0.2rem; 
 }
 
 /* Sekcija linkova */
@@ -288,7 +287,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     text-decoration: none;
     display: block;
     /* Smanjen margin-bottom */
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     transition: color 0.3s;
 }
 
@@ -299,7 +298,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 /* Kontakt i društvene mreže */
 .footer-section-custom.contact p {
     /* Smanjen margin-bottom */
-    margin-bottom: 0.7rem; 
+    margin-bottom: 0.5rem; 
     font-weight: 400; 
 }
 
@@ -333,10 +332,10 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .footer-bottom-custom {
     text-align: center;
     /* Smanjen padding */
-    padding: 1rem 0;
+    padding: 0.7rem 0;
     border-top: 1px solid #333;
     /* Smanjen margin-top */
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     font-size: 0.8em; 
     color: #aaa;
 }
@@ -346,7 +345,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     .footer-content-custom {
         flex-direction: column;
         /* Smanjen gap */
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .footer-section-custom {
@@ -360,8 +359,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     
     /* Dodajemo tanke horizontalne linije između sekcija za mobilni */
     .footer-section-custom:not(:last-child) {
-        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        padding-bottom: 1.5rem;
+        padding-bottom: 1rem;
     }
 
     .footer-section-custom.contact p {
@@ -378,6 +376,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
         justify-content: center;
     }
 }
+
 
 /* HEADER SA PODNASLOVOM */
 header { 
@@ -398,12 +397,10 @@ header h1 {
 }
 .brand-emphasis { 
     font-weight: 700; 
-    /* Ovo je bilo 1.56em, što je +30% od 1.2em. Zadržavamo to u odnosu na <h1> font. */
-    font-size: 1.2em; /* Vraćamo na razumnu veličinu u odnosu na novi <h1> */
+    font-size: 1.2em; /* Vraćeno na razumnu veličinu u odnosu na novi <h1> */
 }
 .subtitle {
-    /* Ovo je bilo 1.04em, što je +30% od 0.8em. Zadržavamo to u odnosu na bazni font. */
-    font-size: 1em; /* Vraćamo na razumnu veličinu */
+    font-size: 1em; /* Vraćeno na razumnu veličinu */
     color: #fff;
     font-weight: 400;
     letter-spacing: 1px;
@@ -936,6 +933,7 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
 
 
 
