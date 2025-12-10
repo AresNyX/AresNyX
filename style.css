@@ -1079,4 +1079,81 @@ footer {
 }
 
 
+/* ======================== 1. STILOVI ZA MODAL OVERLAY (Popup) ======================== */
+
+.modal-overlay {
+    display: none; /* KLJUČNO: Inicijalno sakriveno */
+    position: fixed;
+    z-index: 1000; /* Mora biti visoko iznad svega */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Zatamnjena pozadina */
+    transition: opacity 0.3s ease;
+}
+
+/* Stil za prikazivanje Modala */
+.modal-overlay[style*="display: block"] {
+    display: block; /* OVO POKREĆE JS KOD */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% od vrha, centrirano horizontalno */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* ======================== 2. STILOVI ZA CART SIDEBAR (Korpa) ======================== */
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* KLJUČNO: Inicijalno izbačeno iz vidokruga */
+    width: 100%;
+    max-width: 380px; /* Ili po vašoj želji */
+    height: 100%;
+    background: #fff;
+    z-index: 999;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease-in-out;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stil za prikazivanje korpe */
+.cart-sidebar.active {
+    right: 0; /* OVO POKREĆE JS KOD: Gura korpu na ekran */
+}
+
+.cart-items-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.cart-footer {
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* =================================================================================== */
 
