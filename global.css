@@ -89,55 +89,130 @@ section p {
     margin-bottom: 1.2em;
 }
 
-/* --- 4. HEADER I NAVIGACIJA --- */
+/* ==================================== */
+/* === GLOBAL.CSS - AŽURIRANE KOREKCIJE === */
+/* ==================================== */
+
+/* --- 4. HEADER KOREKCIJA: LOGO IZNAD TEKSTA, SVE CENTRIRANO --- */
+
 header { 
-    background: var(--color-dark-bg); /* OVO SE SADA PONOVO UČITAVA */
+    background: var(--color-dark-bg);
     color: #fff; 
-    padding: 15px 20px; 
+    padding: 15px 20px 20px; /* Povećan donji padding */
     text-align: center; 
+    /* Uklonjen flexbox da bi sadržaj išao vertikalno */
+    display: block; 
 }
+
+/* Kontejner za tekst (ukoliko ostane u HTML-u) */
+.header-text-container {
+    text-align: center; /* SVE CENTRIRANO */
+    margin-top: 10px; /* Mali razmak između logoa i teksta */
+}
+
+.header-logo {
+    display: block;
+    margin: 0 auto; /* Centriranje logoa */
+    width: 80px; /* Malo veći logo */
+    height: 80px; 
+}
+
+/* KOREKCIJA: Naslovi su sada deo centralnog bloka */
 header h1 { 
     font-size: 32px;
-    color: var(--color-accent-gold); 
+    color: var(--color-button); /* BORDO */
     letter-spacing: 2px; 
     text-transform: uppercase;
-    margin: 0;
-    text-shadow: 0 0 10px rgba(212,175,55,0.3);
+    margin-top: 5px; /* Manji razmak od logoa */
+    line-height: 1.1; 
+    text-align: center; /* Osigurano centriranje */
 }
-.brand-emphasis { font-weight: 700; }
-.subtitle {
-    font-size: 0.8em;
-    color: #fff;
-    font-weight: 400;
-    letter-spacing: 1px;
-    display: block;
-    margin-top: 8px; 
-}
-/* Uklonjen je zalutali <img> HTML kod iz ovog bloka */
 
+/* KOREKCIJA: Subtitle BOXER SHORTS (I dalje Bordo) */
+.subtitle {
+    font-size: 0.85em; 
+    color: var(--color-button); /* BORDO */
+    font-weight: 500; 
+    letter-spacing: 1px;
+    display: block; 
+    margin-top: 5px; 
+    text-align: center; /* Osigurano centriranje */
+}
+
+/* NAVIGACIJA KOREKCIJA: ZLATNA LINIJA ODVAJA */
 nav {
     background-color: var(--color-dark-bg);
     padding: 10px 0;
-    border-top: 0.5mm solid var(--color-accent-gold); /* Дебља и пуна боја */
-    border-top: 2px solid var(--color-accent-gold); /* Дебљи fallback */
+    /* Linija odvaja od Header-a. Vaš kod već ima border-top: 2px solid var(--color-accent-gold); */
+    border-top: 2px solid var(--color-accent-gold);
     text-align: center;
 }
+
+/* Navigacija: Novi efekti polja */
 nav a {
-    color: #fff;
+    color: #fff; /* BELI FONT */
     text-decoration: none;
-    margin: 0 18px; /* povećano sa 15px */
+    margin: 0 18px; 
     font-weight: 400;
-    font-size: 1.1em; /* POVEĆANO SA 1em na 1.1em (10%) */
-    transition: color 0.3s;
-    padding: 8px 12px; /* povećano sa 5px 8px */
+    font-size: 1.1em;
+    padding: 8px 12px; 
     border-radius: 4px;
     display: inline-block;
+    border: 1px solid transparent; /* Dodajemo nevidljivi border za CLS */
+    transition: all 0.3s ease-in-out;
 }
-nav a:hover, nav a.active {
+
+/* EFEKAT KLIKABILNOSTI 1: Zlatno uokvirenje (Focus/Hover) */
+nav a:hover, nav a:focus {
     color: var(--color-accent-gold);
-    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--color-accent-gold); /* ZLATNO UOKVIRENJE */
+    background-color: rgba(255, 255, 255, 0.05);
     transform: translateY(-1px);
 }
+
+/* EFEKAT KLIKABILNOSTI 2: Celo polje u zlatnoj boji (Active/Kliknuto) */
+nav a.active {
+    color: var(--color-dark-bg) !important; /* Tekst postaje taman na zlatnoj pozadini */
+    background-color: var(--color-accent-gold); /* ZLATNA POZADINA */
+    border: 1px solid var(--color-accent-gold);
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* Mali sjaj */
+}
+
+/* --- 11. FOOTER KOREKCIJA: KRUPNIJI FONT I ZLATNI LINK --- */
+footer { 
+    background: var(--color-dark-bg); 
+    color: #fff; 
+    padding: 30px 20px; 
+    text-align: center; 
+    margin-top: 60px;
+    font-size: 1.1em; /* Bazni font footer teksta (Belim slovima ispod ispis) */
+}
+
+/* Zlatni linkovi za 'Uslove i Reklamaciju' (20% krupniji font) */
+.footer-links a {
+    color: var(--color-accent-gold); /* ZLATNA SLOVA */
+    font-size: 1.2em; /* 1.2 * 1.1em ≈ 20% krupnije od baznog (1.1em) */
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.footer-text {
+    display: block;
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 8px;
+}
+
+/* ============================================== */
+/* KRAJ GLOBAL.CSS KOREKCIJA */
+/* ============================================== */
+
 
 
 /* --- 5. DUGMAD (CTA) --- */
