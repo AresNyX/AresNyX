@@ -1193,3 +1193,41 @@ footer {
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+/* STILOVI ZA KONTROLE KOLIČINE (u Modalu i Korpi) */
+.qty-wrapper button, 
+.cart-item-controls button {
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 30px; /* Da ne budu preuske */
+}
+
+/* STILOVI ZA DUGMAD NA DNU KORPE */
+.checkout-btn {
+    background-color: #D4AF37; /* ZLATNA */
+    color: #121212;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.clear-cart-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
