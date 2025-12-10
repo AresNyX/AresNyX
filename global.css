@@ -97,7 +97,7 @@ section p {
     margin-bottom: 1.2em;
 }
 
-/* --- 4. HEADER I NAVIGACIJA (OSTAVLJENA JE SAMO OVA, DETALJNA DEFINICIJA) --- */
+/* --- 4. HEADER I NAVIGACIJA (OPTIMIZOVANO BEZ !IMPORTANT) --- */
 header { 
     background: var(--color-dark-bg);
     color: #fff; 
@@ -134,45 +134,39 @@ header h1 {
 }
 
 #main-nav a {
-    /* FIKSNA ŠIRINA ZA SVE - ŠIRA OD "KONTAKT" */
-    min-width: 160px !important;
-    width: 160px !important;
-    box-sizing: border-box !important;
+    /* Uklonjeno !important i fiksna širina: */
+    min-width: 160px;
+    width: 160px;
+    box-sizing: border-box;
     
-    /* PODVLAČENJE - OBAVEZNO ZA NAVIGACIJU (već je rešeno u sekciji 4) */
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-    text-underline-offset: 6px !important;
-    text-decoration-color: rgba(255, 255, 255, 0.9) !important;
+    /* Podvlačenje: */
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    text-decoration-color: rgba(255, 255, 255, 0.9);
     
-    /* TEKST */
-    color: #fff !important;
-    font-weight: 500 !important;
-    font-size: 1.1em !important;
-    text-align: center !important;
-    
-    /* PRAZNI PROSTOR OKO TEKSTA */
-    padding: 12px 5px !important;
-    margin: 0 !important;
-    
-    /* OSTALO */
-    display: inline-block !important;
-    border-radius: 4px !important;
-    transition: all 0.3s ease !important;
-    background-color: transparent !important;
+    /* Tekst i raspored: */
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 12px 5px;
+    margin: 0;
+    display: inline-block;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: transparent;
 }
 
 /* HOVER EFIKAT */
 #main-nav a:hover, 
 #main-nav a.active {
-    color: var(--color-accent-gold) !important;
-    text-decoration-color: var(--color-accent-gold) !important;
-    background-color: rgba(212, 175, 55, 0.1) !important;
-    transform: translateY(-2px) !important;
+    /* Uklonjeno !important: */
+    color: var(--color-accent-gold);
+    text-decoration-color: var(--color-accent-gold);
+    background-color: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
 }
-
-/* FOKUS ZA TASTATURU */
-/* NAPOMENA: Ovaj stil je obrisan ovde, ali je centralizovan u sekciji 12. */
 
 /* --- 5. DUGMAD (CTA) --- */
 .cta-container {
