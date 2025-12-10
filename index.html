@@ -1,77 +1,12 @@
 <!DOCTYPE html>
 <html lang="sr"> 
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-63WM74353T');
-    </script>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const trackCTA = (button, label) => {
-        button.addEventListener('click', () => {
-          gtag('event', 'select_content', {
-            content_type: 'button',
-            content_id: label,
-            method: 'click'
-          });
-          gtag('event', 'cta_click', {
-            button_text: button.textContent.trim(),
-            page_location: window.location.pathname
-          });
-        });
-      };
-
-      document.querySelectorAll('.cta-button, .hero-cta-button').forEach(btn => {
-        trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
-      });
-
-      document.querySelectorAll('#main-nav a').forEach(link => {
-        link.addEventListener('click', () => {
-          gtag('event', 'navigation_click', {
-            menu_item: link.textContent.trim(),
-            menu_url: link.getAttribute('href')
-          });
-        });
-      });
-
-      let scrollPercentages = [25, 50, 75, 90];
-      let trackedScrolls = [];
-      
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = Math.floor((scrollTop / scrollHeight) * 100);
-        
-        scrollPercentages.forEach(percent => {
-          if (scrolled >= percent && !trackedScrolls.includes(percent)) {
-            gtag('event', `scroll_${percent}_percent`);
-            trackedScrolls.push(percent);
-          }
-        });
-      }, { passive: true }); /* A11Y / PERFORMANCE: Passive true za skrol */
-
-      let pageStartTime = Date.now();
-      window.addEventListener('beforeunload', () => {
-        const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
-        if (timeSpent > 10) {
-          gtag('event', 'time_on_page', {
-            time_seconds: timeSpent,
-            page_path: window.location.pathname
-          });
-        }
-      });
-    });
-    </script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>AresNyX - Premium Donji Veš od Prirodnih Materijala | Pamuk, Lan, Bambus</title>
     
-    <link rel="preload" as="image" href="slike/logo.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="slike/logo.webp?v=1" type="image/webp" fetchpriority="high">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -85,11 +20,6 @@
     /* A11Y: Osnovni stil za fokus za sve interaktivne elemente */
     :focus-visible {
         outline: 3px solid #D4AF37; 
-        outline-offset: 4px;
-        border-radius: 4px;
-    }
-    a:focus-visible, button:focus-visible {
-        outline: 3px solid #D4AF37;
         outline-offset: 4px;
         border-radius: 4px;
     }
@@ -107,8 +37,7 @@
         font-display: swap; 
     }
     
-    /* === Ostatak originalnih stilova je ovde prenet bez vizuelnih izmena === */
-    
+    /* === HEADER I NAVIGACIJA === */
     #main-header {
         background: #121212;
         color: #fff;
@@ -118,21 +47,13 @@
         justify-content: center;
         gap: 15px;
         flex-wrap: wrap;
-        min-height: 200px !important;
-        height: auto !important;
-        padding: 30px 20px !important;
+        min-height: 200px;
+        padding: 30px 20px;
         contain: strict;
         position: relative;
         z-index: 1000;
     }
 
-    footer a {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
-        color: #D4AF37;
-    }
-    
     .header-logo {
         width: 70px;
         height: 70px;
@@ -141,7 +62,6 @@
         aspect-ratio: 1/1;
         display: block;
         border-radius: 8px;
-        opacity: 1;
     }
     
     #main-header h1 {
@@ -151,13 +71,7 @@
         margin: 0;
         text-transform: uppercase;
         line-height: 1.2;
-        opacity: 1;
         font-family: inherit;
-    }
-    
-    .brand-emphasis {
-        font-weight: 700;
-        display: block;
     }
     
     .subtitle {
@@ -168,58 +82,57 @@
         display: block;
         margin-top: 8px;
         min-height: 1.2em;
-        opacity: 1;
         font-family: inherit;
     }
     
     #main-nav {
-        background-color: #121212 !important;
-        padding: 15px 0 !important;
-        border-top: 2px solid #D4AF37 !important;
-        text-align: center !important;
-        display: flex !important;
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        gap: 10px !important;
+        background-color: #121212;
+        padding: 15px 0;
+        border-top: 2px solid #D4AF37;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
     }
     
     #main-nav a {
-        font-size: 18px !important;
-        font-weight: 500 !important;
-        color: #ffffff !important;
-        text-decoration: underline !important;
-        text-decoration-thickness: 2px !important;
-        text-underline-offset: 6px !important;
-        text-decoration-color: rgba(255, 255, 255, 0.8) !important;
-        min-width: 150px !important;
-        width: 150px !important;
-        display: inline-block !important;
-        text-align: center !important;
-        box-sizing: border-box !important;
-        padding: 12px 5px !important;
-        margin: 0 !important;
-        background-color: rgba(0, 0, 0, 0.3) !important;
-        border-radius: 4px !important;
-        transition: all 0.3s ease !important;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+        text-decoration-color: rgba(255, 255, 255, 0.8);
+        min-width: 150px;
+        width: 150px;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 12px 5px;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        transition: all 0.3s ease;
     }
     
     #main-nav a:hover,
     #main-nav a.active {
-        color: #D4AF37 !important;
-        text-decoration-color: #D4AF37 !important;
-        background-color: rgba(212, 175, 55, 0.2) !important;
-        transform: translateY(-2px) !important;
+        color: #D4AF37;
+        text-decoration-color: #D4AF37;
+        background-color: rgba(212, 175, 55, 0.2);
+        transform: translateY(-2px);
     }
     
+    /* === HERO I CTA STILOVI === */
     #hero-section {
         text-align: center;
         padding: 84px 44px;
-        background: #121212;
+        background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); /* Ugrađena boja */
         color: white;
         border-radius: 16px;
         margin: 30px auto 0;
         max-width: 1100px;
-        opacity: 1;
         contain: content;
         min-height: 360px;
     }
@@ -228,27 +141,8 @@
         color: #D4AF37;
         font-size: 3.1em;
         margin: 0 0 24px 0;
-        opacity: 1;
         line-height: 1.3;
         font-family: inherit;
-    }
-    
-    #hero-text {
-        font-size: 1.43em;
-        margin: 0 0 42px 0;
-        color: #ffffff;
-        opacity: 1;
-        line-height: 1.6;
-        font-family: inherit;
-        max-width: 880px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-cta-container {
-        text-align: center;
-        margin-top: 42px;
-        opacity: 1;
     }
     
     .hero-cta-button {
@@ -266,13 +160,9 @@
         width: 100%;
         padding: 19px 33px;
         font-size: 1.32em;
-        letter-spacing: 0.5px;
         line-height: normal;
         min-height: 66px;
-        text-align: center;
         cursor: pointer;
-        opacity: 1;
-        font-family: inherit;
         transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
     }
      .hero-cta-button:hover, .cta-button:hover {
@@ -280,15 +170,30 @@
         transform: translateY(-1px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    
-    #main-content {
-        max-width: 1100px;
-        margin: 25px auto 60px;
-        padding: 0 20px;
-        min-height: 400px;
-        opacity: 1;
+
+    .cta-button {
+        background: #802B24;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 280px;
+        width: 100%;
+        padding: 14px 25px;
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
+        line-height: normal;
+        min-height: 50px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
+
+    /* === SLIKE I GRID STILOVI === */
     .natural-image {
         width: 100%;
         max-width: 600px;
@@ -300,28 +205,35 @@
         transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     
+    /* FIKSIRANJE PRIUNUDNOG PREOBLIKOVANJA: Hover je u CSS-u, ne u JS-u */
     .natural-image:hover {
         transform: scale(1.02);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
     }
     
-    .hero-image-container,
-    .feature-image-container,
-    .philosophy-image-container {
-        text-align: center;
-        margin: 30px 0;
-    }
-    
     .features-grid {
         content-visibility: auto;
         contain-intrinsic-size: 0 400px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 35px;
     }
-    
+
     .lazy-section {
         content-visibility: auto;
         contain-intrinsic-size: 0 500px;
     }
     
+    .feature-item {
+        text-align: center;
+        padding: 22px;
+        border-radius: 8px;
+        border: 1px solid #eeeeee;
+        background-color: #ffffff;
+    }
+
+    /* === FOOTER STILOVI === */
     footer {
         background: #121212;
         color: #ddd;
@@ -331,8 +243,11 @@
         font-size: 0.9em;
     }
     
-    .footer-links {
-        margin-bottom: 15px;
+    footer a {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        color: #D4AF37;
     }
     
     .footer-links a {
@@ -344,150 +259,40 @@
         text-underline-offset: 3px;
     }
     
+    /* === MEDIA QUERIES === */
     @media (max-width: 768px) {
-        #main-header {
-            flex-direction: column;
-            gap: 10px;
-            padding: 15px;
-            min-height: 120px;
-            height: auto;
-        }
-        
-        #main-header h1 {
-            font-size: 28px;
-        }
-        
-        #main-nav {
-            gap: 5px !important;
-            padding: 10px 0 !important;
-        }
-        
-        #main-nav a {
-            min-width: 130px !important;
-            width: 130px !important;
-            font-size: 16px !important;
-            padding: 10px 3px !important;
-        }
-        
-        #hero-section {
-            padding: 60px 28px;
-            min-height: 300px;
-            margin: 20px 15px 0;
-            max-width: calc(100% - 30px);
-        }
-        
-        #hero-title {
-            font-size: 2.42em;
-        }
-        
-        #hero-text {
-            font-size: 1.21em;
-            margin-bottom: 30px;
-        }
-        
-        .hero-cta-button {
-            padding: 17px 28px;
-            font-size: 1.21em;
-            max-width: 308px;
-            min-height: 53px;
-        }
-        
-        .natural-image {
-            max-width: 90%;
-            margin: 20px auto;
-        }
-        
-        .hero-image-container,
-        .feature-image-container,
-        .philosophy-image-container {
-            margin: 25px 0;
-        }
+        #main-header { flex-direction: column; gap: 10px; padding: 15px; min-height: 120px; }
+        #main-header h1 { font-size: 28px; }
+        #main-nav { gap: 5px; padding: 10px 0; }
+        #main-nav a { min-width: 130px; width: 130px; font-size: 16px; padding: 10px 3px; }
+        #hero-section { padding: 60px 28px; min-height: 300px; margin: 20px 15px 0; max-width: calc(100% - 30px); }
+        #hero-title { font-size: 2.42em; }
+        .hero-cta-button { padding: 17px 28px; font-size: 1.21em; max-width: 308px; min-height: 53px; }
     }
     
     @media (max-width: 480px) {
-        #main-header h1 {
-            font-size: 24px;
-        }
-        
-        .header-logo {
-            width: 60px;
-            height: 60px;
-        }
-        
-        #main-nav {
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 8px !important;
-        }
-        
-        #main-nav a {
-            min-width: 90% !important;
-            width: 90% !important;
-            margin: 2px 0 !important;
-            font-size: 15px !important;
-            padding: 12px 5px !important;
-        }
-        
-        #hero-section {
-            padding: 48px 22px;
-            min-height: 264px;
-            margin: 15px 10px 0;
-            max-width: calc(100% - 20px);
-        }
-        
-        #hero-title {
-            font-size: 2.09em;
-        }
-        
-        .hero-cta-button {
-            padding: 14px 22px;
-            font-size: 1.1em;
-            max-width: 275px;
-            min-height: 53px;
-        }
-        
-        .footer-links a {
-            display: inline-block;
-            margin: 5px 10px;
-        }
-        
-        .natural-image {
-            max-width: 95%;
-            margin: 15px auto;
-        }
+        #main-header h1 { font-size: 24px; }
+        .header-logo { width: 60px; height: 60px; }
+        #main-nav { flex-direction: column; align-items: center; gap: 8px; }
+        #main-nav a { min-width: 90%; width: 90%; margin: 2px 0; font-size: 15px; padding: 12px 5px; }
+        #hero-section { padding: 48px 22px; min-height: 264px; margin: 15px 10px 0; max-width: calc(100% - 20px); }
+        #hero-title { font-size: 2.09em; }
+        .hero-cta-button { padding: 14px 22px; font-size: 1.1em; max-width: 275px; min-height: 53px; }
     }
     </style>
     
-    <meta name="description" 
-          content="AresNyX premium donji veš od 100% prirodnih materijala (pamuk, lan, bambus). Otkrijte udobnost, prozračnost i zdravstvene prednosti prirodnog veša. Besplatna dostava.">
-    <meta name="keywords" 
-          content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
-    <meta name="author" content="AresNyX">
+    <meta name="description" content="AresNyX premium donji veš od 100% prirodnih materijala (pamuk, lan, bambus). Otkrijte udobnost, prozračnost i zdravstvene prednosti prirodnog veša. Besplatna dostava.">
+    <meta name="keywords" content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
     <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
-    
     <meta property="og:title" content="AresNyX - Premium Donji Veš od Prirodnih Materijala">
-    <meta property="og:description" content="Premium donji veš od 100% prirodних материјала (Pamuk, Lan, Bambus) za zdravlje i udobnost.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://aresnyx.github.io/AresNyX/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="AresNyX">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AresNyX - Premium Donji Veš">
-    <meta name="twitter:description" content="Premium donji veš od prirodних материјала за здравље и удобност.">
-    <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
-    
-    <noscript><link rel="stylesheet" href="global.css"></noscript>
-    
 </head>
+
 <body>
     <header id="main-header">
         <a href="." class="logo-link" aria-label="Početna stranica AresNyX - logo">
              <img 
-                 src="slike/logo.webp" 
+                 src="slike/logo.webp?v=1" 
                  alt="AresNyX Logo - Premium Donji Veš" 
                  class="header-logo"
                  width="70" 
@@ -496,11 +301,7 @@
                  decoding="async"
                  fetchpriority="high">
         </a>
-        
-        <h1>
-            <span class="brand-emphasis">ARESNYX</span>
-            <span class="subtitle">PREMIUM DONJI VEŠ</span> 
-        </h1>
+        <h1><span class="brand-emphasis">ARESNYX</span><span class="subtitle">PREMIUM DONJI VEŠ</span></h1>
     </header>
 
     <nav id="main-nav" aria-label="Glavna navigacija">
@@ -517,7 +318,7 @@
             <p id="hero-text">100% prirodni materijali • Bez sintetike • **Optimalno Zdravlje i Udobnost**</p>
             
             <div class="hero-image-container">
-                <img src="slike/pamuk.webp" 
+                <img src="slike/pamuk.webp?v=1" 
                      alt="Primer pamučnog bokser donjeg veša AresNyX" 
                      title="AresNyX Pamučni Veš - Prirodni Materijali"
                      width="280" height="180" loading="lazy" class="natural-image">
@@ -532,32 +333,26 @@
             <h2>Zašto AresNyX - Ključne Prednosti</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Prirodnih Materijala">
-                        <path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7 c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7 C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/>
-                    </svg>
+                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Prirodnih Materijala"><path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/></svg>
                     <h3>Prirodni Materijali</h3>
                     <p>100% **prozračni** pamuk, lan i bambus **bez ikakvih veštačkih dodataka i iritacija**</p>
                 </div>
                 
                 <div class="feature-image-container">
-                    <img src="slike/lan.webp" 
+                    <img src="slike/lan.webp?v=1" 
                          alt="Izbliza prikaz lanenog materijala za donji veš AresNyX" 
                          title="Laneni Donji Veš - Prirodna Vlakna"
                          width="280" height="180" loading="lazy" class="natural-image">
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Zdravlja">
-                        <path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3 C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/>
-                    </svg>
+                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Zdravlja"><path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/></svg>
                     <h3>Zdravstvene Prednosti</h3>
                     <p>**Opušten kroj** i materijali koji štite vaše zdravlje, sprečavaju iritacije i omogućavaju koži da diše.</p>
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Proizvodnja u Srbiji">
-                        <path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4 C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/>
-                    </svg>
+                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Proizvodnja u Srbiji"><path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/></svg>
                     <h3>Proizvodnja u Srbiji</h3>
                     <p>Kvalitet **domaće proizvodnje** koji potiče iz naše zemlje, uz podršku **lokalnih dobavljača**.</p>
                 </div>
@@ -569,7 +364,7 @@
             <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala, fokusirajući se na **održivost i etičku proizvodnju**.</p>
             
             <div class="philosophy-image-container">
-                <img src="slike/svila.webp" 
+                <img src="slike/svila.webp?v=1" 
                      alt="Tekstura donjeg veša od bambusovih vlakana AresNyX" 
                      title="Bambus Donji Veš - Luksuz i Prozračnost"
                      width="280" height="180" loading="lazy" class="natural-image">
@@ -592,126 +387,84 @@
     </footer>
     
     <script defer>
-    window.addEventListener('load', function() {
-        const heroSection = document.getElementById('hero-section');
-        if (heroSection) {
-            heroSection.style.background = 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)';
-        }
-        
-        // Dodaj hover efekte za slike (bolje je koristiti CSS:hover, ali zadržavamo originalnu JS logiku)
-        const images = document.querySelectorAll('.natural-image');
-        images.forEach(img => {
-            img.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-                this.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.2)';
-            });
-            img.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-                this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
-            });
-        });
-        
-        setTimeout(function() {
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                
-                .lazy-section {
-                    animation: fadeIn 0.8s ease-out forwards;
-                    opacity: 0;
-                }
-                
-                .lazy-section:nth-child(1) { animation-delay: 0.2s; }
-                .lazy-section:nth-child(2) { animation-delay: 0.4s; }
-                
-                .feature-item {
-                    text-align: center;
-                    padding: 22px;
-                    border-radius: 8px;
-                    border: 1px solid #eeeeee;
-                    background-color: #ffffff;
-                }
-                
-                .features-grid {
-                    display: grid;
-                    /* NAJVIŠA PRAKSA: Koristimo bolji minmax za grid */
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                    gap: 25px;
-                    margin-top: 35px;
-                }
-                
-                .cta-container {
-                    text-align: center;
-                    margin-top: 35px;
-                }
-                
-                .cta-button {
-                    background: #802B24;
-                    color: #fff;
-                    border: none;
-                    border-radius: 6px;
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    text-decoration: none;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    max-width: 280px;
-                    width: 100%;
-                    padding: 14px 25px;
-                    font-size: 1.1em;
-                    letter-spacing: 0.5px;
-                    line-height: normal;
-                    min-height: 50px;
-                    text-align: center;
-                    cursor: pointer;
-                    /* A11Y / NAJVIŠA PRAKSA: Dodajemo tranziciju i box-shadow za bolji vizuelni feedback */
-                    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-                }
-                
-                .cta-button:hover {
-                    background: #9a352d; 
-                    transform: translateY(-1px);
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                }
-                
-                .footer-links a {
-                    color: #D4AF37;
-                    text-decoration: underline;
-                    margin: 0 15px;
-                }
-            `;
-            document.head.appendChild(style);
-            
-            document.querySelectorAll('.lazy-section').forEach((section, index) => {
-                section.style.animationDelay = (index * 0.2 + 0.2) + 's';
-            });
-            
-        }, 500);
-    });
+    // Globalni dataLayer
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
     
-    setTimeout(function() {
-        const links = document.querySelectorAll('link[rel="stylesheet"]');
-        let hasGlobal = false;
-        
-        links.forEach(link => {
-            if (link.href && link.href.includes('global.css')) {
-                hasGlobal = true;
-            }
+    // Inicijalna logika za scroll i CTA praćenje
+    document.addEventListener('DOMContentLoaded', function() {
+      // Logic for CTA tracking
+      const trackCTA = (button, label) => {
+        button.addEventListener('click', () => {
+          // Koristi setTimeout za pozivanje gtag da bi se smanjio uticaj na trenutni zadatak
+          setTimeout(() => {
+              gtag('event', 'select_content', {
+                content_type: 'button',
+                content_id: label,
+                method: 'click'
+              });
+              gtag('event', 'cta_click', {
+                button_text: button.textContent.trim(),
+                page_location: window.location.pathname
+              });
+          }, 0);
         });
+      };
+
+      document.querySelectorAll('.cta-button, .hero-cta-button').forEach(btn => {
+        trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
+      });
+
+      // Scroll tracking - koristi passive listener i čita samo neophodne vrednosti
+      let scrollPercentages = [25, 50, 75, 90];
+      let trackedScrolls = [];
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = Math.floor((scrollTop / scrollHeight) * 100);
         
-        if (!hasGlobal) {
-            const fallbackLink = document.createElement('link');
-            fallbackLink.rel = 'stylesheet';
-            fallbackLink.href = 'global.css';
-            document.head.appendChild(fallbackLink);
+        scrollPercentages.forEach(percent => {
+          if (scrolled >= percent && !trackedScrolls.includes(percent)) {
+            setTimeout(() => gtag('event', `scroll_${percent}_percent`), 0);
+            trackedScrolls.push(percent);
+          }
+        });
+      }, { passive: true }); // Uključen passive: true
+
+      // Time on page logic
+      let pageStartTime = Date.now();
+      window.addEventListener('beforeunload', () => {
+        const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+        if (timeSpent > 10) {
+          setTimeout(() => {
+              gtag('event', 'time_on_page', {
+                time_seconds: timeSpent,
+                page_path: window.location.pathname
+              });
+          }, 0);
         }
-    }, 2000);
+      });
+    });
+    </script>
+    
+    <script>
+    function loadGtag() {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-63WM74353T';
+        document.head.appendChild(script);
+
+        // Standardna GTM konfiguracija
+        gtag('js', new Date());
+        gtag('config', 'G-63WM74353T');
+    }
+
+    // Odlažemo ucitavanje 2 sekunde kako bismo dali prioritet vizuelnom učitavanju
+    setTimeout(loadGtag, 2000); 
     </script>
 </body>
 </html>
+
 
 
