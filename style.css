@@ -46,8 +46,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     top: 0; 
     z-index: 1000; 
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    border-top: 0.8mm solid var(--accent-gold); /* Златна линија */
-    border-top: 2px solid var(--accent-gold); /* Fallback */
+    border-top: 2px solid var(--accent-gold); 
 }
 
 .navbar { 
@@ -96,8 +95,8 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 /* 🚀 KRITIČNA IZMENA: POVEĆANJE SLIKA KARTICA 🚀 */
 .products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; flex: 1; }
 .products-grid { 
-    /* Povećavamo minimalnu širinu za karticu da bi slike bile veće */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    /* KRITIČNO: Povećavamo minimalnu širinu za karticu radi većeg skaliranja */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 2.5rem; 
 }
 .product-card { 
@@ -109,8 +108,8 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
 .product-image { 
     width: 100%; 
-    /* KRITIČNO: Povećavamo visinu slike u kartici sa 200px na 320px */
-    height: 320px; 
+    /* KRITIČNO: Povećana visina slike u kartici na 350px (za 10%) */
+    height: 350px; 
     object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;
 }
@@ -207,17 +206,17 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
 
-/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I POJAČANE LINIJE ===== */
+/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I KORIGOVAN FONT ===== */
 
 .site-footer {
     background-color: #121212; 
     color: #f4f4f4; 
     /* MAKSIMALNO SMANJEN vertikalni padding */
     padding: 1.5rem 0;
-    /* Smanjen margin-top futera */
-    margin-top: 3rem; 
-    /* Povećanje osnovnog teksta za 30% (1.3em) */
-    font-size: 1.3em; 
+    /* KRITIČNO: Smanjen margin-top futera */
+    margin-top: 2.5rem; 
+    /* KRITIČNO: Smanjujemo osnovni font za 10% (sa 1.3em na 1.17em) */
+    font-size: 1.17em; 
 }
 
 .footer-content-custom {
@@ -266,13 +265,12 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 
 .footer-section-custom h3 {
     color: var(--accent-gold); 
-    /* Smanjen margin-bottom */
     margin-bottom: 0.7rem;
-    font-size: 1.3em; 
+    /* KRITIČNO: Povećan font naslova sekcije za 10% */
+    font-size: 1.43em; 
     font-weight: 600;
     /* POJAČANA: Linija naslova 3px, puna zlatna boja */
     border-bottom: 3px solid var(--accent-gold);
-    /* Smanjen padding-bottom */
     padding-bottom: 0.2rem; 
 }
 
@@ -309,11 +307,12 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     text-align: center;
 }
 
-/* 🚀 STIL ZA IKONE 🚀 */
+/* 🚀 KRITIČNO: STIL ZA IKONE DRUŠTVENIH MREŽA 🚀 */
 .social-links-custom {
     display: flex;
     gap: 2rem; 
-    margin-top: 2rem; 
+    /* KRITIČNO: Smanjen margin-top iznad ikona (oko 12mm manje) */
+    margin-top: 0.5rem; 
 }
 
 .social-links-custom a {
@@ -387,7 +386,7 @@ header {
 }
 /* KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - SMANJENO na razumnih 2.5em */
 header h1 { 
-    font-size: 2.5em; /* Smanjeno sa 4em na 2.5em */
+    font-size: 2.5em; 
     color: var(--accent-gold); 
     letter-spacing: 2px; 
     text-transform: uppercase;
@@ -397,10 +396,10 @@ header h1 {
 }
 .brand-emphasis { 
     font-weight: 700; 
-    font-size: 1.2em; /* Vraćeno na razumnu veličinu u odnosu na novi <h1> */
+    font-size: 1.2em; 
 }
 .subtitle {
-    font-size: 1em; /* Vraćeno na razumnu veličinu */
+    font-size: 1em; 
     color: #fff;
     font-weight: 400;
     letter-spacing: 1px;
@@ -412,7 +411,6 @@ header h1 {
 nav {
     background-color: var(--primary-dark);
     padding: 10px 0;
-    border-top: 0.8mm solid #D4AF37; 
     border-top: 2px solid #D4AF37; 
     text-align: center;
 }
@@ -421,7 +419,7 @@ nav a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: 400;
-    /* Povećanje teksta za 30% */
+    /* Povećanje teksta za 30% (iz početnog zahteva) */
     font-size: 1.3em;
     transition: color 0.3s;
 }
@@ -436,7 +434,7 @@ nav a:hover, nav a.active {
     margin-right: 20px;
 }
 
-/* ===== MODAL (Proizvod) - KORIGOVANA VERZIJA (Fokus samo na SLICI) ===== */
+/* ===== MODAL (Proizvod) - MAKSIMALNO PRILAGOĐAVANJE SLICI I EKRANU ===== */
 .modal-overlay { 
     display: none; position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
@@ -445,8 +443,10 @@ nav a:hover, nav a.active {
 .modal-container { 
     position: absolute; top: 50%; left: 50%; 
     transform: translate(-50%, -50%); background: white; 
-    border-radius: 16px; width: 90%; max-width: 900px; 
-    max-height: 95vh; overflow-y: auto; 
+    border-radius: 16px; width: 95%; /* Povećana širina modala */
+    max-width: 1050px; /* Povećana max širina za bolji prostor za sliku */
+    max-height: 98vh; /* Više prostora za visinu (manje skrolovanja) */
+    overflow-y: auto; 
 }
 .modal-close { 
     position: absolute; top: 1rem; right: 1rem; 
@@ -456,7 +456,7 @@ nav a:hover, nav a.active {
     font-size: 1.2rem; display: flex; align-items: center; justify-content: center; 
 }
 .modal-content { 
-    padding: 1.5rem; max-height: 90vh; overflow-y: auto; box-sizing: border-box; 
+    padding: 1.5rem; max-height: 94vh; overflow-y: auto; box-sizing: border-box; 
     display: flex; 
     gap: 2rem;
 }
@@ -465,17 +465,17 @@ nav a:hover, nav a.active {
     position: relative;
     text-align: center;
     margin-bottom: 0; 
-    flex: 1 1 50%; 
+    flex: 1 1 55%; /* Dajemo slici još više mesta */
 }
 
 .modal-details {
-    flex: 1 1 50%; 
+    flex: 1 1 45%; 
 }
 
 .modal-main-image {
     width: 100%;
-    /* KRITIČNO: POVEĆANA VISINA SLIKE */
-    height: 600px; 
+    /* KRITIČNO: Povećana visina slike za 10% */
+    height: 660px; /* Povećano sa 600px na 660px */
     max-width: none; 
     max-height: none; 
     object-fit: contain;
@@ -933,7 +933,3 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
-
-
-
-
