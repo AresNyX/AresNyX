@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
+    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,6 +10,7 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
+    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Track CTA button clicks
@@ -72,6 +74,7 @@
     });
     </script>
     
+    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,32 +100,26 @@
     <meta name="twitter:description" content="Imate pitanja o našem donjem vešu? Kontaktirajte nas putem telefona, email-a ili kontakt forme.">
     <meta name="twitter:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     
-    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/kontakt.html">
-    
-    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="global.css"></noscript>
-    
+    <link rel="stylesheet" href="global.css">
+   
 </head>
 <body>
 
 <header>
-    <a href="index.html" aria-label="Početna strana AresNyX"> 
-        <img 
-            src="slike/logo.webp" 
-            alt="AresNyX Logo" 
-            class="header-logo"
-            width="70" 
-            height="70"
-            loading="eager"
-            decoding="async">
-    </a>
+    <img 
+        src="slike/logo.webp" 
+        alt="AresNyX Logo" 
+        class="header-logo"
+        width="70" 
+        height="70"
+    >
     <h1>
         <span class="brand-emphasis">ARESNYX</span><br>
         <span class="subtitle">BOXER SHORTS</span>
     </h1>
 </header>
 
-<nav id="main-nav" aria-label="Glavna navigacija">
+<nav aria-label="Glavna navigacija">
     <a href="index.html">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html">O Nama</a>
@@ -142,7 +139,7 @@
                 <h2 class="section-title">Naši Podaci</h2>
                 
                 <div class="contact-item">
-                    <i class="fas fa-building fa-fw" role="img" aria-hidden="true"></i>
+                    <i class="fas fa-building fa-fw"></i>
                     <div class="contact-details">
                         <h3>Naziv</h3>
                         <p>AresNyX d.o.o</p>
@@ -150,7 +147,7 @@
                 </div>
                 
                 <div class="contact-item">
-                    <i class="fas fa-map-marker-alt fa-fw" role="img" aria-hidden="true"></i>
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
                     <div class="contact-details">
                         <h3>Sedište</h3>
                         <p>34300 Aranđelovac, Industrijska zona bb</p>
@@ -158,18 +155,18 @@
                 </div>
                 
                 <div class="contact-item">
-                    <i class="fas fa-phone fa-fw" role="img" aria-hidden="true"></i>
+                    <i class="fas fa-phone fa-fw"></i>
                     <div class="contact-details">
                         <h3>Telefon</h3>
-                        <p><a href="tel:+381648700220">+381 64 8700220</a></p>
+                        <p>+381 64 8700220</p>
                     </div>
                 </div>
                 
                 <div class="contact-item">
-                    <i class="fas fa-envelope fa-fw" role="img" aria-hidden="true"></i>
+                    <i class="fas fa-envelope fa-fw"></i>
                     <div class="contact-details">
                         <h3>Email</h3>
-                        <p><a href="mailto:ares.nyx.info@gmail.com">ares.nyx.info@gmail.com</a></p>
+                        <p>ares.nyx.info@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -177,6 +174,7 @@
             <div class="contact-form">
                 <h2 class="section-title">Pošaljite nam Poruku</h2>
                 
+                <!-- Hvala poruka - prikazuje se IZNAD forme -->
                 <div id="hvala" style="display: none; text-align: center; padding: 20px; background: #d4edda; color: #155724; border-radius: 8px; margin-bottom: 25px; border: 1px solid #c3e6cb;">
                     <h3 style="margin-top: 0; color: #155724;">✅ Hvala Vam!</h3>
                     <p id="hvalaTekst" style="margin-bottom: 5px;">Vaša poruka je poslata.</p>
@@ -186,22 +184,22 @@
                 <form id="forma">
                     <div class="form-group">
                         <label for="ime">Ime i Prezime *</label>
-                        <input type="text" id="ime" name="name" required placeholder="Vaše ime i prezime" autocomplete="name">
+                        <input type="text" id="ime" required placeholder="Vaše ime i prezime">
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email Adresa *</label>
-                        <input type="email" id="email" name="email" required placeholder="vaš@email.com" autocomplete="email">
+                        <input type="email" id="email" required placeholder="vaš@email.com">
                     </div>
                     
                     <div class="form-group">
                         <label for="pitanje">Vaše Pitanje *</label>
-                        <textarea id="pitanje" name="message" rows="5" required placeholder="Opišite Vaše pitanje..."></textarea>
+                        <textarea id="pitanje" rows="5" required placeholder="Opišite Vaše pitanje..."></textarea>
                     </div>
                     
                     <div class="text-center">
                         <button type="button" onclick="posaljiPoruku()" class="cta-button" id="dugme">
-                            <i class="fas fa-paper-plane" role="img" aria-hidden="true"></i> Pošalji Poruku
+                            <i class="fas fa-paper-plane"></i> Pošalji Poruku
                         </button>
                     </div>
                 </form>
@@ -218,11 +216,10 @@
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script>
-// Funkcija za slanje poruke (Nije menjana logikom)
+// Funkcija za slanje poruke
 async function posaljiPoruku() {
     const ime = document.getElementById('ime').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -245,8 +242,7 @@ async function posaljiPoruku() {
     const originalText = dugme.innerHTML;
     
     // Prikaži loading na dugmetu
-    // ACCESSIBILITY FIX: aria-hidden za spinner ikonu
-    dugme.innerHTML = '<i class="fas fa-spinner fa-spin" role="img" aria-hidden="true"></i> Šaljem...';
+    dugme.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Šaljem...';
     dugme.disabled = true;
     
     let formSubmitUspeo = false;
@@ -311,5 +307,36 @@ async function posaljiPoruku() {
         }, 1000); // Sačekaj 1 sekundu da se prikaže hvala poruka
     }
     
-    // 5. SKLONI "HVALA"
+    // 5. SKLONI "HVALA" PORUKU NAKON 8 SEKUNDI
+    setTimeout(() => {
+        hvalaDiv.style.display = 'none';
+    }, 8000);
+}
+
+// Event listener za Enter u poljima
+document.addEventListener('DOMContentLoaded', function() {
+    const forma = document.getElementById('forma');
+    
+    // Enter u bilo kom polju osim textarea šalje formu
+    forma.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            posaljiPoruku();
+        }
+    });
+    
+    // Ctrl+Enter u textarea šalje formu
+    document.getElementById('pitanje').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.ctrlKey) {
+            e.preventDefault();
+            posaljiPoruku();
+        }
+    });
+    
+    console.log('AresNyX kontakt forma je spremna!');
+});
+</script>
+
+</body>
+</html>
 
