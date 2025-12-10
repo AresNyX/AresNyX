@@ -133,7 +133,7 @@ header h1 {
 
 /* KOREKCIJA: Subtitle BOXER SHORTS (Sada ZLATNA, CENTRIRAN) */
 .subtitle {
-    font-size: 1.3em; 
+    font-size: 1.5rem; 
     color: var(--color-accent-gold); /* ЗЛАТНА БОЈА */
     font-weight: 500; 
     letter-spacing: 1px;
