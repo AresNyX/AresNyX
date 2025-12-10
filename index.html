@@ -17,7 +17,6 @@
     /* === RESET & A11Y FOCUS === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* A11Y: Osnovni stil za fokus za sve interaktivne elemente */
     :focus-visible {
         outline: 3px solid #D4AF37; 
         outline-offset: 4px;
@@ -28,9 +27,8 @@
     body, html {
         margin: 0;
         padding: 0;
-        /* NAJVIŠA PRAKSA: System font stack */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        background: #f7f7f7;
+        background: #ffffff; /* Bela pozadina */
         color: #333333;
         line-height: 1.6;
         overflow-x: hidden;
@@ -42,6 +40,7 @@
         background: #121212;
         color: #fff;
         text-align: center;
+        /* Omogućava da h1 bude centriran nezavisno od flexbox-a */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -66,17 +65,21 @@
     
     #main-header h1 {
         font-size: 32px;
-        color: #D4AF37;
+        /* VIZUELNA KOREKCIJA: Boja fonta (Naslov) u Tamno Bordo */
+        color: #802B24; 
         letter-spacing: 2px;
         margin: 0;
         text-transform: uppercase;
         line-height: 1.2;
         font-family: inherit;
+        /* CENTRIRANJE ISPRAVЉЕНО */
+        text-align: center; 
     }
-    
+
     .subtitle {
         font-size: 0.8em;
-        color: #fff;
+        /* VIZUELNA KOREKCIJA: Boja fonta (Podnaslov) u Tamno Bordo */
+        color: #802B24; 
         font-weight: 400;
         letter-spacing: 1px;
         display: block;
@@ -128,7 +131,7 @@
     #hero-section {
         text-align: center;
         padding: 84px 44px;
-        background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); /* Ugrađena boja */
+        background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
         color: white;
         border-radius: 16px;
         margin: 30px auto 0;
@@ -138,7 +141,8 @@
     }
     
     #hero-title {
-        color: #D4AF37;
+        /* VIZUELNA KOREKCIJA: Vraćena zlatna boja za Hero Title */
+        color: #D4AF37; 
         font-size: 3.1em;
         margin: 0 0 24px 0;
         line-height: 1.3;
@@ -179,9 +183,10 @@
         text-transform: uppercase;
         font-weight: 600;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        /* CENTRIRANJE DUGMETA NA DNU TEKSTA */
+        display: block; 
+        margin: 25px auto 0 auto;
+        /* Kraj Centriranja */
         max-width: 280px;
         width: 100%;
         padding: 14px 25px;
@@ -196,16 +201,16 @@
     /* === SLIKE I GRID STILOVI === */
     .natural-image {
         width: 100%;
-        max-width: 600px;
+        max-width: 600px; 
         height: auto;
         border-radius: 12px;
+        /* VIZUELNA KOREKCIJA: Bočna margina sa auto centriranjem */
         margin: 25px auto;
         display: block;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     
-    /* FIKSIRANJE PRIUNUDNOG PREOBLIKOVANJA: Hover je u CSS-u, ne u JS-u */
     .natural-image:hover {
         transform: scale(1.02);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
@@ -231,6 +236,11 @@
         border-radius: 8px;
         border: 1px solid #eeeeee;
         background-color: #ffffff;
+    }
+    
+    /* VIZUELNA KOREKCIJA: Boja ikona (vraćena na originalnu Zlatnu boju) */
+    .icon-svg path {
+        fill: #D4AF37; 
     }
 
     /* === FOOTER STILOVI === */
@@ -393,10 +403,8 @@
     
     // Inicijalna logika za scroll i CTA praćenje
     document.addEventListener('DOMContentLoaded', function() {
-      // Logic for CTA tracking
       const trackCTA = (button, label) => {
         button.addEventListener('click', () => {
-          // Koristi setTimeout za pozivanje gtag da bi se smanjio uticaj na trenutni zadatak
           setTimeout(() => {
               gtag('event', 'select_content', {
                 content_type: 'button',
@@ -415,7 +423,6 @@
         trackCTA(btn, btn.classList.contains('hero-cta-button') ? 'hero_cta' : 'regular_cta');
       });
 
-      // Scroll tracking - koristi passive listener i čita samo neophodne vrednosti
       let scrollPercentages = [25, 50, 75, 90];
       let trackedScrolls = [];
       
@@ -430,9 +437,8 @@
             trackedScrolls.push(percent);
           }
         });
-      }, { passive: true }); // Uključen passive: true
+      }, { passive: true }); 
 
-      // Time on page logic
       let pageStartTime = Date.now();
       window.addEventListener('beforeunload', () => {
         const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
@@ -455,16 +461,15 @@
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-63WM74353T';
         document.head.appendChild(script);
 
-        // Standardna GTM konfiguracija
         gtag('js', new Date());
         gtag('config', 'G-63WM74353T');
     }
 
-    // Odlažemo ucitavanje 2 sekunde kako bismo dali prioritet vizuelnom učitavanju
     setTimeout(loadGtag, 2000); 
     </script>
 </body>
 </html>
+
 
 
 
