@@ -94,49 +94,55 @@ section p {
 /* ==================================== */
 
 /* --- 4. HEADER KOREKCIJA: LOGO IZNAD TEKSTA, SVE CENTRIRANO --- */
-
 header { 
     background: var(--color-dark-bg);
     color: #fff; 
-    padding: 15px 20px 20px; /* Povećan donji padding */
+    padding: 30px 20px 20px; 
     text-align: center; 
-    /* Uklonjen flexbox da bi sadržaj išao vertikalno */
+    
+    /* VRAЋАЊЕ НА БЛОК: Садржај иде вертикално */
     display: block; 
+    /* Уклоњен flexbox */
 }
 
-/* Kontejner za tekst (ukoliko ostane u HTML-u) */
+/* Header Text Kontejner */
 .header-text-container {
-    text-align: center; /* SVE CENTRIRANO */
-    margin-top: 10px; /* Mali razmak između logoa i teksta */
+    text-align: center; /* Све центрирано */
+    margin-top: 10px; /* Развлачи лого од текста */
 }
 
 .header-logo {
-    display: block;
-    margin: 0 auto; /* Centriranje logoa */
-    width: 80px; /* Malo veći logo */
+    width: 80px; 
     height: 80px; 
+    min-width: 80px; 
+    aspect-ratio: 1/1; 
+    border-radius: 8px; 
+    /* Centriranje logoa */
+    margin: 0 auto; 
+    display: block; 
 }
 
-/* KOREKCIJA: Naslov ARESNYX (Sada ZLATNA) */
+/* KOREKCIJA: Naslov ARESNYX (Sada ZLATNA, CENTRIRAN) */
 header h1 { 
     font-size: 32px;
-    color: var(--color-accent-gold); /* KORIŠЋЕЊЕ ЗЛАТНЕ БОЈЕ */
+    color: var(--color-accent-gold); /* ЗЛАТНА БОЈА */
     letter-spacing: 2px; 
     text-transform: uppercase;
     margin-top: 5px; 
+    margin-bottom: 0;
     line-height: 1.1; 
-    text-align: center; 
+    text-align: center; /* ЦЕНТРИРАНО */
 }
 
-/* KOREKCIJA: Subtitle BOXER SHORTS (Sada ZLATNA) */
+/* KOREKCIJA: Subtitle BOXER SHORTS (Sada ZLATNA, CENTRIRAN) */
 .subtitle {
     font-size: 0.85em; 
-    color: var(--color-accent-gold); /* KORIШЋЕЊЕ ЗЛАТНЕ БОЈЕ */
+    color: var(--color-accent-gold); /* ЗЛАТНА БОЈА */
     font-weight: 500; 
     letter-spacing: 1px;
     display: block; 
     margin-top: 5px; 
-    text-align: center; 
+    text-align: center; /* ЦЕНТРИРАНО */
 }
 /* NAVIGACIJA KOREKCIJA: ZLATNA LINIJA ODVAJA */
 nav {
