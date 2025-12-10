@@ -1157,3 +1157,39 @@ footer {
 
 /* =================================================================================== */
 
+/* AŽURIRANI KRITIČNI STILOVI ZA MODAL */
+
+.modal-overlay {
+    display: none; 
+    position: fixed; /* OVO JE KLJUČNO! Fiksira ga za prozor, ne za dokument */
+    z-index: 1000;  
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    /* Dodajte fleksbox za savršeno centriranje: */
+    display: flex; /* Mora biti flex da bi centriranje radilo */
+    align-items: center; /* Vertikalno centriranje */
+    justify-content: center; /* Horizontalno centriranje */
+    padding: 20px; /* Dodajte malo paddinga zbog mobilnih uređaja */
+}
+
+/* Kada JS postavi display: block */
+.modal-overlay[style*="display: block"] {
+    display: flex; /* Morate koristiti flex za centriranje */
+}
+
+.modal-content.product-modal-content {
+    background-color: #fefefe;
+    /* Uklonite 'margin: 5% auto;' jer koristimo flexbox za centriranje */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 95%; /* Da ne bude preširok */
+    max-width: 800px; /* Definisanje maksimalne širine */
+    max-height: 90vh; /* Maksimalna visina prozora */
+    overflow-y: auto; /* Omogućava skrolovanje ako je sadržaj velik */
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
