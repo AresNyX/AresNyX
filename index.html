@@ -16,27 +16,122 @@
     <style>
     /* Reset i Layout Definicije - Minimizovano za FCP */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #ffffff; color: #333333; line-height: 1.6; overflow-x: hidden; }
+    body, html { 
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+        background: #f7f7f7; /* Vrednost iz --color-light-bg */
+        color: #333333; /* Vrednost iz --color-text-main */
+        line-height: 1.6; 
+        overflow-x: hidden; 
+    }
 
-    /* Header i Navigacija (Osnovni Layout) */
-    #main-header { background: #121212; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; min-height: 200px; padding: 30px 20px; }
-    .header-logo { width: 70px; height: 70px; min-width: 70px; aspect-ratio: 1/1; border-radius: 8px; }
-    #main-header h1 { font-size: 32px; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
-    .subtitle { font-size: 0.8em; font-weight: 400; letter-spacing: 1px; display: block; margin-top: 8px; }
-    #main-nav { background-color: #121212; padding: 15px 0; border-top: 2px solid #D4AF37; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-    #main-nav a { font-size: 18px; font-weight: 500; text-decoration: underline; min-width: 150px; width: 150px; padding: 12px 5px; margin: 0; border-radius: 4px; }
+    /* HEADER: Struktura za centriranje logoa i teksta */
+    #main-header { 
+        background: #121212; /* Vrednost iz --color-dark-bg */
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 15px; 
+        flex-wrap: wrap; 
+        min-height: 120px; 
+        padding: 30px 20px; 
+    }
+    .header-logo { 
+        width: 70px; 
+        height: 70px; 
+        min-width: 70px; 
+        aspect-ratio: 1/1; 
+        border-radius: 8px; 
+        display: block; 
+    }
+    /* Kontejner za tekst da bi se obezbedilo centriranje */
+    .header-text-container {
+        text-align: left; 
+    }
+    #main-header h1 { 
+        font-size: 32px; 
+        letter-spacing: 2px; 
+        text-transform: uppercase; 
+        margin: 0; 
+        /* Boja ce biti preuzeta iz global.css (#5c1f1a) */
+    }
+    .subtitle { 
+        font-size: 0.8em; 
+        font-weight: 400; 
+        letter-spacing: 1px; 
+        display: block; 
+        margin-top: 8px; 
+        /* Boja ce biti preuzeta iz global.css (#5c1f1a) */
+    }
     
-    /* Hero Sekcija (Osnovni Layout) */
-    #hero-section { text-align: center; padding: 84px 44px; margin: 30px auto 0; max-width: 1100px; border-radius: 16px; min-height: 360px; }
-    #hero-title { font-size: 3.1em; margin: 0 0 24px 0; line-height: 1.3; }
-    .natural-image { width: 100%; max-width: 600px; height: auto; border-radius: 12px; margin: 25px auto; display: block; }
+    /* Navigacija: Osnovni Layout */
+    #main-nav { 
+        background-color: #121212; 
+        padding: 10px 0; 
+        border-top: 2px solid #D4AF37; /* Vrednost iz --color-accent-gold */
+        display: flex; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+        gap: 10px; 
+    }
+    #main-nav a { 
+        font-size: 1.1em; 
+        font-weight: 400; 
+        text-decoration: none; 
+        padding: 8px 12px; 
+        border-radius: 4px; 
+        color: #fff;
+    }
     
-    /* Sekcije koje se ne vide odmah se 'lenjo' renderuju */
-    .lazy-section { content-visibility: auto; contain-intrinsic-size: 0 500px; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 35px; }
+    /* Glavni sadržaj i sekcije */
+    main { 
+        max-width: 900px; 
+        margin: 15px auto 60px auto; 
+        padding: 0 20px; 
+        min-height: 400px; 
+    }
+    section {
+        margin-bottom: 60px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .hero-section {
+        text-align: center;
+        padding: 50px 25px;
+        background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
+        color: white;
+        border-radius: 12px;
+    }
+    .natural-image { 
+        width: 100%; 
+        max-width: 600px; 
+        height: auto; 
+        border-radius: 12px; 
+        margin: 25px auto; /* Bočne margine i centriranje */
+        display: block; 
+    }
+    .cta-container {
+        text-align: center;
+        margin-top: 35px;
+    }
+    .features-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 25px; 
+        margin-top: 35px; 
+    }
+    /* Footer Layout */
+    footer { 
+        background: #121212; 
+        color: #fff; 
+        padding: 40px 20px; 
+        text-align: center; 
+        margin-top: 60px;
+    }
     </style>
     
-    <link rel="stylesheet" href="global.css?v=1" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="global.css" media="print" onload="this.media='all'">
     
     <meta name="description" content="AresNyX premium donji veš od 100% prirodnih materijala (pamuk, lan, bambus). Otkrijte udobnost, prozračnost i zdravstvene prednosti prirodnog veša. Besplatna dostava.">
     <meta name="keywords" content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
@@ -58,19 +153,21 @@
                  decoding="async"
                  fetchpriority="high">
         </a>
-        <h1><span class="brand-emphasis">ARESNYX</span><span class="subtitle">PREMIUM DONJI VEŠ</span></h1>
+        <div class="header-text-container">
+            <h1><span class="brand-emphasis">ARESNYX</span><span class="subtitle">PREMIUM DONJI VEŠ</span></h1>
+        </div>
     </header>
 
     <nav id="main-nav" aria-label="Glavna navigacija">
-        <a href="index.html" class="active" aria-current="page">Početna</a>
-        <a href="shop.html">Shop</a>
-        <a href="o-nama.html">O Nama</a>
-        <a href="blog-zdravlje-donjeg-vesa.html">Blog & Zdravlje</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="index.html" class="active" aria-current="page"><i class="fas fa-home"></i> Početna</a>
+        <a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a>
+        <a href="o-nama.html"><i class="fas fa-users"></i> O Nama</a>
+        <a href="blog-zdravlje-donjeg-vesa.html"><i class="fas fa-blog"></i> Blog & Zdravlje</a>
+        <a href="kontakt.html"><i class="fas fa-address-card"></i> Kontakt</a>
     </nav>
 
     <main id="main-content" role="main">
-        <section id="hero-section">
+        <section class="hero-section fade-in-section">
             <h1 id="hero-title">Premium Donji Veš</h1>
             <p id="hero-text">100% prirodni materijali • Bez sintetike • **Optimalno Zdravlje i Udobnost**</p>
             
@@ -81,16 +178,16 @@
                      width="280" height="180" loading="lazy" class="natural-image">
             </div>
             
-            <div class="hero-cta-container">
-                <a href="shop.html" class="hero-cta-button" role="button">Otkrijte Kolekciju</a>
+            <div class="cta-container">
+                <a href="shop.html" class="cta-button" role="button">Otkrijte Kolekciju</a>
             </div>
         </section>
 
-        <section class="lazy-section" id="features">
+        <section class="fade-in-section">
             <h2>Zašto AresNyX - Ključne Prednosti</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Prirodnih Materijala"><path d="M17.8,2C16,2,15,3,15,4.8C15,6.6,17.8,10,17.8,10S20.6,6.6,20.6,4.8C20.6,3,19.6,2,17.8,2z M12,2C9.2,2,7,4.2,7,7c0,2.8,5,9,5,9s5-6.2,5-9C17,4.2,14.8,2,12,2z M5,2C2.2,2,0,4.2,0,7c0,2.8,3.2,7.7,5,9.9l1-1.7C4.3,13.4,2,9.4,2,7C2,5.3,3.3,4,5,4c1.3,0,2.5,0.8,3,2l1.6-0.9C9,3.8,7.2,2,5,2z"/></svg>
+                    <i class="fas fa-leaf icon-svg"></i>
                     <h3>Prirodni Materijali</h3>
                     <p>100% **prozračni** pamuk, lan i bambus **bez ikakvih veštačkih dodataka i iritacija**</p>
                 </div>
@@ -103,21 +200,21 @@
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Zdravlja"><path d="M12,21.4l-1.4-1.3C5.4,15.4,2,12.3,2,8.5C2,5.4,4.4,3,7.5,3c1.7,0,3.4,0.8,4.5,2.1C13.1,3.8,14.8,3,16.5,3C19.6,3,22,5.4,22,8.5c0,3.8-3.4,6.9-8.6,11.6L12,21.4z"/></svg>
+                     <i class="fas fa-heart icon-svg"></i>
                     <h3>Zdravstvene Prednosti</h3>
                     <p>**Opušten kroj** i materijali koji štite vaše zdravlje, sprečavaju iritacije i omogućavaju koži da diše.</p>
                 </div>
                 
                 <div class="feature-item">
-                     <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="false" width="48" height="48" role="img" aria-label="Ikona Proizvodnja u Srbiji"><path d="M12,1L3,5v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V5L12,1z M12,4.5l5.6,2.3L12,9.1L6.4,6.8L12,4.5z M5,7.3l6,2.6v9.4C8.1,18.6,5,14.4,5,11V7.3z M19,11c0,3.4-3.1,7.6-7,8.3V9.9l6-2.6V11z"/></svg>
-                    <h3>Proizvodnja u Srbiji</h3>
-                    <p>Kvalitet **domaće proizvodnje** koji potiče iz naše zemlje, uz podršku **lokalnih dobavljača**.</p>
+                     <i class="fas fa-shield-alt icon-svg"></i>
+                    <h3>Kvalitet i Održivost</h3>
+                    <p>Kvalitet **domaće proizvodnje** i etička praksa, uz podršku **lokalnih dobavljača**.</p>
                 </div>
             </div>
         </section>
-
-        <section class="lazy-section" id="philosophy">
-            <h2>Naša Filozofija - Zdravlje i Održivost</h2>
+        
+        <section class="fade-in-section">
+            <h2>Naša Filozofija</h2>
             <p>Znamo da donji veš ne bi trebalo da bude kompromis između stila i zdravlja. Zato smo kreirali AresNyX - brend koji kombinuje luksuzni dizajn sa zdravstvenim benefitima prirodnih materijala, fokusirajući se na **održivost i etičku proizvodnju**.</p>
             
             <div class="philosophy-image-container">
@@ -212,6 +309,7 @@
         gtag('config', 'G-63WM74353T');
     }
 
+    // Odloženo učitavanje, npr. nakon 2 sekunde
     setTimeout(loadGtag, 2000); 
     </script>
 </body>
