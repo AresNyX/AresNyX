@@ -379,7 +379,6 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     }
 }
 
-
 /* HEADER SA PODNASLOVOM */
 header { 
     background: var(--primary-dark); 
@@ -387,9 +386,9 @@ header {
     padding: 40px 20px; 
     text-align: center; 
 }
-/* KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - DUPLO VEĆI FONT */
+/* KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - SMANJENO na razumnih 2.5em */
 header h1 { 
-    font-size: 4em; 
+    font-size: 2.5em; /* Smanjeno sa 4em na 2.5em */
     color: var(--accent-gold); 
     letter-spacing: 2px; 
     text-transform: uppercase;
@@ -399,12 +398,12 @@ header h1 {
 }
 .brand-emphasis { 
     font-weight: 700; 
-    /* Povećanje teksta za 30% */
-    font-size: 1.56em; 
+    /* Ovo je bilo 1.56em, što je +30% od 1.2em. Zadržavamo to u odnosu na <h1> font. */
+    font-size: 1.2em; /* Vraćamo na razumnu veličinu u odnosu na novi <h1> */
 }
 .subtitle {
-    /* Povećanje teksta za 30% */
-    font-size: 1.04em; 
+    /* Ovo je bilo 1.04em, što je +30% od 0.8em. Zadržavamo to u odnosu na bazni font. */
+    font-size: 1em; /* Vraćamo na razumnu veličinu */
     color: #fff;
     font-weight: 400;
     letter-spacing: 1px;
