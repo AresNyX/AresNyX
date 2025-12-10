@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,7 +9,6 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
-    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Track CTA button clicks
@@ -74,7 +72,6 @@
     });
     </script>
     
-    <!-- OSTALI META TAGOVI... -->
     <meta http-equiv="Content-Security-Policy" 
           content="default-src 'self';
                    img-src 'self' https: data:;
@@ -94,32 +91,40 @@
     <meta name="keywords" 
           content="politika privatnosti, zaštita podataka, AresNyX, GDPR, obrada ličnih podataka">
     <meta name="author" content="AresNyX">
-    <meta name="robots" content="noindex, nofollow"> <meta property="og:title" content="AresNyX - Politika Privatnosti">
+    
+    <meta name="robots" content="noindex, follow"> 
+    <link rel="canonical" href="https://aresnyx.github.io/AresNyX/politika-privatnosti.html">
+    
+    <meta property="og:title" content="AresNyX - Politika Privatnosti">
     <meta property="og:description" content="Vaša privatnost je naš prioritet. Pročitajte naše uslove obrade podataka.">
     <meta property="og:image" content="https://aresnyx.github.io/AresNyX/slike/logo.webp">
     <meta property="og:url" content="https://aresnyx.github.io/AresNyX/politika-privatnosti.html">
     <meta property="og:type" content="article">
     
-    <link rel="stylesheet" href="global.css">
+    <link rel="preload" href="global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="global.css"></noscript>
 
 </head>
 <body>
 
 <header>
-    <img 
-        src="slike/logo.webp" 
-        alt="AresNyX Logo" 
-        class="header-logo"
-        width="70" 
-        height="70"
-    >
+    <a href="index.html" aria-label="Početna strana AresNyX"> 
+        <img 
+            src="slike/logo.webp" 
+            alt="AresNyX Logo" 
+            class="header-logo"
+            width="70" 
+            height="70"
+            loading="eager"
+            decoding="async">
+    </a>
     <h1>
         <span class="brand-emphasis">ARESNYX</span><br>
         <span class="subtitle">BOXER SHORTS</span>
     </h1>
 </header>
 
-<nav aria-label="Glavna navigacija">
+<nav id="main-nav" aria-label="Glavna navigacija">
     <a href="index.html">Početna</a>
     <a href="shop.html">Shop</a>
     <a href="o-nama.html">O Nama</a>
@@ -128,7 +133,8 @@
 </nav>
 
 <main>
-    <section class="policy-content"> <h2>Politika Privatnosti</h2>
+    <section class="policy-content fade-in-section"> 
+        <h2>Politika Privatnosti</h2>
         
         <p class="lead text-center">
             Ovaj dokument objašnjava kako <strong>AresNyX d.o.o.</strong> prikuplja, koristi i štiti Vaše lične podatke. Vaša privatnost nam je prioritet.
@@ -139,8 +145,8 @@
         <ul>
             <li><strong>Naziv firme:</strong> AresNyX d.o.o</li>
             <li><strong>Sedište:</strong> 34300 Aranđelovac, Industrijska zona bb</li>
-            <li><strong>Kontakt Email:</strong> ares.nyx.info@gmail.com</li>
-            <li><strong>Kontakt Telefon:</strong> +381 64 8700220</li>
+            <li><strong>Kontakt Email:</strong> <a href="mailto:ares.nyx.info@gmail.com">ares.nyx.info@gmail.com</a></li>
+            <li><strong>Kontakt Telefon:</strong> <a href="tel:+381648700220">+381 64 8700220</a></li>
         </ul>
         
         <h2>2. Podaci Koje Prikupljamo</h2>
@@ -200,7 +206,7 @@
         <div class="info-box">
             <p><strong>Za ostvarivanje Vaših prava</strong>, možete nas kontaktirati putem email adrese:</p>
             <p style="text-align: center; font-size: 1.1em; margin: 10px 0;">
-                <strong>ares.nyx.info@gmail.com</strong>
+                <strong><a href="mailto:ares.nyx.info@gmail.com">ares.nyx.info@gmail.com</a></strong>
             </p>
         </div>
 
@@ -213,10 +219,49 @@
 <footer>
     <div class="footer-links">
         <a href="uslovi-koriscenja.html">Uslovi korišćenja</a>
-        <a href="politika-privatnosti.html">Politika privatnosti</a>
+        <a href="politika-privatnosti.html" class="active" aria-current="page">Politika privatnosti</a>
     </div>
     &copy; 2025 AresNyX. Zdravlje i Udobnost.
 </footer>
 
+<script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .fade-in-section {
+                    animation: fadeIn 0.8s ease-out forwards;
+                    opacity: 0;
+                }
+                .policy-content ul {
+                    list-style-type: square;
+                    padding-left: 20px;
+                }
+                .policy-content ul li {
+                    margin-bottom: 10px;
+                }
+                .info-box {
+                    background: #f8f8f8;
+                    border: 1px solid #ddd;
+                    padding: 15px;
+                    border-left: 5px solid var(--color-brand);
+                    margin: 30px 0;
+                    border-radius: 4px;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.querySelectorAll('.fade-in-section').forEach((section, index) => {
+                section.style.animationDelay = (index * 0.2 + 0.2) + 's';
+            });
+        }, 500);
+    });
+</script>
+
 </body>
 </html>
+
