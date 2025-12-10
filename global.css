@@ -183,6 +183,22 @@ nav a.active {
     transform: translateY(0);
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* Mali sjaj */
 }
+section h1 {
+    /* Eksplicitno definišemo font-size u rem jedinicama da bi se bolje skaliralo */
+    font-size: 2.5rem; 
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-accent-gold); 
+    margin-bottom: 24px;
+}
+
+/* Osigurajmo da stil za Hero ostane jak: */
+.hero-section #hero-title {
+    /* Možda želite još veću veličinu u rem jedinicama */
+    font-size: 3.1rem; /* 3.1rem je mnogo eksplicitnije nego 3.1em */
+    color: var(--color-accent-gold);
+    margin: 0 0 24px 0; 
+}
 
 /* --- 11. FOOTER KOREKCIJA: KRUPNIJI FONT I ZLATNI LINK --- */
 footer { 
