@@ -11,9 +11,6 @@ class AresNyXShop {
         this.currentSizeFilter = 'all';     
         this.currentSort = 'default'; 
         this.currentProduct = null;
-        this.currentSize = null; // Dodato za praćenje odabrane veličine u Modalu
-        this.currentQuantity = 1; // Dodato za praćenje količine u Modalu
-        this.currentImageIndex = 0; // Dodato za praćenje slike u Modalu
         this.checkoutData = {};
         
         this.init(); 
@@ -24,40 +21,143 @@ class AresNyXShop {
         this.updateCartCount();
         this.renderCart();
         this.updateCartPromoMessage(0); 
-        this.attachEventListeners(); // Sada uključuje i filtere za veličinu
-
-        // ⭐ POPRAVKA: Pozivamo renderProducts ovde, a ne u setTimeout-u ⭐
-        this.renderProducts(); 
+        this.attachEventListeners();
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
-            // Pretpostavljam da je ključ tačan
-            emailjs.init("WKV419-gz6OQWSgRJ"); 
+            emailjs.init("WKV419-gz6OQWSgRJ"); // Vaš Public Key
         } catch (e) {
             console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
         }
     } 
     
-    // ... (loadProducts i getBadgeClass ostaju nepromenjeni) ...
+    // =========================================================
+    // === POMOĆNE METODE ZA OBRADU PODATAKA ===
+    // =========================================================
 
+    /**
+     * Učitava proizvode u memoriju.
+     */
     loadProducts() {
         this.products = [
-            { id: 1, name: "Classic Pamuk", material: "100% Organski Pamuk", price: 1300, category: "pamuk", images: ["slika1.webp", "slika1a.webp"], badge: "CLASSIC", sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } },
-            { id: 2, name: "Egipt Pamuk", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika2.webp", "slike2a.webp"], badge: "BESTSELLER", sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } },
-            { id: 3, name: "Elegant", material: "100% Prirodni Pamuk", price: 1600, category: "pamuk", images: ["slika3.webp", "slika3a.webp"], badge: "LUXURY", sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } },
-            { id: 4, name: "Grey Elegant", material: "100% Premium Pamuk", price: 1600, category: "pamuk", images: ["slika4.webp", "slika4a.webp"], badge: "PREMIUM", sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } },
-            { id: 5, name: "Ink Blue", material: "100% Organski Pamuk", price: 1500, category: "pamuk", images: ["slika5.webp", "slika5a.webp"], badge: "LUXURY", sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } },
-            { id: 6, name: "Light Blue", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika6.webp", "slika6a.webp"], badge: "TRENDING", sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } },
-            { id: 7, name: "Black & White", material: "100% Premium Pamuk", price: 1500, category: "pamuk", images: ["slika7.webp", "slika7a.webp"], badge: "LUXURY", sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } },
-            { id: 8, name: "Blue & White", material: "100% Premium Pamuk", price: 1400, category: "100% Pamuk", images: ["slika8.webp", "slika8a.webp"], badge: "NEW", sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } },
-            { id: 9, name: "Blue-Cyan", material: "100% Premium Pamuk", price: 1600, category: "pamuk", images: ["slika9.webp", "slika9a.webp"], badge: "PREMIUM", sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } },
-            { id: 10, name: "Petrol Blue", material: "100% Arabic Pamuk", price: 1600, category: "pamuk", images: ["slika10.webp", "slika10a.webp"], badge: "LUXURY", sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } },
-            { id: 11, name: "Grey & White", material: "100% Organski Pamuk", price: 1500, category: "pamuk", images: ["slika11.webp", "slika11a.webp"], badge: "PREMIUM", sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } }
+            { 
+                id: 1, 
+                name: "Classic Pamuk", 
+                material: "100% Organski Pamuk", 
+                price: 1300, 
+                category: "pamuk", 
+                images: ["slika1.webp", "slika1a.webp"],
+                badge: "CLASSIC",
+                sizes: { S: 5, M: 12, L: 8, XL: 2, XXL: 5 } 
+            },
+            { 
+                id: 2, 
+                name: "Egipt Pamuk", 
+                material: "100% Premium Pamuk", 
+                price: 1500, 
+                category: "pamuk", 
+                images: ["slika2.webp", "slike2a.webp"], 
+                badge: "BESTSELLER",
+                sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
+            },
+            { 
+                id: 3, 
+                name: "Elegant", 
+                material: "100% Prirodni Pamuk", 
+                price: 1600, 
+                category: "pamuk", 
+                images: ["slika3.webp", "slika3a.webp"], 
+                badge: "LUXURY",
+                sizes: { S: 7, M: 0, L: 5, XL: 0, XXL: 3 } 
+            },
+            { 
+                id: 4, 
+                name: "Grey Elegant", 
+                material: "100% Premium Pamuk", 
+                price: 1600, 
+                category: "pamuk", 
+                images: ["slika4.webp", "slika4a.webp"], 
+                badge: "PREMIUM",
+                sizes: { S: 10, M: 10, L: 10, XL: 10, XXL: 10 } 
+            },
+            { 
+                id: 5, 
+                name: "Ink Blue", 
+                material: "100% Organski Pamuk", 
+                price: 1500, 
+                category: "pamuk", 
+                images: ["slika5.webp", "slika5a.webp"],
+                badge: "LUXURY",
+                sizes: { S: 2, M: 3, L: 0, XL: 0, XXL: 1 } 
+            },
+            { 
+                id: 6, 
+                name: "Blue White", 
+                material: "100% Premium Pamuk", 
+                price: 1500, 
+                category: "pamuk", 
+                images: ["slika6.webp", "slika6a.webp"], 
+                badge: "TRENDING",
+                sizes: { S: 8, M: 8, L: 8, XL: 8, XXL: 8 } 
+            },
+            { 
+                id: 7, 
+                name: "Black & White", 
+                material: "100% Premium Pamuk", 
+                price: 1500, 
+                category: "pamuk", 
+                images: ["slika7.webp", "slika7a.webp"], 
+                badge: "LUXURY",
+                sizes: { S: 6, M: 6, L: 6, XL: 6, XXL: 6 } 
+            },
+            { 
+                id: 8, 
+                name: "Light Blue", 
+                material: "100% Premium Pamuk", 
+                price: 1400, 
+                category: "100% Pamuk", 
+                images: ["slika8.webp", "slika8a.webp"], 
+                badge: "NEW",
+                sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
+            },
+            { 
+                id: 9, 
+                name: "Blue", 
+                material: "100% Premium Pamuk", 
+                price: 1600, 
+                category: "pamuk", 
+                images: ["slika9.webp", "slika9a.webp"],
+                badge: "PREMIUM",
+                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 1 } 
+            },
+            { 
+                id: 10, 
+                name: "Petrol Blue", 
+                material: "100% Arabic Pamuk", 
+                price: 1600, 
+                category: "pamuk", 
+                images: ["slika10.webp", "slika10a.webp"],
+                badge: "LUXURY",
+                sizes: { S: 1, M: 1, L: 1, XL: 1, XXL: 0 } 
+            },
+            { 
+                id: 11, 
+                name: "Grey White", 
+                material: "100% Organski Pamuk", 
+                price: 1500, 
+                category: "pamuk", 
+                images: ["slika11.webp", "slika11a.webp"], 
+                badge: "PREMIUM",
+                sizes: { S: 20, M: 20, L: 20, XL: 20, XXL: 20 } 
+            }
         ];
         
         this.filteredProducts = [...this.products]; 
     }
 
+    /**
+     * Postavlja CSS klasu za badge na osnovu teksta (za stilizaciju boje).
+     */
     getBadgeClass(badgeText) {
         const text = badgeText.toUpperCase();
         if (text === "PREMIUM" || text === "LUXURY") {
@@ -69,15 +169,22 @@ class AresNyXShop {
         }
     }
     
+    /**
+     * Proverava da li su artikli u korpi još dostupni u traženoj količini.
+     */
     validateStock() {
         const unavailableItems = [];
+
         this.cart.forEach(cartItem => {
             const product = this.products.find(p => p.id === cartItem.productId);
+
             if (!product) {
                 unavailableItems.push({ name: cartItem.name, size: cartItem.size, reason: 'Proizvod više ne postoji u katalogu.' });
                 return;
             }
+            
             const availableStock = product.sizes[cartItem.size] || 0; 
+
             if (cartItem.quantity > availableStock) {
                 unavailableItems.push({ 
                     name: cartItem.name, 
@@ -86,6 +193,7 @@ class AresNyXShop {
                 });
             }
         });
+
         return unavailableItems;
     }
 
@@ -94,10 +202,9 @@ class AresNyXShop {
     // =========================================================
 
     /**
-     * Postavlja sve event listenere (Optimizacija)
+     * Postavlja sve event listenere koji nisu inline u HTML-u.
      */
     attachEventListeners() {
-        // Logika za filtere veličine (automatska primena filtera nakon odabira veličine)
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
@@ -109,14 +216,9 @@ class AresNyXShop {
                     btn.classList.add('active');
                     
                     this.currentSizeFilter = size;
-                    
-                    // ⭐ POBOLJŠANJE: Automatski primenite filter nakon odabira veličine ⭐
-                    this.applyFiltersAndSort(); 
                 }
             });
         }
-        
-        // Dodajte listenere za ostale elemente ovde (npr. dugmad filtera) ako nisu inline
     }
 
     /**
@@ -128,19 +230,41 @@ class AresNyXShop {
     }
 
     /**
+     * Ažurira stanje filtera/sortiranja.
+     */
+    filterProducts(value, filterType) {
+        if (filterType === 'material') {
+            this.currentMaterialFilter = value;
+        } else if (filterType === 'size') {
+            this.currentSizeFilter = value;
+            
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            if (value !== 'all') {
+                document.querySelector(`.size-btn[data-size="${value}"]`)?.classList.add('active');
+            } else {
+                document.querySelector(`.size-btn[data-size="all"]`)?.classList.add('active');
+            }
+        }
+    }
+
+    /**
+     * Ažurira stanje sortiranja.
+     */
+    sortProducts(sortType) {
+        this.currentSort = sortType;
+    }
+
+    /**
      * Pokreće kompletnu logiku filtera nakon klika na dugme "Primeni filtere".
      */
     applyAllFilters() {
         this.toggleFilterPanel();
 
-        // Čitamo vrednosti iz SELECT elemenata
         const materialValue = document.getElementById('materialFilter').value;
         const sortValue = document.getElementById('priceSort').value;
         
         this.currentMaterialFilter = materialValue;
         this.currentSort = sortValue;
-        
-        // Veličina je već postavljena preko attachEventListeners
         
         this.applyFiltersAndSort(); 
     }
@@ -158,7 +282,6 @@ class AresNyXShop {
 
         // 2. PRIMENA FILTERA PO VELIČINI
         if (this.currentSizeFilter !== 'all') {
-            // ⭐ ISPRAVKA: Uvek proveravamo da li je zaliha > 0 ⭐
             tempProducts = tempProducts.filter(p => 
                 p.sizes && p.sizes[this.currentSizeFilter] > 0
             );
@@ -178,11 +301,13 @@ class AresNyXShop {
     }
 
     /**
-     * Renderuje listu proizvoda na stranicu. (Bez izmena, jer je već dobro)
+     * Renderuje listu proizvoda na stranicu.
+     * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
+        // Sigurnosna putanja definisana unutar metode
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
 
         if (!grid) {
@@ -196,8 +321,10 @@ class AresNyXShop {
         }
         
         grid.innerHTML = displayProducts.map(product => {
+            
             const imageSrc = BASE_IMAGE_URL + product.images[0]; 
             const badgeClass = this.getBadgeClass(product.badge);
+
             const srcset = product.images.map((imgName, index) => {
                 const width = (index === 0) ? '800w' : '400w'; 
                 return `${BASE_IMAGE_URL}${imgName} ${width}`;
@@ -205,16 +332,21 @@ class AresNyXShop {
             
             return `
               <div class="product-card" data-id="${product.id}" onclick="shop.openProductModal(${product.id})">
+        
                 ${product.badge ? `<div class="product-badge ${badgeClass}">${product.badge}</div>` : ''}
+                
                 <img src="${imageSrc}" 
                     alt="${product.name}" 
                     srcset="${srcset}"
                     sizes="(min-width: 992px) 33vw, (min-width: 576px) 50vw, 100vw"
                     class="product-image"
                     loading="lazy"> 
+
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
+                    
                     ${product.material ? `<p class="product-material">${product.material}</p>` : ''}
+                    
                     <p class="product-price">${product.price} RSD</p> 
                 </div>
             </div>
@@ -267,9 +399,9 @@ class AresNyXShop {
             })
             .join('');
             
+        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
         
-        // Automatski biramo prvu dostupnu veličinu
         if (firstAvailableSize) {
             this.currentSize = firstAvailableSize;
             document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
@@ -293,6 +425,8 @@ class AresNyXShop {
 
     updateModalImage() {
         if (!this.currentProduct) return;
+        
+        // Logika za formiranje putanje slike u modalu
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
         document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
         
@@ -315,37 +449,12 @@ class AresNyXShop {
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
         this.currentSize = size;
-        
-        // ⭐ POBOLJŠANJE: Resetujemo Quantity na 1 kada se promeni veličina ⭐
-        this.currentQuantity = 1;
-        document.getElementById('modalQty').textContent = this.currentQuantity;
-        
         document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
         event.currentTarget.classList.add('selected');
     }
 
-    /**
-     * ⭐ ISPRAVKA: Proverava maksimalnu zalihu ⭐
-     */
     changeQuantity(change) {
-        if (!this.currentProduct || !this.currentSize) {
-            // Ako nije odabrana veličina, dozvoli promenu, ali ograniči na 1.
-            this.currentQuantity = Math.max(1, this.currentQuantity + change);
-        } else {
-            const maxStock = this.currentProduct.sizes[this.currentSize];
-            let newQuantity = this.currentQuantity + change;
-
-            // Ograničavamo na minimalno 1
-            newQuantity = Math.max(1, newQuantity);
-
-            // Ograničavamo na maksimalnu zalihu
-            if (newQuantity > maxStock) {
-                this.showToast(`Maksimalna dostupna količina za veličinu ${this.currentSize} je ${maxStock}.`);
-                newQuantity = maxStock;
-            }
-
-            this.currentQuantity = newQuantity;
-        }
+        this.currentQuantity = Math.max(1, this.currentQuantity + change);
         document.getElementById('modalQty').textContent = this.currentQuantity;
     }
 
@@ -360,26 +469,14 @@ class AresNyXShop {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
         this.updateModalImage();
     }
-    
-    // ... (addToCartFromModal i sve metode za Korpu su funkcionalno ispravne) ...
 
     addToCartFromModal(event) {
-        if (!this.currentProduct || !this.currentSize) {
-             this.showToast("Molimo odaberite dostupnu veličinu!");
-             return;
-        }
+        if (!this.currentProduct || !this.currentSize) return;
         
         const btn = event.currentTarget;
         if (btn.disabled) return;
-        
-        // Dodatna provera zaliha pre dodavanja
-        const maxStock = this.currentProduct.sizes[this.currentSize];
-        if (this.currentQuantity > maxStock) {
-            this.showToast(`Greška: Maks. količina je ${maxStock}.`);
-            return;
-        }
-
         btn.disabled = true;
+
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
         btn.style.background = 'var(--success)';
@@ -406,6 +503,7 @@ class AresNyXShop {
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
+            // ⭐ Važno: Sliku za korpu formiramo ovde, jer je u this.products neobrađena ⭐
             const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
             const imageURL = BASE_IMAGE_URL + product.images[0];
 
@@ -415,13 +513,12 @@ class AresNyXShop {
                 quantity, 
                 name: product.name, 
                 price: product.price, 
-                image: imageURL
+                image: imageURL // Postavljamo punu putanju za renderCart()
             });
         }
+
         this.saveCart();
     }
-    
-    // ... (Ostale metode za korpu i checkout ostaju ispravne i nepromenjene) ...
 
     updateCartCount() {
         const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -491,15 +588,6 @@ class AresNyXShop {
     updateCartItem(productId, size, change) {
         const item = this.cart.find(i => i.productId === productId && i.size === size);
         if (!item) return;
-        
-        // Provera zalihe pri promeni količine u korpi
-        const product = this.products.find(p => p.id === productId);
-        const availableStock = product ? product.sizes[size] || 0 : 0;
-        
-        if (item.quantity + change > availableStock) {
-            this.showToast(`Maksimalna zaliha za ${product.name} (${size}) je ${availableStock}.`);
-            return;
-        }
 
         item.quantity += change;
         
@@ -643,7 +731,9 @@ class AresNyXShop {
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
 
-    // ... (Sve metode za Checkout i EmailJS ostaju nepromenjene) ...
+    // =========================================================
+    // === METODE ZA CHECKOUT I FORME ===
+    // =========================================================
 
     getPaymentMethodText(method) {
         switch (method) {
@@ -851,6 +941,10 @@ let shop;
 
 document.addEventListener('DOMContentLoaded', () => {
     shop = new AresNyXShop(); 
-    // ⭐ POPRAVLJENO: Uklonjen setTimeout(shop.renderProducts) jer se poziva u init() ⭐
+    
+    // Odloženo renderovanje je dobra praksa
+    setTimeout(() => {
+        shop.renderProducts(); 
+    }, 50); 
 });
 
