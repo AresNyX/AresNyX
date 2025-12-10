@@ -43,7 +43,7 @@ body.no-scroll {
 .main-header {
     background: var(--secondary);
     color: white;
-    padding: 15px 30px;
+    padding: 20px 30px; /* POVEĆAN HEADER */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -131,7 +131,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   3. MREŽA PROIZVODA I HERO SELECTION
+   3. MREŽA PROIZVODA I HERO SELECTION (SHOP SPECIFIČNO)
    =================================== */
 
 .shop-content {
@@ -207,7 +207,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   4. FILTER PANEL
+   4. FILTER PANEL (SHOP SPECIFIČNO)
    =================================== */
    
 .filter-sort-panel {
@@ -277,7 +277,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   5. SIDEBAR KORPA
+   5. SIDEBAR KORPA (SHOP SPECIFIČNO)
    =================================== */
 
 .sidebar {
@@ -444,7 +444,7 @@ body.no-scroll {
 }
 
 /* ===================================
-   6. MODAL STILOVI
+   6. MODAL STILOVI (SHOP SPECIFIČNO)
    =================================== */
 .modal {
     display: none; 
@@ -597,7 +597,7 @@ body.no-scroll {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
-    display: none; /* Inicijalno skriveno */
+    display: none; 
 }
 
 .size-table table {
@@ -613,7 +613,7 @@ body.no-scroll {
 
 
 /* ===================================
-   7. CHECKOUT STILOVI
+   7. CHECKOUT STILOVI (SHOP SPECIFIČNO)
    =================================== */
 
 .checkout-content {
@@ -771,13 +771,13 @@ body.no-scroll {
 }
 
 /* ===================================
-   9. FOOTER STILOVI
+   9. FOOTER STILOVI (GLOBALNO)
    =================================== */
 
 .main-footer {
     background-color: var(--secondary); 
     color: #f4f4f4;
-    padding: 40px 0;
+    padding: 50px 0; 
     margin-top: 50px;
     border-top: 3px solid var(--primary);
 }
@@ -806,16 +806,20 @@ body.no-scroll {
     padding: 0;
 }
 
+/* POVEĆAN FONT I KLIKABILNOST LINKOVA */
 .footer-column ul li a {
     color: #ccc;
     text-decoration: none;
-    font-size: 0.95rem;
-    line-height: 2;
-    transition: color 0.2s;
+    font-size: 1.05rem; 
+    line-height: 2.2; 
+    padding: 3px 0;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
 }
 
 .footer-column ul li a:hover {
     color: var(--primary);
+    transform: translateX(5px);
 }
 
 .footer-brand p:last-child {
@@ -827,18 +831,19 @@ body.no-scroll {
 /* Društvene mreže */
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 18px; 
     margin-bottom: 20px;
 }
 
 .social-icons a {
     color: #fff;
-    font-size: 1.5rem;
-    transition: color 0.2s;
+    font-size: 1.8rem; 
+    transition: color 0.2s, transform 0.2s;
 }
 
 .social-icons a:hover {
     color: var(--primary);
+    transform: scale(1.15); 
 }
 
 .footer-contact-info {
@@ -852,7 +857,7 @@ body.no-scroll {
 
 
 /* ===================================
-   10. RESPONSIVE I MOBILNA OPTIMIZACIJA
+   10. RESPONSIVE I MOBILNA OPTIMIZACIJA (GLOBALNO & SHOP)
    =================================== */
 
 @media (max-width: 992px) {
@@ -861,7 +866,6 @@ body.no-scroll {
         grid-template-columns: repeat(2, 1fr); 
     }
     
-    /* Sidebar Korpa (na tabletu) */
     .sidebar.active {
         width: 400px;
     }
@@ -874,8 +878,11 @@ body.no-scroll {
         display: block; 
     }
     
+    .main-header {
+        padding: 15px 15px; 
+    }
+
     .main-nav {
-        /* Full screen navigacija */
         position: fixed;
         top: 0;
         left: 0;
@@ -906,21 +913,19 @@ body.no-scroll {
         color: white;
     }
 
-    /* Hero efekat (prvi proizvod) */
+    /* SMANJENA HERO SEKCJA (SHOP) */
     .product-grid {
-        grid-template-columns: 1fr; /* Samo jedan proizvod po redu */
+        grid-template-columns: 1fr; 
     }
     
-    /* Prvi proizvod zauzima većinu vertikalnog prostora (Hero) */
     .product-grid > .product-card:first-child {
-        height: calc(100vh - 60px); /* 100vh minus visina header-a (oko 60px) */
-        max-height: 800px;
+        height: calc(85vh - 60px); 
+        max-height: 650px;
         margin-top: 0;
     }
     
-    /* Slika unutar prve kartice */
     .product-grid > .product-card:first-child .product-image {
-        height: calc(100vh - 180px); 
+        height: calc(85vh - 160px); 
     }
 
     /* Sidebar/Modal */
@@ -936,10 +941,6 @@ body.no-scroll {
         grid-template-columns: 1fr;
     }
 
-    /* Manji padding u header-u */
-    .main-header {
-        padding: 10px 15px;
-    }
 }
 
 @media (max-width: 576px) {
@@ -950,7 +951,7 @@ body.no-scroll {
     }
     
     .footer-social {
-        order: -1; /* Socijalne mreže na vrh */
+        order: -1; 
     }
 
     .social-icons {
@@ -966,7 +967,7 @@ body.no-scroll {
     }
     
     .form-grid {
-        grid-template-columns: 1fr; /* Checkout forma - jedna kolona */
+        grid-template-columns: 1fr; 
     }
 }
 
