@@ -12,77 +12,113 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
     <link rel="canonical" href="https://aresnyx.github.io/AresNyX/">
+<style>
+/* Reset i Layout Definicije - Minimizovano za FCP */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { 
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+    background: #f7f7f7; 
+    color: #333333; 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
 
-    <style>
-    /* Reset i Layout Definicije - Minimizovano za FCP */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { 
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
-        background: #f7f7f7; 
-        color: #333333; 
-        line-height: 1.6; 
-        overflow-x: hidden; 
-    }
+/* HEADER: Struktura za centriranje Logo iznad Teksta */
+#main-header { 
+    background: #121212; 
+    display: block; 
+    text-align: center; 
+    min-height: 160px; 
+    padding: 30px 20px 20px; 
+}
+.header-logo { 
+    width: 80px; 
+    height: 80px; 
+    min-width: 80px;
+    aspect-ratio: 1/1; 
+    border-radius: 8px; 
+    margin: 0 auto;
+    display: block; 
+}
+.header-text-container {
+    text-align: center;
+    margin-top: 10px;
+}
 
-    /* HEADER: Struktura za centriranje Logo iznad Teksta */
-    #main-header { 
-        background: #121212; 
-        /* Sada je blok element (vertikalni raspored) */
-        display: block; 
-        text-align: center; 
-        min-height: 160px; 
-        padding: 30px 20px 20px; 
-    }
-    .header-logo { 
-        width: 80px; 
-        height: 80px; 
-        min-width: 80px;
-        aspect-ratio: 1/1; 
-        border-radius: 8px; 
-        margin: 0 auto; /* Centriranje logoa */
-        display: block; 
-    }
-    .header-text-container {
-        text-align: center; /* Centriranje tekstualnog bloka */
-        margin-top: 10px;
-    }
+/* KRITIČНО: Стилови за Header текст морају бити овде! */
+.header-text-container h1 {
+    font-size: 32px;
+    color: #D4AF37; /* ЗЛАТНА БОЈА */
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    margin-top: 5px; 
+    margin-bottom: 0;
+    line-height: 1.1; 
+    text-align: center; 
+}
+
+.header-text-container .subtitle {
+    font-size: 1em; 
+    color: #D4AF37; /* ЗЛАТНА БОЈА */
+    font-weight: 500; 
+    letter-spacing: 1px;
+    display: block; 
+    margin-top: 5px; 
+    text-align: center; 
+}
+/* КРАЈ КРИТИЧНИХ HEADER СТИЛОВА */
+
+
+/* Navigacija: Osnovni Layout */
+#main-nav { 
+    background-color: #121212; 
+    padding: 10px 0; 
+    border-top: 2px solid #D4AF37; 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
     
-    /* Navigacija: Osnovni Layout */
-    #main-nav { 
-        background-color: #121212; 
-        padding: 10px 0; 
-        border-top: 2px solid #D4AF37; 
-        display: flex; 
-        justify-content: center; 
-        flex-wrap: wrap; 
-        gap: 10px; 
-    }
-        
-    #main-nav a { 
-        font-size: 1.1em; 
-        font-weight: 400; 
-        text-decoration: none; 
-        padding: 8px 12px; 
-        border-radius: 4px; 
-        color: #fff;
-    }
-         /* Eksplicitna definicija H1 unutar Hero sekcije u rem jedinicama */
-    .hero-section h1 {
-        font-size: 2.3rem; 
-        line-height: 1.2;
-        font-weight: 700;
-        margin: 0 0 15px 0;
-    }
-    
-    /* Ostatak Layout stilova ostaje isti */
-    main { max-width: 900px; margin: 15px auto 60px auto; padding: 0 20px; min-height: 400px; }
-    section { margin-bottom: 60px; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .natural-image { width: 100%; max-width: 600px; height: auto; border-radius: 12px; margin: 25px auto; display: block; }
-    .cta-container { text-align: center; margin-top: 35px; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 35px; }
-    footer { background: #121212; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px; }
-    
-    </style>
+#main-nav a { 
+    font-size: 1.1em; 
+    font-weight: 400; 
+    text-decoration: none; 
+    padding: 8px 12px; 
+    border-radius: 4px; 
+    color: #fff;
+}
+
+/* KRITIЧНО: Стилови за Hero секцију морају бити овде! */
+.hero-section {
+    text-align: center;
+    padding: 50px 25px;
+    /* Hardkodovana pozadina - da se prikaže odmah */
+    background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
+    color: white; 
+    border-radius: 8px;
+}
+
+/* h1 u Hero sekciji */
+.hero-section h1 {
+    font-size: 2.3rem; 
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #D4AF37; /* ЗЛАТНА БОЈА */
+}
+/* КРАЈ КРИТИЧНИХ HERO СТИЛОВА */
+
+/* Ostatak Layout stilova ostaje isti */
+main { max-width: 900px; margin: 15px auto 60px auto; padding: 0 20px; min-height: 400px; }
+section { margin-bottom: 60px; padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.natural-image { width: 100%; max-width: 600px; height: auto; border-radius: 12px; margin: 25px auto; display: block; }
+.cta-container { text-align: center; margin-top: 35px; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 35px; }
+footer { background: #121212; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px; }
+
+</style>
+
     <link rel="stylesheet" href="global.css" media="print" onload="this.media='all'">
     <meta name="description" content="AresNyX premium donji veš od 100% prirodnih materijala (pamuk, lan, bambus). Otkrijte udobnost, prozračnost i zdravstvene prednosti prirodnog veša. Besplatna dostava.">
     <meta name="keywords" content="donji veš, pamučni donji veš, zdravlje, udobnost, AresNyX, muški donji veš, ženski donji veš, prirodni materijali, pamuk, lan, bambus, donji veš bez sintetike">
