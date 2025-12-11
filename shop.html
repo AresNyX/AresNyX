@@ -76,6 +76,18 @@
     max-width: 900px !important;
     width: 90% !important;
     border-radius: 12px !important;
+    
+    /* 1. OGRANIČAVANJE VISINE POPUPA */
+    max-height: 90vh !important;
+    overflow-y: auto !important; /* 2. KRITIČNO: SKROLOVANJE UNUTAR MODALA */
+    position: relative !important;
+}
+
+.modal-content {
+    /* U Flexbox kontejneru */
+    display: flex !important;
+    /* Uverite se da ima malo prostora oko njega */
+    padding: 20px !important; 
 }
 
 /* 🖼️ KRITIČNO: Fleksibilna modal slika da bi se izbeglo smanjenje */
@@ -83,7 +95,7 @@
     width: 100% !important;
     max-width: 400px !important; 
     height: auto !important; /* AUTOMATSKA VISINA - KRITIČNO */
-    max-height: 70vh !important; 
+    max-height: 55vh !important; /* Spustite visinu da ne gura */
     object-fit: contain !important;
     padding: 0 !important; 
     border-radius: 8px !important;
