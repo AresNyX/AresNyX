@@ -219,6 +219,38 @@ const ga4UniversalTracker = {
     lastSeenProducts: new Set(), // Koje ID-jeve smo videli
     
     init: function() {
+               // 🧹 NOVA METODA: Čišćenje svih modala pri učitavanju stranice
+    aggressivelyCloseAllModals() {
+        const modalIds = ['productModal', 'checkoutModal'];
+        modalIds.forEach(id => {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+        document.getElementById('cartSidebar')?.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        document.body.style.overflow = '';
+        this.goToStep(1); // Uvek resetujte checkout na korak 1
+    }
+
+    init() {
+        this.loadProducts();   
+        this.updateCartCount();
+        this.renderCart();
+        this.updateCartPromoMessage(0); 
+        this.attachEventListeners();
+        
+        // 🚨 KRITIČNO: Zatvorite sve modale odmah pri učitavanju!
+        this.aggressivelyCloseAllModals();
+
+        // EMAILJS INICIJALIZACIJA...
+        try {
+            emailjs.init("WKV419-gz6OQWSgRJ"); 
+        } catch (e) {
+            console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
+        }
+    }       
         if (this.initialized) return;
         
         console.log('🔍 GA4 Universal Tracker starting...');
