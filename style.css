@@ -669,5 +669,44 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+/* TEST: FORSIRANO REŠENJE ZA FOOTER VISINU */
+.site-footer {
+    min-height: auto !important;
+    height: auto !important;
+}
 
+.site-footer .footer-content-custom {
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+}
+
+.site-footer .footer-section-custom.social {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.site-footer .social-links-custom {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    height: auto !important;
+}
+
+.site-footer .social-links-custom a {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+/* Reset za Font Awesome ikone ako se koriste */
+.site-footer .social-links-custom i.fa,
+.site-footer .social-links-custom i.fab,
+.site-footer .social-links-custom i.fas {
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block !important;
+    vertical-align: baseline !important;
+}
 
