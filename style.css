@@ -328,14 +328,251 @@ body.no-scroll { overflow: hidden; }
 
 .site-footer .contact-email {
     border-bottom: 1px dashed rgba(204, 204, 204, 0.5);
+/* ===== FOOTER - KOMPAKTNIJI ===== */
+.site-footer {
+    background-color: #121212;
+    color: #f4f4f4;
+    padding: 0.8rem 0 0.5rem; /* Originalni padding */
+    margin-top: 1rem;
+    font-size: 1.17em;
+    width: 100%;
+    text-align: center;
 }
 
-.site-footer .contact-email:hover {
-    border-bottom-color: var(--accent-gold);
+.site-footer .footer-content-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem 0.3rem; /* Normalan padding */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; /* OVO JE KLJUČNO - poravnato na vrh */
+    gap: 0.5rem;
+    position: relative;
 }
 
-.site-footer .contact-phone {
+.site-footer .footer-section-custom {
+    flex: 1 1 200px;
+    padding: 0.3rem 0.5rem;
+    position: relative;
+}
+
+/* Vertikalne zlatne linije (3px) */
+.site-footer .footer-section-custom:nth-child(1)::after, 
+.site-footer .footer-section-custom:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -0.5rem; 
+    height: 100%;
+    width: 3px; 
+    background: var(--accent-gold);
+}
+.site-footer .footer-section-custom:last-child::after {
+    content: none;
+}
+
+/* NASLOVI SEKCIJA */
+.site-footer .footer-section-custom h3 {
+    color: var(--accent-gold);
+    margin-bottom: 0.4rem; /* Malo veća margina */
+    font-size: 1.35em; /* Malo veći font */
     font-weight: 600;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 0.2rem;
+}
+
+/* Linkovi i tekst */
+.site-footer .footer-section-custom.links a {
+    color: #ccc;
+    margin-bottom: 0.2rem;
+    display: block;
+    text-decoration: none;
+    font-size: 1em;
+    line-height: 1.4; /* Bolji line height */
+}
+
+.site-footer .footer-section-custom.contact p {
+    margin-bottom: 0.3rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* DRUŠTVENE MREŽE - BEZ VIŠKA PROSTORA */
+.site-footer .social-links-custom {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0; /* OVO UKLANJA PROSTOR ISPOD IKONA */
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-footer .social-links-custom a {
+    color: #D4AF37;
+    font-size: 2.2rem;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.site-footer .social-links-custom a:hover {
+    color: #F4C44D;
+}
+
+/* Donji deo futera (Copyright) */
+.site-footer .footer-bottom-custom {
+    text-align: center;
+    padding: 0.5rem 0;
+    border-top: 1px solid #333;
+    margin-top: 0.3rem;
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* ===== POSEBNO ZA SHOP STRANICU - VEĆI RAZMAK ===== */
+body.shop-page .site-footer .footer-content-custom {
+    padding: 1rem 1.5rem 0.8rem; /* Povećan padding za shop */
+    gap: 1rem; /* Veći gap između sekcija */
+}
+
+body.shop-page .site-footer .footer-section-custom {
+    padding: 0.5rem 1rem; /* Veći padding za shop */
+}
+
+body.shop-page .site-footer .footer-section-custom h3 {
+    margin-bottom: 0.5rem; /* Veća margina za shop */
+    font-size: 1.4em; /* Malo veći font */
+}
+
+body.shop-page .site-footer .footer-section-custom.links a {
+    margin-bottom: 0.3rem; /* Veća margina za linkove */
+    line-height: 1.5;
+}
+
+body.shop-page .site-footer .footer-section-custom.contact p {
+    margin-bottom: 0.4rem; /* Veća margina za kontakte */
+    line-height: 1.5;
+}
+
+/* Prilagođavanje za manje ekrane */
+@media (max-width: 768px) {
+    .site-footer .footer-content-custom {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.5rem 1rem 0.3rem;
+    }
+    
+    .site-footer .footer-section-custom {
+        padding: 0.2rem 0;
+    }
+    
+    .site-footer .footer-section-custom::after {
+        content: none;
+    }
+    
+    .site-footer .social-links-custom {
+        gap: 1.2rem;
+        margin-top: 0.2rem;
+    }
+    
+    .site-footer .social-links-custom a {
+        font-size: 1.8rem;
+    }
+    
+    .site-footer .footer-section-custom h3 {
+        font-size: 1.2em;
+        margin-bottom: 0.3rem;
+    }
+    
+    /* Za shop na mobilnom - još malo veći razmak */
+    body.shop-page .site-footer .footer-content-custom {
+        padding: 0.8rem 1rem 0.5rem;
+        gap: 0.8rem;
+    }
+    
+    body.shop-page .site-footer .footer-section-custom {
+        padding: 0.4rem 0;
+    }
+}
+
+/* ===== STILOVI ZA KLIKABILNE KONTAKTE NA KONTAKT STRANICI ===== */
+/* Ovo će se primeniti SAMO na kontakt stranicu */
+.contact-item.clickable {
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+.contact-item.clickable:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Stil za telefon na kontakt stranici */
+.contact-item.contact-phone-clickable .contact-details p {
+    color: #D4AF37;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-item.contact-phone-clickable .contact-details p::after {
+    content: "📞";
+    margin-left: 5px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.contact-item.contact-phone-clickable:hover .contact-details p::after {
+    opacity: 1;
+    animation: ring 0.5s ease-in-out;
+}
+
+@keyframes ring {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Stil za email na kontakt stranici */
+.contact-item.contact-email-clickable .contact-details p {
+    color: #D4AF37;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dashed rgba(212, 175, 55, 0.5);
+}
+
+.contact-item.contact-email-clickable .contact-details p::after {
+    content: "✉️";
+    margin-left: 5px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.contact-item.contact-email-clickable:hover .contact-details p::after {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* Indikator da je klikabilno na kontakt stranici */
+.contact-item.clickable .fa {
+    color: #D4AF37;
+    transition: color 0.3s;
+}
+
+.contact-item.clickable:hover .fa {
+    color: #F4C44D;
 }
 /* HEADER SA PODNASLOVOM */
 header { 
@@ -695,77 +932,3 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-/* ===== DIJAGNOSTIKA I REŠENJE FOOTER VISINE ===== */
-
-/* 1. Reset svega što može da utiče na visinu */
-body {
-    display: block !important; /* REMOVUJEMO flex da vidimo da li je ovo problem */
-}
-
-.products-section {
-    flex: none !important; /* REMOVUJEMO flex grow */
-}
-
-/* 2. Direktan reset za footer i sve njegove child elemente */
-.site-footer * {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-    min-height: auto !important;
-    height: auto !important;
-    max-height: none !important;
-}
-
-/* 3. Specifično za footer container */
-.site-footer {
-    background-color: #121212 !important;
-    color: #f4f4f4 !important;
-    padding: 2px 0 !important; /* Apsolutni minimum */
-    margin-top: 5px !important;
-    display: block !important;
-    position: relative !important;
-    overflow: visible !important;
-}
-
-/* 4. FORSIRANO: Footer content bez ikakvog paddinga/margina */
-.site-footer .footer-content-custom {
-    padding: 0 !important;
-    margin: 0 auto !important;
-    display: block !important;
-    max-width: 1200px !important;
-}
-
-/* 5. FORSIRANO: Social links sekcija - BEZ PROSTORA */
-.site-footer .footer-section-custom {
-    display: inline-block !important;
-    vertical-align: top !important;
-    padding: 2px 10px !important;
-    margin: 0 !important;
-}
-
-.site-footer .social-links-custom {
-    display: inline-block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 0 !important; /* Reset za white-space između inline-block elementata */
-}
-
-.site-footer .social-links-custom a {
-    display: inline-block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 2rem !important; /* Ponovo setujemo font size */
-}
-
-/* 6. Copyright - minimalno */
-.site-footer .footer-bottom-custom {
-    padding: 3px 0 !important;
-    margin: 0 !important;
-    border-top: 1px solid #333 !important;
-    font-size: 0.7em !important;
-}
-
-/* 7. Ukloni vertikalne linije ako stvaraju problem */
-.site-footer .footer-section-custom::after {
-    display: none !important;
-}
