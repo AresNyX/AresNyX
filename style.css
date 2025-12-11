@@ -28,27 +28,7 @@ body {
 body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 
 
-/* 🚀🚀 KRITIČNO: SEKCIJA ZA FORSIRANO SKRIVANJE GLAVNIH ELEMENATA 🚀🚀 */
-/* Ovo osigurava da modali i sidebari nikada nisu vidljivi pri inicijalnom učitavanju. */
-/* Ako se Checkout modal ili Cart Sidebar pojavljuju, to je obično zbog propuštene 
-   klase ili stila, koje ovde forsirano neutrališemo. */
-.modal-overlay { 
-    display: none !important; /* Forsiramo nevidljivost za sve modale (.modal-overlay) */
-}
-.cart-sidebar:not(.active) {
-    right: -520px !important; /* Forsiramo skrivanje van ekrana ako nije aktivna */
-}
-@media (max-width: 450px) {
-    .cart-sidebar:not(.active) {
-        right: -100% !important; /* Forsiramo skrivanje van ekrana na mobilnom */
-    }
-}
-.filter-sort-panel:not(.active) {
-    opacity: 0 !important; /* Forsiramo nevidljivost */
-    visibility: hidden !important; /* Forsiramo skrivanje */
-    transform: translateY(13px) !important; /* Forsiramo početnu poziciju */
-}
-/* --------------------------------------------------------------------- */
+/* ❌ UKLONJENA SEKCIJA ZA FORSIRANO SKRIVANJE. VRAĆAMO STILOVE NA NJIHOVE POZICIJE. */
 
 
 /* PROMO BAR */
@@ -418,7 +398,7 @@ nav a:hover, nav a.active {
 
 /* ===== MODAL (Proizvod) - MAKSIMALNO PRILAGOĐAVANJE SLICI I EKRANU ===== */
 .modal-overlay { 
-    /* display: none; Uklonjeno odavde, sada je u SEKCIJI ZA FORSIRANO SKRIVANJE */
+    display: none; /* Vraćeno na originalno, neagresivno pravilo */
     position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
     z-index: 2000; backdrop-filter: blur(5px); 
@@ -607,7 +587,6 @@ nav a:hover, nav a.active {
 
 /* Padajući Panel koji sadrži sve filtere */
 .filter-sort-panel {
-    /* Uklanjamo opacity/visibility/transform, sada je u SEKCIJI ZA FORSIRANO SKRIVANJE */
     position: absolute;
     top: 50px; 
     right: 0;
@@ -618,6 +597,9 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 26px; 
     z-index: 500;
+    opacity: 0; /* Vraćeno na originalno, neagresivno pravilo */
+    visibility: hidden; /* Vraćeno na originalno, neagresivno pravilo */
+    transform: translateY(13px); 
     transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
 }
 
@@ -710,7 +692,7 @@ nav a:hover, nav a.active {
 /* ===== KORPA (Sidebar) - AŽURIRANO SA POVEĆANJEM +30% ===== */
 .cart-sidebar { 
     position: fixed; top: 0; 
-    /* right: -520px; Uklonjeno odavde, sada je u SEKCIJI ZA FORSIRANO SKRIVANJE */
+    right: -520px; /* Vraćeno na originalno, neagresivno pravilo */
     width: 520px; 
     height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
     transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
@@ -718,7 +700,7 @@ nav a:hover, nav a.active {
 @media (max-width: 450px) { 
     .cart-sidebar { 
         width: 100%; 
-        /* right: -100%; Uklonjeno odavde, sada je u SEKCIJI ZA FORSIRANO SKRIVANJE */
+        right: -100%; /* Vraćeno na originalno, neagresivno pravilo */
     } 
 }
 .cart-sidebar.active { right: 0; }
@@ -919,5 +901,6 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
 
 
