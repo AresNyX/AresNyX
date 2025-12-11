@@ -947,4 +947,95 @@ document.addEventListener('DOMContentLoaded', () => {
         shop.renderProducts(); 
     }, 50); 
 });
+// Funkcija za pozivanje (telefon)
+function pozoviNas() {
+    const phoneNumber = '+381648700220'; // Bez razmaka
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Na mobilnim - direktno pozovi
+        window.location.href = `tel:${phoneNumber}`;
+    } else {
+        // Na desktopu - pokaži broj
+        if (confirm(`Želite da pozovete broj: +381 64 8700220?\n\nNa desktopu možete kopirati broj.`)) {
+            // Kopiraj broj u clipboard
+            navigator.clipboard.writeText('+381 64 8700220')
+                .then(() => {
+                    alert('Broj telefona je kopiran u clipboard!');
+                })
+                .catch(() => {
+                    prompt('Kopirajte broj telefona:', '+381 64 8700220');
+                });
+        }
+    }
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_click', {
+            'contact_type': 'phone',
+            'phone_number': '+381648700220'
+        });
+    }
+}
+
+// Funkcija za slanje email-a
+function posaljiEmail() {
+    const email = 'ares.nyx.info@gmail.com';
+    const subject = 'Upit sa AresNyX sajta';
+    const body = 'Poštovani AresNyX tim,\n\n';
+    
+    // Kreiraj mailto link
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Otvori u novom tabu/tab-u
+    const newTab = window.open(mailtoLink, '_blank');
+    
+    // Ako se ne otvori (blokiran popup), pokušaj direktno
+    if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+        window.location.href = mailtoLink;
+    }
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_click', {
+            'contact_type': 'email',
+            'email_address': email
+        });
+    }
+}
+
+// Opciono: Dodaj keyboard navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Omogući klik sa Enter/Space
+    const clickableContacts = document.querySelectorAll('.contact-phone-clickable, .contact-email-clickable');
+    
+    clickableContacts.forEach(item => {
+        item.setAttribute('tabindex', '0'); // Čini focusable
+        item.setAttribute('role', 'button'); // ARIA role
+        item.setAttribute('aria-label', item.classList.contains('contact-phone-clickable') 
+            ? 'Pozovite nas na telefon +381 64 8700220' 
+            : 'Pošaljite nam email na ares.nyx.info@gmail.com');
+        
+        // Enter/Space podrška
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (this.classList.contains('contact-phone-clickable')) {
+                    pozoviNas();
+                } else {
+                    posaljiEmail();
+                }
+            }
+        });
+    });
+    
+    // Tooltip za desktop
+    if (window.innerWidth > 768) {
+        clickableContacts.forEach(item => {
+            item.setAttribute('title', item.classList.contains('contact-phone-clickable') 
+                ? 'Kliknite da pozovete' 
+                : 'Kliknite da pošaljete email');
+        });
+    }
+});
 
