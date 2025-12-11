@@ -21,9 +21,9 @@ class AresNyXShop {
         this.updateCartCount();
         this.renderCart();
         this.updateCartPromoMessage(0); 
-        this.attachEventListeners();
+        this.attachEventListeners(); // ⭐ POZIV SLUŠAČA
         
-        // ⭐ KRITIČNA PROMENA 1: Poziv za prikaz proizvoda odmah nakon učitavanja ⭐
+        // KRITIČNA PROMENA 1: Poziv za prikaz proizvoda odmah nakon učitavanja 
         this.applyFiltersAndSort(); 
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
@@ -202,12 +202,13 @@ class AresNyXShop {
 
     // =========================================================
     // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER ===
-    // ========================================================
-     */
-        /**
+    // =========================================================
+
+    /**
      * Postavlja sve event listenere koji nisu inline u HTML-u.
      */
     attachEventListeners() {
+        // Event Listeneri za Filter dugmad
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
@@ -223,27 +224,27 @@ class AresNyXShop {
             });
         }
         
-        // ⭐ NOVO/DOPUNJENO: Event listeneri za zatvaranje modala i panela ⭐
-
-        // 1. Otvaranje/Zatvaranje Filter Panela
+        // Event listener za otvaranje filter panela
         const filterBtn = document.querySelector('.filter-sort-btn');
         if (filterBtn) {
              filterBtn.addEventListener('click', () => this.toggleFilterPanel());
         }
 
-        // 2. Dugme za zatvaranje modala proizvoda (obično X u gornjem desnom uglu)
-        const closeProductModalBtn = document.querySelector('#productModal .close-btn');
-        if (closeProductModalBtn) {
-            closeProductModalBtn.addEventListener('click', () => this.closeModal());
-        }
+        // ⭐ KRITIČNA ISPAVKA: Veza za zatvaranje Modala Proizvoda i Checkout Modala ⭐
         
-        // 3. Dugme "Nastavi kupovinu" (koje zatvara modal proizvoda)
+        // 1. Dugme "Nastavi kupovinu" (koje zatvara modal proizvoda)
         const continueBtn = document.querySelector('.continue-shopping');
         if (continueBtn) {
             continueBtn.addEventListener('click', () => this.closeModal());
         }
 
-        // 4. Dugme za zatvaranje Checkout Modala (forme za isporuku)
+        // 2. Dugme za zatvaranje modala proizvoda (obično X u gornjem desnom uglu - Pretpostavljena klasa: .close-btn)
+        const closeProductModalBtn = document.querySelector('#productModal .close-btn');
+        if (closeProductModalBtn) {
+            closeProductModalBtn.addEventListener('click', () => this.closeModal());
+        }
+        
+        // 3. Dugme za zatvaranje Checkout Modala (forme za isporuku)
         const closeCheckoutModalBtn = document.querySelector('#checkoutModal .close-btn');
         if (closeCheckoutModalBtn) {
              closeCheckoutModalBtn.addEventListener('click', () => this.closeCheckoutModal());
@@ -388,7 +389,6 @@ class AresNyXShop {
     
     /**
      * Zatvara modal za prikaz pojedinačnog proizvoda.
-     * ⭐ DODATO: Implementacija metode closeModal() ⭐
      */
     closeModal() {
         document.getElementById('productModal').style.display = 'none';
@@ -526,7 +526,7 @@ class AresNyXShop {
         this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
         
         setTimeout(() => {
-            this.closeModal(); // Koristimo novu closeModal metodu
+            this.closeModal(); 
             btn.innerHTML = originalText;
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
@@ -571,11 +571,9 @@ class AresNyXShop {
     
     toggleCartVisibility() {
         const cartFooter = document.getElementById('cartFooter');
-        const emptyCart = document.getElementById('emptyCart');
-        const cartItemsContainer = document.getElementById('cartItems'); // Dodato za ispravnu proveru
+        const cartItemsContainer = document.getElementById('cartItems');
 
         if (this.cart.length === 0) {
-            // Ako je korpa prazna, renderCart će popuniti cartItems sa #emptyCart
             if (cartItemsContainer.querySelector('.empty-cart')) { 
                 cartItemsContainer.querySelector('.empty-cart').style.display = 'block';
             }
@@ -935,7 +933,7 @@ class AresNyXShop {
         // 🛑 VALIDACIJA ZALIHA 🛑
         const stockCheck = this.validateStock();
         
-        // ⭐ KRITIČNA PROMENA 2: Uklonjen neispravan return koji je prekidao funkciju.
+        // ⭐ KRITIČNA PROMENA: Uklonjen neispravan return koji je prekidao funkciju.
         
         if (stockCheck.length > 0) {
             const errorDetails = stockCheck.map(item => 
@@ -993,7 +991,7 @@ class AresNyXShop {
             .then((responses) => {
                 console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.', responses);
                 
-                // ⭐ Ažuriranje zaliha NAKON uspešne porudžbine (Dodatna preporuka)
+                // Ažuriranje zaliha NAKON uspešne porudžbine
                 this.updateProductStock(); 
 
                 this.cart = [];
@@ -1038,7 +1036,6 @@ let shop;
 
 document.addEventListener('DOMContentLoaded', () => {
     shop = new AresNyXShop(); 
-    
-    // ⭐ KRITIČNA PROMENA 3: Uklonjen je setTimeout za renderovanje jer se render poziva u init() ⭐
 });
+
 
