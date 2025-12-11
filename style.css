@@ -206,20 +206,21 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
 
-/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I KORIGOVAN FONT ===== */
+/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I KORIGOVAN FONT (ISPRAVKA FONTOVA) ===== */
 
 .site-footer {
-    background-color: #121212; 
-    color: #f4f4f4; 
+    background-color: #121212 !important; 
+    color: #f4f4f4 !important; 
     /* MAKSIMALNO SMANJEN vertikalni padding */
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 !important;
     /* KRITIČNO: Smanjen margin-top futera */
-    margin-top: 2.5rem; 
-    /* KRITIČNO: Smanjujemo osnovni font za 10% (sa 1.3em na 1.17em) */
-    font-size: 1.17em; 
+    margin-top: 2.5rem !important; 
+    /* KRITIČNO: Smanjujemo osnovni font za 10% */
+    font-size: 1.17em !important; 
+    width: 100%;
 }
 
-.footer-content-custom {
+.site-footer .footer-content-custom {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -231,14 +232,15 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     position: relative; 
 }
 
-.footer-section-custom {
+.site-footer .footer-section-custom {
     flex: 1 1 200px; 
     padding: 0 0.5rem; 
     position: relative;
 }
 
-/* 1. ZLATNA LINIJA (Vertikalna) - POJAČANA DEBLJINA (3px) */
-.footer-section-custom:nth-child(1)::after {
+/* Vertikalne zlatne linije (3px) */
+.site-footer .footer-section-custom:nth-child(1)::after, 
+.site-footer .footer-section-custom:nth-child(2)::after {
     content: '';
     position: absolute;
     top: 0;
@@ -247,131 +249,66 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     width: 3px; 
     background: var(--accent-gold);
 }
-
-/* 2. ZLATNA LINIJA (Vertikalna) - POJAČANA DEBLJINA (3px) */
-.footer-section-custom:nth-child(2)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -0.5rem; 
-    height: 100%;
-    width: 3px; 
-    background: var(--accent-gold);
-}
-
-.footer-section-custom:last-child::after {
+.site-footer .footer-section-custom:last-child::after {
     content: none;
 }
 
-.footer-section-custom h3 {
-    color: var(--accent-gold); 
-    margin-bottom: 0.7rem;
-    /* KRITIČNO: Povećan font naslova sekcije za 10% */
-    font-size: 1.43em; 
-    font-weight: 600;
-    /* POJAČANA: Linija naslova 3px, puna zlatna boja */
-    border-bottom: 3px solid var(--accent-gold);
-    padding-bottom: 0.2rem; 
+/* 🚀 KRITIČNO: NASLOVI SEKCIJA (PRVI RED/Brend Naziv) - POVEĆANI ZA 10% 🚀 */
+.site-footer .footer-section-custom h3 {
+    color: var(--accent-gold) !important; 
+    margin-bottom: 0.7rem !important;
+    font-size: 1.43em !important; /* Povećan za 10% (1.3em * 1.1 = 1.43em) */
+    font-weight: 600 !important;
+    border-bottom: 3px solid var(--accent-gold) !important;
+    padding-bottom: 0.2rem !important; 
 }
 
-/* Sekcija linkova */
-.footer-section-custom.links ul {
-    list-style: none;
-    padding: 0;
+/* Linkovi i P tagovi su automatski smanjeni nasleđivanjem od .site-footer (1.17em) */
+.site-footer .footer-section-custom.links a {
+    color: #ccc !important;
+    margin-bottom: 0.4rem !important;
 }
 
-.footer-section-custom.links a {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    /* Smanjen margin-bottom */
-    margin-bottom: 0.4rem;
-    transition: color 0.3s;
+.site-footer .footer-section-custom.contact p {
+    margin-bottom: 0.5rem !important; 
+    color: #ccc; 
 }
 
-.footer-section-custom.links a:hover {
-    color: #fff;
-}
-
-/* Kontakt i društvene mreže */
-.footer-section-custom.contact p {
-    /* Smanjen margin-bottom */
-    margin-bottom: 0.5rem; 
-    font-weight: 400; 
-}
-
-.footer-section-custom.contact i {
-    color: var(--accent-gold); 
-    margin-right: 15px; 
-    width: 20px; 
-    text-align: center;
-}
-
-/* 🚀 KRITIČNO: STIL ZA IKONE DRUŠTVENIH MREŽA 🚀 */
-.social-links-custom {
-    display: flex;
-    gap: 2rem; 
-    /* KRITIČNO: Smanjen margin-top iznad ikona (oko 12mm manje) */
-    margin-top: 0.5rem; 
-}
-
-.social-links-custom a {
-    color: #f4f4f4;
-    font-size: 2.8rem; 
-    transition: color 0.3s, transform 0.3s;
-    line-height: 1; 
-}
-
-.social-links-custom a:hover {
-    color: var(--accent-gold);
-    transform: scale(1.15); 
+/* 🚀 KRITIČNO: IKONE DRUŠTVENIH MREŽA (razmak smanjen za 12mm) 🚀 */
+.site-footer .social-links-custom {
+    display: flex !important;
+    gap: 2rem !important; 
+    margin-top: 0.5rem !important; /* Minimalni razmak */
 }
 
 /* Donji deo futera (Copyright) */
-.footer-bottom-custom {
-    text-align: center;
-    /* Smanjen padding */
-    padding: 0.7rem 0;
-    border-top: 1px solid #333;
-    /* Smanjen margin-top */
-    margin-top: 1rem;
-    font-size: 0.8em; 
-    color: #aaa;
+.site-footer .footer-bottom-custom {
+    text-align: center !important;
+    padding: 0.7rem 0 !important;
+    border-top: 1px solid #333 !important;
+    margin-top: 1rem !important;
+    font-size: 0.8em !important; 
+    color: #aaa !important;
 }
 
 /* Prilagođavanje za manje ekrane */
 @media (max-width: 768px) {
-    .footer-content-custom {
-        flex-direction: column;
-        /* Smanjen gap */
-        gap: 1rem;
+    .site-footer .footer-content-custom {
+        flex-direction: column !important;
+        gap: 1rem !important;
     }
 
-    .footer-section-custom {
-        text-align: center;
-    }
-    
-    /* Uklanjamo vertikalne linije za mobilne uređaje */
-    .footer-section-custom::after {
+    .site-footer .footer-section-custom::after {
         content: none !important;
     }
-    
-    /* Dodajemo tanke horizontalne linije između sekcija za mobilni */
-    .footer-section-custom:not(:last-child) {
-        padding-bottom: 1rem;
-    }
 
-    .footer-section-custom.contact p {
+    .site-footer .footer-section-custom.contact p {
         text-align: left;
         max-width: 80%;
         margin: 0 auto 0.7rem auto;
     }
 
-    .footer-section-custom.contact i {
-        margin-left: 0;
-    }
-
-    .social-links-custom {
+    .site-footer .social-links-custom {
         justify-content: center;
     }
 }
@@ -384,9 +321,10 @@ header {
     padding: 40px 20px; 
     text-align: center; 
 }
-/* KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - SMANJENO na razumnih 2.5em */
+
+/* 🚀 KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - POVEĆAN za 15% 🚀 */
 header h1 { 
-    font-size: 2.5em; 
+    font-size: 2.875em !important; /* Povećano sa 2.5em */
     color: var(--accent-gold); 
     letter-spacing: 2px; 
     text-transform: uppercase;
@@ -398,9 +336,11 @@ header h1 {
     font-weight: 700; 
     font-size: 1.2em; 
 }
-.subtitle {
+
+/* Podnaslov forsirano BEO (rešenje prethodnog konflikta) */
+header h2, .subtitle {
     font-size: 1em; 
-    color: #fff;
+    color: #fff !important; 
     font-weight: 400;
     letter-spacing: 1px;
     display: block;
@@ -443,9 +383,9 @@ nav a:hover, nav a.active {
 .modal-container { 
     position: absolute; top: 50%; left: 50%; 
     transform: translate(-50%, -50%); background: white; 
-    border-radius: 16px; width: 95%; /* Povećana širina modala */
-    max-width: 1050px; /* Povećana max širina za bolji prostor za sliku */
-    max-height: 98vh; /* Više prostora za visinu (manje skrolovanja) */
+    border-radius: 16px; width: 95%; 
+    max-width: 1050px; 
+    max-height: 98vh; 
     overflow-y: auto; 
 }
 .modal-close { 
@@ -460,12 +400,11 @@ nav a:hover, nav a.active {
     display: flex; 
     gap: 2rem;
 }
-/* Povećavamo prostor za sliku */
 .modal-gallery {
     position: relative;
     text-align: center;
     margin-bottom: 0; 
-    flex: 1 1 55%; /* Dajemo slici još više mesta */
+    flex: 1 1 55%; 
 }
 
 .modal-details {
@@ -474,8 +413,8 @@ nav a:hover, nav a.active {
 
 .modal-main-image {
     width: 100%;
-    /* KRITIČNO: Povećana visina slike za 10% */
-    height: 660px; /* Povećano sa 600px na 660px */
+    /* KRITIČNO: Povećana visina slike na 660px */
+    height: 660px; 
     max-width: none; 
     max-height: none; 
     object-fit: contain;
@@ -933,3 +872,4 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
