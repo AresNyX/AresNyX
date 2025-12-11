@@ -932,3 +932,32 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+/* ===== POVEĆAN RAZMAK ZA SHOP FOOTER ===== */
+
+/* 1. Glavni footer container */
+.site-footer .footer-content-custom {
+    padding: 1rem 1.5rem 0.8rem !important; /* Povećano: 1rem gore, 0.8rem dole */
+    gap: 1rem !important; /* Veći razmak između kolona */
+}
+
+/* 2. Sekcije unutar footera */
+.site-footer .footer-section-custom {
+    padding: 0.5rem 0.8rem !important; /* Veći padding unutar svake sekcije */
+}
+
+/* 3. Naslovi sekcija */
+.site-footer .footer-section-custom h3 {
+    margin-bottom: 0.5rem !important; /* Veća margina ispod naslova */
+}
+
+/* 4. Linkovi */
+.site-footer .footer-section-custom.links a {
+    margin-bottom: 0.3rem !important; /* Veća margina između linkova */
+    line-height: 1.5 !important;
+}
+
+/* 5. Kontakt informacije */
+.site-footer .footer-section-custom.contact p {
+    margin-bottom: 0.4rem !important; /* Veća margina između redova */
+    line-height: 1.5 !important;
+}
