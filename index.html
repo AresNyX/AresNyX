@@ -98,28 +98,25 @@ body, html {
     }
 }
 
-/* ===== 1.3. NAVIGACIJA: MOBILNI PRIKAZ (3+2 Raspored) - KONAČNA KOREKCIJA ===== */
+/* ===== 1.3. NAVIGACIJA: MOBILNI PRIKAZ (3+2 Raspored) - ULTIMATIVNA KOREKCIJA ===== */
 @media (max-width: 600px) {
     #main-nav {
-        /* Smanjujemo horizontalni padding kontejnera na 5px */
+        /* Širina je 100%, samo je smanjen gap */
         padding: 15px 5px; 
-        gap: 5px; /* SMANJEN GAP NA 5px */
-        /* Koristimo space-between da se dugmad "zalepe" za ivice */
+        gap: 5px; 
         justify-content: space-between; 
     }
     
     #main-nav a {
         /*
-        REVIDIRANA FORMULA: Sa gap-om od 5px, formula je prilagođena.
-        Ovo garantuje da će 3 elementa stati, a 2 se raširiti u donjem redu.
+        KLJUČNO: Fiksiramo širinu na 33% (zaobilazi calc)
+        i dajemo minimalan horizontalni padding.
         */
-        flex-basis: calc(33.333% - 5px); 
+        width: 33%; /* Jednostavna 33% širina */
+        min-width: 0; /* Osigurava da dugme nema minimalnu širinu koja ometa */
         flex-grow: 1; 
         
-        /* FONT VRAĆEN NA ORIGINALNU VELIČINU (iz osnovne definicije) */
         font-size: 1.1em; 
-        
-        /* EKSTREMNO SMANJEN HORIZONTALNI PADDING da bi 3 stalo u red */
         padding: 8px 3px; 
     }
 }
