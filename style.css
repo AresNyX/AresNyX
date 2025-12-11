@@ -432,30 +432,6 @@ body.no-scroll { overflow: hidden; }
     color: #aaa;
 }
 
-/* ===== POSEBNO ZA SHOP STRANICU - VEĆI RAZMAK ===== */
-body.shop-page .site-footer .footer-content-custom {
-    padding: 1rem 1.5rem 0.8rem; /* Povećan padding za shop */
-    gap: 1rem; /* Veći gap između sekcija */
-}
-
-body.shop-page .site-footer .footer-section-custom {
-    padding: 0.5rem 1rem; /* Veći padding za shop */
-}
-
-body.shop-page .site-footer .footer-section-custom h3 {
-    margin-bottom: 0.5rem; /* Veća margina za shop */
-    font-size: 1.4em; /* Malo veći font */
-}
-
-body.shop-page .site-footer .footer-section-custom.links a {
-    margin-bottom: 0.3rem; /* Veća margina za linkove */
-    line-height: 1.5;
-}
-
-body.shop-page .site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.4rem; /* Veća margina za kontakte */
-    line-height: 1.5;
-}
 
 /* Prilagođavanje za manje ekrane */
 @media (max-width: 768px) {
