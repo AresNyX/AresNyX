@@ -112,12 +112,14 @@ body, html {
         KLJUČNO: Fiksiramo širinu na 33% (zaobilazi calc)
         i dajemo minimalan horizontalni padding.
         */
-        width: 33%; /* Jednostavna 33% širina */
-        min-width: 0; /* Osigurava da dugme nema minimalnu širinu koja ometa */
+        width: 33% !important; /* !important za preuzimanje kontrole nad širinom */
+        min-width: 0 !important; /* !important za poništavanje širine sadržaja */
+        flex-shrink: 1; /* Nalaže Flexboxu da element sme da se smanji */
         flex-grow: 1; 
         
+        /* Estetika */
         font-size: 1.1em; 
-        padding: 6px 1px; 
+        padding: 8px 3px; 
     }
 }
 
