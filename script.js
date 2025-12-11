@@ -716,9 +716,10 @@ class AresNyXShop {
         setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    closeModal() {
-        document.getElementById('productModal').style.display = 'none';
+        closeCheckoutModal() {
+        document.getElementById('checkoutModal').style.display = 'none';
         document.body.classList.remove('no-scroll');
+        this.goToStep(1); 
     }
 
     toggleCart() {
