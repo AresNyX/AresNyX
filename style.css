@@ -101,6 +101,7 @@ body.no-scroll { overflow: hidden; }
     text-align: center !important; 
 }
 .products-grid { 
+    display: grid; /* Dodato da se osigura grid layout */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 2.5rem; 
 }
@@ -577,7 +578,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== FILTERI I SORTIRANJE (Panel) - ISPRAVNO INICIJALNO SKRIVANJE ===== */
+/* ===== FILTERI I SORTIRANJE (Panel) - ISPRAVNO INICIJALNO SKRIVANJE (KRITIČNO) ===== */
 .filter-sort-panel {
     position: absolute;
     top: 50px; 
@@ -590,10 +591,11 @@ nav a:hover, nav a.active {
     padding: 26px; 
     z-index: 500;
     
-    /* 1. VRAĆENO: INICIJALNO SKRIVANJE */
+    /* 1. KRITIČNO SKRIVANJE */
     opacity: 0; 
     visibility: hidden; 
     transform: translateY(13px); 
+    pointer-events: none; /* KRITIČNO: Ne prima klikove dok nije aktivan */
     
     transition: all 0.3s; 
 }
@@ -603,10 +605,11 @@ nav a:hover, nav a.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto; /* Omogući interakciju */
 }
 
 .filter-sort-panel h3 {
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray-medium); /* Promena: Koristiti var(--gray-medium) za standardnu liniju */
     padding-bottom: 0.91rem; 
     margin-top: 1.95rem; 
     margin-bottom: 1.56rem; 
@@ -897,4 +900,5 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
 
