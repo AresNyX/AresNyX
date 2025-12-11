@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (SA BEZBEDNIM SKRIVANJEM :NOT(.active)) */
+/* AresNyX - Glavni CSS fajl (SVE BEZ !IMPORTANT NA SKRIVANJU) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS (Mora biti minimalan) 🛑 */
@@ -26,31 +26,8 @@ body {
 
 body.no-scroll { overflow: hidden; } 
 
-/* 🚀🚀 KRITIČNO: SEKCIJA ZA BEZBEDNO SKRIVANJE BEZ BLOKIRANJA JS 🚀🚀 */
-/* OVA PRAVILA FORSIRAJU SKRIVANJE SAMO AKO ELEMENT NEMA 'active' KLASU */
-
-.modal-overlay:not(.active) {
-    /* Sprečava otvaranje forme za isporuku na startu */
-    display: none !important; 
-}
-
-.cart-sidebar:not(.active) {
-    /* Sprečava ispadanje korpe na startu */
-    right: -520px !important;
-}
-@media (max-width: 450px) {
-    .cart-sidebar:not(.active) {
-        right: -100% !important;
-    }
-}
-
-.filter-sort-panel:not(.active) {
-    /* Sprečava vidljivost filter panela na startu */
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(13px) !important;
-}
-/* --------------------------------------------------------------------- */
+/* ❌ UKLONJENA SEKCIJA ZA FORSIRANO SKRIVANJE SA !IMPORTANT ❌ */
+/* Sada se oslanjamo na standardne, neagresivne metode i JS kontrolu. */
 
 
 /* PROMO BAR */
@@ -411,13 +388,19 @@ nav a:hover, nav a.active {
     margin-right: 20px;
 }
 
-/* ===== MODAL (Proizvod) - MAKSIMALNO PRILAGOĐAVANJE SLICI I EKRANU ===== */
+/* ===== MODAL (Proizvod) - Uklonjeno !important na display: none ===== */
 .modal-overlay { 
-    /* Inicijalni stil, ostavljen bez !important */
+    display: none; /* STANDARDNO SKRIVANJE. JS dodaje 'active' klasu koja ga prikazuje. */
     position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
     z-index: 2000; backdrop-filter: blur(5px); 
 }
+
+/* Aktiviranje modala */
+.modal-overlay.active { 
+    display: block; 
+}
+
 .modal-container { 
     position: absolute; top: 50%; left: 50%; 
     transform: translate(-50%, -50%); background: white; 
@@ -597,7 +580,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== FILTERI I SORTIRANJE (Panel) - AŽURIRANO SA POVEĆANJEM +30% ===== */
+/* ===== FILTERI I SORTIRANJE (Panel) - Standardno skrivanje ===== */
 
 /* Padajući Panel koji sadrži sve filtere */
 .filter-sort-panel {
@@ -611,7 +594,7 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 26px; 
     z-index: 500;
-    /* Inicijalni stilovi, ostavljeni bez !important, jer je gornji :not(.active) specifičniji */
+    /* Standardno skrivanje */
     opacity: 0; 
     visibility: hidden; 
     transform: translateY(13px); 
@@ -704,9 +687,10 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== KORPA (Sidebar) - AŽURIRANO SA POVEĆANJEM +30% ===== */
+/* ===== KORPA (Sidebar) - Uklonjeno !important na right: -520px ===== */
 .cart-sidebar { 
     position: fixed; top: 0; 
+    right: -520px; /* STANDARDNO SKRIVANJE. JS dodaje 'active' klasu koja ga prikazuje. */
     width: 520px; 
     height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
     transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
@@ -714,6 +698,7 @@ nav a:hover, nav a.active {
 @media (max-width: 450px) { 
     .cart-sidebar { 
         width: 100%; 
+        right: -100%; /* STANDARDNO SKRIVANJE na mobilnom. */
     } 
 }
 .cart-sidebar.active { right: 0; }
@@ -798,7 +783,7 @@ nav a:hover, nav a.active {
     .cart-item-image { display: none; }
 }
 
-/* ===== CHECKOUT MODAL STYLES - AŽURIRANO SA POVEĆANJEM +30% ===== */
+/* ===== CHECKOUT MODAL STYLES - Normalno koristi .modal-overlay, što ga skriva ===== */
 #checkoutModal .modal-container {
     max-width: 650px; 
     padding: 2.6rem; 
@@ -871,7 +856,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* TOAST NOTIFIKACIJA - AŽURIRANO SA POVEĆANJEM +30% */
+/* TOAST NOTIFIKACIJA - Standardni stilovi */
 .toast {
     visibility: hidden; 
     min-width: 325px; 
@@ -914,8 +899,3 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
-
-
-
-
-
