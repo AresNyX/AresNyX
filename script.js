@@ -859,6 +859,11 @@ class AresNyXShop {
 
         // 🛑 VALIDACIJA ZALIHA 🛑
         const stockCheck = this.validateStock();
+                    // DODATO: Osigurajte da se ukloni no-scroll ako se vraćamo zbog greške
+            document.body.classList.remove('no-scroll');
+            this.closeCheckoutModal(); // Zatvorite i ponovo pokrenite
+            
+            return;
 
         if (stockCheck.length > 0) {
             const errorDetails = stockCheck.map(item => 
