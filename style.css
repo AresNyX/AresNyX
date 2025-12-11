@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (SVE AŽURIRANO I KONSOLIDOVANO) */
+/* AresNyX - Glavni CSS fajl (SVE AŽURIRANO I KONSOLIDOVANO SA EKSTREMNIM SPECIFIČNOSTIMA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS (Mora biti minimalan) 🛑 */
@@ -92,8 +92,14 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     font-weight: 600; 
 }
 
-/* 🚀 KRITIČNA IZMENA: POVEĆANJE SLIKA KARTICA 🚀 */
-.products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; flex: 1; }
+/* 🚀 KRITIČNA IZMENA: POVEĆANJE SLIKA KARTICA I CENTRIRANJE TEKSTA 🚀 */
+.products-section { 
+    padding: 3rem 2rem; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    flex: 1; 
+    text-align: center !important; /* CENTRIRA NASLOVE I DUGMAD NA STRANICI SHOPA */
+}
 .products-grid { 
     /* KRITIČNO: Povećavamo minimalnu širinu za karticu radi većeg skaliranja */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -107,13 +113,17 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
 .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
 .product-image { 
-    width: 100%; 
-    /* KRITIČNO: Povećana visina slike u kartici na 350px (za 10%) */
-    height: 350px; 
-    object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;
+    width: 100% !important; 
+    /* 🛑 POVEĆANA VISINA NA 400px! (sa 350px) 🛑 */
+    height: 400px !important; 
+    object-fit: contain !important; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px !important; display: block; margin: 0 auto; flex-shrink: 0;
 }
-.product-info { padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.product-info { 
+    padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; 
+    justify-content: space-between; 
+    text-align: center !important; /* CENTRIRA NASLOV I CENU UNUTAR KARTICE */
+}
 .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
 .product-price { font-size: 1.2rem; font-weight: 700; }
 
@@ -164,7 +174,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 /* Stilovi za prikaz imena i cene */
 .product-info {
     padding: 10px;
-    text-align: center;
+    text-align: center !important;
 }
 
 .product-name {
@@ -206,18 +216,19 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
 
-/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA I KORIGOVAN FONT (ISPRAVKA FONTOVA) ===== */
+/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA, KORIGOVANI FONTOVI I CENTRIRANJE ===== */
 
 .site-footer {
     background-color: #121212 !important; 
     color: #f4f4f4 !important; 
-    /* MAKSIMALNO SMANJEN vertikalni padding */
-    padding: 1.5rem 0 !important;
-    /* KRITIČNO: Smanjen margin-top futera */
-    margin-top: 2.5rem !important; 
+    /* 🛑 EKSTREMNO SMANJEN vertikalni padding */
+    padding: 0.5rem 0 !important;
+    /* 🛑 EKSTREMNO SMANJEN margin-top futera */
+    margin-top: 1rem !important; 
     /* KRITIČNO: Smanjujemo osnovni font za 10% */
     font-size: 1.17em !important; 
     width: 100%;
+    text-align: center !important; /* CENTRIRAMO SAV TEKST U FUTERE */
 }
 
 .site-footer .footer-content-custom {
@@ -227,8 +238,8 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* Smanjen gap između stubova */
-    gap: 1rem;
+    /* 🛑 EKSTREMNO SMANJEN gap između stubova */
+    gap: 0.5rem !important; 
     position: relative; 
 }
 
@@ -256,8 +267,8 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 /* 🚀 KRITIČNO: NASLOVI SEKCIJA (PRVI RED/Brend Naziv) - POVEĆANI ZA 10% 🚀 */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold) !important; 
-    margin-bottom: 0.7rem !important;
-    font-size: 1.43em !important; /* Povećan za 10% (1.3em * 1.1 = 1.43em) */
+    margin-bottom: 0.5rem !important;
+    font-size: 1.43em !important; /* Povećan za 10% */
     font-weight: 600 !important;
     border-bottom: 3px solid var(--accent-gold) !important;
     padding-bottom: 0.2rem !important; 
@@ -266,7 +277,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 /* Linkovi i P tagovi su automatski smanjeni nasleđivanjem od .site-footer (1.17em) */
 .site-footer .footer-section-custom.links a {
     color: #ccc !important;
-    margin-bottom: 0.4rem !important;
+    margin-bottom: 0.3rem !important;
 }
 
 .site-footer .footer-section-custom.contact p {
@@ -274,19 +285,26 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     color: #ccc; 
 }
 
-/* 🚀 KRITIČNO: IKONE DRUŠTVENIH MREŽA (razmak smanjen za 12mm) 🚀 */
+/* 🚀 KRITIČNO: IKONE DRUŠTVENIH MREŽA - FORSIRANA ZLATNA BOJA I VELIČINA 🚀 */
 .site-footer .social-links-custom {
     display: flex !important;
     gap: 2rem !important; 
-    margin-top: 0.5rem !important; /* Minimalni razmak */
+    margin-top: 0.5rem !important; 
+    justify-content: center !important; /* Centriranje ikona */
 }
+.site-footer .social-links-custom a {
+    color: #D4AF37 !important; /* FORSIRANA ZLATNA BOJA */
+    font-size: 2.8rem !important; /* FORSIRANA VELIČINA */
+    line-height: 1 !important; 
+}
+
 
 /* Donji deo futera (Copyright) */
 .site-footer .footer-bottom-custom {
     text-align: center !important;
     padding: 0.7rem 0 !important;
     border-top: 1px solid #333 !important;
-    margin-top: 1rem !important;
+    margin-top: 0.5rem !important;
     font-size: 0.8em !important; 
     color: #aaa !important;
 }
@@ -303,13 +321,13 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     }
 
     .site-footer .footer-section-custom.contact p {
-        text-align: left;
-        max-width: 80%;
+        text-align: center !important; /* SVE CENTRIRANO */
+        max-width: 100%;
         margin: 0 auto 0.7rem auto;
     }
 
     .site-footer .social-links-custom {
-        justify-content: center;
+        justify-content: center !important;
     }
 }
 
