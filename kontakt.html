@@ -323,6 +323,50 @@ async function posaljiPoruku() {
         hvalaDiv.style.display = 'none';
     }, 8000);
 }
+    // Dodaj ove funkcije u postojeći script tag na kontakt stranici:
+
+// Funkcija za pozivanje (telefon)
+function pozoviNas() {
+    const phoneNumber = '+381648700220';
+    const formattedNumber = '+381 64 8700220';
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_phone_click', {
+            'contact_type': 'phone',
+            'phone_number': phoneNumber
+        });
+    }
+    
+    if (isMobile) {
+        window.location.href = `tel:${phoneNumber}`;
+    } else {
+        if (confirm(`Želite da pozovete: ${formattedNumber}?\n\nNa desktopu broj će biti kopiran u clipboard.`)) {
+            navigator.clipboard.writeText(formattedNumber)
+                .then(() => alert('Broj telefona je kopiran u clipboard!'))
+                .catch(() => prompt('Kopirajte broj telefona:', formattedNumber));
+        }
+    }
+}
+
+// Funkcija za slanje email-a
+function posaljiEmail() {
+    const email = 'ares.nyx.info@gmail.com';
+    const subject = 'Upit sa AresNyX kontakt stranice';
+    const body = 'Poštovani AresNyX tim,\n\nPišem vam sa kontakt forme na vašem sajtu.\n\n';
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'contact_email_click', {
+            'contact_type': 'email',
+            'email_address': email
+        });
+    }
+    
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink, '_blank');
+}
 
 // Event listener za Enter u poljima
 document.addEventListener('DOMContentLoaded', function() {
