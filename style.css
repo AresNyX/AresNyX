@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (SVE BEZ !IMPORTANT NA SKRIVANJU) */
+/* AresNyX - Glavni CSS fajl (KONACNA REVIZIJA - CIST BEZ !IMPORTANT NA SKRIVANJU) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS (Mora biti minimalan) 🛑 */
@@ -25,9 +25,6 @@ body {
 }
 
 body.no-scroll { overflow: hidden; } 
-
-/* ❌ UKLONJENA SEKCIJA ZA FORSIRANO SKRIVANJE SA !IMPORTANT ❌ */
-/* Sada se oslanjamo na standardne, neagresivne metode i JS kontrolu. */
 
 
 /* PROMO BAR */
@@ -388,7 +385,7 @@ nav a:hover, nav a.active {
     margin-right: 20px;
 }
 
-/* ===== MODAL (Proizvod) - Uklonjeno !important na display: none ===== */
+/* ===== MODAL (Proizvod) - Standardno skrivanje bez !important ===== */
 .modal-overlay { 
     display: none; /* STANDARDNO SKRIVANJE. JS dodaje 'active' klasu koja ga prikazuje. */
     position: fixed; top: 0; left: 0; 
@@ -580,9 +577,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== FILTERI I SORTIRANJE (Panel) - Standardno skrivanje ===== */
-
-/* Padajući Panel koji sadrži sve filtere */
+/* ===== FILTERI I SORTIRANJE (Panel) - Vraćen na osnovni stil ===== */
 .filter-sort-panel {
     position: absolute;
     top: 50px; 
@@ -594,13 +589,10 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 26px; 
     z-index: 500;
-    /* Standardno skrivanje */
-    opacity: 0; 
-    visibility: hidden; 
-    transform: translateY(13px); 
-    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+    transition: all 0.3s; /* Ostavljamo tranziciju za active klasu */
 }
 
+/* Pretpostavljamo da JS dodaje active klasu i stilove za prikaz, npr.: */
 .filter-sort-panel.active {
     opacity: 1;
     visibility: visible;
@@ -687,7 +679,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== KORPA (Sidebar) - Uklonjeno !important na right: -520px ===== */
+/* ===== KORPA (Sidebar) - Standardno skrivanje bez !important ===== */
 .cart-sidebar { 
     position: fixed; top: 0; 
     right: -520px; /* STANDARDNO SKRIVANJE. JS dodaje 'active' klasu koja ga prikazuje. */
@@ -783,7 +775,7 @@ nav a:hover, nav a.active {
     .cart-item-image { display: none; }
 }
 
-/* ===== CHECKOUT MODAL STYLES - Normalno koristi .modal-overlay, što ga skriva ===== */
+/* ===== CHECKOUT MODAL STYLES ===== */
 #checkoutModal .modal-container {
     max-width: 650px; 
     padding: 2.6rem; 
@@ -899,3 +891,4 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
