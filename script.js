@@ -22,6 +22,9 @@ class AresNyXShop {
         this.renderCart();
         this.updateCartPromoMessage(0); 
         this.attachEventListeners();
+        
+        // ⭐ KRITIČNA PROMENA 1: Poziv za prikaz proizvoda odmah nakon učitavanja ⭐
+        this.applyFiltersAndSort(); 
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
@@ -205,6 +208,7 @@ class AresNyXShop {
      * Postavlja sve event listenere koji nisu inline u HTML-u.
      */
     attachEventListeners() {
+        // Event Listeneri za Filter dugmad
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
@@ -218,6 +222,18 @@ class AresNyXShop {
                     this.currentSizeFilter = size;
                 }
             });
+        }
+        
+        // Event listener za otvaranje filter panela
+        const filterBtn = document.querySelector('.filter-sort-btn');
+        if (filterBtn) {
+             filterBtn.addEventListener('click', () => this.toggleFilterPanel());
+        }
+
+        // Event listener za zatvaranje modala (dugme 'Nastavi kupovinu')
+        const continueBtn = document.querySelector('.continue-shopping');
+        if (continueBtn) {
+            continueBtn.addEventListener('click', () => this.closeModal());
         }
     }
 
@@ -302,7 +318,6 @@ class AresNyXShop {
 
     /**
      * Renderuje listu proizvoda na stranicu.
-     * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
@@ -357,6 +372,16 @@ class AresNyXShop {
     // =========================================================
     // === METODE ZA MODAL I KORPU ===
     // =========================================================
+    
+    /**
+     * Zatvara modal za prikaz pojedinačnog proizvoda.
+     * ⭐ DODATO: Implementacija metode closeModal() ⭐
+     */
+    closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+        document.body.classList.remove('no-scroll');
+        this.currentProduct = null;
+    }
 
     openProductModal(productId) {
         this.currentProduct = this.products.find(p => p.id === productId);
@@ -399,7 +424,6 @@ class AresNyXShop {
             })
             .join('');
             
-        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
         
         if (firstAvailableSize) {
@@ -407,7 +431,7 @@ class AresNyXShop {
             document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
         } 
         
-        const btn = document.querySelector('.add-to-cart-btn');
+        const btn = document.querySelector('#productModal .add-to-cart-btn');
         if (!firstAvailableSize) {
              btn.disabled = true;
              btn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
@@ -449,7 +473,7 @@ class AresNyXShop {
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
         this.currentSize = size;
-        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+        document.querySelectorAll('#sizeSelector .size-option').forEach(opt => opt.classList.remove('selected'));
         event.currentTarget.classList.add('selected');
     }
 
@@ -489,7 +513,7 @@ class AresNyXShop {
         this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
         
         setTimeout(() => {
-            this.closeModal();
+            this.closeModal(); // Koristimo novu closeModal metodu
             btn.innerHTML = originalText;
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
@@ -503,7 +527,6 @@ class AresNyXShop {
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
-            // ⭐ Važno: Sliku za korpu formiramo ovde, jer je u this.products neobrađena ⭐
             const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
             const imageURL = BASE_IMAGE_URL + product.images[0];
 
@@ -513,7 +536,7 @@ class AresNyXShop {
                 quantity, 
                 name: product.name, 
                 price: product.price, 
-                image: imageURL // Postavljamo punu putanju za renderCart()
+                image: imageURL 
             });
         }
 
@@ -536,12 +559,18 @@ class AresNyXShop {
     toggleCartVisibility() {
         const cartFooter = document.getElementById('cartFooter');
         const emptyCart = document.getElementById('emptyCart');
-        
+        const cartItemsContainer = document.getElementById('cartItems'); // Dodato za ispravnu proveru
+
         if (this.cart.length === 0) {
-            if (emptyCart) emptyCart.style.display = 'block';
+            // Ako je korpa prazna, renderCart će popuniti cartItems sa #emptyCart
+            if (cartItemsContainer.querySelector('.empty-cart')) { 
+                cartItemsContainer.querySelector('.empty-cart').style.display = 'block';
+            }
             if (cartFooter) cartFooter.style.display = 'none';
         } else {
-            if (emptyCart) emptyCart.style.display = 'none';
+            if (cartItemsContainer.querySelector('.empty-cart')) {
+                cartItemsContainer.querySelector('.empty-cart').style.display = 'none';
+            }
             if (cartFooter) cartFooter.style.display = 'block';
         }
     }
@@ -589,6 +618,15 @@ class AresNyXShop {
         const item = this.cart.find(i => i.productId === productId && i.size === size);
         if (!item) return;
 
+        // Provera zaliha pre dodavanja
+        const product = this.products.find(p => p.id === productId);
+        const availableStock = product.sizes[size] || 0;
+        
+        if (change > 0 && item.quantity + change > availableStock) {
+            this.showToast(`Maksimalna zaliha za ${product.name} (${size}) je ${availableStock}!`);
+            return;
+        }
+
         item.quantity += change;
         
         if (item.quantity < 1) {
@@ -632,7 +670,6 @@ class AresNyXShop {
     }
 
     updateCartPromoMessage(subtotal) {
-        const promoBar = document.getElementById('promoBar');
         const cartPromo = document.getElementById('cartPromoMessage');
 
         const FREE_SHIPPING_LIMIT = 4000;
@@ -667,21 +704,29 @@ class AresNyXShop {
         const total = subtotal + shipping - discount;
         
         if (preview) {
+            // Ažuriranje elemenata u Checkout Preview modu (korak 2)
             document.getElementById('previewSubtotal').textContent = subtotal + ' RSD';
             document.getElementById('previewShipping').textContent = shipping + ' RSD';
             document.getElementById('previewDiscount').textContent = discount + ' RSD';
             document.getElementById('previewTotal').textContent = total + ' RSD';
         } else {
-            document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
-            document.getElementById('cartShipping').textContent = shipping + ' RSD';
-            document.getElementById('cartDiscount').textContent = discount + ' RSD';
-            
-            const totalElement = document.getElementById('cartTotal');
-            totalElement.textContent = total + ' RSD';
+            // Ažuriranje elemenata u Sidebar korpi
+            const cartSubtotalEl = document.getElementById('cartSubtotal');
+            const cartShippingEl = document.getElementById('cartShipping');
+            const cartDiscountEl = document.getElementById('cartDiscount');
+            const cartTotalEl = document.getElementById('cartTotal');
 
-            totalElement.classList.remove('quick-pulse'); 
-            void totalElement.offsetWidth; 
-            totalElement.classList.add('quick-pulse');
+            if (cartSubtotalEl) cartSubtotalEl.textContent = subtotal + ' RSD';
+            if (cartShippingEl) cartShippingEl.textContent = shipping + ' RSD';
+            if (cartDiscountEl) cartDiscountEl.textContent = discount + ' RSD';
+            
+            if (cartTotalEl) {
+                cartTotalEl.textContent = total + ' RSD';
+
+                cartTotalEl.classList.remove('quick-pulse'); 
+                void cartTotalEl.offsetWidth; 
+                cartTotalEl.classList.add('quick-pulse');
+            }
             
             this.updateCartPromoMessage(subtotal);
         }
@@ -708,6 +753,8 @@ class AresNyXShop {
     
     showToast(message) {
         const toast = document.getElementById('toast');
+        if (!toast) return;
+
         toast.textContent = message;
         toast.classList.remove('show');
         void toast.offsetWidth;
@@ -716,7 +763,7 @@ class AresNyXShop {
         setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-        closeCheckoutModal() {
+    closeCheckoutModal() {
         document.getElementById('checkoutModal').style.display = 'none';
         document.body.classList.remove('no-scroll');
         this.goToStep(1); 
@@ -729,7 +776,7 @@ class AresNyXShop {
 
     toggleSizeTable() { 
         const table = document.getElementById('sizeTable');
-        table.style.display = table.style.display === 'none' ? 'block' : 'none';
+        if(table) table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
 
     // =========================================================
@@ -750,16 +797,19 @@ class AresNyXShop {
             this.showToast("Vaša korpa je prazna!");
             return;
         }
+        
+        // 🛑 Validacija zaliha pre početka checkouta
+        const stockCheck = this.validateStock();
+        if (stockCheck.length > 0) {
+            this.showToast("Greška: Nema dovoljno zaliha. Molimo izmenite korpu.");
+            console.error('Proizvodi van zaliha:', stockCheck);
+            return;
+        }
+        
         this.toggleCart(); 
         this.goToStep(1);
         document.getElementById('checkoutModal').style.display = 'block';
         document.body.classList.add('no-scroll');
-    }
-
-    closeCheckoutModal() {
-        document.getElementById('checkoutModal').style.display = 'none';
-        document.body.classList.remove('no-scroll');
-        this.goToStep(1); 
     }
 
     goToStep(step) {
@@ -770,6 +820,17 @@ class AresNyXShop {
 
     submitShippingForm(event) {
         event.preventDefault();
+
+        // Jednostavna validacija
+        const requiredFields = ['ime', 'prezime', 'email', 'telefon', 'ulica', 'postanskiBroj', 'grad', 'placanje'];
+        for (const field of requiredFields) {
+            const input = document.getElementById(field);
+            if (!input || !input.value.trim()) {
+                this.showToast(`Polje "${input ? input.previousElementSibling.textContent : field}" je obavezno!`);
+                input?.focus();
+                return;
+            }
+        }
 
         this.checkoutData = {
             ime: document.getElementById('ime').value,
@@ -784,6 +845,7 @@ class AresNyXShop {
             napomena: document.getElementById('napomena').value
         };
 
+        // Renderovanje podataka za pregled
         document.getElementById('previewIme').innerHTML = `<strong>Ime i Prezime:</strong> ${this.checkoutData.ime} ${this.checkoutData.prezime}`;
         document.getElementById('previewEmail').innerHTML = `<strong>Email:</strong> ${this.checkoutData.email}`;
         document.getElementById('previewTelefon').innerHTML = `<strong>Telefon:</strong> ${this.checkoutData.telefon}`;
@@ -859,12 +921,9 @@ class AresNyXShop {
 
         // 🛑 VALIDACIJA ZALIHA 🛑
         const stockCheck = this.validateStock();
-                    // DODATO: Osigurajte da se ukloni no-scroll ako se vraćamo zbog greške
-            document.body.classList.remove('no-scroll');
-            this.closeCheckoutModal(); // Zatvorite i ponovo pokrenite
-            
-            return;
-
+        
+        // ⭐ KRITIČNA PROMENA 2: Uklonjen neispravan return koji je prekidao funkciju.
+        
         if (stockCheck.length > 0) {
             const errorDetails = stockCheck.map(item => 
                 `(${item.size}) ${item.name} - ${item.reason}`
@@ -921,6 +980,9 @@ class AresNyXShop {
             .then((responses) => {
                 console.log('Slanje e-mailova uspešno završeno za Admina i Kupca.', responses);
                 
+                // ⭐ Ažuriranje zaliha NAKON uspešne porudžbine (Dodatna preporuka)
+                this.updateProductStock(); 
+
                 this.cart = [];
                 this.saveCart();
                 this.updateCartCount();
@@ -939,6 +1001,22 @@ class AresNyXShop {
             
             });
     }
+
+    /**
+     * Ažurira zalihe u memoriji (i renderuje proizvode) nakon uspešne kupovine.
+     */
+    updateProductStock() {
+        this.cart.forEach(item => {
+            const product = this.products.find(p => p.id === item.productId);
+            if (product && product.sizes[item.size]) {
+                product.sizes[item.size] -= item.quantity;
+                // Osiguravanje da zalihe ne idu ispod nule
+                product.sizes[item.size] = Math.max(0, product.sizes[item.size]); 
+            }
+        });
+        // Ponovno renderovanje mreže proizvoda da bi se prikazale ažurirane zalihe/disabled dugmad
+        this.applyFiltersAndSort(); 
+    }
 } 
 // =========================================================
 // === POKRETANJE NAKON UČITAVANJA DOM-a ===
@@ -948,8 +1026,6 @@ let shop;
 document.addEventListener('DOMContentLoaded', () => {
     shop = new AresNyXShop(); 
     
-    // Odloženo renderovanje je dobra praksa
-    setTimeout(() => {
-        shop.renderProducts(); 
-    }, 50); 
+    // ⭐ KRITIČNA PROMENA 3: Uklonjen je setTimeout za renderovanje jer se render poziva u init() ⭐
 });
+
