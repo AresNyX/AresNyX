@@ -214,13 +214,12 @@ body.no-scroll { overflow: hidden; }
 }
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
-
 /* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA, KORIGOVANI FONTOVI I CENTRIRANJE ===== */
 
 .site-footer {
     background-color: #121212 !important; 
     color: #f4f4f4 !important; 
-    padding: 0.5rem 0 !important;
+    padding: 0.3rem 0 !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     margin-top: 1rem !important; 
     font-size: 1.17em !important; 
     width: 100%;
@@ -234,7 +233,7 @@ body.no-scroll { overflow: hidden; }
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 0.5rem !important; 
+    gap: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     position: relative; 
 }
 
@@ -262,21 +261,21 @@ body.no-scroll { overflow: hidden; }
 /* 🚀 KRITIČNO: NASLOVI SEKCIJA (PRVI RED/Brend Naziv) - POVEĆANI ZA 10% 🚀 */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold) !important; 
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     font-size: 1.43em !important; 
     font-weight: 600 !important;
     border-bottom: 3px solid var(--accent-gold) !important;
-    padding-bottom: 0.2rem !important; 
+    padding-bottom: 0.15rem !important;  /* SMANJENO sa 0.2rem na 0.15rem */
 }
 
 /* Linkovi i P tagovi su automatski smanjeni nasleđivanjem od .site-footer (1.17em) */
 .site-footer .footer-section-custom.links a {
     color: #ccc !important;
-    margin-bottom: 0.3rem !important;
+    margin-bottom: 0.2rem !important;  /* SMANJENO sa 0.3rem na 0.2rem */
 }
 
 .site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.5rem !important; 
+    margin-bottom: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     color: #ccc; 
 }
 
@@ -284,7 +283,7 @@ body.no-scroll { overflow: hidden; }
 .site-footer .social-links-custom {
     display: flex !important;
     gap: 2rem !important; 
-    margin-top: 0.5rem !important; 
+    margin-top: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     justify-content: center !important; 
 }
 .site-footer .social-links-custom a {
@@ -297,9 +296,9 @@ body.no-scroll { overflow: hidden; }
 /* Donji deo futera (Copyright) */
 .site-footer .footer-bottom-custom {
     text-align: center !important;
-    padding: 0.7rem 0 !important;
+    padding: 0.5rem 0 !important;  /* SMANJENO sa 0.7rem na 0.5rem */
     border-top: 1px solid #333 !important;
-    margin-top: 0.5rem !important;
+    margin-top: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
     font-size: 0.8em !important; 
     color: #aaa !important;
 }
@@ -308,7 +307,7 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 768px) {
     .site-footer .footer-content-custom {
         flex-direction: column !important;
-        gap: 1rem !important;
+        gap: 0.8rem !important;  /* SMANJENO sa 1rem na 0.8rem */
     }
 
     .site-footer .footer-section-custom::after {
@@ -318,15 +317,13 @@ body.no-scroll { overflow: hidden; }
     .site-footer .footer-section-custom.contact p {
         text-align: center !important; 
         max-width: 100%;
-        margin: 0 auto 0.7rem auto;
+        margin: 0 auto 0.5rem auto;  /* SMANJENO sa 0.7rem na 0.5rem */
     }
 
     .site-footer .social-links-custom {
         justify-content: center !important;
     }
 }
-
-
 /* HEADER SA PODNASLOVOM */
 header { 
     background: var(--primary-dark); 
