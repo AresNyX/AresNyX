@@ -669,44 +669,77 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-/* TEST: FORSIRANO REŠENJE ZA FOOTER VISINU */
-.site-footer {
-    min-height: auto !important;
-    height: auto !important;
+/* ===== DIJAGNOSTIKA I REŠENJE FOOTER VISINE ===== */
+
+/* 1. Reset svega što može da utiče na visinu */
+body {
+    display: block !important; /* REMOVUJEMO flex da vidimo da li je ovo problem */
 }
 
-.site-footer .footer-content-custom {
-    padding-bottom: 0 !important;
-    min-height: auto !important;
+.products-section {
+    flex: none !important; /* REMOVUJEMO flex grow */
 }
 
-.site-footer .footer-section-custom.social {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-.site-footer .social-links-custom {
+/* 2. Direktan reset za footer i sve njegove child elemente */
+.site-footer * {
     margin: 0 !important;
     padding: 0 !important;
     line-height: 1 !important;
+    min-height: auto !important;
     height: auto !important;
+    max-height: none !important;
+}
+
+/* 3. Specifično za footer container */
+.site-footer {
+    background-color: #121212 !important;
+    color: #f4f4f4 !important;
+    padding: 2px 0 !important; /* Apsolutni minimum */
+    margin-top: 5px !important;
+    display: block !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* 4. FORSIRANO: Footer content bez ikakvog paddinga/margina */
+.site-footer .footer-content-custom {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+    max-width: 1200px !important;
+}
+
+/* 5. FORSIRANO: Social links sekcija - BEZ PROSTORA */
+.site-footer .footer-section-custom {
+    display: inline-block !important;
+    vertical-align: top !important;
+    padding: 2px 10px !important;
+    margin: 0 !important;
+}
+
+.site-footer .social-links-custom {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important; /* Reset za white-space između inline-block elementata */
 }
 
 .site-footer .social-links-custom a {
     display: inline-block !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1 !important;
+    font-size: 2rem !important; /* Ponovo setujemo font size */
 }
 
-/* Reset za Font Awesome ikone ako se koriste */
-.site-footer .social-links-custom i.fa,
-.site-footer .social-links-custom i.fab,
-.site-footer .social-links-custom i.fas {
-    line-height: 1 !important;
+/* 6. Copyright - minimalno */
+.site-footer .footer-bottom-custom {
+    padding: 3px 0 !important;
     margin: 0 !important;
-    padding: 0 !important;
-    display: inline-block !important;
-    vertical-align: baseline !important;
+    border-top: 1px solid #333 !important;
+    font-size: 0.7em !important;
 }
 
+/* 7. Ukloni vertikalne linije ako stvaraju problem */
+.site-footer .footer-section-custom::after {
+    display: none !important;
+}
