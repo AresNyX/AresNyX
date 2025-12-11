@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (SVE AŽURIRANO I KONSOLIDOVANO SA EKSTREMNIM SPECIFIČNOSTIMA) */
+/* AresNyX - Glavni CSS fajl (SA BEZBEDNIM SKRIVANJEM :NOT(.active)) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS (Mora biti minimalan) 🛑 */
@@ -19,16 +19,38 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    /* Uklanjamo 'Montserrat' i koristimo brzi sistemski font stack */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: #fff; color: var(--text-dark); line-height: 1.6;
     display: flex; flex-direction: column; min-height: 100vh;
 }
 
-body.no-scroll { overflow: hidden; } /* Zadržite za modal */
+body.no-scroll { overflow: hidden; } 
 
+/* 🚀🚀 KRITIČNO: SEKCIJA ZA BEZBEDNO SKRIVANJE BEZ BLOKIRANJA JS 🚀🚀 */
+/* OVA PRAVILA FORSIRAJU SKRIVANJE SAMO AKO ELEMENT NEMA 'active' KLASU */
 
-/* ❌ UKLONJENA SEKCIJA ZA FORSIRANO SKRIVANJE. VRAĆAMO STILOVE NA NJIHOVE POZICIJE. */
+.modal-overlay:not(.active) {
+    /* Sprečava otvaranje forme za isporuku na startu */
+    display: none !important; 
+}
+
+.cart-sidebar:not(.active) {
+    /* Sprečava ispadanje korpe na startu */
+    right: -520px !important;
+}
+@media (max-width: 450px) {
+    .cart-sidebar:not(.active) {
+        right: -100% !important;
+    }
+}
+
+.filter-sort-panel:not(.active) {
+    /* Sprečava vidljivost filter panela na startu */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(13px) !important;
+}
+/* --------------------------------------------------------------------- */
 
 
 /* PROMO BAR */
@@ -102,10 +124,9 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     max-width: 1400px; 
     margin: 0 auto; 
     flex: 1; 
-    text-align: center !important; /* CENTRIRA NASLOVE I DUGMAD NA STRANICI SHOPA */
+    text-align: center !important; 
 }
 .products-grid { 
-    /* KRITIČNO: Povećavamo minimalnu širinu za karticu radi većeg skaliranja */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 2.5rem; 
 }
@@ -118,7 +139,6 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
 .product-image { 
     width: 100% !important; 
-    /* 🛑 POVEĆANA VISINA NA 400px! (sa 350px) 🛑 */
     height: 400px !important; 
     object-fit: contain !important; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 15px !important; display: block; margin: 0 auto; flex-shrink: 0;
@@ -126,7 +146,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-info { 
     padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; 
     justify-content: space-between; 
-    text-align: center !important; /* CENTRIRA NASLOV I CENU UNUTAR KARTICE */
+    text-align: center !important; 
 }
 .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
 .product-price { font-size: 1.2rem; font-weight: 700; }
@@ -225,14 +245,11 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .site-footer {
     background-color: #121212 !important; 
     color: #f4f4f4 !important; 
-    /* 🛑 EKSTREMNO SMANJEN vertikalni padding */
     padding: 0.5rem 0 !important;
-    /* 🛑 EKSTREMNO SMANJEN margin-top futera */
     margin-top: 1rem !important; 
-    /* KRITIČNO: Smanjujemo osnovni font za 10% */
     font-size: 1.17em !important; 
     width: 100%;
-    text-align: center !important; /* CENTRIRAMO SAV TEKST U FUTERE */
+    text-align: center !important; 
 }
 
 .site-footer .footer-content-custom {
@@ -242,7 +259,6 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* 🛑 EKSTREMNO SMANJEN gap između stubova */
     gap: 0.5rem !important; 
     position: relative; 
 }
@@ -272,7 +288,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold) !important; 
     margin-bottom: 0.5rem !important;
-    font-size: 1.43em !important; /* Povećan za 10% */
+    font-size: 1.43em !important; 
     font-weight: 600 !important;
     border-bottom: 3px solid var(--accent-gold) !important;
     padding-bottom: 0.2rem !important; 
@@ -294,11 +310,11 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     display: flex !important;
     gap: 2rem !important; 
     margin-top: 0.5rem !important; 
-    justify-content: center !important; /* Centriranje ikona */
+    justify-content: center !important; 
 }
 .site-footer .social-links-custom a {
-    color: #D4AF37 !important; /* FORSIRANA ZLATNA BOJA */
-    font-size: 2.8rem !important; /* FORSIRANA VELIČINA */
+    color: #D4AF37 !important; 
+    font-size: 2.8rem !important; 
     line-height: 1 !important; 
 }
 
@@ -325,7 +341,7 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
     }
 
     .site-footer .footer-section-custom.contact p {
-        text-align: center !important; /* SVE CENTRIRANO */
+        text-align: center !important; 
         max-width: 100%;
         margin: 0 auto 0.7rem auto;
     }
@@ -346,7 +362,7 @@ header {
 
 /* 🚀 KRITIČNA IZMENA: H1 (Logo/Naziv Brendra) - POVEĆAN za 15% 🚀 */
 header h1 { 
-    font-size: 2.875em !important; /* Povećano sa 2.5em */
+    font-size: 2.875em !important; 
     color: var(--accent-gold); 
     letter-spacing: 2px; 
     text-transform: uppercase;
@@ -381,7 +397,6 @@ nav a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: 400;
-    /* Povećanje teksta za 30% (iz početnog zahteva) */
     font-size: 1.3em;
     transition: color 0.3s;
 }
@@ -398,7 +413,7 @@ nav a:hover, nav a.active {
 
 /* ===== MODAL (Proizvod) - MAKSIMALNO PRILAGOĐAVANJE SLICI I EKRANU ===== */
 .modal-overlay { 
-    display: none; /* Vraćeno na originalno, neagresivno pravilo */
+    /* Inicijalni stil, ostavljen bez !important */
     position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
     z-index: 2000; backdrop-filter: blur(5px); 
@@ -436,7 +451,6 @@ nav a:hover, nav a.active {
 
 .modal-main-image {
     width: 100%;
-    /* KRITIČNO: Povećana visina slike na 660px */
     height: 660px; 
     max-width: none; 
     max-height: none; 
@@ -583,7 +597,7 @@ nav a:hover, nav a.active {
     }
 }
 
-    /* ===== FILTERI I SORTIRANJE (Panel) - AŽURIRANO SA POVEĆANJEM +30% ===== */
+/* ===== FILTERI I SORTIRANJE (Panel) - AŽURIRANO SA POVEĆANJEM +30% ===== */
 
 /* Padajući Panel koji sadrži sve filtere */
 .filter-sort-panel {
@@ -597,8 +611,9 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 26px; 
     z-index: 500;
-    opacity: 0; /* Vraćeno na originalno, neagresivno pravilo */
-    visibility: hidden; /* Vraćeno na originalno, neagresivno pravilo */
+    /* Inicijalni stilovi, ostavljeni bez !important, jer je gornji :not(.active) specifičniji */
+    opacity: 0; 
+    visibility: hidden; 
     transform: translateY(13px); 
     transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
 }
@@ -692,7 +707,6 @@ nav a:hover, nav a.active {
 /* ===== KORPA (Sidebar) - AŽURIRANO SA POVEĆANJEM +30% ===== */
 .cart-sidebar { 
     position: fixed; top: 0; 
-    right: -520px; /* Vraćeno na originalno, neagresivno pravilo */
     width: 520px; 
     height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
     transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
@@ -700,7 +714,6 @@ nav a:hover, nav a.active {
 @media (max-width: 450px) { 
     .cart-sidebar { 
         width: 100%; 
-        right: -100%; /* Vraćeno na originalno, neagresivno pravilo */
     } 
 }
 .cart-sidebar.active { right: 0; }
@@ -901,6 +914,8 @@ nav a:hover, nav a.active {
     from {bottom: 39px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
    }
+
+
 
 
 
