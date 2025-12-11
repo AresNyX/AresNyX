@@ -70,14 +70,17 @@ body, html {
 
 
 /* Navigacija: Osnovni Layout */
-#main-nav { 
-    background-color: #121212; 
-    padding: 10px 0; 
-    border-top: 2px solid #D4AF37; 
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 10px; 
+#main-nav a { 
+    font-size: 1.1em; 
+    font-weight: 400; 
+    text-decoration: none; 
+    display: inline-block; /* Ostaje da bi prihvatio širinu */
+    width: 140px; /* FIKSNA ŠIRINA za DESKTOP (i šire ekrane) */
+    text-align: center; 
+    padding: 8px 12px; 
+    border-radius: 4px; 
+    color: #fff;
+    transition: all 0.3s ease; 
 }
     
 #main-nav a { 
@@ -102,31 +105,29 @@ body, html {
     color: #fff;
     background-color: rgba(212, 175, 55, 0.2);
 }
-    /* ===== KOREKCIJA NAVIGACIJE ZA MOBILNI PRIKAZ (3 dugmeta + 2 dugmeta) ===== */
+    /* ===== MOBILNI PRIKAZ: ISPRAVNA FLEXBOX KONTROLA (3+2) ===== */
 @media (max-width: 600px) {
     #main-nav {
-        /* Povećavamo marginu da bi dugmad izgledala lepše na vrhu */
+        /* Osigurava da se ceo kontejner raširi i da je dovoljno paddinga */
         padding: 15px 10px; 
-        gap: 15px 10px; /* Vertikalni i horizontalni razmak */
+        gap: 10px; 
+        justify-content: space-around; 
     }
     
     #main-nav a {
-        /*
-        KLJUČNO: Izračunavanje širine. 
-        30% (flex-basis) ostavlja prostor za 3 dugmeta, 
-        uključujući gap (10px * 2) sa strane.
+        /* KLJUČNO: Poništavamo fiksnu širinu za mobilni */
+        width: auto; 
         
-        Ako je ukupan ekran 320px: (320px - 20px padding - 20px gap) / 3 = ~93px
-        Koristimo calc da osiguramo da tačno tri staju u red.
-        */
+        /* Fleksibilna širina za 3 elementa (flex-basis ispod 33.333% zbog gap-a) */
+        flex-basis: 30%; 
+        flex-grow: 1; /* Nateraj dugmad da popune prostor u svom redu */
         
-        width: calc(33.333% - 10px); 
-        /* Prepisuje fiksnu širinu (160px) sa mobilnog prikaza */
-        
-        font-size: 1em; /* Opciono, malo smanjivanje fonta za mobilni */
+        /* Ostala estetika */
+        font-size: 1em; 
+        padding: 10px 5px; 
+        text-align: center;
     }
 }
-
 
 
 /* KRITIЧНО: Стилови за Hero секцију морају бити овде! */
