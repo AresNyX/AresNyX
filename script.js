@@ -202,13 +202,12 @@ class AresNyXShop {
 
     // =========================================================
     // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER ===
-    // =========================================================
-
-    /**
+    // ========================================================
+     */
+        /**
      * Postavlja sve event listenere koji nisu inline u HTML-u.
      */
     attachEventListeners() {
-        // Event Listeneri za Filter dugmad
         const sizeFilterOptions = document.getElementById('sizeFilterOptions');
         if (sizeFilterOptions) {
             sizeFilterOptions.addEventListener('click', (e) => {
@@ -224,16 +223,30 @@ class AresNyXShop {
             });
         }
         
-        // Event listener za otvaranje filter panela
+        // ⭐ NOVO/DOPUNJENO: Event listeneri za zatvaranje modala i panela ⭐
+
+        // 1. Otvaranje/Zatvaranje Filter Panela
         const filterBtn = document.querySelector('.filter-sort-btn');
         if (filterBtn) {
              filterBtn.addEventListener('click', () => this.toggleFilterPanel());
         }
 
-        // Event listener za zatvaranje modala (dugme 'Nastavi kupovinu')
+        // 2. Dugme za zatvaranje modala proizvoda (obično X u gornjem desnom uglu)
+        const closeProductModalBtn = document.querySelector('#productModal .close-btn');
+        if (closeProductModalBtn) {
+            closeProductModalBtn.addEventListener('click', () => this.closeModal());
+        }
+        
+        // 3. Dugme "Nastavi kupovinu" (koje zatvara modal proizvoda)
         const continueBtn = document.querySelector('.continue-shopping');
         if (continueBtn) {
             continueBtn.addEventListener('click', () => this.closeModal());
+        }
+
+        // 4. Dugme za zatvaranje Checkout Modala (forme za isporuku)
+        const closeCheckoutModalBtn = document.querySelector('#checkoutModal .close-btn');
+        if (closeCheckoutModalBtn) {
+             closeCheckoutModalBtn.addEventListener('click', () => this.closeCheckoutModal());
         }
     }
 
