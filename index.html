@@ -102,6 +102,31 @@ body, html {
     color: #fff;
     background-color: rgba(212, 175, 55, 0.2);
 }
+    /* ===== KOREKCIJA NAVIGACIJE ZA MOBILNI PRIKAZ (3 dugmeta + 2 dugmeta) ===== */
+@media (max-width: 600px) {
+    #main-nav {
+        /* Povećavamo marginu da bi dugmad izgledala lepše na vrhu */
+        padding: 15px 10px; 
+        gap: 15px 10px; /* Vertikalni i horizontalni razmak */
+    }
+    
+    #main-nav a {
+        /*
+        KLJUČNO: Izračunavanje širine. 
+        30% (flex-basis) ostavlja prostor za 3 dugmeta, 
+        uključujući gap (10px * 2) sa strane.
+        
+        Ako je ukupan ekran 320px: (320px - 20px padding - 20px gap) / 3 = ~93px
+        Koristimo calc da osiguramo da tačno tri staju u red.
+        */
+        
+        width: calc(33.333% - 10px); 
+        /* Prepisuje fiksnu širinu (160px) sa mobilnog prikaza */
+        
+        font-size: 1em; /* Opciono, malo smanjivanje fonta za mobilni */
+    }
+}
+
 
 
 /* KRITIЧНО: Стилови за Hero секцију морају бити овде! */
