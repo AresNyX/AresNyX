@@ -1,4 +1,4 @@
-/* ------------------------------------------------ */
+9/* ------------------------------------------------ */
 /* AresNyX - Glavni CSS fajl (KONACNA REVIZIJA - CIST BEZ !IMPORTANT NA SKRIVANJU) */
 /* ------------------------------------------------ */
 
@@ -214,115 +214,156 @@ body.no-scroll { overflow: hidden; }
 }
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
-/* ===== FOOTER STILOVI - MAKSIMALNO SMANJENA VISINA, KORIGOVANI FONTOVI I CENTRIRANJE ===== */
+/* ===== FOOTER STILOVI - ISPRAVLJENO BEZ !IMPORTANT ===== */
 
 .site-footer {
-    background-color: #121212 !important; 
-    color: #f4f4f4 !important; 
-    padding: 0.3rem 0 !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    margin-top: 1rem !important; 
-    font-size: 1.17em !important; 
+    background-color: #121212;
+    color: #f4f4f4;
+    padding: 0.3rem 0;
+    margin-top: 1rem;
+    font-size: 1.17em;
     width: 100%;
-    text-align: center !important; 
+    text-align: center;
 }
 
 .site-footer .footer-content-custom {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 0.5rem; /* Dodat bottom padding za ikone */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    position: relative; 
-}
-
-.site-footer .footer-section-custom {
-    flex: 1 1 200px; 
-    padding: 0 0.5rem; 
+    gap: 0.3rem;
     position: relative;
 }
 
+.site-footer .footer-section-custom {
+    flex: 1 1 200px;
+    padding: 0 0.5rem;
+    position: relative;
+    min-height: auto; /* Obezbedi da sekcija bude samo koliko treba */
+}
+
 /* Vertikalne zlatne linije (3px) */
-.site-footer .footer-section-custom:nth-child(1)::after, 
+.site-footer .footer-section-custom:nth-child(1)::after,
 .site-footer .footer-section-custom:nth-child(2)::after {
     content: '';
     position: absolute;
     top: 0;
-    right: -0.5rem; 
+    right: -0.5rem;
     height: 100%;
-    width: 3px; 
+    width: 3px;
     background: var(--accent-gold);
 }
+
 .site-footer .footer-section-custom:last-child::after {
     content: none;
 }
 
-/* 🚀 KRITIČNO: NASLOVI SEKCIJA (PRVI RED/Brend Naziv) - POVEĆANI ZA 10% 🚀 */
+/* NASLOVI SEKCIJA */
 .site-footer .footer-section-custom h3 {
-    color: var(--accent-gold) !important; 
-    margin-bottom: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    font-size: 1.43em !important; 
-    font-weight: 600 !important;
-    border-bottom: 3px solid var(--accent-gold) !important;
-    padding-bottom: 0.15rem !important;  /* SMANJENO sa 0.2rem na 0.15rem */
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
+    font-size: 1.43em;
+    font-weight: 600;
+    border-bottom: 3px solid var(--accent-gold);
+    padding-bottom: 0.15rem;
+    min-height: 2rem; /* Fiksna visina za naslove */
 }
 
-/* Linkovi i P tagovi su automatski smanjeni nasleđivanjem od .site-footer (1.17em) */
+/* Linkovi i tekst */
 .site-footer .footer-section-custom.links a {
-    color: #ccc !important;
-    margin-bottom: 0.2rem !important;  /* SMANJENO sa 0.3rem na 0.2rem */
+    color: #ccc;
+    margin-bottom: 0.2rem;
+    display: block;
+    text-decoration: none;
 }
 
 .site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    color: #ccc; 
+    margin-bottom: 0.3rem;
+    color: #ccc;
+    line-height: 1.2;
 }
 
-/* 🚀 KRITIČNO: IKONE DRUŠTVENIH MREŽA - FORSIRANA ZLATNA BOJA I VELIČINA 🚀 */
+/* ===== KRITIČNI DEO: DRUŠTVENE MREŽE BEZ VIŠKA PROSTORA ===== */
 .site-footer .social-links-custom {
-    display: flex !important;
-    gap: 2rem !important; 
-    margin-top: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    justify-content: center !important; 
-}
-.site-footer .social-links-custom a {
-    color: #D4AF37 !important; 
-    font-size: 2.8rem !important; 
-    line-height: 1 !important; 
+    display: flex;
+    gap: 1.5rem; /* Smanjio sa 2rem */
+    margin-top: 0.3rem;
+    margin-bottom: 0; /* OBRISATI BILO KAKAV DODATNI PROSTOR ISPOD */
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0; /* Nema prostora ispod */
+    height: auto; /* Neka bude samo koliko treba */
 }
 
+.site-footer .social-links-custom a {
+    color: #D4AF37;
+    font-size: 2.5rem; /* Smanjio malo */
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.site-footer .social-links-custom a:hover {
+    color: #F4C44D;
+}
 
 /* Donji deo futera (Copyright) */
 .site-footer .footer-bottom-custom {
-    text-align: center !important;
-    padding: 0.5rem 0 !important;  /* SMANJENO sa 0.7rem na 0.5rem */
-    border-top: 1px solid #333 !important;
-    margin-top: 0.3rem !important;  /* SMANJENO sa 0.5rem na 0.3rem */
-    font-size: 0.8em !important; 
-    color: #aaa !important;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-top: 1px solid #333;
+    margin-top: 0.3rem;
+    font-size: 0.8em;
+    color: #aaa;
+    clear: both; /* Očisti float efekte */
 }
 
 /* Prilagođavanje za manje ekrane */
 @media (max-width: 768px) {
     .site-footer .footer-content-custom {
-        flex-direction: column !important;
-        gap: 0.8rem !important;  /* SMANJENO sa 1rem na 0.8rem */
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0 1rem 0.3rem; /* Smanjen bottom padding */
     }
-
+    
+    .site-footer .footer-section-custom {
+        padding: 0.3rem 0; /* Smanjen padding */
+    }
+    
     .site-footer .footer-section-custom::after {
-        content: none !important;
+        content: none;
     }
-
+    
     .site-footer .footer-section-custom.contact p {
-        text-align: center !important; 
+        text-align: center;
         max-width: 100%;
-        margin: 0 auto 0.5rem auto;  /* SMANJENO sa 0.7rem na 0.5rem */
+        margin: 0 auto 0.3rem auto;
     }
-
+    
     .site-footer .social-links-custom {
-        justify-content: center !important;
+        gap: 1.2rem; /* Još manje na mobilnom */
+        margin-top: 0.2rem;
     }
+    
+    .site-footer .social-links-custom a {
+        font-size: 2.2rem; /* Manje na mobilnom */
+    }
+    
+    .site-footer .footer-section-custom h3 {
+        min-height: 1.8rem; /* Manja fiksna visina na mobilnom */
+    }
+}
+
+/* Dodatno: Reset bilo kakvog default padding/margin na ikonama */
+.site-footer .social-links-custom i,
+.site-footer .social-links-custom svg {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
 }
 /* HEADER SA PODNASLOVOM */
 header { 
