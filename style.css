@@ -577,7 +577,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* ===== FILTERI I SORTIRANJE (Panel) - Vraćen na osnovni stil ===== */
+/* ===== FILTERI I SORTIRANJE (Panel) - ISPRAVNO INICIJALNO SKRIVANJE ===== */
 .filter-sort-panel {
     position: absolute;
     top: 50px; 
@@ -589,10 +589,16 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 26px; 
     z-index: 500;
-    transition: all 0.3s; /* Ostavljamo tranziciju za active klasu */
+    
+    /* 1. VRAĆENO: INICIJALNO SKRIVANJE */
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateY(13px); 
+    
+    transition: all 0.3s; 
 }
 
-/* Pretpostavljamo da JS dodaje active klasu i stilove za prikaz, npr.: */
+/* 2. Aktivacija, koju kontroliše JS klikom na dugme */
 .filter-sort-panel.active {
     opacity: 1;
     visibility: visible;
