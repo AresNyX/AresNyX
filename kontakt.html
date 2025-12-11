@@ -154,7 +154,14 @@
                     </div>
                 </div>
                 
-               <div class="contact-item contact-phone-clickable contact-clickable" onclick="pozoviNas()">
+             <!-- Zameni postojeće contact-item divove sa ovim: -->
+
+<div class="contact-item contact-phone-clickable clickable" 
+     onclick="pozoviNas()" 
+     onkeydown="if(event.key === 'Enter' || event.key === ' ') pozoviNas()" 
+     tabindex="0" 
+     role="button" 
+     aria-label="Pozovite nas na telefon +381 64 8700220">
     <i class="fas fa-phone fa-fw"></i>
     <div class="contact-details">
         <h3>Telefon</h3>
@@ -162,13 +169,18 @@
     </div>
 </div>
 
-<div class="contact-item contact-email-clickable contact-clickable" onclick="posaljiEmail()">
+<div class="contact-item contact-email-clickable clickable" 
+     onclick="posaljiEmail()"
+     onkeydown="if(event.key === 'Enter' || event.key === ' ') posaljiEmail()" 
+     tabindex="0" 
+     role="button"
+     aria-label="Pošaljite nam email na ares.nyx.info@gmail.com">
     <i class="fas fa-envelope fa-fw"></i>
     <div class="contact-details">
         <h3>Email</h3>
         <p>ares.nyx.info@gmail.com</p>
     </div>
-</div> 
+</div>
             
             <div class="contact-form">
                 <h2 class="section-title">Pošaljite nam Poruku</h2>
