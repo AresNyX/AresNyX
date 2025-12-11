@@ -310,7 +310,33 @@ body.no-scroll { overflow: hidden; }
         font-size: 2.2rem;
     }
 }
+/* Za footer kontakt linkove - specifični stilovi */
+.site-footer .contact-link {
+    color: #ccc !important;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
 
+.site-footer .contact-link:hover {
+    color: var(--accent-gold) !important;
+    background-color: rgba(212, 175, 55, 0.1);
+    transform: translateY(-1px);
+}
+
+.site-footer .contact-email {
+    border-bottom: 1px dashed rgba(204, 204, 204, 0.5);
+}
+
+.site-footer .contact-email:hover {
+    border-bottom-color: var(--accent-gold);
+}
+
+.site-footer .contact-phone {
+    font-weight: 600;
+}
 /* HEADER SA PODNASLOVOM */
 header { 
     background: var(--primary-dark); 
