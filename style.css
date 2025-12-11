@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl */
+/* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS 🛑 */
@@ -44,7 +44,8 @@ body.no-scroll { overflow: hidden; }
     padding: 1rem 2rem; 
     position: sticky; 
     top: 0; 
-    z-index: 1000; 
+    /* Z-INDEX OPTIMIZACIJA */
+    z-index: 999; 
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     border-top: 2px solid var(--accent-gold); 
 }
@@ -187,14 +188,15 @@ body.no-scroll { overflow: hidden; }
     cursor: pointer; 
     font-size: 1rem; 
     font-weight: 600;
+    transition: var(--transition); 
 }
 .filter-sort-btn:hover { background: var(--accent-gold); }
 
-/* ===== FOOTER - KOMPAKTNIJI ===== */
+/* ===== FOOTER - GLAVNI STILOVI (Kombinovani i univerzalni) ===== */
 .site-footer {
     background-color: #121212;
     color: #f4f4f4;
-    padding: 0.5rem 0 0.3rem; /* Smanjeno bottom padding */
+    padding: 1rem 0 0.8rem; /* Povećan globalni padding (iz starog shop-page bloka) */
     margin-top: 1rem;
     font-size: 1.17em;
     width: 100%;
@@ -204,17 +206,18 @@ body.no-scroll { overflow: hidden; }
 .site-footer .footer-content-custom {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem 0.3rem; /* Smanjeno bottom padding */
+    padding: 1rem 1.5rem 0.8rem; /* Povećan padding (iz starog shop-page bloka) */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 0.3rem;
+    align-items: flex-start;
+    gap: 1rem; /* Veći razmak između kolona (iz starog shop-page bloka) */
     position: relative;
 }
 
 .site-footer .footer-section-custom {
     flex: 1 1 200px;
-    padding: 0 0.5rem;
+    padding: 0.5rem 0.8rem; /* Veći padding unutar sekcije (iz starog shop-page bloka) */
     position: relative;
 }
 
@@ -236,147 +239,8 @@ body.no-scroll { overflow: hidden; }
 /* NASLOVI SEKCIJA */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold);
-    margin-bottom: 0.3rem;
-    font-size: 1.43em;
-    font-weight: 600;
-    border-bottom: 3px solid var(--accent-gold);
-    padding-bottom: 0.15rem;
-}
-
-/* Linkovi i tekst */
-.site-footer .footer-section-custom.links a {
-    color: #ccc;
-    margin-bottom: 0.2rem;
-    display: block;
-    text-decoration: none;
-}
-
-.site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.3rem;
-    color: #ccc;
-    line-height: 1.2;
-}
-
-/* DRUŠTVENE MREŽE - BEZ VIŠKA PROSTORA */
-.site-footer .social-links-custom {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 0.2rem; /* Smanjeno */
-    margin-bottom: 0; /* OVO UKLANJA PROSTOR ISPOD IKONA! */
-    justify-content: center;
-    align-items: center;
-}
-
-.site-footer .social-links-custom a {
-    color: #D4AF37;
-    font-size: 2.5rem;
-    line-height: 1;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.site-footer .social-links-custom a:hover {
-    color: #F4C44D;
-}
-
-/* Donji deo futera (Copyright) */
-.site-footer .footer-bottom-custom {
-    text-align: center;
-    padding: 0.4rem 0; /* Smanjeno */
-    border-top: 1px solid #333;
-    margin-top: 0.2rem; /* Smanjeno */
-    font-size: 0.8em;
-    color: #aaa;
-}
-
-/* Prilagođavanje za manje ekrane */
-@media (max-width: 768px) {
-    .site-footer .footer-content-custom {
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 0 1rem 0.2rem; /* Smanjeno */
-    }
-    
-    .site-footer .footer-section-custom::after {
-        content: none;
-    }
-    
-    .site-footer .social-links-custom {
-        gap: 1.2rem;
-        margin-top: 0.1rem; /* Još manje na mobilnom */
-    }
-    
-    .site-footer .social-links-custom a {
-        font-size: 2.2rem;
-    }
-}
-/* Za footer kontakt linkove - specifični stilovi */
-.site-footer .contact-link {
-    color: #ccc !important;
-    text-decoration: none;
-    display: inline-block;
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
-    transition: all 0.3s;
-}
-
-.site-footer .contact-link:hover {
-    color: var(--accent-gold) !important;
-    background-color: rgba(212, 175, 55, 0.1);
-    transform: translateY(-1px);
-}
-
-.site-footer .contact-email {
-    border-bottom: 1px dashed rgba(204, 204, 204, 0.5);
-/* ===== FOOTER - KOMPAKTNIJI ===== */
-.site-footer {
-    background-color: #121212;
-    color: #f4f4f4;
-    padding: 0.8rem 0 0.5rem; /* Originalni padding */
-    margin-top: 1rem;
-    font-size: 1.17em;
-    width: 100%;
-    text-align: center;
-}
-
-.site-footer .footer-content-custom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem 1.5rem 0.3rem; /* Normalan padding */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start; /* OVO JE KLJUČNO - poravnato na vrh */
-    gap: 0.5rem;
-    position: relative;
-}
-
-.site-footer .footer-section-custom {
-    flex: 1 1 200px;
-    padding: 0.3rem 0.5rem;
-    position: relative;
-}
-
-/* Vertikalne zlatne linije (3px) */
-.site-footer .footer-section-custom:nth-child(1)::after, 
-.site-footer .footer-section-custom:nth-child(2)::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -0.5rem; 
-    height: 100%;
-    width: 3px; 
-    background: var(--accent-gold);
-}
-.site-footer .footer-section-custom:last-child::after {
-    content: none;
-}
-
-/* NASLOVI SEKCIJA */
-.site-footer .footer-section-custom h3 {
-    color: var(--accent-gold);
-    margin-bottom: 0.4rem; /* Malo veća margina */
-    font-size: 1.35em; /* Malo veći font */
+    margin-bottom: 0.5rem; /* Veća margina (iz starog shop-page bloka) */
+    font-size: 1.35em; 
     font-weight: 600;
     border-bottom: 2px solid var(--accent-gold);
     padding-bottom: 0.2rem;
@@ -385,25 +249,25 @@ body.no-scroll { overflow: hidden; }
 /* Linkovi i tekst */
 .site-footer .footer-section-custom.links a {
     color: #ccc;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.3rem; /* Veća margina (iz starog shop-page bloka) */
     display: block;
     text-decoration: none;
     font-size: 1em;
-    line-height: 1.4; /* Bolji line height */
+    line-height: 1.5; /* Povećan line height (iz starog shop-page bloka) */
 }
 
 .site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem; /* Veća margina (iz starog shop-page bloka) */
     color: #ccc;
-    line-height: 1.4;
+    line-height: 1.5; /* Povećan line height (iz starog shop-page bloka) */
 }
 
 /* DRUŠTVENE MREŽE - BEZ VIŠKA PROSTORA */
 .site-footer .social-links-custom {
     display: flex;
     gap: 1.5rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0; /* OVO UKLANJA PROSTOR ISPOD IKONA */
+    margin-top: 0.3rem; 
+    margin-bottom: 0; 
     padding: 0;
     justify-content: center;
     align-items: center;
@@ -425,15 +289,135 @@ body.no-scroll { overflow: hidden; }
 /* Donji deo futera (Copyright) */
 .site-footer .footer-bottom-custom {
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0; 
     border-top: 1px solid #333;
     margin-top: 0.3rem;
     font-size: 0.8em;
     color: #aaa;
 }
 
+/* Za footer kontakt linkove - specifični stilovi */
+.site-footer .contact-link {
+    color: #ccc; 
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
 
-/* Prilagođavanje za manje ekrane */
+.site-footer .contact-link:hover {
+    color: var(--accent-gold);
+    background-color: rgba(212, 175, 55, 0.1);
+    transform: translateY(-1px);
+}
+
+.site-footer .contact-email {
+    border-bottom: 1px dashed rgba(204, 204, 204, 0.5);
+}
+/* ===== FOOTER - GLAVNI STILOVI (Kompaktni i univerzalni) ===== */
+.site-footer {
+    background-color: #121212;
+    color: #f4f4f4;
+    /* Smanjeno globalno vertikalno punjenje */
+    padding: 0.5rem 0 0.3rem; 
+    margin-top: 1rem;
+    font-size: 1.17em;
+    width: 100%;
+    text-align: center;
+}
+
+.site-footer .footer-content-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Smanjeno punjenje sadržaja */
+    padding: 0.5rem 1.5rem 0.3rem; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Smanjen razmak između kolona */
+    gap: 0.5rem; 
+    position: relative;
+}
+
+.site-footer .footer-section-custom {
+    flex: 1 1 200px;
+    /* Smanjen padding unutar sekcije */
+    padding: 0.3rem 0.5rem; 
+    position: relative;
+}
+
+/* Vertikalne zlatne linije (3px) */
+.site-footer .footer-section-custom:nth-child(1)::after, 
+.site-footer .footer-section-custom:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -0.5rem; 
+    height: 100%;
+    width: 3px; 
+    background: var(--accent-gold);
+}
+.site-footer .footer-section-custom:last-child::after {
+    content: none;
+}
+
+/* NASLOVI SEKCIJA */
+.site-footer .footer-section-custom h3 {
+    color: var(--accent-gold);
+    /* Smanjena margina */
+    margin-bottom: 0.4rem; 
+    font-size: 1.35em; 
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 0.2rem;
+}
+
+/* Linkovi i tekst */
+.site-footer .footer-section-custom.links a {
+    color: #ccc;
+    /* Smanjena margina */
+    margin-bottom: 0.2rem; 
+    display: block;
+    text-decoration: none;
+    font-size: 1em;
+    /* Smanjen line height */
+    line-height: 1.4; 
+}
+
+.site-footer .footer-section-custom.contact p {
+    /* Smanjena margina */
+    margin-bottom: 0.3rem; 
+    color: #ccc;
+    /* Smanjen line height */
+    line-height: 1.4; 
+}
+
+/* DRUŠTVENE MREŽE */
+.site-footer .social-links-custom {
+    display: flex;
+    gap: 1.5rem;
+    /* Smanjena margina */
+    margin-top: 0.3rem; 
+    margin-bottom: 0; 
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Donji deo futera (Copyright) */
+.site-footer .footer-bottom-custom {
+    text-align: center;
+    padding: 0.5rem 0; 
+    border-top: 1px solid #333;
+    /* Smanjena margina */
+    margin-top: 0.3rem; 
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* Prilagođavanje za manje ekrane (ovde su takođe korišćene kompaktne vrednosti) */
 @media (max-width: 768px) {
     .site-footer .footer-content-custom {
         flex-direction: column;
@@ -449,107 +433,13 @@ body.no-scroll { overflow: hidden; }
         content: none;
     }
     
-    .site-footer .social-links-custom {
-        gap: 1.2rem;
-        margin-top: 0.2rem;
-    }
-    
-    .site-footer .social-links-custom a {
-        font-size: 1.8rem;
-    }
-    
     .site-footer .footer-section-custom h3 {
         font-size: 1.2em;
         margin-bottom: 0.3rem;
     }
-    
-    /* Za shop na mobilnom - još malo veći razmak */
-    body.shop-page .site-footer .footer-content-custom {
-        padding: 0.8rem 1rem 0.5rem;
-        gap: 0.8rem;
-    }
-    
-    body.shop-page .site-footer .footer-section-custom {
-        padding: 0.4rem 0;
-    }
 }
 
-/* ===== STILOVI ZA KLIKABILNE KONTAKTE NA KONTAKT STRANICI ===== */
-/* Ovo će se primeniti SAMO na kontakt stranicu */
-.contact-item.clickable {
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 8px;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
-}
 
-.contact-item.clickable:hover {
-    background-color: rgba(212, 175, 55, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-/* Stil za telefon na kontakt stranici */
-.contact-item.contact-phone-clickable .contact-details p {
-    color: #D4AF37;
-    font-weight: 700;
-    font-size: 1.1rem;
-    position: relative;
-    display: inline-block;
-}
-
-.contact-item.contact-phone-clickable .contact-details p::after {
-    content: "📞";
-    margin-left: 5px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-}
-
-.contact-item.contact-phone-clickable:hover .contact-details p::after {
-    opacity: 1;
-    animation: ring 0.5s ease-in-out;
-}
-
-@keyframes ring {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(15deg); }
-    50% { transform: rotate(-15deg); }
-    75% { transform: rotate(10deg); }
-    100% { transform: rotate(0deg); }
-}
-
-/* Stil za email na kontakt stranici */
-.contact-item.contact-email-clickable .contact-details p {
-    color: #D4AF37;
-    font-weight: 700;
-    font-size: 1.1rem;
-    position: relative;
-    display: inline-block;
-    border-bottom: 2px dashed rgba(212, 175, 55, 0.5);
-}
-
-.contact-item.contact-email-clickable .contact-details p::after {
-    content: "✉️";
-    margin-left: 5px;
-    opacity: 0.7;
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-.contact-item.contact-email-clickable:hover .contact-details p::after {
-    opacity: 1;
-    transform: translateY(-3px);
-}
-
-/* Indikator da je klikabilno na kontakt stranici */
-.contact-item.clickable .fa {
-    color: #D4AF37;
-    transition: color 0.3s;
-}
-
-.contact-item.clickable:hover .fa {
-    color: #F4C44D;
-}
 /* HEADER SA PODNASLOVOM */
 header { 
     background: var(--primary-dark); 
@@ -614,7 +504,8 @@ nav a:hover, nav a.active {
     display: none;
     position: fixed; top: 0; left: 0; 
     width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
-    z-index: 2000; backdrop-filter: blur(5px); 
+    z-index: 1010; 
+    backdrop-filter: blur(5px); 
 }
 .modal-overlay.active { display: block; }
 .modal-container { 
@@ -812,8 +703,10 @@ nav a:hover, nav a.active {
 .apply-filters-btn {
     width: 100%; background: var(--success); color: white; border: none;
     padding: 1.04rem; border-radius: 8px; margin-top: 3.25rem; cursor: pointer;
-    font-size: 1.3rem; font-weight: 600;
+    font-size: 1.3rem; font-weight: 600; transition: var(--transition);
 }
+.apply-filters-btn:hover { background: #1e8449; }
+
 @media (max-width: 600px) {
     .filter-sort-panel { width: 95%; left: 50%; transform: translateX(-50%) translateY(10px); right: auto; }
     .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
@@ -823,7 +716,9 @@ nav a:hover, nav a.active {
 .cart-sidebar { 
     position: fixed; top: 0; right: -520px;
     width: 520px; height: 100vh; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
-    transition: all 0.3s; z-index: 1500; display: flex; flex-direction: column; 
+    transition: all 0.3s; 
+    z-index: 1000; 
+    display: flex; flex-direction: column; 
 }
 @media (max-width: 450px) { .cart-sidebar { width: 100%; right: -100%; } }
 .cart-sidebar.active { right: 0; }
@@ -840,10 +735,12 @@ nav a:hover, nav a.active {
 .cart-item-size { margin-bottom: 0; font-size: 1.17rem; color: var(--primary-dark); font-weight: 500; }
 .cart-item-controls { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 0.65rem; }
 .cart-item-qty-wrapper { display: flex; align-items: center; gap: 1.04rem; }
-.cart-item-qty-btn { width: 39px; height: 39px; border: 1px solid var(--gray-medium); background: white; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 1.2rem; }
+.cart-item-qty-btn { width: 39px; height: 39px; border: 1px solid var(--gray-medium); background: white; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 1.2rem; transition: background 0.2s; }
+.cart-item-qty-btn:hover { background: var(--gray-medium); }
 .cart-item-qty { padding: 0.39rem 0.78rem; background: var(--gray-light); border-radius: 4px; font-weight: 600; min-width: 39px; text-align: center; flex-shrink: 0; font-size: 1.2rem; }
 .cart-item-price { font-weight: 700; color: var(--primary-dark); font-size: 1.3rem; flex-shrink: 0; }
-.cart-item-remove { position: absolute; top: 1.04rem; right: 0; background: var(--danger); color: white; border: none; width: 32.5px; height: 32.5px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.04rem; }
+.cart-item-remove { position: absolute; top: 1.04rem; right: 0; background: var(--danger); color: white; border: none; width: 32.5px; height: 32.5px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.04rem; transition: background 0.2s; }
+.cart-item-remove:hover { background: #c0392b; }
 .cart-footer { padding: 1.95rem; border-top: 1px solid var(--gray-medium); background: var(--gray-light); position: sticky; bottom: 0; z-index: 10; }
 .cart-actions-footer { margin-bottom: 1.3rem; }
 .clear-cart-btn { 
@@ -851,6 +748,7 @@ nav a:hover, nav a.active {
     cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 1.43rem;
     display: flex; align-items: center; justify-content: center; gap: 0.65rem; margin-bottom: 1.3rem; 
 }
+.clear-cart-btn:hover { background: #c0392b; }
 .checkout-btn { 
     width: 100%; background: var(--primary-dark); color: white; border: none; padding: 1.3rem; border-radius: 8px; 
     font-size: 1.43rem; font-weight: 600; cursor: pointer; transition: var(--transition); 
@@ -875,10 +773,14 @@ nav a:hover, nav a.active {
     width: 100%; padding: 1.04rem; border: 1px solid var(--gray-medium); border-radius: 6px;
     font-size: 1.3rem; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); transition: border-color 0.3s;
 }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--accent-gold); outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
 .submit-btn {
     width: 100%; background: var(--success); color: white; border: none; padding: 1.3rem; border-radius: 8px; 
     font-size: 1.43rem; font-weight: 700; cursor: pointer; transition: var(--transition); margin-top: 1.95rem; 
 }
+.submit-btn:hover { background: #1e8449; }
 .preview-container { display: flex; flex-wrap: wrap; gap: 1.95rem; }
 .preview-shipping, .preview-order { padding: 1.95rem; border-radius: 8px; background: var(--gray-light); }
 .preview-shipping { flex: 1 1 45%; }
@@ -889,14 +791,18 @@ nav a:hover, nav a.active {
 .preview-actions { display: flex; gap: 1.3rem; margin-top: 2.6rem; }
 .preview-actions button { flex: 1; padding: 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); }
 .submit-order-btn { background: var(--success); color: white; border: none; }
+.submit-order-btn:hover { background: #1e8449; }
 .edit-data-btn { background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); }
+.edit-data-btn:hover { background: var(--gray-medium); }
+
 @media (max-width: 600px) { .preview-shipping, .preview-order { flex-basis: 100%; } }
 
 /* TOAST NOTIFIKACIJA */
 .toast {
     visibility: hidden; min-width: 325px; margin-left: -162.5px; 
     background-color: var(--primary-dark); color: #fff; text-align: center; 
-    border-radius: 8px; padding: 20.8px; position: fixed; z-index: 5000; 
+    border-radius: 8px; padding: 20.8px; position: fixed; 
+    z-index: 1020; 
     left: 50%; bottom: 39px; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 .toast.show {
@@ -908,32 +814,4 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-/* ===== POVEĆAN RAZMAK ZA SHOP FOOTER ===== */
 
-/* 1. Glavni footer container */
-.site-footer .footer-content-custom {
-    padding: 1rem 1.5rem 0.8rem !important; /* Povećano: 1rem gore, 0.8rem dole */
-    gap: 1rem !important; /* Veći razmak između kolona */
-}
-
-/* 2. Sekcije unutar footera */
-.site-footer .footer-section-custom {
-    padding: 0.5rem 0.8rem !important; /* Veći padding unutar svake sekcije */
-}
-
-/* 3. Naslovi sekcija */
-.site-footer .footer-section-custom h3 {
-    margin-bottom: 0.5rem !important; /* Veća margina ispod naslova */
-}
-
-/* 4. Linkovi */
-.site-footer .footer-section-custom.links a {
-    margin-bottom: 0.3rem !important; /* Veća margina između linkova */
-    line-height: 1.5 !important;
-}
-
-/* 5. Kontakt informacije */
-.site-footer .footer-section-custom.contact p {
-    margin-bottom: 0.4rem !important; /* Veća margina između redova */
-    line-height: 1.5 !important;
-}
