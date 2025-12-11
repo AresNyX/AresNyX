@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA) */
+/* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA SA KOREKCIJAMA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS 🛑 */
@@ -38,16 +38,17 @@ body.no-scroll { overflow: hidden; }
     box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
-/* HEADER (Navigacija) */
+/* ===== HEADER (Glavna navigacija - za SHOP stranice) ===== */
 .header { 
     background: var(--primary-dark); 
     padding: 1rem 2rem; 
     position: sticky; 
     top: 0; 
-    /* Z-INDEX OPTIMIZACIJA */
     z-index: 999; 
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    border-top: 2px solid var(--accent-gold); 
+    /* LINIJA POMERENA SA 'nav' TAGE GORE NA HEADER */
+    border-bottom: 2px solid var(--accent-gold); 
+    /* UKLONJENO: border-top: 2px solid var(--accent-gold); */ 
 }
 
 .navbar { 
@@ -91,6 +92,72 @@ body.no-scroll { overflow: hidden; }
     padding: 2px 6px; 
     font-size: 0.8em; 
     font-weight: 600; 
+}
+
+/* ===== DODATNA NAVIGACIJA (nav tag) - PRILAGOĐENA Flexbox-u ===== */
+nav {
+    background-color: var(--primary-dark);
+    padding: 10px 0;
+    /* UKLONJENO: border-top: 2px solid #D4AF37; (sada je na .header) */ 
+    text-align: center;
+    
+    /* DODATO: Flexbox za raspored dugmadi */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0; /* UKLONJENA MARGINA: Koristimo gap na 'nav' */
+    font-weight: 400;
+    font-size: 1.3em;
+    transition: color 0.3s;
+    
+    /* Neophodno za fiksnu širinu i padding */
+    display: inline-block; 
+    padding: 8px 12px;
+    border-radius: 4px; /* Dodato iz #main-nav */
+}
+nav a:hover, nav a.active {
+    color: var(--accent-gold);
+    background-color: rgba(212, 175, 55, 0.2); /* Dodato iz #main-nav */
+}
+
+/* ===== DESKTOP STIL (FIKSNA ŠIRINA 140px) ===== */
+@media (min-width: 601px) {
+    nav a {
+        width: 140px; /* FIKSNA ŠIRINA ZA DESKTOP */
+    }
+}
+
+/* ===== MOBILNI PRIKAZ (Ultimativna korekcija za 3+2 raspored) ===== */
+@media (max-width: 600px) {
+    nav {
+        padding: 15px 5px; 
+        gap: 5px; 
+        justify-content: space-between; 
+    }
+    
+    nav a {
+        /* KLJUČNO: PONIŠTAVANJE ŠIRINE SADRŽAJA I FORSIRANJE FLEKSIBILNOSTI */
+        width: 33% !important; 
+        min-width: 0 !important; 
+        flex-shrink: 1; 
+        flex-grow: 1; 
+        
+        font-size: 1.1em; 
+        padding: 8px 3px; 
+    }
+}
+/* KRAJ NAVIGACIJE */
+
+/* CART U NAVIGACIJI */
+.cart-nav-link {
+    position: relative;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 /* PROIZVODI */
@@ -356,7 +423,7 @@ body.no-scroll { overflow: hidden; }
     }
 }
 
-/* HEADER SA PODNASLOVOM */
+/* HEADER SA PODNASLOVOM (za index.html) */
 header { 
     background: var(--primary-dark); 
     color: #fff; 
@@ -387,32 +454,6 @@ header h2, .subtitle {
     letter-spacing: 1px;
     display: block;
     margin-top: 8px;
-}
-
-/* NAVIGACIJA (Dodatna) */
-nav {
-    background-color: var(--primary-dark);
-    padding: 10px 0;
-    border-top: 2px solid #D4AF37; 
-    text-align: center;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 400;
-    font-size: 1.3em;
-    transition: color 0.3s;
-}
-nav a:hover, nav a.active {
-    color: var(--accent-gold);
-}
-
-/* CART U NAVIGACIJI */
-.cart-nav-link {
-    position: relative;
-    margin-left: auto;
-    margin-right: 20px;
 }
 
 /* ===== MODAL (Proizvod) ===== */
@@ -730,4 +771,5 @@ nav a:hover, nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
 
