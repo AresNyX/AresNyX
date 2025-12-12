@@ -687,58 +687,102 @@ header h2, .subtitle {
     .modal-gallery, .modal-details { flex: 1 1 100%; }
 }
 
-/* ===== FILTERI I SORTIRANJE ===== */
+/* ===== FILTERI I SORTIRANJE (Kompaktna Verzija) ===== */
 .filter-sort-panel {
     position: absolute;
-    top: 50px; right: 0;
-    width: 390px; 
+    top: 45px; /* Malo niže */
+    right: 0;
+    
+    /* KRITIČNO: NOVA, MANJA ŠIRINA */
+    width: 280px; 
+    
     background: white;
     border: 1px solid var(--gray-medium);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 26px; 
+    
+    /* KRITIČNO: SMANJENI PADDING */
+    padding: 15px; 
+    
     z-index: 500;
     opacity: 0; 
     visibility: hidden; 
-    transform: translateY(13px); 
+    transform: translateY(10px); 
     pointer-events: none;
     transition: all 0.3s; 
 }
 .filter-sort-panel.active {
     opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
 }
+
+/* NASLOVI UNUTAR PANELA (H3) */
 .filter-sort-panel h3 {
     border-bottom: 1px solid var(--gray-medium);
-    padding-bottom: 0.91rem; 
-    margin-top: 1.95rem; 
-    margin-bottom: 1.56rem; 
-    font-size: 1.56rem; 
+    /* SMANJENI RAZMACI */
+    padding-bottom: 8px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    font-size: 1.2rem; /* Smanjena veličina naslova */
     color: var(--primary-dark);
 }
+
+/* SELECT/DROP-DOWN POLJA */
 .filter-sort-panel select {
-    height: 57px; padding: 13px 15.6px; font-size: 1.3rem; width: 100%; 
-    margin-bottom: 19.5px; border-radius: 6px; border: 1px solid var(--gray-medium);
+    height: 40px; /* Smanjena visina */
+    padding: 8px 10px; /* Smanjen padding */
+    font-size: 1rem; /* Smanjen font */
+    width: 100%; 
+    margin-bottom: 10px; /* Smanjena margina */
+    border-radius: 6px; 
+    border: 1px solid var(--gray-medium);
 }
-.size-filter-options { display: flex; gap: 13px; flex-wrap: wrap; }
+
+/* DUGMADI ZA VELIČINE */
+.size-filter-options { display: flex; gap: 8px; flex-wrap: wrap; }
+
 .size-btn {
     background: var(--gray-light); border: 1px solid var(--gray-medium);
-    padding: 1.04rem 1.3rem; font-size: 1.3rem; min-width: 71.5px; text-align: center;
-    border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s;
+    /* SMANJENI PADDING DUGMADI */
+    padding: 8px 10px; 
+    font-size: 0.9rem; /* Smanjen font */
+    min-width: 50px; 
+    text-align: center;
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: 500; 
+    transition: all 0.2s;
 }
 .size-btn:hover { background: var(--accent-gold); color: white; border-color: var(--accent-gold); }
-.size-btn.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); font-size: 1.3rem; }
+.size-btn.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); font-size: 0.9rem; }
+
+/* DUGME PRIMENI FILTERE */
 .apply-filters-btn {
-    width: 100%; background: var(--success); color: white; border: none;
-    padding: 1.04rem; border-radius: 8px; margin-top: 3.25rem; cursor: pointer;
-    font-size: 1.3rem; font-weight: 600; transition: var(--transition);
+    width: 100%; 
+    background: var(--success); 
+    color: white; border: none;
+    /* SMANJENI PADDING I MARGINA */
+    padding: 10px; 
+    border-radius: 6px; 
+    margin-top: 20px; 
+    cursor: pointer;
+    font-size: 1.1rem; /* Smanjen font */
+    font-weight: 600; 
+    transition: var(--transition);
 }
 .apply-filters-btn:hover { background: #1e8449; }
 
+
+/* ===== MEDIA QUERIES ZA FILTER (Mobilni) ===== */
+
 @media (max-width: 600px) {
-    .filter-sort-panel { width: 95%; left: 50%; transform: translateX(-50%) translateY(10px); right: auto; }
+    .filter-sort-panel { 
+        width: 95%; /* Ostaje širina na mobilnom */
+        left: 50%; 
+        transform: translateX(-50%) translateY(10px); 
+        right: auto; 
+    }
     .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
 }
-
 /* ===== KORPA ===== */
 .cart-sidebar { 
     position: fixed; top: 0; right: -520px;
