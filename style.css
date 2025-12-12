@@ -40,13 +40,13 @@ body.no-scroll { overflow: hidden; }
 /* ===== HEADER (Glavna navigacija - za SHOP stranice) ===== */
 .header { 
     background: var(--primary-dark); 
-    /* KRITIČNO: SMANJEN VERTIKALNI PADDING DA BI SE SMANJILA UKUPNA VISINA */
     padding: 0.5rem 2rem; 
     position: sticky; 
     top: 0; 
     z-index: 999; 
-    /* ZLATNA LINIJA KAO BOX SHADOW DA SE NE BI POVEĆAO HEADER JOŠ VIŠE */
-    box-shadow: 0 0 0 2px var(--accent-gold), 0 2px 20px rgba(0,0,0,0.3); 
+    
+    /* KRITIČNO: ZLATNA LINIJA KAO BOX SHADOW (2px debljine, dole) */
+    box-shadow: 0 2px 0 0 var(--accent-gold), 0 2px 20px rgba(0,0,0,0.3); 
     border-bottom: none; 
 }
 
@@ -58,6 +58,7 @@ body.no-scroll { overflow: hidden; }
     margin: 0 auto; 
 }
 
+/* ... OSTALI STILOVI HEADERA (Logo, Cart Icon) ... */
 .logo { 
     font-size: 2rem; 
     font-weight: 700; 
@@ -93,13 +94,11 @@ body.no-scroll { overflow: hidden; }
     font-weight: 600; 
 }
 
-/* ===== DODATNA NAVIGACIJA (nav tag) - PRILAGOĐENA Flexbox-u ===== */
+/* ===== DODATNA NAVIGACIJA (nav tag) ===== */
 nav {
     background-color: var(--primary-dark);
-    /* KRITIČNO: UKLONJEN PADDING DA BI SE SMANJIO HEADER */
     padding: 0; 
     text-align: center;
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
@@ -112,18 +111,23 @@ nav a {
     margin: 0; 
     font-weight: 400;
     font-size: 1.3em;
-    transition: color 0.3s;
+    transition: all 0.3s; /* Koristimo 'all' za border tranziciju */
     
     display: inline-block; 
     padding: 8px 12px;
     border-radius: 4px; 
     text-align: center;
+    
+    border: 1px solid transparent; /* Dodata transparentna granica za stabilnost */
 }
 
 nav a:hover, nav a.active {
-    /* ZLATNA BOJA: Tekst postaje zlatne boje pri hoveru/aktivnom stanju */
-    color: var(--accent-gold);
-    background-color: rgba(212, 175, 55, 0.1); 
+    /* KRITIČNO: Intenzivniji zlatni stil */
+    color: var(--accent-gold); 
+    background-color: rgba(212, 175, 55, 0.2); 
+    
+    /* ZLATNA LINIJA PO STRANICAMA DUGMETA (Hover/Active) */
+    border: 1px solid var(--accent-gold);
 }
 
 /* CART U NAVIGACIJI (Dodatno pravilo koje je bilo u kodu) */
@@ -143,7 +147,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* MOBILNI PRIKAZ (Ultimativna korekcija za 3x2 raspored) */
+/* MOBILNI PRIKAZ (3x2 Korigovani font i padding) */
 @media (max-width: 600px) {
     nav {
         padding: 15px 5px; 
@@ -152,14 +156,15 @@ nav a:hover, nav a.active {
     }
     
     nav a {
-        /* PODEŠENO NA 30% I MANJI FONT ZA 3 KOLONE */
+        /* Fleksibilnost za 3x2 raspored */
         width: 30% !important; 
-        min-width: 0 !important; /* Poništavanje širine teksta */
+        min-width: 0 !important; 
         flex-shrink: 1; 
         flex-grow: 1; 
         
-        font-size: 1.2em; /* SMANJEN FONT */
-        padding: 6px 1px; 
+        /* Font i padding ostavljamo na željenim vrednostima */
+        font-size: 1.2em; 
+        padding: 8px 3px; 
     }
 }
 /* KRAJ NAVIGACIJE */
