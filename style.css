@@ -65,17 +65,22 @@ h2 {
     border-bottom: none; 
 }
 
-.navbar { 
+navbar { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
     max-width: 1400px; 
     margin: 0 auto; 
     
-    /* KRITIČNO: LINIJA IZMEĐU LOGA/CART I NAVIGACIJE */
-    border-bottom: 2px solid var(--accent-gold) !important;
+    /* KRITIČNO: LINIJA KAO BOX SHADOW (FORSIRA POJAVU) */
+    /* Prvi sloj: Čvrsta, oštra zlatna linija 2px debljine na dnu (0px blur) */
+    box-shadow: 0 2px 0 0 var(--accent-gold), 
+                /* Drugi sloj: Senka za dubinu Headera */
+                0 2px 20px rgba(0,0,0,0.3);
+    
+    /* Uklanjamo sve bordere kako se ne bi sukobili */
+    border-bottom: none !important; 
 }
-
 
 .logo { 
     font-size: 2rem; 
