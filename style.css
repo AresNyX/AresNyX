@@ -592,31 +592,35 @@ header h2, .subtitle {
 .modal-details { 
     flex: 1 1 45%; 
 }
-
 /* HORIZONTALNI WRAPPER: Količina i Dimenzije - KRITIČNA IZMENA REDOSLEDA */
 .sizing-and-quantity-wrapper {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* Počinje na vrhu */
     gap: 2rem;
     margin-bottom: 2rem;
-    /* REDOSLED (za desktop): Količina (Order 1) ide pre Veličina (Order 2) */
+    /* REDOSLED (desktop): Količina (Order 1) ide pre Veličina (Order 2) */
 }
 
 /* KOLIČINA (Quantity Input) - LEVA STRANA U WRAPPERU */
 .quantity-input-container {
     display: flex;
     align-items: center;
-    border: 1px solid var(--gray-medium);
+    border: 2px solid var(--primary-dark); /* Povećan border i boja */
     border-radius: 8px; 
-    height: 50px;
-    width: 140px; 
+    height: 60px; /* KRITIČNO: Povećana visina */
+    width: 150px; /* Povećana širina */
     flex-shrink: 0; 
-    margin-top: 2.2rem; /* Vizuelno poravnanje sa lenjirom za dimenzije */
-    order: 1; /* KRITIČNO: Postavlja Količinu prvu */
+    /* KRITIČNO: Uklanjamo margin-top koji je stvarao vizuelno neporavnanje */
+    margin-top: 0; 
+    order: 1; /* Postavlja Količinu prvu (levo) */
 }
-/* Detaljni stilovi za Quantity... (Ostavljamo ih nepromenjene od poslednje dobre verzije) */
+/* Detaljni stilovi za Quantity... */
 .quantity-input-container input {
-    width: 50px; height: 100%; text-align: center; border: none; font-size: 1.3em; font-weight: 700;
+    width: 60px; /* Povećana širina inputa */
+    height: 100%; text-align: center; border: none; 
+    font-size: 1.5em; /* KRITIČNO: Veći font */
+    font-weight: 700;
+    color: var(--primary-dark);
     -moz-appearance: textfield; 
 }
 .quantity-input-container input::-webkit-outer-spin-button,
@@ -624,20 +628,42 @@ header h2, .subtitle {
     -webkit-appearance: none; margin: 0;
 }
 .quantity-input-container button {
-    width: 45px; height: 100%; background: var(--gray-light); border: none; cursor: pointer;
-    font-size: 1.8em; font-weight: 700; transition: background 0.2s;
+    width: 45px; height: 100%; 
+    background: var(--primary-dark); /* Tamna pozadina dugmadi */
+    color: white; /* Beli tekst */
+    border: none; cursor: pointer;
+    font-size: 2em; /* KRITIČNO: Veći font dugmadi */
+    font-weight: 700; 
+    transition: background 0.2s;
 }
-.quantity-input-container button:first-child { border-right: 1px solid var(--gray-medium); border-radius: 8px 0 0 8px;}
-.quantity-input-container button:last-child { border-left: 1px solid var(--gray-medium); border-radius: 0 8px 8px 0; }
-.quantity-input-container button:hover { background: var(--accent-gold); color: white; }
+.quantity-input-container button:first-child { 
+    border-right: 2px solid var(--accent-gold); /* Zlatna linija između */
+    border-radius: 6px 0 0 6px; /* Malo manji radius da se uklopi */
+}
+.quantity-input-container button:last-child { 
+    border-left: 2px solid var(--accent-gold); /* Zlatna linija između */
+    border-radius: 0 6px 6px 0; 
+}
+.quantity-input-container button:hover { 
+    background: var(--accent-gold); /* Hover menja na zlatnu */
+    color: var(--primary-dark); /* Tekst crn na hoveru */
+}
 
 
 /* VELIČINE (size-option) - DESNA STRANA U WRAPPERU */
 .variation-section {
-    order: 2; /* KRITIČNO: Postavlja Veličine drugu (desno od količine) */
+    order: 2; /* Postavlja Veličine drugu (desno) */
     flex-grow: 1;
 }
 
+.variation-section h3 {
+    font-size: 1.1rem; 
+    font-weight: 600;
+    /* KRITIČNO: Usklađujemo margin-top sa visinom quantity boxa */
+    margin-top: 0.8rem; 
+    margin-bottom: 0.8rem;
+    color: var(--primary-dark);
+}
 .variation-section h3 {
     font-size: 1.1rem; 
     font-weight: 600;
