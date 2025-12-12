@@ -750,7 +750,102 @@ header h2, .subtitle {
         width: 100%; flex: 0 0 100%; padding: 0.8rem 1rem; font-size: 1rem;
     }
 }
+/* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
+.filter-sort-panel {
+    position: absolute;
+    top: 40px; 
+    right: 0;
+    
+    /* KRITIČNO: NOVA, MALA ŠIRINA (~200px) */
+    width: 200px; 
+    
+    background: white;
+    border: 1px solid var(--gray-medium);
+    border-radius: 6px; /* Malo manji radius */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    
+    /* KRITIČNO: MINIMALAN PADDING */
+    padding: 10px; 
+    
+    z-index: 500;
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateY(8px); 
+    pointer-events: none;
+    transition: all 0.2s; /* Brža tranzicija */
+}
+.filter-sort-panel.active {
+    opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+}
 
+/* NASLOVI UNUTAR PANELA (H3) */
+.filter-sort-panel h3 {
+    border-bottom: 1px solid var(--gray-medium);
+    /* MINIMALNI RAZMACI */
+    padding-bottom: 6px; 
+    margin-top: 5px; 
+    margin-bottom: 8px; 
+    font-size: 1.05rem; /* Još manja veličina naslova */
+    color: var(--primary-dark);
+}
+
+/* SELECT/DROP-DOWN POLJA */
+.filter-sort-panel select {
+    height: 30px; /* Minimalna visina */
+    padding: 5px 8px; /* Minimalan padding */
+    font-size: 0.9rem; /* Smanjen font */
+    width: 100%; 
+    margin-bottom: 8px; /* Smanjena margina */
+    border-radius: 4px; 
+    border: 1px solid var(--gray-medium);
+}
+
+/* DUGMADI ZA VELIČINE */
+.size-filter-options { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.size-btn {
+    background: var(--gray-light); border: 1px solid var(--gray-medium);
+    /* MINIMALAN PADDING DUGMADI */
+    padding: 5px 7px; 
+    font-size: 0.8rem; /* Minimalan font */
+    min-width: 40px; 
+    text-align: center;
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-weight: 500; 
+    transition: all 0.2s;
+}
+.size-btn:hover { background: var(--accent-gold); color: white; border-color: var(--accent-gold); }
+.size-btn.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); font-size: 0.8rem; }
+
+/* DUGME PRIMENI FILTERE */
+.apply-filters-btn {
+    width: 100%; 
+    background: var(--success); 
+    color: white; border: none;
+    /* MINIMALAN PADDING I MARGINA */
+    padding: 8px; 
+    border-radius: 5px; 
+    margin-top: 15px; 
+    cursor: pointer;
+    font-size: 1rem; /* Smanjen font */
+    font-weight: 600; 
+    transition: var(--transition);
+}
+.apply-filters-btn:hover { background: #1e8449; }
+
+
+/* ===== MEDIA QUERIES ZA FILTER (Mobilni) ===== */
+@media (max-width: 600px) {
+    .filter-sort-panel { 
+        width: 95%; 
+        left: 50%; 
+        transform: translateX(-50%) translateY(8px); 
+        right: auto; 
+        padding: 10px; /* Zadržavamo minimalan padding na mobilnom */
+    }
+    .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
+}
 
 /* ===== KORPA ===== */
 .cart-sidebar { 
