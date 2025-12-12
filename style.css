@@ -71,6 +71,7 @@ navbar {
     align-items: center; 
     max-width: 1400px; 
     margin: 0 auto; 
+    margin-top: 0 !important; 
     
     /* KRITIČNO: LINIJA KAO BOX SHADOW (FORSIRA POJAVU) */
     /* Prvi sloj: Čvrsta, oštra zlatna linija 2px debljine na dnu (0px blur) */
