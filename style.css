@@ -692,32 +692,145 @@ header h2, .subtitle {
 
     /* KRITIČNO: SEKCIJA DETALJA (tekst, cene, dugmad) dobija ograničenu visinu i skrolovanje */
     .modal-details { 
-        max-height: 55vh; /* Ograničavamo visinu na 55% visine viewporta */
-        overflow-y: auto; /* Dajemo skrolovanje SAMO na ovom bloku */
-        padding: 1rem; 
+/* ============================================== */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) ===== */
+/* ============================================== */
+
+/* Zatamnjenje pozadine */
+.modal-overlay { 
+    display: none;
+    position: fixed; top: 0; left: 0; 
+    width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
+    z-index: 1010; 
+    backdrop-filter: blur(5px); 
+}
+.modal-overlay.active { display: block; }
+
+/* Kontejner modala (Sve unutra) */
+.modal-container { 
+    position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    border-radius: 10px; /* Smanjeno na 10px */
+    width: 95%; 
+    max-width: 900px; /* Dodatno smanjeno na 900px (15% manje od 1050px) */
+    max-height: initial; /* Visina se kontroliše iznutra */
+    overflow-y: visible; 
+}
+
+/* Dugme za zatvaranje */
+.modal-close { 
+    position: absolute; top: 0.7rem; right: 0.7rem; /* Malo pomereno bliže ivici */
+    background: rgba(0,0,0,0.5); color: white; border: none; 
+    width: 35px; height: 35px; border-radius: 50%; 
+    cursor: pointer; z-index: 10; transition: var(--transition); 
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center; 
+}
+
+/* Glavni sadržaj (Dve kolone: Galerija i Detalji) */
+.modal-content { 
+    padding: 1rem; /* Zadržavamo 1rem na desktopu */
+    max-height: initial; 
+    overflow-y: visible; 
+    box-sizing: border-box; 
+    display: flex; 
+    gap: 1.2rem; /* Smanjen razmak između kolona za ~15% */
+}
+
+/* Galerija (Slika i Thumbnailovi) */
+.modal-gallery {
+    position: relative;
+    text-align: center;
+    flex: 1 1 55%; 
+}
+.modal-main-image {
+    width: 100%;
+    height: 600px; /* Smanjeno na 600px na Desktopu (~10% od 660px) */
+    object-fit: contain;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px; /* Smanjeno */
+    border-radius: 8px;
+    margin: 0; 
+    display: block;
+}
+
+/* Detalji proizvoda (Cena, Veličine, Dugmad) */
+.modal-details { 
+    flex: 1 1 45%; 
+}
+
+/* KOLIČINA - Dodat je stil iznad */
+
+/* Akcije (Količina, Dodaj u korpu, Nastavi kupovinu) */
+.modal-actions { 
+    display: flex; 
+    align-items: center; /* Poravnavanje vertikalno */
+    gap: 0.8rem; /* Smanjen razmak */
+    margin-top: 1.2rem; /* Smanjena gornja margina */
+    flex-wrap: wrap; /* Omogućava prelom linije na malim ekranima */
+}
+
+.add-to-cart-btn { 
+    flex: 2; background: var(--primary-dark); color: white; border: none; 
+    padding: 0.9rem 1.4rem; /* Smanjen padding (~10%) */
+    border-radius: 7px; font-size: 1.05rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+.continue-shopping { 
+    flex: 1; background: white; color: var(--primary-dark); 
+    border: 2px solid var(--primary-dark); padding: 0.9rem 1.4rem; 
+    border-radius: 7px; font-size: 0.95rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+
+
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) ===== */
+@media (max-width: 768px) {
+    .modal-content { 
+        flex-direction: column; 
+        gap: 0.8rem; /* Dodatno smanjen razmak */
+        padding: 0.5rem; 
+    }
+    
+    /* SLIKA: Smanjena visina, ali ostaje velika */
+    .modal-main-image { 
+        height: 350px; /* Smanjeno sa 400px na 350px - ključno za visinu! */
+        padding: 8px; 
+    }
+    
+    /* SEKCIJA DETALJA dobija SKROLOVANJE i KOMPAKTNIJU VISINU */
+    .modal-details { 
+        max-height: 50vh; /* Smanjeno sa 55vh na 50vh */
+        overflow-y: auto; 
+        padding: 0.8rem; /* Smanjen padding */
         border-radius: 8px; 
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
     }
 
-    /* Smanjujemo unutrašnje margine i paddinge u detaljima */
-    .variation-section h3 {
-        margin-top: 0.5rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    /* Smanjujemo razmak akcija */
-    .modal-actions { 
-        margin-top: 1rem; 
+    /* AKCIONA DUGMAD NA MOBILNOM: Vertikalno slaganje */
+    .modal-actions {
+        margin-top: 1rem;
+        flex-direction: column; /* Slaže elemente vertikalno */
         gap: 0.8rem;
     }
-
-    /* Smanjujemo dugmad */
+    /* Količina mora da ide preko cele širine */
+    .quantity-input-container {
+        width: 100%;
+        margin-right: 0;
+        justify-content: center;
+        height: 40px; /* Malo manja visina */
+    }
+    
     .add-to-cart-btn, .continue-shopping {
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
-        min-height: 40px;
+        width: 100%;
+        flex: 0 0 100%; /* Forsira punu širinu */
+        padding: 0.7rem 1rem; /* Smanjen padding (~15%) */
+        font-size: 0.95rem;
     }
 }
+
 
 /* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
 .filter-sort-panel {
