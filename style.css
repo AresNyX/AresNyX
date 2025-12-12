@@ -92,21 +92,21 @@ body.no-scroll { overflow: hidden; }
     font-size: 0.8em; 
     font-weight: 600; 
 }
-
 /* ===== DODATNA NAVIGACIJA (nav tag) - Dugmad i Zlatna Linija ===== */
 nav {
     background-color: var(--primary-dark);
     padding: 0; 
     text-align: center;
     
-    /* KRITIČNO: ZLATNA LINIJA KAO ČVRSTI BORDER */
-    border-bottom: 2px solid var(--accent-gold); 
+    /* KRITIČNO: ZLATNA LINIJA KAO ČVRSTI BORDER (FORCE) */
+    border-bottom: 2px solid var(--accent-gold) !important; 
     
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
     gap: 10px;
 }
+
 
 nav a {
     color: #fff;
@@ -132,9 +132,9 @@ nav a:hover {
 
 /* KRITIČNO: STIL ZA AKTIVNO DUGME (Pozadina ZLATNA, Tekst CRN) */
 nav a.active {
-    color: var(--primary-dark); 
-    background-color: var(--accent-gold); 
-    border: 1px solid var(--accent-gold);
+    color: var(--primary-dark) !important; /* TEKST CRN - FORCE */
+    background-color: var(--accent-gold) !important; /* POZADINA ZLATNA - FORCE */
+    border: 1px solid var(--accent-gold) !important;
 }
 
 /* CART U NAVIGACIJI (Ako je deo nav) */
