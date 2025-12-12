@@ -72,15 +72,6 @@ navbar {
     max-width: 1400px; 
     margin: 0 auto; 
     margin-top: 0 !important; 
-    
-    /* KRITIČNO: LINIJA KAO BOX SHADOW (FORSIRA POJAVU) */
-    /* Prvi sloj: Čvrsta, oštra zlatna linija 2px debljine na dnu (0px blur) */
-    box-shadow: 0 2px 0 0 var(--accent-gold), 
-                /* Drugi sloj: Senka za dubinu Headera */
-                0 2px 20px rgba(0,0,0,0.3);
-    
-    /* Uklanjamo sve bordere kako se ne bi sukobili */
-    border-bottom: none !important; 
 }
 
 .logo { 
@@ -122,13 +113,16 @@ nav {
     background-color: var(--primary-dark);
     padding: 0; 
     text-align: center;
+    
+    /* KRITIČNO: LINIJA JE SADA NA VRHU NAV BLOKA */
+    border-top: 2px solid var(--accent-gold) !important; 
+    border-bottom: none !important; /* Osigurajte da nema donje linije */
+    
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
     gap: 10px;
 }
-
-
 nav a {
     color: #fff;
     text-decoration: none;
