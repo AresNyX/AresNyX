@@ -519,49 +519,147 @@ nav a.active {
 @media (max-width: 768px) {
     .modal-content { 
         flex-direction: column; 
+/* ============================================== */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - REVIDIRANA VELIČINA ===== */
+/* ============================================== */
+
+/* Kontejner modala - POVEĆAN ZA ~10% */
+.modal-container { 
+    position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    border-radius: 10px; 
+    width: 95%; 
+    max-width: 1000px; /* Povećano sa 900px na 1000px */
+    max-height: initial; 
+    overflow-y: visible; 
+}
+
+/* Glavni sadržaj (Desktop kolone) */
+.modal-content { 
+    padding: 1.5rem; /* Povećan padding za veći razmak */
+    box-sizing: border-box; 
+    display: flex; 
+    gap: 1.5rem; /* Veći razmak između slike i detalja */
+}
+
+/* Galerija (Slika) */
+.modal-gallery {
+    flex: 1 1 55%; 
+}
+.modal-main-image {
+    width: 100%;
+    height: 700px; /* ZNAČAJNO POVEĆANJE (sa 620px na 700px) */
+    object-fit: contain;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 10px; /* Veći padding unutar kontejnera slike */
+    border-radius: 8px;
+    margin: 0; 
+    display: block;
+}
+
+/* Detalji proizvoda */
+.modal-details { 
+    flex: 1 1 45%; 
+}
+
+/* Horizontalni Wrapper za Dimenzije i Količinu - KRITIČNO PORAVNANJE */
+.sizing-and-quantity-wrapper {
+    display: flex;
+    align-items: flex-start; /* Poravnanje od vrha */
+    gap: 2rem; /* Veći razmak između dimenzija i količine */
+    margin-bottom: 2rem;
+}
+
+/* KOLIČINA (Quantity Input) - VEĆA I UGLEDNIJA */
+.quantity-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gray-medium);
+    border-radius: 8px; /* Blago veći radius */
+    height: 50px; /* POVEĆANA VISINA (sa 45px na 50px) */
+    width: 140px; /* POVEĆANA ŠIRINA (sa 120px na 140px) */
+    flex-shrink: 0; 
+    /* VIZUELNO PORAVNANJE SA DIMENZIJAMA (Korigovati po potrebi) */
+    margin-top: 2.2rem; 
+}
+
+.quantity-input-container input {
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    font-size: 1.3em; /* VEĆI FONT */
+    font-weight: 700;
+}
+
+.quantity-input-container button {
+    width: 45px; /* Veća dugmad +/- */
+    font-size: 1.8em; /* VEĆI ZNAKOVI */
+}
+
+/* VELIČINE (size-option) - Ostavljamo ih kao osnovu za poravnanje */
+.variation-section h3 {
+    font-size: 1.1rem; /* Blago veći naslov */
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+.size-option { 
+    padding: 0.7rem 1.2rem; /* Blago veći padding */
+}
+
+/* Akcije (Dodaj u korpu, Nastavi kupovinu) - VEĆI DUGMIĆI */
+.modal-actions { 
+    gap: 1.2rem; /* Veći razmak */
+    margin-top: 1.5rem; /* Veći razmak od elemenata iznad */
+}
+
+.add-to-cart-btn { 
+    padding: 1.1rem 1.6rem; /* POVEĆAN PADDING */
+    border-radius: 8px; 
+    font-size: 1.15rem; /* VEĆI FONT */
+}
+.continue-shopping { 
+    padding: 1.1rem 1.6rem; /* POVEĆAN PADDING */
+    border-radius: 8px; 
+    font-size: 1.05rem; /* VEĆI FONT */
+}
+
+
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - VRAĆAMO KOMPAKTNOST ===== */
+@media (max-width: 768px) {
+    /* Vraćamo mobilne stilove na kompaktnu, ali funkcionalnu verziju */
+    .modal-content { 
+        padding: 0.8rem; 
         gap: 0.8rem; 
-        padding: 0.5rem; 
     }
     
     .modal-main-image { 
-        height: 300px; 
-        padding: 6px; 
+        height: 350px; /* Vraćamo na pristojnu visinu */
     }
     
     .modal-details { 
-        max-height: 45vh; 
-        overflow-y: auto; 
-        padding: 0.7rem; 
-        border-radius: 8px; 
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
+        max-height: 40vh; /* Smanjujemo opet za mobilni */
     }
     
+    /* Poravnanje na mobilnom: Vraćamo na KOLONU (vertikalno) */
     .sizing-and-quantity-wrapper {
         flex-direction: column;
-        gap: 0.5rem; 
-        margin-bottom: 0.8rem;
+        gap: 0.8rem; 
+        margin-bottom: 1rem;
     }
 
     .quantity-input-container {
         width: 100%;
         margin-top: 0; 
-        justify-content: center;
-        height: 38px; 
-    }
-    
-    .modal-actions {
-        margin-top: 0.8rem; 
-        flex-direction: column; 
-        gap: 0.6rem; 
+        height: 42px; /* Pristojna visina za mobilni */
     }
     
     .add-to-cart-btn, .continue-shopping {
-        width: 100%;
-        flex: 0 0 100%; 
-        padding: 0.6rem 1rem; 
-        font-size: 0.9rem;
+        padding: 0.8rem 1rem; 
+        font-size: 1rem;
     }
 }
+
 
 /* ============================================== */
 /* ===== KORPA, CHECKOUT I TOAST SEKCIJE (OSTALO) ===== */
