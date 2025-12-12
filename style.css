@@ -71,7 +71,11 @@ h2 {
     align-items: center; 
     max-width: 1400px; 
     margin: 0 auto; 
+    
+    /* KRITIČNO: LINIJA IZMEĐU LOGA/CART I NAVIGACIJE */
+    border-bottom: 2px solid var(--accent-gold) !important;
 }
+
 
 .logo { 
     font-size: 2rem; 
@@ -112,10 +116,6 @@ nav {
     background-color: var(--primary-dark);
     padding: 0; 
     text-align: center;
-    
-    /* KRITIČNO: ZLATNA LINIJA KAO ČVRSTI BORDER (FORCE) */
-    border-bottom: 2px solid var(--accent-gold) !important; 
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
