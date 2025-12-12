@@ -525,9 +525,8 @@ header h2, .subtitle {
     display: block;
     margin-top: 8px;
 }
-
-    /* ============================================== */
-/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - PRECIZNA VERZIJA 3.0 ===== */
+/* ============================================== */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - KONAČNA VERZIJA 5.0 (Testirano) ===== */
 /* ============================================== */
 
 /* Zatamnjenje pozadine */
@@ -540,14 +539,16 @@ header h2, .subtitle {
 }
 .modal-overlay.active { display: block; }
 
-/* Kontejner modala - SMANJEN ZA OKO 10% (MAX ŠIRINA 850px) */
+/* Kontejner modala - POVEĆAN NA 900px i PODIGNUT GORE */
 .modal-container { 
-    position: absolute; top: 50%; left: 50%; 
+    position: absolute; 
+    top: 40%; /* KRITIČNO: Podignuto na 40% */
+    left: 50%; 
     transform: translate(-50%, -50%); 
     background: white; 
     border-radius: 12px;
     width: 95%; 
-    max-width: 850px; /* SMANJENO (bilo 950px) */
+    max-width: 900px; 
     max-height: initial; 
     overflow-y: visible; 
 }
@@ -571,34 +572,63 @@ header h2, .subtitle {
     gap: 1.5rem; 
 }
 
-/* Galerija (Slika i Thumbnailovi) */
+/* Galerija (Slika i Thumbnailovi) - POVEĆANA NA 60% */
 .modal-gallery {
     position: relative;
     text-align: center;
-    flex: 1 1 55%; 
+    flex: 1 1 60%; /* Povećano na 60% */
 }
 .modal-main-image {
     width: 100%;
-    height: 660px; /* VELIKA VISINA (veća od 400px sa liste) */
+    height: 700px; /* Veća visina za max iskoristivost */
     object-fit: contain;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
+    padding: 25px; 
     border-radius: 10px;
     margin: 0; 
     display: block;
 }
 
-/* Detalji proizvoda (Cena, Veličine, Količina, Dugmad) */
-.modal-details { 
-    flex: 1 1 45%; 
+/* Kontrole galerije (Prethodna/Sledeća) */
+.image-nav-button { /* Koristite ovu klasu za vaše strelice */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; 
+    height: 40px; 
+    background-color: #8D021F; /* Bordo boja */
+    color: white; 
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem; 
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0.9;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* HORIZONTALNI WRAPPER: Količina i Dimenzije - KRITIČNA IZMENA REDOSLEDA */
+.image-nav-button:hover {
+    background-color: #C0392B; 
+    opacity: 1;
+}
+.image-nav-button.prev { left: 10px; }
+.image-nav-button.next { right: 10px; }
+
+
+/* Detalji proizvoda (Cena, Veličine, Količina, Dugmad) - SMANJENA NA 40% */
+.modal-details { 
+    flex: 1 1 40%; 
+}
+
+/* HORIZONTALNI WRAPPER: Količina i Dimenzije */
 .sizing-and-quantity-wrapper {
     display: flex;
-    align-items: flex-start; /* Počinje na vrhu */
+    align-items: flex-start; /* Svi elementi kreću od vrha, rešavajući problem poravnanja */
     gap: 2rem;
     margin-bottom: 2rem;
-    /* REDOSLED (desktop): Količina (Order 1) ide pre Veličina (Order 2) */
 }
 
 /* KOLIČINA (Quantity Input) - LEVA STRANA U WRAPPERU */
@@ -607,18 +637,15 @@ header h2, .subtitle {
     align-items: center;
     border: 2px solid var(--primary-dark); /* Povećan border i boja */
     border-radius: 8px; 
-    height: 60px; /* KRITIČNO: Povećana visina */
-    width: 150px; /* Povećana širina */
+    height: 60px; /* Veća visina */
+    width: 150px; 
     flex-shrink: 0; 
-    /* KRITIČNO: Uklanjamo margin-top koji je stvarao vizuelno neporavnanje */
-    margin-top: 0; 
+    margin-top: 0; /* KRITIČNO: Uklanjamo margin-top */
     order: 1; /* Postavlja Količinu prvu (levo) */
 }
-/* Detaljni stilovi za Quantity... */
 .quantity-input-container input {
-    width: 60px; /* Povećana širina inputa */
-    height: 100%; text-align: center; border: none; 
-    font-size: 1.5em; /* KRITIČNO: Veći font */
+    width: 60px; height: 100%; text-align: center; border: none; 
+    font-size: 1.5em; /* Veći font */
     font-weight: 700;
     color: var(--primary-dark);
     -moz-appearance: textfield; 
@@ -629,57 +656,69 @@ header h2, .subtitle {
 }
 .quantity-input-container button {
     width: 45px; height: 100%; 
-    background: var(--primary-dark); /* Tamna pozadina dugmadi */
-    color: white; /* Beli tekst */
+    background: var(--primary-dark); 
+    color: white; 
     border: none; cursor: pointer;
-    font-size: 2em; /* KRITIČNO: Veći font dugmadi */
+    font-size: 2em; 
     font-weight: 700; 
     transition: background 0.2s;
 }
 .quantity-input-container button:first-child { 
-    border-right: 2px solid var(--accent-gold); /* Zlatna linija između */
-    border-radius: 6px 0 0 6px; /* Malo manji radius da se uklopi */
+    border-right: 2px solid var(--accent-gold); 
+    border-radius: 6px 0 0 6px; 
 }
 .quantity-input-container button:last-child { 
-    border-left: 2px solid var(--accent-gold); /* Zlatna linija između */
+    border-left: 2px solid var(--accent-gold); 
     border-radius: 0 6px 6px 0; 
 }
 .quantity-input-container button:hover { 
-    background: var(--accent-gold); /* Hover menja na zlatnu */
-    color: var(--primary-dark); /* Tekst crn na hoveru */
+    background: var(--accent-gold); 
+    color: var(--primary-dark); 
 }
-
 
 /* VELIČINE (size-option) - DESNA STRANA U WRAPPERU */
 .variation-section {
-    order: 2; /* Postavlja Veličine drugu (desno) */
+    order: 2; 
     flex-grow: 1;
 }
 
 .variation-section h3 {
     font-size: 1.1rem; 
     font-weight: 600;
-    /* KRITIČNO: Usklađujemo margin-top sa visinom quantity boxa */
-    margin-top: 0.8rem; 
-    margin-bottom: 0.8rem;
+    margin-top: 0.8rem; /* Usklađeno sa inputom */
+    margin-bottom: 0.5rem;
     color: var(--primary-dark);
 }
-.variation-section h3 {
-    font-size: 1.1rem; 
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-    color: var(--primary-dark);
+#modal-sizes-container { 
+    display: flex; /* Koristimo Flexbox */
+    flex-wrap: nowrap; /* Spakuj sve u JEDAN red */
+    gap: 0.5rem; 
+    overflow-x: auto; /* Omogućite horizontalni scroll */
+    padding-bottom: 5px; 
 }
+
 .size-option { 
-    display: inline-block; padding: 0.7rem 1.2rem; 
+    display: inline-block; 
+    padding: 0.7rem 1.2rem; 
     border: 2px solid var(--gray-medium); 
-    border-radius: 8px; cursor: pointer; margin-right: 0.5rem; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    margin-right: 0; 
     transition: var(--transition); 
     font-size: 1em; 
+    flex-shrink: 0; 
 }
 .size-option.selected { border-color: var(--accent-gold); background: var(--accent-gold); color: var(--primary-dark); }
 
+/* STILOVI ZA BLOKIRANU VELIČINU (Uklanja tekst "Nema" vizuelno) */
+.size-option[data-available="false"] {
+    background: var(--gray-light);
+    color: #999;
+    border-color: #ccc;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
 
 /* Akcije (Dodaj u korpu, Nastavi kupovinu) */
 .modal-actions { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.5rem; flex-wrap: wrap; }
@@ -750,7 +789,6 @@ header h2, .subtitle {
         font-size: 1rem;
     }
 }
-
 /* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
 .filter-sort-panel {
     position: absolute;
