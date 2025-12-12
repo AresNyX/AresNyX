@@ -45,8 +45,8 @@ body.no-scroll { overflow: hidden; }
     top: 0; 
     z-index: 999; 
     
-    /* KRITIČNO: ZLATNA LINIJA KAO BOX SHADOW (2px debljine, dole) */
-    box-shadow: 0 2px 0 0 var(--accent-gold), 0 2px 20px rgba(0,0,0,0.3); 
+    /* Senka za dubinu Headera */
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3); 
     border-bottom: none; 
 }
 
@@ -58,7 +58,6 @@ body.no-scroll { overflow: hidden; }
     margin: 0 auto; 
 }
 
-/* ... OSTALI STILOVI HEADERA (Logo, Cart Icon) ... */
 .logo { 
     font-size: 2rem; 
     font-weight: 700; 
@@ -94,11 +93,15 @@ body.no-scroll { overflow: hidden; }
     font-weight: 600; 
 }
 
-/* ===== DODATNA NAVIGACIJA (nav tag) ===== */
+/* ===== DODATNA NAVIGACIJA (nav tag) - Dugmad i Zlatna Linija ===== */
 nav {
     background-color: var(--primary-dark);
     padding: 0; 
     text-align: center;
+    
+    /* KRITIČNO: ZLATNA LINIJA KAO ČVRSTI BORDER */
+    border-bottom: 2px solid var(--accent-gold); 
+    
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
@@ -111,26 +114,30 @@ nav a {
     margin: 0; 
     font-weight: 400;
     font-size: 1.3em;
-    transition: all 0.3s; /* Koristimo 'all' za border tranziciju */
+    transition: all 0.3s; 
     
     display: inline-block; 
     padding: 8px 12px;
     border-radius: 4px; 
     text-align: center;
-    
-    border: 1px solid transparent; /* Dodata transparentna granica za stabilnost */
+    border: 1px solid transparent; 
 }
 
-nav a:hover, nav a.active {
-    /* KRITIČNO: Intenzivniji zlatni stil */
+/* STIL ZA HOVER (Zlatni tekst, blaga pozadina, zlatni border) */
+nav a:hover {
     color: var(--accent-gold); 
     background-color: rgba(212, 175, 55, 0.2); 
-    
-    /* ZLATNA LINIJA PO STRANICAMA DUGMETA (Hover/Active) */
     border: 1px solid var(--accent-gold);
 }
 
-/* CART U NAVIGACIJI (Dodatno pravilo koje je bilo u kodu) */
+/* KRITIČNO: STIL ZA AKTIVNO DUGME (Pozadina ZLATNA, Tekst CRN) */
+nav a.active {
+    color: var(--primary-dark); 
+    background-color: var(--accent-gold); 
+    border: 1px solid var(--accent-gold);
+}
+
+/* CART U NAVIGACIJI (Ako je deo nav) */
 .cart-nav-link {
     position: relative;
     margin-left: auto;
@@ -138,16 +145,16 @@ nav a:hover, nav a.active {
 }
 
 
-/* ===== MEDIA QUERIES ZA NAVIGACIJU ===== */
+/* ===== MEDIA QUERIES ZA NAVIGACIJU (Responsivnost) ===== */
 
-/* DESKTOP STIL (FIKSNA ŠIRINA 140px) */
+/* DESKTOP STIL (FIKSNA ŠIRINA DUGMADI) */
 @media (min-width: 601px) {
     nav a {
-        width: 140px; /* FIKSNA ŠIRINA ZA DESKTOP */
+        width: 140px; 
     }
 }
 
-/* MOBILNI PRIKAZ (3x2 Korigovani font i padding) */
+/* MOBILNI PRIKAZ (3x3 raspored) */
 @media (max-width: 600px) {
     nav {
         padding: 15px 5px; 
@@ -156,17 +163,17 @@ nav a:hover, nav a.active {
     }
     
     nav a {
-        /* Fleksibilnost za 3x2 raspored */
+        /* Fleksibilnost za 3x3 raspored */
         width: 30% !important; 
         min-width: 0 !important; 
         flex-shrink: 1; 
         flex-grow: 1; 
         
-        /* Font i padding ostavljamo na željenim vrednostima */
         font-size: 1.2em; 
         padding: 8px 3px; 
     }
 }
+
 /* KRAJ NAVIGACIJE */
 
 /* CART U NAVIGACIJI */
