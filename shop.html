@@ -654,17 +654,16 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </select>
     </div>
 
-    <h3>Filter po Veličini</h3>
+        <h3>Filter po Veličini</h3>
     <div class="size-filter-options" id="sizeFilterOptions">
-    <button class="size-btn" data-size="S">S</button>
-    <button class="size-btn" data-size="M">M</button>
-    <button class="size-btn" data-size="L">L</button>
-    <button class="size-btn" data-size="XL">XL</button>
-    <button class="size-btn" data-size="XXL">XXL</button>
-    <button class="size-btn active" data-size="all">Sve</button>
+    <button class="size-btn" data-size="S" onclick="shop.filterProducts('S', 'size'); shop.applyFiltersAndSort();">S</button>
+    <button class="size-btn" data-size="M" onclick="shop.filterProducts('M', 'size'); shop.applyFiltersAndSort();">M</button>
+    <button class="size-btn" data-size="L" onclick="shop.filterProducts('L', 'size'); shop.applyFiltersAndSort();">L</button>
+    <button class="size-btn" data-size="XL" onclick="shop.filterProducts('XL', 'size'); shop.applyFiltersAndSort();">XL</button>
+    <button class="size-btn" data-size="XXL" onclick="shop.filterProducts('XXL', 'size'); shop.applyFiltersAndSort();">XXL</button>
+    <button class="size-btn active" data-size="all" onclick="shop.filterProducts('all', 'size'); shop.applyFiltersAndSort();">Sve</button>
 </div>  
     <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
-
 </div>
     </div>
     <div class="products-grid" id="productsGrid">
@@ -733,27 +732,55 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
     </div>
     
-    <div class="modal-details">
-        <h2 id="modalTitle"></h2>
-        <p class="modal-material" id="modalMaterial"></p>
-        <p class="modalPrice" id="modalPrice"></p>
-        
-        <div class="size-section">...</div>
-        <div class="size-table-container" id="sizeTable" style="display: none;">...</div>
-        <div class="quantity-section">...</div>
-        
-        </div>
+<div class="modal-details">
+    <h2 id="modalTitle"></h2>
+    <p class="modal-material" id="modalMaterial"></p>
+    <p class="modalPrice" id="modalPrice"></p>
+    
+    <div class="size-section">
+        <p>Izaberite veličinu:</p>
+        <div class="size-selector" id="sizeSelector">
+            </div>
+        <button class="size-guide-btn" onclick="shop.toggleSizeTable()"><i class="fas fa-ruler-horizontal"></i> Tabela veličina</button>
+    </div>
+    
+    <div class="size-table-container" id="sizeTable" style="display: none;">
+        <h4>Tabela Veličina (cm)</h4>
+        <table>
+            <thead>
+                <tr><th>Veličina</th><th>Obim struka</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>S</td><td>71-76</td></tr>
+                <tr><td>M</td><td>81-86</td></tr>
+                <tr><td>L</td><td>91-97</td></tr>
+                <tr><td>XL</td><td>102-107</td></tr>
+                <tr><td>XXL</td><td>112-117</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-    <div class="modal-actions-fixed-bottom">
-        <div class="modal-actions">
-            <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
-                <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-            </button>
-            <button class="continue-shopping" onclick="shop.closeModal()">
-                Nastavi kupovinu
-            </button>
+    <div class="quantity-section">
+        <p>Količina:</p>
+        <div class="quantity-controls">
+            <button onclick="shop.changeQuantity(-1)"><i class="fas fa-minus"></i></button>
+            <span id="modalQty">1</span>
+            <button onclick="shop.changeQuantity(1)"><i class="fas fa-plus"></i></button>
         </div>
     </div>
+    
+</div>
+
+<div class="modal-actions-fixed-bottom">
+    <div class="modal-actions">
+        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+        </button>
+        <button class="continue-shopping" onclick="shop.closeModal()">
+            Nastavi kupovinu
+        </button>
+    </div>
+</div>
     
 </div>
                 
