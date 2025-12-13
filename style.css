@@ -672,12 +672,15 @@ nav a.active {
 
 
 /* ============================================== */
-/* ===== FOOTER - GLAVNI STILOVI (KRAJ) ===== */
 /* ============================================== */
+/* ===== FOOTER - GLAVNI STILOVI (KONAČNA VERZIJA) ===== */
+/* ============================================== */
+
 /* Glavni kontejner Footera */
 .site-footer {
     background-color: #121212;
     color: #f4f4f4;
+    /* Maksimalno smanjen padding za kompaktnost */
     padding: 0.5rem 0 0.3rem; 
     margin-top: 1rem;
     font-size: 1.17em;
@@ -692,6 +695,7 @@ nav a.active {
     padding: 0.5rem 1.5rem 0.3rem;
     display: flex;
     flex-wrap: wrap;
+    /* Koristimo space-around ili center za bolje horizontalno centriranje */
     justify-content: space-around;
     align-items: flex-start;
     gap: 0.5rem; 
@@ -704,7 +708,7 @@ nav a.active {
     flex: 1 1 200px;
     padding: 0.3rem 0.5rem; 
     position: relative;
-    text-align: center; 
+    text-align: center; /* KRITIČNO: Centriranje teksta unutar sekcija */
 }
 
 /* Vertikalne zlatne linije (3px) - SAMO ZA DESKTOP */
@@ -727,6 +731,7 @@ nav a.active {
 /* NASLOVI SEKCIJA */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold);
+    /* Smanjene margine za kompaktnost */
     margin-bottom: 0.4rem; 
     margin-top: 0.8rem;
     font-size: 1.35em; 
@@ -748,6 +753,7 @@ nav a.active {
     list-style: none; 
     padding: 0;
     margin: 0;
+    /* CENTRIRANJE LISTE */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -756,6 +762,7 @@ nav a.active {
 
 .site-footer .footer-section-custom.links a {
     color: #ccc;
+    /* Smanjen vertikalni razmak između linkova na minimum */
     margin-bottom: 0.1rem; 
     padding: 0.1rem 0;
     text-decoration: none;
@@ -772,7 +779,7 @@ nav a.active {
     font-size: 1em;
     line-height: 1.4; 
     display: flex;
-    justify-content: center; 
+    justify-content: center; /* Centriranje ikone i teksta zajedno */
     align-items: center;
 }
 
@@ -836,6 +843,7 @@ nav a.active {
         flex-direction: column;
         gap: 0.5rem; 
         padding: 0.5rem 1rem 0.3rem;
+        /* KRITIČNO: Centriranje svih sekcija kada su u koloni */
         align-items: center; 
     }
     
@@ -849,6 +857,7 @@ nav a.active {
         content: none; 
     }
     
+    /* Centriranje liste linkova na mobilnom */
     .site-footer .footer-section-custom.links ul {
         align-items: center;
     }
@@ -858,7 +867,6 @@ nav a.active {
         margin-bottom: 0.3rem;
     }
 }
-
 /* HEADER SA PODNASLOVOM (za index.html) */
 header { 
     background: var(--primary-dark); 
