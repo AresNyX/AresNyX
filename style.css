@@ -716,84 +716,89 @@ header h2, .subtitle {
     font-weight: 600; cursor: pointer; 
 }
 /* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA POPRAVKA VERTIKALNOG RASPOREDA ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA, AGRESIVNA POPRAVKA VERTIKALNOG RASPOREDA ===== */
 @media (max-width: 768px) {
-    /* Opšta pozicija Modala i Sadržaj */
+    
+    /* 1. OPŠTI MODAL KONTEJNERI */
     .modal-container {
-        top: 50%; 
-        max-height: 90vh; 
+        top: 50% !important; 
+        max-height: 90vh !important; 
+        transform: translate(-50%, -50%) !important;
     }
 
     .modal-content { 
-        flex-direction: column; 
-        gap: 0.8rem; 
-        padding: 0.8rem; 
+        flex-direction: column !important; 
+        gap: 0.8rem !important; 
+        padding: 0.8rem !important; 
     }
     
-    .modal-main-image { 
-        height: 400px; 
-        padding: 6px; 
-    }
-    
-    /* Detalji i Skrolovanje */
+    /* 2. GLAVNA SEKCIJA DETALJA */
     .modal-details { 
-        max-height: 45vh; 
-        overflow-y: auto; 
-        padding: 0.7rem; 
-        border-radius: 8px; 
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
+        max-height: 45vh !important; 
+        overflow-y: auto !important; 
+        padding: 0.7rem !important; 
+        border-radius: 8px !important; 
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.05) !important; 
+        width: 100% !important; /* KRITIČNO: Osiguraj da zauzima celu širinu modala */
     }
     
-    /* Veličina i Količina - Vraćanje u Kolonu (jedan ispod drugog) */
+    /* 3. WRAPPER (Veličina i Količina) */
     .sizing-and-quantity-wrapper {
-        flex-direction: column;
-        gap: 0.8rem; 
-        margin-bottom: 1rem;
-        align-items: center; /* KRITIČNO: Centriraj sve elemente unutar ovog wrapper-a */
+        flex-direction: column !important;
+        gap: 0.8rem !important; 
+        margin-bottom: 1rem !important;
+        align-items: center !important; /* FORSIRAJ CENTRIRANJE */
     }
 
-    /* Sekcije zauzimaju punu širinu */
+    /* 4. SEKCIJE UNUTAR WRAPPERA */
     .variation-section { 
-        order: initial; 
-        width: 100%; 
+        order: initial !important; 
+        width: 100% !important; /* FORSIRAJ PUNU ŠIRINU ZA VELIČINE */
     }
     
-    /* KOLIČINA - Sada Zauzima punu širinu i ispravan izgled */
-    .quantity-input-container { 
-        order: initial; 
-        width: 100%; 
-        max-width: 200px; /* Ograničavamo širinu da ne bude prevelika na mobilnom */
-        margin-top: 0; 
-        height: 42px; 
-        font-size: 1.2em;
-    }
-    /* Veličine, Količina i Akcije uvek moraju biti centrirane u koloni */
     .variation-section h3 {
-        text-align: center;
+        text-align: center !important; /* Centriraj naslov veličina */
+    }
+    
+    /* Centriranje dugmadi Veličina */
+    #modal-sizes-container {
+        justify-content: center !important; /* FORSIRAJ CENTRIRANJE DUGMADI */
+        flex-wrap: wrap !important; 
     }
 
-    /* Centriranje dugmadi Veličina na mobilnom */
-    #modal-sizes-container {
-        justify-content: center; /* KRITIČNO: Centriranje dugmadi unutar kontejnera */
-        flex-wrap: wrap; 
+    /* 5. KOLIČINA */
+    .quantity-input-container { 
+        order: initial !important; 
+        width: 100% !important;
+        max-width: 200px !important; /* Ograničavamo širinu za bolji izgled */
+        margin-top: 0 !important; 
+        height: 42px !important; 
+        font-size: 1.2em !important;
     }
     
-    /* Akcije (Dodaj u korpu/Nastavi kupovinu) */
+    /* 6. AKCIJE (DODAJ U KORPU / NASTAVI KUPOVINU) */
     .modal-actions {
-        margin-top: 0.8rem; 
-        flex-direction: column; 
-        gap: 0.6rem; 
-        align-items: center; /* KRITIČNO: Centriranje dugmadi (Dodaj u korpu/Nastavi) */
+        margin-top: 0.8rem !important; 
+        flex-direction: column !important; 
+        gap: 0.6rem !important; 
+        align-items: center !important; /* FORSIRAJ CENTRIRANJE DUGMADI */
     }
     
-    /* Dugmad akcija moraju zauzeti punu širinu Modala, ali ne i ekrana */
     .add-to-cart-btn, .continue-shopping {
-        width: 90%; /* KRITIČNO: Ograničite na 90% da ne udari u ivice modala */
-        max-width: 300px; /* Maksimalna širina za bolji izgled */
-        flex: 0 0 auto; 
-        padding: 0.8rem 1rem; 
-        font-size: 1rem;
+        width: 90% !important; /* KRITIČNO: Ograničite na 90% širine panela detalja */
+        max-width: 300px !important; /* Maksimalna širina za bolji izgled */
+        flex: 0 0 auto !important; 
+        padding: 0.8rem 1rem !important; 
+        font-size: 1rem !important;
+    }
+    
+    /* 7. SLIKA */
+    .modal-main-image { 
+        height: 400px !important; 
+        padding: 6px !important; 
     }
 }
+
 
 /* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
 .filter-sort-panel {
