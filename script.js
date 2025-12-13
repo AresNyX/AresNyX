@@ -376,6 +376,8 @@ class AresNyXShop {
         const sizeSelector = document.getElementById('sizeSelector');
         let firstAvailableSize = null;
 
+        // ... unutar openProductModal(productId)
+        
         const sizesHtml = Object.keys(this.currentProduct.sizes)
             .map(size => {
                 const stock = this.currentProduct.sizes[size]; 
@@ -393,11 +395,11 @@ class AresNyXShop {
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
-                        ${size}${isDisabled ? ' (Nema)' : ''}
-                    </button>
+                        ${size} </button>
                 `;
             })
             .join('');
+
             
         // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
