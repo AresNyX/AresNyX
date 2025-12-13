@@ -21,6 +21,7 @@
 body {
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: #fff; color: var(--text-dark); line-height: 1.6;
+    /* Postavljamo Flexbox na body da bismo Footer držali na dnu */
     display: flex; flex-direction: column; min-height: 100vh;
 }
 
@@ -59,7 +60,6 @@ h2 {
     position: sticky; 
     top: 0; 
     z-index: 999; 
-    
     /* Senka za dubinu Headera */
     box-shadow: 0 2px 20px rgba(0,0,0,0.3); 
     border-bottom: none; 
@@ -71,15 +71,11 @@ navbar {
     align-items: center; 
     max-width: 1400px; 
     margin: 0 auto; 
-    margin-top: 0 !important; 
     
     /* KRITIČNO: LINIJA KAO BOX SHADOW (FORSIRA POJAVU) */
-    /* Prvi sloj: Čvrsta, oštra zlatna linija 2px debljine na dnu (0px blur) */
     box-shadow: 0 2px 0 0 var(--accent-gold), 
-                /* Drugi sloj: Senka za dubinu Headera */
                 0 2px 20px rgba(0,0,0,0.3);
     
-    /* Uklanjamo sve bordere kako se ne bi sukobili */
     border-bottom: none !important; 
 }
 
@@ -153,9 +149,9 @@ nav a:hover {
 
 /* KRITIČNO: STIL ZA AKTIVNO DUGME (Pozadina ZLATNA, Tekst CRN) */
 nav a.active {
-    color: var(--primary-dark) !important; /* TEKST CRN - FORCE */
-    background-color: var(--accent-gold) !important; /* POZADINA ZLATNA - FORCE */
-    border: 1px solid var(--accent-gold) !important;
+    color: var(--primary-dark); 
+    background-color: var(--accent-gold); 
+    border: 1px solid var(--accent-gold);
 }
 
 /* CART U NAVIGACIJI (Ako je deo nav) */
@@ -209,7 +205,7 @@ nav a.active {
     padding: 3rem 2rem; 
     max-width: 1400px; 
     margin: 0 auto; 
-    flex: 1; 
+    flex: 1; /* Omogućava da sekcija raste i gura footer na dno */
     text-align: center; 
 }
 .products-grid { 
@@ -311,12 +307,12 @@ nav a.active {
 .site-footer {
     background-color: #121212;
     color: #f4f4f4;
-    /* Maksimalno smanjen padding za kompaktnost */
     padding: 0.5rem 0 0.3rem; 
     margin-top: 1rem;
     font-size: 1.17em;
     width: 100%;
     text-align: center; 
+    flex-shrink: 0; /* KRITIČNO: Osigurava da se Footer ne smanjuje */
 }
 
 /* Sadržaj (sve sekcije unutra) */
@@ -326,7 +322,6 @@ nav a.active {
     padding: 0.5rem 1.5rem 0.3rem;
     display: flex;
     flex-wrap: wrap;
-    /* Koristimo space-around ili center za bolje horizontalno centriranje */
     justify-content: space-around;
     align-items: flex-start;
     gap: 0.5rem; 
@@ -339,13 +334,12 @@ nav a.active {
     flex: 1 1 200px;
     padding: 0.3rem 0.5rem; 
     position: relative;
-    text-align: center; /* KRITIČNO: Centriranje teksta unutar sekcija */
+    text-align: center; 
 }
 
 /* Vertikalne zlatne linije (3px) - SAMO ZA DESKTOP */
 @media (min-width: 769px) { 
-    .site-footer .footer-section-custom:nth-child(1)::after, 
-    .site-footer .footer-section-custom:nth-child(2)::after {
+    .site-footer .footer-section-custom:not(:last-child)::after {
         content: '';
         position: absolute;
         top: 0;
@@ -355,14 +349,10 @@ nav a.active {
         background: var(--accent-gold);
     }
 }
-.site-footer .footer-section-custom:last-child::after {
-    content: none;
-}
 
 /* NASLOVI SEKCIJA */
 .site-footer .footer-section-custom h3 {
     color: var(--accent-gold);
-    /* Smanjene margine za kompaktnost */
     margin-bottom: 0.4rem; 
     margin-top: 0.8rem;
     font-size: 1.35em; 
@@ -370,13 +360,6 @@ nav a.active {
     border-bottom: 2px solid var(--accent-gold);
     padding-bottom: 0.2rem;
     display: inline-block; 
-}
-
-/* Globalno uklanjanje viška margina i paddinga sa listi i p tagova */
-.site-footer ul, 
-.site-footer p {
-    margin: 0;
-    padding: 0;
 }
 
 /* Linkovi (Korisni linkovi) - Centriranje liste linkova */
@@ -393,7 +376,6 @@ nav a.active {
 
 .site-footer .footer-section-custom.links a {
     color: #ccc;
-    /* Smanjen vertikalni razmak između linkova na minimum */
     margin-bottom: 0.1rem; 
     padding: 0.1rem 0;
     text-decoration: none;
@@ -410,7 +392,7 @@ nav a.active {
     font-size: 1em;
     line-height: 1.4; 
     display: flex;
-    justify-content: center; /* Centriranje ikone i teksta zajedno */
+    justify-content: center; /* KRITIČNO: Centriranje ikone i teksta zajedno */
     align-items: center;
 }
 
@@ -847,5 +829,6 @@ header h2, .subtitle {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
 
 
