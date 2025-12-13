@@ -18,6 +18,8 @@ class AresNyXShop {
 
     init() {
         this.loadProducts();   
+        this.applyFiltersAndSort(); // 🛑 KRITIČNA KOREKCIJA 1: Osigurava da se proizvodi renderuju odmah 🛑
+        
         this.updateCartCount();
         this.renderCart();
         this.updateCartPromoMessage(0); 
@@ -115,7 +117,7 @@ class AresNyXShop {
                 name: "Light Blue", 
                 material: "100% Premium Pamuk", 
                 price: 1400, 
-                category: "100% Pamuk", 
+                category: "pamuk", // ✅ ISPRAVLJENO: Bilo je "100% Pamuk"
                 images: ["slika8.webp", "slika8a.webp"], 
                 badge: "NEW",
                 sizes: { S: 4, M: 9, L: 4, XL: 9, XXL: 4 } 
@@ -376,8 +378,6 @@ class AresNyXShop {
         const sizeSelector = document.getElementById('sizeSelector');
         let firstAvailableSize = null;
 
-        // ... unutar openProductModal(productId)
-        
         const sizesHtml = Object.keys(this.currentProduct.sizes)
             .map(size => {
                 const stock = this.currentProduct.sizes[size]; 
@@ -395,8 +395,7 @@ class AresNyXShop {
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
-                        ${size} </button>
-                `;
+                        ${size} </button> `;
             })
             .join('');
 
@@ -944,10 +943,8 @@ let shop;
 document.addEventListener('DOMContentLoaded', () => {
     shop = new AresNyXShop(); 
     
-    // Odloženo renderovanje je dobra praksa
-    setTimeout(() => {
-        shop.renderProducts(); 
-    }, 50); 
+    // 🛑 KRITIČNA KOREKCIJA 3: Uklonjeno odloženo renderovanje! 🛑
+    // Proizvodi se sada renderuju u shop.init() putem shop.applyFiltersAndSort()
 });
 // Funkcija za pozivanje (telefon)
 function pozoviNas() {
@@ -1040,4 +1037,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
