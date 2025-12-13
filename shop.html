@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-       <link rel="stylesheet" href="style.css"> 
-
+    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -11,6 +10,7 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
+    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Track CTA button clicks
@@ -73,15 +73,8 @@
       });
     });
     </script>
-       <header class="header">
-    <div class="top-header-content"> 
-        </div>
-
-    <nav class="main-nav"> 
-        </nav>
-</header>
-
- <script>
+ <!-- E-COMMERCE TRACKING - POTPUNO DINAMIČKI -->
+<script>
 // GA4 E-commerce Tracking - UNLIMITED PRODUCTS
 const ga4UniversalTracker = {
     initialized: false,
@@ -91,38 +84,6 @@ const ga4UniversalTracker = {
     lastSeenProducts: new Set(), // Koje ID-jeve smo videli
     
     init: function() {
-               // 🧹 NOVA METODA: Čišćenje svih modala pri učitavanju stranice
-    aggressivelyCloseAllModals() {
-        const modalIds = ['productModal', 'checkoutModal'];
-        modalIds.forEach(id => {
-            const modal = document.getElementById(id);
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        });
-        document.getElementById('cartSidebar')?.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        document.body.style.overflow = '';
-        this.goToStep(1); // Uvek resetujte checkout na korak 1
-    }
-
-    init() {
-        this.loadProducts();   
-        this.updateCartCount();
-        this.renderCart();
-        this.updateCartPromoMessage(0); 
-        this.attachEventListeners();
-        
-        // 🚨 KRITIČNO: Zatvorite sve modale odmah pri učitavanju!
-        this.aggressivelyCloseAllModals();
-
-        // EMAILJS INICIJALIZACIJA...
-        try {
-            emailjs.init("WKV419-gz6OQWSgRJ"); 
-        } catch (e) {
-            console.error("EmailJS biblioteka nije pronađena ili nije inicijalizovana.");
-        }
-    }       
         if (this.initialized) return;
         
         console.log('🔍 GA4 Universal Tracker starting...');
@@ -543,11 +504,8 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     ga4UniversalTracker.init();
 }
         </script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -654,136 +612,163 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </select>
     </div>
 
-        <h3>Filter po Veličini</h3>
+    <h3>Filter po Veličini</h3>
     <div class="size-filter-options" id="sizeFilterOptions">
-    <button class="size-btn" data-size="S" onclick="shop.filterProducts('S', 'size'); shop.applyFiltersAndSort();">S</button>
-    <button class="size-btn" data-size="M" onclick="shop.filterProducts('M', 'size'); shop.applyFiltersAndSort();">M</button>
-    <button class="size-btn" data-size="L" onclick="shop.filterProducts('L', 'size'); shop.applyFiltersAndSort();">L</button>
-    <button class="size-btn" data-size="XL" onclick="shop.filterProducts('XL', 'size'); shop.applyFiltersAndSort();">XL</button>
-    <button class="size-btn" data-size="XXL" onclick="shop.filterProducts('XXL', 'size'); shop.applyFiltersAndSort();">XXL</button>
-    <button class="size-btn active" data-size="all" onclick="shop.filterProducts('all', 'size'); shop.applyFiltersAndSort();">Sve</button>
+    <button class="size-btn" data-size="S">S</button>
+    <button class="size-btn" data-size="M">M</button>
+    <button class="size-btn" data-size="L">L</button>
+    <button class="size-btn" data-size="XL">XL</button>
+    <button class="size-btn" data-size="XXL">XXL</button>
+    <button class="size-btn active" data-size="all">Sve</button>
 </div>  
     <button class="apply-filters-btn" onclick="shop.applyAllFilters()">Primeni filtere</button>
+
 </div>
     </div>
     <div class="products-grid" id="productsGrid">
         </div>
 </section>
     </main>
-
-<footer class="site-footer">
-    <div class="footer-content-custom">
-        <div class="footer-section-custom about">
-            <h3>AresNyX Shop</h3>
-            <p>Premium muški donji veš izrađen od 100% prirodnih materijala. Kvalitet i udobnost su naš potpis.</p>
-        </div>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">ARESNYX</div>
+        <p class="footer-tagline">Premium kvalitet. Izuzetan komfor. Vaš stil.</p>
         
-        <div class="footer-section-custom links">
-            <h3>Korisni linkovi</h3>
-            <ul>
-                <li><a href="index.html">Početna</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="o-nama.html">O nama</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">Početna</a>
+            <a href="shop.html" class="footer-link">Shop</a>
+            <a href="o-nama.html" class="footer-link">O nama</a>
+            <a href="kontakt.html" class="footer-link">Kontakt</a>
         </div>
-
-        <div class="footer-section-custom contact">
-    <h3>Kontakt</h3>
-    <p>
-        <i class="fas fa-envelope"></i>
-        Email: <a href="mailto:ares.nyx.info@gmail.com" class="contact-link contact-email">ares.nyx.info@gmail.com</a>
-    </p>
-    <p>
-        <i class="fas fa-phone"></i>
-        Telefon: <a href="tel:+381648700220" class="contact-link">+381 648700 220</a>
-    </p>
-    <p>
-        <i class="fas fa-map-marker-alt"></i>
-        Lokacija: Aranđelovac, Srbija
-    </p>
-</div>
-
-        <div class="footer-section-custom social">
-            <h3>Pratite nas</h3>
-            <div class="social-links-custom">
-                <a href="https://www.instagram.com/aresnyxsea?igsh=MXcwajJubDN6Mjlscg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61584421934352" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/aresnyxofficial" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.tiktok.com/@aresnyxsea?_r=1&_t=ZM-91yEAP4212e" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
-    </div>
+        <div class="footer-social">
     
-    <div class="footer-bottom-custom">
-        &copy; 2024 AresNyX | Sva prava zadržana.
+    <a href="https://www.instagram.com/aresnyxsea?igsh=MXcwajJubDN6Mjlscg==" class="social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 448 512" preserveAspectRatio="xMidYMid meet">
+            <path d="M224 202.8c-20.9 0-37.8 16.9-37.8 37.8s16.9 37.8 37.8 37.8 37.8-16.9 37.8-37.8-16.9-37.8-37.8-37.8zM400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM317.7 114.3c-2.3 0-4.6 1.1-6.2 3.1-1.6 2-2.1 4.5-1.4 6.9l.4 1.7c1.3 4.2 4.4 7.6 8.5 9.4 4.1 1.8 8.6 1.6 12.5-.6 3.9-2.2 6.8-6 7.7-10.4 1-4.4-.3-9.1-3.6-12.4-3.3-3.2-7.8-4.9-12.2-4.7zM400 376c0 10.6-8.6 19.2-19.2 19.2H67.2c-10.6 0-19.2-8.6-19.2-19.2V136.6c0-10.6 8.6-19.2 19.2-19.2h313.6c10.6 0 19.2 8.6 19.2 19.2v239.4z"/>
+        </svg>
+    </a>
+    
+    <a href="https://www.facebook.com/profile.php?id=61584421934352" class="social-icon" aria-label="Facebook">
+        <svg viewBox="0 0 320 512" preserveAspectRatio="xMidYMid meet">
+            <path d="M279.1 288l14.22-92.66h-88.91V115.1c0-26.23 10.99-46.37 46.23-46.37h42.22V6.511C312.7 5.713 297.8 5.395 283.4 5.176c-48.44-4.8-87.39 12.43-124.9 50.15c-37.52 37.71-55.82 86.81-55.82 153.9V288h-68.52v92.66h68.52v221.7C174.5 502.8 250 491 250 422.3V288h29.14z"/>
+        </svg>
+    </a>
+    
+    <a href="https://x.com/aresnyxofficial" class="social-icon" aria-label="X (Twitter)">
+        <svg viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+            <path d="M389.2 48h70.6L305.6 224.2 487 464H397.4L266.8 309.4 163.7 464H93.3L268.6 261.7 85.5 48H175.1L289.4 186.2 389.2 48zM364.4 421.8h37.7L151.4 88.5H111L364.4 421.8z"/>
+        </svg>
+    </a>
+    
+    <a href="https://www.tiktok.com/@aresnyxsea?_r=1&_t=ZM-91yEAP4212e" class="social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 448 512" preserveAspectRatio="xMidYMid meet">
+            <path d="M448 103.1v205.4c0 7.8-6.8 14.1-15.1 14.1s-15.1-6.3-15.1-14.1V130.6c-18.4 5.4-38.2 11.7-57.9 18.2c-5.8 1.9-11.5 3.8-17.2 5.6c-28.7 9.4-58.6 17.5-88.7 23.9V336c0 106.1-90.1 176-193.3 176C56.6 512 0 448.9 0 348.6c0-101.4 75.6-173.3 186.1-175.6V315.6c-43.1 0-77.8 38.6-77.8 86.8c0 47.3 34.6 85.5 77.8 85.5c41.2 0 74.3-33 74.3-85.5V93.5c0-6.3 5.1-11.4 11.4-11.4c6.3 0 11.4 5.1 11.4 11.4v205.8c0 7.8-6.8 14.1-15.1 14.1s-15.1-6.3-15.1-14.1V103.1c0-6.3 5.1-11.4 11.4-11.4c6.3 0 11.4 5.1 11.4 11.4v205.8c0 7.8-6.8 14.1-15.1 14.1s-15.1-6.3-15.1-14.1V103.1z"/>
+        </svg>
+    </a>
+</div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AresNyX. Sva prava zadržana.</p>
+        </div>
     </div>
 </footer>
-<div class="modal-overlay" id="productModal">
+
+    <div class="modal-overlay" id="productModal">
         <div class="modal-container">
             <button class="modal-close" onclick="shop.closeModal()">×</button>
             <div class="modal-content">
-    
-    <div class="modal-gallery">
-        <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
-        <div class="slider-nav">
-            <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-            <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-    
-<div class="modal-details">
-    <h2 id="modalTitle"></h2>
-    <p class="modal-material" id="modalMaterial"></p>
-    <p class="modalPrice" id="modalPrice"></p>
-    
-    <div class="size-section">
-        <p>Izaberite veličinu:</p>
-        <div class="size-selector" id="sizeSelector">
-            </div>
-        <button class="size-guide-btn" onclick="shop.toggleSizeTable()"><i class="fas fa-ruler-horizontal"></i> Tabela veličina</button>
-    </div>
-    
-    <div class="size-table-container" id="sizeTable" style="display: none;">
-        <h4>Tabela Veličina (cm)</h4>
-        <table>
-            <thead>
-                <tr><th>Veličina</th><th>Obim struka</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>S</td><td>71-76</td></tr>
-                <tr><td>M</td><td>81-86</td></tr>
-                <tr><td>L</td><td>91-97</td></tr>
-                <tr><td>XL</td><td>102-107</td></tr>
-                <tr><td>XXL</td><td>112-117</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="quantity-section">
-        <p>Količina:</p>
-        <div class="quantity-controls">
-            <button onclick="shop.changeQuantity(-1)"><i class="fas fa-minus"></i></button>
-            <span id="modalQty">1</span>
-            <button onclick="shop.changeQuantity(1)"><i class="fas fa-plus"></i></button>
-        </div>
-    </div>
-    
-</div>
-
-<div class="modal-actions-fixed-bottom">
-    <div class="modal-actions">
-        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
-            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-        </button>
-        <button class="continue-shopping" onclick="shop.closeModal()">
-            Nastavi kupovinu
-        </button>
-    </div>
-</div>
-    
-</div>
+                <div class="modal-gallery">
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
+                    <div class="slider-nav">
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
                 
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-material" id="modalMaterial"></p>
+                    <p class="modalPrice" id="modalPrice"></p>
+                    
+                    <div class="size-section">
+                        <h3>Odaberite veličinu:</h3>
+                        <div class="size-selector" id="sizeSelector"></div>
+                        <div class="size-info" onclick="shop.toggleSizeTable()">
+                            <i class="fas fa-ruler"></i>
+                            <span>Tabela veličina</span>
+                        </div>
+                    </div>
+
+                    <div class="size-table-container" id="sizeTable" style="display: none;">
+                        <h4><i class="fas fa-table"></i> Tabela veličina (cm)</h4>
+                        <table class="size-table">
+                            <thead>
+                                <tr><th>Veličina</th><th>Struk</th><th>Dužina</th><th>Širina nogavice</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>M</strong></td><td>72-76</td><td>28</td><td>24</td></tr>
+                                <tr><td><strong>L</strong></td><td>77-81</td><td>29</td><td>25</td></tr>
+                                <tr><td><strong>XL</strong></td><td>82-86</td><td>30</td><td>26</td></tr>
+                                <tr><td><strong>XXL</strong></td><td>87-91</td><td>31</td><td>27</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quantity-section">
+                        <h3>Količina:</h3>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                            <span class="qty-display" id="modalQty">1</span>
+                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+                            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                        </button>
+                        <button class="continue-shopping" onclick="shop.closeModal()">
+                            Nastavi kupovinu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+    
+    <div class="cart-header">
+        <h3>Vaša Korpa</h3>
+        <button class="modal-close" onclick="shop.toggleCart()">×</button>
+    </div>
+    
+    <div class="cart-promo-message" id="cartPromoMessage">
+        </div>
+
+    <div class="cart-items" id="cartItems">
+        <div class="empty-cart" id="emptyCart">
+            <i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i>
+            <p>Vaša korpa je prazna</p>
+        </div>
+    </div>
+    
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+        
+        <div class="cart-actions-footer">
+            <button class="clear-cart-btn" onclick="shop.clearCart()">
+                <i class="fas fa-trash"></i> Isprazni Korpu
+            </button>
+        </div>
+
+        <div class="cart-totals">
+            <div class="cart-total-row"><span>Međuzbir:</span><span id="cartSubtotal">0 RSD</span></div>
+            <div class="cart-total-row"><span>Poštarina:</span><span id="cartShipping">0 RSD</span></div>
+            <div class="cart-total-row"><span>Popust:</span><span id="cartDiscount">0 RSD</span></div>
+            <div class="cart-total-row final"><span>Ukupno:</span><span id="cartTotal">0 RSD</span></div>
+        </div>
+        <button class="checkout-btn" onclick="shop.startCheckout()"><i class="fas fa-truck"></i> Završi Kupovinu</button>
+    </div>
+</div>  
     <div class="modal-overlay" id="checkoutModal">
         <div class="modal-container">
             <button class="modal-close" onclick="shop.closeCheckoutModal()">×</button>
