@@ -947,4 +947,107 @@ document.addEventListener('DOMContentLoaded', () => {
         shop.renderProducts(); 
     }, 50); 
 });
+/* ===== HITNI FIX ZA HEADER I FOOTER ===== */
+/* DODAJTE OVO NA SAMO KRAJ VAŠEG CSS-A */
 
+/* HEADER - FORSIRAJ STILOVE */
+header {
+    background: #121212 !important;
+    color: white !important;
+    padding: 15px 20px !important;
+    text-align: center !important;
+    border-bottom: 3px solid #D4AF37 !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3) !important;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+/* FORSIRAJ ZLATNU BOJU NASLOVA */
+header h1 {
+    color: #D4AF37 !important;
+    font-size: 2.5rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* FORSIRAJ NAVIGACIJU */
+nav {
+    background: #121212 !important;
+    padding: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    border-bottom: 3px solid #D4AF37 !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+/* FORSIRAJ NAV LINKOVE */
+nav a {
+    color: white !important;
+    text-decoration: none !important;
+    padding: 10px 16px !important;
+    border-radius: 4px !important;
+    border: 1px solid transparent !important;
+    font-size: 1.1em !important;
+    font-weight: 500 !important;
+    transition: all 0.3s !important;
+    text-align: center !important;
+    min-width: 90px !important;
+    display: inline-block !important;
+}
+
+/* AKTIVNI LINK */
+nav a.active {
+    background: #D4AF37 !important;
+    color: #121212 !important;
+    font-weight: 700 !important;
+    border-color: #D4AF37 !important;
+}
+
+/* FORSIRAJ FOOTER */
+.footer {
+    background: #121212 !important;
+    color: #f4f4f4 !important;
+    padding: 2rem 0 !important;
+    margin-top: auto !important;
+    width: 100% !important;
+    display: block !important;
+    position: relative !important;
+}
+
+/* BODY - OBAVEZNO FLEX */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* GLAVNI SADRŽAJ DA RASTE */
+.main-content {
+    flex: 1 !important;
+}
+
+/* ZLATNA LINIJA - VIDLJIVA */
+nav::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -3px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: #D4AF37 !important;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.7) !important;
+}
+
+/* LOGO SLIKA */
+.header-logo {
+    display: block !important;
+    margin: 0 auto 10px !important;
+    width: 70px !important;
+    height: 70px !important;
+                  }
