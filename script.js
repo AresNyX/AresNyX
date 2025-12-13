@@ -393,7 +393,7 @@ class AresNyXShop {
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
-                        ${size}${isDisabled ? : ''}
+                        ${size}${isDisabled ? ' (Nema)' : ''}
                     </button>
                 `;
             })
@@ -947,7 +947,6 @@ document.addEventListener('DOMContentLoaded', () => {
         shop.renderProducts(); 
     }, 50); 
 });
-
 
 
 
