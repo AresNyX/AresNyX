@@ -961,6 +961,123 @@ header h2, .subtitle {
     }
 }
 
+/* ============================================== */
+/* ⭐ PRILAGOĐENI STIL ZA MODALNI PROZOR (PREMA ARESNYX HTMLU) ⭐ */
+/* ============================================== */
+
+/* 1. KONTENJER SADRŽAJA (Da se dugmad fiksiraju unutra i omogući skrol) */
+.modal-content {
+    /* Menjamo standardni display flex i dozvoljavamo da sadržaj raste */
+    display: block; 
+    overflow-y: auto; 
+    position: relative; 
+    padding-bottom: 70px; /* Dodajemo prostor za fiksirana dugmad */
+}
+
+/* 2. MAKSIMALNO UVEĆANJE SLIKE */
+.modal-gallery {
+    /* Dajemo galeriji fiksnu visinu za bolji odnos slike */
+    height: auto;
+    max-height: 55vh; 
+    overflow: hidden;
+    position: relative;
+    padding: 0.5rem; /* Smanjenje paddinga oko slike */
+}
+.modal-main-image {
+    /* Slika zauzima raspoloživi prostor */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Osigurava da je cela slika vidljiva */
+}
+
+/* 3. VELIČINE - Uniformna širina i nedostupnost */
+.size-selector {
+    display: flex;
+    justify-content: space-between; 
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Stil za sva dugmad unutar size-selector (mora biti uniformno) */
+.size-selector button {
+    flex-grow: 1; /* Sva dugmad zauzimaju isti prostor */
+    text-align: center;
+    padding: 0.5rem 0.2rem;
+    /* Dodajte ovde ostale stilove za dugmad (border, background) */
+}
+
+/* Ako imate nedostupnu veličinu (morate dodati klasu u HTML u JS-u) */
+.size-selector button.unavailable {
+    background-color: var(--light-gray, #f0f0f0) !important; 
+    color: var(--text-gray, #999) !important;
+    border: 1px solid var(--border-gray, #ccc) !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 4. TABELA MERA - Pomeranje ulevo */
+.size-info {
+    text-align: left; /* Postavlja tekst uz levu ivicu */
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    /* Izmena za bolji raspored ikonice i teksta */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 5. KOLIČINA - Povećanje dugmadi + i - */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    width: fit-content; 
+    margin-bottom: 1rem;
+}
+
+.qty-btn {
+    font-size: 1.5rem; /* Povećavamo veličinu teksta/simbola */
+    padding: 0.5rem 1rem; /* Povećavamo prostor unutar dugmeta */
+    width: 50px; 
+    height: 50px; 
+    border: 1px solid #ccc;
+    background-color: var(--light-gray, #f8f8f8);
+    cursor: pointer;
+}
+
+.qty-display {
+    font-size: 1.2rem;
+    width: 40px;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 50px; 
+    line-height: 50px; /* Centriranje broja unutra */
+}
+
+/* 6. FIKSIRANJE DUGMADI ZA AKCIJU */
+.modal-actions {
+    /* KORISTIMO ABSOLUTE JER JE PARENT (.modal-content) RELATIVE */
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+    right: 0;
+    padding: 0.7rem 1rem;
+    background-color: white; 
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
+    display: flex;
+    justify-content: space-between; 
+    z-index: 1000; 
+}
+
+/* Dugmad u fiksiranom kontejneru */
+.modal-actions button {
+    flex-grow: 1; 
+    margin: 0 0.5rem;
+    padding: 0.8rem 1rem;
+    /* Ako vam je potrebno, dodajte ovde stil za 'Dodaj u Korpu' dugme */
+}
 
 
 
