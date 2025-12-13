@@ -717,7 +717,7 @@ header h2, .subtitle {
 }
 /* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA POPRAVKA VERTIKALNOG RASPOREDA ===== */
 @media (max-width: 768px) {
-    /* 1. Opšta pozicija Modala i Sadržaj */
+    /* Opšta pozicija Modala i Sadržaj */
     .modal-container {
         top: 50%; 
         max-height: 90vh; 
@@ -734,7 +734,7 @@ header h2, .subtitle {
         padding: 6px; 
     }
     
-    /* 2. Detalji i Skrolovanje (Da ne bi skrolovalo ceo Modal) */
+    /* Detalji i Skrolovanje */
     .modal-details { 
         max-height: 45vh; 
         overflow-y: auto; 
@@ -743,59 +743,57 @@ header h2, .subtitle {
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
     }
     
-    /* 3. Veličina i Količina - Vraćanje u Kolonu (jedan ispod drugog) */
+    /* Veličina i Količina - Vraćanje u Kolonu (jedan ispod drugog) */
     .sizing-and-quantity-wrapper {
         flex-direction: column;
         gap: 0.8rem; 
         margin-bottom: 1rem;
+        align-items: center; /* KRITIČNO: Centriraj sve elemente unutar ovog wrapper-a */
     }
 
-    /* 4. Sekcije zauzimaju punu širinu */
+    /* Sekcije zauzimaju punu širinu */
     .variation-section { 
         order: initial; 
-        width: 100%; /* KRITIČNO: Zauzima punu širinu */
+        width: 100%; 
     }
     
-    /* 5. Količina - Sada Zauzima punu širinu i ispravan izgled */
+    /* KOLIČINA - Sada Zauzima punu širinu i ispravan izgled */
     .quantity-input-container { 
         order: initial; 
-        width: 100%; /* KRITIČNO: Zauzima punu širinu */
+        width: 100%; 
+        max-width: 200px; /* Ograničavamo širinu da ne bude prevelika na mobilnom */
         margin-top: 0; 
         height: 42px; 
-        /* Vraćanje manjih dimenzija za mobilnu količinu */
         font-size: 1.2em;
     }
-    /* Korigovanje dugmadi Količine na mobilnom */
-    .quantity-input-container button {
-        width: 20%; /* Neka zauzmu manji deo */
-        font-size: 1.5em;
-    }
-    .quantity-input-container input {
-        width: 60%; /* Neka input zauzme veći deo */
+    /* Veličine, Količina i Akcije uvek moraju biti centrirane u koloni */
+    .variation-section h3 {
+        text-align: center;
     }
 
-    /* 6. Akcije (Dodaj u korpu/Nastavi kupovinu) */
+    /* Centriranje dugmadi Veličina na mobilnom */
+    #modal-sizes-container {
+        justify-content: center; /* KRITIČNO: Centriranje dugmadi unutar kontejnera */
+        flex-wrap: wrap; 
+    }
+    
+    /* Akcije (Dodaj u korpu/Nastavi kupovinu) */
     .modal-actions {
         margin-top: 0.8rem; 
         flex-direction: column; 
         gap: 0.6rem; 
+        align-items: center; /* KRITIČNO: Centriranje dugmadi (Dodaj u korpu/Nastavi) */
     }
     
+    /* Dugmad akcija moraju zauzeti punu širinu Modala, ali ne i ekrana */
     .add-to-cart-btn, .continue-shopping {
-        width: 100%;
-        flex: 0 0 100%; 
+        width: 90%; /* KRITIČNO: Ograničite na 90% da ne udari u ivice modala */
+        max-width: 300px; /* Maksimalna širina za bolji izgled */
+        flex: 0 0 auto; 
         padding: 0.8rem 1rem; 
         font-size: 1rem;
     }
-    
-    /* 7. Centriranje dugmadi Veličina na mobilnom */
-    #modal-sizes-container {
-        justify-content: center;
-        flex-wrap: wrap; /* Dozvolite prelaz u više redova ako je puno veličina */
-    }
 }
-
-
 
 /* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
 .filter-sort-panel {
