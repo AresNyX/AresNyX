@@ -670,162 +670,172 @@ nav a.active {
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-/* ============================================== */
-/* ===== FOOTER - GLAVNI STILOVI (KONAČNA VERZIJA) ===== */
-/* ============================================== */
 
-/* Glavni kontejner Footera */
-.site-footer {
-    background-color: #121212;
-    color: #f4f4f4;
-    /* Maksimalno smanjen padding za kompaktnost */
-    padding: 0.5rem 0 0.3rem; 
-    margin-top: 1rem;
-    font-size: 1.17em;
-    width: 100%;
+/* ========================================================= */
+/* ⭐ KONAČNA KOREKCIJA: FOOTER STILOVI (.main-footer) ⭐ */
+/* ========================================================= */
+
+.main-footer {
+    background-color: var(--primary-dark);
+    color: #f0f0f0;
+    padding: 2rem 1rem;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+    text-align: center; 
+    margin-top: auto; 
+}
+
+/* --- Naslov Footera (AresNyX) --- */
+.footer-header {
+    font-size: 28px; 
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-gold); 
+    margin-bottom: 1.5rem;
+}
+
+/* --- Opis --- */
+.footer-description {
+    max-width: 600px;
+    margin: 0 auto 3rem; 
+    text-align: center;
+    line-height: 1.6;
+    color: #ccc;
+    padding: 0;
+    border-bottom: none; 
+    font-size: 1rem; 
+}
+
+/* --- Sekcije (Korisni linkovi, Kontakt, Pratite nas) --- */
+.footer-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    padding: 1rem 0;
+    margin-top: 0;
     text-align: center; 
 }
 
-/* Sadržaj (sve sekcije unutra) */
-.site-footer .footer-content-custom {
-    max-width: 1200px;
+.section-title {
+    color: var(--accent-gold); 
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ⭐ ZLATNE HORIZONTALNE LINIJE (MOBILNI PRIKAZ) ⭐ */
+.footer-section {
+    border-top: 2px solid var(--accent-gold);
+    padding-top: 1.5rem;
+}
+
+.footer-section:first-of-type {
+    border-top: none; 
+    padding-top: 0;
+}
+
+
+/* --- Navigacioni Linkovi (Korisni linkovi) --- */
+.footer-nav {
+    list-style: disc; 
+    list-style-position: inside;
+    padding: 0;
     margin: 0 auto;
-    padding: 0.5rem 1.5rem 0.3rem;
-    display: flex;
-    flex-wrap: wrap;
-    /* Koristimo space-around ili center za bolje horizontalno centriranje */
-    justify-content: space-around;
-    align-items: flex-start;
-    gap: 0.5rem; 
-    position: relative;
-    text-align: center;
+    width: fit-content; 
+    text-align: left;
+    font-size: 1em;
 }
 
-/* Svaka pojedinačna sekcija Footera */
-.site-footer .footer-section-custom {
-    flex: 1 1 200px;
-    padding: 0.3rem 0.5rem; 
-    position: relative;
-    text-align: center; /* KRITIČNO: Centriranje teksta unutar sekcija */
+.footer-nav li {
+    margin-bottom: 0.5rem;
+    color: #f0f0f0; 
 }
 
-/* Vertikalne zlatne linije (3px) - SAMO ZA DESKTOP */
-@media (min-width: 769px) { 
-    .site-footer .footer-section-custom:nth-child(1)::after, 
-    .site-footer .footer-section-custom:nth-child(2)::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: -0.5rem; 
-        height: 100%;
-        width: 3px; 
-        background: var(--accent-gold);
-    }
-}
-.site-footer .footer-section-custom:last-child::after {
-    content: none;
-}
-
-/* NASLOVI SEKCIJA */
-.site-footer .footer-section-custom h3 {
-    color: var(--accent-gold);
-    /* Smanjene margine za kompaktnost */
-    margin-bottom: 0.4rem; 
-    margin-top: 0.8rem;
-    font-size: 1.35em; 
-    font-weight: 600;
-    border-bottom: 2px solid var(--accent-gold);
-    padding-bottom: 0.2rem;
-    display: inline-block; 
-}
-
-/* Globalno uklanjanje viška margina i paddinga sa listi i p tagova */
-.site-footer ul, 
-.site-footer p {
-    margin: 0;
+.footer-nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.2s;
+    margin-left: -10px; 
+    display: inline;
     padding: 0;
 }
 
-/* Linkovi (Korisni linkovi) - Centriranje liste linkova */
-.site-footer .footer-section-custom.links ul {
-    list-style: none; 
-    padding: 0;
-    margin: 0;
-    /* CENTRIRANJE LISTE */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+.footer-nav a:hover {
+    color: var(--accent-gold); 
+    text-decoration: underline;
 }
 
-.site-footer .footer-section-custom.links a {
-    color: #ccc;
-    /* Smanjen vertikalni razmak između linkova na minimum */
-    margin-bottom: 0.1rem; 
-    padding: 0.1rem 0;
-    text-decoration: none;
-    font-size: 1em;
-    line-height: 1.2; 
-    display: block; 
+
+/* --- Kontakt Sekcija --- */
+.contact-info {
+    font-size: 0.95rem;
+    max-width: 300px;
+    margin: 0.8rem auto 0; 
+    text-align: left; 
 }
 
-/* Kontakt paragrafi - Koriste flex za centriranje ikone i teksta */
-.site-footer .footer-section-custom.contact p {
-    color: #ccc;
-    margin-bottom: 0.2rem; 
-    text-decoration: none;
-    font-size: 1em;
-    line-height: 1.4; 
+.contact-item {
+    margin-bottom: 0.7rem;
     display: flex;
-    justify-content: center; /* Centriranje ikone i teksta zajedno */
     align-items: center;
+    gap: 15px; 
+    padding-left: 20px; 
 }
 
-/* Ikonice (Font Awesome) u kontakt sekciji */
-.site-footer .footer-section-custom.contact p i {
-    margin-right: 0.5rem; 
-    color: var(--danger); 
-    font-size: 1.3em; 
-}
-
-/* Stilovi za klikabilne kontakt linkove (a) unutar footera */
-.site-footer .contact-link {
-    color: #ccc; 
-    text-decoration: none;
+/* ⭐ IKONE KONTAKTA ⭐ */
+.contact-icon { 
     display: inline-block;
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
-    transition: all 0.3s;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 1.2rem; 
+    color: var(--accent-gold); 
+    flex-shrink: 0; 
 }
 
-.site-footer .contact-link:hover {
-    color: var(--accent-gold);
-    background-color: rgba(212, 175, 55, 0.1);
-    transform: translateY(-1px);
+.contact-item a {
+    color: #f0f0f0; 
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-/* DRUŠTVENE MREŽE - Boja i razmak */
-.site-footer .footer-section-custom .social-links-custom {
+.contact-item a:hover {
+    color: var(--accent-gold); 
+    text-decoration: underline;
+}
+
+/* --- Društvene Mreže --- */
+.social-icons {
     display: flex;
-    justify-content: center;
-    gap: 25px; 
-    margin-top: 10px;
+    justify-content: space-around; 
+    align-items: center;
+    max-width: 300px;
+    margin: 1rem auto 0;
 }
 
-.site-footer .footer-section-custom .social-links-custom a {
+.social-icon {
+    display: block;
+    width: 40px; 
+    height: 40px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-size: 2.5rem; 
     color: var(--danger); 
-    font-size: 1.5em;
-    transition: var(--transition);
 }
 
-.site-footer .footer-section-custom .social-links-custom a:hover {
+.social-icon:hover {
     color: #c0392b; 
     transform: scale(1.1);
 }
 
 
-/* Donji deo futera (Copyright) */
-.site-footer .footer-bottom-custom {
+/* --- Donji deo footera (Copyright) --- */
+.footer-bottom-custom {
     text-align: center;
     padding: 0.5rem 0; 
     border-top: 1px solid #333;
@@ -835,35 +845,79 @@ nav a.active {
 }
 
 
-/* Prilagođavanje za manje ekrane (Mobilni prikaz) */
-@media (max-width: 768px) {
-    .site-footer .footer-content-custom {
-        flex-direction: column;
-        gap: 0.5rem; 
-        padding: 0.5rem 1rem 0.3rem;
-        /* KRITIČNO: Centriranje svih sekcija kada su u koloni */
-        align-items: center; 
+/* ========================================================= */
+/* === RESPONSIVE DIZAJN (Desktop i veći ekrani) === */
+/* ========================================================= */
+@media (min-width: 768px) {
+    .footer-content-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
     }
     
-    .site-footer .footer-section-custom {
-        padding: 0.2rem 0; 
-        width: 100%; 
+    .footer-header,
+    .footer-description {
+        grid-column: 1 / -1; 
         text-align: center;
     }
-    
-    .site-footer .footer-section-custom::after {
-        content: none; 
+
+    .footer-section {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none; 
+        text-align: left; 
     }
     
-    /* Centriranje liste linkova na mobilnom */
-    .site-footer .footer-section-custom.links ul {
-        align-items: center;
+    /* Zlatne vertikalne linije (kao divider) za desktop */
+    .footer-section:nth-child(3), 
+    .footer-section:nth-child(4) { 
+        position: relative;
+    }
+    .footer-section:nth-child(3)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -1.5rem; 
+        height: 100%;
+        width: 3px; 
+        background: var(--accent-gold);
+    }
+    .footer-section:nth-child(4)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1.5rem; 
+        height: 100%;
+        width: 3px; 
+        background: var(--accent-gold);
     }
     
-    .site-footer .footer-section-custom h3 {
-        font-size: 1.2em;
-        margin-bottom: 0.3rem;
+    .section-title {
+        margin-left: 0;
+        margin-right: 0;
+        width: auto;
     }
+    
+    .footer-nav {
+        margin: 0;
+        width: auto;
+        list-style-position: outside;
+    }
+    
+    .contact-info {
+        margin: 0.8rem 0 0; 
+    }
+    
+    .social-icons {
+        justify-content: flex-start; 
+        gap: 20px;
+        margin: 1rem 0 0 0;
+    }
+
+    .footer-bottom-custom {
+        grid-column: 1 / -1; 
+    }
+
 }
 
 /* HEADER SA PODNASLOVOM (za index.html) */
