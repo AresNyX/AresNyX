@@ -830,164 +830,228 @@ header h2, .subtitle {
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
 /* ============================================ */
-/* FIXOVI ZA HTML KOJI STVORNO IMATE U SHOP.HTML */
+/* HITNI FIXOVI ZA VAŠ HTML (DODAJTE OVO NA KRAJ CSS-A) */
 /* ============================================ */
 
-/* 1. FIX ZA HEADER KOJI IMATE */
-header {
-    background: var(--primary-dark) !important;
-    padding: 40px 20px !important;
-    text-align: center !important;
-    position: relative !important;
+/* 1. FIX ZA BODY LAYOUT */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* 2. FIX ZA LOGO SLIKU */
+/* 2. FIX ZA HEADER */
+header {
+    background: #121212 !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    text-align: center !important;
+    border-bottom: 2px solid #D4AF37 !important;
+}
+
+/* 3. FIX ZA LOGO SLIKU */
 .header-logo {
     display: block !important;
-    margin: 0 auto 15px !important;
+    margin: 0 auto 10px !important;
+    max-width: 70px !important;
+    height: auto !important;
 }
 
-/* 3. FIX ZA NASLOV U HEADER-U */
+/* 4. FIX ZA NASLOV */
 header h1 {
-    font-size: 2.875em !important;
-    color: var(--accent-gold) !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
+    color: #D4AF37 !important;
+    font-size: 2rem !important;
     margin: 0 !important;
-    text-shadow: 0 0 10px rgba(212,175,55,0.3) !important;
-    line-height: 1.3 !important;
+    padding: 0 !important;
 }
 
-/* 4. FIX ZA NAVIGACIJU KOJU IMATE */
+/* 5. FIX ZA NAVIGACIJU */
 nav {
-    background-color: var(--primary-dark) !important;
-    padding: 15px 5px !important;
-    text-align: center !important;
+    background: #121212 !important;
+    padding: 10px !important;
     display: flex !important;
     justify-content: center !important;
     flex-wrap: wrap !important;
-    gap: 10px !important;
-    border-bottom: 2px solid var(--accent-gold) !important; /* ZLATNA LINIJA! */
+    gap: 8px !important;
+    border-bottom: 2px solid #D4AF37 !important;
 }
 
-/* 5. FIX ZA NAV LINKOVE */
+/* 6. FIX ZA LINKOVE U NAV */
 nav a {
-    color: #fff !important;
+    color: white !important;
     text-decoration: none !important;
-    font-weight: 400 !important;
-    font-size: 1.3em !important;
+    padding: 8px 15px !important;
+    border-radius: 4px !important;
+    border: 1px solid transparent !important;
+    font-size: 1.1em !important;
     transition: all 0.3s !important;
-    display: inline-block !important;
-    padding: 8px 12px !important;
-    border-radius: 4px !important;
     text-align: center !important;
-    border: 1px solid transparent !important;
-    margin: 0 !important;
+    min-width: 80px !important;
 }
 
-/* 6. AKTIVNI LINK U NAV */
+/* 7. FIX ZA HOVER LINKOVE */
+nav a:hover {
+    border-color: #D4AF37 !important;
+    color: #D4AF37 !important;
+}
+
+/* 8. FIX ZA AKTIVNI LINK */
 nav a.active {
-    color: var(--primary-dark) !important;
-    background-color: var(--accent-gold) !important;
-    border: 1px solid var(--accent-gold) !important;
+    background: #D4AF37 !important;
+    color: #121212 !important;
+    font-weight: bold !important;
 }
 
-/* 7. FIX ZA CART LINK U NAV */
+/* 9. FIX ZA CART LINK */
 .cart-nav-link {
-    position: relative !important;
-    color: #fff !important;
-    text-decoration: none !important;
-    padding: 8px 12px !important;
-    border-radius: 4px !important;
+    color: white !important;
+    background: transparent !important;
     border: 1px solid transparent !important;
 }
 
-/* 8. FIX ZA SHOP KONTROLE */
+.cart-nav-link:hover {
+    border-color: #D4AF37 !important;
+    color: #D4AF37 !important;
+}
+
+/* 10. FIX ZA GLAVNI SADRŽAJ */
+.main-content {
+    flex: 1 !important;
+    padding: 20px !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* 11. FIX ZA PRODUCTS SECTION */
+.products-section {
+    padding: 20px !important;
+    width: 100% !important;
+}
+
+/* 12. FIX ZA SHOP CONTROLE */
 .shop-controls {
     text-align: right !important;
-    margin-bottom: 2rem !important;
-    padding: 0 2rem !important;
+    margin-bottom: 20px !important;
+    padding: 0 20px !important;
 }
 
-/* 9. FIX ZA FILTER PANEL */
+/* 13. FIX ZA FILTER PANEL */
 .filter-sort-panel {
-    position: absolute !important;
-    top: 50px !important;
-    right: 0 !important;
-    width: 390px !important;
     background: white !important;
-    border: 1px solid var(--gray-medium) !important;
+    border: 1px solid #ddd !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
     border-radius: 8px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    padding: 26px !important;
-    z-index: 500 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(13px) !important;
-    pointer-events: none !important;
-    transition: all 0.3s !important;
+    padding: 20px !important;
+    position: absolute !important;
+    z-index: 1000 !important;
 }
 
-/* 10. FIX ZA FOOTER KOJI IMATE */
+/* 14. FIX ZA PRODUCTS GRID */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 25px !important;
+    padding: 20px !important;
+}
+
+/* 15. FIX ZA FOOTER */
 .footer {
-    background-color: #121212 !important;
+    background: #121212 !important;
     color: #f4f4f4 !important;
     padding: 2rem 0 !important;
-    margin-top: 3rem !important;
-    font-size: 1.17em !important;
     width: 100% !important;
+    margin-top: auto !important;
     text-align: center !important;
 }
 
 .footer-content {
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 0 1.5rem !important;
+    padding: 0 20px !important;
 }
 
-/* 11. FIX ZA SOCIAL IKONE U FOOTER-U */
-.social-icon svg {
-    width: 24px !important;
-    height: 24px !important;
-    fill: var(--danger) !important;
-}
-
-/* 12. MOBILNI FIXOVI */
+/* 16. MOBILNI FIXOVI */
 @media (max-width: 600px) {
+    /* NAVIGACIJA */
     nav {
-        gap: 5px !important;
-        padding: 10px 5px !important;
+        gap: 4px !important;
+        padding: 8px 4px !important;
     }
     
     nav a {
-        width: 30% !important;
-        font-size: 1em !important;
-        padding: 6px 3px !important;
-        margin: 1px !important;
+        padding: 6px 8px !important;
+        font-size: 0.9em !important;
+        min-width: 0 !important;
+        flex: 1 !important;
+        width: calc(33.333% - 8px) !important;
     }
     
+    /* PROIZVODI */
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        padding: 10px !important;
+        gap: 15px !important;
+    }
+    
+    /* SHOP CONTROLS */
     .shop-controls {
-        padding: 0 1rem !important;
         text-align: center !important;
+        padding: 0 10px !important;
+    }
+    
+    /* FILTER PANEL */
+    .filter-sort-panel {
+        width: 95% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
     }
 }
 
-/* 13. FIX ZA GLAVNI KONTENT DA BUDE ISPOD NAVIGACIJE */
-.main-content {
-    margin-top: 20px !important;
-    flex: 1 !important; /* VAŽNO: footer na dno */
+/* 17. FIX ZA ZLATNU LINIJU - JASNO VIDLJIVA */
+nav {
+    position: relative !important;
 }
 
-/* 14. FIX ZA BODY FLEXBOX */
-body {
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important;
+nav::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: #D4AF37 !important;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5) !important;
 }
 
-main, .main-content, .products-section {
-    flex: 1 !important;
+/* 18. FIX ZA TAMNU POZADINU CELE STRANE */
+body.shop-page, body {
+    background: #f8f9fa !important;
 }
 
+/* 19. FIX ZA KARTICE PROIZVODA */
+.product-card {
+    background: white !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    transition: all 0.3s !important;
+}
 
+.product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
 
+/* 20. FIX ZA MODALE I CART */
+.modal-overlay {
+    background: rgba(0,0,0,0.9) !important;
+}
+
+.cart-sidebar {
+    background: white !important;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.2) !important;
+}
