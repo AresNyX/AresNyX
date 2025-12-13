@@ -104,11 +104,10 @@ body.no-scroll { overflow: hidden; } /* Zadržite za modal */
 .product-badge { position: absolute; top: 1rem; left: 1rem; background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; z-index: 2; }
 .product-image { 
     width: 100%; 
-    height: 360px; 
-    object-fit: contain; 
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 0; /* ⭐ PROMENA: Uklonite padding, dajući slici više prostora ⭐ */
-    /* Ili smanjite, npr. padding: 5px; */
+    height: 360px; /* I dalje 360px ili više, po želji */
+    object-fit: cover; /* ⭐ PROMENA: Slika će popuniti ceo kontejner, mogući crop ⭐ */
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* Ovo će sada retko biti vidljivo */
+    padding: 0; /* ⭐ PROMENA: Uklonite padding ako želite da slika ide do ivice ⭐ */
     display: block; margin: 0 auto; flex-shrink: 0;
 }
 .product-info { padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
