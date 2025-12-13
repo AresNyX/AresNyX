@@ -829,5 +829,165 @@ header h2, .subtitle {
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
+/* ============================================ */
+/* FIXOVI ZA HTML KOJI STVORNO IMATE U SHOP.HTML */
+/* ============================================ */
+
+/* 1. FIX ZA HEADER KOJI IMATE */
+header {
+    background: var(--primary-dark) !important;
+    padding: 40px 20px !important;
+    text-align: center !important;
+    position: relative !important;
+}
+
+/* 2. FIX ZA LOGO SLIKU */
+.header-logo {
+    display: block !important;
+    margin: 0 auto 15px !important;
+}
+
+/* 3. FIX ZA NASLOV U HEADER-U */
+header h1 {
+    font-size: 2.875em !important;
+    color: var(--accent-gold) !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+    text-shadow: 0 0 10px rgba(212,175,55,0.3) !important;
+    line-height: 1.3 !important;
+}
+
+/* 4. FIX ZA NAVIGACIJU KOJU IMATE */
+nav {
+    background-color: var(--primary-dark) !important;
+    padding: 15px 5px !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    border-bottom: 2px solid var(--accent-gold) !important; /* ZLATNA LINIJA! */
+}
+
+/* 5. FIX ZA NAV LINKOVE */
+nav a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-weight: 400 !important;
+    font-size: 1.3em !important;
+    transition: all 0.3s !important;
+    display: inline-block !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    border: 1px solid transparent !important;
+    margin: 0 !important;
+}
+
+/* 6. AKTIVNI LINK U NAV */
+nav a.active {
+    color: var(--primary-dark) !important;
+    background-color: var(--accent-gold) !important;
+    border: 1px solid var(--accent-gold) !important;
+}
+
+/* 7. FIX ZA CART LINK U NAV */
+.cart-nav-link {
+    position: relative !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    border: 1px solid transparent !important;
+}
+
+/* 8. FIX ZA SHOP KONTROLE */
+.shop-controls {
+    text-align: right !important;
+    margin-bottom: 2rem !important;
+    padding: 0 2rem !important;
+}
+
+/* 9. FIX ZA FILTER PANEL */
+.filter-sort-panel {
+    position: absolute !important;
+    top: 50px !important;
+    right: 0 !important;
+    width: 390px !important;
+    background: white !important;
+    border: 1px solid var(--gray-medium) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    padding: 26px !important;
+    z-index: 500 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(13px) !important;
+    pointer-events: none !important;
+    transition: all 0.3s !important;
+}
+
+/* 10. FIX ZA FOOTER KOJI IMATE */
+.footer {
+    background-color: #121212 !important;
+    color: #f4f4f4 !important;
+    padding: 2rem 0 !important;
+    margin-top: 3rem !important;
+    font-size: 1.17em !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.footer-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+}
+
+/* 11. FIX ZA SOCIAL IKONE U FOOTER-U */
+.social-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: var(--danger) !important;
+}
+
+/* 12. MOBILNI FIXOVI */
+@media (max-width: 600px) {
+    nav {
+        gap: 5px !important;
+        padding: 10px 5px !important;
+    }
+    
+    nav a {
+        width: 30% !important;
+        font-size: 1em !important;
+        padding: 6px 3px !important;
+        margin: 1px !important;
+    }
+    
+    .shop-controls {
+        padding: 0 1rem !important;
+        text-align: center !important;
+    }
+}
+
+/* 13. FIX ZA GLAVNI KONTENT DA BUDE ISPOD NAVIGACIJE */
+.main-content {
+    margin-top: 20px !important;
+    flex: 1 !important; /* VAŽNO: footer na dno */
+}
+
+/* 14. FIX ZA BODY FLEXBOX */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+main, .main-content, .products-section {
+    flex: 1 !important;
+}
+
 
 
