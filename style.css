@@ -1,5 +1,5 @@
 /* ========================================================= */
-/* === 1. OSNOVNE POSTAVKE I RESET (OSTALO KAO PRE) === */
+/* === 1. OSNOVNE POSTAVKE I RESET (ISPRAVLJENO) === */
 /* ========================================================= */
 :root {
     /* Boje */
@@ -29,16 +29,22 @@
     font-family: var(--font-family-main);
 }
 
+/* 🛑 KRITIČNI FIX 1: Sprečavanje horizontalnog skrolovanja (Footer udesno problem) */
+html, body {
+    overflow-x: hidden !important; 
+}
+
 body {
     background-color: var(--background);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
-/* KLJUČNO: Klasa za sprečavanje skrolovanja tela */
+/* 🛑 KRITIČNI FIX 2: Zaključavanje pozadine tela za fiksne elemente na mobilnom */
 body.no-scroll {
-    overflow: hidden;
+    overflow: hidden; 
+    position: fixed; 
+    width: 100%; 
 }
 
 a {
@@ -51,10 +57,9 @@ a:hover {
 }
 
 /* ========================================================= */
-/* === 2. HEADER I NAVIGACIJA (OSTAVLJENO NA VAŠ STARI CSS) === */
+/* === 2. HEADER I NAVIGACIJA === */
 /* ========================================================= */
 
-/* Jedina obavezna CSS pravila za HEADER deo da bi Korpa pulsirala */
 #cartCount {
     transition: transform 0.2s ease;
 }
@@ -288,7 +293,7 @@ a:hover {
 }
 
 /* ========================================================= */
-/* === 5. MODALNI PROZOR (PRODUCT MODAL) - FIKSIRANO === */
+/* === 5. MODALNI PROZOR (PRODUCT MODAL) - FIKSIRANO (ISPRAVLJENO) === */
 /* ========================================================= */
 
 .modal-overlay {
@@ -299,9 +304,9 @@ a:hover {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 2000; 
-    display: none; /* KLJUČNO: Kontroliše ga JS pomoću .style.display */
-    overflow-y: auto;
-    padding: 20px;
+    display: none; 
+    overflow-y: hidden; 
+    padding: 0; 
     transition: opacity 0.3s;
 }
 
@@ -310,6 +315,11 @@ a:hover {
     border-radius: 10px;
     box-shadow: var(--shadow-medium);
     max-width: 900px;
+    
+    /* Glavno skrolovanje modala na desktopu */
+    max-height: 90vh; 
+    overflow-y: auto; 
+    
     margin: 40px auto;
     position: relative;
     padding: 20px;
@@ -332,6 +342,8 @@ a:hover {
     flex-wrap: wrap;
     gap: 20px;
     padding-top: 20px;
+    /* Dodajemo prostor za ABSOLUTE dugmad na desktopu */
+    padding-bottom: 80px; 
 }
 
 .modal-gallery {
@@ -478,14 +490,22 @@ a:hover {
     text-align: center;
 }
 
+/* Dugmad Fiksirana na dnu modala (Desktop default - ABSOLUTE) */
 .modal-actions {
-    width: 100%;
-    padding: 1rem 0;
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%; 
+    padding: 1rem 20px; 
     display: flex;
     gap: 15px;
     justify-content: flex-start;
     border-top: 1px solid #eee;
-    margin-top: 1rem;
+    margin-top: 0; 
+    background: var(--white); 
+    border-radius: 0 0 10px 10px;
+    z-index: 10;
 }
 
 .add-to-cart-btn {
@@ -543,7 +563,6 @@ a:hover {
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
     z-index: 1500; 
     
-    /* KLJUČNO ZA FUNKCIONALNOST: Skriva ga desno */
     transform: translateX(100%); 
     transition: transform 0.4s ease-out;
     
@@ -915,12 +934,73 @@ a:hover {
 }
 
 /* ========================================================= */
-/* === 9. FOOTER (OSTAVLJENO NA VAŠ STARI CSS) === */
+/* === 9. FOOTER (DEFINISANO) === */
 /* ========================================================= */
+
+.footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 2.5rem 5%; 
+    text-align: center;
+    border-top: 4px solid var(--secondary);
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: left;
+}
+
+.footer-section {
+    flex: 1 1 200px; 
+    margin-bottom: 1rem;
+}
+
+.footer-section h4 {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.footer-section p, .footer-section a {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.footer-section a:hover {
+    color: var(--secondary);
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    text-align: center;
+}
 
 
 /* ========================================================= */
-/* === 10. MEDIA QUERIES (Samo za komponente koje smo menjali) === */
+/* === 10. MEDIA QUERIES (KRITIČNI FIX ZA MOBILNI MODAL) === */
 /* ========================================================= */
 
 @media (max-width: 992px) {
@@ -944,6 +1024,55 @@ a:hover {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
     }
+
+    /* KRITIČNI MOBILNI FIX ZA MODAL (Puni ekran, bez skrolovanja tela) */
+    .modal-container {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+        max-height: 100vh; 
+        overflow-y: hidden; 
+        padding: 0; 
+    }
+    
+    .modal-content {
+        height: 100%;
+        overflow-y: auto; /* Omogućava skrolovanje SAMO SADRŽAJA modala */
+        padding: 20px;
+        /* Ostavljamo prostor za fiksni footer */
+        padding-bottom: 90px; 
+    }
+    
+    /* FIKSIRANJE DUGMADI ZA AKCIJU NA DNU MOBILNOG EKRANA */
+    .modal-actions {
+        position: fixed; 
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 1rem 20px;
+        background: var(--white);
+        border-top: 1px solid #eee;
+        z-index: 2001; 
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 0;
+        border-radius: 0; 
+    }
+    
+    .cart-sidebar {
+        max-width: 100%;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-section {
+        flex: 1 1 100%;
+    }
 }
+
 
 
