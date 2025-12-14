@@ -206,7 +206,7 @@ nav a.active {
 }
 /* Kontejner informacija o proizvodu */
 .product-info {
-    padding: 0.8rem; /* Smanjeno, npr. sa 1rem na 0.8rem */
+    padding: 0.6rem; /* Smanjeno, npr. sa 1rem na 0.8rem */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -214,7 +214,7 @@ nav a.active {
 }
 /* Smanjivanje fonta za Naziv Proizvoda (product-title) */
 .product-title { 
-    font-size: 1rem; /* Smanjeno sa 1.1rem na 1.05rem */
+    font-size: 0.8rem; /* Smanjeno sa 1.1rem na 1.05rem */
     font-weight: 600; 
     margin-bottom: 0.5rem; 
 }
