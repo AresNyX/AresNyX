@@ -520,8 +520,8 @@ nav a.active {
 /* Smanjenje fonta za sve naslove u detaljima modala */
 .modal-details h2,
 .modal-details h3 {
-    font-size: 1.8rem; /* Korigovana veličina fonta */
-    margin-bottom: 0.4rem; 
+    font-size: 1.4rem; /* Korigovana veličina fonta */
+    margin-bottom: 0.3rem; 
 }
 
 /* Akcije (Dodaj u korpu, Nastavi kupovinu) */
