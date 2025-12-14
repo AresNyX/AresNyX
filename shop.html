@@ -631,14 +631,15 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
 </section>
     </main>
+
 <div class="modal-overlay" id="productModal">
   <div class="modal-container">
     <button class="modal-close" onclick="shop.closeModal()">×</button>
-    
+
     <div class="modal-content">
       <!-- Galerija -->
       <div class="modal-gallery">
-        <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy">
+        <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz proizvoda" loading="lazy">
         <div class="slider-nav">
           <button id="prevImageBtn" onclick="shop.prevImage()">
             <i class="fas fa-chevron-left"></i> Prethodna
@@ -651,9 +652,9 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
       <!-- Detalji -->
       <div class="modal-details">
-        <h2 id="modalTitle"></h2>
-        <p class="modal-material" id="modalMaterial"></p>
-        <p class="modalPrice" id="modalPrice"></p>
+        <h2 id="modalTitle">Grey White</h2>
+        <p class="modal-material" id="modalMaterial">100% Organski Pamuk</p>
+        <p class="modalPrice" id="modalPrice">1500 RSD</p>
 
         <!-- Veličine -->
         <div class="size-section">
@@ -664,18 +665,21 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
               <span>Tabela veličina</span>
             </div>
           </div>
-          <div class="size-selector" id="sizeSelector"></div>
+          <div class="size-selector" id="sizeSelector">
+            <button>S</button>
+            <button>M</button>
+            <button>L</button>
+            <button>XL</button>
+            <button class="selected">XXL</button>
+          </div>
         </div>
-
-        <!-- Tabela veličina -->
-        <div class="size-table-container" id="sizeTable" style="display: none;"></div>
 
         <!-- Količina -->
         <div class="quantity-wrapper">
           <div class="quantity-header-row">
             <h3>Količina:</h3>
             <div class="quantity-selector">
-              <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+              <button class="qty-btn" onclick="shop.changeQuantity(-1)">−</button>
               <span class="qty-display" id="modalQty">1</span>
               <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
             </div>
@@ -684,7 +688,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
       </div>
     </div>
 
-    <!-- Dugmad uvek vidljiva -->
+    <!-- Dugmad za akcije -->
     <div class="modal-actions">
       <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
         <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
