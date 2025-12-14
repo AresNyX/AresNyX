@@ -457,43 +457,54 @@ nav a.active {
     padding: 0.8rem 1rem;
     white-space: nowrap;
 }
-
-
-/* 4. MEDIA QUERIES ZA MOBILNI PRIKAZ (Pun ekran) */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA KOREKCIJA ===== */
 @media (max-width: 768px) {
+    
+    /* 1. RODITELJ: MODAL KONTEJNER (Postaje pun ekran) */
     .modal-container { 
         max-width: 100%;
         width: 100%;
-        height: 100vh; /* Puni ekran na mobilnom */
+        height: 100vh; /* Zauzima punu visinu ekrana */
         margin: 0;
         border-radius: 0;
         max-height: 100vh;
+        
+        /* KLJUČNO: Pravimo kontejner referentnom tačkom za dugmad */
+        position: fixed; 
+        top: 0;
+        left: 0;
+        transform: none;
     }
     
+    /* 2. GLAVNI SADRŽAJ (Sve iznad dugmadi) */
     .modal-content { 
         flex-direction: column; 
         gap: 0.8rem; 
-        padding: 0.5rem 0.5rem 90px 0.5rem; /* Povećani bottom padding */
-        max-height: calc(100vh - 70px); 
-        /* max-height: 100vh (cela visina) - 70px (visina dugmadi + padding). */
-    }
-
-    .modal-gallery {
-        flex: 1 1 auto;
-    }
-    .modal-main-image { 
-        height: 300px; 
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem; 
+        
+        /* KLJUČNO: Visina je cela visina ekrana, minus fiksni header, fiksni footer i zatvaranje dugme. */
+        /* Visina je cela visina modala (100vh) minus visina fiksiranih dugmadi (~100px) */
+        max-height: calc(100vh - 100px); 
+        overflow-y: auto;
     }
     
-    .modal-details { 
-        padding: 0 0.5rem;
-    }
-
-    /* Dugmad za akciju u kolonama na mobilnom */
+    /* 3. FIKSNI FOOTER (Akciona dugmad) */
     .modal-actions {
-        flex-direction: column; 
+        /* Fiksiranje dugmadi na dno ekrana (ne na dno skrola!) */
+        position: fixed; 
+        bottom: 0; 
+        left: 0;
+        right: 0;
+        
+        padding: 0.7rem 1rem; 
+        background-color: white; 
+        border-top: 1px solid #eee;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
+        display: flex;
+        flex-direction: column; /* Postavljamo dugmad u kolone */
         gap: 0.6rem; 
-        padding: 0.8rem 1rem;
+        z-index: 10000;
+        width: 100%;
     }
     
     .modal-actions button {
@@ -501,6 +512,30 @@ nav a.active {
         margin: 0;
         padding: 0.6rem 1rem; 
     }
+
+    /* 4. OPTIMIZACIJA UNUTRAŠNJEG SADRŽAJA */
+    .modal-main-image { 
+        height: 300px; 
+    }
+    
+    .modal-details { 
+        /* Ne trebaju nam visine i skrol unutar detalja, jer se skroluje .modal-content */
+        max-height: initial; 
+        overflow-y: visible; 
+        padding: 0 0.5rem;
+    }
+    
+    .size-selector {
+        /* Popravljanje preklapanja veličina i Qty (ako se preklapaju) */
+        width: 100%;
+        margin-bottom: 0.8rem;
+    }
+
+    /* Veličine i Količina - prilagođavanje za bolji raspored na uskom ekranu */
+    .size-header-row, .quantity-header-row {
+        flex-wrap: wrap; /* Dozvoljavamo prelazak u novi red ako je potrebno */
+    }
+    
 }
 
 
