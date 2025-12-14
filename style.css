@@ -498,23 +498,6 @@ nav a.active {
 .quantity-input-container button:hover { background: #D4AF37; color: white; } /* Koristimo zlatnu boju */
 
 
-.modalPrice {
-    font-size: 1.4rem !important; /* Dovoljno malo da se primeti! */
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 1rem; 
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.5rem; 
-}
-.modalPrice {
-    font-size: 1.4rem !important; /* Dovoljno malo da se primeti! */
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 1rem; 
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.5rem; 
-}
-
 .size-option { 
     display: inline-block; padding: 0.6rem 1rem; 
     border: 2px solid #ccc; 
@@ -526,12 +509,6 @@ nav a.active {
 /* Neka bude bela boja teksta za odabrano dugme, radi boljeg kontrasta */
 .size-option.selected { border-color: #D4AF37; background: #D4AF37; color: white; }
 
-/* Smanjenje fonta za sve naslove u detaljima modala */
-.modal-details h2,
-.modal-details h3 {
-    font-size: 1.4rem; /* Korigovana veličina fonta */
-    margin-bottom: 0.3rem; 
-}
 
 /* Akcije (Dodaj u korpu, Nastavi kupovinu) */
 /* Dugmad su ABSOLUTE na desktopu */
@@ -577,12 +554,6 @@ nav a.active {
     /* Ako je naziv h2, sada će biti manji */
 }
 
-/* Ponovimo KORAK 3, ali sa manjim relativnim veličinama */
-.modal-details h2,
-.modal-details h3 {
-    font-size: 1.6em !important; /* 1.6em od 14px je manja od 1.4rem od 16px */
-    margin-bottom: 0.2rem !important; 
-}
 
 /* ========================================================= */
 /* === KORIGOVANA NAVIGACIJA SLIKA UNUTAR MODALA (STRELICE) === */
