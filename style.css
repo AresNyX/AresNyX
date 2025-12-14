@@ -204,12 +204,21 @@ nav a.active {
     object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;
 }
-.product-info { 
-    padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; 
-    justify-content: space-between; 
-    text-align: center; 
+/* Kontejner informacija o proizvodu */
+.product-info {
+    padding: 0.8rem; /* Smanjeno, npr. sa 1rem na 0.8rem */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
 }
-.product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+/* Smanjivanje fonta za Naziv Proizvoda (product-title) */
+.product-title { 
+    font-size: 1rem; /* Smanjeno sa 1.1rem na 1.05rem */
+    font-weight: 600; 
+    margin-bottom: 0.5rem; 
+}
+
 .product-price { font-size: 1.2rem; font-weight: 700; }
 
 /* BADGE STILOVI */
