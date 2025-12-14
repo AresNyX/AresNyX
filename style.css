@@ -1,4 +1,4 @@
-/* ------------------------------------------------ */
+k/* ------------------------------------------------ */
 /* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA SA KOREKCIJAMA) */
 /* ------------------------------------------------ */
 
@@ -458,11 +458,11 @@ nav a.active {
     white-space: nowrap;
 }
 /* ========================================================= */
-/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - FINALNA KOREKCIJA ZA RASPORED ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNO REŠENJE ZA RASPORED I DIMENZIJE ===== */
 /* ========================================================= */
 @media (max-width: 768px) {
     
-    /* 1. RODITELJ: MODAL KONTEJNER (Postaje pun ekran) */
+    /* 1. RODITELJ: MODAL KONTEJNER (Pun ekran) - Ostavljamo fiksirano */
     .modal-container { 
         max-width: 100%;
         width: 100%;
@@ -476,7 +476,7 @@ nav a.active {
         transform: none;
     }
     
-    /* 2. GLAVNI SADRŽAJ (Sve iznad dugmadi) */
+    /* 2. GLAVNI SADRŽAJ (Skrolujući deo) */
     .modal-content { 
         flex-direction: column; 
         gap: 0.8rem; 
@@ -486,7 +486,7 @@ nav a.active {
         overflow-x: hidden;
     }
     
-    /* 3. FIKSNI FOOTER (Akciona dugmad) - Ostavljamo nepromenjeno jer radi */
+    /* 3. FIKSNI FOOTER (Akciona dugmad) - Radi ispravno */
     .modal-actions {
         position: fixed; 
         bottom: 0; 
@@ -510,59 +510,68 @@ nav a.active {
         font-size: 0.9rem;
     }
 
-    /* 4. OPTIMIZACIJA UNUTRAŠNJEG SADRŽAJA */
-    .modal-gallery { flex: 0 0 auto; }
-    .modal-main-image { height: 300px; padding: 6px; }
-    .modal-details { max-height: initial; overflow-y: visible; padding: 0 0.5rem; }
+    /* 4. OPTIMIZACIJA SLIKE (REŠENJE 1: Povećavamo visinu slike) */
+    .modal-gallery { 
+        flex: 0 0 auto; 
+    }
+    .modal-main-image { 
+        height: 350px; /* POVEĆAVAMO visinu sa 300px na 350px */
+        padding: 6px; 
+    }
+    
+    .modal-details { 
+        max-height: initial; 
+        overflow-y: visible; 
+        padding: 0 0.5rem;
+    }
     
     
-    /* 5. KOREKCIJA RASPOREDA KOLIČINE I VELIČINE */
+    /* 5. KOREKCIJA RASPOREDA KOLIČINE (REŠENJE 2 & 3) */
     
     /* Sekcija Veličina */
     .variation-section {
         width: 100%;
-        margin-bottom: 0.8rem; /* Dodajemo jasan razmak ispod veličina */
+        margin-bottom: 0.8rem; 
     }
     .size-option {
         padding: 0.5rem 0.8rem;
         font-size: 0.9em;
     }
 
-    /* Sekcija Količina */
-    .quantity-row-wrapper {
-        /* Ako imate wrapper oko naslova "Količina" i inputa */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    /* OBRADA NASLOVA KOLIČINA i INPUT KONTEJNERA */
+    
+    /* Osiguravamo da naslov "Količina" zauzima svoju liniju, a input drugu liniju */
+    .size-header-row, .quantity-header-row {
+        display: block; /* Postavljamo na block da se element ispod automatski prebaci u novi red */
+        margin-bottom: 0.5rem;
+        margin-top: 0.8rem;
+    }
+    
+    .size-header-row h3, .quantity-header-row h3 { 
+        display: block;
         width: 100%;
     }
 
-    /* Naslovi */
-    .size-header-row h3, .quantity-header-row h3 { 
-        margin-top: 0; /* Uklanjamo gornju marginu na naslovu 'Količina' */
-    }
-    
     /* Kontejner za input Količine (+/- dugmad) */
     .quantity-input-container {
-        /* Vraćamo je na fiksnu širinu, ali je postavljamo ispod naslova */
-        width: 120px; 
-        height: 38px;
+        /* Vraćamo na širinu koja je potrebna za lepo prikazivanje na mobilnom (REŠENJE 2) */
+        width: 150px; /* POVEĆANA ŠIRINA za ceo blok */
+        height: 42px; /* POVEĆANA VISINA inputa */
         margin-top: 0.5rem; 
         justify-content: space-between; 
-        align-self: flex-start; /* Osiguravamo da se input poravna levo */
+        align-self: flex-start; 
     }
 
     .quantity-input-container input {
-        width: 40px;
-        font-size: 1em;
+        width: 50px; /* Povećavamo širinu polja za broj */
+        font-size: 1.1em;
     }
     
     .quantity-input-container button {
-        width: 30px;
-        font-size: 1.2em;
+        width: 40px; /* Povećavamo dugmad + / - */
+        font-size: 1.5em;
     }
 }
-
 
 /* ============================================== */
 /* ===== KORPA, CHECKOUT I TOAST SEKCIJE (OSTALO) ===== */
