@@ -1,6 +1,20 @@
 /* ========================================================= */
 /* === 1. OSNOVNE POSTAVKE I RESET (ISPRAVLJENO) === */
 /* ========================================================= */
+/* GLOBALNI FIXOVI NA VRHU CSS-a */
+
+/* 1. OVO REŠAVA PROBLEM FOOTERA KOJI IDE UDESNO (horizontalno skrolovanje) */
+html, body {
+    overflow-x: hidden !important; 
+}
+
+/* 2. OVO REŠAVA PROBLEM SKROLOVANJA POZADINE KADA SE MODAL OTVORI */
+body.no-scroll {
+    overflow: hidden; 
+    position: fixed; 
+    width: 100%; 
+}
+
 :root {
     /* Boje */
     --primary: #212121;       /* Tamna Pozadina/Tekst */
