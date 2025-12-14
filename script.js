@@ -420,9 +420,9 @@ class AresNyXShop {
 
         document.getElementById('sizeTable').style.display = 'none';
         document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('no-scroll');
+        document.body.classList.add('modal-open');
+        
     }
-
     updateModalImage() {
         if (!this.currentProduct) return;
         
@@ -718,12 +718,12 @@ class AresNyXShop {
 
     closeModal() {
         document.getElementById('productModal').style.display = 'none';
-        document.body.classList.remove('no-scroll');
+        document.body.classList.remove('modal-open');
     }
 
     toggleCart() {
          document.getElementById('cartSidebar').classList.toggle('active');
-         document.body.classList.toggle('no-scroll');
+         document.body.classList.add('cart-open');
     }
 
     toggleSizeTable() { 
@@ -752,12 +752,12 @@ class AresNyXShop {
         this.toggleCart(); 
         this.goToStep(1);
         document.getElementById('checkoutModal').style.display = 'block';
-        document.body.classList.add('no-scroll');
+        document.body.classList.add('checkout-open');
     }
 
     closeCheckoutModal() {
         document.getElementById('checkoutModal').style.display = 'none';
-        document.body.classList.remove('no-scroll');
+        document.body.classList.remove('checkout-open');
         this.goToStep(1); 
     }
 
