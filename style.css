@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA SA KOREKCIJAMA) */
+/* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA I KORIGOVANA VERZIJA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS 🛑 */
@@ -25,7 +25,7 @@ body {
 }
 
 body.no-scroll { overflow: hidden; } 
-/* ===== OSNOVNA TIPOGRAFIJA (Neizmenjeno) ===== */
+/* ===== OSNOVNA TIPOGRAFIJA ===== */
 
 h1 {
     font-size: 32px !important; 
@@ -41,7 +41,7 @@ h2 {
     margin-bottom: 0.7em;
 }
 
-/* PROMO BAR (Neizmenjeno) */
+/* PROMO BAR */
 .top-promo-bar { 
     background-color: var(--accent-gold); 
     color: var(--primary-dark); 
@@ -52,7 +52,7 @@ h2 {
     box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
-/* ===== HEADER (Glavna navigacija - za SHOP stranice - Neizmenjeno) ===== */
+/* ===== HEADER (Glavna navigacija - Korigovano za jedno dugme Korpe) ===== */
 .header { 
     background: var(--primary-dark); 
     padding: 0.5rem 2rem; 
@@ -80,6 +80,7 @@ navbar {
     letter-spacing: 3px; 
 }
 
+/* Ikona Korpe (Dugme za otvaranje modala) */
 .cart-icon { 
     position: relative; 
     cursor: pointer; 
@@ -87,6 +88,7 @@ navbar {
     color: #fff; 
     font-size: 1.1rem; 
     transition: var(--transition); 
+    margin-left: auto; /* Gura dugme Korpe na desnu stranu */
 }
 
 .cart-icon:hover { 
@@ -107,7 +109,7 @@ navbar {
     font-weight: 600; 
 }
 
-/* ===== DODATNA NAVIGACIJA (nav tag - Neizmenjeno) ===== */
+/* ===== DODATNA NAVIGACIJA (nav tag) - Dugmad i Zlatna Linija (Neizmenjeno) ===== */
 nav {
     background-color: var(--primary-dark);
     padding: 0; 
@@ -145,14 +147,10 @@ nav a.active {
     border: 1px solid var(--accent-gold) !important;
 }
 
-.cart-nav-link {
-    position: relative;
-    margin-left: auto;
-    margin-right: 20px;
-}
+/* Uklonjen .cart-nav-link jer se Korpa sada aktivira samo preko .cart-icon u navbaru */
 
 
-/* ===== MEDIA QUERIES ZA NAVIGACIJU (Neizmenjeno) ===== */
+/* ===== MEDIA QUERIES ZA NAVIGACIJU (Responsivnost - Neizmenjeno) ===== */
 
 @media (min-width: 601px) {
     nav a {
@@ -345,22 +343,24 @@ nav a.active {
 }
 
 /* ========================================================= */
-/* ⭐ MODAL POPRAVKE (Preklapanje, centriranje, z-index, scroll) ⭐ */
+/* ⭐ MODAL POP-UP (Korigovano za ispravan prikaz Korpe) ⭐ */
 /* ========================================================= */
 .modal-overlay { 
-  display: none;
+  display: none; /* Inicijalno sakriven */
   position: fixed; 
   top: 0; left: 0; 
   width: 100%; height: 100vh; 
-  background: rgba(0,0,0,0.8); /* Ojačana pozadina */
+  background: rgba(0,0,0,0.8); 
   z-index: 1010; 
 }
-.modal-overlay.active { display: block; }
+.modal-overlay.active { 
+  display: block; /* Prikazuje se kada ga JS aktivira */
+}
 
 .modal-container {
   display: flex;
   flex-direction: column;
-  position: fixed; /* Korigovano na fixed za bolje centriranje */
+  position: fixed; 
   top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
@@ -369,8 +369,8 @@ nav a.active {
   width: 95%;
   max-width: 900px;
   max-height: 95vh;
-  overflow: hidden; /* Omogućava da se samo modal-content skroluje */
-  z-index: 1020; /* Veći z-index od overlay-a */
+  overflow: hidden; /* Osigurava da skroluje samo sadržaj */
+  z-index: 1020; 
 }
 
 .modal-content { 
@@ -378,10 +378,10 @@ nav a.active {
   overflow-y: auto;
   padding: 1rem;
   display: flex; 
+  flex-direction: column; /* Za listu stavki */
   gap: 1.2rem; 
 }
 
-/* Stilovi za sliku unutar Modala */
 .modal-main-image {
   width: 100%;
   height: auto;
@@ -399,7 +399,6 @@ nav a.active {
   }
 }
 
-/* Akciona dugmad (Uvek na dnu modala) */
 .modal-actions {
   position: sticky;
   bottom: 0;
@@ -408,16 +407,16 @@ nav a.active {
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
   display: flex;
   gap: 1rem;
-  z-index: 100; /* Osigurava da je iznad sadržaja modala */
+  z-index: 100;
 }
 .modal-actions button {
   flex: 1;
   padding: 0.9rem 1.2rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px; /* Dodato */
-  cursor: pointer; /* Dodato */
-  transition: var(--transition); /* Dodato */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .size-option, .size-selector button {
@@ -445,9 +444,10 @@ nav a.active {
 }
 
 /* ========================================================= */
-/* ⭐ STAVKE I FOOTER KORPE (Ispravljeni i očišćeni blokovi) ⭐ */
+/* ⭐ STAVKE I FOOTER KORPE (Ispravljeno) ⭐ */
 /* ========================================================= */
 
+/* === STAVKE U KORPI === */
 .cart-item {
   display: flex;
   align-items: center;
@@ -554,8 +554,7 @@ nav a.active {
 }
 
 
-/* PREVIEW STILOVI (Nastavak nakon spajanja modal i cart stilova) */
-
+/* PREVIEW STILOVI (Neizmenjeno) */
 .preview-container { display: flex; flex-wrap: wrap; gap: 1.95rem; }
 .preview-shipping, .preview-order { padding: 1.95rem; border-radius: 8px; background: var(--gray-light); }
 .preview-shipping { flex: 1 1 45%; }
@@ -571,7 +570,6 @@ nav a.active {
 .edit-data-btn:hover { background: var(--gray-medium); }
 
 @media (max-width: 600px) { .preview-shipping, .preview-order { flex-basis: 100%; } }
-
 
 /* TOAST NOTIFIKACIJA (Neizmenjeno) */
 .toast {
@@ -593,7 +591,7 @@ nav a.active {
 
 
 /* ========================================================= */
-/* ⭐ KONAČNA KOREKCIJA: FOOTER STILOVI (.main-footer - Neizmenjeno) ⭐ */
+/* ⭐ FOOTER STILOVI (.main-footer - Neizmenjeno) ⭐ */
 /* ========================================================= */
 
 .main-footer {
@@ -873,12 +871,12 @@ header h2, .subtitle {
     display: block;
     margin-top: 8px;
 }
-/* --- CSS BLOK DODAT NA KRAJ style.css FAJLA (Neizmenjeno) --- */
 
-/* Povećavamo visinu slike samo na velikim ekranima */
+/* Povećavamo visinu slike samo na velikim ekranima (Neizmenjeno) */
 @media (min-width: 992px) {
     .product-image { 
         height: 550px; /* Npr. 550px za desktop */
     }
 }
+
 
