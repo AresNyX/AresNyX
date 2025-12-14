@@ -871,4 +871,86 @@ header h2, .subtitle {
         height: 550px; /* Npr. 550px za desktop */
     }
 }
+/* ✅ MODAL POPRAVKE */
 
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow: hidden;
+  padding-bottom: 100px; /* prostor za dugmad */
+  z-index: 1010;
+}
+
+.modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.modal-main-image {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  object-fit: contain;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+@media (min-width: 992px) {
+  .modal-main-image {
+    height: 620px;
+    max-height: 70vh;
+  }
+}
+
+.modal-actions {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 1rem;
+  z-index: 100;
+}
+.modal-actions button {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.size-option, .size-selector button {
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.slider-nav button {
+  background: none;
+  border: none;
+  color: #800000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+.slider-nav button i {
+  color: #000;
+  font-size: 1.2rem;
+  margin: 0 5px;
+}
