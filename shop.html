@@ -643,12 +643,13 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                     </div>
                 </div>
                 
-                <div class="modal-details">
+             <div class="modal-details">
     <h2 id="modalTitle"></h2>
     <p class="modal-material" id="modalMaterial"></p>
     <p class="modalPrice" id="modalPrice"></p>
     
     <div class="size-section">
+        
         <div class="size-header-row">
             <h3>Odaberite veličinu:</h3>
             <div class="size-info" onclick="shop.toggleSizeTable()">
@@ -656,9 +657,14 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                 <span>Tabela veličina</span>
             </div>
         </div>
-        <div class="size-selector" id="sizeSelector"></div>
+        
+        <div class="size-selector" id="sizeSelector">
+            </div>
     </div>
-    
+
+    <div class="size-table-container" id="sizeTable" style="display: none;">
+        </div>
+
     <div class="quantity-wrapper">
         <div class="quantity-header-row">
             <h3>Količina:</h3>
@@ -670,7 +676,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
     </div>
     
-    </div>
+</div> 
 
     
     <div class="size-table-container" id="sizeTable" style="display: none;">
