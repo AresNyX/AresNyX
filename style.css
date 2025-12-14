@@ -565,6 +565,25 @@ nav a.active {
     font-weight: 600; 
     cursor: pointer; 
 }
+/* KORAK 4: Smanjenje bazičnog fonta u celoj detaljnoj sekciji Modala */
+.modal-details {
+    /* Smanjite osnovni font u detaljima, npr. sa 16px na 14px */
+    font-size: 0.875rem !important; /* Ekvivalentno 14px, ako je osnovna veličina 16px */
+    
+    /* Dodajemo minimalni padding da uštedimo još prostora */
+    padding: 0.5rem !important; 
+    
+    /* Vraćamo naslove na malo manju veličinu, ali u odnosu na 14px */
+    /* Ako je naziv h2, sada će biti manji */
+}
+
+/* Ponovimo KORAK 3, ali sa manjim relativnim veličinama */
+.modal-details h2,
+.modal-details h3 {
+    font-size: 1.6em !important; /* 1.6em od 14px je manja od 1.4rem od 16px */
+    margin-bottom: 0.2rem !important; 
+}
+
 /* ========================================================= */
 /* === KORIGOVANA NAVIGACIJA SLIKA UNUTAR MODALA (STRELICE) === */
 /* ========================================================= */
