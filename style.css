@@ -345,9 +345,7 @@ nav a.active {
     }
     .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
 }
-
-
-    /* === MODAL (Brzi pregled/Detalji Proizvoda) === */
+/* ✅ FINALNI MODAL BLOK - bez duplikata */
 
 .modal-overlay { 
     display: none;
@@ -480,9 +478,6 @@ nav a.active {
         font-size: 0.9rem;
     }
 }
-.cart-promo-message strong { color: var(--accent-gold); }
-.cart-promo-message.success { background: #e6ffe6; border-color: var(--success); color: var(--success); }
-@media (max-width: 576px) { .cart-item-image { display: none; } }
 
 /* CHECKOUT */
 #checkoutModal .modal-container { max-width: 650px; padding: 2.6rem; }
