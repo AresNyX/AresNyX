@@ -556,8 +556,8 @@ nav a.active {
 .slider-nav button {
     /* BOJE I VELIČINA: Bordo, Beli Font, Veći Padding */
     padding: 0.8rem 1.4rem; 
-    font-size: 1.1rem; 
-    font-weight: 600;
+    font-size: 0.8rem; 
+    font-weight: 400;
 
     /* BOJE: Bordo pozadina */
     background: #800000; 
