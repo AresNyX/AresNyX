@@ -498,14 +498,23 @@ nav a.active {
 .quantity-input-container button:hover { background: #D4AF37; color: white; } /* Koristimo zlatnu boju */
 
 
-/* VELIČINE (size-option) i VARIJACIJE */
-.variation-section h3 {
-    font-size: 1rem; 
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary-dark);
+.modalPrice {
+    font-size: 1.4rem !important; /* Dovoljno malo da se primeti! */
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem; 
 }
+.modalPrice {
+    font-size: 1.4rem !important; /* Dovoljno malo da se primeti! */
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem; 
+}
+
 .size-option { 
     display: inline-block; padding: 0.6rem 1rem; 
     border: 2px solid #ccc; 
