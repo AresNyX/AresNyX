@@ -961,52 +961,55 @@ header h2, .subtitle {
     }
 }
 
-/* ============================================== */
-/* ⭐ PRILAGOĐENI STIL ZA MODALNI PROZOR (PREMA ARESNYX HTMLU) ⭐ */
+    /* ============================================== */
+/* ⭐ PRILAGOĐENI STIL ZA MODALNI PROZOR (ARESNYX KONAČNO) ⭐ */
 /* ============================================== */
 
-/* 1. KONTENJER SADRŽAJA (Da se dugmad fiksiraju unutra i omogući skrol) */
+/* 1. KONTENJER SADRŽAJA (Fiksiranje i Skrolovanje) */
 .modal-content {
-    /* Menjamo standardni display flex i dozvoljavamo da sadržaj raste */
     display: block; 
     overflow-y: auto; 
     position: relative; 
-    padding-bottom: 70px; /* Dodajemo prostor za fiksirana dugmad */
+    padding-bottom: 70px; /* Dodajemo prostor za fiksirana dugmad za akciju */
 }
 
 /* 2. MAKSIMALNO UVEĆANJE SLIKE */
 .modal-gallery {
-    /* Dajemo galeriji fiksnu visinu za bolji odnos slike */
     height: auto;
     max-height: 55vh; 
     overflow: hidden;
     position: relative;
-    padding: 0.5rem; /* Smanjenje paddinga oko slike */
+    padding: 0.5rem;
 }
 .modal-main-image {
-    /* Slika zauzima raspoloživi prostor */
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Osigurava da je cela slika vidljiva */
+    object-fit: contain;
 }
 
-/* 3. VELIČINE - Uniformna širina i nedostupnost */
+/* 3. VELIČINE - REŠENJE PRELAMANJA XXL (Koristi se na mobilnom) */
 .size-selector {
     display: flex;
     justify-content: space-between; 
-    gap: 0.5rem;
+    gap: 0.3rem; /* Smanjeni razmak između dugmadi */
+    flex-wrap: nowrap; /* Sprečava prelamanje */
     margin-bottom: 1rem;
 }
 
-/* Stil za sva dugmad unutar size-selector (mora biti uniformno) */
+/* Stil za sva dugmad unutar size-selector (da stanu u red) */
 .size-selector button {
-    flex-grow: 1; /* Sva dugmad zauzimaju isti prostor */
+    flex-grow: 1;
+    flex-shrink: 0;
+    min-width: 0; 
+    width: 18%; /* Fiksna širina da bi ih bilo 5 u redu (5 x 18 = 90%) */
     text-align: center;
-    padding: 0.5rem 0.2rem;
-    /* Dodajte ovde ostale stilove za dugmad (border, background) */
+    padding: 0.4rem 0.1rem; /* Smanjeni padding */
+    font-size: 0.9rem; /* Smanjeni font na mobilnom */
+    box-sizing: border-box;
+    /* Dodajte ovde ostale stilove za dugmad (border, background, color) */
 }
 
-/* Ako imate nedostupnu veličinu (morate dodati klasu u HTML u JS-u) */
+/* Ako imate nedostupnu veličinu (iz JS-a) */
 .size-selector button.unavailable {
     background-color: var(--light-gray, #f0f0f0) !important; 
     color: var(--text-gray, #999) !important;
@@ -1016,28 +1019,45 @@ header h2, .subtitle {
 }
 
 /* 4. TABELA MERA - Pomeranje ulevo */
+/* Za stari HTML: .size-info { text-align: left; ... } */
+/* Koristimo se pretpostavkom da ste dodali size-header-row: */
+.size-header-row {
+    display: flex;
+    justify-content: space-between; /* Pomeri tabelu veličina na desnu stranu naslova */
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.size-header-row h3 {
+    margin: 0;
+}
 .size-info {
-    text-align: left; /* Postavlja tekst uz levu ivicu */
     cursor: pointer;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    /* Izmena za bolji raspored ikonice i teksta */
+    font-size: 0.9rem;
+    color: var(--primary-color); 
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
-/* 5. KOLIČINA - Povećanje dugmadi + i - */
+
+/* 5. KOLIČINA - Poravnavanje u desnu stranu */
+.quantity-wrapper {
+    display: flex; 
+    justify-content: flex-end; /* KLJUČNO: Gura kontrole Količine DESNO */
+    width: 100%;
+    margin-bottom: 1rem;
+}
+/* Količina kontrola ostaje nepromenjena, ali sada unutar wrappera */
 .quantity-selector {
     display: flex;
     align-items: center;
     width: fit-content; 
-    margin-bottom: 1rem;
+    margin-bottom: 0; /* Ne treba mu margin-bottom jer ga ima wrapper */
 }
 
 .qty-btn {
-    font-size: 1.5rem; /* Povećavamo veličinu teksta/simbola */
-    padding: 0.5rem 1rem; /* Povećavamo prostor unutar dugmeta */
+    font-size: 1.5rem; 
+    padding: 0.5rem 1rem; 
     width: 50px; 
     height: 50px; 
     border: 1px solid #ccc;
@@ -1053,12 +1073,11 @@ header h2, .subtitle {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     height: 50px; 
-    line-height: 50px; /* Centriranje broja unutra */
+    line-height: 50px;
 }
 
 /* 6. FIKSIRANJE DUGMADI ZA AKCIJU */
 .modal-actions {
-    /* KORISTIMO ABSOLUTE JER JE PARENT (.modal-content) RELATIVE */
     position: absolute; 
     bottom: 0; 
     left: 0;
@@ -1076,8 +1095,5 @@ header h2, .subtitle {
     flex-grow: 1; 
     margin: 0 0.5rem;
     padding: 0.8rem 1rem;
-    /* Ako vam je potrebno, dodajte ovde stil za 'Dodaj u Korpu' dugme */
+    /* Stilizovanje za 'Nastavi Kupovinu' i 'Dodaj u Korpu' */
 }
-
-
-
