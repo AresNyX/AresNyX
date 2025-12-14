@@ -722,14 +722,14 @@ nav a.active {
     cursor: not-allowed;
     opacity: 0.8; 
 }
-/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA SVIH IZMENA ===== */
 @media (max-width: 768px) {
     
     /* KLJUČNA IZMENA: PODIZANJE MODALA GORE NA EKRANU */
     .modal-container { 
-        top: 30%; /* Podižemo početnu tačku Modala sa 50% na 30% visine ekrana */
+        top: 15%; /* Podignuto na 15% visine ekrana */
         left: 50%; 
-        transform: translate(-50%, -30%); /* Prilagođavamo vertikalni translate */
+        transform: translate(-50%, -15%); /* Prilagođeno transformisanje */
         
         /* Dajemo mu punu visinu da se skroluje */
         height: 95vh; 
@@ -750,8 +750,10 @@ nav a.active {
     
     /* KORIGOVANO: Detalji proizvoda sa padding-om za fiksirani footer */
     .modal-details { 
-        max-height: initial; /* Neka kontejner prati sadržaj */
-        overflow-y: initial; /* Neka se ceo modal skroluje, ne samo ovaj blok */
+        /* Sada se ceo modal-container skroluje, ne samo ovaj blok */
+        max-height: initial; 
+        overflow-y: initial; 
+        
         padding: 0.7rem; 
         border-radius: 8px; 
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
@@ -766,7 +768,7 @@ nav a.active {
         margin-bottom: 0.8rem;
     }
 
-    /* Prilagođavanje količine za mobilni (veličine ostaju optimizovane) */
+    /* Prilagođavanje količine za mobilni (ostaje optimizovano za mobilni ekran) */
     .quantity-selector {
         width: 100%;
         margin-top: 0; 
@@ -793,7 +795,7 @@ nav a.active {
         
         /* Stilovi za fiksirani footer */
         width: 100%;
-        max-width: 900px; /* Mora biti širina Modala */
+        max-width: 900px; 
         background: white; 
         padding: 10px 10px 20px 10px; 
         box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
