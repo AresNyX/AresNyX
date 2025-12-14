@@ -960,153 +960,83 @@ header h2, .subtitle {
         height: 550px; /* Npr. 550px za desktop */
     }
 }
-
-    /* ============================================== */
-/* ⭐ FINALNI BLOK: SVE OPTIMIZACIJE ZA MODALNI PROZOR ⭐ */
+/* ============================================== */
+/* ⭐ FINALNO REŠENJE - STRUKTURA I KOMPAKTNOST ⭐ */
 /* ============================================== */
 
 /* 1. KONTENJER SADRŽAJA (Fiksiranje i Skrolovanje) */
 .modal-content {
-    display: block; 
-    overflow-y: auto; 
+    /* Uklanja se padding-bottom jer modal-actions nije fiksiran UNUTAR sadržaja */
+    padding-bottom: 0; 
     position: relative; 
-    padding-bottom: 70px; /* Dodajemo prostor za fiksirana dugmad za akciju */
+    /* Dajemo modal-containeru dovoljno prostora da se prikaže ceo sadržaj */
+    max-height: 90vh; 
+    overflow-y: auto; 
+    overflow-x: hidden;
 }
 
-/* 2. MAKSIMALNO UVEĆANJE SLIKE */
-.modal-gallery {
-    height: auto;
-    max-height: 55vh; 
-    overflow: hidden;
-    position: relative;
-    padding: 0.5rem;
-}
-.modal-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+/* 2. GLAVNI KONTROLNI RED (ZA VELIČINU I KOLIČINU) */
 
-/* 3. VELIČINE - Kompaktan izgled */
-.size-selector {
-    display: flex;
-    justify-content: space-between; 
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.size-selector button {
-    flex-grow: 1;
-    text-align: center;
-    padding: 0.5rem 0.2rem;
-    font-size: 1rem;
-}
-
-/* Stil za NEDOSTUPNE VELIČINE (koristi klasu 'disabled' iz JS-a) */
-.size-selector button.disabled {
-    background-color: var(--light-gray, #f0f0f0) !important; 
-    color: var(--text-gray, #999) !important;
-    border: 1px solid var(--border-gray, #ccc) !important;
-    cursor: not-allowed;
-    opacity: 0.8;
-}
-
-/* 4. TABELA MERA - U istom redu sa naslovom (Ako je dodat size-header-row) */
-.size-header-row {
+/* Osigurava da su naslov i link Tabela veličina u istom redu */
+.size-header-row, .quantity-header-row {
     display: flex;
     justify-content: space-between; 
     align-items: center;
     margin-bottom: 0.5rem;
 }
-.size-header-row h3 { margin: 0; }
-.size-info {
-    cursor: pointer;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+.size-header-row h3, .quantity-header-row h3 { 
+    margin: 0; 
+    font-size: 1rem; 
+    white-space: nowrap;
 }
 
-/* 5. KOLIČINA - Poravnavanje u desnu stranu i smanjenje dimenzija */
-
-/* Osnovni stil za kontrolu količine (Desktop) */
-.quantity-selector {
-    display: flex;
-    align-items: center;
-    width: fit-content; 
-}
-.qty-btn {
-    font-size: 1.5rem; 
-    padding: 0.5rem 1rem; 
-    width: 50px; 
-    height: 50px; 
-    border: 1px solid #ccc;
-    background-color: var(--light-gray, #f8f8f8);
-    cursor: pointer;
-    box-sizing: border-box; 
-    line-height: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.qty-display {
-    font-size: 1.2rem;
-    width: 40px;
-    height: 50px; 
-    text-align: center;
-    line-height: 50px; 
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-/* ⭐ KOREKCIJE ZA MOBILNI PRIKAZ (max-width: 767px) ⭐ */
+/* 3. AGRESIVNO SMANJENJE NA MOBILNOM */
 @media (max-width: 767px) {
-    /* Smanjenje fonta naslova proizvoda */
+    /* Font naslova proizvoda */
     .modal-details h2#modalTitle {
         font-size: 1.4rem; 
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem; /* Još manja margina */
     }
 
-    /* Postavljanje naslova "Količina:" i kontrole u jedan red */
-    .quantity-section {
-        display: flex; 
-        align-items: center;
-        justify-content: space-between; 
-        width: 100%;
-        max-width: 250px; 
+    /* Veličine - Kompaktnost */
+    .size-selector {
+        gap: 0.4rem;
+        margin-bottom: 0.8rem;
     }
-    .quantity-section h3 {
-        font-size: 1rem; 
-        margin: 0;
-        white-space: nowrap; 
-        padding-right: 0.5rem;
-    }
-    
-    /* Poravnavanje cele sekcije količine desno i smanjenje margin */
-    .quantity-wrapper {
-        display: flex; 
-        justify-content: flex-end; 
-        width: 100%;
-        margin-bottom: 0.5rem; /* Smanjena donja margina */
-        margin-top: 0.5rem; /* Dodata gornja margina */
+    .size-selector button {
+        padding: 0.4rem 0.1rem;
+        font-size: 0.9rem;
     }
 
-    /* Agresivno smanjivanje dimenzija kontrole količine */
-    .qty-selector, .qty-btn, .qty-display {
-        height: 35px; /* Nova, manja visina */
+    /* KOLIČINA - Najmanje dimenzije */
+    .quantity-selector {
+        height: 30px; /* Najmanja visina */
     }
     .qty-btn, .qty-display {
-        width: 30px; /* Nova, manja širina */
-        height: 35px; 
+        width: 30px; 
+        height: 30px; 
         font-size: 1rem; 
         padding: 0; 
-        line-height: 35px; 
+        line-height: 30px; 
         flex-shrink: 0;
     }
 }
 
+/* 4. FIKSIRANJE DUGMADI ZA AKCIJU (Izvan skrolujućeg sadržaja) */
+/* Dugmad za akciju (modal-actions) moraju biti fiksirana u odnosu na dno EKRANA, 
+   a NE u odnosu na dno MODALA, jer se modal SADA SKROLUJE.
+   Ili moraju biti unutar modal-container-a, a ne modal-content-a.
+   Pretpostavljam da je modal-content jedini skrolujući element.
+   Zato primenjujemo fiksiranje na roditeljski modal-container ili ekran. 
+   Ostavljamo absolute i povećavamo padding da se ne preklapaju:
+*/
 
-/* 6. FIKSIRANJE DUGMADI ZA AKCIJU */
+/* OBAVEZNO: Povećajte padding-bottom na glavnom kontejneru */
+.modal-container {
+    padding-bottom: 90px; /* Osigurava da je fiksirana dugmad uvek vidljiva */
+}
+
+/* Fiksiramo dugmad na dno modal-container-a (koji je centriran) */
 .modal-actions {
     position: absolute; 
     bottom: 0; 
