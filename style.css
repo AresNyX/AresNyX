@@ -1,5 +1,5 @@
-b/* ------------------------------------------------ */
-/* AresNyX - Glavni CSS fajl (FINALNA PROVERENA VERZIJA) */
+/* ------------------------------------------------ */
+/* AresNyX - Glavni CSS fajl (FINALNA ISPRAVLJENA VERZIJA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS 🛑 */
@@ -24,7 +24,12 @@ body {
     display: flex; flex-direction: column; min-height: 100vh;
 }
 
-body.no-scroll { overflow: hidden; } 
+/* KRITIČNA IZMENA 2.A: ZAKLJUČAVANJE TELA KADA JE MODAL OTVOREN */
+body.no-scroll { 
+    overflow: hidden; 
+    position: fixed; /* KLJUČNO ZA FUNKCIONISANJE FIKSNIH ELEMENATA */
+    width: 100%;
+} 
 /* ===== OSNOVNA TIPOGRAFIJA ===== */
 
 h1 {
@@ -34,8 +39,9 @@ h1 {
     margin-bottom: 0.5em;
 }
 
+/* KRITIČNA IZMENA 1: UKLONJEN !important IZ GLOBALNOG H2 */
 h2 {
-    font-size: 2em !important; 
+    font-size: 2em; /* VIŠE NIJE !important */
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 0.7em;
@@ -366,7 +372,7 @@ nav a.active {
     background: rgba(0,0,0,0.9); 
     z-index: 1010; 
     backdrop-filter: blur(5px); 
-    overflow-y: auto; 
+    /* KRITIČNA IZMENA 2.B: UKLONJENO overflow-y: auto; */
 }
 .modal-overlay.active { display: block; }
 
@@ -621,7 +627,162 @@ nav a.active {
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
 
+/* ========================================================= */
+/* ⭐ KONAČNA KOREKCIJA: FOOTER STILOVI (.main-footer) ⭐ */
+/* ========================================================= */
 
+.main-footer {
+    background-color: var(--primary-dark);
+    color: #f0f0f0;
+    padding: 2rem 1rem;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+    text-align: center; 
+    margin-top: auto; 
+}
+
+/* --- Naslov Footera (AresNyX) --- */
+.footer-header {
+    font-size: 28px; 
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-gold); 
+    margin-bottom: 1.5rem;
+}
+
+/* --- Opis --- */
+.footer-description {
+    max-width: 600px;
+    margin: 0 auto 3rem; 
+    text-align: center;
+    line-height: 1.6;
+    color: #ccc;
+    padding: 0;
+    border-bottom: none; 
+    font-size: 1rem; 
+}
+
+/* --- Sekcije (Korisni linkovi, Kontakt, Pratite nas) --- */
+.footer-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    padding: 1rem 0;
+    margin-top: 0;
+    text-align: center; 
+}
+
+.section-title {
+    color: var(--accent-gold); 
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ⭐ ZLATNE HORIZONTALNE LINIJE (MOBILNI PRIKAZ) ⭐ */
+.footer-section {
+    border-top: 2px solid var(--accent-gold);
+    padding-top: 1.5rem;
+}
+
+.footer-section:first-of-type {
+    border-top: none; 
+    padding-top: 0;
+}
+
+
+/* --- Navigacioni Linkovi (Korisni linkovi) --- */
+.footer-nav {
+    list-style: disc; 
+    list-style-position: inside;
+    padding: 0;
+    margin: 0 auto;
+    width: fit-content; 
+    text-align: left;
+    font-size: 1em;
+}
+
+.footer-nav li {
+    margin-bottom: 0.5rem;
+    color: #f0f0f0; 
+}
+
+.footer-nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.2s;
+    margin-left: -10px; 
+    display: inline;
+    padding: 0;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-gold); 
+    text-decoration: underline;
+}
+
+
+/* --- Kontakt Sekcija --- */
+.contact-info {
+    font-size: 0.95rem;
+    max-width: 300px;
+    margin: 0.8rem auto 0; 
+    text-align: left; 
+}
+
+.contact-item {
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    padding-left: 20px; 
+}
+
+/* ⭐ IKONE KONTAKTA ⭐ */
+.contact-icon { 
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 1.2rem; 
+    color: var(--accent-gold); 
+    flex-shrink: 0; 
+}
+
+.contact-item a {
+    color: #f0f0f0; 
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-item a:hover {
+    color: var(--accent-gold); 
+    text-decoration: underline;
+}
+
+/* --- Društvene Mreže --- */
+.social-icons {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    max-width: 300px;
+    margin: 1rem auto 0;
+}
+
+.social-icon {
+    display: block;
+    width: 40px; 
+    height: 40px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-size: 2.5rem; 
+    color: var(--danger); 
+}
 
 .social-icon:hover {
     color: #c0392b; 
@@ -757,102 +918,113 @@ header h2, .subtitle {
 }
 
 /* ========================================================= */
-/* ===== KRITIČNA POPRAVKA ZA MOBILNI PRIKAZ (< 768px) - AGRESIVNI FIX ===== */
+/* ===== KRITIČNI I KONAČNI MOBILNI FIX (Modal < 768px) ===== */
 /* ========================================================= */
 @media (max-width: 768px) {
     
-    /* 1. RODITELJ: MODAL KONTEJNER (Pun ekran) */
+    /* 1. MODAL KONTEJNER (Pun ekran) */
     .modal-container { 
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 100vh !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        position: fixed !important; 
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
+        width: 100%;
+        max-width: 100%;
+        height: 100%; /* Koristimo 100% visine fiksnog overlay-a */
+        margin: 0;
+        border-radius: 0;
+        position: absolute; /* Apsolutan unutar fiksnog Overlay-a */
+        top: 0;
+        left: 0;
+        transform: none;
+        overflow-y: auto; /* SKROLOVANJE SE DEŠAVA NA OVOM NIVOU */
+        overflow-x: hidden; /* KLJUČNO: Onemogućava horizontalno skrolovanje */
     }
     
-    /* 2. GLAVNI SADRŽAJ (Skrolujući deo) - REŠAVANJE SLIDER PROBLEMA */
+    /* 2. GLAVNI SADRŽAJ (Sve iznad dugmadi) */
     .modal-content { 
-        flex-direction: column !important; /* Osigurava vertikalni raspored */
-        width: 100% !important; /* Osigurava da ne ide van širine */
+        flex-direction: column; /* FORSIRANJE VERTIKALNOG REDA */
+        width: 100%; 
         gap: 0.8rem; 
-        padding: 0.5rem 0.5rem 0.5rem 0.5rem; 
-        /* Ostavljamo prostor za fiksni footer */
-        max-height: calc(100vh - 80px) !important; 
-        overflow-y: auto !important;
-        overflow-x: hidden !important; /* KLJUČNO: Onemogućava horizontalno skrolovanje */
+        padding: 0.5rem 0.5rem; 
+        
+        /* Ostavljamo prostor za fiksni footer (80px) */
+        padding-bottom: 80px !important; /* !important da preklopi globalni padding */
+        
+        max-height: initial; 
+        overflow-y: visible; 
+        overflow-x: hidden;
     }
     
-    /* 3. FIKSNI FOOTER (Akciona dugmad) - REŠAVANJE DUGMADI VAN EKRANA */
+    /* 3. FIKSNI FOOTER (Akciona dugmad - Rešava nestajanje dugmadi) */
     .modal-actions {
-        position: fixed !important; 
-        bottom: 0 !important; 
-        left: 0 !important;
-        right: 0 !important;
-        padding: 0.7rem 1rem !important; 
-        z-index: 9999 !important; 
-        width: 100% !important;
-        padding-bottom: calc(0.7rem + env(safe-area-inset-bottom)) !important; 
+        position: fixed; /* MORA biti FIXED */
+        bottom: 0; 
+        left: 0;
+        right: 0;
+        z-index: 9999; 
+        width: 100%;
+        height: 80px; /* Dodajte fiksnu visinu radi stabilnosti */
+        display: flex; 
+        justify-content: space-around; 
+        align-items: center;
+        padding: 0.7rem 1rem; 
+        /* Dodatni padding za sigurne zone */
+        padding-bottom: calc(0.7rem + env(safe-area-inset-bottom)); 
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1) !important; 
     }
     
     .modal-actions button {
-        width: 100% !important;
-        padding: 0.8rem 1rem !important; 
-        font-size: 1rem !important;
+        flex-grow: 1; 
+        margin: 0 0.2rem;
+        padding: 0.8rem 1rem; 
+        font-size: 1rem;
     }
 
-    /* 4. OPTIMIZACIJA SLIKE / SLIDER KONTEJNER (REŠAVANJE BOČNOG SLIDERA) */
+    /* 4. SLIKA / SLIDER KONTEJNER (Rešava bočni slajder) */
     .modal-gallery { 
-        flex: 0 0 auto !important; 
-        width: 100% !important; /* SVE SLIKE/SLIDER NA PUNU ŠIRINU */
-        display: flex !important;
-        justify-content: center !important;
-        position: relative; /* Bitno za apsolutne strelice */
+        flex: 0 0 100%; /* Puna širina za sliku/slajder */
+        width: 100%; 
+        height: auto; 
+        position: relative; 
+        display: flex;
+        justify-content: center;
     }
-
-    /* SPECIFIČNO CILJANJE SLIDER NAVIGACIJE ("Prethodna" / "Sledeća") */
-    /* Pretpostavljam da su to klase .slider-nav-prev i .slider-nav-next ili slično */
-    .slider-nav-prev, .slider-nav-next { 
-        /* Vratite navigaciju u okvire slike */
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 10;
-        /* Definišite gde stoje (npr. levo/desno od slike) */
-    }
-    .slider-nav-prev { left: 5px !important; }
-    .slider-nav-next { right: 5px !important; }
-
     .modal-main-image { 
-        height: auto !important; 
-        max-width: 95% !important; /* Da zauzme skoro punu širinu */
-        padding: 6px; 
+        width: 95%; 
+        max-width: 95%; /* Osigurava da ne ide preko kontejnera */
+        height: auto; 
+        max-height: 400px; 
+        display: block; 
+        margin: 0 auto;
     }
     
-    /* 5. KOREKCIJA NASLOVA (REŠAVANJE PREVELIKOG NASLOVA) */
-    /* Ciljamo H2 koji drži "Classic Pamuk" */
+    /* SLIDER NAVIGACIJA (strele) */
+    .slider-nav-prev, .slider-nav-next { 
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        padding: 0.5rem; /* Povećajte zonu za klik */
+    }
+    .slider-nav-prev { left: 10px; }
+    .slider-nav-next { right: 10px; }
+    
+    /* 5. KOREKCIJA NASLOVA (Radi jer smo izmenili h2 u globalu) */
     .modal-details h2 { 
-        font-size: 1.6rem !important; /* Smanjeno i forsirano! */
-        margin: 0.5rem 0 0.3rem 0 !important;
-        padding: 0 0.5rem; /* Dodajte padding ako nije deo .modal-details */
+        font-size: 1.6rem !important; /* Forsiramo smanjenu veličinu */
+        margin: 0.5rem 0 0.3rem 0;
+        padding: 0 0.5rem; 
     }
-
-    /* OSTATAK STILOVA (KOLICINA / VELICINE) */
+    
+    /* 6. KOLIČINA / VELIČINE */
     .quantity-input-container {
-        width: 160px !important; 
-        height: 44px !important; 
-        margin-top: 0.5rem !important; 
-    }
-    .quantity-input-container button {
-        width: 44px !important; 
-        font-size: 1.6em !important; 
-        height: 100% !important;
+        width: 160px; 
+        height: 44px; 
     }
     .size-option {
-        padding: 0.6rem 1rem !important; 
+        padding: 0.6rem 1rem; 
+        font-size: 1.1em;
     }
-
+    
+    .modal-details {
+        padding: 0 0.5rem;
+    }
 }
+
