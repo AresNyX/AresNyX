@@ -961,87 +961,29 @@ header h2, .subtitle {
     }
 }
 /* ============================================== */
-/* ⭐ FINALNO REŠENJE - STRUKTURA I KOMPAKTNOST ⭐ */
+/* ⭐ FINALNO, URBANO REŠENJE - BALANSIRANE DIMENZIJE ⭐ */
 /* ============================================== */
 
-/* 1. KONTENJER SADRŽAJA (Fiksiranje i Skrolovanje) */
+/* 1. KONTENJER SADRŽAJA (Da sadržaj skroluje) */
 .modal-content {
-    /* Uklanja se padding-bottom jer modal-actions nije fiksiran UNUTAR sadržaja */
+    /* Uklanja se padding-bottom jer se akcije fiksiraju van sadržaja */
     padding-bottom: 0; 
     position: relative; 
-    /* Dajemo modal-containeru dovoljno prostora da se prikaže ceo sadržaj */
     max-height: 90vh; 
     overflow-y: auto; 
-    overflow-x: hidden;
 }
 
-/* 2. GLAVNI KONTROLNI RED (ZA VELIČINU I KOLIČINU) */
-
-/* Osigurava da su naslov i link Tabela veličina u istom redu */
-.size-header-row, .quantity-header-row {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-.size-header-row h3, .quantity-header-row h3 { 
-    margin: 0; 
-    font-size: 1rem; 
-    white-space: nowrap;
-}
-
-/* 3. AGRESIVNO SMANJENJE NA MOBILNOM */
-@media (max-width: 767px) {
-    /* Font naslova proizvoda */
-    .modal-details h2#modalTitle {
-        font-size: 1.4rem; 
-        margin-bottom: 0.3rem; /* Još manja margina */
-    }
-
-    /* Veličine - Kompaktnost */
-    .size-selector {
-        gap: 0.4rem;
-        margin-bottom: 0.8rem;
-    }
-    .size-selector button {
-        padding: 0.4rem 0.1rem;
-        font-size: 0.9rem;
-    }
-
-    /* KOLIČINA - Najmanje dimenzije */
-    .quantity-selector {
-        height: 30px; /* Najmanja visina */
-    }
-    .qty-btn, .qty-display {
-        width: 30px; 
-        height: 30px; 
-        font-size: 1rem; 
-        padding: 0; 
-        line-height: 30px; 
-        flex-shrink: 0;
-    }
-}
-
-/* 4. FIKSIRANJE DUGMADI ZA AKCIJU (Izvan skrolujućeg sadržaja) */
-/* Dugmad za akciju (modal-actions) moraju biti fiksirana u odnosu na dno EKRANA, 
-   a NE u odnosu na dno MODALA, jer se modal SADA SKROLUJE.
-   Ili moraju biti unutar modal-container-a, a ne modal-content-a.
-   Pretpostavljam da je modal-content jedini skrolujući element.
-   Zato primenjujemo fiksiranje na roditeljski modal-container ili ekran. 
-   Ostavljamo absolute i povećavamo padding da se ne preklapaju:
-*/
-
-/* OBAVEZNO: Povećajte padding-bottom na glavnom kontejneru */
-.modal-container {
-    padding-bottom: 90px; /* Osigurava da je fiksirana dugmad uvek vidljiva */
-}
-
-/* Fiksiramo dugmad na dno modal-container-a (koji je centriran) */
+/* 2. FIKSIRANJE DUGMADI ZA AKCIJU NA DNO EKRANA */
+/* Ovo je KORAK koji osigurava da dugmad uvek budu vidljiva! */
+/* Pretpostavljam da modal-actions nije direktno unutar modal-content! */
+/* Ako jeste, možda treba da ciljate roditeljski kontejner koji obuhvata SVE */
 .modal-actions {
-    position: absolute; 
+    /* Koristimo fixed da se dugmad zalepe za dno EKRANA */
+    position: fixed; 
     bottom: 0; 
     left: 0;
-    right: 0;
+    /* Ako je modal centriran, možda ćete morati da koristite: width: 100%; */
+    width: 100%; 
     padding: 0.7rem 1rem;
     background-color: white; 
     box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
@@ -1054,3 +996,61 @@ header h2, .subtitle {
     margin: 0 0.5rem;
     padding: 0.8rem 1rem;
 }
+
+/* 3. KOREKCIJA MARGINA I VELIČINE SLIKE */
+.modal-gallery {
+    /* Vraćamo normalne dimenzije slike */
+    max-height: 40vh; /* Da ne dominira */
+}
+
+/* 4. HORIZONTALNO PORAVNANJE VELIČINA I KOLIČINE */
+.size-header-row, .quantity-header-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Naslovi (Količina: i Odaberite veličinu:) */
+.size-header-row h3, .quantity-header-row h3 { 
+    margin: 0; 
+    font-size: 1rem; 
+    white-space: nowrap;
+    padding-right: 1rem; /* Mali razmak od kontrole */
+}
+
+/* Kontrole Količine - Uravnotežene dimenzije */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    width: fit-content; 
+}
+.qty-btn {
+    width: 40px; 
+    height: 40px; 
+    font-size: 1.2rem; /* Normalan font */
+    padding: 0; 
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.qty-display {
+    width: 30px; /* Uže polje za broj */
+    height: 40px; 
+    line-height: 40px; 
+    font-size: 1.1rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Smanjenje fonta naslova proizvoda na mobilnom */
+@media (max-width: 767px) {
+    .modal-details h2#modalTitle {
+        font-size: 1.5rem; 
+        margin-bottom: 0.5rem;
+    }
+}
+
