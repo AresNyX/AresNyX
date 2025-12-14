@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* AresNyX - GLAVNI KORIGOVANI CSS (V2) */
+/* AresNyX - GLAVNI KORIGOVANI CSS (KONAČNA VERZIJA) */
 /* ------------------------------------------------ */
 
 /* 🛑 KRITIČNI CSS 🛑 */
@@ -25,7 +25,6 @@ body {
     display: flex; flex-direction: column; min-height: 100vh;
 }
 
-/* KLJUČNA KLASA ZA KRIJEVANJE SKROLA KADA JE OTVOREN MODAL/SIDEBAR */
 body.no-scroll { overflow: hidden; } 
 
 /* ===== OSNOVNA TIPOGRAFIJA ===== */
@@ -33,20 +32,16 @@ h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 0.5em; 
 h2 { font-size: 2em; font-weight: 600; line-height: 1.3; margin-bottom: 0.7em; }
 
 
-/* ===== HEADER SA PODNASLOVOM (Kao u Vašem HTML-u) ===== */
+/* ===== HEADER SA PODNASLOVOM (Fiksirano) ===== */
 header { 
     background: var(--primary-dark); 
     color: #fff; 
-    padding: 20px 20px 10px; /* Prilagođen padding */
+    padding: 20px 20px 10px; 
     text-align: center; 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.header-logo {
-    margin-bottom: 10px;
-}
-
 header h1 { 
     font-size: 2.875em; 
     color: var(--accent-gold); 
@@ -57,7 +52,6 @@ header h1 {
     line-height: 1.3;
 }
 .brand-emphasis { font-weight: 700; font-size: 1.2em; }
-
 .subtitle {
     font-size: 1em; 
     color: #fff; 
@@ -68,7 +62,7 @@ header h1 {
 }
 
 /* ========================================================= */
-/* ⭐ NAVIGACIJA & KORPA IKONA (Korigovano) ⭐ */
+/* ⭐ NAVIGACIJA & KORPA IKONA (KLJUČNO: Z-INDEX 990) ⭐ */
 /* ========================================================= */
 
 nav {
@@ -80,9 +74,9 @@ nav {
     justify-content: center;
     flex-wrap: wrap; 
     gap: 10px;
-    position: sticky; /* Zakači navigaciju */
+    position: sticky; 
     top: 0;
-    z-index: 998;
+    z-index: 990; /* Malo niži Z-index od modala (1000+) */
 }
 nav a {
     color: #fff;
@@ -96,131 +90,59 @@ nav a {
     text-align: center;
     border: 1px solid transparent; 
 }
-
 nav a:hover {
     color: var(--accent-gold); 
     background-color: rgba(212, 175, 55, 0.2); 
     border: 1px solid var(--accent-gold);
 }
-
 nav a.active {
     color: var(--primary-dark) !important; 
     background-color: var(--accent-gold) !important; 
     border: 1px solid var(--accent-gold) !important;
 }
-
-/* ⭐ Korpa link u NAV tagu se SADA KORISTI za otvaranje SIDEBAR-a ⭐ */
 .cart-nav-link {
-    /* Uklonite display: none; ako želite da se vidi i u navigaciji */
-    /* Ako želite samo ikonu korpe, ovo je dobar stil: */
     display: flex;
     align-items: center;
     gap: 5px;
     font-weight: 600;
     padding: 8px 12px;
 }
-.cart-nav-link:hover {
-    color: var(--accent-gold);
-    background-color: rgba(212, 175, 55, 0.2);
-}
 .cart-nav-link i {
     font-size: 1.3em;
 }
 
 
-/* ===== MEDIA QUERIES ZA NAVIGACIJU (Responsivnost) ===== */
+/* ===== MEDIA QUERIES ZA NAVIGACIJU ===== */
 @media (min-width: 601px) {
-    nav a {
-        width: 140px; 
-    }
+    nav a { width: 140px; }
 }
 @media (max-width: 600px) {
-    nav {
-        padding: 15px 5px; 
-        gap: 5px; 
-        justify-content: space-between; 
-    }
-    nav a {
-        width: 30% !important; 
-        min-width: 0 !important; 
-        flex-shrink: 1; 
-        flex-grow: 1; 
-        font-size: 1.2em; 
-        padding: 8px 3px; 
-    }
-    .cart-nav-link span { /* Sakrijte tekst "Korpa" na mobilnom */
-        display: none;
-    }
+    nav { padding: 15px 5px; gap: 5px; justify-content: space-between; }
+    nav a { width: 30% !important; min-width: 0 !important; flex-shrink: 1; flex-grow: 1; font-size: 1.2em; padding: 8px 3px; }
+    .cart-nav-link span { display: none; }
 }
 
 /* ========================================================= */
-/* ⭐ GLAVNI SADRŽAJ (SHOP I PROIZVODI) ⭐ */
+/* ⭐ GLAVNI SADRŽAJ & PROIZVODI (Isto) ⭐ */
 /* ========================================================= */
-.main-content {
-    flex: 1; 
-}
-.products-section { 
-    padding: 3rem 2rem; 
-    max-width: 1400px; 
-    margin: 0 auto; 
-    text-align: center; 
-}
-.products-grid { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 2.5rem; 
-}
-/* ... Ostatak stilova za .product-card, .product-image, .product-info (nisu menjani) ... */
-.product-card { 
-    background: white; border-radius: 12px; overflow: hidden; 
-    box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); 
-    position: relative; display: flex; flex-direction: column; height: 100%;
-}
+.main-content { flex: 1; }
+.products-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; text-align: center; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+.product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); position: relative; display: flex; flex-direction: column; height: 100%;}
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-.product-image { 
-    width: 100%; 
-    height: 450px; 
-    object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;
-}
-.product-info { 
-    padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; 
-    justify-content: space-between; 
-    text-align: center; 
-}
+.product-image { width: 100%; height: 450px; object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;}
+.product-info { padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
 .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
 .product-price { font-size: 1.2rem; font-weight: 700; }
-
-/* BADGE STILOVI */
-.product-badge {
-    position: absolute;
-    top: 10px;
-    left: 0; 
-    display: inline-block; 
-    width: auto; 
-    padding: 0.2rem 0.6rem; 
-    border-radius: 0 3px 3px 0; 
-    color: white; 
-    font-weight: 700; 
-    font-size: 0.75em; 
-    text-transform: uppercase; 
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.product-material {
-    font-size: 0.85rem; 
-    color: #555; 
-    margin-top: 0.1rem;
-    margin-bottom: 0.3rem; 
-    font-weight: 400; 
-}
+.product-badge { position: absolute; top: 10px; left: 0; display: inline-block; width: auto; padding: 0.2rem 0.6rem; border-radius: 0 3px 3px 0; color: white; font-weight: 700; font-size: 0.75em; text-transform: uppercase; z-index: 10; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);}
+.product-material { font-size: 0.85rem; color: #555; margin-top: 0.1rem; margin-bottom: 0.3rem; font-weight: 400; }
 .badge-premium { background-color: #ffc107; color: #333; border: 1px solid #e0a800;}
 .badge-classic { background-color: #28a745; border: 1px solid #1e7e34;}
 .badge-default { background-color: #007bff; border: 1px solid #0056b3;}
 
 
 /* ========================================================= */
-/* ⭐ FILTERI I SORTIRANJE ⭐ */
+/* ⭐ FILTERI I SORTIRANJE (KLJUČNO: Z-INDEX 500) ⭐ */
 /* ========================================================= */
 .shop-controls {
     display: flex;
@@ -232,6 +154,7 @@ nav a.active {
     margin-right: auto;
     padding: 0 2rem; 
     text-align: right;
+    z-index: 500; /* Postavite z-index na kontrolu da bi ostala iznad proizvoda */
 }
 .filter-sort-btn {
     display: inline-flex; 
@@ -260,7 +183,7 @@ nav a.active {
     border-radius: 10px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     padding: 15px; 
-    z-index: 500;
+    z-index: 501; /* Z-index veći od Z-indexa dugmeta filtera/kontrolne trake */
     opacity: 0; 
     visibility: hidden; 
     transform: translateY(10px); 
@@ -271,61 +194,17 @@ nav a.active {
 .filter-sort-panel.active {
     opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
 }
-/* ... Ostali stilovi za panel, grupe i veličine ... */
 .filter-sort-panel h3 {
-    border-bottom: 2px solid var(--gray-medium);
-    padding-bottom: 8px; 
-    margin-top: 10px; 
-    margin-bottom: 12px; 
-    font-size: 1.1rem; 
-    color: var(--primary-dark);
+    border-bottom: 2px solid var(--gray-medium); padding-bottom: 8px; margin-top: 10px; margin-bottom: 12px; font-size: 1.1rem; color: var(--primary-dark);
 }
-.filter-group {
-    margin-bottom: 15px;
-}
-.filter-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    font-size: 0.95rem;
-}
-.filter-sort-panel select {
-    height: 35px; 
-    padding: 5px 10px; 
-    font-size: 0.95rem; 
-    width: 100%; 
-    border-radius: 6px; 
-    border: 1px solid var(--gray-medium);
-    appearance: none; 
-    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 10px center;
-    background-size: 18px;
-}
+.filter-group { margin-bottom: 15px; }
+.filter-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.95rem; }
+.filter-sort-panel select { height: 35px; padding: 5px 10px; font-size: 0.95rem; width: 100%; border-radius: 6px; border: 1px solid var(--gray-medium); appearance: none; background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 10px center; background-size: 18px;}
 .size-filter-options { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;}
-.size-btn {
-    background: var(--gray-light); border: 1px solid var(--gray-medium);
-    padding: 8px 12px; 
-    font-size: 0.9rem; 
-    min-width: 45px; 
-    text-align: center;
-    border-radius: 6px; 
-    cursor: pointer; 
-    font-weight: 500; 
-    transition: all 0.2s;
-}
+.size-btn { background: var(--gray-light); border: 1px solid var(--gray-medium); padding: 8px 12px; font-size: 0.9rem; min-width: 45px; text-align: center; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s;}
 .size-btn:hover { background: var(--accent-gold); color: white; border-color: var(--accent-gold); }
 .size-btn.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); font-weight: 700; }
-.apply-filters-btn {
-    width: 100%; 
-    background: var(--success); 
-    color: white; border: none;
-    padding: 10px; 
-    border-radius: 6px; 
-    margin-top: 15px; 
-    cursor: pointer;
-    font-size: 1rem; 
-    font-weight: 600; 
-    transition: var(--transition);
-}
+.apply-filters-btn { width: 100%; background: var(--success); color: white; border: none; padding: 10px; border-radius: 6px; margin-top: 15px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: var(--transition);}
 .apply-filters-btn:hover { background: #1e8449; }
 
 @media (max-width: 600px) {
@@ -342,22 +221,21 @@ nav a.active {
 
 
 /* ========================================================= */
-/* ⭐ MODAL POP-UP (ZA DETALJE PROIZVODA) ⭐ */
+/* ⭐ MODAL OVERLAY & MODAL CONTAINER (Pop-Up Proizvoda) ⭐ */
 /* ========================================================= */
 .modal-overlay { 
-  display: none; /* KLJUČNO: Inicijalno sakriven */
+  display: none; 
   position: fixed; 
   top: 0; left: 0; 
   width: 100%; height: 100vh; 
   background: rgba(0,0,0,0.8); 
-  z-index: 1010; 
+  z-index: 1010; /* Z-index iznad Navigacije (990) i Filtera (501) */
   overflow-y: auto; 
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
 }
 
-/* OVO JE KLJUČNO ZA AKTIVACIJU JS-om */
 .modal-overlay.active { 
   display: block; 
   opacity: 1;
@@ -397,69 +275,33 @@ nav a.active {
 }
 .modal-close:hover { background: var(--danger); transform: rotate(90deg); }
 
-/* Sadržaj Modala Proizvoda */
+/* ... Ostatak stilova za Modal Proizvoda (Modal Gallery, Details, Actions) ... */
 #productModal .modal-content {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 2rem;
-    overflow-y: auto;
+    display: flex; flex-direction: column; padding: 2rem; gap: 2rem; overflow-y: auto;
 }
 @media (min-width: 800px) {
-    #productModal .modal-content {
-        flex-direction: row;
-    }
+    #productModal .modal-content { flex-direction: row; }
 }
-
-/* ... Ostali detalji modala (galerija, detalji, akcije) - Nisu menjani ... */
 .modal-gallery { flex: 1; text-align: center; }
 .modal-details { flex: 1; padding: 0 1rem; }
-.modal-main-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: contain;
-    background: var(--gray-light);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
+.modal-main-image { width: 100%; height: auto; max-height: 500px; object-fit: contain; background: var(--gray-light); border-radius: 8px; margin-bottom: 1rem;}
 .slider-nav { display: flex; justify-content: space-between; }
-.slider-nav button {
-    background: var(--primary-dark); color: white; padding: 0.5rem 1rem;
-    border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
-    transition: var(--transition);
-}
+.slider-nav button { background: var(--primary-dark); color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: var(--transition);}
 .slider-nav button:hover { background: var(--accent-gold); color: var(--primary-dark); }
 .modal-details h2 { font-size: 1.8rem; margin-top: 0; margin-bottom: 0.5rem; color: var(--primary-dark); }
 .modal-material { font-size: 1.1rem; color: #6c757d; margin-bottom: 1rem; }
 .modalPrice { font-size: 1.8rem; font-weight: 700; color: var(--danger); margin-bottom: 1.5rem; }
 .size-header-row, .quantity-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
 .size-info { cursor: pointer; color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; }
-.size-selector button {
-    background: var(--gray-light); border: 1px solid var(--gray-medium);
-    padding: 10px 15px; margin-right: 8px; border-radius: 6px; cursor: pointer;
-    transition: var(--transition);
-}
+.size-selector button { background: var(--gray-light); border: 1px solid var(--gray-medium); padding: 10px 15px; margin-right: 8px; border-radius: 6px; cursor: pointer; transition: var(--transition);}
 .size-selector button:hover { background: var(--accent-gold); color: white; border-color: var(--accent-gold); }
 .size-selector button.selected { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
 .quantity-selector { display: flex; align-items: center; gap: 10px; }
-.qty-btn {
-    background: var(--gray-light); border: 1px solid var(--gray-medium);
-    width: 35px; height: 35px; border-radius: 6px; cursor: pointer;
-    font-size: 1.2rem; font-weight: 600; transition: var(--transition);
-}
+.qty-btn { background: var(--gray-light); border: 1px solid var(--gray-medium); width: 35px; height: 35px; border-radius: 6px; cursor: pointer; font-size: 1.2rem; font-weight: 600; transition: var(--transition);}
 .qty-btn:hover { background: var(--accent-gold); color: white; border-color: var(--accent-gold); }
 .qty-display { min-width: 20px; text-align: center; font-weight: 600; }
-.modal-actions {
-    padding: 1rem; border-top: 1px solid var(--gray-medium);
-    background: var(--gray-light); display: flex; gap: 1rem;
-    justify-content: space-between; flex-shrink: 0;
-}
-.modal-actions button {
-    flex: 1; padding: 0.9rem 1.2rem; font-size: 1rem; font-weight: 600;
-    border-radius: 8px; cursor: pointer; transition: var(--transition);
-    border: 2px solid transparent;
-}
+.modal-actions { padding: 1rem; border-top: 1px solid var(--gray-medium); background: var(--gray-light); display: flex; gap: 1rem; justify-content: space-between; flex-shrink: 0;}
+.modal-actions button { flex: 1; padding: 0.9rem 1.2rem; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: var(--transition); border: 2px solid transparent;}
 .add-to-cart-btn { background: var(--success); color: white; }
 .add-to-cart-btn:hover { background: #1e8449; }
 .continue-shopping { background: white; color: var(--primary-dark); border-color: var(--primary-dark); }
@@ -467,7 +309,7 @@ nav a.active {
 
 
 /* ========================================================= */
-/* ⭐ SIDEBAR KORPA (#cartSidebar) ⭐ */
+/* ⭐ SIDEBAR KORPA (#cartSidebar) - FIX ZA OTVARANJE ⭐ */
 /* ========================================================= */
 .cart-sidebar {
     position: fixed;
@@ -478,7 +320,7 @@ nav a.active {
     height: 100%;
     background: #fff;
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    z-index: 1000;
+    z-index: 1000; /* Dovoljno visoko da bude iznad svega */
     display: flex;
     flex-direction: column;
     transform: translateX(100%); /* KLJUČNO: Sakriveno van ekrana */
@@ -487,238 +329,46 @@ nav a.active {
 .cart-sidebar.active {
     transform: translateX(0); /* Prikazuje se kada JS doda klasu 'active' */
 }
+/* ... Ostatak stilova Korpe (cart-header, cart-items, cart-footer) ... */
+.cart-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 2px solid var(--accent-gold); flex-shrink: 0;}
+.cart-header h3 { margin: 0; color: var(--primary-dark); font-size: 1.5rem;}
+.cart-header .modal-close { position: static; background: var(--primary-dark); color: white; width: 30px; height: 30px; font-size: 1.5rem;}
+.cart-header .modal-close:hover { background: var(--danger); transform: none;}
+.cart-promo-message { background: var(--gray-light); color: var(--primary-dark); padding: 0.5rem 1.5rem; font-size: 0.9rem; text-align: center; font-weight: 500;}
+.cart-items { flex-grow: 1; overflow-y: auto; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 15px;}
+.empty-cart { text-align: center; padding-top: 50px; color: #aaa;}
+.cart-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--gray-medium);}
+.cart-item-image { width: 70px; height: 70px; object-fit: contain; border-radius: 6px; background: var(--gray-light); margin-right: 15px; flex-shrink: 0;}
+.cart-item-info { flex-grow: 1; display: flex; flex-direction: column;}
+.cart-item-title { font-size: 1rem; font-weight: 600; margin-bottom: 5px;}
+.cart-item-price { font-size: 0.95rem; font-weight: 500; color: var(--primary-dark);}
+.cart-item-qty { display: flex; align-items: center; gap: 8px; margin-left: 10px; flex-shrink: 0;}
+.cart-item-qty button { background: var(--gray-light); border: 1px solid var(--gray-medium); width: 25px; height: 25px; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: var(--transition);}
+.cart-item-qty button:hover { background: var(--accent-gold); color: #fff; border-color: var(--accent-gold);}
+.cart-item-qty span { min-width: 15px; text-align: center; font-weight: 600;}
+.cart-footer { padding: 1.5rem; border-top: 1px solid var(--gray-medium); background: white; flex-shrink: 0;}
+.cart-totals { margin-bottom: 1rem;}
+.cart-total-row { display: flex; justify-content: space-between; font-size: 1rem; padding: 4px 0;}
+.cart-total-row.final { font-size: 1.2rem; font-weight: 700; padding-top: 10px; border-top: 1px solid var(--gray-medium); margin-top: 5px;}
+.checkout-btn { width: 100%; background: var(--success); color: #fff; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition);}
+.checkout-btn:hover { background: #1e8449;}
+.clear-cart-btn { background: none; color: var(--danger); border: 1px solid var(--danger); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; margin-bottom: 1rem; transition: var(--transition);}
+.clear-cart-btn:hover { background: var(--danger); color: white;}
+.cart-actions-footer { text-align: right;}
 
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    border-bottom: 2px solid var(--accent-gold);
-    flex-shrink: 0;
-}
-.cart-header h3 {
-    margin: 0;
-    color: var(--primary-dark);
-    font-size: 1.5rem;
-}
-.cart-header .modal-close {
-    position: static;
-    background: var(--primary-dark);
-    color: white;
-    width: 30px;
-    height: 30px;
-    font-size: 1.5rem;
-}
-.cart-header .modal-close:hover {
-    background: var(--danger);
-    transform: none;
-}
-
-.cart-promo-message {
-    background: var(--gray-light);
-    color: var(--primary-dark);
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
-    text-align: center;
-    font-weight: 500;
-}
-
-.cart-items {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.empty-cart {
-    text-align: center;
-    padding-top: 50px;
-    color: #aaa;
-}
-
-/* === STAVKE U KORPI === */
-.cart-item {
-  display: flex;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--gray-medium);
-}
-.cart-item-image {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  border-radius: 6px;
-  background: var(--gray-light);
-  margin-right: 15px;
-  flex-shrink: 0;
-}
-.cart-item-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-.cart-item-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.cart-item-price {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--primary-dark);
-}
-
-/* === KOLIČINA U KORPI === */
-.cart-item-qty {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 10px;
-  flex-shrink: 0;
-}
-.cart-item-qty button {
-  background: var(--gray-light);
-  border: 1px solid var(--gray-medium);
-  width: 25px;
-  height: 25px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-.cart-item-qty button:hover {
-  background: var(--accent-gold);
-  color: #fff;
-  border-color: var(--accent-gold);
-}
-.cart-item-qty span {
-  min-width: 15px;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* === FOOTER KORPE === */
-.cart-footer {
-  padding: 1.5rem;
-  border-top: 1px solid var(--gray-medium);
-  background: white; 
-  flex-shrink: 0;
-}
-
-.cart-totals {
-    margin-bottom: 1rem;
-}
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  padding: 4px 0;
-}
-.cart-total-row.final {
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding-top: 10px;
-    border-top: 1px solid var(--gray-medium);
-    margin-top: 5px;
-}
-
-.checkout-btn {
-  width: 100%;
-  background: var(--success);
-  color: #fff;
-  border: none;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-.checkout-btn:hover {
-  background: #1e8449;
-}
-
-.clear-cart-btn {
-    background: none;
-    color: var(--danger);
-    border: 1px solid var(--danger);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    transition: var(--transition);
-}
-.clear-cart-btn:hover {
-    background: var(--danger);
-    color: white;
-}
-.cart-actions-footer {
-    text-align: right;
-}
 
 /* ========================================================= */
-/* ⭐ CHECKOUT MODAL (#checkoutModal) ⭐ */
+/* ⭐ CHECKOUT MODAL (#checkoutModal) (Isto) ⭐ */
 /* ========================================================= */
-
-#checkoutModal .modal-container {
-    max-width: 900px;
-}
-
-#checkoutModal .modal-content {
-    padding: 2rem;
-}
-/* ... Ostali stilovi za Checkout formu i pregled - Nisu menjani ... */
-.checkout-form h2 {
-    color: var(--primary-dark);
-    border-bottom: 2px solid var(--gray-medium);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-dark);
-}
-.form-group input, 
-.form-group select, 
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--gray-medium);
-    border-radius: 6px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-.submit-btn {
-    width: 100%;
-    background: var(--primary-dark);
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-.submit-btn:hover {
-    background: var(--accent-gold);
-    color: var(--primary-dark);
-}
-
+#checkoutModal .modal-container { max-width: 900px;}
+#checkoutModal .modal-content { padding: 2rem;}
+.checkout-form h2 { color: var(--primary-dark); border-bottom: 2px solid var(--gray-medium); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.8rem;}
+.form-group { margin-bottom: 15px;}
+.form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--text-dark);}
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid var(--gray-medium); border-radius: 6px; font-size: 1rem; box-sizing: border-box;}
+.form-group textarea { resize: vertical; min-height: 80px;}
+.submit-btn { width: 100%; background: var(--primary-dark); color: white; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; margin-top: 20px; cursor: pointer; transition: var(--transition);}
+.submit-btn:hover { background: var(--accent-gold); color: var(--primary-dark);}
 .preview-container { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1rem; }
 .preview-shipping, .preview-order { padding: 1.5rem; border-radius: 8px; background: var(--gray-light); box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
 .preview-shipping { flex: 1 1 45%; }
@@ -732,16 +382,14 @@ nav a.active {
 .edit-data-btn { background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); }
 .edit-data-btn:hover { background: var(--gray-medium); }
 
-@media (max-width: 768px) { 
-    .preview-shipping, .preview-order { flex-basis: 100%; } 
-}
+@media (max-width: 768px) { .preview-shipping, .preview-order { flex-basis: 100%; } }
 .success-message { text-align: center; padding: 40px 20px;}
 .success-message h2 { color: var(--success); font-size: 2.2rem; margin-bottom: 20px; border-bottom: none;}
 .success-message i { margin-right: 10px;}
 .success-message p { font-size: 1.1rem; margin-bottom: 15px;}
 .success-message button { margin-top: 30px; max-width: 300px;}
 
-/* TOAST NOTIFIKACIJA */
+/* TOAST NOTIFIKACIJA (Isto) */
 .toast {
     visibility: hidden; min-width: 325px; margin-left: -162.5px; 
     background-color: var(--primary-dark); color: #fff; text-align: center; 
@@ -761,37 +409,19 @@ nav a.active {
 
 
 /* ========================================================= */
-/* ⭐ FOOTER STILOVI (.main-footer) ⭐ */
+/* ⭐ FOOTER STILOVI (.main-footer) (Isto) ⭐ */
 /* ========================================================= */
 .main-footer {
-    background-color: var(--primary-dark);
-    color: #f0f0f0;
-    padding: 2rem 1rem;
-    text-align: center; 
-    margin-top: auto; 
+    background-color: var(--primary-dark); color: #f0f0f0; padding: 2rem 1rem; text-align: center; margin-top: auto; 
 }
-.footer-content-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-.footer-header {
-    font-size: 28px; font-weight: 700; text-align: center; color: var(--accent-gold); margin-bottom: 1.5rem;
-}
-.footer-description {
-    max-width: 600px; margin: 0 auto 3rem; line-height: 1.6; color: #ccc; font-size: 1rem; 
-}
-.footer-section {
-    padding: 1.5rem 0; text-align: center; 
-}
-.footer-section:first-of-type {
-    border-top: none; padding-top: 0;
-}
-.section-title {
-    color: var(--accent-gold); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; text-transform: uppercase; width: fit-content; margin-left: auto; margin-right: auto;
-}
-.footer-nav {
-    list-style: disc; list-style-position: inside; padding: 0; margin: 0 auto; width: fit-content; text-align: left; font-size: 1em;
-}
+/* ... Ostali stilovi footera (nepromenjeni) ... */
+.footer-content-wrapper { max-width: 1400px; margin: 0 auto;}
+.footer-header { font-size: 28px; font-weight: 700; text-align: center; color: var(--accent-gold); margin-bottom: 1.5rem;}
+.footer-description { max-width: 600px; margin: 0 auto 3rem; line-height: 1.6; color: #ccc; font-size: 1rem; }
+.footer-section { padding: 1.5rem 0; text-align: center; }
+.footer-section:first-of-type { border-top: none; padding-top: 0;}
+.section-title { color: var(--accent-gold); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; text-transform: uppercase; width: fit-content; margin-left: auto; margin-right: auto;}
+.footer-nav { list-style: disc; list-style-position: inside; padding: 0; margin: 0 auto; width: fit-content; text-align: left; font-size: 1em;}
 .footer-nav li { margin-bottom: 0.5rem; color: #f0f0f0; }
 .footer-nav a { color: #f0f0f0; text-decoration: none; transition: color 0.2s; margin-left: -10px; display: inline; padding: 0;}
 .footer-nav a:hover { color: var(--accent-gold); text-decoration: underline;}
@@ -803,9 +433,7 @@ nav a.active {
 .social-icons { display: flex; justify-content: space-around; align-items: center; max-width: 300px; margin: 1rem auto 0;}
 .social-icon { display: block; width: 40px; height: 40px; text-decoration: none; transition: opacity 0.2s; font-size: 2.5rem; color: #fff;}
 .social-icon:hover { color: var(--accent-gold); transform: scale(1.1);}
-.footer-bottom-custom {
-    text-align: center; padding: 1rem 0 0.5rem; border-top: 1px solid #333; margin-top: 1rem; font-size: 0.8em; color: #aaa;
-}
+.footer-bottom-custom { text-align: center; padding: 1rem 0 0.5rem; border-top: 1px solid #333; margin-top: 1rem; font-size: 0.8em; color: #aaa;}
 
 @media (min-width: 768px) {
     .footer-content-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;}
@@ -824,4 +452,5 @@ nav a.active {
 @media (min-width: 992px) {
     .product-image { height: 550px;}
 }
+
 
