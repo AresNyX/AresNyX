@@ -189,7 +189,7 @@ nav a.active {
 }
 .products-grid { 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
     gap: 2.5rem; 
 }
 .product-card { 
@@ -575,7 +575,7 @@ nav a.active {
     }
     
     .modal-main-image { 
-        height: 300px; 
+        height: 350px; 
         padding: 6px; 
     }
     
