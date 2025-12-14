@@ -345,146 +345,77 @@ nav a.active {
     }
     .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
 }
-/* ✅ FINALNI MODAL BLOK - bez duplikata */
-/* === MODAL (Brzi pregled proizvoda) === */
-
 .modal-overlay { 
-    display: none;
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100vh; 
-    background: rgba(0,0,0,0.9); 
-    z-index: 1010; 
-    backdrop-filter: blur(5px); 
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  display: none;
+  position: fixed; 
+  top: 0; left: 0; 
+  width: 100%; height: 100vh; 
+  background: rgba(0,0,0,0.9); 
+  z-index: 1010; 
 }
-.modal-overlay.active { 
-    display: block; 
-    opacity: 1;
-    animation: fadeInModal 0.4s ease;
-}
-
-@keyframes fadeInModal {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
+.modal-overlay.active { display: block; }
 
 .modal-container { 
-    display: flex;
-    flex-direction: column;
-    position: fixed; 
-    top: 50%; left: 50%; 
-    transform: translate(-50%, -50%);
-    background: white; 
-    border-radius: 10px; 
-    width: 95%; 
-    max-width: 900px; 
-    max-height: 95vh; 
-    z-index: 1020;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
-    transition: all 0.3s ease;
-}
-.modal-overlay.active .modal-container {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+  display: flex;
+  flex-direction: column;
+  position: fixed; 
+  top: 50%; left: 50%; 
+  transform: translate(-50%, -50%);
+  background: white; 
+  border-radius: 10px; 
+  width: 95%; 
+  max-width: 900px; 
+  max-height: 95vh; 
+  z-index: 1020;
 }
 
 .modal-content { 
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-    display: flex; 
-    gap: 1.2rem; 
-}
-
-.modal-main-image {
-    width: 100%;
-    height: auto;
-    max-height: 50vh;
-    object-fit: contain;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 8px; 
-    border-radius: 8px;
-}
-@media (min-width: 992px) {
-    .modal-main-image {
-        height: 620px;
-        max-height: 70vh;
-    }
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex; 
+  gap: 1.2rem; 
 }
 
 .modal-actions {
-    position: sticky;
-    bottom: 0;
-    background: #fff;
-    padding: 1rem;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    gap: 1rem;
-    z-index: 100;
-}
-.modal-actions button {
-    flex: 1;
-    padding: 0.9rem 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 1rem;
 }
 /* === KORPA (Sidebar) === */
-
 .cart-sidebar { 
-    position: fixed;
-    top: 0;
-    right: -520px;
-    width: 520px;
-    height: 100vh;
-    background: white;
-    box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-    transition: right 0.4s ease, opacity 0.4s ease;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
+  position: fixed;
+  top: 0;
+  right: -520px;
+  width: 520px;
+  height: 100vh;
+  background: white;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
 }
-.cart-sidebar.active { 
-    right: 0; 
-    opacity: 1;
-    animation: slideInCart 0.4s ease;
-}
-
-@keyframes slideInCart {
-    from { right: -520px; opacity: 0; }
-    to { right: 0; opacity: 1; }
-}
-
-.cart-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--gray-medium);
-    background: var(--primary-dark);
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.cart-sidebar.active { right: 0; }
 
 .cart-items {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
+  flex: 1;
+  overflow-y: auto; /* skrol unutra */
+  padding: 1rem;
 }
 
-.cart-footer {
-    padding: 1.5rem;
-    border-top: 1px solid var(--gray-medium);
-    background: var(--gray-light);
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
+.cart-header, .cart-footer {
+  position: sticky;
+  background: #fff;
+  z-index: 10;
 }
+.cart-header { top: 0; }
+.cart-footer { bottom: 0; }
+
 #checkoutModal .modal-container { max-width: 650px; padding: 2.6rem; }
 .checkout-form h2 { color: var(--primary-dark); margin-bottom: 1.95rem; font-size: 1.69rem; }
 .form-group { margin-bottom: 1.56rem; }
