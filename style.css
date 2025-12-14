@@ -517,6 +517,12 @@ nav a.active {
 /* Neka bude bela boja teksta za odabrano dugme, radi boljeg kontrasta */
 .size-option.selected { border-color: #D4AF37; background: #D4AF37; color: white; }
 
+/* Smanjenje fonta za sve naslove u detaljima modala */
+.modal-details h2,
+.modal-details h3 {
+    font-size: 1.8rem; /* Korigovana veličina fonta */
+    margin-bottom: 0.4rem; 
+}
 
 /* Akcije (Dodaj u korpu, Nastavi kupovinu) */
 /* Dugmad su ABSOLUTE na desktopu */
