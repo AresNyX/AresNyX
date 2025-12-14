@@ -961,39 +961,84 @@ header h2, .subtitle {
     }
 }
 /* ============================================== */
-/* ⭐ FINALNI BLOK: AGRESIVNI GRID I FIKSIRANJE EKRANA ⭐ */
+/* ⭐ FINALNO, GARANTOVANO REŠENJE ZA FIKSIRANJE I RASPON ⭐ */
 /* ============================================== */
 
-/* 1. KONTENJER SADRŽAJA (Da sadržaj skroluje) */
-.modal-content {
-    /* Ovo je najvažnije. Sadržaj modala skroluje, ali se NE PREKLAPA sa akcijama. */
-    overflow-y: auto; 
+/* 1. RODITELJ: MODAL-CONTAINER I MODAL-OVERLAY */
+.modal-overlay {
+    /* Da prekrije ceo ekran i dozvoli centriranje modala */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicijalno sakriven */
+    z-index: 1050;
+    overflow-y: auto; /* Dozvolite skrolovanje modala ako je sadržaj prevelik */
+}
+
+.modal-container {
+    background-color: white;
     position: relative; 
-    /* Dovoljno paddinga da akciona dugmad budu uvek ispod sadržaja */
+    margin: 5vh auto; /* 5vh od vrha, centrirano horizontalno */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 90%; 
+    max-width: 450px; /* Maksimalna širina za mobilni */
+    max-height: 90vh; /* Ograničavamo visinu da modal stane na ekran */
+}
+
+/* 2. GLAVNI SADRŽAJ (Sve iznad dugmadi) */
+.modal-content {
+    /* Ovaj div sadrži SVE detalje i skroluje se. */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    position: relative; 
+    
+    /* KLJUČNO: Ostavljamo 90px slobodnog prostora na dnu da fiksirana dugmad ne preklapaju tekst */
     padding-bottom: 90px; 
-    max-height: 90vh; 
+    max-height: calc(90vh - 5vh); /* Dinamički proračunata visina (oduzimamo marginu) */
 }
 
-/* 2. MAKSIMALNO KOMPAKTAN IZGLED DETALJA */
-.modal-details {
-    padding: 0 1rem;
+/* 3. FIKSIRANJE DUGMADI ZA AKCIJU (KLJUČNO: Vidljivo na dnu) */
+.modal-actions {
+    /* Vezujemo akcije za DNO MODAL-CONTAINER-a (koji je centriran) */
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+    right: 0;
+    padding: 0.7rem 1rem;
+    background-color: white; 
+    border-top: 1px solid #eee;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
+    display: flex;
+    justify-content: space-between; 
+    z-index: 1060; /* Viši z-index od overlay-a */
 }
-@media (max-width: 767px) {
-    /* Smanjenje fonta naslova proizvoda */
-    .modal-details h2#modalTitle {
-        font-size: 1.4rem; 
-        margin-bottom: 0.3rem; 
-    }
+.modal-actions button {
+    flex-grow: 1; 
+    margin: 0 0.5rem;
+    padding: 0.8rem 1rem;
+    white-space: nowrap;
 }
 
-/* 3. HORIZONTALNO PORAVNANJE (Rešava Tabela veličina i Količina u odvojenim redovima) */
+/* 4. OPTIMIZACIJA VELIČINA I KOLIČINE (Vertikalna ušteda) */
 
-/* NASLOV + TABELA VELIČINA u istom redu */
+/* Uklanjamo gornje margine da povučemo sekcije naviše */
+.modal-details h2, .modal-details p {
+    margin-bottom: 0.5rem;
+    margin-top: 0.3rem; 
+}
+.modal-details h2 { font-size: 1.8rem; } /* Vraćamo originalnu veličinu */
+
+/* Horizontalno poravnanje (Količina i Veličina) */
 .size-header-row, .quantity-header-row {
     display: flex;
     justify-content: space-between; 
     align-items: center;
     margin-bottom: 0.5rem;
+    margin-top: 0.8rem;
 }
 .size-header-row h3, .quantity-header-row h3 { 
     margin: 0; 
@@ -1001,57 +1046,18 @@ header h2, .subtitle {
     white-space: nowrap;
 }
 
-/* 4. KONTROLA KOLIČINE (Ne sme da bude prevelika) */
-.quantity-wrapper {
-    /* Osigurava da se cela sekcija Količina poravna desno */
-    display: flex; 
-    justify-content: flex-end; 
-    width: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-}
+/* Kontrole Količine - Uravnotežene dimenzije */
 .quantity-selector {
-    display: flex;
-    align-items: center;
-    width: fit-content; 
-    height: 40px; /* Fiksiramo visinu kontrole */
+    height: 40px; 
 }
 .qty-btn, .qty-display {
-    width: 35px; 
+    width: 40px; 
     height: 40px; 
-    font-size: 1.1rem; 
-    padding: 0; 
+    font-size: 1.2rem; 
     line-height: 40px;
-    box-sizing: border-box;
-    flex-shrink: 0;
 }
-.qty-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Obezbeđujemo da su sva dugmad veličine dovoljno uska */
+.size-selector button {
+    padding: 0.5rem 0.2rem;
 }
 
-/* 5. FIKSIRANJE DUGMADI ZA AKCIJU (KLJUČNO: Vezano za dno ekrana) */
-.modal-actions {
-    /* Koristimo fixed da se dugmad zalepe za dno EKRANA, bez obzira na skrolovanje modala */
-    position: fixed; 
-    bottom: 0; 
-    left: 0;
-    /* Daje punu širinu (ako je modal preko celog ekrana) */
-    width: 100%; 
-    padding: 0.7rem 1rem;
-    background-color: white; 
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
-    display: flex;
-    justify-content: space-between; 
-    z-index: 10000; /* Povećavamo z-index za svaki slučaj */
-}
-/* Ako se modal prikazuje u užem kontejneru od 100% širine, 
-   potrebno je korigovati left/right ili koristiti absolute na roditeljskom elementu.
-   Ali fixed na 100% širine EKRANA je najsigurnija opcija. */
-
-.modal-actions button {
-    flex-grow: 1; 
-    margin: 0 0.5rem;
-    padding: 0.8rem 1rem;
-}
