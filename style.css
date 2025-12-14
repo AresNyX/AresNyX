@@ -962,7 +962,7 @@ header h2, .subtitle {
 }
 
     /* ============================================== */
-/* ⭐ PRILAGOĐENI STIL ZA MODALNI PROZOR (ARESNYX KONAČNO) ⭐ */
+/* ⭐ FINALNI BLOK: SVE OPTIMIZACIJE ZA MODALNI PROZOR ⭐ */
 /* ============================================== */
 
 /* 1. KONTENJER SADRŽAJA (Fiksiranje i Skrolovanje) */
@@ -987,114 +987,124 @@ header h2, .subtitle {
     object-fit: contain;
 }
 
-/* 3. VELIČINE - REŠENJE PRELAMANJA XXL (Koristi se na mobilnom) */
+/* 3. VELIČINE - Kompaktan izgled */
 .size-selector {
     display: flex;
     justify-content: space-between; 
-    gap: 0.3rem; /* Smanjeni razmak između dugmadi */
-    flex-wrap: nowrap; /* Sprečava prelamanje */
+    gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-/* Stil za sva dugmad unutar size-selector (da stanu u red) */
 .size-selector button {
     flex-grow: 1;
-    flex-shrink: 0;
-    min-width: 0; 
-    width: 18%; /* Fiksna širina da bi ih bilo 5 u redu (5 x 18 = 90%) */
     text-align: center;
-    padding: 0.4rem 0.1rem; /* Smanjeni padding */
-    font-size: 0.9rem; /* Smanjeni font na mobilnom */
-    box-sizing: border-box;
-    /* Dodajte ovde ostale stilove za dugmad (border, background, color) */
+    padding: 0.5rem 0.2rem;
+    font-size: 1rem;
 }
 
-/* Ako imate nedostupnu veličinu (iz JS-a) */
-.size-selector button.unavailable {
+/* Stil za NEDOSTUPNE VELIČINE (koristi klasu 'disabled' iz JS-a) */
+.size-selector button.disabled {
     background-color: var(--light-gray, #f0f0f0) !important; 
     color: var(--text-gray, #999) !important;
     border: 1px solid var(--border-gray, #ccc) !important;
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
-/* 4. TABELA MERA - Pomeranje ulevo */
-/* Za stari HTML: .size-info { text-align: left; ... } */
-/* Koristimo se pretpostavkom da ste dodali size-header-row: */
+/* 4. TABELA MERA - U istom redu sa naslovom (Ako je dodat size-header-row) */
 .size-header-row {
     display: flex;
-    justify-content: space-between; /* Pomeri tabelu veličina na desnu stranu naslova */
+    justify-content: space-between; 
     align-items: center;
     margin-bottom: 0.5rem;
 }
-.size-header-row h3 {
-    margin: 0;
-}
+.size-header-row h3 { margin: 0; }
 .size-info {
     cursor: pointer;
     font-size: 0.9rem;
-    color: var(--primary-color); 
     display: flex;
     align-items: center;
     gap: 0.3rem;
 }
 
+/* 5. KOLIČINA - Poravnavanje u desnu stranu i smanjenje dimenzija */
 
-/* 5. KOLIČINA - Poravnavanje u desnu stranu */
-.quantity-wrapper {
-    display: flex; 
-    justify-content: flex-end; /* KLJUČNO: Gura kontrole Količine DESNO */
-    width: 100%;
-    margin-bottom: 1rem;
-}
-/* Količina kontrola ostaje nepromenjena, ali sada unutar wrappera */
+/* Osnovni stil za kontrolu količine (Desktop) */
 .quantity-selector {
     display: flex;
     align-items: center;
     width: fit-content; 
-    margin-bottom: 0; /* Ne treba mu margin-bottom jer ga ima wrapper */
 }
-
 .qty-btn {
-    /* Standardne dimenzije (Desktop/Tablet) */
-    font-size: 1rem; 
-    padding: 0rem 0.5rem; 
-    width: 40px; 
-    height: 40px; 
+    font-size: 1.5rem; 
+    padding: 0.5rem 1rem; 
+    width: 50px; 
+    height: 50px; 
     border: 1px solid #ccc;
     background-color: var(--light-gray, #f8f8f8);
     cursor: pointer;
-    /* Osiguravamo da se promena odnosi na sve tranzicije */
     box-sizing: border-box; 
-    line-height: 1; /* Resetujemo line-height radi kontrole */
+    line-height: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-/* ⭐ KOREKCIJA ZA MOBILNI PRIKAZ (Manje dimenzije) ⭐ */
-@media (max-width: 767px) {
-    .qty-btn {
-        /* Nove, smanjene dimenzije za mobilni */
-        width: 30px; 
-        height: 30px; 
-        font-size: 0.8rem; 
-        padding: 0; 
-        /* Ovako definišemo da dugme ne utiče na širinu modalnog prozora */
-        flex-shrink: 0; 
-    }
-}
-
 .qty-display {
     font-size: 1.2rem;
     width: 40px;
+    height: 50px; 
     text-align: center;
-    padding: 0.5rem 0;
+    line-height: 50px; 
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    height: 50px; 
-    line-height: 50px;
 }
+
+/* ⭐ KOREKCIJE ZA MOBILNI PRIKAZ (max-width: 767px) ⭐ */
+@media (max-width: 767px) {
+    /* Smanjenje fonta naslova proizvoda */
+    .modal-details h2#modalTitle {
+        font-size: 1.4rem; 
+        margin-bottom: 0.5rem;
+    }
+
+    /* Postavljanje naslova "Količina:" i kontrole u jedan red */
+    .quantity-section {
+        display: flex; 
+        align-items: center;
+        justify-content: space-between; 
+        width: 100%;
+        max-width: 250px; 
+    }
+    .quantity-section h3 {
+        font-size: 1rem; 
+        margin: 0;
+        white-space: nowrap; 
+        padding-right: 0.5rem;
+    }
+    
+    /* Poravnavanje cele sekcije količine desno i smanjenje margin */
+    .quantity-wrapper {
+        display: flex; 
+        justify-content: flex-end; 
+        width: 100%;
+        margin-bottom: 0.5rem; /* Smanjena donja margina */
+        margin-top: 0.5rem; /* Dodata gornja margina */
+    }
+
+    /* Agresivno smanjivanje dimenzija kontrole količine */
+    .qty-selector, .qty-btn, .qty-display {
+        height: 35px; /* Nova, manja visina */
+    }
+    .qty-btn, .qty-display {
+        width: 30px; /* Nova, manja širina */
+        height: 35px; 
+        font-size: 1rem; 
+        padding: 0; 
+        line-height: 35px; 
+        flex-shrink: 0;
+    }
+}
+
 
 /* 6. FIKSIRANJE DUGMADI ZA AKCIJU */
 .modal-actions {
@@ -1109,11 +1119,8 @@ header h2, .subtitle {
     justify-content: space-between; 
     z-index: 1000; 
 }
-
-/* Dugmad u fiksiranom kontejneru */
 .modal-actions button {
     flex-grow: 1; 
     margin: 0 0.5rem;
     padding: 0.8rem 1rem;
-    /* Stilizovanje za 'Nastavi Kupovinu' i 'Dodaj u Korpu' */
 }
