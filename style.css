@@ -480,6 +480,56 @@ nav a.active {
 }
 
 /* CHECKOUT */
+/* ✅ KORPA - Sidebar */
+
+.cart-sidebar { 
+    position: fixed;       /* fiksiran za ekran */
+    top: 0; 
+    right: -520px;         /* skrivena van ekrana */
+    width: 520px; 
+    height: 100vh;         /* cela visina ekrana */
+    background: white; 
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
+    transition: right 0.3s ease; 
+    z-index: 2000;         /* iznad headera */
+    display: flex; 
+    flex-direction: column; 
+}
+
+.cart-sidebar.active { 
+    right: 0;              /* kada je aktivna, ulazi sa desne strane */
+}
+
+/* Header korpe */
+.cart-header { 
+    padding: 1.5rem; 
+    border-bottom: 1px solid var(--gray-medium); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: var(--primary-dark); 
+    color: white; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+}
+
+/* Sadržaj korpe */
+.cart-items { 
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 1rem; 
+}
+
+/* Footer korpe */
+.cart-footer { 
+    padding: 1.5rem; 
+    border-top: 1px solid var(--gray-medium); 
+    background: var(--gray-light); 
+    position: sticky; 
+    bottom: 0; 
+    z-index: 10; 
+}
 #checkoutModal .modal-container { max-width: 650px; padding: 2.6rem; }
 .checkout-form h2 { color: var(--primary-dark); margin-bottom: 1.95rem; font-size: 1.69rem; }
 .form-group { margin-bottom: 1.56rem; }
@@ -488,6 +538,7 @@ nav a.active {
     width: 100%; padding: 1.04rem; border: 1px solid var(--gray-medium); border-radius: 6px;
     font-size: 1.3rem; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); transition: border-color 0.3s;
 }
+
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     border-color: var(--accent-gold); outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
