@@ -1,4 +1,4 @@
-k/* ------------------------------------------------ */
+/* ------------------------------------------------ */
 /* AresNyX - Glavni CSS fajl (KONAČNA OČIŠĆENA VERZIJA SA KOREKCIJAMA) */
 /* ------------------------------------------------ */
 
@@ -61,6 +61,11 @@ h2 {
     z-index: 999; 
     box-shadow: 0 2px 20px rgba(0,0,0,0.3); 
     border-bottom: none; 
+}
+
+/* FIX: Osigurava da je navbar unutar header-a uvek tamna */
+.header navbar {
+    background-color: var(--primary-dark) !important;
 }
 
 navbar { 
@@ -348,7 +353,7 @@ nav a.active {
 
 
 /* ========================================================= */
-/* ⭐ ZAMENITE SVE STARE STILOVE MODALA SA OVIM JEDINSTVENIM BLOKOM ⭐ */
+/* ⭐ MODAL PROZOR I KONTROLE KOLIČINE (FINALNA, KORIGOVANA VERZIJA) ⭐ */
 /* ========================================================= */
 
 .modal-overlay { 
@@ -1020,7 +1025,7 @@ header h2, .subtitle {
     }
 }
 /* ========================================================= */
-/* ⭐ OBAVEZNI DODATNI STILOVI ZA INPUT KOLIČINE (DESKTOP I OSNOVNI PRIKAZ) ⭐ */
+/* ⭐ OSNOVNI STILOVI ZA INPUT KOLIČINE I VELIČINE (REDUNDANTNO, ALI OSTAVLJENO RADI REDA) ⭐ */
 /* ========================================================= */
 
 .quantity-input-container {
