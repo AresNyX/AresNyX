@@ -1154,7 +1154,7 @@ header h2, .subtitle {
 /* Pravilo za dugme */
 #toggle-size-table {
     padding: 10px 15px;
-    background-color: #007bff; /* Plava boja, promenite po želji */
+    background-color: #800020; /* BORDO BOJA */
     color: white;
     border: none;
     border-radius: 5px;
@@ -1164,8 +1164,9 @@ header h2, .subtitle {
     margin-top: 5px;
 }
 #toggle-size-table:hover {
-    background-color: #0056b3;
+    background-color: #A52A2A; /* MALO SVETLIJA BORDO BOJA ZA HOVER */
 }
+
 
 /* KOREKCIJA: Inicijalno sakrivanje tabele */
 .size-chart-container {
