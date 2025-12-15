@@ -381,11 +381,6 @@ nav a.active {
     padding: 20px 0; /* Dodajemo padding radi boljeg izgleda na manjim ekranima */
 }
 
-/* OVO VIŠE NE TREBA:
-.modal-overlay.active { display: block; }
-Jer se display: block postavlja direktno u JS-u (preko .style.display)
-*/
-
 .modal-container { 
     /* Uklanjamo absolute i transform za mobilni, a ostavljamo samo max-width */
     background: white; 
@@ -1194,14 +1189,6 @@ header h2, .subtitle {
     /* Ostali stilovi kontejnera... */
 }
 /* ... ostatak CSS koda tabele (th, td, itd.) ... */
-
-/* PRIVREMENI CSS ZA DEBUGIRANJE - OBRISAĆETE OVO KASNIJE */
-#productModal {
-    /* Podesi na najviši sloj da iskoči iznad svega */
-    z-index: 99999 !important; 
-    /* Uklanja transparentnost da bude vidljivo */
-    opacity: 1 !important; 
-}
 
 
         
