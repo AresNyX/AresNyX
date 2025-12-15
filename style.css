@@ -356,41 +356,30 @@ nav a.active {
 }
 
 
-     /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - ISPRAVLJENI CSS ===== */
+     /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA KORIGOVANA VERZIJA ===== */
 /* ============================================== */
 
+/* Postojeći opšti stilovi Modala */
 .modal-overlay { 
-    /* KRITIČNA PRAVILA */
-    display: none; /* Inicijalno sakrivanje */
-    position: fixed; /* MORA BITI fixed za fiksiranu poziciju */
-    z-index: 1021; /* NAJVIŠI Z-INDEX (viši od toast-a 1020) */
-    
-    /* Pozicija i Vizuelni Stilovi */
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100vh; 
-    background: rgba(0,0,0,0.85); /* Malo tamnija pozadina */
+    display: none;
+    position: fixed; top: 0; left: 0; 
+    width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
+    z-index: 1010; 
     backdrop-filter: blur(5px); 
-    
-    /* Centriranje i skrolovanje */
-    display: flex; /* Koristimo flex za centriranje kontejnera */
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; /* Omogućava skrolovanje ako je sadržaj veći od ekrana */
-    padding: 20px 0; /* Dodajemo padding radi boljeg izgleda na manjim ekranima */
 }
+.modal-overlay.active { display: block; }
 
 .modal-container { 
-    /* Uklanjamo absolute i transform za mobilni, a ostavljamo samo max-width */
+    position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
     background: white; 
     border-radius: 10px; 
     width: 95%; 
     max-width: 900px; 
-    /* Prethodni position: absolute i transform: translate(-50%, -50%) 
-       su zamenjeni roditeljskim display: flex u .modal-overlay
-       što daje bolje rezultate na mobilnom! */
+    max-height: initial; 
+    overflow-y: visible; 
 }
+
 .modal-close { 
     position: absolute; top: 0.7rem; right: 0.7rem; 
     background: rgba(0,0,0,0.5); color: white; border: none; 
@@ -1165,7 +1154,7 @@ header h2, .subtitle {
 /* Pravilo za dugme */
 #toggle-size-table {
     padding: 10px 15px;
-    background-color: #800020; /* BORDO BOJA */
+    background-color: #007bff; /* Plava boja, promenite po želji */
     color: white;
     border: none;
     border-radius: 5px;
@@ -1175,9 +1164,8 @@ header h2, .subtitle {
     margin-top: 5px;
 }
 #toggle-size-table:hover {
-    background-color: #A52A2A; /* MALO SVETLIJA BORDO BOJA ZA HOVER */
+    background-color: #0056b3;
 }
-
 
 /* KOREKCIJA: Inicijalno sakrivanje tabele */
 .size-chart-container {
@@ -1189,6 +1177,7 @@ header h2, .subtitle {
     /* Ostali stilovi kontejnera... */
 }
 /* ... ostatak CSS koda tabele (th, td, itd.) ... */
+
 
 
         
