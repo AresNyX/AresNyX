@@ -943,9 +943,24 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             © 2024 AresNyX. Sva prava zadržana.
         </div>
     </footer>
-
+        <script>
+            function toggleTable() {
+                var table = document.getElementById('size-table-content');
+                var button = document.getElementById('toggle-size-table');
+                
+                // Proverava da li je tabela skrivena
+                if (table.style.display === "none" || table.style.display === "") {
+                    table.style.display = "block"; // Prikazuje tabelu
+                    button.textContent = "Sakrij Tabelu Dimenzija"; // Menja tekst dugmeta
+                } else {
+                    table.style.display = "none"; // Skriva tabelu
+                    button.textContent = "Prikaži Tabelu Dimenzija"; // Vraća tekst dugmeta
+                }
+            }
+        </script>
     </body>
 </html>
+
 
 
 
