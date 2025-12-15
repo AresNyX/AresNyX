@@ -624,22 +624,29 @@ nav a.active {
     cursor: pointer; 
 }
 
-
-        /* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA SVIH IZMENA ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA S FIX ZA SLIDER NAV ===== */
 @media (max-width: 768px) {
     
-    /* KLJUČNA IZMENA: PODIZANJE MODALA SKROZ GORE I SMANJENJE VISINE */
+    /* KLJUČNA IZMENA 1: POZICIONIRANJE MODALA I VISINA */
     .modal-container { 
-        top: 5%; /* Podignuto na 5% visine ekrana */
+        top: 5%; 
         left: 50%; 
-        transform: translate(-50%, -5%); /* Prilagođeno transformisanje */
-        
-        /* Dajemo mu optimizovanu visinu za mobilni ekran */
+        transform: translate(-50%, -5%); 
         height: 90vh; 
         max-height: 90vh; 
         overflow-y: auto; 
     }
 
+    /* KLJUČNA IZMENA 2: VRAĆANJE SLIDER NAVIGACIJE U NORMALAN TOK */
+    .modal-gallery, .slider-nav {
+        /* Resetujemo poziciju da bismo osigurali da se skroluju unutar modal-container */
+        position: static !important; 
+    }
+    .slider-nav button {
+        /* Uklanjamo svako apsolutno pozicioniranje unutar mobilnog prikaza */
+        position: static !important;
+    }
+    
     .modal-content { 
         flex-direction: column; 
         gap: 0.8rem; 
@@ -653,15 +660,13 @@ nav a.active {
     
     /* KORIGOVANO: Detalji proizvoda sa padding-om za fiksirani footer */
     .modal-details { 
-        /* Ne damo ovom bloku skrolovanje, već celom kontejneru */
         max-height: initial; 
         overflow-y: initial; 
-        
         padding: 0.7rem; 
         border-radius: 8px; 
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
         
-        /* KLJUČNA IZMENA: Dodatni padding na dnu za fiksirana dugmad */
+        /* Dodatni padding na dnu za fiksirana dugmad za akciju */
         padding-bottom: 90px; 
     }
     
@@ -671,7 +676,7 @@ nav a.active {
         margin-bottom: 0.8rem;
     }
 
-    /* Prilagođavanje količine za mobilni (veličine ostaju optimizovane) */
+    /* Prilagođavanje količine za mobilni */
     .quantity-selector {
         width: 100%;
         margin-top: 0; 
@@ -690,7 +695,6 @@ nav a.active {
     
     /* KORIGOVANO: FIKSIRANJE AKCIONIH DUGMADI NA DNO MODALA */
     .modal-actions {
-        /* FIXIRANJE na dno ekrana */
         position: fixed; 
         bottom: 0; 
         left: 50%; 
@@ -715,6 +719,7 @@ nav a.active {
         font-size: 1rem;
     }
 }
+
 
 
 /* ============================================== */
