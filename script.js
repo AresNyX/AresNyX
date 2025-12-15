@@ -36,7 +36,7 @@ class AresNyXShop {
     // =========================================================
 
     /**
-     * Učitava proizvode u memoriju. (Sadržaj nepromenjen)
+     * Učitava proizvode u memoriju.
      */
     loadProducts() {
         this.products = [
@@ -196,33 +196,9 @@ class AresNyXShop {
 
         return unavailableItems;
     }
-    // =========================================================
-// === METODA ZA TABELU DIMENZIJA ===
-// =========================================================
-
-/**
- * Otvara/zatvara tabelu dimenzija u modalu
- */
-toggleSizeTable() {
-    const chartContainer = document.querySelector('.size-chart-container');
-    const sizeInfo = document.querySelector('.size-info');
-    
-    console.log('toggleSizeTable pozvana'); // Debug
-    console.log('chartContainer:', chartContainer); // Debug
-    
-    if (chartContainer && sizeInfo) {
-        // Ovo će dodati/ukloniti klasu .show
-        chartContainer.classList.toggle('show');
-        sizeInfo.classList.toggle('active');
-        
-        // Za debug - proveri klase
-        console.log('chartContainer klase:', chartContainer.className);
-        console.log('sizeInfo klase:', sizeInfo.className);
-    }
-}
 
     // =========================================================
-    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (Sadržaj nepromenjen) ===
+    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER ===
     // =========================================================
 
     /**
@@ -326,10 +302,12 @@ toggleSizeTable() {
 
     /**
      * Renderuje listu proizvoda na stranicu.
+     * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
+        // Sigurnosna putanja definisana unutar metode
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
 
         if (!grid) {
@@ -377,26 +355,10 @@ toggleSizeTable() {
     }
 
     // =========================================================
-    // === METODE ZA MODAL I KORPU (KRITIČNE IZMENE OVDE) ===
+    // === METODE ZA MODAL I KORPU ===
     // =========================================================
 
-    /**
-     * ⭐ NOVO: Univerzalna funkcija za resetovanje svih modalnih prikaza. ⭐
-     */
-    resetModals() {
-        // Sakrij sve modalne slojeve
-        document.getElementById('productModal').style.display = 'none';
-        document.getElementById('checkoutModal').style.display = 'none';
-        document.getElementById('cartSidebar').classList.remove('active'); // Zatvori i sidebar
-        
-        // Ukloni sve klase koje blokiraju skrolovanje tela
-        document.body.classList.remove('modal-open', 'checkout-open', 'cart-open', 'no-scroll');
-    }
-
     openProductModal(productId) {
-        // ⭐ KOREKCIJA: Uvek resetuj sve pre otvaranja novog modala! ⭐
-        this.resetModals(); 
-        
         this.currentProduct = this.products.find(p => p.id === productId);
         if (!this.currentProduct) return;
 
@@ -427,8 +389,7 @@ toggleSizeTable() {
                     <button 
                         class="size-option ${isDisabled ? 'disabled' : ''}"
                         data-size="${size}" 
-                        data-stock="${stock}"
-                        onclick="shop.selectSize(event, '${size}')" 
+                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
@@ -437,12 +398,13 @@ toggleSizeTable() {
                 `;
             })
             .join('');
-
+            
+        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
-
-        // Automatski odaberi prvu dostupnu veličinu, ako postoji
+        
         if (firstAvailableSize) {
-            this.selectSize(null, firstAvailableSize); 
+            this.currentSize = firstAvailableSize;
+            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
         } 
         
         const btn = document.querySelector('.add-to-cart-btn');
@@ -457,16 +419,14 @@ toggleSizeTable() {
         }
 
         document.getElementById('sizeTable').style.display = 'none';
-        
-        // Prikazivanje modala
         document.getElementById('productModal').style.display = 'block';
         document.body.classList.add('modal-open');
         
     }
-
     updateModalImage() {
         if (!this.currentProduct) return;
         
+        // Logika za formiranje putanje slike u modalu
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
         document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
         
@@ -485,17 +445,12 @@ toggleSizeTable() {
             sliderNav.style.display = 'none'; 
         }
     }
-
-    selectSize(event, size) {
-        // Pronađi dugme da proveriš da li je disabled
-        const targetElement = event ? event.currentTarget : document.querySelector(`.size-option[data-size="${size}"]`);
-        
-        if (!targetElement || targetElement.disabled) return;
-
+    
+    selectSize(event, size, isDisabled) {
+        if (isDisabled) return;
         this.currentSize = size;
         document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-        
-        targetElement.classList.add('selected');
+        event.currentTarget.classList.add('selected');
     }
 
     changeQuantity(change) {
@@ -534,7 +489,7 @@ toggleSizeTable() {
         this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
         
         setTimeout(() => {
-            this.closeModal(); // Pozivamo closeModal da zatvori productModal
+            this.closeModal();
             btn.innerHTML = originalText;
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
@@ -548,6 +503,7 @@ toggleSizeTable() {
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
+            // ⭐ Važno: Sliku za korpu formiramo ovde, jer je u this.products neobrađena ⭐
             const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
             const imageURL = BASE_IMAGE_URL + product.images[0];
 
@@ -557,7 +513,7 @@ toggleSizeTable() {
                 quantity, 
                 name: product.name, 
                 price: product.price, 
-                image: imageURL 
+                image: imageURL // Postavljamo punu putanju za renderCart()
             });
         }
 
@@ -760,35 +716,23 @@ toggleSizeTable() {
         setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    /**
-     * Zadržavamo closeModal kao alias za zatvaranje Proizvodnog Modala (zbog dugmeta Nastavi kupovinu)
-     */
     closeModal() {
         document.getElementById('productModal').style.display = 'none';
         document.body.classList.remove('modal-open');
     }
 
     toggleCart() {
-         // ⭐ KOREKCIJA: Uvek resetuj ostale modale pre otvaranja sidebara ⭐
-         this.resetModals();
-         
          document.getElementById('cartSidebar').classList.toggle('active');
-         
-         // Samo ako se otvara, dodaj klasu za otvaranje (sprečavanje skrolovanja tela)
-         if(document.getElementById('cartSidebar').classList.contains('active')) {
-             document.body.classList.add('cart-open');
-         } else {
-             document.body.classList.remove('cart-open');
-         }
+         document.body.classList.add('cart-open');
     }
 
     toggleSizeTable() { 
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
-    
+
     // =========================================================
-    // === METODE ZA CHECKOUT I FORME (KRITIČNE IZMENE OVDE) ===
+    // === METODE ZA CHECKOUT I FORME ===
     // =========================================================
 
     getPaymentMethodText(method) {
@@ -805,10 +749,6 @@ toggleSizeTable() {
             this.showToast("Vaša korpa je prazna!");
             return;
         }
-        
-        // ⭐ KOREKCIJA: Uvek resetuj SVE pre otvaranja Checkout modala ⭐
-        this.resetModals(); 
-        
         this.toggleCart(); 
         this.goToStep(1);
         document.getElementById('checkoutModal').style.display = 'block';
@@ -886,48 +826,7 @@ toggleSizeTable() {
         html += '</div>';
         return html;
     }
-    /**
- * Zadržavamo closeModal kao alias za zatvaranje Proizvodnog Modala (zbog dugmeta Nastavi kupovinu)
- */
-closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-    document.body.classList.remove('modal-open');
-}
-
-/**
- * Otvara/zatvara tabelu dimenzija u modalu
- */
-toggleSizeTable() {
-    const chartContainer = document.querySelector('.size-chart-container');
-    const sizeInfo = document.querySelector('.size-info');
     
-    console.log('toggleSizeTable pozvana'); // Debug
-    console.log('chartContainer:', chartContainer); // Debug
-    
-    if (chartContainer && sizeInfo) {
-        // Ovo će dodati/ukloniti klasu .show
-        chartContainer.classList.toggle('show');
-        sizeInfo.classList.toggle('active');
-        
-        // Za debug - proveri klase
-        console.log('chartContainer klase:', chartContainer.className);
-        console.log('sizeInfo klase:', sizeInfo.className);
-    }
-}
-
-toggleCart() {
-     // ⭐ KOREKCIJA: Uvek resetuj ostale modale pre otvaranja sidebara ⭐
-     this.resetModals();
-     
-     document.getElementById('cartSidebar').classList.toggle('active');
-     
-     // Samo ako se otvara, dodaj klasu za otvaranje (sprečavanje skrolovanja tela)
-     if(document.getElementById('cartSidebar').classList.contains('active')) {
-         document.body.classList.add('cart-open');
-     } else {
-         document.body.classList.remove('cart-open');
-     }
-}
     // =========================================================
     // === completeOrder() FUNKCIJA (FINALNA) ===
     // =========================================================
@@ -1048,3 +947,6 @@ document.addEventListener('DOMContentLoaded', () => {
         shop.renderProducts(); 
     }, 50); 
 });
+
+
+
