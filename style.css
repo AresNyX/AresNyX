@@ -356,30 +356,46 @@ nav a.active {
 }
 
 
-     /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA KORIGOVANA VERZIJA ===== */
+     /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - ISPRAVLJENI CSS ===== */
 /* ============================================== */
 
-/* Postojeći opšti stilovi Modala */
 .modal-overlay { 
-    display: none;
-    position: fixed; top: 0; left: 0; 
-    width: 100%; height: 100vh; background: rgba(0,0,0,0.9); 
-    z-index: 1010; 
+    /* KRITIČNA PRAVILA */
+    display: none; /* Inicijalno sakrivanje */
+    position: fixed; /* MORA BITI fixed za fiksiranu poziciju */
+    z-index: 1021; /* NAJVIŠI Z-INDEX (viši od toast-a 1020) */
+    
+    /* Pozicija i Vizuelni Stilovi */
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh; 
+    background: rgba(0,0,0,0.85); /* Malo tamnija pozadina */
     backdrop-filter: blur(5px); 
+    
+    /* Centriranje i skrolovanje */
+    display: flex; /* Koristimo flex za centriranje kontejnera */
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Omogućava skrolovanje ako je sadržaj veći od ekrana */
+    padding: 20px 0; /* Dodajemo padding radi boljeg izgleda na manjim ekranima */
 }
+
+/* OVO VIŠE NE TREBA:
 .modal-overlay.active { display: block; }
+Jer se display: block postavlja direktno u JS-u (preko .style.display)
+*/
 
 .modal-container { 
-    position: absolute; top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
+    /* Uklanjamo absolute i transform za mobilni, a ostavljamo samo max-width */
     background: white; 
     border-radius: 10px; 
     width: 95%; 
     max-width: 900px; 
-    max-height: initial; 
-    overflow-y: visible; 
+    /* Prethodni position: absolute i transform: translate(-50%, -50%) 
+       su zamenjeni roditeljskim display: flex u .modal-overlay
+       što daje bolje rezultate na mobilnom! */
 }
-
 .modal-close { 
     position: absolute; top: 0.7rem; right: 0.7rem; 
     background: rgba(0,0,0,0.5); color: white; border: none; 
