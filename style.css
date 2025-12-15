@@ -1108,100 +1108,12 @@ header h2, .subtitle {
     display: block;
     margin-top: 8px;
 }
-/* ======================================= */
-/* STILOVI ZA TABELU DIMENZIJA - Labav Kroj */
-/* ======================================= */
 
-.size-chart-container {
-    display: none; /* Sakriva tabelu na početku */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    z-index: 1000;
-    min-width: 450px;
-    max-width: 550px;
-    margin-top: 10px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
 
-.size-chart-container.show {
-    display: block !important;
-}
 
-.size-info {
-    position: relative; /* ⭐ OVO JE BITNO za pozicioniranje tabele ⭐ */
-    cursor: pointer;
-    color: #0066cc;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.1em !important;
-    margin-left: 20px !important;
-    font-weight: 600;
-    padding: 8px 12px;
-    background-color: rgba(0, 102, 204, 0.05);
-    border-radius: 6px;
-    border: 1px solid rgba(0, 102, 204, 0.2);
-    transition: all 0.2s ease;
-}
 
-.size-info:hover {
-    text-decoration: underline;
-    background-color: rgba(0, 102, 204, 0.1);
-    border-color: #0066cc;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
-}
 
-.size-info .fa-ruler {
-    font-size: 1.3em !important;
-}
-
-.size-info .fa-ruler::after {
-    content: " ▼";
-    font-size: 0.9em;
-    margin-left: 5px;
-}
-
-.size-info.active .fa-ruler::after {
-    content: " ▲";
-}
-
-/* Responsive za mobilni */
-@media (max-width: 768px) {
-    .size-info {
-        margin-left: 10px !important;
-        font-size: 1em !important;
-        padding: 6px 10px;
-    }
-    
-    .size-chart-container {
-        position: fixed;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 95vw !important;
-        max-height: 85vh !important;
-        overflow-y: auto;
-        z-index: 1001;
-        min-width: unset !important;
-    }
-}
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90vw;
-        max-height: 80vh;
-        overflow-y: auto;
-        z-index: 1001;
-    }
-}
+        
 
         
 
