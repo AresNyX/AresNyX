@@ -624,10 +624,10 @@ nav a.active {
     cursor: pointer; 
 }
 
-/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA S FIX ZA SLIDER NAV ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA S FINALNIM FIX-om ZA SLIDER NAV ===== */
 @media (max-width: 768px) {
     
-    /* KLJUČNA IZMENA 1: POZICIONIRANJE MODALA I VISINA */
+    /* KLJUČNA IZMENA 1: POZICIONIRANJE MODALA I VISINA (Ostaje) */
     .modal-container { 
         top: 5%; 
         left: 50%; 
@@ -637,14 +637,20 @@ nav a.active {
         overflow-y: auto; 
     }
 
-    /* KLJUČNA IZMENA 2: VRAĆANJE SLIDER NAVIGACIJE U NORMALAN TOK */
-    .modal-gallery, .slider-nav {
-        /* Resetujemo poziciju da bismo osigurali da se skroluju unutar modal-container */
-        position: static !important; 
-    }
+    /* KLJUČNA IZMENA 2: VRAĆANJE SLIDER NAVIGACIJE U NORMALAN TOK (POJAČANO) */
+    
+    /* Moramo osigurati da se ne koriste apsolutne/fiksne pozicije za dugmad */
     .slider-nav button {
-        /* Uklanjamo svako apsolutno pozicioniranje unutar mobilnog prikaza */
-        position: static !important;
+        position: static !important; /* Resetujemo poziciju za same dugmiće */
+        /* Ako se pozicija lepi za dno, možda je kriva neka bottom vrednost: */
+        bottom: initial !important; 
+        top: initial !important;
+    }
+    
+    /* Uklanjamo position: relative sa .modal-gallery ako pravi problem u skrolovanju */
+    .modal-gallery {
+        position: static; 
+        /* Sve što nije 'static' može uticati na skrolovanje */
     }
     
     .modal-content { 
@@ -693,7 +699,7 @@ nav a.active {
         font-size: 1.3em;
     }
     
-    /* KORIGOVANO: FIKSIRANJE AKCIONIH DUGMADI NA DNO MODALA */
+    /* KORIGOVANO: FIKSIRANJE AKCIONIH DUGMADI NA DNO MODALA (OVO TREBA DA OSTANE FIKSIRANO!) */
     .modal-actions {
         position: fixed; 
         bottom: 0; 
@@ -719,7 +725,6 @@ nav a.active {
         font-size: 1rem;
     }
 }
-
 
 
 /* ============================================== */
