@@ -1153,7 +1153,66 @@ header h2, .subtitle {
 }
 
 
+/* ======================================= */
+/* TABELA DIMENZIJA - FIX ZA SAKRIVANJE */
+/* ======================================= */
 
+.size-chart-container {
+    display: none !important; /* Sakriva tabelu */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 400px;
+    max-width: 500px;
+    margin-top: 10px;
+}
+
+.size-chart-container.show {
+    display: block !important; /* Prikazuje tabelu */
+}
+
+.size-info {
+    cursor: pointer;
+    color: #0066cc;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+.size-info:hover {
+    text-decoration: underline;
+}
+
+.size-info .fa-ruler::after {
+    content: " ▼";
+    font-size: 0.8em;
+}
+
+.size-info.active .fa-ruler::after {
+    content: " ▲";
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .size-chart-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        max-height: 80vh;
+        overflow-y: auto;
+        z-index: 1001;
+    }
+}
 
         
 
