@@ -196,6 +196,30 @@ class AresNyXShop {
 
         return unavailableItems;
     }
+    // =========================================================
+// === METODA ZA TABELU DIMENZIJA ===
+// =========================================================
+
+/**
+ * Otvara/zatvara tabelu dimenzija u modalu
+ */
+toggleSizeTable() {
+    const chartContainer = document.querySelector('.size-chart-container');
+    const sizeInfo = document.querySelector('.size-info');
+    
+    console.log('toggleSizeTable pozvana'); // Debug
+    console.log('chartContainer:', chartContainer); // Debug
+    
+    if (chartContainer && sizeInfo) {
+        // Ovo će dodati/ukloniti klasu .show
+        chartContainer.classList.toggle('show');
+        sizeInfo.classList.toggle('active');
+        
+        // Za debug - proveri klase
+        console.log('chartContainer klase:', chartContainer.className);
+        console.log('sizeInfo klase:', sizeInfo.className);
+    }
+}
 
     // =========================================================
     // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (Sadržaj nepromenjen) ===
@@ -762,7 +786,7 @@ class AresNyXShop {
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
-
+    
     // =========================================================
     // === METODE ZA CHECKOUT I FORME (KRITIČNE IZMENE OVDE) ===
     // =========================================================
@@ -862,7 +886,48 @@ class AresNyXShop {
         html += '</div>';
         return html;
     }
+    /**
+ * Zadržavamo closeModal kao alias za zatvaranje Proizvodnog Modala (zbog dugmeta Nastavi kupovinu)
+ */
+closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
+
+/**
+ * Otvara/zatvara tabelu dimenzija u modalu
+ */
+toggleSizeTable() {
+    const chartContainer = document.querySelector('.size-chart-container');
+    const sizeInfo = document.querySelector('.size-info');
     
+    console.log('toggleSizeTable pozvana'); // Debug
+    console.log('chartContainer:', chartContainer); // Debug
+    
+    if (chartContainer && sizeInfo) {
+        // Ovo će dodati/ukloniti klasu .show
+        chartContainer.classList.toggle('show');
+        sizeInfo.classList.toggle('active');
+        
+        // Za debug - proveri klase
+        console.log('chartContainer klase:', chartContainer.className);
+        console.log('sizeInfo klase:', sizeInfo.className);
+    }
+}
+
+toggleCart() {
+     // ⭐ KOREKCIJA: Uvek resetuj ostale modale pre otvaranja sidebara ⭐
+     this.resetModals();
+     
+     document.getElementById('cartSidebar').classList.toggle('active');
+     
+     // Samo ako se otvara, dodaj klasu za otvaranje (sprečavanje skrolovanja tela)
+     if(document.getElementById('cartSidebar').classList.contains('active')) {
+         document.body.classList.add('cart-open');
+     } else {
+         document.body.classList.remove('cart-open');
+     }
+}
     // =========================================================
     // === completeOrder() FUNKCIJA (FINALNA) ===
     // =========================================================
