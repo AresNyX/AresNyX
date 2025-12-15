@@ -398,14 +398,20 @@ class AresNyXShop {
                 `;
             })
             .join('');
-            
-        // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
+
         sizeSelector.innerHTML = sizesHtml;
-        
+
+        // Automatski odaberi prvu dostupnu veličinu, ako postoji
         if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-        } 
+            this.selectSize(null, firstAvailableSize, false); 
+        }
+
+        // 🚨 KRITIČNA LINIJA: Prikazivanje modala
+        document.getElementById('productModal').style.display = 'block';
+        document.body.classList.add('modal-open'); 
+        
+    }, // <--- OVDE SE FUNKCIJA ZATVARA
+
         
         const btn = document.querySelector('.add-to-cart-btn');
         if (!firstAvailableSize) {
