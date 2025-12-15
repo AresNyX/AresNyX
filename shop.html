@@ -655,66 +655,16 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             <div class="size-info" onclick="shop.toggleSizeTable()">
                 <i class="fas fa-ruler"></i>
                 <span>Tabela veličina</span>
-                <div class="size-chart-container">
-    <h3>Tabela Dimenzija (Muški Labav Kroj Veš)</h3>
-    <p class="note">Dimenzije su u centimetrima (cm). Labav kroj (Loose Fit) pruža komfor bez stezanja.</p>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Veličina</th>
-                <th>Širina Pojasa (Od - Do)</th>
-                <th>Širina Kukova</th>
-                <th>Širina Nogavice (na butini)</th>
-                <th>Ukupna Dužina</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>**S**</td>
-                <td>76 – 82</td>
-                <td>92</td>
-                <td>28</td>
-                <td>35</td>
-            </tr>
-            <tr>
-                <td>**M**</td>
-                <td>82 – 88</td>
-                <td>98</td>
-                <td>30</td>
-                <td>36</td>
-            </tr>
-            <tr>
-                <td>**L**</td>
-                <td>88 – 94</td>
-                <td>104</td>
-                <td>32</td>
-                <td>38</td>
-            </tr>
-            <tr>
-                <td>**XL**</td>
-                <td>94 – 100</td>
-                <td>110</td>
-                <td>34</td>
-                <td>40</td>
-            </tr>
-            <tr>
-                <td>**XXL**</td>
-                <td>100 – 106</td>
-                <td>116</td>
-                <td>35</td>
-                <td>40</td>
-            </tr>
-        </tbody>
-    </table>
-    <p class="disclaimer">* Sve mere su približne i date su za labav kroj.</p>
-</div>
             </div>
         </div>
         
         <div class="size-selector" id="sizeSelector">
             </div>
     </div>
+
+    <div class="size-table-container" id="sizeTable" style="display: none;">
+        </div>
+
     <div class="quantity-wrapper">
         <div class="quantity-header-row">
             <h3>Količina:</h3>
@@ -727,7 +677,14 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     </div>
     
 </div> 
+
     
+    <div class="size-table-container" id="sizeTable" style="display: none;">
+        </div>
+    
+    </div>
+    
+    </div>
                     <div class="modal-actions">
                         <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                             <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
@@ -737,7 +694,9 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                         </button>
                     </div>
                 </div>
+            </div>
         </div>
+    </div>
 
     <div class="cart-sidebar" id="cartSidebar">
     
@@ -929,6 +888,13 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
     </body>
 </html>
+
+
+
+
+
+
+
 
 
 
