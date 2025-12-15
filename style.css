@@ -1114,6 +1114,65 @@ header h2, .subtitle {
 /* ======================================= */
 
 .size-chart-container {
+    display: none; /* ⭐ DODAJ OVO - sakriva tabelu na početku ⭐ */
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    text-align: center;
+    /* ... tvoj postojeći CSS ovde ... */
+}
+
+/* ⭐ DODAJ OVO ISPOD POSTOJEĆEG .size-chart-container ⭐ */
+.size-chart-container.show {
+    display: block !important;
+}
+
+/* ⭐ DODAJ OVO - stilovi za dugme "Tabela veličina" ⭐ */
+.size-info {
+    cursor: pointer;
+    color: #0066cc;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em !important;
+    margin-left: 20px !important;
+    font-weight: 600;
+    padding: 5px 10px;
+    background-color: rgba(0, 102, 204, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 102, 204, 0.2);
+    transition: all 0.2s ease;
+}
+
+.size-info:hover {
+    text-decoration: underline;
+    background-color: rgba(0, 102, 204, 0.1);
+    border-color: #0066cc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+.size-info .fa-ruler {
+    font-size: 1.2em !important;
+}
+
+.size-info .fa-ruler::after {
+    content: " ▼";
+    font-size: 0.9em;
+    margin-left: 3px;
+}
+
+.size-info.active .fa-ruler::after {
+    content: " ▲";
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .size-info {
+        margin-left: 10px !important;
+        font-size: 1em !important;
+    }
+}
+.size-chart-container {
     font-family: Arial, sans-serif;
     padding: 15px;
     text-align: center;
@@ -1151,7 +1210,47 @@ header h2, .subtitle {
     font-size: 12px;
     color: #888;
 }
+.size-chart-container {
+    display: none; /* Sakriva tabelu na početku */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px; /* ⭐ POVEĆANO sa 15px ⭐ */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* ⭐ JAČA SENKA ⭐ */
+    z-index: 1000;
+    min-width: 450px; /* ⭐ POVEĆANO sa 400px ⭐ */
+    max-width: 550px; /* ⭐ POVEĆANO sa 500px ⭐ */
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
 
+.size-chart-container.show {
+    display: block !important; /* ⭐ BITNO: !important za forsiranje ⭐ */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .size-chart-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 95vw !important; /* ⭐ ŠIRA NA MOBILNOM ⭐ */
+        max-height: 85vh !important; /* ⭐ VIŠA NA MOBILNOM ⭐ */
+        overflow-y: auto;
+        z-index: 1001;
+        min-width: unset !important; /* ⭐ UKLANJA min-width na mobilnom ⭐ */
+    }
+    
+    .size-info {
+        margin-left: 10px !important; /* ⭐ MANJI RAZMAK NA MOBILNOM ⭐ */
+        font-size: 1em !important; /* ⭐ MANJI FONT NA MOBILNOM ⭐ */
+    }
+}
 
 /* ======================================= */
 /* TABELA DIMENZIJA - FIX ZA SAKRIVANJE */
