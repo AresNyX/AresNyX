@@ -1179,6 +1179,13 @@ header h2, .subtitle {
 }
 /* ... ostatak CSS koda tabele (th, td, itd.) ... */
 
+/* PRIVREMENI CSS ZA DEBUGIRANJE - OBRISAĆETE OVO KASNIJE */
+#productModal {
+    /* Podesi na najviši sloj da iskoči iznad svega */
+    z-index: 99999 !important; 
+    /* Uklanja transparentnost da bude vidljivo */
+    opacity: 1 !important; 
+}
 
 
         
