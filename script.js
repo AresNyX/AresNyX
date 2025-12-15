@@ -355,7 +355,6 @@ class AresNyXShop {
     }
 
     // =========================================================
-        // =========================================================
     // === METODE ZA MODAL I KORPU ===
     // =========================================================
 
@@ -407,8 +406,8 @@ class AresNyXShop {
             this.currentSize = firstAvailableSize;
             document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
         } 
-        
-        // LOGIKA ZA DUGME I DOSTUPNOST VELIČINE (PREMEŠTENO OVDE)
+
+        // LOGIKA ZA DUGME: Sada je ispravno unutar funkcije
         const btn = document.querySelector('.add-to-cart-btn');
         if (!firstAvailableSize) {
              btn.disabled = true;
@@ -421,17 +420,19 @@ class AresNyXShop {
         }
 
         // 🚨 KRITIČNE LINIJE: Prikazivanje modala
-        document.getElementById('sizeTable').style.display = 'none'; // Sakrivanje tabele veličina inicijalno
+        document.getElementById('sizeTable').style.display = 'none';
         document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('modal-open'); 
+        document.body.classList.add('modal-open');
         
-    }, 
+    } // 🟢 OBRATITE PAŽNJU: Nema zareza ovde, jer je sledeća updateModalImage()
+
     updateModalImage() {
         if (!this.currentProduct) return;
+        
         // Logika za formiranje putanje slike u modalu
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
-        
+        // ... (Nastavak funkcije) ...
+
         const totalImages = this.currentProduct.images.length;
         const sliderNav = document.querySelector('.slider-nav');
 
