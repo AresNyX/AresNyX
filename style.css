@@ -420,7 +420,11 @@ nav a.active {
     justify-content: space-between;
     margin-top: 15px; 
     padding: 0 5%; 
+    /* KLJUČAN FIX: Osigurava da se dugmad skroluju sa slikom */
+    position: static; 
+    z-index: 1; 
 }
+
 
 .slider-nav button {
     /* Smanjeno za ~30% */
