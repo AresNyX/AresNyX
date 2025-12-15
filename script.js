@@ -358,7 +358,7 @@ class AresNyXShop {
     // === METODE ZA MODAL I KORPU ===
     // =========================================================
 
-    openProductModal(productId) {
+        openProductModal(productId) {
         this.currentProduct = this.products.find(p => p.id === productId);
         if (!this.currentProduct) return;
 
@@ -385,11 +385,13 @@ class AresNyXShop {
                     firstAvailableSize = size;
                 }
 
+                // Dodajemo data-stock za proveru u selectSize
                 return `
                     <button 
                         class="size-option ${isDisabled ? 'disabled' : ''}"
                         data-size="${size}" 
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                        data-stock="${stock}"
+                        onclick="shop.selectSize(event, '${size}')" 
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
@@ -403,11 +405,10 @@ class AresNyXShop {
 
         // Automatski odaberi prvu dostupnu veličinu, ako postoji
         if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+            // ⭐ NOVO: Pozivamo selectSize za automatski odabir
+            this.selectSize(null, firstAvailableSize); 
         } 
-
-        // LOGIKA ZA DUGME: Sada je ispravno unutar funkcije
+        
         const btn = document.querySelector('.add-to-cart-btn');
         if (!firstAvailableSize) {
              btn.disabled = true;
@@ -419,42 +420,27 @@ class AresNyXShop {
             btn.disabled = false;
         }
 
-        // 🚨 KRITIČNE LINIJE: Prikazivanje modala
         document.getElementById('sizeTable').style.display = 'none';
+        
+        // 🚨 OVE LINIJE MORAJU RADITI AKO GORNJI KOD NIJE PREKINUT
         document.getElementById('productModal').style.display = 'block';
         document.body.classList.add('modal-open');
         
-    } // 🟢 OBRATITE PAŽNJU: Nema zareza ovde, jer je sledeća updateModalImage()
-
-    updateModalImage() {
-        if (!this.currentProduct) return;
-        
-        // Logika za formiranje putanje slike u modalu
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        // ... (Nastavak funkcije) ...
-
-        const totalImages = this.currentProduct.images.length;
-        const sliderNav = document.querySelector('.slider-nav');
-
-        if (totalImages > 1) {
-            sliderNav.style.display = 'flex'; 
-            
-            const isFirst = this.currentImageIndex === 0;
-            const isLast = this.currentImageIndex === totalImages - 1;
-            
-            document.getElementById('prevImageBtn').disabled = isFirst;
-            document.getElementById('nextImageBtn').disabled = isLast;
-        } else {
-            sliderNav.style.display = 'none'; 
-        }
     }
     
-    selectSize(event, size, isDisabled) {
-        if (isDisabled) return;
+    // ... i zamenite selectSize funkciju sa ovom, pojednostavljenom:
+    selectSize(event, size) {
+        // Pronađi dugme da proveriš da li je disabled
+        const targetElement = event ? event.currentTarget : document.querySelector(`.size-option[data-size="${size}"]`);
+        
+        if (!targetElement || targetElement.disabled) return;
+
         this.currentSize = size;
         document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-        event.currentTarget.classList.add('selected');
+        
+        targetElement.classList.add('selected');
     }
+
 
     changeQuantity(change) {
         this.currentQuantity = Math.max(1, this.currentQuantity + change);
