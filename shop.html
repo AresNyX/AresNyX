@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- GOOGLE ANALYTICS 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63WM74353T"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,7 +11,6 @@
       gtag('config', 'G-63WM74353T');
     </script>
     
-    <!-- ENHANCED TRACKING ZA ARESNYX -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Track CTA button clicks
@@ -75,8 +73,7 @@
       });
     });
     </script>
- <!-- E-COMMERCE TRACKING - POTPUNO DINAMIČKI -->
-<script>
+ <script>
 // GA4 E-commerce Tracking - UNLIMITED PRODUCTS
 const ga4UniversalTracker = {
     initialized: false,
@@ -507,7 +504,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 }
         </script>
     
-    <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -633,172 +629,80 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     </main>
     
     <div class="modal-overlay" id="productModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="shop.closeModal()">×</button>
         <div class="modal-container">
-    <button class="modal-close" onclick="shop.closeModal()">×</button>
-    <div class="modal-content">
-        
-        <div class="modal-gallery">
-            <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
-            <div class="slider-nav">
-                <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-        
-        <div class="modal-details">
-            <h2 id="modalTitle"></h2>
-            <p class="modal-material" id="modalMaterial"></p>
-            <p class="modalPrice" id="modalPrice"></p>
-            
-            <div class="size-section">
-                <div class="size-header-row">
-                    <h3>Odaberite veličinu:</h3>
-                    <button id="toggle-size-table" onclick="toggleTable()">
-                        Prikaži Tabelu Dimenzija
-                    </button>
-                </div>
+            <button class="modal-close" onclick="shop.closeModal()">×</button>
+            <div class="modal-content">
                 
-                <div class="size-chart-container" id="size-table-content">
-                    <h3>Tabela Dimenzija (Muški Labav Kroj Veš)</h3>
-                    <p class="note">Dimenzije su u centimetrima (cm). Labav kroj (Loose Fit) pruža komfor bez stezanja.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Veličina</th>
-                                <th>Širina Pojasa (Od - Do)</th>
-                                <th>Širina Kukova</th>
-                                <th>Širina Nogavice (na butini)</th>
-                                <th>Ukupna Dužina</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>**S**</td><td>76 – 82</td><td>92</td><td>28</td><td>35</td></tr>
-                            <tr><td>**M**</td><td>82 – 88</td><td>98</td><td>30</td><td>36</td></tr>
-                            <tr><td>**L**</td><td>88 – 94</td><td>104</td><td>32</td><td>38</td></tr>
-                            <tr><td>**XL**</td><td>94 – 100</td><td>110</td><td>34</td><td>40</td></tr>
-                            <tr><td>**XXL**</td><td>100 – 106</td><td>116</td><td>35</td><td>40</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="disclaimer">* Sve mere su približne i date su za labav kroj.</p>
-                </div>
-                
-                <div class="size-selector" id="sizeSelector">
-                </div>
-            </div> 
-
-            <div class="quantity-wrapper">
-                <div class="quantity-header-row">
-                    <h3>Količina:</h3>
-                    <div class="quantity-selector">
-                        <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
-                        <span class="qty-display" id="modalQty">1</span>
-                        <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                <div class="modal-gallery">
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
+                    <div class="slider-nav">
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-                <div class="modal-overlay" id="productModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="shop.closeModal()">×</button>
-        <div class="modal-container"> <button class="modal-close" onclick="shop.closeModal()">×</button>
-    <div class="modal-content">
-        
-        <div class="modal-actions">
-                <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
-                    <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-                </button>
-                <button class="continue-shopping" onclick="shop.closeModal()">
-                    Nastavi kupovinu
-                </button>
-            </div>
-            
-        </div> </div> </div> <div class="cart-sidebar" id="cartSidebar"> 
-    ```
-
-### 🟢 Zamenite ceo taj blok (Linije 205-284) ovim kodom:
-
-Ovaj kod rešava problem dupliranja kontejnera i osigurava pravilno zatvaranje svih `div` tagova, što bi trebalo da oslobodi footer i omogući otvaranje modala.
-
-```html
-<div class="modal-overlay" id="productModal">
-    
-    <div class="modal-container">
-        <button class="modal-close" onclick="shop.closeModal()">×</button>
-        
-        <div class="modal-content">
-            
-            <div class="modal-gallery">
-                <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
-                <div class="slider-nav">
-                    <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                    <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            
-            <div class="modal-details">
-                <h2 id="modalTitle"></h2>
-                <p class="modal-material" id="modalMaterial"></p>
-                <p class="modalPrice" id="modalPrice"></p>
                 
-                <div class="size-section">
-                    <div class="size-header-row">
-                        <h3>Odaberite veličinu:</h3>
-                        <button id="toggle-size-table" onclick="toggleTable()">
-                            Prikaži Tabelu Dimenzija
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-material" id="modalMaterial"></p>
+                    <p class="modalPrice" id="modalPrice"></p>
+                    
+                    <div class="size-section">
+                        <div class="size-header-row">
+                            <h3>Odaberite veličinu:</h3>
+                            <button id="toggle-size-table" onclick="toggleTable()">
+                                Prikaži Tabelu Dimenzija
+                            </button>
+                        </div>
+                        
+                        <div class="size-chart-container" id="size-table-content">
+                            <h3>Tabela Dimenzija (Muški Labav Kroj Veš)</h3>
+                            <p class="note">Dimenzije su u centimetrima (cm). Labav kroj (Loose Fit) pruža komfor bez stezanja.</p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Veličina</th>
+                                        <th>Širina Pojasa (Od - Do)</th>
+                                        <th>Širina Kukova</th>
+                                        <th>Širina Nogavice (na butini)</th>
+                                        <th>Ukupna Dužina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>**S**</td><td>76 – 82</td><td>92</td><td>28</td><td>35</td></tr>
+                                    <tr><td>**M**</td><td>82 – 88</td><td>98</td><td>30</td><td>36</td></tr>
+                                    <tr><td>**L**</td><td>88 – 94</td><td>104</td><td>32</td><td>38</td></tr>
+                                    <tr><td>**XL**</td><td>94 – 100</td><td>110</td><td>34</td><td>40</td></tr>
+                                    <tr><td>**XXL**</td><td>100 – 106</td><td>116</td><td>35</td><td>40</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="disclaimer">* Sve mere su približne i date su za labav kroj.</p>
+                        </div>
+                        
+                        <div class="size-selector" id="sizeSelector">
+                        </div>
+                    </div> 
+                    
+                    <div class="quantity-wrapper">
+                        <div class="quantity-header-row">
+                            <h3>Količina:</h3>
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                                <span class="qty-display" id="modalQty">1</span>
+                                <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
+                            <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
+                        </button>
+                        <button class="continue-shopping" onclick="shop.closeModal()">
+                            Nastavi kupovinu
                         </button>
                     </div>
                     
-                    <div class="size-chart-container" id="size-table-content">
-                        <h3>Tabela Dimenzija (Muški Labav Kroj Veš)</h3>
-                        <p class="note">Dimenzije su u centimetrima (cm). Labav kroj (Loose Fit) pruža komfor bez stezanja.</p>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Veličina</th>
-                                    <th>Širina Pojasa (Od - Do)</th>
-                                    <th>Širina Kukova</th>
-                                    <th>Širina Nogavice (na butini)</th>
-                                    <th>Ukupna Dužina</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>**S**</td><td>76 – 82</td><td>92</td><td>28</td><td>35</td></tr>
-                                <tr><td>**M**</td><td>82 – 88</td><td>98</td><td>30</td><td>36</td></tr>
-                                <tr><td>**L**</td><td>88 – 94</td><td>104</td><td>32</td><td>38</td></tr>
-                                <tr><td>**XL**</td><td>94 – 100</td><td>110</td><td>34</td><td>40</td></tr>
-                                <tr><td>**XXL**</td><td>100 – 106</td><td>116</td><td>35</td><td>40</td></tr>
-                            </tbody>
-                        </table>
-                        <p class="disclaimer">* Sve mere su približne i date su za labav kroj.</p>
-                    </div>
-                    
-                    <div class="size-selector" id="sizeSelector">
-                    </div>
-                </div> 
-                
-                <div class="quantity-wrapper">
-                    <div class="quantity-header-row">
-                        <h3>Količina:</h3>
-                        <div class="quantity-selector">
-                            <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
-                            <span class="qty-display" id="modalQty">1</span>
-                            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-actions">
-                    <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
-                        <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-                    </button>
-                    <button class="continue-shopping" onclick="shop.closeModal()">
-                        Nastavi kupovinu
-                    </button>
-                </div>
-                
-            </div> </div> </div> </div>
-
-    <div class="cart-sidebar" id="cartSidebar">
+                </div> </div> </div> </div> <div class="cart-sidebar" id="cartSidebar">
     
     <div class="cart-header">
         <h3>Vaša Korpa</h3>
@@ -996,6 +900,7 @@ Ovaj kod rešava problem dupliranja kontejnera i osigurava pravilno zatvaranje s
         </script>
     </body>
 </html>
+
 
 
 
