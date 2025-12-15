@@ -36,7 +36,7 @@ class AresNyXShop {
     // =========================================================
 
     /**
-     * Učitava proizvode u memoriju.
+     * Učitava proizvode u memoriju. (Sadržaj nepromenjen)
      */
     loadProducts() {
         this.products = [
@@ -198,7 +198,7 @@ class AresNyXShop {
     }
 
     // =========================================================
-    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER ===
+    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (Sadržaj nepromenjen) ===
     // =========================================================
 
     /**
@@ -302,12 +302,10 @@ class AresNyXShop {
 
     /**
      * Renderuje listu proizvoda na stranicu.
-     * Uključuje sigurnosnu proveru za materijal.
      */
     renderProducts() {
         const grid = document.getElementById('productsGrid');
         const displayProducts = this.filteredProducts; 
-        // Sigurnosna putanja definisana unutar metode
         const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/"; 
 
         if (!grid) {
@@ -354,11 +352,27 @@ class AresNyXShop {
         }).join('');
     }
 
-        // =========================================================
-    // === METODE ZA MODAL I KORPU ===
+    // =========================================================
+    // === METODE ZA MODAL I KORPU (KRITIČNE IZMENE OVDE) ===
     // =========================================================
 
+    /**
+     * ⭐ NOVO: Univerzalna funkcija za resetovanje svih modalnih prikaza. ⭐
+     */
+    resetModals() {
+        // Sakrij sve modalne slojeve
+        document.getElementById('productModal').style.display = 'none';
+        document.getElementById('checkoutModal').style.display = 'none';
+        document.getElementById('cartSidebar').classList.remove('active'); // Zatvori i sidebar
+        
+        // Ukloni sve klase koje blokiraju skrolovanje tela
+        document.body.classList.remove('modal-open', 'checkout-open', 'cart-open', 'no-scroll');
+    }
+
     openProductModal(productId) {
+        // ⭐ KOREKCIJA: Uvek resetuj sve pre otvaranja novog modala! ⭐
+        this.resetModals(); 
+        
         this.currentProduct = this.products.find(p => p.id === productId);
         if (!this.currentProduct) return;
 
@@ -438,11 +452,9 @@ class AresNyXShop {
         if (totalImages > 1) {
             sliderNav.style.display = 'flex'; 
             
-            // Sklanjamo 'disabled' logiku ako želite da klizač bude beskonačan (loop)
             const isFirst = this.currentImageIndex === 0;
             const isLast = this.currentImageIndex === totalImages - 1;
             
-            // Ako ne želite beskonačan klizač, ove linije su OK:
             document.getElementById('prevImageBtn').disabled = isFirst;
             document.getElementById('nextImageBtn').disabled = isLast;
         } else {
@@ -469,14 +481,12 @@ class AresNyXShop {
 
     prevImage() {
         if (!this.currentProduct) return;
-        // Beskonačno loopovanje klizača (ciklično)
         this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
         this.updateModalImage();
     }
 
     nextImage() {
         if (!this.currentProduct) return;
-        // Beskonačno loopovanje klizača (ciklično)
         this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
         this.updateModalImage();
     }
@@ -500,7 +510,7 @@ class AresNyXShop {
         this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
         
         setTimeout(() => {
-            this.closeModal();
+            this.closeModal(); // Pozivamo closeModal da zatvori productModal
             btn.innerHTML = originalText;
             btn.style.background = 'var(--primary-dark)';
             btn.disabled = false;
@@ -508,16 +518,12 @@ class AresNyXShop {
     }
 
     addToCart(productId, size, quantity) {
-        // OSTATAK FUNKCIJE SE NASTAVLJA U VAŠEM ORIGINALNOM KODU
-        // ...
-
         const product = this.products.find(p => p.id === productId);
         const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
 
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
-            // ⭐ Važno: Sliku za korpu formiramo ovde, jer je u this.products neobrađena ⭐
             const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
             const imageURL = BASE_IMAGE_URL + product.images[0];
 
@@ -527,7 +533,7 @@ class AresNyXShop {
                 quantity, 
                 name: product.name, 
                 price: product.price, 
-                image: imageURL // Postavljamo punu putanju za renderCart()
+                image: imageURL 
             });
         }
 
@@ -730,14 +736,26 @@ class AresNyXShop {
         setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
+    /**
+     * Zadržavamo closeModal kao alias za zatvaranje Proizvodnog Modala (zbog dugmeta Nastavi kupovinu)
+     */
     closeModal() {
         document.getElementById('productModal').style.display = 'none';
         document.body.classList.remove('modal-open');
     }
 
     toggleCart() {
+         // ⭐ KOREKCIJA: Uvek resetuj ostale modale pre otvaranja sidebara ⭐
+         this.resetModals();
+         
          document.getElementById('cartSidebar').classList.toggle('active');
-         document.body.classList.add('cart-open');
+         
+         // Samo ako se otvara, dodaj klasu za otvaranje (sprečavanje skrolovanja tela)
+         if(document.getElementById('cartSidebar').classList.contains('active')) {
+             document.body.classList.add('cart-open');
+         } else {
+             document.body.classList.remove('cart-open');
+         }
     }
 
     toggleSizeTable() { 
@@ -746,7 +764,7 @@ class AresNyXShop {
     }
 
     // =========================================================
-    // === METODE ZA CHECKOUT I FORME ===
+    // === METODE ZA CHECKOUT I FORME (KRITIČNE IZMENE OVDE) ===
     // =========================================================
 
     getPaymentMethodText(method) {
@@ -763,6 +781,10 @@ class AresNyXShop {
             this.showToast("Vaša korpa je prazna!");
             return;
         }
+        
+        // ⭐ KOREKCIJA: Uvek resetuj SVE pre otvaranja Checkout modala ⭐
+        this.resetModals(); 
+        
         this.toggleCart(); 
         this.goToStep(1);
         document.getElementById('checkoutModal').style.display = 'block';
@@ -961,6 +983,3 @@ document.addEventListener('DOMContentLoaded', () => {
         shop.renderProducts(); 
     }, 50); 
 });
-
-
-
