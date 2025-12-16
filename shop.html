@@ -896,6 +896,56 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         }
     });
     </script>
+    <script src="script.js" defer></script>
+    
+<script>
+// TEST SKRIPT - pokrenite u konzoli browsera
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🟢 DOM loaded");
+    console.log("🔍 Checking shop object...");
+    
+    // Sacekajte malo da se skript učita
+    setTimeout(() => {
+        console.log("🛒 Window.shop:", window.shop);
+        console.log("🏪 Is shop defined?", typeof shop !== 'undefined');
+        
+        if (window.shop && typeof window.shop.renderProducts === 'function') {
+            console.log("✅ Shop object found! Calling renderProducts...");
+            window.shop.renderProducts();
+        } else {
+            console.error("❌ Shop object NOT found or renderProducts missing!");
+            console.log("🔧 Trying to create shop manually...");
+            
+            // Pokušajte da ručno kreirate shop
+            try {
+                window.shop = new AresNyXShop();
+                console.log("✅ Shop created manually:", window.shop);
+                window.shop.renderProducts();
+            } catch (e) {
+                console.error("❌ Failed to create shop:", e);
+            }
+        }
+    }, 1000);
+});
+
+// Provera svake sekunde
+let checkCount = 0;
+const checkInterval = setInterval(() => {
+    checkCount++;
+    console.log(`🔄 Check #${checkCount}: shop =`, window.shop);
+    
+    if (window.shop && window.shop.renderProducts) {
+        console.log("✅ Shop ready! Rendering products...");
+        window.shop.renderProducts();
+        clearInterval(checkInterval);
+    }
+    
+    if (checkCount > 10) {
+        console.error("❌ Shop never initialized after 10 seconds");
+        clearInterval(checkInterval);
+    }
+}, 1000);
+</script>
     
     <footer class="main-footer">
         <div class="footer-content-wrapper">
