@@ -67,7 +67,7 @@ class AresNyXShop {
                 material: "100% Premium Pamuk", 
                 price: 1500, 
                 category: "pamuk", 
-                images: ["slika2.webp", "slike2a.webp"], 
+                images: ["slika2.webp", "slika2a.webp"], 
                 badge: "BESTSELLER",
                 sizes: { S: 0, M: 15, L: 10, XL: 4, XXL: 8 } 
             },
