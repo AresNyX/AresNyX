@@ -25,6 +25,7 @@ body {
 }
 
 body.no-scroll { overflow: hidden; } 
+
 /* ===== OSNOVNA TIPOGRAFIJA ===== */
 
 h1 {
@@ -151,7 +152,6 @@ nav a.active {
     margin-right: 20px;
 }
 
-
 /* ===== MEDIA QUERIES ZA NAVIGACIJU (Responsivnost) ===== */
 
 @media (min-width: 601px) {
@@ -179,7 +179,7 @@ nav a.active {
 
 /* KRAJ NAVIGACIJE */
 
-/* PROIZVODI - Kartice i Grid */
+/* ===== FIX ZA PRIKAZ PROIZVODA - OVO JE KRITIČNO ===== */
 .products-section { 
     padding: 3rem 2rem; 
     max-width: 1400px; 
@@ -187,71 +187,123 @@ nav a.active {
     flex: 1; 
     text-align: center; 
 }
+
+/* OVO JE KLJUČNO: Grid se mora prikazati */
 .products-grid { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 2.5rem; 
-}
-.product-card { 
-    background: white; border-radius: 12px; overflow: hidden; 
-    box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); 
-    position: relative; display: flex; flex-direction: column; height: 100%;
-}
-.product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-.product-image { 
-    width: 100%; 
-    height: 400px; 
-    object-fit: contain; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 15px; display: block; margin: 0 auto; flex-shrink: 0;
-}
-/* Kontejner informacija o proizvodu */
-.product-info {
-    padding: 0.6rem; /* Smanjeno, npr. sa 1rem na 0.8rem */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-}
-/* Smanjivanje fonta za Naziv Proizvoda (product-title) */
-.product-title { 
-    font-size: 0.8rem; /* Smanjeno sa 1.1rem na 1.05rem */
-    font-weight: 600; 
-    margin-bottom: 0.5rem; 
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 2.5rem !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.product-price { font-size: 1.2rem; font-weight: 700; }
+/* Product card mora da se vidi */
+.product-card { 
+    background: white !important; 
+    border-radius: 12px !important; 
+    overflow: hidden !important;
+    box-shadow: var(--shadow) !important; 
+    cursor: pointer !important; 
+    transition: var(--transition) !important; 
+    position: relative !important; 
+    display: block !important; 
+    flex-direction: column !important; 
+    height: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-card:hover { 
+    transform: translateY(-5px) !important; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; 
+}
+
+.product-image { 
+    width: 100% !important; 
+    height: 400px !important; 
+    object-fit: contain !important; 
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    padding: 15px !important; 
+    display: block !important; 
+    margin: 0 auto !important; 
+    flex-shrink: 0 !important;
+}
+
+/* Kontejner informacija o proizvodu */
+.product-info {
+    padding: 0.6rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    flex-grow: 1 !important;
+}
+
+/* Smanjivanje fonta za Naziv Proizvoda (product-title) */
+.product-name { 
+    font-size: 1.1em !important; 
+    font-weight: 600 !important; 
+    margin-bottom: 5px !important; 
+    color: #333 !important;
+}
+
+.product-price { 
+    font-size: 1.2rem !important; 
+    font-weight: 700 !important; 
+}
 
 /* BADGE STILOVI */
 .product-badge {
-    position: absolute;
-    top: 10px;
-    left: 0; 
-    display: inline-block; 
-    width: auto; 
-    padding: 0.2rem 0.6rem; 
-    border-radius: 0 3px 3px 0; 
-    color: white; 
-    font-weight: 700; 
-    font-size: 0.75em; 
-    text-transform: uppercase; 
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute !important;
+    top: 10px !important;
+    left: 0 !important; 
+    display: inline-block !important; 
+    width: auto !important; 
+    padding: 0.2rem 0.6rem !important; 
+    border-radius: 0 3px 3px 0 !important; 
+    color: white !important; 
+    font-weight: 700 !important; 
+    font-size: 0.75em !important; 
+    text-transform: uppercase !important; 
+    z-index: 10 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
+
 .product-material {
-    font-size: 0.85rem; 
-    color: #555; 
-    margin-top: 0.1rem;
-    margin-bottom: 0.3rem; 
-    font-weight: 400; 
+    font-size: 0.85rem !important; 
+    color: #555 !important; 
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.3rem !important; 
+    font-weight: 400 !important; 
 }
-.badge-premium { background-color: #ffc107; color: #333; border: 1px solid #e0a800;}
-.badge-classic { background-color: #28a745; border: 1px solid #1e7e34;}
-.badge-default { background-color: #007bff; border: 1px solid #0056b3;}
-.product-name { font-size: 1.1em; margin-top: 0; margin-bottom: 5px; color: #333;}
+
+.badge-premium { 
+    background-color: #ffc107 !important; 
+    color: #333 !important; 
+    border: 1px solid #e0a800 !important;
+}
+
+.badge-classic { 
+    background-color: #28a745 !important; 
+    border: 1px solid #1e7e34 !important;
+}
+
+.badge-default { 
+    background-color: #007bff !important; 
+    border: 1px solid #0056b3 !important;
+}
 
 /* Media Query za Grid */
-@media (min-width: 576px) { .products-grid { gap: 2rem; } }
-@media (min-width: 992px) { .products-grid { gap: 2.5rem; } }
+@media (min-width: 576px) { 
+    .products-grid { 
+        gap: 2rem !important; 
+    } 
+}
+
+@media (min-width: 992px) { 
+    .products-grid { 
+        gap: 2.5rem !important; 
+    } 
+}
 
 /* Filter & Sort dugme */
 .filter-sort-btn {
@@ -269,7 +321,6 @@ nav a.active {
     transition: var(--transition); 
 }
 .filter-sort-btn:hover { background: var(--accent-gold); }
-
 
 /* ===== FILTERI I SORTIRANJE (ULTRA KOMPAKTNA VERZIJA) ===== */
 .filter-sort-panel {
@@ -342,7 +393,6 @@ nav a.active {
 }
 .apply-filters-btn:hover { background: #1e8449; }
 
-
 /* ===== MEDIA QUERIES ZA FILTER (Mobilni) ===== */
 @media (max-width: 600px) {
     .filter-sort-panel { 
@@ -355,11 +405,7 @@ nav a.active {
     .filter-sort-panel.active { transform: translateX(-50%) translateY(0); }
 }
 
-
-     /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA KORIGOVANA VERZIJA ===== */
-/* ============================================== */
-
-/* Postojeći opšti stilovi Modala */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA KORIGOVANA VERZIJA ===== */
 .modal-overlay { 
     display: none;
     position: fixed; top: 0; left: 0; 
@@ -420,14 +466,11 @@ nav a.active {
     justify-content: space-between;
     margin-top: 15px; 
     padding: 0 5%; 
-    /* KLJUČAN FIX: Osigurava da se dugmad skroluju sa slikom */
     position: static; 
     z-index: 1; 
 }
 
-
 .slider-nav button {
-    /* Smanjeno za ~30% */
     padding: 0.5rem 1rem; 
     font-size: 0.9rem; 
     font-weight: 600;
@@ -453,14 +496,12 @@ nav a.active {
 /* KORIGOVANO: KONTEJNER DETALJA (font smanjen) */
 .modal-details { 
     flex: 1 1 45%; 
-    /* KORAK 4: Smanjenje bazičnog fonta u celoj detaljnoj sekciji Modala */
-    font-size: 0.875rem !important; /* Ekvivalentno 14px, ako je osnovna veličina 16px */
+    font-size: 0.875rem !important;
     padding: 0.5rem !important; 
 }
 
 /* KORIGOVANO: NAZIV PROIZVODA (#modalTitle) */
 #modalTitle {
-    /* Smanjeno relativno u odnosu na 0.875rem */
     font-size: 1.6em !important; 
     font-weight: 700 !important;
     margin-bottom: 0.2rem !important; 
@@ -470,14 +511,13 @@ nav a.active {
 
 /* KORIGOVANO: MATERIJAL/OPIS */
 .modal-material {
-    font-size: 1em !important; /* Veličina osnovnog fonta (14px) */
+    font-size: 1em !important;
     color: #666;
-    margin-bottom: 0.5rem !important; /* Smanjen donji razmak */
+    margin-bottom: 0.5rem !important;
 }
 
 /* KORIGOVANO: CENA */
 .modalPrice { 
-    /* Smanjeno relativno u odnosu na 0.875rem */
     font-size: 1.6em !important; 
     font-weight: 700; 
     color: var(--secondary);
@@ -485,7 +525,6 @@ nav a.active {
     border-bottom: 1px solid #eee;
     padding-bottom: 0.2rem !important; 
 }
-
 
 /* Horizontalni Wrapper za Dimenzije i Količinu */
 .sizing-and-quantity-wrapper {
@@ -495,8 +534,7 @@ nav a.active {
     margin-bottom: 1.5rem;
 }
 
-/* KOLIČINA (Quantity Input) - Koristimo klase iz HTML-a */
-
+/* KOLIČINA (Quantity Input) */
 .quantity-wrapper {
     margin-top: 1.5rem; 
     padding: 0.8rem 0; 
@@ -509,14 +547,12 @@ nav a.active {
     margin-bottom: 0.5rem; 
 }
 
-/* KORIGOVANO: KONTEJNER KOLIČINE (Povećano za ~30%) */
+/* KORIGOVANO: KONTEJNER KOLIČINE */
 .quantity-selector {
     display: flex;
     align-items: center;
     border: 1px solid var(--gray-medium);
     border-radius: 8px; 
-    
-    /* POVEĆANJE VELIČINE */
     height: 55px; 
     width: 150px; 
 }
@@ -525,7 +561,7 @@ nav a.active {
 .qty-btn {
     width: 45px; 
     height: 100%;
-    background: var(--gray-light); /* Koristimo var(--gray-light) kao u Vašem originalu */
+    background: var(--gray-light);
     border: none;
     cursor: pointer;
     font-size: 1.8em; 
@@ -558,33 +594,29 @@ nav a.active {
 
 /* VELIČINE (size-option) i VARIJACIJE */
 .variation-section h3 {
-    font-size: 0.9rem; /* Smanjeno */
+    font-size: 0.9rem;
     font-weight: 600;
-    margin-top: 1rem; /* Smanjena gornja margina */
-    margin-bottom: 0.4rem; /* Smanjena donja margina */
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
     color: var(--primary-dark);
 }
 
 /* KORIGOVANO: DUGMAD VELIČINA (S, M, L...) */
 .size-option { 
     display: inline-block; 
-    /* Smanjen padding (smanjuje celo dugme) */
-    padding: 0.4rem 0.8rem; /* Smanjeno sa 0.6rem 1rem */
-    
+    padding: 0.4rem 0.8rem;
     border: 2px solid var(--gray-medium); 
     border-radius: 8px; 
     cursor: pointer; 
     margin-right: 0.5rem; 
     transition: var(--transition); 
-    
-    /* Smanjen font */
     font-size: 0.9em; 
 }
 
 .size-option.selected { 
     border-color: var(--accent-gold); 
     background: var(--accent-gold); 
-    color: white; /* Promenjeno u belu za bolji kontrast */
+    color: white;
 }
 
 .variation-thumb {
@@ -602,7 +634,6 @@ nav a.active {
     border-color: var(--accent-gold);
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
 }
-
 
 /* Akcije (Dodaj u korpu, Nastavi kupovinu) */
 .modal-actions { 
@@ -628,10 +659,8 @@ nav a.active {
     cursor: pointer; 
 }
 
-/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) - KONAČNA VERZIJA S FINALNIM FIX-om ZA SLIDER NAV ===== */
+/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) ===== */
 @media (max-width: 768px) {
-    
-    /* KLJUČNA IZMENA 1: POZICIONIRANJE MODALA I VISINA (Ostaje) */
     .modal-container { 
         top: 5%; 
         left: 50%; 
@@ -640,21 +669,15 @@ nav a.active {
         max-height: 90vh; 
         overflow-y: auto; 
     }
-
-    /* KLJUČNA IZMENA 2: VRAĆANJE SLIDER NAVIGACIJE U NORMALAN TOK (POJAČANO) */
     
-    /* Moramo osigurati da se ne koriste apsolutne/fiksne pozicije za dugmad */
     .slider-nav button {
-        position: static !important; /* Resetujemo poziciju za same dugmiće */
-        /* Ako se pozicija lepi za dno, možda je kriva neka bottom vrednost: */
+        position: static !important;
         bottom: initial !important; 
         top: initial !important;
     }
     
-    /* Uklanjamo position: relative sa .modal-gallery ako pravi problem u skrolovanju */
     .modal-gallery {
         position: static; 
-        /* Sve što nije 'static' može uticati na skrolovanje */
     }
     
     .modal-content { 
@@ -668,15 +691,12 @@ nav a.active {
         padding: 6px; 
     }
     
-    /* KORIGOVANO: Detalji proizvoda sa padding-om za fiksirani footer */
     .modal-details { 
         max-height: initial; 
         overflow-y: initial; 
         padding: 0.7rem; 
         border-radius: 8px; 
         box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
-        
-        /* Dodatni padding na dnu za fiksirana dugmad za akciju */
         padding-bottom: 90px; 
     }
     
@@ -686,7 +706,6 @@ nav a.active {
         margin-bottom: 0.8rem;
     }
 
-    /* Prilagođavanje količine za mobilni */
     .quantity-selector {
         width: 100%;
         margin-top: 0; 
@@ -703,21 +722,17 @@ nav a.active {
         font-size: 1.3em;
     }
     
-    /* KORIGOVANO: FIKSIRANJE AKCIONIH DUGMADI NA DNO MODALA (OVO TREBA DA OSTANE FIKSIRANO!) */
     .modal-actions {
         position: fixed; 
         bottom: 0; 
         left: 50%; 
         transform: translateX(-50%); 
-        
-        /* Stilovi za fiksirani footer */
         width: 100%;
         max-width: 900px; 
         background: white; 
         padding: 10px 10px 20px 10px; 
         box-shadow: 0 -5px 15px rgba(0,0,0,0.1); 
         z-index: 10; 
-        
         flex-direction: column; 
         gap: 0.6rem; 
     }
@@ -730,9 +745,8 @@ nav a.active {
     }
 }
 
-
 /* ============================================== */
-/* ===== KORPA, CHECKOUT I TOAST SEKCIJE (OSTALO) ===== */
+/* ===== KORPA, CHECKOUT I TOAST SEKCIJE ===== */
 /* ============================================== */
 
 /* KORPA */
@@ -837,9 +851,9 @@ nav a.active {
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 39px; opacity: 1;} }
 @-webkit-keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 @keyframes fadeout { from {bottom: 39px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
 /* ========================================================= */
-/* ⭐ KOREKCIJA: FOOTER STILOVI (IDENTIČNO SLICI) ⭐ */
-/* Koristi se klasa .main-footer iz HTML strukture        */
+/* ⭐ KOREKCIJA: FOOTER STILOVI ⭐ */
 /* ========================================================= */
 
 .main-footer {
@@ -847,10 +861,9 @@ nav a.active {
     color: #f0f0f0;
     padding: 2rem 1rem;
     font-family: sans-serif; 
-    text-align: center; /* Centriranje na mobilnom */
+    text-align: center;
 }
 
-/* --- Naslov Footera (AresNyX) --- */
 .footer-header {
     font-size: 28px; 
     font-weight: 700;
@@ -859,7 +872,6 @@ nav a.active {
     margin-bottom: 1.5rem;
 }
 
-/* --- Opis --- */
 .footer-description {
     max-width: 600px;
     margin: 0 auto 3rem; 
@@ -870,11 +882,17 @@ nav a.active {
     border-bottom: none; 
 }
 
-/* --- Sekcije (Korisni linkovi, Kontakt, Pratite nas) --- */
 .footer-section {
     padding: 1rem 0;
     margin-top: 1.5rem;
     text-align: center; 
+    border-top: 2px solid var(--accent-gold);
+    padding-top: 1.5rem;
+}
+
+.footer-section:first-of-type {
+    border-top: none; 
+    padding-top: 0;
 }
 
 .section-title {
@@ -883,38 +901,17 @@ nav a.active {
     font-weight: 700;
     margin-bottom: 0.8rem;
     text-transform: uppercase;
-    
-    /* Centriranje naslova u sekciji */
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    
-    /* Linija ispod naslova (po originalnom, pogrešnom bloku) - Ostavljeno po Vašem zahtevu */
-    /* border-bottom: 2px solid var(--accent-gold); */
-    /* padding-bottom: 0.2rem; */
 }
 
-/* ⭐ ZLATNE LINIJE IZMEĐU SEKCJA (MOBILNI PRIKAZ) ⭐ */
-/* Linija iznad svake sekcije */
-.footer-section {
-    border-top: 2px solid var(--accent-gold);
-    padding-top: 1.5rem;
-}
-
-/* Uklanjamo liniju iznad prve sekcije nakon opisa */
-.footer-section:first-of-type {
-    border-top: none; 
-    padding-top: 0;
-}
-
-
-/* --- Navigacioni Linkovi (Korisni linkovi) --- */
 .footer-nav {
-    list-style: disc; /* Vraćene tačkice (disc) koje su na slici */
+    list-style: disc;
     list-style-position: inside;
     padding: 0;
     margin: 0 auto;
-    width: fit-content; /* Centriranje liste */
+    width: fit-content;
     text-align: left;
 }
 
@@ -927,7 +924,7 @@ nav a.active {
     color: #f0f0f0;
     text-decoration: none;
     transition: color 0.2s;
-    margin-left: -10px; /* Povlačenje linka da bi se poravnao sa tačkicom */
+    margin-left: -10px;
     display: inline;
     padding: 0;
 }
@@ -937,8 +934,6 @@ nav a.active {
     text-decoration: underline;
 }
 
-
-/* --- Kontakt Sekcija --- */
 .contact-info {
     font-size: 0.95rem;
     max-width: 300px;
@@ -954,7 +949,6 @@ nav a.active {
     padding-left: 20px; 
 }
 
-/* ⭐ IKONE KONTAKTA (CUSTOM/PSEUDO) ⭐ */
 .contact-icon { 
     display: inline-block;
     width: 20px;
@@ -964,7 +958,6 @@ nav a.active {
     color: var(--accent-gold); 
 }
 
-/* --- KLIKABILNI LINKOVI UNUTAR KONTAKTA (Mail i Telefon) --- */
 .contact-item a {
     color: #f0f0f0; 
     text-decoration: none;
@@ -976,7 +969,6 @@ nav a.active {
     text-decoration: underline;
 }
 
-/* --- Društvene Mreže --- */
 .social-icons {
     display: flex;
     justify-content: space-around; 
@@ -999,7 +991,6 @@ nav a.active {
     opacity: 0.8;
 }
 
-/* --- Donji deo footera (Copyright) --- */
 .footer-bottom-custom {
     text-align: center;
     padding: 0.5rem 0; 
@@ -1009,10 +1000,7 @@ nav a.active {
     color: #aaa;
 }
 
-
-/* ========================================================= */
-/* === RESPONSIVE DIZAJN (Desktop i veći ekrani) === */
-/* ========================================================= */
+/* ===== RESPONSIVE DIZAJN (Desktop) ===== */
 @media (min-width: 768px) {
     .main-footer {
         display: grid;
@@ -1031,11 +1019,10 @@ nav a.active {
     .footer-section {
         margin-top: 0;
         padding-top: 0;
-        border-top: none; /* Uklanjanje horizontalnih linija na desktopu */
+        border-top: none;
         text-align: left; 
     }
     
-    /* Vraćanje linije samo iznad prve sekcije linkova (Korisni linkovi) */
     .footer-section:nth-of-type(3) {
          border-top: 2px solid var(--accent-gold);
          padding-top: 1.5rem;
@@ -1068,13 +1055,11 @@ nav a.active {
         margin: 1rem 0 0 auto;
     }
 
-    /* Uklanjanje custom footer bottom, ako se koristi u HTML-u */
     .main-footer .footer-bottom-custom {
         grid-column: 1 / -1;
         margin-top: 2rem;
     }
 }
-
 
 /* HEADER SA PODNASLOVOM (za index.html) */
 header { 
@@ -1084,7 +1069,6 @@ header {
     text-align: center; 
 }
 
-/* H1 (Logo/Naziv Brenda) */
 header h1 { 
     font-size: 2.875em; 
     color: var(--accent-gold); 
@@ -1099,7 +1083,6 @@ header h1 {
     font-size: 1.2em; 
 }
 
-/* Podnaslov */
 header h2, .subtitle {
     font-size: 1em; 
     color: #fff; 
@@ -1108,6 +1091,7 @@ header h2, .subtitle {
     display: block;
     margin-top: 8px;
 }
+
 /* Dimenzije proizvoda */
 .dimensions-btn {
     margin: 10px 0;
@@ -1117,10 +1101,12 @@ header h2, .subtitle {
     border: none;
     border-radius: 4px;
     cursor: not-allowed;
+    opacity: 0.6;
 }
 .dimensions-btn.active {
     background: #28a745;
     cursor: pointer;
+    opacity: 1;
 }
 .dimensions-modal {
     position: fixed;
@@ -1146,12 +1132,10 @@ header h2, .subtitle {
     cursor: pointer;
 }
 
-
-
-        
-
-        
-
-
-
-        
+/* ===== DODATNI FIX-OVI ===== */
+/* Osiguraj da se sve prikazuje */
+#productsGrid, .products-grid, .product-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    }
