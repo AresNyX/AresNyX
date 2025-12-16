@@ -283,6 +283,8 @@ const ga4UniversalTracker = {
         }
         return 'M,L,XL,XXL';
     },
+
+</div>
     
     attachCardEventListeners: function(card, productId, productData) {
         // Klik na celu karticu (osim dugmadi)
@@ -663,7 +665,20 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     </div>
 
     <div class="size-table-container" id="sizeTable" style="display: none;">
+          </div>
+                     <button id="dimensionsBtn" class="dimensions-btn" disabled>📏 Prikaži dimenzije</button>
+
+<div id="dimensionsModal" class="dimensions-modal" style="display:none;">
+    <div class="dimensions-content">
+        <span class="close-modal">&times;</span>
+        <h3>Dimenzije: <span id="selectedSizeLabel">-</span></h3>
+        <div id="dimensionsData">
+            <p><strong>Struk:</strong> <span id="dimStruk">-</span></p>
+            <p><strong>Kuk:</strong> <span id="dimKuk">-</span></p>
+            <p><strong>Širina nogavice:</strong> <span id="dimSirina">-</span></p>
+            <p><strong>Dužina:</strong> <span id="dimDuzina">-</span></p>
         </div>
+    </div>
 
     <div class="quantity-wrapper">
         <div class="quantity-header-row">
@@ -770,19 +785,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                         <button type="submit" class="submit-btn"><i class="fas fa-arrow-right"></i> Pregled i Potvrda Porudžbine</button>
                     </form>
                 </div>
-                
-                <div id="checkoutStep2" style="display: none;">
-                    <h2>Pregled Porudžbine</h2>
-                    <div class="preview-container">
-                        <div class="preview-shipping">
-                            <h3>Podaci za isporuku</h3>
-                            <p id="previewIme"></p>
-                            <p id="previewEmail"></p>
-                            <p id="previewTelefon"></p><p id="previewAdresa"></p>
-                            <p id="previewPostaGrad"></p>
-                            <p id="previewPlacanje"></p>
-                            <p id="previewNapomena"></p>
-                        </div>
                         <div class="preview-order">
                             <h3>Struktura poručene robe</h3>
                             <div id="previewOrderItems"></div>
