@@ -987,4 +987,16 @@ document.getElementById('dimensionsBtn').addEventListener('click', function() {
 document.querySelector('.close-modal').addEventListener('click', function() {
     document.getElementById('dimensionsModal').style.display = 'none';
 });
+// DODAJ NA KRAJ TVOG JS FAJLA
+document.getElementById('dimensionsBtn').addEventListener('click', function() {
+    document.getElementById('dimensionsModal').style.display = 'flex';
+});
 
+document.querySelector('.close-modal').addEventListener('click', function() {
+    document.getElementById('dimensionsModal').style.display = 'none';
+});
+
+document.getElementById('dimensionsModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
