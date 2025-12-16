@@ -283,8 +283,6 @@ const ga4UniversalTracker = {
         }
         return 'M,L,XL,XXL';
     },
-
-</div>
     
     attachCardEventListeners: function(card, productId, productData) {
         // Klik na celu karticu (osim dugmadi)
@@ -507,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     ga4UniversalTracker.init();
 }
-        </script>
+</script>
     
     <!-- OSTALI META TAGOVI... -->
     <meta name="google-site-verification" content="AbTZDR5hcpu1fcUcq1wsTOXlimqbvy_-tjSh7IVb-GE" />
@@ -679,6 +677,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             <p><strong>Dužina:</strong> <span id="dimDuzina">-</span></p>
         </div>
     </div>
+</div> 
 
     <div class="quantity-wrapper">
         <div class="quantity-header-row">
@@ -691,15 +690,8 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
     </div>
     
-</div> 
-
-    
-    <div class="size-table-container" id="sizeTable" style="display: none;">
-        </div>
-    
     </div>
     
-    </div>
                     <div class="modal-actions">
                         <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                             <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
@@ -785,6 +777,20 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                         <button type="submit" class="submit-btn"><i class="fas fa-arrow-right"></i> Pregled i Potvrda Porudžbine</button>
                     </form>
                 </div>
+                
+                <div id="checkoutStep2" style="display: none;">
+                    <div class="preview-container">
+                        <div class="preview-shipping">
+                            <h3>Podaci za isporuku</h3>
+                            <div id="previewIme"></div>
+                            <div id="previewEmail"></div>
+                            <div id="previewTelefon"></div>
+                            <div id="previewAdresa"></div>
+                            <div id="previewPostaGrad"></div>
+                            <div id="previewPlacanje"></div>
+                            <div id="previewNapomena"></div>
+                        </div>
+                        
                         <div class="preview-order">
                             <h3>Struktura poručene robe</h3>
                             <div id="previewOrderItems"></div>
@@ -815,18 +821,81 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             </div>
         </div>
     </div>
-    <div class="modal-gallery">
-    <div class="slider-nav"> 
-        <button>Prethodna</button>
-        <button>Sledeća</button>
-    </div>
-</div>
 
     <div class="toast" id="toast"></div>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
                                                                     
     <script src="script.js" defer></script> 
+    
+    <!-- DIMENZIJE FUNKCIONALNOST -->
+    <script>
+    // PODACI O DIMENZIJAMA
+    const dimenzije = {
+        "S": {"struk":"76-81cm","kuk":"85-90cm","sirina":"12cm","duzina":"39cm"},
+        "M": {"struk":"81-86cm","kuk":"90-95cm","sirina":"13cm","duzina":"40cm"},
+        "L": {"struk":"86-91cm","kuk":"95-100cm","sirina":"14cm","duzina":"41cm"},
+        "XL": {"struk":"91-96cm","kuk":"100-105cm","sirina":"15cm","duzina":"42cm"},
+        "XXL": {"struk":"96-101cm","kuk":"105-110cm","sirina":"16cm","duzina":"43cm"}
+    };
+
+    // GLOBALNA FUNKCIJA ZA AKTIVIRANJE DUGMETA
+    function onVelicinaSelektovana(size) {
+        const btn = document.getElementById('dimensionsBtn');
+        if (btn) {
+            btn.disabled = false;
+            btn.classList.add('active');
+            btn.textContent = `📏 Dimenzije za ${size}`;
+            btn.dataset.size = size;
+        }
+    }
+
+    // EVENT LISTENER ZA DIMENZIJE
+    document.addEventListener('DOMContentLoaded', function() {
+        const dimBtn = document.getElementById('dimensionsBtn');
+        const dimModal = document.getElementById('dimensionsModal');
+        const closeBtn = document.querySelector('.close-modal');
+        
+        if (dimBtn && dimModal) {
+            // KLIK NA DUGME
+            dimBtn.addEventListener('click', function() {
+                const size = this.dataset.size;
+                if (!size) {
+                    alert("Prvo izaberite veličinu!");
+                    return;
+                }
+                
+                const dim = dimenzije[size];
+                if (!dim) {
+                    alert("Nema podataka za ovu veličinu");
+                    return;
+                }
+                
+                document.getElementById('selectedSizeLabel').textContent = size;
+                document.getElementById('dimStruk').textContent = dim.struk;
+                document.getElementById('dimKuk').textContent = dim.kuk;
+                document.getElementById('dimSirina').textContent = dim.sirina;
+                document.getElementById('dimDuzina').textContent = dim.duzina;
+                
+                dimModal.style.display = 'flex';
+            });
+            
+            // ZATVARANJE MODALA
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    dimModal.style.display = 'none';
+                });
+            }
+            
+            // KLIK VAN MODALA
+            dimModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+        }
+    });
+    </script>
     
     <footer class="main-footer">
         <div class="footer-content-wrapper">
@@ -890,4 +959,3 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
     </body>
 </html>
-    
