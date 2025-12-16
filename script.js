@@ -408,19 +408,25 @@ class AresNyXShop {
         // ⭐ OVDE JE POČINJAO ZALUTALI KOD! Sada je sve na svom mestu. ⭐
         sizeSelector.innerHTML = sizesHtml;
         
-        if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-            this.onVelicinaSelektovana(firstAvailableSize);
-        } else {
-            this.resetDimensionsButton();
-        }
-        
-        const btn = document.querySelector('.add-to-cart-btn');
-        if (!firstAvailableSize) {
-             btn.disabled = true;
-             btn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-             btn.style.background = 'var(--danger)';
+    
+if (firstAvailableSize) {
+    this.currentSize = firstAvailableSize;
+    document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+    
+    // Omogući dugme za dimenzije
+    const dimBtn = document.getElementById('dimensionsBtn');
+    if (dimBtn) {
+        dimBtn.disabled = false;
+        dimBtn.classList.add('active');
+    }
+} else {
+    // Ako nema dostupnih veličina, onemogući dugme
+    const dimBtn = document.getElementById('dimensionsBtn');
+    if (dimBtn) {
+        dimBtn.disabled = true;
+        dimBtn.classList.remove('active');
+    }
+}
         } else {
             btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
             btn.style.background = 'var(--primary-dark)';
@@ -949,53 +955,50 @@ class AresNyXShop {
     // =========================================================
 
     initDimensionsModal() {
-        // Inicijalizacija dimenzija modala
-        const dimBtn = document.getElementById('dimensionsBtn');
-        const dimModal = document.getElementById('dimensionsModal');
-        const closeBtn = document.querySelector('.close-modal');
+    const dimBtn = document.getElementById('dimensionsBtn');
+    const dimModal = document.getElementById('dimensionsModal');
+    const closeBtn = document.querySelector('.close-modal');
+    
+    if (!dimBtn || !dimModal) {
+        console.warn('Elementi za dimenzije nisu pronađeni');
+        return;
+    }
+    
+    // 1. KLIK NA DUGME ZA DIMENZIJE - BEZ PROVERE!
+    dimBtn.addEventListener('click', () => {
+        // NEMA VIŠE PROVERE JER JE VELIČINA VEĆ ODABRANA!
+        // Kada dugme nije disabled, znači da postoji currentSize
         
-        if (!dimBtn || !dimModal) {
-            console.warn('Elementi za dimenzije nisu pronađeni');
+        const dim = this.dimenzije[this.currentSize];
+        if (!dim) {
+            console.error("Nema dimenzija za selektovanu veličinu:", this.currentSize);
             return;
         }
         
-        // 1. KLIK NA DUGME ZA DIMENZIJE
-        dimBtn.addEventListener('click', () => {
-            if (!this.currentSize) {
-                alert("Prvo odaberite veličinu!");
-                return;
-            }
-            
-            const dim = this.dimenzije[this.currentSize];
-            if (!dim) {
-                alert("Nema podataka za ovu veličinu");
-                return;
-            }
-            
-            // Postavi podatke u modal
-            document.getElementById('selectedSizeLabel').textContent = this.currentSize;
-            document.getElementById('dimStruk').textContent = dim.struk;
-            document.getElementById('dimKuk').textContent = dim.kuk;
-            document.getElementById('dimSirina').textContent = dim.sirina;
-            document.getElementById('dimDuzina').textContent = dim.duzina;
-            
-            // Prikaži modal
-            dimModal.style.display = 'flex';
-        });
+        // Postavi podatke u modal
+        document.getElementById('selectedSizeLabel').textContent = this.currentSize;
+        document.getElementById('dimStruk').textContent = dim.struk;
+        document.getElementById('dimKuk').textContent = dim.kuk;
+        document.getElementById('dimSirina').textContent = dim.sirina;
+        document.getElementById('dimDuzina').textContent = dim.duzina;
         
-        // 2. ZATVARANJE MODALA
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                dimModal.style.display = 'none';
-            });
+        // Prikaži modal
+        dimModal.style.display = 'flex';
+    });
+    
+    // 2. ZATVARANJE MODALA
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            dimModal.style.display = 'none';
+        });
+    }
+    
+    // 3. KLIK VAN MODALA ZATVARA
+    dimModal.addEventListener('click', (e) => {
+        if (e.target === dimModal) {
+            dimModal.style.display = 'none';
         }
-        
-        // 3. KLIK VAN MODALA ZATVARA
-        dimModal.addEventListener('click', (e) => {
-            if (e.target === dimModal) {
-                dimModal.style.display = 'none';
-            }
-        });
+    });
     }
 
     onVelicinaSelektovana(size) {
