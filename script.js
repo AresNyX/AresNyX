@@ -948,5 +948,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50); 
 });
 
+// PODACI
+const dimenzije = {
+    "S": {"struk":"76-81cm","kuk":"85-90cm","sirina":"12cm","duzina":"39cm"},
+    "M": {"struk":"81-86cm","kuk":"90-95cm","sirina":"13cm","duzina":"40cm"},
+    "L": {"struk":"86-91cm","kuk":"95-100cm","sirina":"14cm","duzina":"41cm"},
+    "XL": {"struk":"91-96cm","kuk":"100-105cm","sirina":"15cm","duzina":"42cm"},
+    "XXL": {"struk":"96-101cm","kuk":"105-110cm","sirina":"16cm","duzina":"43cm"}
+};
 
+// POVEZI SA TVOJIM VELIČINAMA
+let trenutnaVelicina = null;
+
+// KADA TVOJA VELIČINA BUDE SELEKTOVANA, POZOVI:
+function onVelicinaSelektovana(size) {
+    trenutnaVelicina = size;
+    const btn = document.getElementById('dimensionsBtn');
+    btn.classList.add('active');
+    btn.disabled = false;
+    btn.textContent = `📏 Dimenzije za ${size}`;
+}
+
+// DUGME KLIK
+document.getElementById('dimensionsBtn').addEventListener('click', function() {
+    if(!trenutnaVelicina) return;
+    
+    const dim = dimenzije[trenutnaVelicina];
+    document.getElementById('selectedSizeLabel').textContent = trenutnaVelicina;
+    document.getElementById('dimStruk').textContent = dim.struk;
+    document.getElementById('dimKuk').textContent = dim.kuk;
+    document.getElementById('dimSirina').textContent = dim.sirina;
+    document.getElementById('dimDuzina').textContent = dim.duzina;
+    
+    document.getElementById('dimensionsModal').style.display = 'flex';
+});
+
+// ZATVORI MODAL
+document.querySelector('.close-modal').addEventListener('click', function() {
+    document.getElementById('dimensionsModal').style.display = 'none';
+});
 
