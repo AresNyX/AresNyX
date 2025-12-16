@@ -389,7 +389,7 @@ class AresNyXShop {
                     <button 
                         class="size-option ${isDisabled ? 'disabled' : ''}"
                         data-size="${size}" 
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                        onclick="shop.selectSize(event, '${size}', ${isDisabled}); onVelicinaSelektovana('${size}');" 
                         ${isDisabled ? 'disabled' : ''}
                         title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
                     >
@@ -932,9 +932,87 @@ class AresNyXShop {
                 this.showToast("Greška pri slanju porudžbine. Molimo kontaktirajte podršku.");
             
             });
-    }
-} 
+
 // =========================================================
+// === DIMENZIJE MODAL FUNKCIONALNOST ===
+// =========================================================
+
+const dimenzije = {
+    "S": {"struk":"76-81cm","kuk":"85-90cm","sirina":"12cm","duzina":"39cm"},
+    "M": {"struk":"81-86cm","kuk":"90-95cm","sirina":"13cm","duzina":"40cm"},
+    "L": {"struk":"86-91cm","kuk":"95-100cm","sirina":"14cm","duzina":"41cm"},
+    "XL": {"struk":"91-96cm","kuk":"100-105cm","sirina":"15cm","duzina":"42cm"},
+    "XXL": {"struk":"96-101cm","kuk":"105-110cm","sirina":"16cm","duzina":"43cm"}
+};
+
+let trenutnaVelicina = null;
+
+// OVA FUNKCIJA SE POZIVA KADA SE SELEKTUJE VELIČINA
+function onVelicinaSelektovana(size) {
+    console.log('Veličina selektovana za dimenzije:', size);
+    trenutnaVelicina = size;
+    
+    const btn = document.getElementById('dimensionsBtn');
+    if (btn) {
+        btn.classList.add('active');
+        btn.disabled = false;
+        btn.textContent = `📏 Dimenzije za ${size}`;
+    }
+}
+
+// INICIJALIZACIJA KADA JE DOM SPREMAN
+document.addEventListener('DOMContentLoaded', function() {
+    // Proveri da li elementi postoje
+    const dimBtn = document.getElementById('dimensionsBtn');
+    const dimModal = document.getElementById('dimensionsModal');
+    const closeBtn = document.querySelector('.close-modal');
+    
+    if (!dimBtn || !dimModal) {
+        console.warn('Elementi za dimenzije nisu pronađeni');
+        return;
+    }
+    
+    // 1. KLIK NA DUGME ZA DIMENZIJE
+    dimBtn.addEventListener('click', function() {
+        console.log('Klik na dimensionsBtn');
+        
+        if (!trenutnaVelicina) {
+            alert("Prvo odaberite veličinu!");
+            return;
+        }
+        
+        const dim = dimenzije[trenutnaVelicina];
+        if (!dim) {
+            alert("Nema podataka za ovu veličinu");
+            return;
+        }
+        
+        // Postavi podatke u modal
+        document.getElementById('selectedSizeLabel').textContent = trenutnaVelicina;
+        document.getElementById('dimStruk').textContent = dim.struk;
+        document.getElementById('dimKuk').textContent = dim.kuk;
+        document.getElementById('dimSirina').textContent = dim.sirina;
+        document.getElementById('dimDuzina').textContent = dim.duzina;
+        
+        // Prikaži modal
+        dimModal.style.display = 'flex';
+    });
+    
+    // 2. ZATVARANJE MODALA
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            dimModal.style.display = 'none';
+        });
+    }
+    
+    // 3. KLIK VAN MODALA ZATVARA
+    dimModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+});
+        // =========================================================
 // === POKRETANJE NAKON UČITAVANJA DOM-a ===
 // =========================================================
 let shop;
@@ -987,16 +1065,10 @@ document.getElementById('dimensionsBtn').addEventListener('click', function() {
 document.querySelector('.close-modal').addEventListener('click', function() {
     document.getElementById('dimensionsModal').style.display = 'none';
 });
-// DODAJ NA KRAJ TVOG JS FAJLA
-document.getElementById('dimensionsBtn').addEventListener('click', function() {
-    document.getElementById('dimensionsModal').style.display = 'flex';
-});
 
-document.querySelector('.close-modal').addEventListener('click', function() {
-    document.getElementById('dimensionsModal').style.display = 'none';
-});
-
+// KLIK VAN MODALA ZATVARA
 document.getElementById('dimensionsModal').addEventListener('click', function(e) {
     if (e.target === this) {
         this.style.display = 'none';
     }
+});
