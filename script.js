@@ -588,95 +588,86 @@ resetMetaTags() {
     // AŽURIRAJ META TAGOVE ZA SEO
     this.updateMetaTagsForProduct(this.currentProduct);
     
+    this.currentSize = null; 
+    this.currentQuantity = 1;
+    this.currentImageIndex = 0;
+
+    document.getElementById('modalTitle').textContent = this.currentProduct.name;
+    document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+    document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+    document.getElementById('modalQty').textContent = '1';
+
+    this.updateModalImage();
+
+    const sizeSelector = document.getElementById('sizeSelector');
+    let firstAvailableSize = null;
+
+    const sizesHtml = Object.keys(this.currentProduct.sizes)
+        .map(size => {
+            const stock = this.currentProduct.sizes[size]; 
+            const isDisabled = stock === 0; 
+            
+            if (!isDisabled && !firstAvailableSize) {
+                firstAvailableSize = size;
+            }
+
+            return `
+                <button 
+                    class="size-option ${isDisabled ? 'disabled' : ''}"
+                    data-size="${size}" 
+                    onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                    ${isDisabled ? 'disabled' : ''}
+                    title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                >
+                    ${size}
+                </button>
+            `;
+        })
+        .join('');
+        
+    sizeSelector.innerHTML = sizesHtml;
+    
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    
+    if (firstAvailableSize) {
+        this.currentSize = firstAvailableSize;
+        document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+        
+        // Omogući dugme za dimenzije
+        const dimBtn = document.getElementById('dimensionsBtn');
+        if (dimBtn) {
+            dimBtn.disabled = false;
+            dimBtn.classList.add('active');
+            dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
+            dimBtn.dataset.size = firstAvailableSize;
         }
-        console.log("🔍 Opening product modal for ID:", productId);
         
-        this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) {
-            console.error("Product not found:", productId);
-            return;
+        if (addToCartBtn) {
+            addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+            addToCartBtn.style.background = 'var(--primary-dark)';
+            addToCartBtn.disabled = false;
         }
-
-        this.currentSize = null; 
-        this.currentQuantity = 1;
-        this.currentImageIndex = 0;
-
-        document.getElementById('modalTitle').textContent = this.currentProduct.name;
-        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
-        document.getElementById('modalQty').textContent = '1';
-
-        this.updateModalImage();
-
-        const sizeSelector = document.getElementById('sizeSelector');
-        let firstAvailableSize = null;
-
-        const sizesHtml = Object.keys(this.currentProduct.sizes)
-            .map(size => {
-                const stock = this.currentProduct.sizes[size]; 
-                const isDisabled = stock === 0; 
-                
-                if (!isDisabled && !firstAvailableSize) {
-                    firstAvailableSize = size;
-                }
-
-                return `
-                    <button 
-                        class="size-option ${isDisabled ? 'disabled' : ''}"
-                        data-size="${size}" 
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}
-                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
-                    >
-                        ${size}
-                    </button>
-                `;
-            })
-            .join('');
-            
-        sizeSelector.innerHTML = sizesHtml;
-        
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        
-        if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-            
-            // Omogući dugme za dimenzije
-            const dimBtn = document.getElementById('dimensionsBtn');
-            if (dimBtn) {
-                dimBtn.disabled = false;
-                dimBtn.classList.add('active');
-                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
-                dimBtn.dataset.size = firstAvailableSize;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
-                addToCartBtn.style.background = 'var(--primary-dark)';
-                addToCartBtn.disabled = false;
-            }
-        } else {
-            // Ako nema dostupnih veličina, onemogući dugme
-            const dimBtn = document.getElementById('dimensionsBtn');
-            if (dimBtn) {
-                dimBtn.disabled = true;
-                dimBtn.classList.remove('active');
-                dimBtn.textContent = `📏 Dimenzije`;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.disabled = true;
-                addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-                addToCartBtn.style.background = 'var(--danger)';
-            }
+    } else {
+        // Ako nema dostupnih veličina, onemogući dugme
+        const dimBtn = document.getElementById('dimensionsBtn');
+        if (dimBtn) {
+            dimBtn.disabled = true;
+            dimBtn.classList.remove('active');
+            dimBtn.textContent = `📏 Dimenzije`;
         }
-
-        document.getElementById('sizeTable').style.display = 'none';
-        document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('modal-open');
         
-        console.log("✅ Product modal opened:", this.currentProduct.name);
+        if (addToCartBtn) {
+            addToCartBtn.disabled = true;
+            addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+            addToCartBtn.style.background = 'var(--danger)';
+        }
+    }
+
+    document.getElementById('sizeTable').style.display = 'none';
+    document.getElementById('productModal').style.display = 'block';
+    document.body.classList.add('modal-open');
+    
+    console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
     updateModalImage() {
