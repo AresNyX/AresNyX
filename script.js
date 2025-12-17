@@ -1583,3 +1583,30 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
+
+// Na kraju JS fajla, dodajte ovaj kod da kreira lightbox HTML dinamički
+document.addEventListener('DOMContentLoaded', function() {
+    // Proveri da li lightbox već postoji
+    if (!document.getElementById('lightboxModal')) {
+        const lightboxHTML = `
+            <div class="lightbox-modal" id="lightboxModal">
+                <button class="lightbox-close" onclick="shop.closeLightbox()">×</button>
+                <div class="lightbox-content">
+                    <img class="lightbox-img" id="lightboxImage" src="" alt="">
+                    <div class="lightbox-nav">
+                        <button class="lightbox-nav-btn" onclick="shop.prevLightboxImage()" id="lightboxPrevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="lightbox-nav-btn" onclick="shop.nextLightboxImage()" id="lightboxNextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+        console.log("✅ Lightbox HTML dynamically created");
+    }
+});
