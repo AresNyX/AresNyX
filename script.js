@@ -22,13 +22,15 @@ class AresNyXShop {
     }
 
     init() {
-        console.log("🔄 Initializing shop...");
-        
-        this.loadProducts();   
-        this.updateCartCount();
-        this.renderCart();
-        this.updateCartPromoMessage(0); 
-        this.attachEventListeners();
+    console.log("🔄 Initializing shop...");
+    
+    this.loadProducts();   
+    this.updateCartCount();
+    this.renderCart();
+    this.updateCartPromoMessage(0); 
+    this.attachEventListeners();
+    this.initLightbox(); // DODAJTE OVO
+        }
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
@@ -987,6 +989,117 @@ resetMetaTags() {
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
+    // =========================================================
+// === LIGHTBOX FUNKCIONALNOST ===
+// =========================================================
+
+/**
+ * Otvara lightbox za trenutnu sliku
+ */
+openLightbox(imageIndex = null) {
+    if (!this.currentProduct) return;
+    
+    // Koristi trenutnu sliku ili specificiranu
+    this.lightboxImageIndex = imageIndex !== null ? imageIndex : this.currentImageIndex;
+    
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + this.currentProduct.images[this.lightboxImageIndex];
+    
+    document.getElementById('lightboxImage').src = imageUrl;
+    document.getElementById('lightboxCounter').textContent = 
+        `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
+    
+    // Ažuriraj navigacione dugmiće
+    document.getElementById('lightboxPrevBtn').disabled = this.lightboxImageIndex === 0;
+    document.getElementById('lightboxNextBtn').disabled = 
+        this.lightboxImageIndex === this.currentProduct.images.length - 1;
+    
+    // Prikaži lightbox
+    document.getElementById('lightboxModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    console.log("🔍 Lightbox opened for image:", this.lightboxImageIndex);
+}
+
+/**
+ * Zatvara lightbox
+ */
+closeLightbox() {
+    document.getElementById('lightboxModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+/**
+ * Sledeća slika u lightboxu
+ */
+nextLightboxImage() {
+    if (!this.currentProduct) return;
+    
+    if (this.lightboxImageIndex < this.currentProduct.images.length - 1) {
+        this.lightboxImageIndex++;
+        this.updateLightboxImage();
+    }
+}
+
+/**
+ * Prethodna slika u lightboxu
+ */
+prevLightboxImage() {
+    if (!this.currentProduct) return;
+    
+    if (this.lightboxImageIndex > 0) {
+        this.lightboxImageIndex--;
+        this.updateLightboxImage();
+    }
+}
+
+/**
+ * Ažurira sliku u lightboxu
+ */
+updateLightboxImage() {
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + this.currentProduct.images[this.lightboxImageIndex];
+    
+    document.getElementById('lightboxImage').src = imageUrl;
+    document.getElementById('lightboxCounter').textContent = 
+        `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
+    
+    // Ažuriraj navigacione dugmiće
+    document.getElementById('lightboxPrevBtn').disabled = this.lightboxImageIndex === 0;
+    document.getElementById('lightboxNextBtn').disabled = 
+        this.lightboxImageIndex === this.currentProduct.images.length - 1;
+}
+
+/**
+ * Inicijalizacija lightbox event listenera
+ */
+initLightbox() {
+    // Klik na sliku u modalu otvara lightbox
+    document.getElementById('modalMainImage').addEventListener('click', () => {
+        this.openLightbox();
+    });
+    
+    // ESC zatvara lightbox
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('lightboxModal').style.display === 'block') {
+            this.closeLightbox();
+        }
+        // Strelicama navigiraj kroz slike
+        if (document.getElementById('lightboxModal').style.display === 'block') {
+            if (e.key === 'ArrowRight') this.nextLightboxImage();
+            if (e.key === 'ArrowLeft') this.prevLightboxImage();
+        }
+    });
+    
+    // Klik van slike zatvara lightbox
+    document.getElementById('lightboxModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightboxModal')) {
+            this.closeLightbox();
+        }
+    });
+    
+    console.log("🖼️ Lightbox initialized");
+}
 
     // =========================================================
     // === METODE ZA CHECKOUT I FORME ===
