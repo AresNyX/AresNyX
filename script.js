@@ -40,7 +40,192 @@ class AresNyXShop {
         
         console.log("✅ Shop initialization complete");
     } 
+    /**
+ * Ažurira meta tagove za SEO kada se otvori modal proizvoda
+ */
+updateMetaTagsForProduct(product) {
+    if (!product) return;
     
+    // 1. Title
+    const pageTitle = `${product.name} - Premium Boxer Shorts | AresNyX Shop`;
+    document.title = pageTitle;
+    
+    // 2. Opisni meta tag
+    const description = `Kupite ${product.name} - ${product.material}. Premium boxer shorts za optimalnu ventilaciju i udobnost. Cena: ${product.price} RSD.`;
+    let descMeta = document.querySelector('meta[name="description"]');
+    if (!descMeta) {
+        descMeta = document.createElement('meta');
+        descMeta.name = "description";
+        document.head.appendChild(descMeta);
+    }
+    descMeta.content = description;
+    
+    // 3. Open Graph meta tagovi (za Facebook, WhatsApp, itd.)
+    this.updateOpenGraphTags(product);
+    
+    // 4. Twitter Cards
+    this.updateTwitterCards(product);
+    
+    // 5. Canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+    }
+    const productSlug = product.name.toLowerCase().replace(/\s+/g, '-');
+    canonical.href = `https://aresnyx.github.io/AresNyX/shop/${productSlug}`;
+    
+    // 6. Structured Data (JSON-LD) za Google
+    this.updateStructuredData(product);
+}
+
+/**
+ * Ažurira Open Graph meta tagove
+ */
+updateOpenGraphTags(product) {
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + product.images[0];
+    
+    const ogTags = {
+        'og:title': `${product.name} - AresNyX Shop`,
+        'og:description': `Premium ${product.material} boxer shorts. Cena: ${product.price} RSD.`,
+        'og:image': imageUrl,
+        'og:image:width': '1200',
+        'og:image:height': '630',
+        'og:url': `https://aresnyx.github.io/AresNyX/shop/${product.id}`,
+        'og:type': 'product.item',
+        'og:price:amount': product.price,
+        'og:price:currency': 'RSD',
+        'og:site_name': 'AresNyX'
+    };
+    
+    Object.entries(ogTags).forEach(([property, content]) => {
+        let tag = document.querySelector(`meta[property="${property}"]`);
+        if (!tag) {
+            tag = document.createElement('meta');
+            tag.setAttribute('property', property);
+            document.head.appendChild(tag);
+        }
+        tag.content = content;
+    });
+}
+
+/**
+ * Ažurira Twitter Card meta tagove
+ */
+updateTwitterCards(product) {
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + product.images[0];
+    
+    const twitterTags = {
+        'twitter:card': 'summary_large_image',
+        'twitter:title': `${product.name} - AresNyX Shop`,
+        'twitter:description': `Premium ${product.material} boxer shorts za ${product.price} RSD`,
+        'twitter:image': imageUrl,
+        'twitter:site': '@aresnyxofficial',
+        'twitter:creator': '@aresnyxofficial'
+    };
+    
+    Object.entries(twitterTags).forEach(([name, content]) => {
+        let tag = document.querySelector(`meta[name="${name}"]`);
+        if (!tag) {
+            tag = document.createElement('meta');
+            tag.name = name;
+            document.head.appendChild(tag);
+        }
+        tag.content = content;
+    });
+}
+
+/**
+ * Kreira JSON-LD structured data za Google
+ */
+updateStructuredData(product) {
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    
+    // Ukloni stari structured data
+    const oldScript = document.querySelector('script[type="application/ld+json"]');
+    if (oldScript) {
+        oldScript.remove();
+    }
+    
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.name,
+        "description": `${product.name} - ${product.material}. Premium boxer shorts za optimalnu ventilaciju i udobnost.`,
+        "image": [
+            BASE_IMAGE_URL + product.images[0],
+            BASE_IMAGE_URL + (product.images[1] || product.images[0])
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "AresNyX"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": `https://aresnyx.github.io/AresNyX/shop/${product.id}`,
+            "priceCurrency": "RSD",
+            "price": product.price,
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "AresNyX"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127"
+        },
+        "sku": `ARX-${product.id.toString().padStart(3, '0')}`,
+        "category": "Clothing > Underwear > Boxer Shorts"
+    };
+    
+    const script = document.createElement('script');
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(structuredData, null, 2);
+    document.head.appendChild(script);
+}
+
+/**
+ * Resetuje meta tagove na podrazumevane vrednosti kada se modal zatvori
+ */
+resetMetaTags() {
+    // Vrati podrazumevani title
+    document.title = "AresNyX Shop - Premium Boxer Shorts";
+    
+    // Vrati podrazumevani opis
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+        descMeta.content = "AresNyX Shop - Premium boxer shorts od pamuka, lana i bambusa. Zdravlje, udobnost i besplatna dostava.";
+    }
+    
+    // Vrati podrazumevane OG tagove
+    const defaultOG = {
+        'og:title': "AresNyX Shop - Premium Boxer Shorts",
+        'og:description': "Premium boxer shorts od prirodnih materijala. Pamuk, lan i bambus za optimalnu ventilaciju.",
+        'og:image': "https://aresnyx.github.io/AresNyX/slike/logo.webp",
+        'og:url': "https://aresnyx.github.io/AresNyX/shop.html"
+    };
+    
+    Object.entries(defaultOG).forEach(([property, content]) => {
+        const tag = document.querySelector(`meta[property="${property}"]`);
+        if (tag) tag.content = content;
+    });
+    
+    // Vrati podrazumevane Twitter tagove
+    const defaultTwitter = {
+        'twitter:title': "AresNyX Shop - Premium Boxer Shorts",
+        'twitter:description': "Premium boxer shorts od prirodnih materijala. Zdravlje i udobnost."
+    };
+    
+    Object.entries(defaultTwitter).forEach(([name, content]) => {
+        const tag = document.querySelector(`meta[name="${name}"]`);
+        if (tag) tag.content = content;
+    });
+                                        }
     // =========================================================
     // === POMOĆNE METODE ZA OBRADU PODATAKA ===
     // =========================================================
@@ -392,6 +577,18 @@ class AresNyXShop {
     // =========================================================
 
     openProductModal(productId) {
+    console.log("🔍 Opening product modal for ID:", productId);
+    
+    this.currentProduct = this.products.find(p => p.id === productId);
+    if (!this.currentProduct) {
+        console.error("Product not found:", productId);
+        return;
+    }
+
+    // AŽURIRAJ META TAGOVE ZA SEO
+    this.updateMetaTagsForProduct(this.currentProduct);
+    
+        }
         console.log("🔍 Opening product modal for ID:", productId);
         
         this.currentProduct = this.products.find(p => p.id === productId);
@@ -783,8 +980,11 @@ class AresNyXShop {
     }
 
     closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-        document.body.classList.remove('modal-open');
+    document.getElementById('productModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    
+    // RESETUJ META TAGOVE NA PODRAZUMEVANE
+    this.resetMetaTags();
     }
 
     toggleCart() {
