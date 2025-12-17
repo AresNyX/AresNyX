@@ -668,7 +668,13 @@ class AresNyXShop {
         
         console.log("✅ Product modal opened:", this.currentProduct.name);
     }
-
+    const modalImage = document.getElementById('modalMainImage');
+    if (modalImage) {
+        modalImage.addEventListener('click', () => {
+            this.openLightbox();
+        });
+    }
+}
     updateModalImage() {
         if (!this.currentProduct) return;
         
