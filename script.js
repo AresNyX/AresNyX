@@ -576,126 +576,309 @@ class AresNyXShop {
     // =========================================================
 
     openProductModal(productId) {
-        console.log("🔍 Opening product modal for ID:", productId);
-        
-        this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) {
-            console.error("Product not found:", productId);
-            return;
-        }
-
-        // AŽURIRAJ META TAGOVE ZA SEO
-        this.updateMetaTagsForProduct(this.currentProduct);
-        
-        this.currentSize = null; 
-        this.currentQuantity = 1;
-        this.currentImageIndex = 0;
-
-        document.getElementById('modalTitle').textContent = this.currentProduct.name;
-        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
-        document.getElementById('modalQty').textContent = '1';
-
-        this.updateModalImage();
-
-        const sizeSelector = document.getElementById('sizeSelector');
-        let firstAvailableSize = null;
-
-        const sizesHtml = Object.keys(this.currentProduct.sizes)
-            .map(size => {
-                const stock = this.currentProduct.sizes[size]; 
-                const isDisabled = stock === 0; 
-                
-                if (!isDisabled && !firstAvailableSize) {
-                    firstAvailableSize = size;
-                }
-
-                return `
-                    <button 
-                        class="size-option ${isDisabled ? 'disabled' : ''}"
-                        data-size="${size}" 
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}
-                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
-                    >
-                        ${size}
-                    </button>
-                `;
-            })
-            .join('');
-            
-        sizeSelector.innerHTML = sizesHtml;
-        
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        
-        if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-            
-            // Omogući dugme za dimenzije
-            const dimBtn = document.getElementById('dimensionsBtn');
-            if (dimBtn) {
-                dimBtn.disabled = false;
-                dimBtn.classList.add('active');
-                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
-                dimBtn.dataset.size = firstAvailableSize;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
-                addToCartBtn.style.background = 'var(--primary-dark)';
-                addToCartBtn.disabled = false;
-            }
-        } else {
-            // Ako nema dostupnih veličina, onemogući dugme
-            const dimBtn = document.getElementById('dimensionsBtn');
-            if (dimBtn) {
-                dimBtn.disabled = true;
-                dimBtn.classList.remove('active');
-                dimBtn.textContent = `📏 Dimenzije`;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.disabled = true;
-                addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-                addToCartBtn.style.background = 'var(--danger)';
-            }
-        }
-
-        document.getElementById('sizeTable').style.display = 'none';
-        document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('modal-open');
-        
-        console.log("✅ Product modal opened:", this.currentProduct.name);
+    console.log("🔍 Opening product modal for ID:", productId);
+    
+    this.currentProduct = this.products.find(p => p.id === productId);
+    if (!this.currentProduct) {
+        console.error("Product not found:", productId);
+        return;
     }
-    const modalImage = document.getElementById('modalMainImage');
-    if (modalImage) {
-        modalImage.addEventListener('click', () => {
-            this.openLightbox();
-        });
+
+    // AŽURIRAJ META TAGOVE ZA SEO
+    this.updateMetaTagsForProduct(this.currentProduct);
+    
+    this.currentSize = null; 
+    this.currentQuantity = 1;
+    this.currentImageIndex = 0;
+
+    document.getElementById('modalTitle').textContent = this.currentProduct.name;
+    document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+    document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+    document.getElementById('modalQty').textContent = '1';
+
+    this.updateModalImage();
+
+    const sizeSelector = document.getElementById('sizeSelector');
+    let firstAvailableSize = null;
+
+    const sizesHtml = Object.keys(this.currentProduct.sizes)
+        .map(size => {
+            const stock = this.currentProduct.sizes[size]; 
+            const isDisabled = stock === 0; 
+            
+            if (!isDisabled && !firstAvailableSize) {
+                firstAvailableSize = size;
+            }
+
+            return `
+                <button 
+                    class="size-option ${isDisabled ? 'disabled' : ''}"
+                    data-size="${size}" 
+                    onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                    ${isDisabled ? 'disabled' : ''}
+                    title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                >
+                    ${size}
+                </button>
+            `;
+        })
+        .join('');
+        
+    sizeSelector.innerHTML = sizesHtml;
+    
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    
+    if (firstAvailableSize) {
+        this.currentSize = firstAvailableSize;
+        document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+        
+        // Omogući dugme za dimenzije
+        const dimBtn = document.getElementById('dimensionsBtn');
+        if (dimBtn) {
+            dimBtn.disabled = false;
+            dimBtn.classList.add('active');
+            dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
+            dimBtn.dataset.size = firstAvailableSize;
+        }
+        
+        if (addToCartBtn) {
+            addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+            addToCartBtn.style.background = 'var(--primary-dark)';
+            addToCartBtn.disabled = false;
+        }
+    } else {
+        // Ako nema dostupnih veličina, onemogući dugme
+        const dimBtn = document.getElementById('dimensionsBtn');
+        if (dimBtn) {
+            dimBtn.disabled = true;
+            dimBtn.classList.remove('active');
+            dimBtn.textContent = `📏 Dimenzije`;
+        }
+        
+        if (addToCartBtn) {
+            addToCartBtn.disabled = true;
+            addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+            addToCartBtn.style.background = 'var(--danger)';
+        }
     }
+
+    document.getElementById('sizeTable').style.display = 'none';
+    document.getElementById('productModal').style.display = 'block';
+    document.body.classList.add('modal-open');
+    
+    console.log("✅ Product modal opened:", this.currentProduct.name);
+    
+    // DODAJTE OVO: Poveži klik na sliku sa lightbox-om
+    this.attachLightboxClickListener();
 }
-    updateModalImage() {
-        if (!this.currentProduct) return;
-        
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
-        
-        const totalImages = this.currentProduct.images.length;
-        const sliderNav = document.querySelector('.slider-nav');
 
-        if (totalImages > 1) {
+updateModalImage() {
+    if (!this.currentProduct) return;
+    
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const modalImage = document.getElementById('modalMainImage');
+    
+    if (modalImage) {
+        modalImage.src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
+        
+        // Dodaj alt tekst
+        modalImage.alt = `${this.currentProduct.name} - Slika ${this.currentImageIndex + 1}`;
+        
+        // Dodaj title za tooltip
+        modalImage.title = "Kliknite za pun ekran";
+    }
+    
+    const totalImages = this.currentProduct.images.length;
+    const sliderNav = document.querySelector('.slider-nav');
+
+    if (totalImages > 1) {
+        if (sliderNav) {
             sliderNav.style.display = 'flex'; 
-            
-            const isFirst = this.currentImageIndex === 0;
-            const isLast = this.currentImageIndex === totalImages - 1;
-            
-            document.getElementById('prevImageBtn').disabled = isFirst;
-            document.getElementById('nextImageBtn').disabled = isLast;
-        } else {
+        }
+        
+        const isFirst = this.currentImageIndex === 0;
+        const isLast = this.currentImageIndex === totalImages - 1;
+        
+        const prevBtn = document.getElementById('prevImageBtn');
+        const nextBtn = document.getElementById('nextImageBtn');
+        
+        if (prevBtn) prevBtn.disabled = isFirst;
+        if (nextBtn) nextBtn.disabled = isLast;
+    } else {
+        if (sliderNav) {
             sliderNav.style.display = 'none'; 
         }
     }
+}
+
+/**
+ * Povezuje klik na sliku sa lightbox-om
+ */
+attachLightboxClickListener() {
+    const modalImage = document.getElementById('modalMainImage');
+    if (!modalImage) return;
+    
+    // Ukloni stari event listener ako postoji
+    if (this.lightboxClickHandler) {
+        modalImage.removeEventListener('click', this.lightboxClickHandler);
+    }
+    
+    // Kreiraj novi handler
+    this.lightboxClickHandler = () => {
+        this.openLightbox();
+    };
+    
+    // Dodaj event listener
+    modalImage.addEventListener('click', this.lightboxClickHandler);
+    
+    // Dodaj keyboard event listener za ESC i strelice
+    this.setupLightboxKeyboardControls();
+}
+
+/**
+ * Postavlja kontrole tastature za lightbox
+ */
+setupLightboxKeyboardControls() {
+    // Ukloni stari event listener ako postoji
+    if (this.keyboardHandler) {
+        document.removeEventListener('keydown', this.keyboardHandler);
+    }
+    
+    this.keyboardHandler = (e) => {
+        // ESC zatvara lightbox
+        if (e.key === 'Escape' && document.getElementById('lightboxModal').style.display === 'block') {
+            this.closeLightbox();
+        }
+        
+        // Strelicama navigiraj kroz slike u lightbox-u
+        if (document.getElementById('lightboxModal').style.display === 'block') {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                this.nextLightboxImage();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                this.prevLightboxImage();
+            }
+        }
+    };
+    
+    document.addEventListener('keydown', this.keyboardHandler);
+}
+
+/**
+ * Otvara lightbox za trenutnu sliku
+ */
+openLightbox(imageIndex = null) {
+    if (!this.currentProduct) return;
+    
+    // Koristi trenutnu sliku ili specificiranu
+    this.lightboxImageIndex = imageIndex !== null ? imageIndex : this.currentImageIndex;
+    
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + this.currentProduct.images[this.lightboxImageIndex];
+    
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+    
+    if (lightboxImage) lightboxImage.src = imageUrl;
+    if (lightboxCounter) {
+        lightboxCounter.textContent = `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
+    }
+    
+    // Ažuriraj navigacione dugmiće
+    if (lightboxPrevBtn) lightboxPrevBtn.disabled = this.lightboxImageIndex === 0;
+    if (lightboxNextBtn) lightboxNextBtn.disabled = this.lightboxImageIndex === this.currentProduct.images.length - 1;
+    
+    // Prikaži lightbox
+    const lightboxModal = document.getElementById('lightboxModal');
+    if (lightboxModal) {
+        lightboxModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    console.log("🔍 Lightbox opened for image:", this.lightboxImageIndex);
+}
+
+/**
+ * Zatvara lightbox
+ */
+closeLightbox() {
+    const lightboxModal = document.getElementById('lightboxModal');
+    if (lightboxModal) {
+        lightboxModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+/**
+ * Sledeća slika u lightboxu
+ */
+nextLightboxImage() {
+    if (!this.currentProduct) return;
+    
+    if (this.lightboxImageIndex < this.currentProduct.images.length - 1) {
+        this.lightboxImageIndex++;
+        this.updateLightboxImage();
+    }
+}
+
+/**
+ * Prethodna slika u lightboxu
+ */
+prevLightboxImage() {
+    if (!this.currentProduct) return;
+    
+    if (this.lightboxImageIndex > 0) {
+        this.lightboxImageIndex--;
+        this.updateLightboxImage();
+    }
+}
+
+/**
+ * Ažurira sliku u lightboxu
+ */
+updateLightboxImage() {
+    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+    const imageUrl = BASE_IMAGE_URL + this.currentProduct.images[this.lightboxImageIndex];
+    
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+    
+    if (lightboxImage) lightboxImage.src = imageUrl;
+    if (lightboxCounter) {
+        lightboxCounter.textContent = `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
+    }
+    
+    // Ažuriraj navigacione dugmiće
+    if (lightboxPrevBtn) lightboxPrevBtn.disabled = this.lightboxImageIndex === 0;
+    if (lightboxNextBtn) lightboxNextBtn.disabled = this.lightboxImageIndex === this.currentProduct.images.length - 1;
+}
+
+/**
+ * Resetuje event listener-e kada se modal zatvori
+ */
+closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    
+    // RESETUJ META TAGOVE NA PODRAZUMEVANE
+    this.resetMetaTags();
+    
+    // Ukloni keyboard event listener
+    if (this.keyboardHandler) {
+        document.removeEventListener('keydown', this.keyboardHandler);
+        this.keyboardHandler = null;
+    }
+    
+    // Zatvori lightbox ako je otvoren
+    this.closeLightbox();
+    
+    // Resetuj lightbox image index
+    this.lightboxImageIndex = 0;
+}
     
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
