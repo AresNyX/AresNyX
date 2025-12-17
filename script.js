@@ -5,6 +5,7 @@ class AresNyXShop {
     // =========================================================
     constructor() {
         console.log("🛍️ AresNyXShop constructor started");
+        constructor() {
         
         this.cart = JSON.parse(localStorage.getItem('cart')) || [];
         this.products = [];
@@ -17,6 +18,7 @@ class AresNyXShop {
         this.currentSize = null;
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
+        this.lightboxImageIndex = 0; // DODAJTE OVO
         
         this.init(); 
     }
