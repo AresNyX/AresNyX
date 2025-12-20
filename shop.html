@@ -631,72 +631,41 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
 </section>
     </main>
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="shop.closeModal()">×</button>
+            <div class="modal-content">
+                <div class="modal-gallery">
+                    <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
+                    <div class="slider-nav">
+                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+             <div class="modal-details">
+    <h2 id="modalTitle"></h2>
+    <p class="modal-material" id="modalMaterial"></p>
+    <p class="modalPrice" id="modalPrice"></p>
     
-                
-             
- <div class="modal-overlay" id="productModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="shop.closeModal()">×</button>
-        <div class="modal-content">
-            <!-- GALERIJA - 60% VISINE -->
-            <div class="modal-gallery">
-                <div class="image-container">
-                    <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy">
-                    <div class="zoom-indicator" id="zoomIndicator">
-                        <i class="fas fa-search-plus"></i> Klikni za zum
-                    </div>
-                </div>
-                <div class="slider-nav">
-                    <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                    <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            
-            <!-- DETALJI - 40% VISINE (SA SVIM ELEMENTIMA) -->
-            <div class="modal-details">
-                <!-- GORNJI DEO: NASLOV, MATERIJAL, CENA -->
-                <div class="modal-header-compact">
-                    <h2 id="modalTitle" class="modal-title-compact"></h2>
-                    <p class="modal-material-compact" id="modalMaterial"></p>
-                    <p class="modalPrice-compact" id="modalPrice"></p>
-                </div>
-                
-                <!-- SREDNJI DEO: VELIČINE, KOLIČINA, DIMENZIJE -->
-                <div class="modal-body-compact">
-                    <div class="size-section-compact">
-                        <h3 class="section-label">Veličina:</h3>
-                        <div class="size-selector-compact" id="sizeSelector"></div>
-                    </div>
-                    
-                    <div class="quantity-section-compact">
-                        <h3 class="section-label">Količina:</h3>
-                        <div class="quantity-controls-compact">
-                            <button class="qty-btn-compact" onclick="shop.changeQuantity(-1)">−</button>
-                            <span class="qty-display-compact" id="modalQty">1</span>
-                            <button class="qty-btn-compact" onclick="shop.changeQuantity(1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <button id="dimensionsBtn" class="dimensions-btn-compact" disabled>
-                        <i class="fas fa-ruler"></i> Prikaži dimenzije
-                    </button>
-                </div>
-                
-                <!-- DONJI DEO: DUGMAD -->
-                <div class="modal-actions-compact">
-                    <button class="add-to-cart-btn-compact" onclick="shop.addToCartFromModal(event)">
-                        <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
-                    </button>
-                    <button class="continue-shopping-compact" onclick="shop.closeModal()">
-                        <i class="fas fa-arrow-left"></i> Nastavi kupovinu
-                    </button>
-                </div>
+    <div class="size-section">
+        
+        <div class="size-header-row">
+            <h3>Odaberite veličinu:</h3>
+            <div class="size-info" onclick="shop.toggleSizeTable()">
+                <i class="fas fa-ruler"></i>
+                <span>Tabela veličina</span>
             </div>
         </div>
+        
+        <div class="size-selector" id="sizeSelector">
+            </div>
     </div>
-</div>
 
-<!-- DIMENZIJE MODAL (ostaje isti) -->
+    <div class="size-table-container" id="sizeTable" style="display: none;">
+          </div>
+                     <button id="dimensionsBtn" class="dimensions-btn" disabled>📏 Prikaži dimenzije</button>
+
 <div id="dimensionsModal" class="dimensions-modal" style="display:none;">
     <div class="dimensions-content">
         <span class="close-modal">&times;</span>
@@ -708,7 +677,20 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             <p><strong>Dužina:</strong> <span id="dimDuzina">-</span></p>
         </div>
     </div>
-</div>
+</div> 
+
+    <div class="quantity-wrapper">
+        <div class="quantity-header-row">
+            <h3>Količina:</h3>
+            <div class="quantity-selector">
+                <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                <span class="qty-display" id="modalQty">1</span>
+                <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+            </div>
+        </div>
+    </div>
+    
+    </div>
     
                     <div class="modal-actions">
                         <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
@@ -844,6 +826,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
                                                                     
+    <script src="script.js" defer></script> 
     
     <!-- DIMENZIJE FUNKCIONALNOST -->
     <script>
@@ -1023,22 +1006,6 @@ const checkInterval = setInterval(() => {
             © 2024 AresNyX. Sva prava zadržana.
         </div>
     </footer>
-    <!-- Dodajte ovo PRE </body> taga -->
-<div class="lightbox-modal" id="lightboxModal">
-    <button class="lightbox-close" onclick="shop.closeLightbox()">×</button>
-    <div class="lightbox-content">
-        <img class="lightbox-img" id="lightboxImage" src="" alt="">
-        <div class="lightbox-nav">
-            <button class="lightbox-nav-btn" onclick="shop.prevLightboxImage()" id="lightboxPrevBtn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="lightbox-nav-btn" onclick="shop.nextLightboxImage()" id="lightboxNextBtn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-        <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
-    </div>
-</div>
 
     </body>
 </html>
