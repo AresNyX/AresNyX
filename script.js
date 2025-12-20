@@ -837,28 +837,44 @@ setupLightboxKeyboardControls() {
     }
 
     addToCart(productId, size, quantity) {
-        console.log("🛒 Adding to cart:", productId, size, quantity);
-        
-        const product = this.products.find(p => p.id === productId);
-        const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
+    console.log("🛒 Adding to cart:", productId, size, quantity);
+    
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
 
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-            const imageURL = BASE_IMAGE_URL + product.images[0];
+    const availableStock = product.sizes[size] || 0;
+    const existingItem = this.cart.find(
+        item => item.productId === productId && item.size === size
+    );
 
-            this.cart.push({ 
-                productId, 
-                size, 
-                quantity, 
-                name: product.name, 
-                price: product.price, 
-                image: imageURL
-            });
-        }
+    const alreadyInCart = existingItem ? existingItem.quantity : 0;
+    const totalRequested = alreadyInCart + quantity;
 
-        this.saveCart();
+    // 🛑 PROVERA ZALIHA
+    if (totalRequested > availableStock) {
+        this.showToast(
+            `Na stanju ima samo ${availableStock} kom. (${alreadyInCart} već u korpi)`
+        );
+        return;
+    }
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+        const imageURL = BASE_IMAGE_URL + product.images[0];
+
+        this.cart.push({ 
+            productId,
+            size,
+            quantity,
+            name: product.name,
+            price: product.price,
+            image: imageURL
+        });
+    }
+
+    this.saveCart();
     }
 
     updateCartCount() {
