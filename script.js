@@ -1091,11 +1091,6 @@ setupLightboxKeyboardControls() {
     this.lightboxImageIndex = 0;
     }
 
-    toggleCart() {
-        document.getElementById('cartSidebar').classList.toggle('active');
-        document.body.classList.add('cart-open');
-    }
-
     // =========================================================
     // === METODE ZA CHECKOUT I FORME ===
     // =========================================================
