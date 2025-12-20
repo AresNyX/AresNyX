@@ -17,7 +17,6 @@ class AresNyXShop {
         this.currentSize = null;
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
-        this.lightboxImageIndex = 0; // DODATO ZA LIGHTBOX
         
         this.init(); 
     }
@@ -42,188 +41,6 @@ class AresNyXShop {
         console.log("✅ Shop initialization complete");
     } 
     
-    /**
-     * Ažurira meta tagove za SEO kada se otvori modal proizvoda
-     */
-    updateMetaTagsForProduct(product) {
-        if (!product) return;
-        
-        // 1. Title
-        const pageTitle = `${product.name} - Premium Boxer Shorts | AresNyX Shop`;
-        document.title = pageTitle;
-        
-        // 2. Opisni meta tag
-        const description = `Kupite ${product.name} - ${product.material}. Premium boxer shorts za optimalnu ventilaciju i udobnost. Cena: ${product.price} RSD.`;
-        let descMeta = document.querySelector('meta[name="description"]');
-        if (!descMeta) {
-            descMeta = document.createElement('meta');
-            descMeta.name = "description";
-            document.head.appendChild(descMeta);
-        }
-        descMeta.content = description;
-        
-        // 3. Open Graph meta tagovi (za Facebook, WhatsApp, itd.)
-        this.updateOpenGraphTags(product);
-        
-        // 4. Twitter Cards
-        this.updateTwitterCards(product);
-        
-        // 5. Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.rel = "canonical";
-            document.head.appendChild(canonical);
-        }
-        const productSlug = product.name.toLowerCase().replace(/\s+/g, '-');
-        canonical.href = `https://aresnyx.github.io/AresNyX/shop/${productSlug}`;
-        
-        // 6. Structured Data (JSON-LD) za Google
-        this.updateStructuredData(product);
-    }
-
-    /**
-     * Ažurira Open Graph meta tagove
-     */
-    updateOpenGraphTags(product) {
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        const imageUrl = BASE_IMAGE_URL + product.images[0];
-        
-        const ogTags = {
-            'og:title': `${product.name} - AresNyX Shop`,
-            'og:description': `Premium ${product.material} boxer shorts. Cena: ${product.price} RSD.`,
-            'og:image': imageUrl,
-            'og:image:width': '1200',
-            'og:image:height': '630',
-            'og:url': `https://aresnyx.github.io/AresNyX/shop/${product.id}`,
-            'og:type': 'product.item',
-            'og:price:amount': product.price,
-            'og:price:currency': 'RSD',
-            'og:site_name': 'AresNyX'
-        };
-        
-        Object.entries(ogTags).forEach(([property, content]) => {
-            let tag = document.querySelector(`meta[property="${property}"]`);
-            if (!tag) {
-                tag = document.createElement('meta');
-                tag.setAttribute('property', property);
-                document.head.appendChild(tag);
-            }
-            tag.content = content;
-        });
-    }
-
-    /**
-     * Ažurira Twitter Card meta tagove
-     */
-    updateTwitterCards(product) {
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        const imageUrl = BASE_IMAGE_URL + product.images[0];
-        
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': `${product.name} - AresNyX Shop`,
-            'twitter:description': `Premium ${product.material} boxer shorts za ${product.price} RSD`,
-            'twitter:image': imageUrl,
-            'twitter:site': '@aresnyxofficial',
-            'twitter:creator': '@aresnyxofficial'
-        };
-        
-        Object.entries(twitterTags).forEach(([name, content]) => {
-            let tag = document.querySelector(`meta[name="${name}"]`);
-            if (!tag) {
-                tag = document.createElement('meta');
-                tag.name = name;
-                document.head.appendChild(tag);
-            }
-            tag.content = content;
-        });
-    }
-
-    /**
-     * Kreira JSON-LD structured data za Google
-     */
-    updateStructuredData(product) {
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        
-        // Ukloni stari structured data
-        const oldScript = document.querySelector('script[type="application/ld+json"]');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        const structuredData = {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": product.name,
-            "description": `${product.name} - ${product.material}. Premium boxer shorts za optimalnu ventilaciju i udobnost.`,
-            "image": [
-                BASE_IMAGE_URL + product.images[0],
-                BASE_IMAGE_URL + (product.images[1] || product.images[0])
-            ],
-            "brand": {
-                "@type": "Brand",
-                "name": "AresNyX"
-            },
-            "offers": {
-                "@type": "Offer",
-                "url": `https://aresnyx.github.io/AresNyX/shop/${product.id}`,
-                "priceCurrency": "RSD",
-                "price": product.price,
-                "availability": "https://schema.org/InStock",
-                "seller": {
-                    "@type": "Organization",
-                    "name": "AresNyX"
-                }
-            },
-            "sku": `ARX-${product.id.toString().padStart(3, '0')}`,
-            "category": "Clothing > Underwear > Boxer Shorts"
-        };
-        
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.textContent = JSON.stringify(structuredData, null, 2);
-        document.head.appendChild(script);
-    }
-
-    /**
-     * Resetuje meta tagove na podrazumevane vrednosti kada se modal zatvori
-     */
-    resetMetaTags() {
-        // Vrati podrazumevani title
-        document.title = "AresNyX Shop - Premium Boxer Shorts";
-        
-        // Vrati podrazumevani opis
-        const descMeta = document.querySelector('meta[name="description"]');
-        if (descMeta) {
-            descMeta.content = "AresNyX Shop - Premium boxer shorts od pamuka, lana i bambusa. Zdravlje, udobnost i besplatna dostava.";
-        }
-        
-        // Vrati podrazumevane OG tagove
-        const defaultOG = {
-            'og:title': "AresNyX Shop - Premium Boxer Shorts",
-            'og:description': "Premium boxer shorts od prirodnih materijala. Pamuk, lan i bambus za optimalnu ventilaciju.",
-            'og:image': "https://aresnyx.github.io/AresNyX/slike/logo.webp",
-            'og:url': "https://aresnyx.github.io/AresNyX/shop.html"
-        };
-        
-        Object.entries(defaultOG).forEach(([property, content]) => {
-            const tag = document.querySelector(`meta[property="${property}"]`);
-            if (tag) tag.content = content;
-        });
-        
-        // Vrati podrazumevane Twitter tagove
-        const defaultTwitter = {
-            'twitter:title': "AresNyX Shop - Premium Boxer Shorts",
-            'twitter:description': "Premium boxer shorts od prirodnih materijala. Zdravlje i udobnost."
-        };
-        
-        Object.entries(defaultTwitter).forEach(([name, content]) => {
-            const tag = document.querySelector(`meta[name="${name}"]`);
-            if (tag) tag.content = content;
-        });
-    }
-
     // =========================================================
     // === POMOĆNE METODE ZA OBRADU PODATAKA ===
     // =========================================================
@@ -575,209 +392,117 @@ class AresNyXShop {
     // =========================================================
 
     openProductModal(productId) {
-    console.log("🔍 Opening product modal for ID:", productId);
-    
-    this.currentProduct = this.products.find(p => p.id === productId);
-    if (!this.currentProduct) {
-        console.error("Product not found:", productId);
-        return;
-    }
+        console.log("🔍 Opening product modal for ID:", productId);
+        
+        this.currentProduct = this.products.find(p => p.id === productId);
+        if (!this.currentProduct) {
+            console.error("Product not found:", productId);
+            return;
+        }
 
-    // AŽURIRAJ META TAGOVE ZA SEO
-    this.updateMetaTagsForProduct(this.currentProduct);
-    
-    this.currentSize = null; 
-    this.currentQuantity = 1;
-    this.currentImageIndex = 0;
+        this.currentSize = null; 
+        this.currentQuantity = 1;
+        this.currentImageIndex = 0;
 
-    document.getElementById('modalTitle').textContent = this.currentProduct.name;
-    document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-    document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
-    document.getElementById('modalQty').textContent = '1';
+        document.getElementById('modalTitle').textContent = this.currentProduct.name;
+        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
+        document.getElementById('modalQty').textContent = '1';
 
-    this.updateModalImage();
+        this.updateModalImage();
 
-    const sizeSelector = document.getElementById('sizeSelector');
-    let firstAvailableSize = null;
+        const sizeSelector = document.getElementById('sizeSelector');
+        let firstAvailableSize = null;
 
-    const sizesHtml = Object.keys(this.currentProduct.sizes)
-        .map(size => {
-            const stock = this.currentProduct.sizes[size]; 
-            const isDisabled = stock === 0; 
+        const sizesHtml = Object.keys(this.currentProduct.sizes)
+            .map(size => {
+                const stock = this.currentProduct.sizes[size]; 
+                const isDisabled = stock === 0; 
+                
+                if (!isDisabled && !firstAvailableSize) {
+                    firstAvailableSize = size;
+                }
+
+                return `
+                    <button 
+                        class="size-option ${isDisabled ? 'disabled' : ''}"
+                        data-size="${size}" 
+                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                        ${isDisabled ? 'disabled' : ''}
+                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
+                    >
+                        ${size}
+                    </button>
+                `;
+            })
+            .join('');
             
-            if (!isDisabled && !firstAvailableSize) {
-                firstAvailableSize = size;
+        sizeSelector.innerHTML = sizesHtml;
+        
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        
+        if (firstAvailableSize) {
+            this.currentSize = firstAvailableSize;
+            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+            
+            // Omogući dugme za dimenzije
+            const dimBtn = document.getElementById('dimensionsBtn');
+            if (dimBtn) {
+                dimBtn.disabled = false;
+                dimBtn.classList.add('active');
+                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
+                dimBtn.dataset.size = firstAvailableSize;
             }
+            
+            if (addToCartBtn) {
+                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
+                addToCartBtn.style.background = 'var(--primary-dark)';
+                addToCartBtn.disabled = false;
+            }
+        } else {
+            // Ako nema dostupnih veličina, onemogući dugme
+            const dimBtn = document.getElementById('dimensionsBtn');
+            if (dimBtn) {
+                dimBtn.disabled = true;
+                dimBtn.classList.remove('active');
+                dimBtn.textContent = `📏 Dimenzije`;
+            }
+            
+            if (addToCartBtn) {
+                addToCartBtn.disabled = true;
+                addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
+                addToCartBtn.style.background = 'var(--danger)';
+            }
+        }
 
-            return `
-                <button 
-                    class="size-option ${isDisabled ? 'disabled' : ''}"
-                    data-size="${size}" 
-                    onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                    ${isDisabled ? 'disabled' : ''}
-                    title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
-                >
-                    ${size}
-                </button>
-            `;
-        })
-        .join('');
+        document.getElementById('sizeTable').style.display = 'none';
+        document.getElementById('productModal').style.display = 'block';
+        document.body.classList.add('modal-open');
         
-    sizeSelector.innerHTML = sizesHtml;
-    
-    const addToCartBtn = document.querySelector('.add-to-cart-btn');
-    
-    if (firstAvailableSize) {
-        this.currentSize = firstAvailableSize;
-        document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-        
-        // Omogući dugme za dimenzije
-        const dimBtn = document.getElementById('dimensionsBtn');
-        if (dimBtn) {
-            dimBtn.disabled = false;
-            dimBtn.classList.add('active');
-            dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
-            dimBtn.dataset.size = firstAvailableSize;
-        }
-        
-        if (addToCartBtn) {
-            addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
-            addToCartBtn.style.background = 'var(--primary-dark)';
-            addToCartBtn.disabled = false;
-        }
-    } else {
-        // Ako nema dostupnih veličina, onemogući dugme
-        const dimBtn = document.getElementById('dimensionsBtn');
-        if (dimBtn) {
-            dimBtn.disabled = true;
-            dimBtn.classList.remove('active');
-            dimBtn.textContent = `📏 Dimenzije`;
-        }
-        
-        if (addToCartBtn) {
-            addToCartBtn.disabled = true;
-            addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-            addToCartBtn.style.background = 'var(--danger)';
-        }
+        console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
-    document.getElementById('sizeTable').style.display = 'none';
-    document.getElementById('productModal').style.display = 'block';
-    document.body.classList.add('modal-open');
-    
-    console.log("✅ Product modal opened:", this.currentProduct.name);
-    
-    // DODAJTE OVO: Poveži klik na sliku sa lightbox-om
-    this.attachLightboxClickListener();
-}
-
-updateModalImage() {
-    if (!this.currentProduct) return;
-    
-    const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-    const modalImage = document.getElementById('modalMainImage');
-    
-    if (modalImage) {
-        modalImage.src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
+    updateModalImage() {
+        if (!this.currentProduct) return;
         
-        // Dodaj alt tekst
-        modalImage.alt = `${this.currentProduct.name} - Slika ${this.currentImageIndex + 1}`;
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+        document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
         
-        // Dodaj title za tooltip
-        modalImage.title = "Kliknite za pun ekran";
-    }
-    
-    const totalImages = this.currentProduct.images.length;
-    const sliderNav = document.querySelector('.slider-nav');
+        const totalImages = this.currentProduct.images.length;
+        const sliderNav = document.querySelector('.slider-nav');
 
-    if (totalImages > 1) {
-        if (sliderNav) {
+        if (totalImages > 1) {
             sliderNav.style.display = 'flex'; 
-        }
-        
-        const isFirst = this.currentImageIndex === 0;
-        const isLast = this.currentImageIndex === totalImages - 1;
-        
-        const prevBtn = document.getElementById('prevImageBtn');
-        const nextBtn = document.getElementById('nextImageBtn');
-        
-        if (prevBtn) prevBtn.disabled = isFirst;
-        if (nextBtn) nextBtn.disabled = isLast;
-    } else {
-        if (sliderNav) {
+            
+            const isFirst = this.currentImageIndex === 0;
+            const isLast = this.currentImageIndex === totalImages - 1;
+            
+            document.getElementById('prevImageBtn').disabled = isFirst;
+            document.getElementById('nextImageBtn').disabled = isLast;
+        } else {
             sliderNav.style.display = 'none'; 
         }
     }
-}
-
-/**
- * Povezuje klik na sliku sa lightbox-om
- */
-attachLightboxClickListener() {
-    const modalImage = document.getElementById('modalMainImage');
-    if (!modalImage) return;
-    
-    // Ukloni stari event listener ako postoji
-    if (this.lightboxClickHandler) {
-        modalImage.removeEventListener('click', this.lightboxClickHandler);
-    }
-    
-    // Kreiraj novi handler
-    this.lightboxClickHandler = () => {
-        this.openLightbox();
-    };
-    
-    // Dodaj event listener
-    modalImage.addEventListener('click', this.lightboxClickHandler);
-    
-    // Dodaj keyboard event listener za ESC i strelice
-    this.setupLightboxKeyboardControls();
-}
-
-/**
- * Postavlja kontrole tastature za lightbox
- */
-setupLightboxKeyboardControls() {
-    // Ukloni stari event listener ako postoji
-    if (this.keyboardHandler) {
-        document.removeEventListener('keydown', this.keyboardHandler);
-    }
-    
-    this.keyboardHandler = (e) => {
-        // ESC zatvara lightbox
-        if (e.key === 'Escape' && document.getElementById('lightboxModal').style.display === 'block') {
-            this.closeLightbox();
-        }
-        
-        // Strelicama navigiraj kroz slike u lightbox-u
-        if (document.getElementById('lightboxModal').style.display === 'block') {
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                this.nextLightboxImage();
-            }
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                this.prevLightboxImage();
-            }
-        }
-    };
-    
-    document.addEventListener('keydown', this.keyboardHandler);
-}
-    
-    // RESETUJ META TAGOVE NA PODRAZUMEVANE
-    this.resetMetaTags();
-    
-    // Ukloni keyboard event listener
-    if (this.keyboardHandler) {
-        document.removeEventListener('keydown', this.keyboardHandler);
-        this.keyboardHandler = null;
-    }
-    
-    // Zatvori lightbox ako je otvoren
-    this.closeLightbox();
-    
-    // Resetuj lightbox image index
-    this.lightboxImageIndex = 0;
-}
     
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
@@ -837,44 +562,28 @@ setupLightboxKeyboardControls() {
     }
 
     addToCart(productId, size, quantity) {
-    console.log("🛒 Adding to cart:", productId, size, quantity);
-    
-    const product = this.products.find(p => p.id === productId);
-    if (!product) return;
+        console.log("🛒 Adding to cart:", productId, size, quantity);
+        
+        const product = this.products.find(p => p.id === productId);
+        const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
 
-    const availableStock = product.sizes[size] || 0;
-    const existingItem = this.cart.find(
-        item => item.productId === productId && item.size === size
-    );
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+            const imageURL = BASE_IMAGE_URL + product.images[0];
 
-    const alreadyInCart = existingItem ? existingItem.quantity : 0;
-    const totalRequested = alreadyInCart + quantity;
+            this.cart.push({ 
+                productId, 
+                size, 
+                quantity, 
+                name: product.name, 
+                price: product.price, 
+                image: imageURL
+            });
+        }
 
-    // 🛑 PROVERA ZALIHA
-    if (totalRequested > availableStock) {
-        this.showToast(
-            `Na stanju ima samo ${availableStock} kom. (${alreadyInCart} već u korpi)`
-        );
-        return;
-    }
-
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        const imageURL = BASE_IMAGE_URL + product.images[0];
-
-        this.cart.push({ 
-            productId,
-            size,
-            quantity,
-            name: product.name,
-            price: product.price,
-            image: imageURL
-        });
-    }
-
-    this.saveCart();
+        this.saveCart();
     }
 
     updateCartCount() {
@@ -1076,9 +785,6 @@ setupLightboxKeyboardControls() {
     closeModal() {
         document.getElementById('productModal').style.display = 'none';
         document.body.classList.remove('modal-open');
-        
-        // RESETUJ META TAGOVE NA PODRAZUMEVANE
-        this.resetMetaTags();
     }
 
     toggleCart() {
@@ -1368,61 +1074,7 @@ setupLightboxKeyboardControls() {
 // =========================================================
 
 console.log("🚀 script.js loaded - Creating shop instance...");
-// ================= LIGHTBOX (JEDINA I FINALNA VERZIJA) =================
 
-AresNyXShop.prototype.openLightbox = function (imageIndex = null) {
-    if (!this.currentProduct) return;
-
-    this.lightboxImageIndex =
-        imageIndex !== null ? imageIndex : this.currentImageIndex;
-
-    const BASE = "https://aresnyx.github.io/AresNyX/slike/";
-    const img = document.getElementById('lightboxImage');
-    const counter = document.getElementById('lightboxCounter');
-
-    if (!img || !counter) return;
-
-    img.src = BASE + this.currentProduct.images[this.lightboxImageIndex];
-    counter.textContent =
-        `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
-
-    document.getElementById('lightboxModal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-};
-
-AresNyXShop.prototype.closeLightbox = function () {
-    const modal = document.getElementById('lightboxModal');
-    if (modal) modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-};
-
-AresNyXShop.prototype.nextLightboxImage = function () {
-    if (!this.currentProduct) return;
-    if (this.lightboxImageIndex < this.currentProduct.images.length - 1) {
-        this.lightboxImageIndex++;
-        this.updateLightboxImage();
-    }
-};
-
-AresNyXShop.prototype.prevLightboxImage = function () {
-    if (!this.currentProduct) return;
-    if (this.lightboxImageIndex > 0) {
-        this.lightboxImageIndex--;
-        this.updateLightboxImage();
-    }
-};
-
-AresNyXShop.prototype.updateLightboxImage = function () {
-    const BASE = "https://aresnyx.github.io/AresNyX/slike/";
-    const img = document.getElementById('lightboxImage');
-    const counter = document.getElementById('lightboxCounter');
-
-    if (!img || !counter) return;
-
-    img.src = BASE + this.currentProduct.images[this.lightboxImageIndex];
-    counter.textContent =
-        `${this.lightboxImageIndex + 1} / ${this.currentProduct.images.length}`;
-};
 // Kreiraj globalni shop objekat
 window.shop = new AresNyXShop();
 
@@ -1459,30 +1111,3 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
-
-// Na kraju JS fajla, dodajte ovaj kod da kreira lightbox HTML dinamički
-document.addEventListener('DOMContentLoaded', function() {
-    // Proveri da li lightbox već postoji
-    if (!document.getElementById('lightboxModal')) {
-        const lightboxHTML = `
-            <div class="lightbox-modal" id="lightboxModal">
-                <button class="lightbox-close" onclick="shop.closeLightbox()">×</button>
-                <div class="lightbox-content">
-                    <img class="lightbox-img" id="lightboxImage" src="" alt="">
-                    <div class="lightbox-nav">
-                        <button class="lightbox-nav-btn" onclick="shop.prevLightboxImage()" id="lightboxPrevBtn">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="lightbox-nav-btn" onclick="shop.nextLightboxImage()" id="lightboxNextBtn">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
-                </div>
-            </div>
-        `;
-        
-        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
-        console.log("✅ Lightbox HTML dynamically created");
-    }
-});
