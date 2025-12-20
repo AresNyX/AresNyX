@@ -30,7 +30,6 @@ class AresNyXShop {
         this.renderCart();
         this.updateCartPromoMessage(0); 
         this.attachEventListeners();
-        this.initLightbox(); // DODATO ZA LIGHTBOX
 
         // EMAILJS INICIJALIZACIJA SA VAŠIM PUBLIC KLJUČEM
         try {
