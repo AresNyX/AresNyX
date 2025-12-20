@@ -763,13 +763,6 @@ setupLightboxKeyboardControls() {
     document.addEventListener('keydown', this.keyboardHandler);
 }
     
-/**
- * Resetuje event listener-e kada se modal zatvori
- */
-closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-    document.body.classList.remove('modal-open');
-    
     // RESETUJ META TAGOVE NA PODRAZUMEVANE
     this.resetMetaTags();
     
