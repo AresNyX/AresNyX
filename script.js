@@ -763,21 +763,7 @@ setupLightboxKeyboardControls() {
     document.addEventListener('keydown', this.keyboardHandler);
 }
     
-    // RESETUJ META TAGOVE NA PODRAZUMEVANE
-    this.resetMetaTags();
-    
-    // Ukloni keyboard event listener
-    if (this.keyboardHandler) {
-        document.removeEventListener('keydown', this.keyboardHandler);
-        this.keyboardHandler = null;
-    }
-    
-    // Zatvori lightbox ako je otvoren
-    this.closeLightbox();
-    
-    // Resetuj lightbox image index
-    this.lightboxImageIndex = 0;
-}
+
     
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
@@ -1074,11 +1060,23 @@ setupLightboxKeyboardControls() {
     }
 
     closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-        document.body.classList.remove('modal-open');
-        
-        // RESETUJ META TAGOVE NA PODRAZUMEVANE
-        this.resetMetaTags();
+    document.getElementById('productModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    
+    // RESETUJ META TAGOVE NA PODRAZUMEVANE
+    this.resetMetaTags();
+    
+    // Ukloni keyboard event listener
+    if (this.keyboardHandler) {
+        document.removeEventListener('keydown', this.keyboardHandler);
+        this.keyboardHandler = null;
+    }
+    
+    // Zatvori lightbox ako je otvoren
+    this.closeLightbox();
+    
+    // Resetuj lightbox image index
+    this.lightboxImageIndex = 0;
     }
 
     toggleCart() {
