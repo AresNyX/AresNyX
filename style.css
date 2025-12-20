@@ -1312,3 +1312,71 @@ header h2, .subtitle {
         margin-bottom: 8px !important;
     }
 }
+/* ===== MOBILE PRODUCT MODAL – TRUE FULLSCREEN NO SCROLL ===== */
+@media (max-width: 768px) {
+
+    #productModal {
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .modal-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    /* ===== IMAGE ===== */
+    .modal-image-wrapper {
+        flex: 0 0 40vh;   /* 👈 LIMIT VISINE SLIKE */
+        max-height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .modal-image-wrapper img {
+        max-height: 100%;
+        width: auto;
+        object-fit: contain;
+    }
+
+    /* ===== BODY ===== */
+    .modal-body {
+        flex: 1;
+        overflow: hidden !important;
+        padding: 12px 16px !important;
+    }
+
+    /* ===== ACTIONS ===== */
+    .modal-actions {
+        margin-top: 8px !important;
+        position: relative !important;
+    }
+
+    /* ===== SIZE HEADER ROW ===== */
+    .size-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .size-header-row h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    /* DIMENZIJE DUGME DESNO */
+    #dimensionsBtn {
+        margin: 0 !important;
+        padding: 6px 10px !important;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+        }
