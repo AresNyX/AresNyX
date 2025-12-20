@@ -1496,3 +1496,52 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("✅ Lightbox HTML dynamically created");
     }
 });
+
+/* ============================= */
+/* 🔧 HOTFIX – MODAL QUANTITY */
+/* ============================= */
+
+(function () {
+
+    if (!window.shop) return;
+
+    // FORCE INIT STATE
+    shop.currentQuantity = 1;
+
+    // FORCE CHANGE QUANTITY
+    shop.changeQuantity = function (change) {
+        if (!this.currentProduct || !this.currentSize) {
+            console.warn("⚠️ Size or product not selected");
+            return;
+        }
+
+        const maxStock = this.currentProduct.sizes?.[this.currentSize] ?? 1;
+        const newQty = this.currentQuantity + change;
+
+        if (newQty < 1) return;
+
+        if (newQty > maxStock) {
+            this.showToast(`Na stanju ima samo ${maxStock} kom.`);
+            return;
+        }
+
+        this.currentQuantity = newQty;
+
+        const qtyEl = document.getElementById('modalQty');
+        if (qtyEl) qtyEl.textContent = this.currentQuantity;
+    };
+
+    // FORCE RESET WHEN MODAL OPENS
+    const originalOpenModal = shop.openProductModal;
+    shop.openProductModal = function (productId) {
+        originalOpenModal.call(this, productId);
+
+        this.currentQuantity = 1;
+
+        const qtyEl = document.getElementById('modalQty');
+        if (qtyEl) qtyEl.textContent = '1';
+    };
+
+    console.log("✅ HOTFIX: Modal quantity enabled");
+
+})();
