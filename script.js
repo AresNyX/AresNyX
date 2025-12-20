@@ -763,7 +763,21 @@ setupLightboxKeyboardControls() {
     document.addEventListener('keydown', this.keyboardHandler);
 }
     
-
+    // RESETUJ META TAGOVE NA PODRAZUMEVANE
+    this.resetMetaTags();
+    
+    // Ukloni keyboard event listener
+    if (this.keyboardHandler) {
+        document.removeEventListener('keydown', this.keyboardHandler);
+        this.keyboardHandler = null;
+    }
+    
+    // Zatvori lightbox ako je otvoren
+    this.closeLightbox();
+    
+    // Resetuj lightbox image index
+    this.lightboxImageIndex = 0;
+}
     
     selectSize(event, size, isDisabled) {
         if (isDisabled) return;
@@ -780,20 +794,8 @@ setupLightboxKeyboardControls() {
     }
 
     changeQuantity(change) {
-    if (!this.currentProduct || !this.currentSize) return;
-
-    const availableStock = this.currentProduct.sizes[this.currentSize] || 0;
-    const newQty = this.currentQuantity + change;
-
-    if (newQty < 1) return;
-
-    if (newQty > availableStock) {
-        this.showToast(`Na stanju ima samo ${availableStock} kom.`);
-        return;
-    }
-
-    this.currentQuantity = newQty;
-    document.getElementById('modalQty').textContent = this.currentQuantity;
+        this.currentQuantity = Math.max(1, this.currentQuantity + change);
+        document.getElementById('modalQty').textContent = this.currentQuantity;
     }
 
     prevImage() {
@@ -1072,23 +1074,21 @@ setupLightboxKeyboardControls() {
     }
 
     closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-    document.body.classList.remove('modal-open');
-    
-    // RESETUJ META TAGOVE NA PODRAZUMEVANE
-    this.resetMetaTags();
-    
-    // Ukloni keyboard event listener
-    if (this.keyboardHandler) {
-        document.removeEventListener('keydown', this.keyboardHandler);
-        this.keyboardHandler = null;
+        document.getElementById('productModal').style.display = 'none';
+        document.body.classList.remove('modal-open');
+        
+        // RESETUJ META TAGOVE NA PODRAZUMEVANE
+        this.resetMetaTags();
     }
-    
-    // Zatvori lightbox ako je otvoren
-    this.closeLightbox();
-    
-    // Resetuj lightbox image index
-    this.lightboxImageIndex = 0;
+
+    toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('active');
+        document.body.classList.add('cart-open');
+    }
+
+    toggleSizeTable() { 
+        const table = document.getElementById('sizeTable');
+        table.style.display = table.style.display === 'none' ? 'block' : 'none';
     }
 
     // =========================================================
@@ -1486,4 +1486,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("✅ Lightbox HTML dynamically created");
     }
 });
-
