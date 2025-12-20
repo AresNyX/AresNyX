@@ -1096,11 +1096,6 @@ setupLightboxKeyboardControls() {
         document.body.classList.add('cart-open');
     }
 
-    toggleSizeTable() { 
-        const table = document.getElementById('sizeTable');
-        table.style.display = table.style.display === 'none' ? 'block' : 'none';
-    }
-
     // =========================================================
     // === METODE ZA CHECKOUT I FORME ===
     // =========================================================
