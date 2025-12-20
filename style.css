@@ -1242,3 +1242,8 @@ header h2, .subtitle {
     visibility: visible !important;
     opacity: 1 !important;
     }
+@media (max-width: 768px) {
+    .quantity-wrapper {
+        margin-bottom: 120px; /* gura količinu iznad fixed dugmeta */
+    }
+}
