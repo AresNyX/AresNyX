@@ -780,8 +780,20 @@ setupLightboxKeyboardControls() {
     }
 
     changeQuantity(change) {
-        this.currentQuantity = Math.max(1, this.currentQuantity + change);
-        document.getElementById('modalQty').textContent = this.currentQuantity;
+    if (!this.currentProduct || !this.currentSize) return;
+
+    const availableStock = this.currentProduct.sizes[this.currentSize] || 0;
+    const newQty = this.currentQuantity + change;
+
+    if (newQty < 1) return;
+
+    if (newQty > availableStock) {
+        this.showToast(`Na stanju ima samo ${availableStock} kom.`);
+        return;
+    }
+
+    this.currentQuantity = newQty;
+    document.getElementById('modalQty').textContent = this.currentQuantity;
     }
 
     prevImage() {
