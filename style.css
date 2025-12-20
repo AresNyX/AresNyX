@@ -1226,7 +1226,7 @@ header h2, .subtitle {
 @media (max-width: 768px) {
 
     .modal-main-image {
-        height: 220px !important;
+        height: 28px !important;
     }
 
     #modalTitle {
@@ -1360,23 +1360,52 @@ header h2, .subtitle {
     }
 
     /* ===== SIZE HEADER ROW ===== */
-    .size-header-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 8px;
+ .size-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.size-header-row h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.dimensions-btn {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dimensions-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+    @media (max-width: 768px) {
+
+    html, body {
+        height: 100dvh;
+        overflow: hidden;
     }
 
-    .size-header-row h3 {
-        margin: 0;
-        font-size: 16px;
+    body.modal-open {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
     }
 
-    /* DIMENZIJE DUGME DESNO */
-    #dimensionsBtn {
-        margin: 0 !important;
-        padding: 6px 10px !important;
-        font-size: 13px;
-        white-space: nowrap;
+    .modal-container {
+        height: 100dvh;
+        max-height: 100dvh;
     }
-        }
+
+    .modal-content {
+        height: 100%;
+        overflow: hidden;
+    }
+    }
