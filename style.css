@@ -1222,3 +1222,56 @@ header h2, .subtitle {
     visibility: visible !important;
     opacity: 1 !important;
     }
+/* ===== FINAL MOBILE MODAL COMPACT ===== */
+@media (max-width: 768px) {
+
+    .modal-main-image {
+        height: 220px !important;
+    }
+
+    #modalTitle {
+        font-size: 1.3rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .modal-material {
+        font-size: 0.9rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .modalPrice {
+        font-size: 1.4rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .size-option {
+        padding: 6px 10px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .quantity-selector {
+        height: 40px !important;
+        max-width: 180px !important;
+    }
+
+    .qty-btn {
+        width: 38px !important;
+        font-size: 1.3rem !important;
+    }
+
+    .qty-display {
+        font-size: 1.2rem !important;
+    }
+
+    .modal-actions {
+        position: sticky !important;
+        bottom: 0;
+        padding: 8px !important;
+    }
+
+    .add-to-cart-btn,
+    .continue-shopping {
+        padding: 0.7rem !important;
+        font-size: 0.95rem !important;
+    }
+}
