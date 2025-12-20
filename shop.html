@@ -1006,6 +1006,22 @@ const checkInterval = setInterval(() => {
             © 2024 AresNyX. Sva prava zadržana.
         </div>
     </footer>
+    <!-- Dodajte ovo PRE </body> taga -->
+<div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" onclick="shop.closeLightbox()">×</button>
+    <div class="lightbox-content">
+        <img class="lightbox-img" id="lightboxImage" src="" alt="">
+        <div class="lightbox-nav">
+            <button class="lightbox-nav-btn" onclick="shop.prevLightboxImage()" id="lightboxPrevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav-btn" onclick="shop.nextLightboxImage()" id="lightboxNextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
+    </div>
+</div>
 
     </body>
-</html>
+            </html>
