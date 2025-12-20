@@ -661,6 +661,17 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         <div class="size-selector" id="sizeSelector">
             </div>
     </div>
+                 <!-- KOLIČINA -->
+<div class="quantity-wrapper">
+    <div class="quantity-header-row">
+        <h3>Količina:</h3>
+        <div class="quantity-selector">
+            <button class="qty-btn" onclick="shop.changeQuantity(-1)">−</button>
+            <span class="qty-display" id="modalQty">1</span>
+            <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+        </div>
+    </div>
+</div>
 
     <div class="size-table-container" id="sizeTable" style="display: none;">
           </div>
