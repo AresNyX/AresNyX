@@ -1497,51 +1497,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* ============================= */
-/* 🔧 HOTFIX – MODAL QUANTITY */
-/* ============================= */
+/* =====================================================
+   🔧 FINAL FIX – FORCE QUANTITY UI IN MODAL (ANDROID SAFE)
+   ===================================================== */
 
 (function () {
 
-    if (!window.shop) return;
+    const injectQuantityUI = () => {
+        const modalDetails = document.querySelector('.modal-details');
+        if (!modalDetails) return;
 
-    // FORCE INIT STATE
-    shop.currentQuantity = 1;
+        // Ako već postoji – ne dupliraj
+        if (document.getElementById('modalQty')) return;
 
-    // FORCE CHANGE QUANTITY
-    shop.changeQuantity = function (change) {
-        if (!this.currentProduct || !this.currentSize) {
-            console.warn("⚠️ Size or product not selected");
-            return;
-        }
+        const html = `
+            <div class="quantity-wrapper">
+                <div class="quantity-header-row">
+                    <h3>Količina:</h3>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" id="qtyMinus">-</button>
+                        <span class="qty-display" id="modalQty">1</span>
+                        <button class="qty-btn" id="qtyPlus">+</button>
+                    </div>
+                </div>
+            </div>
+        `;
 
-        const maxStock = this.currentProduct.sizes?.[this.currentSize] ?? 1;
-        const newQty = this.currentQuantity + change;
+        modalDetails.insertAdjacentHTML('beforeend', html);
 
-        if (newQty < 1) return;
+        // Bind dugmad
+        document.getElementById('qtyMinus').onclick = () => shop.changeQuantity(-1);
+        document.getElementById('qtyPlus').onclick = () => shop.changeQuantity(1);
 
-        if (newQty > maxStock) {
-            this.showToast(`Na stanju ima samo ${maxStock} kom.`);
-            return;
-        }
-
-        this.currentQuantity = newQty;
-
-        const qtyEl = document.getElementById('modalQty');
-        if (qtyEl) qtyEl.textContent = this.currentQuantity;
+        console.log("✅ Quantity UI injected into modal");
     };
 
-    // FORCE RESET WHEN MODAL OPENS
-    const originalOpenModal = shop.openProductModal;
-    shop.openProductModal = function (productId) {
-        originalOpenModal.call(this, productId);
+    // Hook u openProductModal
+    const originalOpen = AresNyXShop.prototype.openProductModal;
+    AresNyXShop.prototype.openProductModal = function (id) {
+        originalOpen.call(this, id);
 
         this.currentQuantity = 1;
 
-        const qtyEl = document.getElementById('modalQty');
-        if (qtyEl) qtyEl.textContent = '1';
+        // sačekaj DOM repaint (ANDROID FIX)
+        setTimeout(() => {
+            injectQuantityUI();
+            const qty = document.getElementById('modalQty');
+            if (qty) qty.textContent = '1';
+        }, 50);
     };
-
-    console.log("✅ HOTFIX: Modal quantity enabled");
 
 })();
