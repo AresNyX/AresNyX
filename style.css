@@ -1134,92 +1134,87 @@ header h2, .subtitle {
 /* --- KONAČNA HIRURGIJA MODALA --- */
 
 @media (max-width: 768px) {
-    /* 1. Slika na 60% visine (približno 350-400px na većini telefona) */
+    /* 1. Slika na fiksni prostor (oko 45% visine) da ostane mesta za ostalo */
     .modal-main-image { 
-        height: 50vh !important; 
-        max-height: 400px !important; 
-        width: 100% !important;
-        object-fit: contain !important;
+        height: 40vh !important; 
+        max-height: 320px !important;
         margin-bottom: 5px !important;
     }
 
-    /* 2. Sklanjanje fiksne pozicije da dugmad ne "jedu" sadržaj */
-    .modal-actions {
-        position: relative !important; /* Više nisu zalepljena za dno ekrana */
-        display: flex !important;
-        flex-direction: row !important; /* Jedno pored drugog */
-        gap: 8px !important;
-        padding: 15px 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        transform: none !important;
-        left: 0 !important;
-        margin-top: 10px !important;
+    /* 2. Smanjenje dugmića za veličine za 15% */
+    .size-option {
+        padding: 6px 10px !important;
+        font-size: 0.8rem !important;
+        min-width: 38px !important;
+        height: 32px !important;
     }
 
-    /* 3. Optimizacija dugmadi da stanu u jedan red */
+    /* 3. Brisanje teksta "Tabela veličina" */
+    .modal-details a[onclick*="openDimensions"], 
+    .modal-details .size-chart-link,
+    .modal-details i.fa-ruler { /* u zavisnosti šta JS generiše */
+        display: none !important;
+    }
+
+    /* 4. PAKOVANJE: Dimenzije i Količina u ISTI RED */
+    .sizing-and-quantity-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        margin: 10px 0 !important;
+    }
+
+    /* Smanjenje selektora količine da stane u red */
+    .quantity-selector {
+        width: 110px !important;
+        height: 35px !important;
+    }
+
+    .qty-btn { width: 30px !important; font-size: 1.1rem !important; }
+    .qty-display { font-size: 1rem !important; }
+
+    /* Zeleno dugme dimenzija se skuplja da napravi mesta */
+    #dimensionsBtn {
+        flex: 1 !important;
+        margin: 0 !important;
+        padding: 8px 5px !important;
+        font-size: 0.8rem !important;
+        white-space: nowrap !important;
+    }
+
+    /* 5. DVA DUGMETA NA KRAJU (jedno pored drugog) */
+    .modal-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        margin-top: 15px !important;
+        padding: 0 !important;
+        position: static !important; /* Ne fiksiramo ih da ne pokriju sadržaj */
+    }
+
     .add-to-cart-btn {
         flex: 1.5 !important;
-        padding: 12px 5px !important;
+        padding: 12px !important;
         font-size: 0.9rem !important;
-        white-space: nowrap !important;
     }
 
     .continue-shopping {
         flex: 1 !important;
-        padding: 12px 5px !important;
+        padding: 12px !important;
         font-size: 0.8rem !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap !important;
     }
 
-    /* 4. Smanjenje naslova i materijala */
-    #modalTitle { font-size: 1.2rem !important; margin-bottom: 2px !important; }
-    #modalMaterial { font-size: 0.85rem !important; margin-bottom: 5px !important; }
-
-    /* 5. Veličine u jednom redu (da ne idu jedna ispod druge) */
-    .size-selector {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        gap: 5px !important;
-        padding-bottom: 5px !important;
-    }
-
-    .size-option {
-        min-width: 45px !important;
-        height: 40px !important;
-        flex: 0 0 auto !important;
-    }
-
-    /* 6. Spuštanje kontejnera da ne beži pod statusnu traku telefona */
-    .modal-container {
-        top: 2% !important;
-        transform: translateX(-50%) !important;
-        height: auto !important;
-        max-height: 96vh !important;
-        overflow-y: auto !important; /* Sada se ceo modal skroluje normalno */
-    }
-
-    /* 7. Uklanjanje onog sivog viška sa slike 1 */
-    .modal-details > .dimensions-btn, 
-    .modal-details > .modalPrice {
+    /* 6. Generalno smanjenje naslova za dodatni prostor */
+    #modalTitle { font-size: 1.1rem !important; margin-bottom: 0 !important; }
+    #modalMaterial { font-size: 0.8rem !important; margin-bottom: 5px !important; }
+    
+    /* 7. Uklanjanje duplikata koji su se videli na slici */
+    .modal-details > .modalPrice, 
+    .modal-details > .dimensions-btn {
         display: none !important;
     }
-}
-
-/* Fix za zeleno dugme dimenzija da bude uvek uredno */
-#dimensionsBtn {
-    background: #28a745 !important;
-    color: white !important;
-    border: none !important;
-    padding: 8px 12px !important;
-    border-radius: 5px !important;
-    font-size: 0.85rem !important;
-    margin-top: 5px !important;
-    display: inline-block !important;
 }
 
 
