@@ -659,101 +659,108 @@ nav a.active {
     cursor: pointer; 
 }
 
-/* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) ===== */
 @media (max-width: 768px) {
-    /* 1. Modal od vrha do dna ekrana */
+    /* 1. RESTRUKTURIRANJE KONTEJNERA */
     .modal-container {
+        display: flex !important;
+        flex-direction: column !important;
         height: 100vh !important;
         max-height: 100vh !important;
         width: 100% !important;
         top: 0 !important;
         left: 0 !important;
         transform: none !important;
-        display: flex !important;
-        flex-direction: column !important;
         border-radius: 0 !important;
-        overflow: hidden !important;
+        overflow: hidden !important; /* Ključno: sprečava haos sa skrolom */
     }
 
-    /* 2. Slika fiksirana na 60% */
+    /* 2. GORNJI BLOK (60%): Galerija i Slika */
     .modal-gallery {
         flex: 0 0 60% !important;
         height: 60% !important;
         display: flex !important;
-        align-items: center !important;
+        flex-direction: column !important;
         justify-content: center !important;
         background: #fff !important;
+        padding: 5px !important;
+        border-bottom: 1px solid #eee;
     }
 
     .modal-main-image {
-        height: 90% !important;
-        width: 100% !important;
+        max-height: 90% !important;
+        width: auto !important;
         object-fit: contain !important;
+        margin: 0 auto !important;
     }
 
-    /* 3. Detalji na 40% - pakovanje bez lufta */
+    /* 3. DONJI BLOK (40%): Detalji i Akcije */
     .modal-details {
         flex: 0 0 40% !important;
         height: 40% !important;
-        padding: 5px 15px !important;
+        padding: 10px 15px !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important;
+        justify-content: space-between !important; /* Automatski raspoređuje elemente */
         text-align: center !important;
     }
 
-    /* 4. RED: Zeleno dugme + Količina (Centrirano) */
-    .pricing-quantity-row, 
-    .modal-details > div:has(#dimensionsBtn) {
+    /* Smanjenje teksta da bi sve stalo */
+    #modalTitle { font-size: 1.1rem !important; margin: 0 !important; }
+    #modalMaterial { font-size: 0.8rem !important; margin-bottom: 2px !important; }
+
+    /* 4. NOVI RED: Količina + Dimenzije (Zeleno dugme) */
+    /* Gađamo kontejner koji drži ova dva elementa */
+    .modal-details > div:has(#dimensionsBtn),
+    .pricing-quantity-row {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 12px !important;
-        margin: 0 !important;
+        gap: 10px !important;
+        margin: 5px 0 !important;
     }
 
     #dimensionsBtn {
         background: #28a745 !important;
         color: white !important;
-        padding: 8px 12px !important;
-        font-size: 0.85rem !important;
+        padding: 7px 10px !important;
+        font-size: 0.8rem !important;
         border-radius: 5px !important;
+        flex: 1 !important; /* Širi se da popuni prostor pored količine */
+        max-width: 160px !important;
         border: none !important;
-        display: inline-block !important;
-        flex: 0 1 auto !important;
     }
 
     .quantity-selector {
-        width: 100px !important;
-        height: 34px !important;
+        width: 90px !important; /* Kompaktna količina */
+        height: 32px !important;
         margin: 0 !important;
     }
 
-    /* 5. Veličine - smanjene 15% i centrirane */
+    /* 5. VELIČINE - Smanjene za 15% */
     .size-selector {
         display: flex !important;
         justify-content: center !important;
-        gap: 6px !important;
+        gap: 5px !important;
         margin: 0 !important;
     }
 
     .size-option {
-        min-width: 38px !important;
-        height: 34px !important;
+        min-width: 36px !important;
+        height: 32px !important;
         font-size: 0.8rem !important;
+        padding: 0 !important;
     }
 
-    /* 6. Donja dugmad - centrirana i u istom redu */
+    /* 6. GLAVNA DUGMAD (DODAJ I NASTAVI) - Donja ivica */
     .modal-actions {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
         gap: 10px !important;
         width: 100% !important;
-        margin: 0 !important;
+        margin-top: auto !important;
         padding-bottom: 10px !important;
-        position: static !important;
     }
 
     .add-to-cart-btn {
@@ -768,12 +775,16 @@ nav a.active {
         font-size: 0.8rem !important;
     }
 
-    /* 7. Brisanje viškova */
-    .size-chart-link, .fa-ruler, .modal-details br, 
-    .modal-details > .modalPrice, .modal-details > .dimensions-btn {
+    /* 7. ČIŠĆENJE: Brisanje sive tabele i duplih elemenata sa slika */
+    .size-chart-link, 
+    .fa-ruler, 
+    .modal-details br, 
+    .modal-details > .modalPrice, 
+    .modal-details > .dimensions-btn {
         display: none !important;
     }
 }
+
 
 /* ============================================== */
 /* ===== KORPA, CHECKOUT I TOAST SEKCIJE ===== */
