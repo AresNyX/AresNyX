@@ -1131,131 +1131,95 @@ header h2, .subtitle {
     font-size: 24px;
     cursor: pointer;
 }
-/* ========================================================= */
-/* ⭐ FINALNA KOREKCIJA: OPTIMIZACIJA PROSTORA I FIKSIRANJE ⭐ */
-/* ========================================================= */
+/* --- KONAČNA HIRURGIJA MODALA --- */
 
 @media (max-width: 768px) {
-    /* 1. Proporcija: Slika na 60% visine ekrana */
+    /* 1. Slika na 60% visine (približno 350-400px na većini telefona) */
     .modal-main-image { 
-        height: 55vh !important; 
+        height: 50vh !important; 
         max-height: 400px !important; 
         width: 100% !important;
         object-fit: contain !important;
-        margin-bottom: 0 !important;
-        padding: 5px !important;
+        margin-bottom: 5px !important;
     }
 
-    /* 2. Smanjenje naslova i materijala da ne troše prostor */
-    #modalTitle {
-        font-size: 1.15rem !important;
-        margin-bottom: 2px !important;
-        line-height: 1.2 !important;
-    }
-
-    #modalMaterial {
-        font-size: 0.85rem !important;
-        margin-bottom: 8px !important;
-    }
-
-    /* 3. Hirurško uklanjanje duplikata (Sivo dugme i stara cena) */
-    .modal-details > .modalPrice, 
-    .modal-details > .dimensions-btn {
-        display: none !important;
-    }
-
-    /* 4. Tvoj red: Cena levo, Zeleno dugme desno */
-    .price-and-dim-row {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        margin: 5px 0 10px 0 !important;
-        padding-bottom: 5px !important;
-        border-bottom: 1px solid #eee;
-    }
-
-    .modalPrice {
-        font-size: 1.3rem !important;
-        font-weight: 700 !important;
-        margin: 0 !important;
-    }
-
-    #dimensionsBtn {
-        background: #28a745 !important; /* Zeleno */
-        color: white !important;
-        padding: 7px 12px !important;
-        font-size: 0.85rem !important;
-        border-radius: 5px !important;
-        opacity: 1 !important;
-        cursor: pointer !important;
-        display: block !important;
-        border: none !important;
-    }
-
-    /* 5. Veličine u jednom kompaktnom redu */
-    .size-selector {
-        display: flex !important;
-        gap: 6px !important;
-        margin: 5px 0 !important;
-    }
-
-    .size-option {
-        flex: 1 !important;
-        height: 38px !important;
-        font-size: 0.9rem !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        margin: 0 !important;
-    }
-
-    /* 6. Količina - zbijeno */
-    .quantity-wrapper {
-        margin-top: 5px !important;
-        padding: 5px 0 !important;
-    }
-    .quantity-selector { height: 40px !important; }
-
-    /* 7. AKCIJE NA DNU: Korpa + Nastavi Kupovinu (Jedno pored drugog) */
+    /* 2. Sklanjanje fiksne pozicije da dugmad ne "jedu" sadržaj */
     .modal-actions {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
+        position: relative !important; /* Više nisu zalepljena za dno ekrana */
         display: flex !important;
-        flex-direction: row !important; /* Horizontalno */
-        gap: 10px !important;
-        padding: 12px !important;
-        background: white !important;
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.1) !important;
-        z-index: 100 !important;
+        flex-direction: row !important; /* Jedno pored drugog */
+        gap: 8px !important;
+        padding: 15px 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        transform: none !important;
+        left: 0 !important;
+        margin-top: 10px !important;
     }
 
+    /* 3. Optimizacija dugmadi da stanu u jedan red */
     .add-to-cart-btn {
-        flex: 2 !important;
-        margin: 0 !important;
-        padding: 12px !important;
-        font-size: 0.95rem !important;
+        flex: 1.5 !important;
+        padding: 12px 5px !important;
+        font-size: 0.9rem !important;
+        white-space: nowrap !important;
     }
 
     .continue-shopping {
         flex: 1 !important;
-        margin: 0 !important;
         padding: 12px 5px !important;
         font-size: 0.8rem !important;
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
         white-space: nowrap !important;
     }
-    
-    /* Dodatni prostor na dnu detalja da dugmad ne prekriju tekst */
-    .modal-details {
-        padding-bottom: 80px !important;
+
+    /* 4. Smanjenje naslova i materijala */
+    #modalTitle { font-size: 1.2rem !important; margin-bottom: 2px !important; }
+    #modalMaterial { font-size: 0.85rem !important; margin-bottom: 5px !important; }
+
+    /* 5. Veličine u jednom redu (da ne idu jedna ispod druge) */
+    .size-selector {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        gap: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .size-option {
+        min-width: 45px !important;
+        height: 40px !important;
+        flex: 0 0 auto !important;
+    }
+
+    /* 6. Spuštanje kontejnera da ne beži pod statusnu traku telefona */
+    .modal-container {
+        top: 2% !important;
+        transform: translateX(-50%) !important;
+        height: auto !important;
+        max-height: 96vh !important;
+        overflow-y: auto !important; /* Sada se ceo modal skroluje normalno */
+    }
+
+    /* 7. Uklanjanje onog sivog viška sa slike 1 */
+    .modal-details > .dimensions-btn, 
+    .modal-details > .modalPrice {
+        display: none !important;
     }
 }
 
-/* Fix za Dimensions Modal (da se uvek vidi preko svega) */
-.dimensions-modal {
-    z-index: 3000 !important;
+/* Fix za zeleno dugme dimenzija da bude uvek uredno */
+#dimensionsBtn {
+    background: #28a745 !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    border-radius: 5px !important;
+    font-size: 0.85rem !important;
+    margin-top: 5px !important;
+    display: inline-block !important;
 }
 
 
