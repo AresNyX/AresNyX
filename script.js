@@ -1213,3 +1213,91 @@ if (window.shop && window.shop.openModal) {
         return result;
     };
 }
+// ===== FIX ZA VELIČINE DUGMADI - SAMO POSLEDNJE U FAJLU =====
+
+// 1. Override funkcije koja generiše dugmad
+if (window.shop && window.shop.openProductModal) {
+    const originalOpenModal = shop.openProductModal;
+    
+    shop.openProductModal = function(productId) {
+        // Pozovi originalnu funkciju
+        const result = originalOpenModal.apply(this, arguments);
+        
+        // Nakon što se modal otvori, forsiramo nove stilove
+        setTimeout(() => {
+            this.fixSizeButtons();
+        }, 50);
+        
+        return result;
+    };
+}
+
+// 2. Dodaj metodu za fix dugmadi
+shop.fixSizeButtons = function() {
+    const sizeOptions = document.querySelectorAll('.size-option');
+    
+    sizeOptions.forEach(btn => {
+        // UKLONI SVE INLINE STILOVE
+        btn.style.minWidth = '0';
+        btn.style.width = '100%';
+        btn.style.padding = '4px 1px';
+        btn.style.fontSize = '0.75rem';
+        btn.style.height = '25px';
+        btn.style.boxSizing = 'border-box';
+        btn.style.display = 'flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+        btn.style.lineHeight = '1';
+    });
+    
+    // Forciraj grid layout
+    const sizeSelector = document.querySelector('.size-selector');
+    if (sizeSelector) {
+        sizeSelector.style.display = 'grid';
+        sizeSelector.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        sizeSelector.style.gap = '2px';
+    }
+};
+
+// 3. Dodaj i u selectSize funkciju
+if (shop.selectSize) {
+    const originalSelectSize = shop.selectSize;
+    
+    shop.selectSize = function(size) {
+        originalSelectSize.apply(this, arguments);
+        
+        // Nakon selekcije, osiguraj da dugmad ostanu mala
+        setTimeout(() => {
+            this.fixSizeButtons();
+        }, 10);
+    };
+}
+
+// 4. Inicijalno pokretanje
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.shop) {
+        // Dodaj observer za modal
+        const modalObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.target.classList.contains('modal-overlay') || 
+                    mutation.target.classList.contains('modal-container')) {
+                    
+                    setTimeout(() => {
+                        if (shop.fixSizeButtons) {
+                            shop.fixSizeButtons();
+                        }
+                    }, 100);
+                }
+            });
+        });
+        
+        // Prati product modal
+        const productModal = document.getElementById('productModal');
+        if (productModal) {
+            modalObserver.observe(productModal, { 
+                attributes: true, 
+                attributeFilter: ['class'] 
+            });
+        }
+    }
+});
