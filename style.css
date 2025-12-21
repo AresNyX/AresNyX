@@ -1796,3 +1796,245 @@ body .modal-overlay .modal-container {
         grid-template-columns: repeat(3, 1fr) !important;
     }
 }
+/* ===== MODAL VERTIKALNI LAYOUT FIX ===== */
+
+/* FORSIRAJ VERTIKALNI LAYOUT */
+#productModal .modal-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    padding: 20px !important;
+}
+
+/* SLIKA - GORNJI DEO */
+#productModal .modal-gallery {
+    width: 100% !important;
+    flex: none !important;
+    min-height: 400px !important;
+    max-height: 50vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 15px !important;
+    background: #f8f9fa !important;
+    border-radius: 12px !important;
+    margin-bottom: 10px !important;
+}
+
+/* POVEČAJ SLIKU */
+#modalMainImage {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 350px !important;
+    object-fit: contain !important;
+}
+
+/* DETALJI - DONJI DEO (KOMPAKTNI) */
+#productModal .modal-details {
+    width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+/* UKLONI DUGME ZA DIMENZIJE */
+#dimensionsBtn, .dimensions-btn {
+    display: none !important;
+}
+
+/* SMANJI MODAL */
+#productModal .modal-container {
+    max-width: 500px !important;
+    width: 90% !important;
+    max-height: 85vh !important;
+}
+
+/* SMANJI NASLOV I CENU */
+#modalTitle {
+    font-size: 1.3rem !important;
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+}
+
+.modal-material {
+    font-size: 0.85rem !important;
+    margin-bottom: 10px !important;
+    color: #666 !important;
+}
+
+.modalPrice {
+    font-size: 1.4rem !important;
+    font-weight: bold !important;
+    color: #e53e3e !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+/* VELIČINE - KOMPAKTNO */
+.size-section {
+    margin: 10px 0 !important;
+}
+
+.size-header-row h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+    color: #333 !important;
+}
+
+/* GRID ZA VELIČINE (5 U JEDNOM REDU) */
+.size-selector {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 6px !important;
+    margin-bottom: 15px !important;
+}
+
+.size-option {
+    padding: 8px 4px !important;
+    font-size: 0.85rem !important;
+    border: 1px solid #ddd !important;
+    background: white !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    transition: all 0.2s !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.size-option:hover {
+    border-color: #007bff !important;
+    background: #f8f9fa !important;
+}
+
+.size-option.selected {
+    background: #007bff !important;
+    color: white !important;
+    border-color: #007bff !important;
+}
+
+/* KOLIČINA - KOMPAKTNO */
+.quantity-wrapper {
+    margin: 10px 0 20px 0 !important;
+}
+
+.quantity-header-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 10px !important;
+}
+
+.quantity-header-row h3 {
+    font-size: 0.95rem !important;
+    margin: 0 !important;
+    color: #333 !important;
+}
+
+.quantity-selector {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: #f8f9fa !important;
+    border-radius: 8px !important;
+    padding: 4px !important;
+    border: 1px solid #ddd !important;
+}
+
+.qty-btn {
+    width: 35px !important;
+    height: 35px !important;
+    border: none !important;
+    background: white !important;
+    border-radius: 6px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.qty-display {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    min-width: 40px !important;
+    text-align: center !important;
+}
+
+/* DUGMAD - KOMPAKTNO */
+.modal-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 15px !important;
+}
+
+.add-to-cart-btn,
+.continue-shopping {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+}
+
+.add-to-cart-btn {
+    background: #333 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.add-to-cart-btn:hover {
+    background: #555 !important;
+    transform: translateY(-2px) !important;
+}
+
+.continue-shopping {
+    background: white !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+}
+
+.continue-shopping:hover {
+    background: #f8f9fa !important;
+    border-color: #bbb !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #productModal .modal-container {
+        max-width: 95% !important;
+        width: 95% !important;
+    }
+    
+    #modalMainImage {
+        max-height: 300px !important;
+    }
+    
+    .size-selector {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .size-option {
+        padding: 10px 5px !important;
+    }
+}
+
+/* HITNO: UKLONI HORIZONTALNI FLEX */
+#productModal .modal-content > * {
+    width: 100% !important;
+    max-width: 100% !important;
+}
