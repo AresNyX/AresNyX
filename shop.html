@@ -376,7 +376,7 @@ const ga4UniversalTracker = {
             }
         });
         
-        console.log(`🔄 Synced ${shopProducts.length} products from shop object`);
+        console.log(`🔄 Synced ${shopProducts.length} products from shop object');
     },
     
     setupGlobalEventListeners: function() {
@@ -631,15 +631,17 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
 </section>
     </main>
+    
+    <!-- ===== MODAL ZA PROIZVODE ===== -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="shop.closeModal()">×</button>
+            <button class="modal-close" onclick="closeModalGlobal()">&times;</button>
             <div class="modal-content">
                 <div class="modal-gallery">
                     <img class="modal-main-image" id="modalMainImage" src="" alt="Detaljni prikaz bokserica" loading="lazy" width="300" height="450">
                     <div class="slider-nav">
-                        <button id="prevImageBtn" onclick="shop.prevImage()"><i class="fas fa-chevron-left"></i> Prethodna</button>
-                        <button id="nextImageBtn" onclick="shop.nextImage()">Sledeća <i class="fas fa-chevron-right"></i></button>
+                        <button id="prevImageBtn" onclick="prevImageGlobal()"><i class="fas fa-chevron-left"></i> Prethodna</button>
+                        <button id="nextImageBtn" onclick="nextImageGlobal()">Sledeća <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
                 
@@ -659,16 +661,17 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
         
         <div class="size-selector" id="sizeSelector">
-            </div>
+            <!-- Dinamički će se popuniti -->
+        </div>
     </div>
 
     <div class="size-table-container" id="sizeTable" style="display: none;">
           </div>
-                     <button id="dimensionsBtn" class="dimensions-btn" disabled>📏 Prikaži dimenzije</button>
+                     <button id="dimensionsBtn" class="dimensions-btn" onclick="openDimensionsModal()" disabled>📏 Prikaži dimenzije</button>
 
 <div id="dimensionsModal" class="dimensions-modal" style="display:none;">
     <div class="dimensions-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" onclick="closeDimensionsModal()">&times;</span>
         <h3>Dimenzije: <span id="selectedSizeLabel">-</span></h3>
         <div id="dimensionsData">
             <p><strong>Struk:</strong> <span id="dimStruk">-</span></p>
@@ -683,20 +686,18 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         <div class="quantity-header-row">
             <h3>Količina:</h3>
             <div class="quantity-selector">
-                <button class="qty-btn" onclick="shop.changeQuantity(-1)">-</button>
+                <button class="qty-btn" onclick="changeQuantityGlobal(-1)">-</button>
                 <span class="qty-display" id="modalQty">1</span>
-                <button class="qty-btn" onclick="shop.changeQuantity(1)">+</button>
+                <button class="qty-btn" onclick="changeQuantityGlobal(1)">+</button>
             </div>
         </div>
-    </div>
-    
     </div>
     
                     <div class="modal-actions">
                         <button class="add-to-cart-btn" onclick="shop.addToCartFromModal(event)">
                             <i class="fas fa-shopping-cart"></i> Dodaj u Korpu
                         </button>
-                        <button class="continue-shopping" onclick="shop.closeModal()">
+                        <button class="continue-shopping" onclick="closeModalGlobal()">
                             Nastavi kupovinu
                         </button>
                     </div>
@@ -828,73 +829,66 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                                                                     
     <script src="script.js" defer></script> 
     
-    <!-- DIMENZIJE FUNKCIONALNOST -->
+    <!-- GLOBALNE FUNKCIJE ZA MODAL -->
     <script>
-    // PODACI O DIMENZIJAMA
-    const dimenzije = {
-        "S": {"struk":"76-81cm","kuk":"85-90cm","sirina":"12cm","duzina":"39cm"},
-        "M": {"struk":"81-86cm","kuk":"90-95cm","sirina":"13cm","duzina":"40cm"},
-        "L": {"struk":"86-91cm","kuk":"95-100cm","sirina":"14cm","duzina":"41cm"},
-        "XL": {"struk":"91-96cm","kuk":"100-105cm","sirina":"15cm","duzina":"42cm"},
-        "XXL": {"struk":"96-101cm","kuk":"105-110cm","sirina":"16cm","duzina":"43cm"}
-    };
-
-    // GLOBALNA FUNKCIJA ZA AKTIVIRANJE DUGMETA
-    function onVelicinaSelektovana(size) {
-        const btn = document.getElementById('dimensionsBtn');
-        if (btn) {
-            btn.disabled = false;
-            btn.classList.add('active');
-            btn.textContent = `📏 Dimenzije za ${size}`;
-            btn.dataset.size = size;
+    // Globalne funkcije za modal (pozivaju shop metode)
+    window.closeModalGlobal = function() {
+        if (window.shop) {
+            window.shop.closeModal();
         }
-    }
-
-    // EVENT LISTENER ZA DIMENZIJE
-    document.addEventListener('DOMContentLoaded', function() {
+    };
+    
+    window.changeQuantityGlobal = function(change) {
+        if (window.shop) {
+            window.shop.changeQuantity(change);
+        }
+    };
+    
+    window.prevImageGlobal = function() {
+        if (window.shop) {
+            window.shop.prevImage();
+        }
+    };
+    
+    window.nextImageGlobal = function() {
+        if (window.shop) {
+            window.shop.nextImage();
+        }
+    };
+    
+    window.openDimensionsModal = function() {
         const dimBtn = document.getElementById('dimensionsBtn');
         const dimModal = document.getElementById('dimensionsModal');
-        const closeBtn = document.querySelector('.close-modal');
         
-        if (dimBtn && dimModal) {
-            // KLIK NA DUGME
-            dimBtn.addEventListener('click', function() {
-                const size = this.dataset.size;
-                if (!size) {
-                    alert("Prvo izaberite veličinu!");
-                    return;
-                }
-                
-                const dim = dimenzije[size];
-                if (!dim) {
-                    alert("Nema podataka za ovu veličinu");
-                    return;
-                }
-                
-                document.getElementById('selectedSizeLabel').textContent = size;
-                document.getElementById('dimStruk').textContent = dim.struk;
-                document.getElementById('dimKuk').textContent = dim.kuk;
-                document.getElementById('dimSirina').textContent = dim.sirina;
-                document.getElementById('dimDuzina').textContent = dim.duzina;
-                
-                dimModal.style.display = 'flex';
-            });
-            
-            // ZATVARANJE MODALA
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
-                    dimModal.style.display = 'none';
-                });
+        if (!dimBtn || !dimModal) return;
+        
+        const size = dimBtn.dataset.size;
+        if (!size) {
+            alert("Prvo izaberite veličinu!");
+            return;
+        }
+        
+        // Koristi dimenzije iz shop klase
+        if (window.shop && window.shop.dimenzije) {
+            const dim = window.shop.dimenzije[size];
+            if (!dim) {
+                alert("Nema podataka za ovu veličinu");
+                return;
             }
             
-            // KLIK VAN MODALA
-            dimModal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
-            });
+            document.getElementById('selectedSizeLabel').textContent = size;
+            document.getElementById('dimStruk').textContent = dim.struk;
+            document.getElementById('dimKuk').textContent = dim.kuk;
+            document.getElementById('dimSirina').textContent = dim.sirina;
+            document.getElementById('dimDuzina').textContent = dim.duzina;
+            
+            dimModal.style.display = 'flex';
         }
-    });
+    };
+    
+    window.closeDimensionsModal = function() {
+        document.getElementById('dimensionsModal').style.display = 'none';
+    };
     </script>
     
     <footer class="main-footer">
@@ -958,5 +952,5 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     </footer>
 
     </body>
-    </html>
+</html>
 
