@@ -391,97 +391,191 @@ class AresNyXShop {
     // === METODE ZA MODAL I KORPU ===
     // =========================================================
 
-    openProductModal(productId) {
+             openProductModal(productId) {
         console.log("🔍 Opening product modal for ID:", productId);
         
         this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) {
-            console.error("Product not found:", productId);
-            return;
-        }
+        if (!this.currentProduct) return;
 
         this.currentSize = null; 
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
 
+        // Osnovni podaci
         document.getElementById('modalTitle').textContent = this.currentProduct.name;
         document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalPrice').textContent = `${this.currentProduct.price} RSD`;
         document.getElementById('modalQty').textContent = '1';
+
+        // --- NOVI DEO: Grupisanje Cene i Dugmeta za dimenzije ---
+        const detailsContainer = document.querySelector('.modal-details');
+        
+        // Pronalazimo ili pravimo red za cenu i dimenzije
+        let priceRow = document.querySelector('.price-and-dim-row');
+        if (!priceRow) {
+            priceRow = document.createElement('div');
+            priceRow.className = 'price-and-dim-row';
+            // Ubacujemo ga odmah posle materijala
+            document.getElementById('modalMaterial').after(priceRow);
+        }
+
+        // Generišemo sadržaj reda (Cena + Dugme)
+        priceRow.innerHTML = `
+            <div class="modalPrice" id="modalPrice">${this.currentProduct.price} RSD</div>
+            <button id="dimensionsBtn" class="dimensions-btn active">📏 Dimenzije</button>
+        `;
 
         this.updateModalImage();
 
+        // Generisanje veličina
         const sizeSelector = document.getElementById('sizeSelector');
         let firstAvailableSize = null;
 
-        const sizesHtml = Object.keys(this.currentProduct.sizes)
+        sizeSelector.innerHTML = Object.keys(this.currentProduct.sizes)
             .map(size => {
                 const stock = this.currentProduct.sizes[size]; 
                 const isDisabled = stock === 0; 
-                
-                if (!isDisabled && !firstAvailableSize) {
-                    firstAvailableSize = size;
-                }
+                if (!isDisabled && !firstAvailableSize) firstAvailableSize = size;
 
                 return `
-                    <button 
-                        class="size-option ${isDisabled ? 'disabled' : ''}"
-                        data-size="${size}" 
+                    <button class="size-option ${isDisabled ? 'disabled' : ''}"
                         onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}
-                        title="Dostupno: ${stock} kom. - ${isDisabled ? 'RASPRODATO' : 'Dostupno'}"
-                    >
+                        ${isDisabled ? 'disabled' : ''}>
                         ${size}
                     </button>
                 `;
-            })
-            .join('');
+            }).join('');
             
-        sizeSelector.innerHTML = sizesHtml;
-        
+        // Postavljanje inicijalne veličine
+        const dimBtn = document.getElementById('dimensionsBtn');
         const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        
+
         if (firstAvailableSize) {
             this.currentSize = firstAvailableSize;
-            document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+            setTimeout(() => {
+                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+            }, 10);
             
-            // Omogući dugme za dimenzije
-            const dimBtn = document.getElementById('dimensionsBtn');
             if (dimBtn) {
-                dimBtn.disabled = false;
-                dimBtn.classList.add('active');
                 dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
                 dimBtn.dataset.size = firstAvailableSize;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Dodaj u Korpu';
-                addToCartBtn.style.background = 'var(--primary-dark)';
-                addToCartBtn.disabled = false;
-            }
-        } else {
-            // Ako nema dostupnih veličina, onemogući dugme
-            const dimBtn = document.getElementById('dimensionsBtn');
-            if (dimBtn) {
-                dimBtn.disabled = true;
-                dimBtn.classList.remove('active');
-                dimBtn.textContent = `📏 Dimenzije`;
-            }
-            
-            if (addToCartBtn) {
-                addToCartBtn.disabled = true;
-                addToCartBtn.innerHTML = '<i class="fas fa-times-circle"></i> RASPRODATO';
-                addToCartBtn.style.background = 'var(--danger)';
+                // Ponovo vežemo event jer smo pregazili innerHTML
+                dimBtn.onclick = () => this.openDimensionsFromBtn();
             }
         }
 
+        // Prikaz modala
         document.getElementById('sizeTable').style.display = 'none';
         document.getElementById('productModal').style.display = 'block';
         document.body.classList.add('modal-open');
-        
-        console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
+    // Pomoćna funkcija da dugme u redu radi
+    openDimensionsFromBtn() {
+        const dimBtn = document.getElementById('dimensionsBtn');
+        const size = dimBtn.dataset.size;
+        if (size && this.dimenzije[size]) {
+            const dim = this.dimenzije[size];
+            document.getElementById('selectedSizeLabel').textContent = size;
+            document.getElementById('dimStruk').textContent = dim.struk;
+            document.getElementById('dimKuk').textContent = dim.kuk;
+            document.getElementById('dimSirina').textContent = dim.sirina;
+            document.getElementById('dimDuzina').textContent = dim.duzina;
+            document.getElementById('dimensionsModal').style.display = 'flex';
+        }
+    }
+    openProductModal(productId) {
+        console.log("🔍 Opening product modal for ID:", productId);
+        
+        this.currentProduct = this.products.find(p => p.id === productId);
+        if (!this.currentProduct) return;
+
+        this.currentSize = null; 
+        this.currentQuantity = 1;
+        this.currentImageIndex = 0;
+
+        // Osnovni podaci
+        document.getElementById('modalTitle').textContent = this.currentProduct.name;
+        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+        document.getElementById('modalQty').textContent = '1';
+
+        // --- NOVI DEO: Grupisanje Cene i Dugmeta za dimenzije ---
+        const detailsContainer = document.querySelector('.modal-details');
+        
+        // Pronalazimo ili pravimo red za cenu i dimenzije
+        let priceRow = document.querySelector('.price-and-dim-row');
+        if (!priceRow) {
+            priceRow = document.createElement('div');
+            priceRow.className = 'price-and-dim-row';
+            // Ubacujemo ga odmah posle materijala
+            document.getElementById('modalMaterial').after(priceRow);
+        }
+
+        // Generišemo sadržaj reda (Cena + Dugme)
+        priceRow.innerHTML = `
+            <div class="modalPrice" id="modalPrice">${this.currentProduct.price} RSD</div>
+            <button id="dimensionsBtn" class="dimensions-btn active">📏 Dimenzije</button>
+        `;
+
+        this.updateModalImage();
+
+        // Generisanje veličina
+        const sizeSelector = document.getElementById('sizeSelector');
+        let firstAvailableSize = null;
+
+        sizeSelector.innerHTML = Object.keys(this.currentProduct.sizes)
+            .map(size => {
+                const stock = this.currentProduct.sizes[size]; 
+                const isDisabled = stock === 0; 
+                if (!isDisabled && !firstAvailableSize) firstAvailableSize = size;
+
+                return `
+                    <button class="size-option ${isDisabled ? 'disabled' : ''}"
+                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
+                        ${isDisabled ? 'disabled' : ''}>
+                        ${size}
+                    </button>
+                `;
+            }).join('');
+            
+        // Postavljanje inicijalne veličine
+        const dimBtn = document.getElementById('dimensionsBtn');
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+
+        if (firstAvailableSize) {
+            this.currentSize = firstAvailableSize;
+            setTimeout(() => {
+                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
+            }, 10);
+            
+            if (dimBtn) {
+                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
+                dimBtn.dataset.size = firstAvailableSize;
+                // Ponovo vežemo event jer smo pregazili innerHTML
+                dimBtn.onclick = () => this.openDimensionsFromBtn();
+            }
+        }
+
+        // Prikaz modala
+        document.getElementById('sizeTable').style.display = 'none';
+        document.getElementById('productModal').style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+
+    // Pomoćna funkcija da dugme u redu radi
+    openDimensionsFromBtn() {
+        const dimBtn = document.getElementById('dimensionsBtn');
+        const size = dimBtn.dataset.size;
+        if (size && this.dimenzije[size]) {
+            const dim = this.dimenzije[size];
+            document.getElementById('selectedSizeLabel').textContent = size;
+            document.getElementById('dimStruk').textContent = dim.struk;
+            document.getElementById('dimKuk').textContent = dim.kuk;
+            document.getElementById('dimSirina').textContent = dim.sirina;
+            document.getElementById('dimDuzina').textContent = dim.duzina;
+            document.getElementById('dimensionsModal').style.display = 'flex';
+        }
+    }
+   
     updateModalImage() {
         if (!this.currentProduct) return;
         
