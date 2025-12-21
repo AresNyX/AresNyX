@@ -475,7 +475,7 @@ nav a.active {
     }
 }
 
-/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - POTPUNO ISPRAVLJEN ===== */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - KOMPAKTNA VERZIJA ===== */
 .modal-overlay { 
     position: fixed; 
     top: 0; 
@@ -487,20 +487,20 @@ nav a.active {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     backdrop-filter: blur(5px);
 }
 
 .modal-overlay.active { 
-    display: flex !important; 
+    display: flex; 
 }
 
 .modal-container { 
     background: white; 
     border-radius: 16px; 
-    width: 100%; 
-    max-width: 1000px; 
-    max-height: 90vh; 
+    width: 95%; 
+    max-width: 95%; 
+    max-height: 95vh; 
     overflow: hidden; 
     position: relative;
     transform: translateY(20px);
@@ -516,13 +516,13 @@ nav a.active {
 
 .modal-close { 
     position: absolute; 
-    top: 15px; 
-    right: 15px; 
+    top: 10px; 
+    right: 10px; 
     background: rgba(0,0,0,0.7); 
     color: white; 
     border: none; 
-    width: 40px; 
-    height: 40px; 
+    width: 35px; 
+    height: 35px; 
     border-radius: 50%; 
     cursor: pointer; 
     z-index: 10; 
@@ -539,30 +539,32 @@ nav a.active {
 }
 
 .modal-content { 
-    padding: 30px; 
+    padding: 20px; 
     display: flex; 
-    gap: 30px;
-    max-height: 80vh;
+    gap: 20px;
+    max-height: 85vh;
     overflow: auto;
 }
 
-/* GALERIJA - Leva strana */
+/* GALERIJA - 60% LEVO */
 .modal-gallery {
-    flex: 1;
-    min-width: 50%;
-    position: relative;
+    flex: 1.5;
+    min-width: 60%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
 .modal-main-image {
     width: 100%;
     height: 450px;
+    max-height: 60vh;
     object-fit: contain;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 10px;
 }
 
 /* SLIDER NAVIGACIJA */
@@ -571,14 +573,15 @@ nav a.active {
     justify-content: space-between;
     margin-top: 10px;
     gap: 10px;
+    width: 100%;
 }
 
 .slider-nav button {
-    padding: 10px 20px;
+    padding: 8px 15px;
     background: #800000;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
@@ -587,6 +590,7 @@ nav a.active {
     gap: 8px;
     flex: 1;
     justify-content: center;
+    font-size: 0.9rem;
 }
 
 .slider-nav button:hover {
@@ -599,84 +603,158 @@ nav a.active {
     color: #666;
     cursor: not-allowed;
     opacity: 0.7;
-    transform: none !important;
+    transform: none;
 }
 
-/* DETALJI - Desna strana */
+/* DETALJI - 40% DESNO */
 .modal-details { 
     flex: 1;
-    min-width: 50%;
-    padding: 10px 0;
+    min-width: 40%;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 #modalTitle {
-    font-size: 1.8rem !important; 
-    font-weight: 700 !important;
-    margin-bottom: 10px !important; 
-    line-height: 1.2 !important; 
+    font-size: 1.5rem; 
+    font-weight: 700;
+    margin-bottom: 5px; 
+    line-height: 1.2; 
     color: var(--primary-dark);
 }
 
 .modal-material {
-    font-size: 1.1rem !important;
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 15px !important;
+    margin-bottom: 10px;
 }
 
+/* CENA + DUGME DIMENZIJE U ISTOM REDU */
 .modalPrice { 
-    font-size: 1.8rem !important; 
+    font-size: 1.6rem; 
     font-weight: 700; 
     color: var(--accent-gold);
-    margin-bottom: 25px !important;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px !important; 
+    margin-bottom: 15px;
+    padding-bottom: 10px; 
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dugme dimenzije pored cene */
+#dimensionsBtn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    white-space: nowrap;
+}
+
+#dimensionsBtn:hover:not(:disabled) {
+    background: #218838;
+}
+
+#dimensionsBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* VELIČINE */
 .size-section {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
+/* ODABERI VELIČINE + KOLIČINA U ISTOM REDU */
 .size-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.size-info {
+.size-header-row h3 {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Količina u istom redu sa "Odaberite veličinu:" */
+.quantity-header-row {
+    display: none; /* Sakrij stari naslov */
+}
+
+.quantity-wrapper {
+    margin: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #666;
-    cursor: pointer;
-    transition: color 0.3s;
-    font-size: 0.9rem;
-}
-
-.size-info:hover {
-    color: var(--accent-gold);
-}
-
-.size-selector {
-    display: flex;
     gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gray-medium);
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    background: var(--gray-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-display {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-width: 30px;
+    padding: 0 5px;
+}
+
+.qty-btn:hover { 
+    background: var(--accent-gold); 
+    color: white; 
+}
+
+/* DUGMICE ZA VELIČINE - KOMPAKTNO */
+.size-selector {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 10px;
 }
 
 .size-option { 
-    display: inline-block; 
-    padding: 12px 20px;
-    border: 2px solid var(--gray-medium); 
-    border-radius: 8px; 
+    padding: 8px 3px;
+    border: 1px solid var(--gray-medium); 
+    border-radius: 6px; 
     cursor: pointer; 
     transition: var(--transition); 
-    font-size: 1rem; 
+    font-size: 0.85rem; 
     font-weight: 600;
     background: white;
-    min-width: 60px;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .size-option:hover { 
@@ -697,38 +775,62 @@ nav a.active {
     background: #f5f5f5;
 }
 
-/* DIMENZIJE DUGME */
-.dimensions-btn {
-    width: 100%;
-    padding: 12px;
-    background: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-bottom: 20px;
+/* AKCIJE */
+.modal-actions { 
+    display: flex; 
+    gap: 10px; 
+    margin-top: 20px; 
+    flex-wrap: wrap; 
+}
+
+.add-to-cart-btn { 
+    flex: 2; 
+    background: var(--primary-dark); 
+    color: white; 
+    border: none; 
+    padding: 14px 20px; 
+    border-radius: 8px; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
     transition: all 0.3s;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.dimensions-btn.active {
-    background: #28a745;
-    cursor: pointer;
+.continue-shopping { 
+    flex: 1; 
+    background: white; 
+    color: var(--primary-dark); 
+    border: 2px solid var(--primary-dark); 
+    padding: 14px 20px; 
+    border-radius: 8px; 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all 0.3s;
 }
 
-.dimensions-btn:hover:not(:disabled) {
-    background: #218838;
+.add-to-cart-btn:hover { 
+    background: var(--accent-gold); 
     transform: translateY(-2px);
 }
 
-.dimensions-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important;
+.continue-shopping:hover { 
+    background: var(--primary-dark); 
+    color: white;
+    transform: translateY(-2px);
 }
 
-/* DIMENZIJE MODAL */
+.add-to-cart-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* DIMENZIJE MODAL (popup) */
 .dimensions-modal {
     display: none;
     position: fixed;
@@ -745,25 +847,27 @@ nav a.active {
 
 .dimensions-content {
     background: white;
-    padding: 30px;
+    padding: 25px;
     border-radius: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .dimensions-content h3 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--primary-dark);
     border-bottom: 2px solid var(--accent-gold);
     padding-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 #dimensionsData p {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
+    font-size: 0.9rem;
 }
 
 #dimensionsData strong {
@@ -777,8 +881,8 @@ nav a.active {
 
 .close-modal {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     font-size: 24px;
     cursor: pointer;
     color: #666;
@@ -798,124 +902,19 @@ nav a.active {
     background: #f5f5f5;
 }
 
-/* KOLIČINA */
-.quantity-wrapper {
-    margin: 25px 0;
-}
-
-.quantity-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.quantity-selector {
-    display: inline-flex;
-    align-items: center;
-    border: 2px solid var(--gray-medium);
-    border-radius: 8px;
-    overflow: hidden;
-    background: white;
-}
-
-.qty-btn {
-    width: 50px;
-    height: 50px;
-    background: var(--gray-light);
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: 700;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.qty-display {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--primary-dark);
-    min-width: 60px;
-    padding: 0 10px;
-}
-
-.qty-btn:first-child { 
-    border-radius: 6px 0 0 6px; 
-    border-right: 1px solid var(--gray-medium); 
-}
-.qty-btn:last-child { 
-    border-radius: 0 6px 6px 0; 
-    border-left: 1px solid var(--gray-medium); 
-}
-.qty-btn:hover { 
-    background: var(--accent-gold); 
-    color: white; 
-}
-
-/* AKCIJE */
-.modal-actions { 
-    display: flex; 
-    gap: 15px; 
-    margin-top: 30px; 
-    flex-wrap: wrap; 
-}
-
-.add-to-cart-btn { 
-    flex: 2; 
-    background: var(--primary-dark); 
-    color: white; 
-    border: none; 
-    padding: 16px 24px; 
-    border-radius: 10px; 
-    font-size: 1.1rem; 
-    font-weight: 600; 
-    cursor: pointer; 
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.continue-shopping { 
-    flex: 1; 
-    background: white; 
-    color: var(--primary-dark); 
-    border: 2px solid var(--primary-dark); 
-    padding: 16px 24px; 
-    border-radius: 10px; 
-    font-size: 1rem; 
-    font-weight: 600; 
-    cursor: pointer; 
-    transition: all 0.3s;
-}
-
-.add-to-cart-btn:hover { 
-    background: var(--accent-gold); 
-    transform: translateY(-2px);
-}
-.continue-shopping:hover { 
-    background: var(--primary-dark); 
-    color: white;
-    transform: translateY(-2px);
-}
-
-.add-to-cart-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none !important;
-}
-
 /* RESPONSIVE MODAL */
 @media (max-width: 768px) {
+    .modal-container {
+        width: 98%;
+        max-width: 98%;
+        max-height: 98vh;
+    }
+    
     .modal-content {
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        max-height: 85vh;
+        gap: 15px;
+        padding: 15px;
+        max-height: 90vh;
     }
     
     .modal-gallery,
@@ -924,7 +923,12 @@ nav a.active {
     }
     
     .modal-main-image {
-        height: 350px;
+        height: 300px;
+        max-height: 40vh;
+    }
+    
+    .size-selector {
+        grid-template-columns: repeat(3, 1fr);
     }
     
     .modal-actions {
@@ -936,42 +940,46 @@ nav a.active {
         flex: 1;
         width: 100%;
     }
+    
+    .modalPrice {
+        font-size: 1.4rem;
+    }
+    
+    #dimensionsBtn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        height: 26px;
+    }
 }
 
 @media (max-width: 480px) {
     .modal-container {
-        border-radius: 0;
-        max-height: 100vh;
+        border-radius: 12px;
     }
     
     .modal-content {
-        padding: 15px;
-        max-height: 95vh;
+        padding: 12px;
+        max-height: 92vh;
     }
     
     .modal-main-image {
-        height: 300px;
+        height: 250px;
     }
     
     #modalTitle {
-        font-size: 1.5rem !important;
-    }
-    
-    .modalPrice {
-        font-size: 1.5rem !important;
+        font-size: 1.3rem;
     }
     
     .size-option {
-        padding: 10px 15px;
-        min-width: 50px;
-        font-size: 0.9rem;
+        padding: 6px 2px;
+        font-size: 0.8rem;
     }
     
     .slider-nav button {
-        padding: 8px 15px;
-        font-size: 0.9rem;
+        padding: 6px 12px;
+        font-size: 0.85rem;
     }
-}
+        }
 
 /* ============================================== */
 /* ===== KORPA ===== */
@@ -1641,196 +1649,4 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
-    /* ===== MODAL KOMPAKTNI FIX - FINALNA VERZIJA ===== */
-
-/* 1. SMANJI FONT ZA NASLOVE ZA 30% */
-.size-header-row h3,
-.quantity-header-row h3 {
-    font-size: 0.8rem !important;
-    font-weight: 600 !important;
-    color: #555 !important;
-    margin: 0 !important;
-}
-
-/* 2. PREMESTI KOLIČINU U ISTI RED SA VELIČINAMA */
-.size-header-row {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: flex-end !important;
-    margin-bottom: 8px !important;
-    position: relative !important;
-}
-
-/* 3. KOLIČINA U DESNI DEO - ISPOD TEKSTA "Količina:" */
-.quantity-header-row {
-    display: none !important;
-}
-
-.quantity-wrapper {
-    margin: 0 !important;
-    padding: 0 !important;
-    position: absolute !important;
-    right: 0 !important;
-    bottom: -5px !important;
-}
-
-.quantity-selector-wrapper {
-    display: flex !important;
-    align-items: center !important;
-    gap: 5px !important;
-}
-
-.quantity-label {
-    font-size: 0.8rem !important;
-    color: #555 !important;
-    font-weight: 600 !important;
-    text-align: right !important;
-    margin-bottom: 2px !important;
-    display: block !important;
-}
-
-/* 4. UKLONI VELIKO SIVO DUGME "PRIKAŽI DIMENZIJE" */
-.dimensions-btn[onclick*="openDimensionsModal"],
-button.dimensions-btn:not(#dimensionsBtn) {
-    display: none !important;
-}
-
-/* 5. DUGME "DIMENZIJE" U REDU SA CENOM */
-.modalPrice {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding-bottom: 10px !important;
-    margin-bottom: 15px !important;
-    border-bottom: 1px solid #eee !important;
-}
-
-/* Cena levo */
-.modalPrice span {
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    color: var(--accent-gold) !important;
-}
-
-/* Malo dugme "Dimenzije" desno */
-#dimensionsBtn {
-    padding: 5px 10px !important;
-    font-size: 0.75rem !important;
-    background: #6c757d !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-    height: 26px !important;
-    white-space: nowrap !important;
-}
-
-#dimensionsBtn:hover:not(:disabled) {
-    background: #5a6268 !important;
-}
-
-#dimensionsBtn:disabled {
-    opacity: 0.5 !important;
-    cursor: not-allowed !important;
-}
-
-/* 6. FLEKSIBILNA ŠIRINA MODALA */
-.modal-container {
-    width: 95% !important;
-    max-width: 550px !important;
-    min-width: 300px !important;
-}
-
-/* 7. SMANJI CEO MODAL VERTIKALNO */
-.modal-content {
-    padding: 15px !important;
-    gap: 15px !important;
-    max-height: 100vh !important;
-}
-
-.modal-gallery {
-    flex: 1 !important;
-    min-height: 250px !important;
-    max-height: 40vh !important;
-}
-
-.modal-main-image {
-    height: 300px !important;
-    max-height: 35vh !important;
-}
-
-.modal-details {
-    flex: 1 !important;
-    min-height: auto !important;
-    padding: 0 !important;
-}
-
-/* 8. KOMPAKTNIJE DUGMICE ZA VELIČINE */
-.size-selector {
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 3px !important;
-    margin-bottom: 8px !important;
-}
-
-.size-option {
-    padding: 4px 1px !important;
-    font-size: 0.5rem !important;
-    min-width: 0 !important;
-    height: 22px !important;
-    border: 1px solid #ddd !important;
-}
-/* JAČI SELEKTORI */
-.modal-details .size-selector .size-option,
-#productModal .size-option,
-.modal-overlay.active .size-option {
-    padding: 4px 1px !important;
-    font-size: 0.5rem !important;
-    min-width: 0 !important;
-    height: 22px !important;
-    border: 1px solid #ddd !important;
-    width: 100% !important;
-}
-
-/* 9. RESPONSIVE ZA MOBILNE */
-@media (max-width: 480px) {
-    .modal-container {
-        width: 98% !important;
-        max-width: 98% !important;
-        margin: 5px !important;
-    }
     
-    .modal-content {
-        padding: 10px !important;
-        gap: 10px !important;
-    }
-    
-    .modal-main-image {
-        height: 250px !important;
-        max-height: 30vh !important;
-    }
-    
-    .size-selector {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 2px !important;
-    }
-    
-    .size-option {
-        padding: 4px 1px !important;
-        font-size: 0.75rem !important;
-        height: 28px !important;
-    }
-    
-    .modalPrice span {
-        font-size: 1.3rem !important;
-    }
-    
-    #dimensionsBtn {
-        padding: 4px 8px !important;
-        font-size: 0.7rem !important;
-        height: 24px !important;
-    }
-}
