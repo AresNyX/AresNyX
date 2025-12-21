@@ -1783,6 +1783,17 @@ button.dimensions-btn:not(#dimensionsBtn) {
     height: 22px !important;
     border: 1px solid #ddd !important;
 }
+/* JAČI SELEKTORI */
+.modal-details .size-selector .size-option,
+#productModal .size-option,
+.modal-overlay.active .size-option {
+    padding: 4px 1px !important;
+    font-size: 0.5rem !important;
+    min-width: 0 !important;
+    height: 22px !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important;
+}
 
 /* 9. RESPONSIVE ZA MOBILNE */
 @media (max-width: 480px) {
