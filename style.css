@@ -470,10 +470,7 @@ nav a.active {
         right: auto; 
         top: 60px;
     }
-    .filter-sort-panel.active { 
-        transform: translateX(-50%) translateY(0); 
-    }
-}
+    
 /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - KOMPAKTNA VERZIJA ===== */
 .modal-overlay { 
     position: fixed; 
@@ -497,9 +494,9 @@ nav a.active {
 .modal-container { 
     background: white; 
     border-radius: 16px; 
-    width: 95%; 
-    max-width: 95%; 
-    max-height: 95vh; 
+    width: 98%; /* POVEĆANO SA 95% NA 98% */
+    max-width: 98%; /* POVEĆANO SA 95% NA 98% */
+    max-height: 98vh; /* POVEĆANO SA 95vh NA 98vh */
     overflow: hidden; 
     position: relative;
     transform: translateY(20px);
@@ -558,12 +555,18 @@ nav a.active {
 
 .modal-main-image {
     width: 100%;
-    height: 450px;
-    max-height: 60vh;
+    height: 480px; /* POVEĆANO SA 450px NA 480px */
+    max-height: 65vh; /* POVEĆANO SA 60vh NA 65vh */
     object-fit: contain;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 12px;
     padding: 10px;
+    cursor: zoom-in; /* DODATO ZA ZUM FUNKCIONALNOST */
+    transition: opacity 0.3s ease;
+}
+
+.modal-main-image:hover {
+    opacity: 0.9;
 }
 
 /* SLIDER NAVIGACIJA */
@@ -616,7 +619,7 @@ nav a.active {
 }
 
 #modalTitle {
-    font-size: 1.5rem; 
+    font-size: 1.275rem; /* SMANJENO SA 1.5rem NA 1.275rem (15% manje) */
     font-weight: 700;
     margin-bottom: 5px; 
     line-height: 1.2; 
@@ -918,12 +921,69 @@ nav a.active {
     background: #f5f5f5;
 }
 
+/* ZUM MODAL */
+.zoom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.zoom-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#zoomedImage {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.zoom-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-close:hover {
+    background: var(--accent-gold);
+    transform: rotate(90deg);
+}
+
+body.zoom-open {
+    overflow: hidden;
+}
+
 /* RESPONSIVE MODAL */
 @media (max-width: 768px) {
     .modal-container {
-        width: 98%;
-        max-width: 98%;
-        max-height: 98vh;
+        width: 99%;
+        max-width: 99%;
+        max-height: 99vh;
     }
     
     .modal-content {
@@ -939,8 +999,8 @@ nav a.active {
     }
     
     .modal-main-image {
-        height: 300px;
-        max-height: 40vh;
+        height: 350px;
+        max-height: 50vh;
     }
     
     .size-selector {
@@ -968,6 +1028,10 @@ nav a.active {
         font-size: 1.4rem;
     }
     
+    #modalTitle {
+        font-size: 1.2rem;
+    }
+    
     #dimensionsBtn {
         padding: 5px 10px;
         font-size: 0.75rem;
@@ -986,11 +1050,12 @@ nav a.active {
     }
     
     .modal-main-image {
-        height: 250px;
+        height: 300px;
+        max-height: 45vh;
     }
     
     #modalTitle {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     
     .size-selector {
@@ -1015,7 +1080,7 @@ nav a.active {
         padding: 12px 15px;
         font-size: 0.9rem;
     }
-        }
+    }
 
 /* ============================================== */
 /* ===== KORPA ===== */
