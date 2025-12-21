@@ -1144,182 +1144,29 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
-// ===== FIX ZA SAKRIVANJE DUGMETA "PRIKAŽI DIMENZIJE" =====
-
-// 1. Prati kada se otvori modal
-function hideDimensionsButton() {
-    // Sakrij dugme kada god se pojavi
-    const hideButton = () => {
-        const dimBtn = document.getElementById('dimensionsBtn');
-        if (dimBtn) {
-            dimBtn.style.display = 'none';
-            dimBtn.style.visibility = 'hidden';
-            dimBtn.style.opacity = '0';
-            dimBtn.style.height = '0';
-            dimBtn.style.padding = '0';
-            dimBtn.style.margin = '0';
-            dimBtn.style.border = 'none';
+// ===== JEDNOSTAVAN FIX: SAKRIJ VELIKO DUGME PREKO CSS =====
+(function() {
+    // Dodaj CSS koji sakriva samo veliko dugme
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Sakrij veliko sivo dugme "Prikaži dimenzije" */
+        button.dimensions-btn:not(#dimensionsBtn) {
+            display: none !important;
         }
         
-        // ===== FIX ZA SAKRIVANJE SAMO VELIKOG DUGMETA "PRIKAŽI DIMENZIJE" =====
-
-function hideDimensionsButton() {
-    const hideButton = () => {
-        // Sakrij SAMO veliko dugme "Prikaži dimenzije" (koje ima width: 100%)
-        document.querySelectorAll('.dimensions-btn').forEach(btn => {
-            // Proveri da li je dugme široko (veliko sivo dugme)
-            const styles = window.getComputedStyle(btn);
-            if (styles.width === '100%' || btn.textContent.includes('Prikaži')) {
-                btn.style.display = 'none';
-                btn.style.visibility = 'hidden';
-            }
-            // MALO DUGME "DIMENZIJE" OSTAVI VIDLJIVO!
-        });
-        
-        // Ili specifičnije: sakrij samo dugme koje nije #dimensionsBtn
-        const bigDimBtn = document.querySelector('.dimensions-btn:not(#dimensionsBtn)');
-        if (bigDimBtn) {
-            bigDimBtn.style.display = 'none';
+        /* Ostavi malo zeleno dugme "Dimenzije" */
+        #dimensionsBtn {
+            display: flex !important;
+            visibility: visible !important;
         }
-    };
-    
-    hideButton();
-    const interval = setInterval(hideButton, 100);
-    setTimeout(() => clearInterval(interval), 3000);
-}
-    };
-    
-    // Pokreni odmah i ponavljaj svake 100ms dok ne sakrijemo
-    hideButton();
-    const interval = setInterval(hideButton, 100);
-    
-    // Zaustavi posle 3 sekunde
-    setTimeout(() => clearInterval(interval), 3000);
-}
-
-// 2. Dodaj event listener kada se otvori modal
-document.addEventListener('DOMContentLoaded', function() {
-    // Prati promene u DOM-u (modal se otvara)
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.target.id === 'productModal' || 
-                mutation.target.classList.contains('modal-overlay')) {
-                hideDimensionsButton();
-            }
-        });
-    });
-    
-    // Počni da pratiš body za promene
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class', 'style', 'id']
-    });
-    
-    // Takodje pokreni kada se klikne na bilo koji product card
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.product-card') || 
-            e.target.classList.contains('product-card')) {
-            setTimeout(hideDimensionsButton, 300);
+        
+        /* Forciraj male dugmice za veličine */
+        .size-option {
+            min-width: 0 !important;
+            width: 100% !important;
+            padding: 4px 1px !important;
+            font-size: 0.75rem !important;
         }
-    });
-});
-
-// 3. Alternativno: Ako imaš shop.openModal funkciju, dodaj ovde
-if (window.shop && window.shop.openModal) {
-    const originalOpenModal = shop.openModal;
-    shop.openModal = function(...args) {
-        const result = originalOpenModal.apply(this, args);
-        setTimeout(hideDimensionsButton, 100);
-        return result;
-    };
-}
-// ===== FIX ZA VELIČINE DUGMADI - SAMO POSLEDNJE U FAJLU =====
-
-// 1. Override funkcije koja generiše dugmad
-if (window.shop && window.shop.openProductModal) {
-    const originalOpenModal = shop.openProductModal;
-    
-    shop.openProductModal = function(productId) {
-        // Pozovi originalnu funkciju
-        const result = originalOpenModal.apply(this, arguments);
-        
-        // Nakon što se modal otvori, forsiramo nove stilove
-        setTimeout(() => {
-            this.fixSizeButtons();
-        }, 50);
-        
-        return result;
-    };
-}
-
-// 2. Dodaj metodu za fix dugmadi
-shop.fixSizeButtons = function() {
-    const sizeOptions = document.querySelectorAll('.size-option');
-    
-    sizeOptions.forEach(btn => {
-        // UKLONI SVE INLINE STILOVE
-        btn.style.minWidth = '0';
-        btn.style.width = '100%';
-        btn.style.padding = '4px 1px';
-        btn.style.fontSize = '0.75rem';
-        btn.style.height = '25px';
-        btn.style.boxSizing = 'border-box';
-        btn.style.display = 'flex';
-        btn.style.alignItems = 'center';
-        btn.style.justifyContent = 'center';
-        btn.style.lineHeight = '1';
-    });
-    
-    // Forciraj grid layout
-    const sizeSelector = document.querySelector('.size-selector');
-    if (sizeSelector) {
-        sizeSelector.style.display = 'grid';
-        sizeSelector.style.gridTemplateColumns = 'repeat(5, 1fr)';
-        sizeSelector.style.gap = '2px';
-    }
-};
-
-// 3. Dodaj i u selectSize funkciju
-if (shop.selectSize) {
-    const originalSelectSize = shop.selectSize;
-    
-    shop.selectSize = function(size) {
-        originalSelectSize.apply(this, arguments);
-        
-        // Nakon selekcije, osiguraj da dugmad ostanu mala
-        setTimeout(() => {
-            this.fixSizeButtons();
-        }, 10);
-    };
-}
-
-// 4. Inicijalno pokretanje
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.shop) {
-        // Dodaj observer za modal
-        const modalObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.target.classList.contains('modal-overlay') || 
-                    mutation.target.classList.contains('modal-container')) {
-                    
-                    setTimeout(() => {
-                        if (shop.fixSizeButtons) {
-                            shop.fixSizeButtons();
-                        }
-                    }, 100);
-                }
-            });
-        });
-        
-        // Prati product modal
-        const productModal = document.getElementById('productModal');
-        if (productModal) {
-            modalObserver.observe(productModal, { 
-                attributes: true, 
-                attributeFilter: ['class'] 
-            });
-        }
-    }
-});
+    `;
+    document.head.appendChild(style);
+})();
