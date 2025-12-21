@@ -1,4 +1,4 @@
-class AresNyXShop {
+oclass AresNyXShop {
     
     // =========================================================
     // === KONSTRUKTOR I INICIJALIZACIJA ===
@@ -386,6 +386,63 @@ class AresNyXShop {
         grid.innerHTML = productsHTML;
         console.log(`✅ Rendered ${this.filteredProducts.length} products`);
     }
+        openProductModal(productId) {
+        this.currentProduct = this.products.find(p => p.id === productId);
+        if (!this.currentProduct) return;
+
+        this.currentSize = null; 
+        this.currentQuantity = 1;
+        this.currentImageIndex = 0;
+
+        // Osnovni podaci
+        document.getElementById('modalTitle').textContent = this.currentProduct.name;
+        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
+        document.getElementById('modalQty').textContent = '1';
+
+        // --- SREĐIVANJE REDA ZA CENU I DIMENZIJE ---
+        const details = document.querySelector('.modal-details');
+        
+        // 1. Brišemo statičko sivo dugme i cenu ako postoje kao samostalni elementi
+        // Ovo rešava dupliranje sa slike
+        const oldPrice = details.querySelector('.modalPrice');
+        const oldBtn = details.querySelector('.dimensions-btn');
+        if (oldPrice && !oldPrice.parentElement.classList.contains('price-and-dim-row')) oldPrice.remove();
+        if (oldBtn && !oldBtn.parentElement.classList.contains('price-and-dim-row')) oldBtn.remove();
+        
+        // 2. Proveravamo da li već imamo naš "pametni" red, ako ne, pravimo ga
+        let priceRow = details.querySelector('.price-and-dim-row');
+        if (!priceRow) {
+            priceRow = document.createElement('div');
+            priceRow.className = 'price-and-dim-row';
+            priceRow.style.cssText = "display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;";
+            document.getElementById('modalMaterial').after(priceRow);
+        }
+
+        // 3. Punimo red (Cena levo, Zeleno dugme desno)
+        priceRow.innerHTML = `
+            <div class="modalPrice" style="font-size:1.3rem; font-weight:bold; margin:0;">${this.currentProduct.price} RSD</div>
+            <button id="dimensionsBtn" class="dimensions-btn active" 
+                    style="background:#28a745; color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer; font-size:0.9rem;">
+                📏 Dimenzije
+            </button>
+        `;
+
+        // Renderovanje veličina (da ostanu klikabilne)
+        const sizeSelector = document.getElementById('sizeSelector');
+        sizeSelector.innerHTML = Object.keys(this.currentProduct.sizes).map(size => {
+            const stock = this.currentProduct.sizes[size];
+            const disabled = stock === 0 ? 'disabled' : '';
+            return `<button class="size-option ${disabled}" data-size="${size}" onclick="shop.selectSize(event, '${size}', ${stock === 0})">${size}</button>`;
+        }).join('');
+
+        // Aktiviranje zelenog dugmeta
+        document.getElementById('dimensionsBtn').onclick = () => this.openDimensionsFromBtn();
+
+        this.updateModalImage();
+        document.getElementById('productModal').style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+
     // =========================================================
     // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (FIXED) ===
     // =========================================================
