@@ -739,12 +739,12 @@ nav a.active {
 .size-selector {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
+    gap: 3px;
     margin-bottom: 10px;
 }
 
 .size-option { 
-    padding: 8px 3px;
+    padding: 8px 1px;
     border: 1px solid var(--gray-medium); 
     border-radius: 6px; 
     cursor: pointer; 
