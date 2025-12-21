@@ -13,7 +13,7 @@ class AresNyXShop {
         this.currentSizeFilter = 'all';     
         this.currentSort = 'default'; 
         this.currentProduct = null;
-        this.checkoutData = {};m.
+        this.checkoutData = {};
         this.currentSize = null;
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
@@ -868,10 +868,6 @@ class AresNyXShop {
             return;
         }
         
-        // KLIK NA DUGME ZA DIMENZIJE - ovo će se pozivati iz globalne funkcije
-        // Globalna funkcija openDimensionsModal() će pozivati ovu logiku
-        // iz HTML onclick atributa
-        
         // ZATVARANJE MODALA
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -1144,29 +1140,3 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
-// ===== JEDNOSTAVAN FIX: SAKRIJ VELIKO DUGME PREKO CSS =====
-(function() {
-    // Dodaj CSS koji sakriva samo veliko dugme
-    const style = document.createElement('style');
-    style.textContent = `
-        /* Sakrij veliko sivo dugme "Prikaži dimenzije" */
-        button.dimensions-btn:not(#dimensionsBtn) {
-            display: none !important;
-        }
-        
-        /* Ostavi malo zeleno dugme "Dimenzije" */
-        #dimensionsBtn {
-            display: flex !important;
-            visibility: visible !important;
-        }
-        
-        /* Forciraj male dugmice za veličine */
-        .size-option {
-            min-width: 0 !important;
-            width: 100% !important;
-            padding: 4px 1px !important;
-            font-size: 0.75rem !important;
-        }
-    `;
-    document.head.appendChild(style);
-})();
