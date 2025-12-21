@@ -1144,3 +1144,72 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
+// ===== FIX ZA SAKRIVANJE DUGMETA "PRIKAŽI DIMENZIJE" =====
+
+// 1. Prati kada se otvori modal
+function hideDimensionsButton() {
+    // Sakrij dugme kada god se pojavi
+    const hideButton = () => {
+        const dimBtn = document.getElementById('dimensionsBtn');
+        if (dimBtn) {
+            dimBtn.style.display = 'none';
+            dimBtn.style.visibility = 'hidden';
+            dimBtn.style.opacity = '0';
+            dimBtn.style.height = '0';
+            dimBtn.style.padding = '0';
+            dimBtn.style.margin = '0';
+            dimBtn.style.border = 'none';
+        }
+        
+        // Sakrij i sve druge dugmadi sa tom klasom
+        document.querySelectorAll('.dimensions-btn').forEach(btn => {
+            btn.style.display = 'none';
+        });
+    };
+    
+    // Pokreni odmah i ponavljaj svake 100ms dok ne sakrijemo
+    hideButton();
+    const interval = setInterval(hideButton, 100);
+    
+    // Zaustavi posle 3 sekunde
+    setTimeout(() => clearInterval(interval), 3000);
+}
+
+// 2. Dodaj event listener kada se otvori modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Prati promene u DOM-u (modal se otvara)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.target.id === 'productModal' || 
+                mutation.target.classList.contains('modal-overlay')) {
+                hideDimensionsButton();
+            }
+        });
+    });
+    
+    // Počni da pratiš body za promene
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style', 'id']
+    });
+    
+    // Takodje pokreni kada se klikne na bilo koji product card
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.product-card') || 
+            e.target.classList.contains('product-card')) {
+            setTimeout(hideDimensionsButton, 300);
+        }
+    });
+});
+
+// 3. Alternativno: Ako imaš shop.openModal funkciju, dodaj ovde
+if (window.shop && window.shop.openModal) {
+    const originalOpenModal = shop.openModal;
+    shop.openModal = function(...args) {
+        const result = originalOpenModal.apply(this, args);
+        setTimeout(hideDimensionsButton, 100);
+        return result;
+    };
+}
