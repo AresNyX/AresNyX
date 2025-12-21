@@ -448,15 +448,6 @@ nav a.active {
     position: relative;
     text-align: center;
     flex: 1 1 55%; 
-    position: relative;
-    cursor: zoom-in;
-}
-.modal-gallery img {
-    transition: transform 0.3s ease;
-}
-
-.modal-gallery img:hover {
-    transform: scale(1.01);
 }
 .modal-main-image {
     width: 100%;
@@ -666,100 +657,6 @@ nav a.active {
     border-radius: 7px; font-size: 0.95rem; 
     font-weight: 600; 
     cursor: pointer; 
-}
-/* LIGHTBOX STILOVI */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    cursor: zoom-out;
-}
-
-.lightbox-content {
-    position: relative;
-    margin: auto;
-    padding: 20px;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox-img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    background: none;
-    border: none;
-    z-index: 10000;
-}
-
-.lightbox-close:hover {
-    color: #f0f0f0;
-}
-
-.lightbox-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 20px;
-}
-
-.lightbox-nav-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    font-size: 24px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-
-.lightbox-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.lightbox-nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.lightbox-counter {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 16px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 15px;
-    border-radius: 20px;
 }
 
 /* ===== MEDIA QUERIES ZA MODAL (Mobilni Prikaz: < 768px) ===== */
@@ -1234,95 +1131,6 @@ header h2, .subtitle {
     font-size: 24px;
     cursor: pointer;
 }
-/* ===== FIX ZA GRID PRIKAZ ===== */
-#productsGrid.products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-    gap: 1.5rem !important;
-    margin: 2rem auto !important;
-    padding: 1rem !important;
-    width: 100% !important;
-    max-width: 1400px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* FIX ZA PRODUCT CARD */
-.product-card {
-    display: flex !important;
-    flex-direction: column !important;
-    background: white !important;
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08) !important;
-    transition: transform 0.3s ease !important;
-    height: 100% !important;
-    min-height: 450px !important;
-    position: relative !important;
-}
-
-/* FIX ZA RESPONSIVNOST */
-@media (max-width: 768px) {
-    #productsGrid.products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
-        gap: 1rem !important;
-        padding: 0.5rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    #productsGrid.products-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
-}
-
-/* FIX ZA FLEXBOX FALLBACK */
-@supports not (display: grid) {
-    #productsGrid.products-grid {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 1.5rem !important;
-    }
-    
-    .product-card {
-        width: 280px !important;
-        margin: 0.5rem !important;
-    }
-}
-
-/* ===== FIX ZA MODAL ===== */
-.modal-overlay.active {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.modal-container {
-    display: block !important;
-    position: relative !important;
-    animation: modalFadeIn 0.3s ease !important;
-}
-
-@keyframes modalFadeIn {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* ===== DIJAGNOSTIKA ===== */
-/* Dodaj ovaj kod za testiranje */
-#productsGrid:empty::before {
-    content: "⚠️ Nema proizvoda za prikaz ili došlo je do greške";
-    display: block;
-    padding: 2rem;
-    text-align: center;
-    color: #666;
-    font-size: 1.2rem;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    margin: 2rem;
-}
 
 /* ===== DODATNI FIX-OVI ===== */
 /* Osiguraj da se sve prikazuje */
@@ -1330,4 +1138,4 @@ header h2, .subtitle {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-            }
+    }
