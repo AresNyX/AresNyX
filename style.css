@@ -1131,67 +1131,100 @@ header h2, .subtitle {
     font-size: 24px;
     cursor: pointer;
 }
-/* --- KONAČNA HIRURGIJA MODALA --- */
+/* --- KONAČNA HIRURGIJA: 60/40 RASPORED BEZ SKROLA --- */
 
 @media (max-width: 768px) {
-    /* 1. Slika na fiksni prostor (oko 45% visine) da ostane mesta za ostalo */
-    .modal-main-image { 
-        height: 40vh !important; 
-        max-height: 320px !important;
-        margin-bottom: 5px !important;
+    /* 1. Modal koristi CEO ekran po visini */
+    .modal-container {
+        height: 100vh !important;
+        max-height: 100vh !important;
+        width: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 0 !important;
     }
 
-    /* 2. Smanjenje dugmića za veličine za 15% */
-    .size-option {
-        padding: 6px 10px !important;
-        font-size: 0.8rem !important;
-        min-width: 38px !important;
-        height: 32px !important;
+    /* 2. SLIKA U PRVOM PLANU (Tačno 60% visine) */
+    .modal-gallery {
+        flex: 0 0 60% !important; /* Zauzima tačno 60% visine */
+        height: 60% !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
-    /* 3. Brisanje teksta "Tabela veličina" */
+    .modal-main-image {
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: contain !important;
+        padding: 10px !important;
+    }
+
+    /* 3. TEKSTUALNI DEO (Ostatak od 40%) */
+    .modal-details {
+        flex: 0 0 40% !important;
+        padding: 10px 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important; /* Raspoređuje elemente da popune prostor */
+        background: white !important;
+    }
+
+    /* Smanjenje naslova da ne troši prostor */
+    #modalTitle { font-size: 1.1rem !important; margin: 0 !important; }
+    #modalMaterial { font-size: 0.8rem !important; margin-bottom: 5px !important; }
+
+    /* 4. BRISANJE SIVE TABELE VELIČINA (Sve verzije) */
     .modal-details a[onclick*="openDimensions"], 
     .modal-details .size-chart-link,
-    .modal-details i.fa-ruler { /* u zavisnosti šta JS generiše */
-        display: none !important;
+    .modal-details .fa-ruler,
+    .modal-details span:contains("Tabela veličina") { 
+        display: none !important; 
     }
 
-    /* 4. PAKOVANJE: Dimenzije i Količina u ISTI RED */
-    .sizing-and-quantity-wrapper {
+    /* 5. VELIČINE - Smanjene za 15% */
+    .size-option {
+        min-width: 35px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+        padding: 0 5px !important;
+    }
+
+    /* 6. KOLICINA I DIMENZIJE U ISTOM REDU */
+    /* Pretpostavka je da su jedan pored drugog u HTML-u ili ih pakujemo flex-om */
+    .sizing-and-quantity-wrapper, 
+    .modal-details > div:has(#dimensionsBtn) { 
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: space-between !important;
         gap: 10px !important;
-        margin: 10px 0 !important;
+        margin: 5px 0 !important;
     }
 
-    /* Smanjenje selektora količine da stane u red */
+    /* Smanjenje kolicine */
     .quantity-selector {
-        width: 110px !important;
-        height: 35px !important;
+        width: 100px !important;
+        height: 32px !important;
     }
-
-    .qty-btn { width: 30px !important; font-size: 1.1rem !important; }
-    .qty-display { font-size: 1rem !important; }
-
-    /* Zeleno dugme dimenzija se skuplja da napravi mesta */
+    .qty-btn { width: 30px !important; }
+    
     #dimensionsBtn {
-        flex: 1 !important;
         margin: 0 !important;
-        padding: 8px 5px !important;
+        flex: 1 !important;
         font-size: 0.8rem !important;
-        white-space: nowrap !important;
+        padding: 8px !important;
     }
 
-    /* 5. DVA DUGMETA NA KRAJU (jedno pored drugog) */
+    /* 7. DVA DUGMETA NA KRAJU (Bez skrola, jedno pored drugog) */
     .modal-actions {
         display: flex !important;
         flex-direction: row !important;
         gap: 8px !important;
-        margin-top: 15px !important;
-        padding: 0 !important;
-        position: static !important; /* Ne fiksiramo ih da ne pokriju sadržaj */
+        margin-top: auto !important; /* Gura ih na samo dno 40% bloka */
+        padding-bottom: 10px !important;
     }
 
     .add-to-cart-btn {
@@ -1205,17 +1238,8 @@ header h2, .subtitle {
         padding: 12px !important;
         font-size: 0.8rem !important;
     }
-
-    /* 6. Generalno smanjenje naslova za dodatni prostor */
-    #modalTitle { font-size: 1.1rem !important; margin-bottom: 0 !important; }
-    #modalMaterial { font-size: 0.8rem !important; margin-bottom: 5px !important; }
-    
-    /* 7. Uklanjanje duplikata koji su se videli na slici */
-    .modal-details > .modalPrice, 
-    .modal-details > .dimensions-btn {
-        display: none !important;
-    }
 }
+
 
 
 /* ===== DODATNI FIX-OVI ===== */
