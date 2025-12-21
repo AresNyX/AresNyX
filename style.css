@@ -1641,12 +1641,12 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
-/* ===== MODAL KOMPAKTNI FIX - FINALNA VERZIJA ===== */
+    /* ===== MODAL KOMPAKTNI FIX - FINALNA VERZIJA ===== */
 
 /* 1. SMANJI FONT ZA NASLOVE ZA 30% */
 .size-header-row h3,
 .quantity-header-row h3 {
-    font-size: 0.8rem !important; /* smanjeno za 30% */
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
     color: #555 !important;
     margin: 0 !important;
@@ -1656,14 +1656,14 @@ header h2, .subtitle {
 .size-header-row {
     display: flex !important;
     justify-content: space-between !important;
-    align-items: flex-end !important; /* poravnaj na dno */
+    align-items: flex-end !important;
     margin-bottom: 8px !important;
     position: relative !important;
 }
 
 /* 3. KOLIČINA U DESNI DEO - ISPOD TEKSTA "Količina:" */
 .quantity-header-row {
-    display: none !important; /* sakrij stari header */
+    display: none !important;
 }
 
 .quantity-wrapper {
@@ -1671,17 +1671,15 @@ header h2, .subtitle {
     padding: 0 !important;
     position: absolute !important;
     right: 0 !important;
-    bottom: -5px !important; /* malo ispod linije */
+    bottom: -5px !important;
 }
 
-/* Količina kontrola u istom redu */
 .quantity-selector-wrapper {
     display: flex !important;
     align-items: center !important;
     gap: 5px !important;
 }
 
-/* Label za količinu iznad kontrole */
 .quantity-label {
     font-size: 0.8rem !important;
     color: #555 !important;
@@ -1691,7 +1689,13 @@ header h2, .subtitle {
     display: block !important;
 }
 
-/* 4. VRAĆANJE DUGMETA DIMENZIJE U RED SA CENOM */
+/* 4. UKLONI VELIKO SIVO DUGME "PRIKAŽI DIMENZIJE" */
+.dimensions-btn[onclick*="openDimensionsModal"],
+button.dimensions-btn:not(#dimensionsBtn) {
+    display: none !important;
+}
+
+/* 5. DUGME "DIMENZIJE" U REDU SA CENOM */
 .modalPrice {
     display: flex !important;
     justify-content: space-between !important;
@@ -1701,17 +1705,17 @@ header h2, .subtitle {
     border-bottom: 1px solid #eee !important;
 }
 
-/* Cena levo, dugme desno */
-.price-amount {
+/* Cena levo */
+.modalPrice span {
     font-size: 1.5rem !important;
     font-weight: 700 !important;
     color: var(--accent-gold) !important;
 }
 
-/* Dugme dimenzije pored cene */
+/* Malo dugme "Dimenzije" desno */
 #dimensionsBtn {
-    padding: 6px 12px !important;
-    font-size: 0.8rem !important;
+    padding: 5px 10px !important;
+    font-size: 0.75rem !important;
     background: #6c757d !important;
     color: white !important;
     border: none !important;
@@ -1719,22 +1723,28 @@ header h2, .subtitle {
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
-    gap: 5px !important;
-    height: 28px !important;
+    gap: 4px !important;
+    height: 26px !important;
+    white-space: nowrap !important;
 }
 
 #dimensionsBtn:hover:not(:disabled) {
     background: #5a6268 !important;
 }
 
-/* 5. FLEKSIBILNA ŠIRINA MODALA */
+#dimensionsBtn:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+/* 6. FLEKSIBILNA ŠIRINA MODALA */
 .modal-container {
     width: 95% !important;
     max-width: 500px !important;
     min-width: 300px !important;
 }
 
-/* 6. SMANJI CEO MODAL VERTIKALNO */
+/* 7. SMANJI CEO MODAL VERTIKALNO */
 .modal-content {
     padding: 15px !important;
     gap: 15px !important;
@@ -1758,7 +1768,7 @@ header h2, .subtitle {
     padding: 0 !important;
 }
 
-/* 7. KOMPAKTNIJE DUGMICE ZA VELIČINE */
+/* 8. KOMPAKTNIJE DUGMICE ZA VELIČINE */
 .size-selector {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
@@ -1774,7 +1784,7 @@ header h2, .subtitle {
     border: 1px solid #ddd !important;
 }
 
-/* 8. RESPONSIVE ZA MOBILNE */
+/* 9. RESPONSIVE ZA MOBILNE */
 @media (max-width: 480px) {
     .modal-container {
         width: 98% !important;
@@ -1803,7 +1813,13 @@ header h2, .subtitle {
         height: 28px !important;
     }
     
-    .price-amount {
+    .modalPrice span {
         font-size: 1.3rem !important;
+    }
+    
+    #dimensionsBtn {
+        padding: 4px 8px !important;
+        font-size: 0.7rem !important;
+        height: 24px !important;
     }
 }
