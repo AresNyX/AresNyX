@@ -2038,3 +2038,24 @@ body .modal-overlay .modal-container {
     width: 100% !important;
     max-width: 100% !important;
 }
+/* SAMO OVO DODAJ - UKLANJA DUGME ZA DIMENZIJE */
+#dimensionsBtn,
+.dimensions-btn {
+    display: none !important;
+}
+
+/* SAMO ZA MOBILNE: Modal treba da bude širi */
+@media (max-width: 768px) {
+    #productModal .modal-container {
+        width: 95% !important;
+        margin: 10px !important;
+        max-height: 90vh !important;
+    }
+}
+/* POVEĆAJ SLIKU SAMO NA DESKTOPU */
+@media (min-width: 769px) {
+    .modal-main-image {
+        height: 450px !important;
+        max-height: 50vh !important;
+    }
+}
