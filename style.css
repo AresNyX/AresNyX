@@ -1641,81 +1641,169 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
-/* ===== MODAL KOMPAKTNI FIX ===== */
+/* ===== MODAL KOMPAKTNI FIX - FINALNA VERZIJA ===== */
 
-/* 1. DUGMICE ZA VELIČINU - SMANJI NA POLA */
-.size-selector {
-    gap: 4px !important;
-    margin-bottom: 10px !important;
+/* 1. SMANJI FONT ZA NASLOVE ZA 30% */
+.size-header-row h3,
+.quantity-header-row h3 {
+    font-size: 0.8rem !important; /* smanjeno za 30% */
+    font-weight: 600 !important;
+    color: #555 !important;
+    margin: 0 !important;
 }
 
-.size-option {
-    padding: 6px 3px !important;
-    font-size: 0.85rem !important;
-    min-width: 40px !important;
-    height: 35px !important;
-    border-width: 1px !important;
+/* 2. PREMESTI KOLIČINU U ISTI RED SA VELIČINAMA */
+.size-header-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important; /* poravnaj na dno */
+    margin-bottom: 8px !important;
+    position: relative !important;
 }
 
-/* 2. KOLIČINA - SMANJI NA POLA */
-.quantity-selector {
-    border-width: 1px !important;
-    padding: 2px !important;
-    gap: 5px !important;
-}
-
-.qty-btn {
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 1rem !important;
-}
-
-.qty-display {
-    font-size: 0.95rem !important;
-    min-width: 30px !important;
-}
-
-/* 3. SMANJI VERTIKALNE RAZMAKE */
-.size-section {
-    margin-bottom: 15px !important;
+/* 3. KOLIČINA U DESNI DEO - ISPOD TEKSTA "Količina:" */
+.quantity-header-row {
+    display: none !important; /* sakrij stari header */
 }
 
 .quantity-wrapper {
-    margin: 10px 0 15px 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    right: 0 !important;
+    bottom: -5px !important; /* malo ispod linije */
 }
 
-.modal-actions {
-    margin-top: 20px !important;
-    gap: 8px !important;
-}
-
-/* 4. PODIGNI SVE NA GORE */
-.modal-details {
+/* Količina kontrola u istom redu */
+.quantity-selector-wrapper {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    padding-top: 5px !important;
+    align-items: center !important;
+    gap: 5px !important;
 }
 
-/* 5. DUGMAD - KOMPAKTNIJE */
-.add-to-cart-btn,
-.continue-shopping {
-    padding: 12px 16px !important;
-    font-size: 0.95rem !important;
-    margin-top: 5px !important;
+/* Label za količinu iznad kontrole */
+.quantity-label {
+    font-size: 0.8rem !important;
+    color: #555 !important;
+    font-weight: 600 !important;
+    text-align: right !important;
+    margin-bottom: 2px !important;
+    display: block !important;
 }
 
-/* 6. FIX ZA RESPONSIVE */
-@media (max-width: 768px) {
-    .size-option {
-        padding: 5px 2px !important;
-        font-size: 0.8rem !important;
-        min-width: 35px !important;
-        height: 30px !important;
+/* 4. VRAĆANJE DUGMETA DIMENZIJE U RED SA CENOM */
+.modalPrice {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 15px !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+/* Cena levo, dugme desno */
+.price-amount {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--accent-gold) !important;
+}
+
+/* Dugme dimenzije pored cene */
+#dimensionsBtn {
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+    background: #6c757d !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    height: 28px !important;
+}
+
+#dimensionsBtn:hover:not(:disabled) {
+    background: #5a6268 !important;
+}
+
+/* 5. FLEKSIBILNA ŠIRINA MODALA */
+.modal-container {
+    width: 95% !important;
+    max-width: 500px !important;
+    min-width: 300px !important;
+}
+
+/* 6. SMANJI CEO MODAL VERTIKALNO */
+.modal-content {
+    padding: 15px !important;
+    gap: 15px !important;
+    max-height: 80vh !important;
+}
+
+.modal-gallery {
+    flex: 1 !important;
+    min-height: 250px !important;
+    max-height: 40vh !important;
+}
+
+.modal-main-image {
+    height: 300px !important;
+    max-height: 35vh !important;
+}
+
+.modal-details {
+    flex: 1 !important;
+    min-height: auto !important;
+    padding: 0 !important;
+}
+
+/* 7. KOMPAKTNIJE DUGMICE ZA VELIČINE */
+.size-selector {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 3px !important;
+    margin-bottom: 8px !important;
+}
+
+.size-option {
+    padding: 6px 2px !important;
+    font-size: 0.8rem !important;
+    min-width: 0 !important;
+    height: 32px !important;
+    border: 1px solid #ddd !important;
+}
+
+/* 8. RESPONSIVE ZA MOBILNE */
+@media (max-width: 480px) {
+    .modal-container {
+        width: 98% !important;
+        max-width: 98% !important;
+        margin: 5px !important;
     }
     
-    .qty-btn {
-        width: 28px !important;
+    .modal-content {
+        padding: 10px !important;
+        gap: 10px !important;
+    }
+    
+    .modal-main-image {
+        height: 250px !important;
+        max-height: 30vh !important;
+    }
+    
+    .size-selector {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 2px !important;
+    }
+    
+    .size-option {
+        padding: 4px 1px !important;
+        font-size: 0.75rem !important;
         height: 28px !important;
+    }
+    
+    .price-amount {
+        font-size: 1.3rem !important;
     }
 }
