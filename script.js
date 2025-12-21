@@ -13,7 +13,7 @@ class AresNyXShop {
         this.currentSizeFilter = 'all';     
         this.currentSort = 'default'; 
         this.currentProduct = null;
-        this.checkoutData = {};
+        this.checkoutData = {};m.
         this.currentSize = null;
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
@@ -1161,10 +1161,32 @@ function hideDimensionsButton() {
             dimBtn.style.border = 'none';
         }
         
-        // Sakrij i sve druge dugmadi sa tom klasom
+        // ===== FIX ZA SAKRIVANJE SAMO VELIKOG DUGMETA "PRIKAŽI DIMENZIJE" =====
+
+function hideDimensionsButton() {
+    const hideButton = () => {
+        // Sakrij SAMO veliko dugme "Prikaži dimenzije" (koje ima width: 100%)
         document.querySelectorAll('.dimensions-btn').forEach(btn => {
-            btn.style.display = 'none';
+            // Proveri da li je dugme široko (veliko sivo dugme)
+            const styles = window.getComputedStyle(btn);
+            if (styles.width === '100%' || btn.textContent.includes('Prikaži')) {
+                btn.style.display = 'none';
+                btn.style.visibility = 'hidden';
+            }
+            // MALO DUGME "DIMENZIJE" OSTAVI VIDLJIVO!
         });
+        
+        // Ili specifičnije: sakrij samo dugme koje nije #dimensionsBtn
+        const bigDimBtn = document.querySelector('.dimensions-btn:not(#dimensionsBtn)');
+        if (bigDimBtn) {
+            bigDimBtn.style.display = 'none';
+        }
+    };
+    
+    hideButton();
+    const interval = setInterval(hideButton, 100);
+    setTimeout(() => clearInterval(interval), 3000);
+}
     };
     
     // Pokreni odmah i ponavljaj svake 100ms dok ne sakrijemo
