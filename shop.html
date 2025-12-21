@@ -650,15 +650,18 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     <p class="modal-material" id="modalMaterial"></p>
     <p class="modalPrice" id="modalPrice"></p>
     
-    <div class="size-section">
-        
-        <div class="size-header-row">
-            <h3>Odaberite veličinu:</h3>
-            <div class="size-info" onclick="shop.toggleSizeTable()">
-                <i class="fas fa-ruler"></i>
-                <span>Tabela veličina</span>
-            </div>
-        </div>
+  <div class="size-section">
+    <div class="size-header-row">
+        <h3>Odaberite veličinu:</h3>
+        <button id="dimensionsBtn" class="dimensions-btn" onclick="openDimensionsModal()" disabled>
+            <i class="fas fa-ruler"></i> Dimenzije
+    </button>
+    </div>
+    
+    <div class="size-selector" id="sizeSelector">
+        <!-- Dinamički će se popuniti -->
+    </div>
+  </div>
         
         <div class="size-selector" id="sizeSelector">
             <!-- Dinamički će se popuniti -->
