@@ -1641,254 +1641,9 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
+/* ===== MODAL OPTIMIZACIJA - SAMO NEOPHODNO ===== */
 
-
-/* ===== CRITICAL MODAL FIXES - MORA BITI POSLEDNJE U CSS-U ===== */
-
-/* 1. Smanji modal za 1/3 */
-body .modal-overlay .modal-container {
-    max-width: 650px !important;
-    width: 90% !important;
-    max-height: 85vh !important;
-}
-
-/* 2. UKLONI DUGME "PRIKAŽI DIMENZIJE" */
-.modal-details #dimensionsBtn,
-.modal-details .dimensions-btn,
-.size-header-row .dimensions-btn {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    opacity: 0 !important;
-}
-
-/* 3. POVEČAJ SLIKU - BITNO! */
-.modal-overlay .modal-container .modal-content .modal-gallery {
-    flex: 1.8 !important;
-    min-width: 60% !important;
-    padding-right: 20px !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-gallery .modal-main-image {
-    height: 520px !important;
-    max-height: 65vh !important;
-    min-height: 400px !important;
-    width: 100% !important;
-    object-fit: contain !important;
-    background: #f8f9fa !important;
-    border-radius: 10px !important;
-    padding: 20px !important;
-}
-
-/* 4. SMANJI DESNU STRANU */
-.modal-overlay .modal-container .modal-content .modal-details {
-    flex: 1 !important;
-    min-width: 40% !important;
-    padding: 10px 0 10px 10px !important;
-    max-height: 75vh !important;
-    overflow-y: auto !important;
-}
-
-/* 5. SMANJI FONTOVE */
-.modal-overlay .modal-container .modal-content .modal-details #modalTitle {
-    font-size: 1.4rem !important;
-    line-height: 1.3 !important;
-    margin-bottom: 5px !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .modal-material {
-    font-size: 0.9rem !important;
-    margin-bottom: 8px !important;
-    padding: 5px 10px !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .modalPrice {
-    font-size: 1.5rem !important;
-    margin-bottom: 15px !important;
-    padding-bottom: 10px !important;
-}
-
-/* 6. SMANJI HEADER ZA VELIČINE */
-.modal-overlay .modal-container .modal-content .modal-details .size-header-row h3 {
-    font-size: 1rem !important;
-    margin: 0 !important;
-    font-weight: 600 !important;
-}
-
-/* 7. SMANJI DUGMADI ZA VELIČINE */
-.modal-overlay .modal-container .modal-content .modal-details .size-selector {
-    gap: 6px !important;
-    margin-bottom: 15px !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .size-selector .size-option {
-    padding: 8px 5px !important;
-    font-size: 0.85rem !important;
-    min-width: 50px !important;
-    height: 40px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-/* 8. SMANJI KOLIČINU */
-.modal-overlay .modal-container .modal-content .modal-details .quantity-header-row h3 {
-    font-size: 1rem !important;
-    margin: 0 !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .quantity-selector .qty-btn {
-    width: 35px !important;
-    height: 35px !important;
-    font-size: 1.1rem !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .quantity-selector .qty-display {
-    font-size: 1rem !important;
-    min-width: 40px !important;
-}
-
-/* 9. SMANJI DUGMAD */
-.modal-overlay .modal-container .modal-content .modal-details .modal-actions {
-    margin-top: 20px !important;
-    gap: 10px !important;
-}
-
-.modal-overlay .modal-container .modal-content .modal-details .modal-actions .add-to-cart-btn,
-.modal-overlay .modal-container .modal-content .modal-details .modal-actions .continue-shopping {
-    padding: 12px 16px !important;
-    font-size: 0.95rem !important;
-    border-radius: 8px !important;
-}
-
-/* 10. FIX ZA RESPONSIVE */
-@media (max-width: 768px) {
-    body .modal-overlay .modal-container {
-        max-width: 95% !important;
-        width: 95% !important;
-        max-height: 90vh !important;
-    }
-    
-    .modal-overlay .modal-container .modal-content {
-        flex-direction: column !important;
-        padding: 15px !important;
-        gap: 20px !important;
-    }
-    
-    .modal-overlay .modal-container .modal-content .modal-gallery,
-    .modal-overlay .modal-container .modal-content .modal-details {
-        min-width: 100% !important;
-        flex: none !important;
-        padding: 0 !important;
-    }
-    
-    .modal-overlay .modal-container .modal-content .modal-gallery .modal-main-image {
-        height: 350px !important;
-        max-height: 50vh !important;
-    }
-    
-    /* NA MOBILNOM - 3 kolone za veličine */
-    .modal-overlay .modal-container .modal-content .modal-details .size-selector {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-}
-/* ===== MODAL VERTIKALNI LAYOUT FIX ===== */
-
-/* FORSIRAJ VERTIKALNI LAYOUT */
-#productModal .modal-content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    max-height: 75vh !important;
-    overflow-y: auto !important;
-    padding: 20px !important;
-}
-
-/* SLIKA - GORNJI DEO */
-#productModal .modal-gallery {
-    width: 100% !important;
-    flex: none !important;
-    min-height: 400px !important;
-    max-height: 50vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 15px !important;
-    background: #f8f9fa !important;
-    border-radius: 12px !important;
-    margin-bottom: 10px !important;
-}
-
-/* POVEČAJ SLIKU */
-#modalMainImage {
-    width: auto !important;
-    height: auto !important;
-    max-width: 100% !important;
-    max-height: 350px !important;
-    object-fit: contain !important;
-}
-
-/* DETALJI - DONJI DEO (KOMPAKTNI) */
-#productModal .modal-details {
-    width: 100% !important;
-    flex: none !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-}
-
-/* UKLONI DUGME ZA DIMENZIJE */
-#dimensionsBtn, .dimensions-btn {
-    display: none !important;
-}
-
-/* SMANJI MODAL */
-#productModal .modal-container {
-    max-width: 500px !important;
-    width: 90% !important;
-    max-height: 85vh !important;
-}
-
-/* SMANJI NASLOV I CENU */
-#modalTitle {
-    font-size: 1.3rem !important;
-    margin-bottom: 5px !important;
-    line-height: 1.2 !important;
-}
-
-.modal-material {
-    font-size: 0.85rem !important;
-    margin-bottom: 10px !important;
-    color: #666 !important;
-}
-
-.modalPrice {
-    font-size: 1.4rem !important;
-    font-weight: bold !important;
-    color: #e53e3e !important;
-    margin-bottom: 15px !important;
-    padding-bottom: 10px !important;
-    border-bottom: 1px solid #eee !important;
-}
-
-/* VELIČINE - KOMPAKTNO */
-.size-section {
-    margin: 10px 0 !important;
-}
-
-.size-header-row h3 {
-    font-size: 0.95rem !important;
-    margin-bottom: 8px !important;
-    color: #333 !important;
-}
-
-/* GRID ZA VELIČINE (5 U JEDNOM REDU) */
+/* 1. SMANJI VELIČINE DUGMADI ZA VELIČINE - DA STANU U JEDAN RED */
 .size-selector {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
@@ -1897,165 +1652,110 @@ body .modal-overlay .modal-container {
 }
 
 .size-option {
-    padding: 8px 4px !important;
-    font-size: 0.85rem !important;
-    border: 1px solid #ddd !important;
-    background: white !important;
-    border-radius: 6px !important;
-    cursor: pointer !important;
+    padding: 10px 5px !important;
+    font-size: 0.9rem !important;
+    min-width: 0 !important;
+    width: 100% !important;
     text-align: center !important;
-    transition: all 0.2s !important;
-    min-height: 40px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
 }
 
-.size-option:hover {
-    border-color: #007bff !important;
-    background: #f8f9fa !important;
-}
-
-.size-option.selected {
-    background: #007bff !important;
-    color: white !important;
-    border-color: #007bff !important;
-}
-
-/* KOLIČINA - KOMPAKTNO */
-.quantity-wrapper {
-    margin: 10px 0 20px 0 !important;
-}
-
-.quantity-header-row {
+/* 2. DUGME ZA DIMENZIJE U ISTOM REDU SA NASLOVOM */
+.size-header-row {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     margin-bottom: 10px !important;
 }
 
-.quantity-header-row h3 {
-    font-size: 0.95rem !important;
+.size-header-row h3 {
     margin: 0 !important;
-    color: #333 !important;
-}
-
-.quantity-selector {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    background: #f8f9fa !important;
-    border-radius: 8px !important;
-    padding: 4px !important;
-    border: 1px solid #ddd !important;
-}
-
-.qty-btn {
-    width: 35px !important;
-    height: 35px !important;
-    border: none !important;
-    background: white !important;
-    border-radius: 6px !important;
-    font-size: 1.1rem !important;
-    font-weight: bold !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.qty-display {
     font-size: 1rem !important;
-    font-weight: 600 !important;
-    min-width: 40px !important;
-    text-align: center !important;
 }
 
-/* DUGMAD - KOMPAKTNO */
-.modal-actions {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-    margin-top: 15px !important;
-}
-
-.add-to-cart-btn,
-.continue-shopping {
-    width: 100% !important;
-    padding: 12px !important;
-    font-size: 0.95rem !important;
-    border-radius: 8px !important;
-    cursor: pointer !important;
-    transition: all 0.2s !important;
-    text-align: center !important;
-    font-weight: 600 !important;
-}
-
-.add-to-cart-btn {
-    background: #333 !important;
+#dimensionsBtn {
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    background: #6c757d !important;
     color: white !important;
     border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    height: auto !important;
+    white-space: nowrap !important;
 }
 
-.add-to-cart-btn:hover {
-    background: #555 !important;
-    transform: translateY(-2px) !important;
+#dimensionsBtn:hover:not(:disabled) {
+    background: #5a6268 !important;
 }
 
-.continue-shopping {
-    background: white !important;
-    color: #333 !important;
-    border: 1px solid #ddd !important;
+/* 3. SMANJI VERTIKALNE RAZMAKE */
+.modal-content {
+    padding: 20px !important;
+    gap: 20px !important;
 }
 
-.continue-shopping:hover {
-    background: #f8f9fa !important;
-    border-color: #bbb !important;
+.modal-details {
+    padding-top: 0 !important;
 }
 
-/* RESPONSIVE */
+/* 4. SMANJI FONTOVE */
+#modalTitle {
+    font-size: 1.4rem !important;
+    margin-bottom: 5px !important;
+}
+
+.modal-material {
+    font-size: 0.9rem !important;
+    margin-bottom: 10px !important;
+}
+
+.modalPrice {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 10px !important;
+}
+
+/* 5. SMANJI MODAL NA MOBILNOM */
 @media (max-width: 768px) {
-    #productModal .modal-container {
-        max-width: 95% !important;
+    .modal-container {
         width: 95% !important;
+        max-width: 95% !important;
+        margin: 10px auto !important;
     }
     
-    #modalMainImage {
-        max-height: 300px !important;
+    .modal-content {
+        flex-direction: column !important;
+        padding: 15px !important;
+        gap: 15px !important;
+    }
+    
+    .modal-main-image {
+        height: 300px !important;
+        max-height: 40vh !important;
     }
     
     .size-selector {
         grid-template-columns: repeat(3, 1fr) !important;
     }
     
-    .size-option {
-        padding: 10px 5px !important;
+    #dimensionsBtn {
+        padding: 5px 10px !important;
+        font-size: 0.8rem !important;
     }
 }
 
-/* HITNO: UKLONI HORIZONTALNI FLEX */
-#productModal .modal-content > * {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-/* SAMO OVO DODAJ - UKLANJA DUGME ZA DIMENZIJE */
-#dimensionsBtn,
-.dimensions-btn {
-    display: none !important;
-}
-
-/* SAMO ZA MOBILNE: Modal treba da bude širi */
-@media (max-width: 768px) {
-    #productModal .modal-container {
-        width: 95% !important;
-        margin: 10px !important;
-        max-height: 90vh !important;
-    }
-}
-/* POVEĆAJ SLIKU SAMO NA DESKTOPU */
+/* 6. POVEČAJ SLIKU NA DESKTOPU */
 @media (min-width: 769px) {
     .modal-main-image {
         height: 450px !important;
-        max-height: 50vh !important;
+        max-height: 55vh !important;
+    }
+    
+    .modal-gallery {
+        flex: 1.2 !important;
+    }
+    
+    .modal-details {
+        flex: 0.8 !important;
     }
 }
