@@ -1131,46 +1131,131 @@ header h2, .subtitle {
     font-size: 24px;
     cursor: pointer;
 }
-/* 1. Smanjenje naslova za 20% i razmaka */
-#modalTitle {
-    font-size: 1.2rem !important;
-    margin-bottom: 2px !important;
-    line-height: 1.2;
+/* ========================================================= */
+/* ⭐ FINALNA KOREKCIJA: OPTIMIZACIJA PROSTORA I FIKSIRANJE ⭐ */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+    /* 1. Proporcija: Slika na 60% visine ekrana */
+    .modal-main-image { 
+        height: 55vh !important; 
+        max-height: 400px !important; 
+        width: 100% !important;
+        object-fit: contain !important;
+        margin-bottom: 0 !important;
+        padding: 5px !important;
+    }
+
+    /* 2. Smanjenje naslova i materijala da ne troše prostor */
+    #modalTitle {
+        font-size: 1.15rem !important;
+        margin-bottom: 2px !important;
+        line-height: 1.2 !important;
+    }
+
+    #modalMaterial {
+        font-size: 0.85rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* 3. Hirurško uklanjanje duplikata (Sivo dugme i stara cena) */
+    .modal-details > .modalPrice, 
+    .modal-details > .dimensions-btn {
+        display: none !important;
+    }
+
+    /* 4. Tvoj red: Cena levo, Zeleno dugme desno */
+    .price-and-dim-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin: 5px 0 10px 0 !important;
+        padding-bottom: 5px !important;
+        border-bottom: 1px solid #eee;
+    }
+
+    .modalPrice {
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+    }
+
+    #dimensionsBtn {
+        background: #28a745 !important; /* Zeleno */
+        color: white !important;
+        padding: 7px 12px !important;
+        font-size: 0.85rem !important;
+        border-radius: 5px !important;
+        opacity: 1 !important;
+        cursor: pointer !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    /* 5. Veličine u jednom kompaktnom redu */
+    .size-selector {
+        display: flex !important;
+        gap: 6px !important;
+        margin: 5px 0 !important;
+    }
+
+    .size-option {
+        flex: 1 !important;
+        height: 38px !important;
+        font-size: 0.9rem !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin: 0 !important;
+    }
+
+    /* 6. Količina - zbijeno */
+    .quantity-wrapper {
+        margin-top: 5px !important;
+        padding: 5px 0 !important;
+    }
+    .quantity-selector { height: 40px !important; }
+
+    /* 7. AKCIJE NA DNU: Korpa + Nastavi Kupovinu (Jedno pored drugog) */
+    .modal-actions {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important; /* Horizontalno */
+        gap: 10px !important;
+        padding: 12px !important;
+        background: white !important;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1) !important;
+        z-index: 100 !important;
+    }
+
+    .add-to-cart-btn {
+        flex: 2 !important;
+        margin: 0 !important;
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .continue-shopping {
+        flex: 1 !important;
+        margin: 0 !important;
+        padding: 12px 5px !important;
+        font-size: 0.8rem !important;
+        display: block !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Dodatni prostor na dnu detalja da dugmad ne prekriju tekst */
+    .modal-details {
+        padding-bottom: 80px !important;
+    }
 }
 
-#modalMaterial {
-    font-size: 0.85rem !important;
-    margin-bottom: 8px !important;
-}
-
-/* 2. Brisanje sivog neaktivnog dugmeta (vizuelni višak) */
-/* Sakrivamo dugmad koja su direktna deca modal-details, a nisu zelena */
-.modal-details > button:not(.dimensions-btn):not(.add-to-cart-btn) {
-    display: none !important;
-}
-
-/* 3. Pozicioniranje zelenog dugmeta desno uz cenu */
-.price-and-dim-row {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 10px !important;
-}
-
-/* 4. Veličine dugmići - veći i klikabilniji */
-.size-option {
-    height: 44px !important; /* Standard za mobilni klik */
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    cursor: pointer !important;
-}
-
-/* 5. Primicanje količine na gore */
-.quantity-wrapper {
-    margin-top: 0 !important;
-    margin-bottom: 10px !important;
+/* Fix za Dimensions Modal (da se uvek vidi preko svega) */
+.dimensions-modal {
+    z-index: 3000 !important;
 }
 
 
