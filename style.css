@@ -474,8 +474,8 @@ nav a.active {
         transform: translateX(-50%) translateY(0); 
     }
 }
-
-/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA ISPRAVKA ===== */
+    
+ /* ===== MODAL - OPTIMALIZOVANA VERZIJA ===== */
 .modal-overlay { 
     position: fixed; 
     top: 0; 
@@ -497,13 +497,13 @@ nav a.active {
     background: white; 
     border-radius: 16px; 
     width: 95%; 
-    max-width: 1000px; 
-    max-height: 90vh; 
+    max-width: 900px; /* SMANJENO sa 1000px */
+    max-height: 85vh; /* SMANJENO sa 90vh */
     overflow: hidden; 
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.95);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -517,18 +517,18 @@ nav a.active {
 
 .modal-close { 
     position: absolute; 
-    top: 15px; 
-    right: 15px; 
+    top: 12px; /* SMANJENO */
+    right: 12px; /* SMANJENO */
     background: rgba(0,0,0,0.7); 
     color: white; 
     border: none; 
-    width: 40px; 
-    height: 40px; 
+    width: 36px; /* SMANJENO */
+    height: 36px; /* SMANJENO */
     border-radius: 50%; 
     cursor: pointer; 
     z-index: 10; 
     transition: all 0.3s ease;
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* SMANJENO */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -540,17 +540,17 @@ nav a.active {
 }
 
 .modal-content { 
-    padding: 30px; 
+    padding: 25px; /* SMANJENO */
     display: flex; 
-    gap: 30px;
-    max-height: 80vh;
+    gap: 25px; /* SMANJENO */
+    max-height: 75vh; /* SMANJENO */
     overflow: auto;
 }
 
-/* GALERIJA - Leva strana */
+/* GALERIJA - Veća slika */
 .modal-gallery {
     flex: 1;
-    min-width: 50%;
+    min-width: 55%; /* POVEĆANO za veću sliku */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -558,34 +558,35 @@ nav a.active {
 
 .modal-main-image {
     width: 100%;
-    height: 450px;
+    height: 500px; /* POVEĆANO za veću sliku */
     object-fit: contain;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 10px; /* SMANJENO */
+    margin-bottom: 10px; /* SMANJENO */
 }
 
-/* SLIDER NAVIGACIJA */
+/* SLIDER NAVIGACIJA - SMANJENO */
 .slider-nav {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    gap: 10px;
+    margin-top: 8px; /* SMANJENO */
+    gap: 8px; /* SMANJENO */
 }
 
 .slider-nav button {
-    padding: 10px 20px;
+    padding: 8px 16px; /* SMANJENO */
     background: #800000;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px; /* SMANJENO */
     cursor: pointer;
     font-weight: 600;
+    font-size: 0.9rem; /* SMANJENO */
     transition: all 0.3s;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px; /* SMANJENO */
     flex: 1;
     justify-content: center;
 }
@@ -603,81 +604,112 @@ nav a.active {
     transform: none !important;
 }
 
-/* DETALJI - Desna strana */
+/* DETALJI - Kompaktnije */
 .modal-details { 
     flex: 1;
-    min-width: 50%;
-    padding: 10px 0;
+    min-width: 45%; /* SMANJENO */
+    padding: 0;
 }
 
 #modalTitle {
-    font-size: 1.8rem !important; 
+    font-size: 1.6rem !important; /* SMANJENO */
     font-weight: 700 !important;
-    margin-bottom: 10px !important; 
+    margin-bottom: 8px !important; /* SMANJENO */
     line-height: 1.2 !important; 
     color: var(--primary-dark);
 }
 
 .modal-material {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important; /* SMANJENO */
     color: #666;
-    margin-bottom: 15px !important;
+    margin-bottom: 15px !important; /* SMANJENO */
 }
 
 .modalPrice { 
-    font-size: 1.8rem !important; 
+    font-size: 1.6rem !important; /* SMANJENO */
     font-weight: 700; 
     color: var(--accent-gold);
-    margin-bottom: 25px !important;
+    margin-bottom: 20px !important; /* SMANJENO */
     border-bottom: 2px solid #eee;
-    padding-bottom: 15px !important; 
+    padding-bottom: 12px !important; /* SMANJENO */
 }
 
-/* VELIČINE */
+/* VELIČINE - Kompaktnije */
 .size-section {
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* SMANJENO */
 }
 
 .size-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* SMANJENO */
 }
 
-.size-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #666;
+.size-header-row h3 {
+    font-size: 1.1rem !important; /* SMANJENO */
+    margin: 0 !important;
+}
+
+/* UKLONJENA TABELA VELIČINA - ZAMENJENA DUGMETOM */
+
+/* DIMENZIJE DUGME - ZELENO (u istom redu) */
+.dimensions-btn {
+    padding: 8px 16px; /* SMANJENO */
+    background: #28a745; /* ZELENA */
+    color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: color 0.3s;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.9rem; /* SMANJENO */
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 10px;
+    vertical-align: middle;
+    height: 36px; /* Dodato za bolje poravnanje */
 }
 
-.size-info:hover {
-    color: var(--accent-gold);
+.dimensions-btn.active {
+    background: #218838; /* Tamnija zelena */
+}
+
+.dimensions-btn:hover:not(:disabled) {
+    background: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.dimensions-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
 }
 
 .size-selector {
     display: flex;
-    gap: 10px;
+    gap: 8px; /* SMANJENO */
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-top: 10px; /* SMANJENO */
 }
 
 .size-option { 
     display: inline-block; 
-    padding: 12px 20px;
+    padding: 10px 16px; /* SMANJENO */
     border: 2px solid var(--gray-medium); 
     border-radius: 8px; 
     cursor: pointer; 
     transition: var(--transition); 
-    font-size: 1rem; 
+    font-size: 0.95rem; /* SMANJENO */
     font-weight: 600;
     background: white;
-    min-width: 60px;
+    min-width: 50px; /* SMANJENO */
     text-align: center;
+    height: 42px; /* Fiksna visina za bolje poravnanje */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .size-option:hover { 
@@ -698,117 +730,21 @@ nav a.active {
     background: #f5f5f5;
 }
 
-/* DIMENZIJE DUGME */
-.dimensions-btn {
-    width: 100%;
-    padding: 12px;
-    background: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-bottom: 20px;
-    transition: all 0.3s;
-    font-size: 1rem;
-}
-
-.dimensions-btn.active {
-    background: #28a745;
-    cursor: pointer;
-}
-
-.dimensions-btn:hover:not(:disabled) {
-    background: #218838;
-    transform: translateY(-2px);
-}
-
-.dimensions-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important;
-}
-
-/* DIMENZIJE MODAL */
-.dimensions-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1100;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.dimensions-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.dimensions-content h3 {
-    margin-bottom: 20px;
-    color: var(--primary-dark);
-    border-bottom: 2px solid var(--accent-gold);
-    padding-bottom: 10px;
-}
-
-#dimensionsData p {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#dimensionsData strong {
-    color: #555;
-}
-
-#dimensionsData span {
-    color: var(--primary-dark);
-    font-weight: 500;
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.3s;
-    background: none;
-    border: none;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.close-modal:hover {
-    color: var(--accent-gold);
-    background: #f5f5f5;
-}
-
-/* KOLIČINA */
+/* KOLIČINA - SMANJENA 20% i POMERENA GORE */
 .quantity-wrapper {
-    margin: 25px 0;
+    margin: 15px 0 20px 0; /* SMANJENO i POMERENO GORE */
 }
 
 .quantity-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* SMANJENO */
+}
+
+.quantity-header-row h3 {
+    font-size: 1.1rem !important; /* SMANJENO */
+    margin: 0 !important;
 }
 
 .quantity-selector {
@@ -818,15 +754,18 @@ nav a.active {
     border-radius: 8px;
     overflow: hidden;
     background: white;
+    transform: scale(0.9); /* SMANJENO 10% */
+    transform-origin: left;
+    margin-left: -5px; /* Kompenzacija za skaliranje */
 }
 
 .qty-btn {
-    width: 50px;
-    height: 50px;
+    width: 40px; /* SMANJENO */
+    height: 40px; /* SMANJENO */
     background: var(--gray-light);
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* SMANJENO */
     font-weight: 700;
     transition: background 0.2s;
     display: flex;
@@ -837,11 +776,11 @@ nav a.active {
 .qty-display {
     flex-grow: 1;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem; /* SMANJENO */
     font-weight: 600;
     color: var(--primary-dark);
-    min-width: 60px;
-    padding: 0 10px;
+    min-width: 50px; /* SMANJENO */
+    padding: 0 8px; /* SMANJENO */
 }
 
 .qty-btn:first-child { 
@@ -857,11 +796,11 @@ nav a.active {
     color: white; 
 }
 
-/* AKCIJE */
+/* AKCIJE - Kompaktnije */
 .modal-actions { 
     display: flex; 
-    gap: 15px; 
-    margin-top: 30px; 
+    gap: 12px; /* SMANJENO */
+    margin-top: 25px; /* SMANJENO */
     flex-wrap: wrap; 
 }
 
@@ -870,25 +809,25 @@ nav a.active {
     background: var(--primary-dark); 
     color: white; 
     border: none; 
-    padding: 16px 24px; 
-    border-radius: 10px; 
-    font-size: 1.1rem; 
+    padding: 14px 20px; /* SMANJENO */
+    border-radius: 8px; 
+    font-size: 1rem; /* SMANJENO */
     font-weight: 600; 
     cursor: pointer; 
     transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px; /* SMANJENO */
 }
 .continue-shopping { 
     flex: 1; 
     background: white; 
     color: var(--primary-dark); 
     border: 2px solid var(--primary-dark); 
-    padding: 16px 24px; 
-    border-radius: 10px; 
-    font-size: 1rem; 
+    padding: 14px 20px; /* SMANJENO */
+    border-radius: 8px; 
+    font-size: 0.95rem; /* SMANJENO */
     font-weight: 600; 
     cursor: pointer; 
     transition: all 0.3s;
@@ -916,7 +855,7 @@ nav a.active {
         flex-direction: column;
         gap: 20px;
         padding: 20px;
-        max-height: 85vh;
+        max-height: 80vh;
     }
     
     .modal-gallery,
@@ -925,7 +864,7 @@ nav a.active {
     }
     
     .modal-main-image {
-        height: 350px;
+        height: 400px; /* Prilagođeno za mobilne */
     }
     
     .modal-actions {
@@ -937,17 +876,28 @@ nav a.active {
         flex: 1;
         width: 100%;
     }
+    
+    .size-header-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .dimensions-btn {
+        margin-left: 0;
+        margin-top: 5px;
+    }
 }
 
 @media (max-width: 480px) {
     .modal-container {
-        border-radius: 0;
-        max-height: 100vh;
+        width: 98%;
+        max-height: 95vh;
+        border-radius: 12px;
     }
     
     .modal-content {
         padding: 15px;
-        max-height: 95vh;
+        max-height: 90vh;
     }
     
     .modal-main-image {
@@ -955,25 +905,29 @@ nav a.active {
     }
     
     #modalTitle {
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
     }
     
     .modalPrice {
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
     }
     
     .size-option {
-        padding: 10px 15px;
-        min-width: 50px;
+        padding: 8px 12px;
+        min-width: 45px;
         font-size: 0.9rem;
+        height: 38px;
     }
     
     .slider-nav button {
-        padding: 8px 15px;
-        font-size: 0.9rem;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .quantity-selector {
+        transform: scale(0.85);
     }
 }
-
 /* ============================================== */
 /* ===== KORPA ===== */
 /* ============================================== */
