@@ -475,7 +475,7 @@ nav a.active {
     }
 }
 
-/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - FINALNA ISPRAVKA ===== */
+/* ===== MODAL (Brzi pregled/Detalji Proizvoda) - POTPUNO ISPRAVLJEN ===== */
 .modal-overlay { 
     position: fixed; 
     top: 0; 
@@ -485,33 +485,32 @@ nav a.active {
     background: rgba(0,0,0,0.85); 
     z-index: 1000; 
     display: none;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
     backdrop-filter: blur(5px);
 }
 
 .modal-overlay.active { 
-    display: block !important; 
+    display: flex !important; 
 }
 
 .modal-container { 
     background: white; 
     border-radius: 16px; 
-    width: 95%; 
+    width: 100%; 
     max-width: 1000px; 
     max-height: 90vh; 
     overflow: hidden; 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
+    position: relative;
+    transform: translateY(20px);
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    z-index: 1001;
 }
 
 .modal-container.active {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateY(0);
     opacity: 1;
 }
 
