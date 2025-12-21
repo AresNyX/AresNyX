@@ -386,509 +386,131 @@ class AresNyXShop {
         grid.innerHTML = productsHTML;
         console.log(`✅ Rendered ${this.filteredProducts.length} products`);
     }
-
     // =========================================================
-    // === METODE ZA MODAL I KORPU ===
+    // === METODE ZA FILTRIRANJE, SORTIRANJE I RENDER (FIXED) ===
     // =========================================================
 
-             openProductModal(productId) {
-        console.log("🔍 Opening product modal for ID:", productId);
+    /**
+     * Postavlja event listenere. Uklonjena dupla inicijalizacija dimenzija.
+     */
+    attachEventListeners() {
+        console.log("🔗 Attaching event listeners...");
         
-        this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) return;
-
-        this.currentSize = null; 
-        this.currentQuantity = 1;
-        this.currentImageIndex = 0;
-
-        // Osnovni podaci
-        document.getElementById('modalTitle').textContent = this.currentProduct.name;
-        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalQty').textContent = '1';
-
-        // --- NOVI DEO: Grupisanje Cene i Dugmeta za dimenzije ---
-        const detailsContainer = document.querySelector('.modal-details');
-        
-        // Pronalazimo ili pravimo red za cenu i dimenzije
-        let priceRow = document.querySelector('.price-and-dim-row');
-        if (!priceRow) {
-            priceRow = document.createElement('div');
-            priceRow.className = 'price-and-dim-row';
-            // Ubacujemo ga odmah posle materijala
-            document.getElementById('modalMaterial').after(priceRow);
-        }
-
-        // Generišemo sadržaj reda (Cena + Dugme)
-        priceRow.innerHTML = `
-            <div class="modalPrice" id="modalPrice">${this.currentProduct.price} RSD</div>
-            <button id="dimensionsBtn" class="dimensions-btn active">📏 Dimenzije</button>
-        `;
-
-        this.updateModalImage();
-
-        // Generisanje veličina
-        const sizeSelector = document.getElementById('sizeSelector');
-        let firstAvailableSize = null;
-
-        sizeSelector.innerHTML = Object.keys(this.currentProduct.sizes)
-            .map(size => {
-                const stock = this.currentProduct.sizes[size]; 
-                const isDisabled = stock === 0; 
-                if (!isDisabled && !firstAvailableSize) firstAvailableSize = size;
-
-                return `
-                    <button class="size-option ${isDisabled ? 'disabled' : ''}"
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}>
-                        ${size}
-                    </button>
-                `;
-            }).join('');
-            
-        // Postavljanje inicijalne veličine
-        const dimBtn = document.getElementById('dimensionsBtn');
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-
-        if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            setTimeout(() => {
-                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-            }, 10);
-            
-            if (dimBtn) {
-                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
-                dimBtn.dataset.size = firstAvailableSize;
-                // Ponovo vežemo event jer smo pregazili innerHTML
-                dimBtn.onclick = () => this.openDimensionsFromBtn();
-            }
-        }
-
-        // Prikaz modala
-        document.getElementById('sizeTable').style.display = 'none';
-        document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('modal-open');
-    }
-
-    // Pomoćna funkcija da dugme u redu radi
-    openDimensionsFromBtn() {
-        const dimBtn = document.getElementById('dimensionsBtn');
-        const size = dimBtn.dataset.size;
-        if (size && this.dimenzije[size]) {
-            const dim = this.dimenzije[size];
-            document.getElementById('selectedSizeLabel').textContent = size;
-            document.getElementById('dimStruk').textContent = dim.struk;
-            document.getElementById('dimKuk').textContent = dim.kuk;
-            document.getElementById('dimSirina').textContent = dim.sirina;
-            document.getElementById('dimDuzina').textContent = dim.duzina;
-            document.getElementById('dimensionsModal').style.display = 'flex';
-        }
-    }
-    openProductModal(productId) {
-        console.log("🔍 Opening product modal for ID:", productId);
-        
-        this.currentProduct = this.products.find(p => p.id === productId);
-        if (!this.currentProduct) return;
-
-        this.currentSize = null; 
-        this.currentQuantity = 1;
-        this.currentImageIndex = 0;
-
-        // Osnovni podaci
-        document.getElementById('modalTitle').textContent = this.currentProduct.name;
-        document.getElementById('modalMaterial').textContent = this.currentProduct.material;
-        document.getElementById('modalQty').textContent = '1';
-
-        // --- NOVI DEO: Grupisanje Cene i Dugmeta za dimenzije ---
-        const detailsContainer = document.querySelector('.modal-details');
-        
-        // Pronalazimo ili pravimo red za cenu i dimenzije
-        let priceRow = document.querySelector('.price-and-dim-row');
-        if (!priceRow) {
-            priceRow = document.createElement('div');
-            priceRow.className = 'price-and-dim-row';
-            // Ubacujemo ga odmah posle materijala
-            document.getElementById('modalMaterial').after(priceRow);
-        }
-
-        // Generišemo sadržaj reda (Cena + Dugme)
-        priceRow.innerHTML = `
-            <div class="modalPrice" id="modalPrice">${this.currentProduct.price} RSD</div>
-            <button id="dimensionsBtn" class="dimensions-btn active">📏 Dimenzije</button>
-        `;
-
-        this.updateModalImage();
-
-        // Generisanje veličina
-        const sizeSelector = document.getElementById('sizeSelector');
-        let firstAvailableSize = null;
-
-        sizeSelector.innerHTML = Object.keys(this.currentProduct.sizes)
-            .map(size => {
-                const stock = this.currentProduct.sizes[size]; 
-                const isDisabled = stock === 0; 
-                if (!isDisabled && !firstAvailableSize) firstAvailableSize = size;
-
-                return `
-                    <button class="size-option ${isDisabled ? 'disabled' : ''}"
-                        onclick="shop.selectSize(event, '${size}', ${isDisabled})" 
-                        ${isDisabled ? 'disabled' : ''}>
-                        ${size}
-                    </button>
-                `;
-            }).join('');
-            
-        // Postavljanje inicijalne veličine
-        const dimBtn = document.getElementById('dimensionsBtn');
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-
-        if (firstAvailableSize) {
-            this.currentSize = firstAvailableSize;
-            setTimeout(() => {
-                document.querySelector(`.size-option[data-size="${firstAvailableSize}"]`)?.classList.add('selected');
-            }, 10);
-            
-            if (dimBtn) {
-                dimBtn.textContent = `📏 Dimenzije za ${firstAvailableSize}`;
-                dimBtn.dataset.size = firstAvailableSize;
-                // Ponovo vežemo event jer smo pregazili innerHTML
-                dimBtn.onclick = () => this.openDimensionsFromBtn();
-            }
-        }
-
-        // Prikaz modala
-        document.getElementById('sizeTable').style.display = 'none';
-        document.getElementById('productModal').style.display = 'block';
-        document.body.classList.add('modal-open');
-    }
-
-    // Pomoćna funkcija da dugme u redu radi
-    openDimensionsFromBtn() {
-        const dimBtn = document.getElementById('dimensionsBtn');
-        const size = dimBtn.dataset.size;
-        if (size && this.dimenzije[size]) {
-            const dim = this.dimenzije[size];
-            document.getElementById('selectedSizeLabel').textContent = size;
-            document.getElementById('dimStruk').textContent = dim.struk;
-            document.getElementById('dimKuk').textContent = dim.kuk;
-            document.getElementById('dimSirina').textContent = dim.sirina;
-            document.getElementById('dimDuzina').textContent = dim.duzina;
-            document.getElementById('dimensionsModal').style.display = 'flex';
-        }
-    }
-   
-    updateModalImage() {
-        if (!this.currentProduct) return;
-        
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        document.getElementById('modalMainImage').src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
-        
-        const totalImages = this.currentProduct.images.length;
-        const sliderNav = document.querySelector('.slider-nav');
-
-        if (totalImages > 1) {
-            sliderNav.style.display = 'flex'; 
-            
-            const isFirst = this.currentImageIndex === 0;
-            const isLast = this.currentImageIndex === totalImages - 1;
-            
-            document.getElementById('prevImageBtn').disabled = isFirst;
-            document.getElementById('nextImageBtn').disabled = isLast;
-        } else {
-            sliderNav.style.display = 'none'; 
-        }
-    }
-    
-    selectSize(event, size, isDisabled) {
-        if (isDisabled) return;
-        this.currentSize = size;
-        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
-        event.currentTarget.classList.add('selected');
-        
-        // Ažuriraj dugme za dimenzije
-        const dimBtn = document.getElementById('dimensionsBtn');
-        if (dimBtn) {
-            dimBtn.textContent = `📏 Dimenzije za ${size}`;
-            dimBtn.dataset.size = size;
-        }
-    }
-
-    changeQuantity(change) {
-        this.currentQuantity = Math.max(1, this.currentQuantity + change);
-        document.getElementById('modalQty').textContent = this.currentQuantity;
-    }
-
-    prevImage() {
-        if (!this.currentProduct) return;
-        this.currentImageIndex = (this.currentImageIndex - 1 + this.currentProduct.images.length) % this.currentProduct.images.length;
-        this.updateModalImage();
-    }
-
-    nextImage() {
-        if (!this.currentProduct) return;
-        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentProduct.images.length;
-        this.updateModalImage();
-    }
-
-    addToCartFromModal(event) {
-        if (!this.currentProduct || !this.currentSize) return;
-        
-        const btn = event.currentTarget;
-        if (btn.disabled) return;
-        btn.disabled = true;
-
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Dodato!';
-        btn.style.background = 'var(--success)';
-        
-        this.addToCart(this.currentProduct.id, this.currentSize, this.currentQuantity);
-        
-        this.updateCartCount();
-        this.renderCart(); 
-        
-        this.showToast(`${this.currentProduct.name} (${this.currentSize}) je dodat u korpu!`);
-        
-        setTimeout(() => {
-            this.closeModal();
-            btn.innerHTML = originalText;
-            btn.style.background = 'var(--primary-dark)';
-            btn.disabled = false;
-        }, 500); 
-    }
-
-    addToCart(productId, size, quantity) {
-        console.log("🛒 Adding to cart:", productId, size, quantity);
-        
-        const product = this.products.find(p => p.id === productId);
-        const existingItem = this.cart.find(item => item.productId === productId && item.size === size);
-
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-            const imageURL = BASE_IMAGE_URL + product.images[0];
-
-            this.cart.push({ 
-                productId, 
-                size, 
-                quantity, 
-                name: product.name, 
-                price: product.price, 
-                image: imageURL
+        const sizeFilterOptions = document.getElementById('sizeFilterOptions');
+        if (sizeFilterOptions) {
+            sizeFilterOptions.addEventListener('click', (e) => {
+                const btn = e.target.closest('.size-btn');
+                if (btn) {
+                    const size = btn.dataset.size;
+                    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    this.currentSizeFilter = size;
+                }
             });
         }
-
-        this.saveCart();
+        
+        // Isključen initDimensionsModal jer sada koristimo openDimensionsFromBtn unutar modala
+        console.log("✅ Event listeners attached");
     }
 
-    updateCartCount() {
-        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCount = document.getElementById('cartCount');
-        cartCount.textContent = totalItems;
-        
-        cartCount.classList.remove('quick-pulse'); 
-        void cartCount.offsetWidth;
-        cartCount.classList.add('quick-pulse');
-        
-        this.updateCartTotals(); 
-        this.toggleCartVisibility();
+    toggleFilterPanel() {
+        const panel = document.getElementById('filterSortPanel');
+        if(panel) panel.classList.toggle('active');
     }
-    
-    toggleCartVisibility() {
-        const cartFooter = document.getElementById('cartFooter');
-        const emptyCart = document.getElementById('emptyCart');
-        
-        if (this.cart.length === 0) {
-            if (emptyCart) emptyCart.style.display = 'block';
-            if (cartFooter) cartFooter.style.display = 'none';
-        } else {
-            if (emptyCart) emptyCart.style.display = 'none';
-            if (cartFooter) cartFooter.style.display = 'block';
+
+    /**
+     * Objedinjena funkcija za promenu stanja filtera
+     */
+    filterProducts(value, filterType) {
+        if (filterType === 'material') {
+            this.currentMaterialFilter = value;
+        } else if (filterType === 'size') {
+            this.currentSizeFilter = value;
+            // Vizuelno ažuriranje dugmića ako se pozove van applyAllFilters
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.size === value);
+            });
         }
     }
 
-    renderCart() {
-        const cartItemsContainer = document.getElementById('cartItems');
+    sortProducts(sortType) {
+        this.currentSort = sortType;
+    }
 
-        if (this.cart.length === 0) {
-            cartItemsContainer.innerHTML = `<div class="empty-cart" id="emptyCart" style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-bag" style="font-size: 3rem; color: #ccc;"></i><p>Vaša korpa je prazna</p></div>`;
-            this.toggleCartVisibility(); 
-            this.updateCartTotals(); 
+    /**
+     * Čisti i primenjuje sve filtere odjednom
+     */
+    applyAllFilters() {
+        this.toggleFilterPanel();
+
+        // Uzimamo vrednosti direktno iz DOM elemenata pre filtriranja
+        const materialEl = document.getElementById('materialFilter');
+        const sortEl = document.getElementById('priceSort');
+        
+        if(materialEl) this.currentMaterialFilter = materialEl.value;
+        if(sortEl) this.currentSort = sortEl.value;
+        
+        this.applyFiltersAndSort(); 
+    }
+
+    applyFiltersAndSort() {
+        // Počinjemo od svih proizvoda
+        let tempProducts = [...this.products];
+
+        // 1. Filter materijal
+        if (this.currentMaterialFilter !== 'all') {
+             tempProducts = tempProducts.filter(p => p.category === this.currentMaterialFilter);
+        }
+
+        // 2. Filter veličina
+        if (this.currentSizeFilter !== 'all') {
+            tempProducts = tempProducts.filter(p => 
+                p.sizes && p.sizes[this.currentSizeFilter] > 0
+            );
+        }
+        
+        // 3. Sortiranje
+        if (this.currentSort === 'lowToHigh') {
+            tempProducts.sort((a, b) => a.price - b.price);
+        } else if (this.currentSort === 'highToLow') {
+            tempProducts.sort((a, b) => b.price - a.price);
+        }
+
+        this.filteredProducts = tempProducts;
+        this.renderProducts();
+    }
+
+    /**
+     * Renderuje grid proizvoda. Optimizovano za brzinu i čistiji HTML.
+     */
+    renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        if (!grid) return;
+
+        if (this.filteredProducts.length === 0) {
+            grid.innerHTML = '<p class="no-results">Nema dostupnih proizvoda prema izabranom filteru.</p>';
             return;
         }
         
-        cartItemsContainer.innerHTML = ''; 
-
-        this.cart.forEach((item) => {
-            const itemHtml = `
-<div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
-    <button class="cart-item-remove" onclick="shop.removeCartItem(${item.productId}, '${item.size}')" title="Ukloni proizvod">×</button>
-    <img src="${item.image}" alt="${item.name} veličine ${item.size}" class="cart-item-image" loading="lazy">
-    <div class="cart-item-details">
-        <div class="cart-item-title">${item.name}</div>
-        <div class="cart-item-size">Veličina: ${item.size}</div>
-        <div class="cart-item-controls">
-            <div class="cart-item-qty-wrapper">
-                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', -1)">-</button>
-                <span class="cart-item-qty">${item.quantity}</span>
-                <button class="cart-item-qty-btn" onclick="shop.updateCartItem(${item.productId}, '${item.size}', 1)">+</button>
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+        
+        grid.innerHTML = this.filteredProducts.map(product => {
+            const badgeClass = this.getBadgeClass(product.badge || '');
+            return `
+              <div class="product-card" onclick="shop.openProductModal(${product.id})">
+                ${product.badge ? `<div class="product-badge ${badgeClass}">${product.badge}</div>` : ''}
+                <img src="${BASE_IMAGE_URL + product.images[0]}" 
+                    alt="${product.name}" 
+                    class="product-image" 
+                    loading="lazy"> 
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-material">${product.material}</p>
+                    <p class="product-price">${product.price} RSD</p> 
+                </div>
             </div>
-            <span class="cart-item-price">${item.price * item.quantity} RSD</span>
-        </div>
-    </div>
-</div>
-`;
-            cartItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
-        });
-
-        this.toggleCartVisibility(); 
-        this.updateCartTotals();
-    }
-
-    
-    updateCartItem(productId, size, change) {
-        const item = this.cart.find(i => i.productId === productId && i.size === size);
-        if (!item) return;
-
-        item.quantity += change;
-        
-        if (item.quantity < 1) {
-            this.removeCartItem(productId, size); 
-            return;
-        }
-        
-        this.saveCart();
-        this.updateCartCount();
-        
-        const cartItem = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
-        if(cartItem) {
-            cartItem.querySelector('.cart-item-qty').textContent = item.quantity;
-            cartItem.querySelector('.cart-item-price').textContent = (item.price * item.quantity) + ' RSD';
-        }
-        
-        this.updateCartTotals();
-        this.showToast(change > 0 ? "Količina povećana" : "Količina smanjena");
-    }
-
-    removeCartItem(productId, size) {
-        const index = this.cart.findIndex(i => i.productId === productId && i.size === size);
-        const cartItemElement = document.querySelector(`.cart-item[data-id="${productId}"][data-size="${size}"]`);
-
-        if (index > -1) {
-            const itemName = this.cart[index].name;
-            this.cart.splice(index, 1);
-            this.saveCart();
-            
-            if (cartItemElement) {
-                cartItemElement.remove();
-            }
-
-            this.updateCartCount(); 
-            this.showToast(`"${itemName}" je uklonjen iz korpe`);
-            
-            if (this.cart.length === 0) {
-                this.renderCart(); 
-            }
-        }
-    }
-
-    updateCartPromoMessage(subtotal) {
-        const promoBar = document.getElementById('promoBar');
-        const cartPromo = document.getElementById('cartPromoMessage');
-
-        const FREE_SHIPPING_LIMIT = 4000;
-        const DISCOUNT_LIMIT = 8000;
-        
-        if (!cartPromo) return;
-
-        if (subtotal >= DISCOUNT_LIMIT) {
-            cartPromo.classList.add('success');
-            cartPromo.innerHTML = '✅ Ostvarili ste <strong>Besplatnu dostavu</strong> i <strong>10% Popusta</strong>!';
-        } else if (subtotal >= FREE_SHIPPING_LIMIT) {
-            const nextTarget = DISCOUNT_LIMIT - subtotal;
-            cartPromo.classList.remove('success');
-            cartPromo.innerHTML = `🔥 Ostvarili ste <strong>BESPLATNU DOSTAVU</strong>! Dodajte još <strong>${nextTarget} RSD</strong> za 10% Popusta!`;
-        } else {
-            const nextTarget = FREE_SHIPPING_LIMIT - subtotal;
-            cartPromo.classList.remove('success');
-            cartPromo.innerHTML = `Dodajte još <strong>${nextTarget} RSD</strong> do Besplatne dostave!`;
-        }
-    }
-
-    updateCartTotals(preview = false) {
-        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        const FREE_SHIPPING_LIMIT = 4000;
-        const DISCOUNT_LIMIT = 8000;
-        const baseShipping = 400;
-
-        const shipping = subtotal === 0 ? 0 : (subtotal >= FREE_SHIPPING_LIMIT ? 0 : baseShipping);
-        const discount = subtotal >= DISCOUNT_LIMIT ? Math.round(subtotal * 0.1) : 0;
-        
-        const total = subtotal + shipping - discount;
-        
-        if (preview) {
-            document.getElementById('previewSubtotal').textContent = subtotal + ' RSD';
-            document.getElementById('previewShipping').textContent = shipping + ' RSD';
-            document.getElementById('previewDiscount').textContent = discount + ' RSD';
-            document.getElementById('previewTotal').textContent = total + ' RSD';
-        } else {
-            document.getElementById('cartSubtotal').textContent = subtotal + ' RSD';
-            document.getElementById('cartShipping').textContent = shipping + ' RSD';
-            document.getElementById('cartDiscount').textContent = discount + ' RSD';
-            
-            const totalElement = document.getElementById('cartTotal');
-            totalElement.textContent = total + ' RSD';
-
-            totalElement.classList.remove('quick-pulse'); 
-            void totalElement.offsetWidth; 
-            totalElement.classList.add('quick-pulse');
-            
-            this.updateCartPromoMessage(subtotal);
-        }
-    }
-
-    clearCart() {
-        if (this.cart.length === 0) {
-            this.showToast("Korpa je već prazna!");
-            return;
-        }
-        
-        if (confirm("Da li ste sigurni da želite da ispraznite korpu? Ova akcija se ne može poništiti.")) {
-            this.cart = [];
-            this.saveCart();
-            this.updateCartCount();
-            this.renderCart(); 
-            this.showToast("Korpa je ispražnjena!");
-        }
-    }
-     
-    saveCart() {
-        localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-    
-    showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.classList.remove('show');
-        void toast.offsetWidth;
-        toast.classList.add('show');
-        
-        setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-        document.body.classList.remove('modal-open');
-    }
-
-    toggleCart() {
-        document.getElementById('cartSidebar').classList.toggle('active');
-        document.body.classList.add('cart-open');
-    }
-
-    toggleSizeTable() { 
-        const table = document.getElementById('sizeTable');
-        table.style.display = table.style.display === 'none' ? 'block' : 'none';
+            `;
+        }).join('');
     }
 
     // =========================================================
