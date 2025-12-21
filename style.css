@@ -1131,6 +1131,48 @@ header h2, .subtitle {
     font-size: 24px;
     cursor: pointer;
 }
+/* 1. Smanjenje naslova za 20% i razmaka */
+#modalTitle {
+    font-size: 1.2rem !important;
+    margin-bottom: 2px !important;
+    line-height: 1.2;
+}
+
+#modalMaterial {
+    font-size: 0.85rem !important;
+    margin-bottom: 8px !important;
+}
+
+/* 2. Brisanje sivog neaktivnog dugmeta (vizuelni višak) */
+/* Sakrivamo dugmad koja su direktna deca modal-details, a nisu zelena */
+.modal-details > button:not(.dimensions-btn):not(.add-to-cart-btn) {
+    display: none !important;
+}
+
+/* 3. Pozicioniranje zelenog dugmeta desno uz cenu */
+.price-and-dim-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 10px !important;
+}
+
+/* 4. Veličine dugmići - veći i klikabilniji */
+.size-option {
+    height: 44px !important; /* Standard za mobilni klik */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer !important;
+}
+
+/* 5. Primicanje količine na gore */
+.quantity-wrapper {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+}
+
 
 /* ===== DODATNI FIX-OVI ===== */
 /* Osiguraj da se sve prikazuje */
