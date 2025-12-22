@@ -963,7 +963,7 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     <!-- Zum modal -->
 <div class="zoom-modal" id="zoomModal" style="display: none;">
     <div class="zoom-content">
-        <button class="zoom-close" onclick="closeZoom()">&times;</button>
+        <button class="zoom-close" onclick="if(window.shop && window.shop.closeZoom) { window.shop.closeZoom(); } else { document.getElementById('zoomModal').style.display='none'; document.body.classList.remove('zoom-open'); }">&times;</button>
         <img id="zoomedImage" src="" alt="Zumirana slika">
     </div>
 </div>
