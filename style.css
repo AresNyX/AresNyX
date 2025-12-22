@@ -979,24 +979,6 @@ body.zoom-open {
     overflow: hidden;
 }
 
-/* Za sliku u glavnom prikazu (nije u modalu) */
-.main-product-image {
-    width: 100%;
-    max-width: 400px;
-    cursor: zoom-in;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-}
-
-.main-product-image:hover {
-    transform: scale(1.02);
-}
-
-.product-image-container {
-    margin-bottom: 30px;
-    text-align: center;
-}
 /* RESPONSIVE MODAL */
 @media (max-width: 768px) {
     .modal-container {
@@ -1985,4 +1967,4 @@ header h2, .subtitle {
     border-top: 3px solid var(--accent-gold) !important;
     z-index: 100 !important;
 }
-    
+     
