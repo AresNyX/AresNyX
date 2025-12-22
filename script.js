@@ -17,6 +17,7 @@ class AresNyXShop {
         this.currentSize = null;
         this.currentQuantity = 1;
         this.currentImageIndex = 0;
+        this.imageClickHandler = null;
         
         // Podaci o dimenzijama (iz HTML-a)
         this.dimenzije = {
@@ -889,6 +890,25 @@ toggleCart() {
     toggleSizeTable() { 
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    // ===== DODAJ OVO NA SAMOM KRAJU METODE =====
+    const mainImage = document.getElementById('modalMainImage');
+    if (mainImage) {
+        // Ukloni stari event listener ako postoji
+        mainImage.removeEventListener('click', this.imageClickHandler);
+        
+        // Dodaj novi
+        this.imageClickHandler = () => {
+            if (this.currentProduct && this.currentProduct.images[this.currentImageIndex]) {
+                this.openZoom(this.currentProduct.images[this.currentImageIndex]);
+            }
+        };
+        
+        mainImage.addEventListener('click', this.imageClickHandler);
+    }
+    
+    console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
     // =========================================================
