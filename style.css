@@ -1124,8 +1124,8 @@ body.zoom-open {
     right: 0;
 }
 
-.cart-header {
-    padding: 20px;
+cart-header {
+    padding: 12px 20px !important; /* SMANJENO SA 20px NA 12px */
     background: var(--primary-dark);
     color: white;
     display: flex;
@@ -1133,11 +1133,12 @@ body.zoom-open {
     align-items: center;
     flex-shrink: 0;
     border-bottom: 2px solid var(--accent-gold);
+    min-height: 50px !important; /* Fiksna visina */
 }
 
 .cart-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: white;
 }
 
@@ -1164,13 +1165,13 @@ body.zoom-open {
 .cart-items {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 15px;
     max-height: 60vh;
 }
 
 .cart-item {
     display: flex;
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--gray-medium);
     align-items: flex-start;
     position: relative;
@@ -1320,7 +1321,7 @@ body.zoom-open {
 }
 
 .cart-footer {
-    padding: 20px;
+    padding: 15px;
     border-top: 2px solid var(--accent-gold);
     background: var(--gray-light);
     flex-shrink: 0;
