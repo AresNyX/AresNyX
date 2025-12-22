@@ -967,6 +967,42 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         <img id="zoomedImage" src="" alt="Zumirana slika">
     </div>
 </div>
+    <!-- DODAJTE OVO U VAŠ HTML, NAJBOJE NEPOSREDNO PRE ZATVARANJA BODY TAGA -->
+<div class="cart-overlay"></div>
+<div class="cart-sidebar">
+    <div class="cart-header">
+        <h2>🛒 Vaša Korpa</h2>
+        <button class="close-cart">&times;</button>
+    </div>
+    
+    <div class="cart-promo-message">
+        Besplatna dostava za porudžbine preko 5000 RSD!
+    </div>
+    
+    <div class="cart-items">
+        <!-- Artikli će biti dinamički dodati ovde -->
+        <div class="empty-cart">
+            <i>🛒</i>
+            <p>Vaša korpa je prazna</p>
+            <button class="continue-shopping-btn">Nastavite kupovinu</button>
+        </div>
+    </div>
+    
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Ukupno:</span>
+            <span>0 RSD</span>
+        </div>
+        <div class="cart-actions">
+            <button class="clear-cart-btn">
+                <i>🗑️</i> Isprazni korpu
+            </button>
+            <button class="checkout-btn">
+                <i>✓</i> Završi kupovinu
+            </button>
+        </div>
+    </div>
+</div>
 
     </body>
 </html>
