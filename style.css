@@ -470,7 +470,8 @@ nav a.active {
         right: auto; 
         top: 60px;
     }
-    
+} /* OVDE JE BIO PROBLEM - NEDOSTAJALA JE ZATVORENA ZAGRADA */
+
 /* ===== MODAL (Brzi pregled/Detalji Proizvoda) - KOMPAKTNA VERZIJA ===== */
 .modal-overlay { 
     position: fixed; 
@@ -1080,7 +1081,7 @@ body.zoom-open {
         padding: 12px 15px;
         font-size: 0.9rem;
     }
-    }
+}
 
 /* ============================================== */
 /* ===== KORPA ===== */
@@ -1103,7 +1104,7 @@ body.zoom-open {
     padding: 15px 20px !important;
     max-height: 60vh !important; /* Ograniči visinu da footer bude vidljiv */
 }
-}
+
 .cart-item { 
     display: flex; 
     padding: 15px 0; 
@@ -1395,7 +1396,7 @@ body.zoom-open {
 }
 .success-message {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 20px; 
 }
 .success-message h2 {
     color: var(--success);
@@ -1719,22 +1720,4 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
-    
-    /* HITAN FIX ZA VIDLJIVO DUGME U KORPI */
-.cart-sidebar {
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-.cart-items {
-    flex: 1 !important;
-    overflow-y: auto !important;
-    max-height: 65vh !important;
-}
-
-.cart-footer {
-    flex-shrink: 0 !important;
-    margin-top: auto !important;
-    border-top: 2px solid var(--accent-gold) !important;
-}
     
