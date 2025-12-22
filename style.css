@@ -1085,35 +1085,24 @@ body.zoom-open {
 /* ============================================== */
 /* ===== KORPA ===== */
 /* ============================================== */
-.cart-sidebar { 
-    position: fixed; 
-    top: 0; 
-    right: -520px;
-    width: 520px; 
-    height: 100vh; 
-    background: white; 
-    box-shadow: -5px 0 25px rgba(0,0,0,0.1); 
-    transition: all 0.3s ease; 
-    z-index: 1000; 
-    display: flex; 
-    flex-direction: column; 
+/* ===== FIX ZA KORPU - VIDLJIVO DUGME ===== */
+.cart-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
 }
-.cart-sidebar.active { 
-    right: 0; 
+
+.cart-header {
+    flex-shrink: 0 !important; /* Ne smanjuj header */
+    padding: 15px 20px !important;
 }
-.cart-header { 
-    padding: 20px; 
-    border-bottom: 1px solid var(--gray-medium); 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    background: var(--primary-dark); 
-    color: white; 
+
+.cart-items {
+    flex: 1 !important; /* Zauzmi sav dostupan prostor */
+    overflow-y: auto !important;
+    padding: 15px 20px !important;
+    max-height: 60vh !important; /* Ograniči visinu da footer bude vidljiv */
 }
-.cart-items { 
-    flex: 1; 
-    overflow-y: auto; 
-    padding: 20px; 
 }
 .cart-item { 
     display: flex; 
@@ -1205,10 +1194,13 @@ body.zoom-open {
 .cart-item-remove:hover { 
     background: #c0392b; 
 }
-.cart-footer { 
-    padding: 20px; 
-    border-top: 1px solid var(--gray-medium); 
-    background: var(--gray-light); 
+.cart-footer {
+    flex-shrink: 0 !important; /* Ne smanjuj footer */
+    padding: 20px !important;
+    border-top: 1px solid var(--gray-medium) !important;
+    background: var(--gray-light) !important;
+    display: block !important; /* Forsiraj prikaz */
+    margin-top: auto !important; /* Guraj footer na dno */
 }
 .cart-actions-footer { 
     margin-bottom: 20px; 
@@ -1231,41 +1223,18 @@ body.zoom-open {
 .clear-cart-btn:hover { 
     background: #c0392b; 
 }
-.checkout-btn { 
-    width: 100%; 
-    background: var(--primary-dark); 
-    color: white; 
-    border: none; 
-    padding: 15px; 
-    border-radius: 8px; 
-    font-size: 1.1rem; 
-    font-weight: 600; 
-    cursor: pointer; 
-    transition: var(--transition); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 10px; 
-    margin-top: 20px; 
+/* Osiguraj da je checkout dugme vidljivo */
+.checkout-btn {
+    position: relative !important;
+    z-index: 10 !important;
+    margin-top: 15px !important;
 }
-.checkout-btn:hover { 
-    background: #333; 
-}
-.cart-totals {
-    margin-bottom: 20px;
-}
-.cart-total-row { 
-    display: flex; 
-    justify-content: space-between; 
-    margin-bottom: 10px; 
-    font-size: 1rem; 
-}
-.cart-total-row.final { 
-    font-weight: 700; 
-    font-size: 1.2rem; 
-    border-top: 2px solid var(--primary-dark); 
-    padding-top: 10px; 
-    margin-top: 10px; 
+
+/* Ako je potrebno scrollanje */
+@media (max-height: 700px) {
+    .cart-items {
+        max-height: 50vh !important;
+    }
 }
 .cart-promo-message {
     background: var(--gray-light); 
