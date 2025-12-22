@@ -841,6 +841,45 @@ class AresNyXShop {
         this.currentSize = null;
         this.currentImageIndex = 0;
     }
+    closeModal() {
+    const modal = document.getElementById('productModal');
+    const modalContainer = modal.querySelector('.modal-container');
+    
+    modal.classList.remove('active');
+    modalContainer.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    
+    this.currentProduct = null;
+    this.currentSize = null;
+    this.currentImageIndex = 0;
+}
+
+// ===== ZUM METODE =====
+openZoom(imageSrc) {
+    const zoomModal = document.getElementById('zoomModal');
+    const zoomedImage = document.getElementById('zoomedImage');
+    
+    if (zoomModal && zoomedImage && this.currentProduct) {
+        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+        zoomedImage.src = BASE_IMAGE_URL + imageSrc;
+        zoomedImage.alt = `${this.currentProduct.name} - zumiran prikaz`;
+        zoomModal.style.display = 'flex';
+        document.body.classList.add('zoom-open');
+    }
+}
+
+closeZoom() {
+    const zoomModal = document.getElementById('zoomModal');
+    if (zoomModal) {
+        zoomModal.style.display = 'none';
+        document.body.classList.remove('zoom-open');
+    }
+}
+
+toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('active');
+    document.body.classList.toggle('cart-open');
+}
 
     toggleCart() {
         document.getElementById('cartSidebar').classList.toggle('active');
