@@ -1967,5 +1967,12 @@ header h2, .subtitle {
     border-top: 3px solid var(--accent-gold) !important;
     z-index: 100 !important;
 }
+/* PODIGNI DNO KORPE ZA 1CM */
+.cart-footer {
+    margin-bottom: -1cm !important;
+    transform: translateY(-1cm) !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
 /* GARANTOVANO VIDLJIVO DUGME ZA KORPU */
 .cart-footer { position: sticky !important; bottom: 0 !important; background: white !important; border-top: 3px solid red !important; }
