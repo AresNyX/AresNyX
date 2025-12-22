@@ -978,7 +978,63 @@ nav a.active {
 body.zoom-open {
     overflow: hidden;
 }
+    
+/* Dodaj ove ispod tvog postojećeg .zoom-modal CSS-a */
+.zoom-indicator {
+    color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 1;
+}
 
+.zoom-controls {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.zoom-btn {
+    background: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.zoom-btn:hover {
+    background: var(--accent-gold);
+    transform: scale(1.1);
+}
+
+/* Za sliku u glavnom prikazu (nije u modalu) */
+.main-product-image {
+    width: 100%;
+    max-width: 400px;
+    cursor: zoom-in;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.main-product-image:hover {
+    transform: scale(1.02);
+}
+
+.product-image-container {
+    margin-bottom: 30px;
+    text-align: center;
+}
 /* RESPONSIVE MODAL */
 @media (max-width: 768px) {
     .modal-container {
