@@ -650,15 +650,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
                 <p class="modal-material" id="modalMaterial"></p>
                 <p class="modalPrice" id="modalPrice"></p>
                 
-                <!-- DODATA SLIKA ZA ZUMIRANJE -->
-                <div class="product-image-container">
-                    <img src="" 
-                         alt="" 
-                         class="main-product-image" 
-                         id="mainProductImage"
-                         style="cursor: zoom-in; border-radius: 8px; max-width: 100%; margin: 15px 0;">
-                </div>
-                
                 <div class="size-section">
                     <div class="size-header-row">
                         <h3>Odaberite veličinu:</h3>
@@ -844,23 +835,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 
     <div class="toast" id="toast"></div>
     
-    <!-- Modal za zumiranje slike -->
-    <div class="zoom-modal" id="zoomModal">
-        <button class="zoom-close" id="closeZoomModal">&times;</button>
-        <div class="zoom-content">
-            <img src="" 
-                 alt="" 
-                 class="zoomed-image" 
-                 id="zoomedImg">
-            <div class="zoom-indicator" id="zoomIndicator">100%</div>
-        </div>
-        <div class="zoom-controls">
-            <button class="zoom-btn" id="zoomOutBtn">-</button>
-            <button class="zoom-btn" id="resetZoomBtn">⟲</button>
-            <button class="zoom-btn" id="zoomInBtn">+</button>
-        </div>
-    </div>
-    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
                                                                     
     <script src="script.js" defer></script> 
@@ -925,125 +899,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
     window.closeDimensionsModal = function() {
         document.getElementById('dimensionsModal').style.display = 'none';
     };
-    
-    // DODATA SKRIPTA ZA ZUM MODAL
-    document.addEventListener('DOMContentLoaded', function() {
-        // Elementi za zoom modal
-        const mainProductImage = document.getElementById('mainProductImage');
-        const zoomModal = document.getElementById('zoomModal');
-        const closeZoomModal = document.getElementById('closeZoomModal');
-        const zoomedImg = document.getElementById('zoomedImg');
-        const zoomInBtn = document.getElementById('zoomInBtn');
-        const zoomOutBtn = document.getElementById('zoomOutBtn');
-        const resetZoomBtn = document.getElementById('resetZoomBtn');
-        const zoomIndicator = document.getElementById('zoomIndicator');
-        
-        if (!mainProductImage || !zoomModal) {
-            console.log('Zoom modal elementi nisu pronađeni');
-            return;
-        }
-        
-        // Zoom varijable
-        let currentZoom = 1;
-        const MIN_ZOOM = 0.5;
-        const MAX_ZOOM = 3;
-        const ZOOM_STEP = 0.1;
-        
-        // Funkcija za ažuriranje zumiranja
-        function updateZoom() {
-            const baseWidth = 105; // 5% šira kao što si hteo
-            const newWidth = baseWidth * currentZoom;
-            
-            zoomedImg.style.width = newWidth + '%';
-            zoomedImg.style.height = 'auto';
-            zoomIndicator.textContent = Math.round(currentZoom * 100) + '%';
-        }
-        
-        // Funkcije za zumiranje
-        function zoomIn() {
-            if (currentZoom < MAX_ZOOM) {
-                currentZoom += ZOOM_STEP;
-                updateZoom();
-            }
-        }
-        
-        function zoomOut() {
-            if (currentZoom > MIN_ZOOM) {
-                currentZoom -= ZOOM_STEP;
-                updateZoom();
-            }
-        }
-        
-        function resetZoom() {
-            currentZoom = 1;
-            updateZoom();
-        }
-        
-        // Otvori modal kada se klikne na sliku u modalu
-        mainProductImage.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Postavi istu sliku u zoom modal
-            zoomedImg.src = this.src || this.getAttribute('src');
-            zoomedImg.alt = this.alt || '';
-            
-            zoomModal.style.display = 'flex';
-            document.body.classList.add('zoom-open');
-            resetZoom();
-        });
-        
-        // Zatvori modal
-        closeZoomModal.addEventListener('click', function(e) {
-            e.preventDefault();
-            zoomModal.style.display = 'none';
-            document.body.classList.remove('zoom-open');
-        });
-        
-        // Zatvori modal klikom na pozadinu
-        zoomModal.addEventListener('click', function(e) {
-            if (e.target === zoomModal) {
-                zoomModal.style.display = 'none';
-                document.body.classList.remove('zoom-open');
-            }
-        });
-        
-        // Kontrole za zumiranje
-        zoomInBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            zoomIn();
-        });
-        
-        zoomOutBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            zoomOut();
-        });
-        
-        resetZoomBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            resetZoom();
-        });
-        
-        // Zumiranje točkićem miša
-        zoomedImg.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            if (e.deltaY < 0) {
-                zoomIn();
-            } else {
-                zoomOut();
-            }
-        });
-        
-        // Zatvori ESC tipkom
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && zoomModal.style.display === 'flex') {
-                zoomModal.style.display = 'none';
-                document.body.classList.remove('zoom-open');
-            }
-        });
-        
-        console.log('Zoom modal skripta učitana');
-    });
     </script>
     
     <footer class="main-footer">
@@ -1105,7 +960,51 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             © 2024 AresNyX. Sva prava zadržana.
         </div>
     </footer>
+    <!-- Zum modal -->
+<div class="zoom-modal" id="zoomModal" style="display: none;">
+    <div class="zoom-content">
+        <button class="zoom-close" onclick="if(window.shop && window.shop.closeZoom) { window.shop.closeZoom(); } else { document.getElementById('zoomModal').style.display='none'; document.body.classList.remove('zoom-open'); }">&times;</button>
+        <img id="zoomedImage" src="" alt="Zumirana slika">
+    </div>
+</div>
+    <!-- DODAJTE OVO U VAŠ HTML, NAJBOJE NEPOSREDNO PRE ZATVARANJA BODY TAGA -->
+<div class="cart-overlay"></div>
+<div class="cart-sidebar">
+    <div class="cart-header">
+        <h2>🛒 Vaša Korpa</h2>
+        <button class="close-cart">&times;</button>
+    </div>
+    
+    <div class="cart-promo-message">
+        Besplatna dostava za porudžbine preko 5000 RSD!
+    </div>
+    
+    <div class="cart-items">
+        <!-- Artikli će biti dinamički dodati ovde -->
+        <div class="empty-cart">
+            <i>🛒</i>
+            <p>Vaša korpa je prazna</p>
+            <button class="continue-shopping-btn">Nastavite kupovinu</button>
+        </div>
+    </div>
+    
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Ukupno:</span>
+            <span>0 RSD</span>
+        </div>
+        <div class="cart-actions">
+            <button class="clear-cart-btn">
+                <i>🗑️</i> Isprazni korpu
+            </button>
+            <button class="checkout-btn">
+                <i>✓</i> Završi kupovinu
+            </button>
+        </div>
+    </div>
+</div>
     
 
     </body>
 </html>
+
