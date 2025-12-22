@@ -1180,3 +1180,30 @@ window.debugShop = function() {
     console.log("4. Calling renderProducts...");
     window.shop?.renderProducts();
 };
+
+// Dodaj blokiranje scroll-a kada je modal otvoren
+productImage.addEventListener('click', function() {
+    imageModal.style.display = 'flex';
+    document.body.classList.add('zoom-open'); // Dodaje klasu za blokiranje scroll-a
+    resetZoom();
+});
+
+closeModal.addEventListener('click', function() {
+    imageModal.style.display = 'none';
+    document.body.classList.remove('zoom-open'); // Uklanja klasu
+});
+
+imageModal.addEventListener('click', function(event) {
+    if (event.target === imageModal || event.target === zoomedImage) {
+        imageModal.style.display = 'none';
+        document.body.classList.remove('zoom-open');
+    }
+});
+
+// Dodaj i u ESC handler
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && imageModal.style.display === 'flex') {
+        imageModal.style.display = 'none';
+        document.body.classList.remove('zoom-open');
+    }
+});
