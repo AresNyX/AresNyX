@@ -520,6 +520,16 @@ class AresNyXShop {
         modalContainer.classList.add('active');
         document.body.classList.add('modal-open');
         
+        // ===== DODAJ EVENT LISTENER ZA ZUM =====
+        const mainImage = document.getElementById('modalMainImage');
+        if (mainImage) {
+            mainImage.onclick = () => {
+                if (this.currentProduct && this.currentProduct.images[this.currentImageIndex]) {
+                    this.openZoom(this.currentProduct.images[this.currentImageIndex]);
+                }
+            };
+        }
+        
         console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
@@ -532,6 +542,13 @@ class AresNyXShop {
         if (mainImage && this.currentProduct.images[this.currentImageIndex]) {
             mainImage.src = BASE_IMAGE_URL + this.currentProduct.images[this.currentImageIndex];
             mainImage.alt = `${this.currentProduct.name} - slika ${this.currentImageIndex + 1}`;
+            
+            // Ažuriraj event listener za zum
+            mainImage.onclick = () => {
+                if (this.currentProduct && this.currentProduct.images[this.currentImageIndex]) {
+                    this.openZoom(this.currentProduct.images[this.currentImageIndex]);
+                }
+            };
         }
         
         // Ažuriraj slider dugmadi
@@ -842,45 +859,28 @@ class AresNyXShop {
         this.currentSize = null;
         this.currentImageIndex = 0;
     }
-    closeModal() {
-    const modal = document.getElementById('productModal');
-    const modalContainer = modal.querySelector('.modal-container');
-    
-    modal.classList.remove('active');
-    modalContainer.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    
-    this.currentProduct = null;
-    this.currentSize = null;
-    this.currentImageIndex = 0;
-}
 
-// ===== ZUM METODE =====
-openZoom(imageSrc) {
-    const zoomModal = document.getElementById('zoomModal');
-    const zoomedImage = document.getElementById('zoomedImage');
-    
-    if (zoomModal && zoomedImage && this.currentProduct) {
-        const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
-        zoomedImage.src = BASE_IMAGE_URL + imageSrc;
-        zoomedImage.alt = `${this.currentProduct.name} - zumiran prikaz`;
-        zoomModal.style.display = 'flex';
-        document.body.classList.add('zoom-open');
+    // ===== ZUM METODE =====
+    openZoom(imageSrc) {
+        const zoomModal = document.getElementById('zoomModal');
+        const zoomedImage = document.getElementById('zoomedImage');
+        
+        if (zoomModal && zoomedImage && this.currentProduct) {
+            const BASE_IMAGE_URL = "https://aresnyx.github.io/AresNyX/slike/";
+            zoomedImage.src = BASE_IMAGE_URL + imageSrc;
+            zoomedImage.alt = `${this.currentProduct.name} - zumiran prikaz`;
+            zoomModal.style.display = 'flex';
+            document.body.classList.add('zoom-open');
+        }
     }
-}
 
-closeZoom() {
-    const zoomModal = document.getElementById('zoomModal');
-    if (zoomModal) {
-        zoomModal.style.display = 'none';
-        document.body.classList.remove('zoom-open');
+    closeZoom() {
+        const zoomModal = document.getElementById('zoomModal');
+        if (zoomModal) {
+            zoomModal.style.display = 'none';
+            document.body.classList.remove('zoom-open');
+        }
     }
-}
-
-toggleCart() {
-    document.getElementById('cartSidebar').classList.toggle('active');
-    document.body.classList.toggle('cart-open');
-}
 
     toggleCart() {
         document.getElementById('cartSidebar').classList.toggle('active');
@@ -890,25 +890,6 @@ toggleCart() {
     toggleSizeTable() { 
         const table = document.getElementById('sizeTable');
         table.style.display = table.style.display === 'none' ? 'block' : 'none';
-    }
-    
-    // ===== DODAJ OVO NA SAMOM KRAJU METODE =====
-    const mainImage = document.getElementById('modalMainImage');
-    if (mainImage) {
-        // Ukloni stari event listener ako postoji
-        mainImage.removeEventListener('click', this.imageClickHandler);
-        
-        // Dodaj novi
-        this.imageClickHandler = () => {
-            if (this.currentProduct && this.currentProduct.images[this.currentImageIndex]) {
-                this.openZoom(this.currentProduct.images[this.currentImageIndex]);
-            }
-        };
-        
-        mainImage.addEventListener('click', this.imageClickHandler);
-    }
-    
-    console.log("✅ Product modal opened:", this.currentProduct.name);
     }
 
     // =========================================================
