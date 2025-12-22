@@ -1944,4 +1944,26 @@ header h2, .subtitle {
 .mb-2 { margin-bottom: 2rem !important; }
 .mt-3 { margin-top: 3rem !important; }
 .mb-3 { margin-bottom: 3rem !important; }
+/* SAMO DODAJTE OVO NA KRAJ VAŠEG CSS-A */
+.cart-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+}
+
+.cart-items {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    min-height: 200px !important; /* Obavezno da može da scroll-a */
+}
+
+.cart-footer {
+    margin-top: auto !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background: white !important;
+    padding: 15px 20px !important;
+    border-top: 3px solid var(--accent-gold) !important;
+    z-index: 100 !important;
+}
     
