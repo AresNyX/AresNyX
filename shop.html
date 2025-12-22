@@ -1003,7 +1003,40 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
         </div>
     </div>
 </div>
+    <script>
+// NUKLEARNA OPCIJA: STICKY DUGME
+window.addEventListener('DOMContentLoaded', function() {
+    const cartBtn = document.querySelector('.checkout-btn');
+    const cartFooter = document.getElementById('cartFooter');
     
+    if(cartFooter) {
+        // 1. FORCE STICKY POZICIJU
+        cartFooter.style.cssText = `
+            position: sticky !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            background: white !important;
+            padding: 20px !important;
+            border-top: 3px solid #4CAF50 !important;
+            z-index: 9999 !important;
+            margin-top: auto !important;
+        `;
+        
+        // 2. KADA SE OTVORI KORPA, SKROLUJ DO DUGMETA
+        const cartLinks = document.querySelectorAll('.cart-nav-link, [onclick*="toggleCart"]');
+        cartLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => {
+                    if(cartBtn) cartBtn.scrollIntoView({behavior: 'smooth', block: 'end'});
+                }, 350);
+            });
+        });
+        
+        console.log('✅ Sticky footer primenjen na korpu.');
+    }
+});
+    </script>
 
     </body>
 </html>
