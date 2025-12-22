@@ -960,11 +960,20 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
             © 2024 AresNyX. Sva prava zadržana.
         </div>
     </footer>
-    <!-- Zum modal -->
-<div class="zoom-modal" id="zoomModal" style="display: none;">
+    <!-- Modal za zumiranje slike -->
+<div class="zoom-modal" id="imageModal">
+    <button class="zoom-close" id="closeModal">&times;</button>
     <div class="zoom-content">
-        <button class="zoom-close" onclick="if(window.shop && window.shop.closeZoom) { window.shop.closeZoom(); } else { document.getElementById('zoomModal').style.display='none'; document.body.classList.remove('zoom-open'); }">&times;</button>
-        <img id="zoomedImage" src="" alt="Zumirana slika">
+        <img src="https://via.placeholder.com/800x1000/CCCCCC/333333?text=Classic+Pamuk+Zum" 
+             alt="Classic Pamuk majica - zumirano" 
+             class="zoomed-image" 
+             id="zoomedImage">
+        <div class="zoom-indicator" id="zoomIndicator">100%</div>
+    </div>
+    <div class="zoom-controls">
+        <button class="zoom-btn" id="zoomOut">-</button>
+        <button class="zoom-btn" id="resetZoom">⟲</button>
+        <button class="zoom-btn" id="zoomIn">+</button>
     </div>
 </div>
     <!-- DODAJTE OVO U VAŠ HTML, NAJBOJE NEPOSREDNO PRE ZATVARANJA BODY TAGA -->
